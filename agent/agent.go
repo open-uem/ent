@@ -73,6 +73,8 @@ const (
 	FieldIsWayland = "is_wayland"
 	// FieldIsFlatpakRustdesk holds the string denoting the is_flatpak_rustdesk field in the database.
 	FieldIsFlatpakRustdesk = "is_flatpak_rustdesk"
+	// FieldWan holds the string denoting the wan field in the database.
+	FieldWan = "wan"
 	// EdgeComputer holds the string denoting the computer edge name in mutations.
 	EdgeComputer = "computer"
 	// EdgeOperatingsystem holds the string denoting the operatingsystem edge name in mutations.
@@ -325,6 +327,7 @@ var Columns = []string{
 	FieldHasRustdesk,
 	FieldIsWayland,
 	FieldIsFlatpakRustdesk,
+	FieldWan,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "agents"
@@ -404,6 +407,8 @@ var (
 	DefaultIsWayland bool
 	// DefaultIsFlatpakRustdesk holds the default value on creation for the "is_flatpak_rustdesk" field.
 	DefaultIsFlatpakRustdesk bool
+	// DefaultWan holds the default value on creation for the "wan" field.
+	DefaultWan string
 	// IDValidator is a validator for the "id" field. It is called by the builders before save.
 	IDValidator func(string) error
 )
@@ -618,6 +623,11 @@ func ByIsWayland(opts ...sql.OrderTermOption) OrderOption {
 // ByIsFlatpakRustdesk orders the results by the is_flatpak_rustdesk field.
 func ByIsFlatpakRustdesk(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldIsFlatpakRustdesk, opts...).ToFunc()
+}
+
+// ByWan orders the results by the wan field.
+func ByWan(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldWan, opts...).ToFunc()
 }
 
 // ByComputerField orders the results by computer field.

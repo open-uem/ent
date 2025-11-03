@@ -200,6 +200,11 @@ func IsFlatpakRustdesk(v bool) predicate.Agent {
 	return predicate.Agent(sql.FieldEQ(FieldIsFlatpakRustdesk, v))
 }
 
+// Wan applies equality check predicate on the "wan" field. It's identical to WanEQ.
+func Wan(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldEQ(FieldWan, v))
+}
+
 // OsEQ applies the EQ predicate on the "os" field.
 func OsEQ(v string) predicate.Agent {
 	return predicate.Agent(sql.FieldEQ(FieldOs, v))
@@ -1648,6 +1653,71 @@ func IsFlatpakRustdeskIsNil() predicate.Agent {
 // IsFlatpakRustdeskNotNil applies the NotNil predicate on the "is_flatpak_rustdesk" field.
 func IsFlatpakRustdeskNotNil() predicate.Agent {
 	return predicate.Agent(sql.FieldNotNull(FieldIsFlatpakRustdesk))
+}
+
+// WanEQ applies the EQ predicate on the "wan" field.
+func WanEQ(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldEQ(FieldWan, v))
+}
+
+// WanNEQ applies the NEQ predicate on the "wan" field.
+func WanNEQ(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldNEQ(FieldWan, v))
+}
+
+// WanIn applies the In predicate on the "wan" field.
+func WanIn(vs ...string) predicate.Agent {
+	return predicate.Agent(sql.FieldIn(FieldWan, vs...))
+}
+
+// WanNotIn applies the NotIn predicate on the "wan" field.
+func WanNotIn(vs ...string) predicate.Agent {
+	return predicate.Agent(sql.FieldNotIn(FieldWan, vs...))
+}
+
+// WanGT applies the GT predicate on the "wan" field.
+func WanGT(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldGT(FieldWan, v))
+}
+
+// WanGTE applies the GTE predicate on the "wan" field.
+func WanGTE(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldGTE(FieldWan, v))
+}
+
+// WanLT applies the LT predicate on the "wan" field.
+func WanLT(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldLT(FieldWan, v))
+}
+
+// WanLTE applies the LTE predicate on the "wan" field.
+func WanLTE(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldLTE(FieldWan, v))
+}
+
+// WanContains applies the Contains predicate on the "wan" field.
+func WanContains(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldContains(FieldWan, v))
+}
+
+// WanHasPrefix applies the HasPrefix predicate on the "wan" field.
+func WanHasPrefix(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldHasPrefix(FieldWan, v))
+}
+
+// WanHasSuffix applies the HasSuffix predicate on the "wan" field.
+func WanHasSuffix(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldHasSuffix(FieldWan, v))
+}
+
+// WanEqualFold applies the EqualFold predicate on the "wan" field.
+func WanEqualFold(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldEqualFold(FieldWan, v))
+}
+
+// WanContainsFold applies the ContainsFold predicate on the "wan" field.
+func WanContainsFold(v string) predicate.Agent {
+	return predicate.Agent(sql.FieldContainsFold(FieldWan, v))
 }
 
 // HasComputer applies the HasEdge predicate on the "computer" edge.

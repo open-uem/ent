@@ -605,6 +605,20 @@ func (au *AgentUpdate) ClearIsFlatpakRustdesk() *AgentUpdate {
 	return au
 }
 
+// SetWan sets the "wan" field.
+func (au *AgentUpdate) SetWan(s string) *AgentUpdate {
+	au.mutation.SetWan(s)
+	return au
+}
+
+// SetNillableWan sets the "wan" field if the given value is not nil.
+func (au *AgentUpdate) SetNillableWan(s *string) *AgentUpdate {
+	if s != nil {
+		au.SetWan(*s)
+	}
+	return au
+}
+
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
 func (au *AgentUpdate) SetComputerID(id int) *AgentUpdate {
 	au.mutation.SetComputerID(id)
@@ -1506,6 +1520,9 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if au.mutation.IsFlatpakRustdeskCleared() {
 		_spec.ClearField(agent.FieldIsFlatpakRustdesk, field.TypeBool)
+	}
+	if value, ok := au.mutation.Wan(); ok {
+		_spec.SetField(agent.FieldWan, field.TypeString, value)
 	}
 	if au.mutation.ComputerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -2905,6 +2922,20 @@ func (auo *AgentUpdateOne) ClearIsFlatpakRustdesk() *AgentUpdateOne {
 	return auo
 }
 
+// SetWan sets the "wan" field.
+func (auo *AgentUpdateOne) SetWan(s string) *AgentUpdateOne {
+	auo.mutation.SetWan(s)
+	return auo
+}
+
+// SetNillableWan sets the "wan" field if the given value is not nil.
+func (auo *AgentUpdateOne) SetNillableWan(s *string) *AgentUpdateOne {
+	if s != nil {
+		auo.SetWan(*s)
+	}
+	return auo
+}
+
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
 func (auo *AgentUpdateOne) SetComputerID(id int) *AgentUpdateOne {
 	auo.mutation.SetComputerID(id)
@@ -3836,6 +3867,9 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 	}
 	if auo.mutation.IsFlatpakRustdeskCleared() {
 		_spec.ClearField(agent.FieldIsFlatpakRustdesk, field.TypeBool)
+	}
+	if value, ok := auo.mutation.Wan(); ok {
+		_spec.SetField(agent.FieldWan, field.TypeString, value)
 	}
 	if auo.mutation.ComputerCleared() {
 		edge := &sqlgraph.EdgeSpec{

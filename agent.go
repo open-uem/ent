@@ -80,6 +80,8 @@ type Agent struct {
 	IsWayland bool `json:"is_wayland,omitempty"`
 	// IsFlatpakRustdesk holds the value of the "is_flatpak_rustdesk" field.
 	IsFlatpakRustdesk bool `json:"is_flatpak_rustdesk,omitempty"`
+	// Wan holds the value of the "wan" field.
+	Wan string `json:"wan,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the AgentQuery when eager-loading is set.
 	Edges          AgentEdges `json:"edges"`
@@ -331,7 +333,7 @@ func (*Agent) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case agent.FieldCertificateReady, agent.FieldRestartRequired, agent.FieldIsRemote, agent.FieldDebugMode, agent.FieldSftpService, agent.FieldRemoteAssistance, agent.FieldHasRustdesk, agent.FieldIsWayland, agent.FieldIsFlatpakRustdesk:
 			values[i] = new(sql.NullBool)
-		case agent.FieldID, agent.FieldOs, agent.FieldHostname, agent.FieldIP, agent.FieldMAC, agent.FieldVnc, agent.FieldNotes, agent.FieldUpdateTaskStatus, agent.FieldUpdateTaskDescription, agent.FieldUpdateTaskResult, agent.FieldUpdateTaskVersion, agent.FieldVncProxyPort, agent.FieldSftpPort, agent.FieldAgentStatus, agent.FieldDescription, agent.FieldNickname, agent.FieldEndpointType:
+		case agent.FieldID, agent.FieldOs, agent.FieldHostname, agent.FieldIP, agent.FieldMAC, agent.FieldVnc, agent.FieldNotes, agent.FieldUpdateTaskStatus, agent.FieldUpdateTaskDescription, agent.FieldUpdateTaskResult, agent.FieldUpdateTaskVersion, agent.FieldVncProxyPort, agent.FieldSftpPort, agent.FieldAgentStatus, agent.FieldDescription, agent.FieldNickname, agent.FieldEndpointType, agent.FieldWan:
 			values[i] = new(sql.NullString)
 		case agent.FieldFirstContact, agent.FieldLastContact, agent.FieldUpdateTaskExecution, agent.FieldSettingsModified:
 			values[i] = new(sql.NullTime)
@@ -531,6 +533,12 @@ func (a *Agent) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field is_flatpak_rustdesk", values[i])
 			} else if value.Valid {
 				a.IsFlatpakRustdesk = value.Bool
+			}
+		case agent.FieldWan:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field wan", values[i])
+			} else if value.Valid {
+				a.Wan = value.String
 			}
 		case agent.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -761,6 +769,9 @@ func (a *Agent) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("is_flatpak_rustdesk=")
 	builder.WriteString(fmt.Sprintf("%v", a.IsFlatpakRustdesk))
+	builder.WriteString(", ")
+	builder.WriteString("wan=")
+	builder.WriteString(a.Wan)
 	builder.WriteByte(')')
 	return builder.String()
 }

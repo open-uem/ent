@@ -48,6 +48,7 @@ func (Agent) Fields() []ent.Field {
 		field.Bool("has_rustdesk").Optional().Default(false),
 		field.Bool("is_wayland").Optional().Default(false),
 		field.Bool("is_flatpak_rustdesk").Optional().Default(false),
+		field.String("wan").Default(""),
 	}
 }
 

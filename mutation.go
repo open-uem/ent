@@ -126,6 +126,7 @@ type AgentMutation struct {
 	has_rustdesk               *bool
 	is_wayland                 *bool
 	is_flatpak_rustdesk        *bool
+	wan                        *string
 	clearedFields              map[string]struct{}
 	computer                   *int
 	clearedcomputer            bool
@@ -1660,6 +1661,42 @@ func (m *AgentMutation) ResetIsFlatpakRustdesk() {
 	delete(m.clearedFields, agent.FieldIsFlatpakRustdesk)
 }
 
+// SetWan sets the "wan" field.
+func (m *AgentMutation) SetWan(s string) {
+	m.wan = &s
+}
+
+// Wan returns the value of the "wan" field in the mutation.
+func (m *AgentMutation) Wan() (r string, exists bool) {
+	v := m.wan
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldWan returns the old "wan" field's value of the Agent entity.
+// If the Agent object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *AgentMutation) OldWan(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldWan is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldWan requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldWan: %w", err)
+	}
+	return oldValue.Wan, nil
+}
+
+// ResetWan resets all changes to the "wan" field.
+func (m *AgentMutation) ResetWan() {
+	m.wan = nil
+}
+
 // SetComputerID sets the "computer" edge to the Computer entity by id.
 func (m *AgentMutation) SetComputerID(id int) {
 	m.computer = &id
@@ -2699,7 +2736,7 @@ func (m *AgentMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *AgentMutation) Fields() []string {
-	fields := make([]string, 0, 29)
+	fields := make([]string, 0, 30)
 	if m.os != nil {
 		fields = append(fields, agent.FieldOs)
 	}
@@ -2787,6 +2824,9 @@ func (m *AgentMutation) Fields() []string {
 	if m.is_flatpak_rustdesk != nil {
 		fields = append(fields, agent.FieldIsFlatpakRustdesk)
 	}
+	if m.wan != nil {
+		fields = append(fields, agent.FieldWan)
+	}
 	return fields
 }
 
@@ -2853,6 +2893,8 @@ func (m *AgentMutation) Field(name string) (ent.Value, bool) {
 		return m.IsWayland()
 	case agent.FieldIsFlatpakRustdesk:
 		return m.IsFlatpakRustdesk()
+	case agent.FieldWan:
+		return m.Wan()
 	}
 	return nil, false
 }
@@ -2920,6 +2962,8 @@ func (m *AgentMutation) OldField(ctx context.Context, name string) (ent.Value, e
 		return m.OldIsWayland(ctx)
 	case agent.FieldIsFlatpakRustdesk:
 		return m.OldIsFlatpakRustdesk(ctx)
+	case agent.FieldWan:
+		return m.OldWan(ctx)
 	}
 	return nil, fmt.Errorf("unknown Agent field %s", name)
 }
@@ -3131,6 +3175,13 @@ func (m *AgentMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetIsFlatpakRustdesk(v)
+		return nil
+	case agent.FieldWan:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetWan(v)
 		return nil
 	}
 	return fmt.Errorf("unknown Agent field %s", name)
@@ -3420,6 +3471,9 @@ func (m *AgentMutation) ResetField(name string) error {
 		return nil
 	case agent.FieldIsFlatpakRustdesk:
 		m.ResetIsFlatpakRustdesk()
+		return nil
+	case agent.FieldWan:
+		m.ResetWan()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent field %s", name)
