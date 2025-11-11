@@ -948,6 +948,7 @@ var (
 		{Name: "expiry", Type: field.TypeTime, Nullable: true},
 		{Name: "openid", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "passwd", Type: field.TypeBool, Nullable: true, Default: false},
+		{Name: "use2fa", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "created", Type: field.TypeTime, Nullable: true},
 		{Name: "modified", Type: field.TypeTime, Nullable: true},
 		{Name: "access_token", Type: field.TypeString, Nullable: true, Default: ""},

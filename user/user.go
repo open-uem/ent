@@ -34,6 +34,8 @@ const (
 	FieldOpenid = "openid"
 	// FieldPasswd holds the string denoting the passwd field in the database.
 	FieldPasswd = "passwd"
+	// FieldUse2fa holds the string denoting the use2fa field in the database.
+	FieldUse2fa = "use2fa"
 	// FieldCreated holds the string denoting the created field in the database.
 	FieldCreated = "created"
 	// FieldModified holds the string denoting the modified field in the database.
@@ -89,6 +91,7 @@ var Columns = []string{
 	FieldExpiry,
 	FieldOpenid,
 	FieldPasswd,
+	FieldUse2fa,
 	FieldCreated,
 	FieldModified,
 	FieldAccessToken,
@@ -125,6 +128,8 @@ var (
 	DefaultOpenid bool
 	// DefaultPasswd holds the default value on creation for the "passwd" field.
 	DefaultPasswd bool
+	// DefaultUse2fa holds the default value on creation for the "use2fa" field.
+	DefaultUse2fa bool
 	// DefaultCreated holds the default value on creation for the "created" field.
 	DefaultCreated func() time.Time
 	// DefaultModified holds the default value on creation for the "modified" field.
@@ -205,6 +210,11 @@ func ByOpenid(opts ...sql.OrderTermOption) OrderOption {
 // ByPasswd orders the results by the passwd field.
 func ByPasswd(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldPasswd, opts...).ToFunc()
+}
+
+// ByUse2fa orders the results by the use2fa field.
+func ByUse2fa(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUse2fa, opts...).ToFunc()
 }
 
 // ByCreated orders the results by the created field.

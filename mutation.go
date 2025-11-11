@@ -36347,6 +36347,7 @@ type UserMutation struct {
 	expiry               *time.Time
 	openid               *bool
 	passwd               *bool
+	use2fa               *bool
 	created              *time.Time
 	modified             *time.Time
 	access_token         *string
@@ -36922,6 +36923,55 @@ func (m *UserMutation) PasswdCleared() bool {
 func (m *UserMutation) ResetPasswd() {
 	m.passwd = nil
 	delete(m.clearedFields, user.FieldPasswd)
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (m *UserMutation) SetUse2fa(b bool) {
+	m.use2fa = &b
+}
+
+// Use2fa returns the value of the "use2fa" field in the mutation.
+func (m *UserMutation) Use2fa() (r bool, exists bool) {
+	v := m.use2fa
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUse2fa returns the old "use2fa" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldUse2fa(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUse2fa is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUse2fa requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUse2fa: %w", err)
+	}
+	return oldValue.Use2fa, nil
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (m *UserMutation) ClearUse2fa() {
+	m.use2fa = nil
+	m.clearedFields[user.FieldUse2fa] = struct{}{}
+}
+
+// Use2faCleared returns if the "use2fa" field was cleared in this mutation.
+func (m *UserMutation) Use2faCleared() bool {
+	_, ok := m.clearedFields[user.FieldUse2fa]
+	return ok
+}
+
+// ResetUse2fa resets all changes to the "use2fa" field.
+func (m *UserMutation) ResetUse2fa() {
+	m.use2fa = nil
+	delete(m.clearedFields, user.FieldUse2fa)
 }
 
 // SetCreated sets the "created" field.
@@ -37528,7 +37578,7 @@ func (m *UserMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *UserMutation) Fields() []string {
-	fields := make([]string, 0, 19)
+	fields := make([]string, 0, 20)
 	if m.name != nil {
 		fields = append(fields, user.FieldName)
 	}
@@ -37558,6 +37608,9 @@ func (m *UserMutation) Fields() []string {
 	}
 	if m.passwd != nil {
 		fields = append(fields, user.FieldPasswd)
+	}
+	if m.use2fa != nil {
+		fields = append(fields, user.FieldUse2fa)
 	}
 	if m.created != nil {
 		fields = append(fields, user.FieldCreated)
@@ -37614,6 +37667,8 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.Openid()
 	case user.FieldPasswd:
 		return m.Passwd()
+	case user.FieldUse2fa:
+		return m.Use2fa()
 	case user.FieldCreated:
 		return m.Created()
 	case user.FieldModified:
@@ -37661,6 +37716,8 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldOpenid(ctx)
 	case user.FieldPasswd:
 		return m.OldPasswd(ctx)
+	case user.FieldUse2fa:
+		return m.OldUse2fa(ctx)
 	case user.FieldCreated:
 		return m.OldCreated(ctx)
 	case user.FieldModified:
@@ -37757,6 +37814,13 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetPasswd(v)
+		return nil
+	case user.FieldUse2fa:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUse2fa(v)
 		return nil
 	case user.FieldCreated:
 		v, ok := value.(time.Time)
@@ -37887,6 +37951,9 @@ func (m *UserMutation) ClearedFields() []string {
 	if m.FieldCleared(user.FieldPasswd) {
 		fields = append(fields, user.FieldPasswd)
 	}
+	if m.FieldCleared(user.FieldUse2fa) {
+		fields = append(fields, user.FieldUse2fa)
+	}
 	if m.FieldCleared(user.FieldCreated) {
 		fields = append(fields, user.FieldCreated)
 	}
@@ -37948,6 +38015,9 @@ func (m *UserMutation) ClearField(name string) error {
 		return nil
 	case user.FieldPasswd:
 		m.ClearPasswd()
+		return nil
+	case user.FieldUse2fa:
+		m.ClearUse2fa()
 		return nil
 	case user.FieldCreated:
 		m.ClearCreated()
@@ -38013,6 +38083,9 @@ func (m *UserMutation) ResetField(name string) error {
 		return nil
 	case user.FieldPasswd:
 		m.ResetPasswd()
+		return nil
+	case user.FieldUse2fa:
+		m.ResetUse2fa()
 		return nil
 	case user.FieldCreated:
 		m.ResetCreated()

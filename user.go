@@ -37,6 +37,8 @@ type User struct {
 	Openid bool `json:"openid,omitempty"`
 	// Passwd holds the value of the "passwd" field.
 	Passwd bool `json:"passwd,omitempty"`
+	// Use2fa holds the value of the "use2fa" field.
+	Use2fa bool `json:"use2fa,omitempty"`
 	// Created holds the value of the "created" field.
 	Created time.Time `json:"created,omitempty"`
 	// Modified holds the value of the "modified" field.
@@ -95,7 +97,7 @@ func (*User) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case user.FieldEmailVerified, user.FieldOpenid, user.FieldPasswd:
+		case user.FieldEmailVerified, user.FieldOpenid, user.FieldPasswd, user.FieldUse2fa:
 			values[i] = new(sql.NullBool)
 		case user.FieldTokenExpiry:
 			values[i] = new(sql.NullInt64)
@@ -183,6 +185,12 @@ func (u *User) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field passwd", values[i])
 			} else if value.Valid {
 				u.Passwd = value.Bool
+			}
+		case user.FieldUse2fa:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field use2fa", values[i])
+			} else if value.Valid {
+				u.Use2fa = value.Bool
 			}
 		case user.FieldCreated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
@@ -313,6 +321,9 @@ func (u *User) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("passwd=")
 	builder.WriteString(fmt.Sprintf("%v", u.Passwd))
+	builder.WriteString(", ")
+	builder.WriteString("use2fa=")
+	builder.WriteString(fmt.Sprintf("%v", u.Use2fa))
 	builder.WriteString(", ")
 	builder.WriteString("created=")
 	builder.WriteString(u.Created.Format(time.ANSIC))

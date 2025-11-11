@@ -29,6 +29,7 @@ func (User) Fields() []ent.Field {
 		field.Time("expiry").Optional(),
 		field.Bool("openid").Optional().Default(false),
 		field.Bool("passwd").Optional().Default(false),
+		field.Bool("use2fa").Optional().Default(false),
 		field.Time("created").Optional().Default(time.Now),
 		field.Time("modified").Optional().Default(time.Now).UpdateDefault(time.Now),
 		field.String("access_token").Optional().Default(""),

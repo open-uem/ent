@@ -213,6 +213,26 @@ func (uu *UserUpdate) ClearPasswd() *UserUpdate {
 	return uu
 }
 
+// SetUse2fa sets the "use2fa" field.
+func (uu *UserUpdate) SetUse2fa(b bool) *UserUpdate {
+	uu.mutation.SetUse2fa(b)
+	return uu
+}
+
+// SetNillableUse2fa sets the "use2fa" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableUse2fa(b *bool) *UserUpdate {
+	if b != nil {
+		uu.SetUse2fa(*b)
+	}
+	return uu
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (uu *UserUpdate) ClearUse2fa() *UserUpdate {
+	uu.mutation.ClearUse2fa()
+	return uu
+}
+
 // SetCreated sets the "created" field.
 func (uu *UserUpdate) SetCreated(t time.Time) *UserUpdate {
 	uu.mutation.SetCreated(t)
@@ -571,6 +591,12 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if uu.mutation.PasswdCleared() {
 		_spec.ClearField(user.FieldPasswd, field.TypeBool)
 	}
+	if value, ok := uu.mutation.Use2fa(); ok {
+		_spec.SetField(user.FieldUse2fa, field.TypeBool, value)
+	}
+	if uu.mutation.Use2faCleared() {
+		_spec.ClearField(user.FieldUse2fa, field.TypeBool)
+	}
 	if value, ok := uu.mutation.Created(); ok {
 		_spec.SetField(user.FieldCreated, field.TypeTime, value)
 	}
@@ -919,6 +945,26 @@ func (uuo *UserUpdateOne) SetNillablePasswd(b *bool) *UserUpdateOne {
 // ClearPasswd clears the value of the "passwd" field.
 func (uuo *UserUpdateOne) ClearPasswd() *UserUpdateOne {
 	uuo.mutation.ClearPasswd()
+	return uuo
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (uuo *UserUpdateOne) SetUse2fa(b bool) *UserUpdateOne {
+	uuo.mutation.SetUse2fa(b)
+	return uuo
+}
+
+// SetNillableUse2fa sets the "use2fa" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableUse2fa(b *bool) *UserUpdateOne {
+	if b != nil {
+		uuo.SetUse2fa(*b)
+	}
+	return uuo
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (uuo *UserUpdateOne) ClearUse2fa() *UserUpdateOne {
+	uuo.mutation.ClearUse2fa()
 	return uuo
 }
 
@@ -1309,6 +1355,12 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 	}
 	if uuo.mutation.PasswdCleared() {
 		_spec.ClearField(user.FieldPasswd, field.TypeBool)
+	}
+	if value, ok := uuo.mutation.Use2fa(); ok {
+		_spec.SetField(user.FieldUse2fa, field.TypeBool, value)
+	}
+	if uuo.mutation.Use2faCleared() {
+		_spec.ClearField(user.FieldUse2fa, field.TypeBool)
 	}
 	if value, ok := uuo.mutation.Created(); ok {
 		_spec.SetField(user.FieldCreated, field.TypeTime, value)

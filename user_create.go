@@ -157,6 +157,20 @@ func (uc *UserCreate) SetNillablePasswd(b *bool) *UserCreate {
 	return uc
 }
 
+// SetUse2fa sets the "use2fa" field.
+func (uc *UserCreate) SetUse2fa(b bool) *UserCreate {
+	uc.mutation.SetUse2fa(b)
+	return uc
+}
+
+// SetNillableUse2fa sets the "use2fa" field if the given value is not nil.
+func (uc *UserCreate) SetNillableUse2fa(b *bool) *UserCreate {
+	if b != nil {
+		uc.SetUse2fa(*b)
+	}
+	return uc
+}
+
 // SetCreated sets the "created" field.
 func (uc *UserCreate) SetCreated(t time.Time) *UserCreate {
 	uc.mutation.SetCreated(t)
@@ -370,6 +384,10 @@ func (uc *UserCreate) defaults() {
 		v := user.DefaultPasswd
 		uc.mutation.SetPasswd(v)
 	}
+	if _, ok := uc.mutation.Use2fa(); !ok {
+		v := user.DefaultUse2fa
+		uc.mutation.SetUse2fa(v)
+	}
 	if _, ok := uc.mutation.Created(); !ok {
 		v := user.DefaultCreated()
 		uc.mutation.SetCreated(v)
@@ -499,6 +517,10 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 	if value, ok := uc.mutation.Passwd(); ok {
 		_spec.SetField(user.FieldPasswd, field.TypeBool, value)
 		_node.Passwd = value
+	}
+	if value, ok := uc.mutation.Use2fa(); ok {
+		_spec.SetField(user.FieldUse2fa, field.TypeBool, value)
+		_node.Use2fa = value
 	}
 	if value, ok := uc.mutation.Created(); ok {
 		_spec.SetField(user.FieldCreated, field.TypeTime, value)
@@ -779,6 +801,24 @@ func (u *UserUpsert) UpdatePasswd() *UserUpsert {
 // ClearPasswd clears the value of the "passwd" field.
 func (u *UserUpsert) ClearPasswd() *UserUpsert {
 	u.SetNull(user.FieldPasswd)
+	return u
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (u *UserUpsert) SetUse2fa(v bool) *UserUpsert {
+	u.Set(user.FieldUse2fa, v)
+	return u
+}
+
+// UpdateUse2fa sets the "use2fa" field to the value that was provided on create.
+func (u *UserUpsert) UpdateUse2fa() *UserUpsert {
+	u.SetExcluded(user.FieldUse2fa)
+	return u
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (u *UserUpsert) ClearUse2fa() *UserUpsert {
+	u.SetNull(user.FieldUse2fa)
 	return u
 }
 
@@ -1184,6 +1224,27 @@ func (u *UserUpsertOne) UpdatePasswd() *UserUpsertOne {
 func (u *UserUpsertOne) ClearPasswd() *UserUpsertOne {
 	return u.Update(func(s *UserUpsert) {
 		s.ClearPasswd()
+	})
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (u *UserUpsertOne) SetUse2fa(v bool) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetUse2fa(v)
+	})
+}
+
+// UpdateUse2fa sets the "use2fa" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateUse2fa() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateUse2fa()
+	})
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (u *UserUpsertOne) ClearUse2fa() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearUse2fa()
 	})
 }
 
@@ -1784,6 +1845,27 @@ func (u *UserUpsertBulk) UpdatePasswd() *UserUpsertBulk {
 func (u *UserUpsertBulk) ClearPasswd() *UserUpsertBulk {
 	return u.Update(func(s *UserUpsert) {
 		s.ClearPasswd()
+	})
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (u *UserUpsertBulk) SetUse2fa(v bool) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetUse2fa(v)
+	})
+}
+
+// UpdateUse2fa sets the "use2fa" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateUse2fa() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateUse2fa()
+	})
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (u *UserUpsertBulk) ClearUse2fa() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearUse2fa()
 	})
 }
 

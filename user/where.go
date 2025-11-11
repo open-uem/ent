@@ -115,6 +115,11 @@ func Passwd(v bool) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldPasswd, v))
 }
 
+// Use2fa applies equality check predicate on the "use2fa" field. It's identical to Use2faEQ.
+func Use2fa(v bool) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldUse2fa, v))
+}
+
 // Created applies equality check predicate on the "created" field. It's identical to CreatedEQ.
 func Created(v time.Time) predicate.User {
 	return predicate.User(sql.FieldEQ(FieldCreated, v))
@@ -688,6 +693,26 @@ func PasswdIsNil() predicate.User {
 // PasswdNotNil applies the NotNil predicate on the "passwd" field.
 func PasswdNotNil() predicate.User {
 	return predicate.User(sql.FieldNotNull(FieldPasswd))
+}
+
+// Use2faEQ applies the EQ predicate on the "use2fa" field.
+func Use2faEQ(v bool) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldUse2fa, v))
+}
+
+// Use2faNEQ applies the NEQ predicate on the "use2fa" field.
+func Use2faNEQ(v bool) predicate.User {
+	return predicate.User(sql.FieldNEQ(FieldUse2fa, v))
+}
+
+// Use2faIsNil applies the IsNil predicate on the "use2fa" field.
+func Use2faIsNil() predicate.User {
+	return predicate.User(sql.FieldIsNull(FieldUse2fa))
+}
+
+// Use2faNotNil applies the NotNil predicate on the "use2fa" field.
+func Use2faNotNil() predicate.User {
+	return predicate.User(sql.FieldNotNull(FieldUse2fa))
 }
 
 // CreatedEQ applies the EQ predicate on the "created" field.
