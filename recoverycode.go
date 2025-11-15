@@ -16,46 +16,10 @@ type RecoveryCode struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID int `json:"id,omitempty"`
-	// Code1 holds the value of the "code1" field.
-	Code1 string `json:"code1,omitempty"`
-	// Used1 holds the value of the "used1" field.
-	Used1 bool `json:"used1,omitempty"`
-	// Code2 holds the value of the "code2" field.
-	Code2 string `json:"code2,omitempty"`
-	// Used2 holds the value of the "used2" field.
-	Used2 bool `json:"used2,omitempty"`
-	// Code3 holds the value of the "code3" field.
-	Code3 string `json:"code3,omitempty"`
-	// Used3 holds the value of the "used3" field.
-	Used3 bool `json:"used3,omitempty"`
-	// Code4 holds the value of the "code4" field.
-	Code4 string `json:"code4,omitempty"`
-	// Used4 holds the value of the "used4" field.
-	Used4 bool `json:"used4,omitempty"`
-	// Code5 holds the value of the "code5" field.
-	Code5 string `json:"code5,omitempty"`
-	// Used5 holds the value of the "used5" field.
-	Used5 bool `json:"used5,omitempty"`
-	// Code6 holds the value of the "code6" field.
-	Code6 string `json:"code6,omitempty"`
-	// Used6 holds the value of the "used6" field.
-	Used6 bool `json:"used6,omitempty"`
-	// Code7 holds the value of the "code7" field.
-	Code7 string `json:"code7,omitempty"`
-	// Used7 holds the value of the "used7" field.
-	Used7 bool `json:"used7,omitempty"`
-	// Code8 holds the value of the "code8" field.
-	Code8 string `json:"code8,omitempty"`
-	// Used8 holds the value of the "used8" field.
-	Used8 bool `json:"used8,omitempty"`
-	// Code9 holds the value of the "code9" field.
-	Code9 string `json:"code9,omitempty"`
-	// Used9 holds the value of the "used9" field.
-	Used9 bool `json:"used9,omitempty"`
-	// Code10 holds the value of the "code10" field.
-	Code10 string `json:"code10,omitempty"`
-	// Used10 holds the value of the "used10" field.
-	Used10 bool `json:"used10,omitempty"`
+	// Code holds the value of the "code" field.
+	Code string `json:"code,omitempty"`
+	// Used holds the value of the "used" field.
+	Used bool `json:"used,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the RecoveryCodeQuery when eager-loading is set.
 	Edges        RecoveryCodeEdges `json:"edges"`
@@ -85,11 +49,11 @@ func (*RecoveryCode) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case recoverycode.FieldUsed1, recoverycode.FieldUsed2, recoverycode.FieldUsed3, recoverycode.FieldUsed4, recoverycode.FieldUsed5, recoverycode.FieldUsed6, recoverycode.FieldUsed7, recoverycode.FieldUsed8, recoverycode.FieldUsed9, recoverycode.FieldUsed10:
+		case recoverycode.FieldUsed:
 			values[i] = new(sql.NullBool)
 		case recoverycode.FieldID:
 			values[i] = new(sql.NullInt64)
-		case recoverycode.FieldCode1, recoverycode.FieldCode2, recoverycode.FieldCode3, recoverycode.FieldCode4, recoverycode.FieldCode5, recoverycode.FieldCode6, recoverycode.FieldCode7, recoverycode.FieldCode8, recoverycode.FieldCode9, recoverycode.FieldCode10:
+		case recoverycode.FieldCode:
 			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -112,125 +76,17 @@ func (rc *RecoveryCode) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			rc.ID = int(value.Int64)
-		case recoverycode.FieldCode1:
+		case recoverycode.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code1", values[i])
+				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				rc.Code1 = value.String
+				rc.Code = value.String
 			}
-		case recoverycode.FieldUsed1:
+		case recoverycode.FieldUsed:
 			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used1", values[i])
+				return fmt.Errorf("unexpected type %T for field used", values[i])
 			} else if value.Valid {
-				rc.Used1 = value.Bool
-			}
-		case recoverycode.FieldCode2:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code2", values[i])
-			} else if value.Valid {
-				rc.Code2 = value.String
-			}
-		case recoverycode.FieldUsed2:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used2", values[i])
-			} else if value.Valid {
-				rc.Used2 = value.Bool
-			}
-		case recoverycode.FieldCode3:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code3", values[i])
-			} else if value.Valid {
-				rc.Code3 = value.String
-			}
-		case recoverycode.FieldUsed3:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used3", values[i])
-			} else if value.Valid {
-				rc.Used3 = value.Bool
-			}
-		case recoverycode.FieldCode4:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code4", values[i])
-			} else if value.Valid {
-				rc.Code4 = value.String
-			}
-		case recoverycode.FieldUsed4:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used4", values[i])
-			} else if value.Valid {
-				rc.Used4 = value.Bool
-			}
-		case recoverycode.FieldCode5:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code5", values[i])
-			} else if value.Valid {
-				rc.Code5 = value.String
-			}
-		case recoverycode.FieldUsed5:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used5", values[i])
-			} else if value.Valid {
-				rc.Used5 = value.Bool
-			}
-		case recoverycode.FieldCode6:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code6", values[i])
-			} else if value.Valid {
-				rc.Code6 = value.String
-			}
-		case recoverycode.FieldUsed6:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used6", values[i])
-			} else if value.Valid {
-				rc.Used6 = value.Bool
-			}
-		case recoverycode.FieldCode7:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code7", values[i])
-			} else if value.Valid {
-				rc.Code7 = value.String
-			}
-		case recoverycode.FieldUsed7:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used7", values[i])
-			} else if value.Valid {
-				rc.Used7 = value.Bool
-			}
-		case recoverycode.FieldCode8:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code8", values[i])
-			} else if value.Valid {
-				rc.Code8 = value.String
-			}
-		case recoverycode.FieldUsed8:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used8", values[i])
-			} else if value.Valid {
-				rc.Used8 = value.Bool
-			}
-		case recoverycode.FieldCode9:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code9", values[i])
-			} else if value.Valid {
-				rc.Code9 = value.String
-			}
-		case recoverycode.FieldUsed9:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used9", values[i])
-			} else if value.Valid {
-				rc.Used9 = value.Bool
-			}
-		case recoverycode.FieldCode10:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field code10", values[i])
-			} else if value.Valid {
-				rc.Code10 = value.String
-			}
-		case recoverycode.FieldUsed10:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field used10", values[i])
-			} else if value.Valid {
-				rc.Used10 = value.Bool
+				rc.Used = value.Bool
 			}
 		default:
 			rc.selectValues.Set(columns[i], values[i])
@@ -273,65 +129,11 @@ func (rc *RecoveryCode) String() string {
 	var builder strings.Builder
 	builder.WriteString("RecoveryCode(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", rc.ID))
-	builder.WriteString("code1=")
-	builder.WriteString(rc.Code1)
+	builder.WriteString("code=")
+	builder.WriteString(rc.Code)
 	builder.WriteString(", ")
-	builder.WriteString("used1=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used1))
-	builder.WriteString(", ")
-	builder.WriteString("code2=")
-	builder.WriteString(rc.Code2)
-	builder.WriteString(", ")
-	builder.WriteString("used2=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used2))
-	builder.WriteString(", ")
-	builder.WriteString("code3=")
-	builder.WriteString(rc.Code3)
-	builder.WriteString(", ")
-	builder.WriteString("used3=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used3))
-	builder.WriteString(", ")
-	builder.WriteString("code4=")
-	builder.WriteString(rc.Code4)
-	builder.WriteString(", ")
-	builder.WriteString("used4=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used4))
-	builder.WriteString(", ")
-	builder.WriteString("code5=")
-	builder.WriteString(rc.Code5)
-	builder.WriteString(", ")
-	builder.WriteString("used5=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used5))
-	builder.WriteString(", ")
-	builder.WriteString("code6=")
-	builder.WriteString(rc.Code6)
-	builder.WriteString(", ")
-	builder.WriteString("used6=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used6))
-	builder.WriteString(", ")
-	builder.WriteString("code7=")
-	builder.WriteString(rc.Code7)
-	builder.WriteString(", ")
-	builder.WriteString("used7=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used7))
-	builder.WriteString(", ")
-	builder.WriteString("code8=")
-	builder.WriteString(rc.Code8)
-	builder.WriteString(", ")
-	builder.WriteString("used8=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used8))
-	builder.WriteString(", ")
-	builder.WriteString("code9=")
-	builder.WriteString(rc.Code9)
-	builder.WriteString(", ")
-	builder.WriteString("used9=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used9))
-	builder.WriteString(", ")
-	builder.WriteString("code10=")
-	builder.WriteString(rc.Code10)
-	builder.WriteString(", ")
-	builder.WriteString("used10=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used10))
+	builder.WriteString("used=")
+	builder.WriteString(fmt.Sprintf("%v", rc.Used))
 	builder.WriteByte(')')
 	return builder.String()
 }

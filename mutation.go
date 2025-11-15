@@ -16418,26 +16418,8 @@ type RecoveryCodeMutation struct {
 	op            Op
 	typ           string
 	id            *int
-	code1         *string
-	used1         *bool
-	code2         *string
-	used2         *bool
-	code3         *string
-	used3         *bool
-	code4         *string
-	used4         *bool
-	code5         *string
-	used5         *bool
-	code6         *string
-	used6         *bool
-	code7         *string
-	used7         *bool
-	code8         *string
-	used8         *bool
-	code9         *string
-	used9         *bool
-	code10        *string
-	used10        *bool
+	code          *string
+	used          *bool
 	clearedFields map[string]struct{}
 	user          map[string]struct{}
 	removeduser   map[string]struct{}
@@ -16545,724 +16527,76 @@ func (m *RecoveryCodeMutation) IDs(ctx context.Context) ([]int, error) {
 	}
 }
 
-// SetCode1 sets the "code1" field.
-func (m *RecoveryCodeMutation) SetCode1(s string) {
-	m.code1 = &s
+// SetCode sets the "code" field.
+func (m *RecoveryCodeMutation) SetCode(s string) {
+	m.code = &s
 }
 
-// Code1 returns the value of the "code1" field in the mutation.
-func (m *RecoveryCodeMutation) Code1() (r string, exists bool) {
-	v := m.code1
+// Code returns the value of the "code" field in the mutation.
+func (m *RecoveryCodeMutation) Code() (r string, exists bool) {
+	v := m.code
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldCode1 returns the old "code1" field's value of the RecoveryCode entity.
+// OldCode returns the old "code" field's value of the RecoveryCode entity.
 // If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode1(ctx context.Context) (v string, err error) {
+func (m *RecoveryCodeMutation) OldCode(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode1 is only allowed on UpdateOne operations")
+		return v, errors.New("OldCode is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode1 requires an ID field in the mutation")
+		return v, errors.New("OldCode requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode1: %w", err)
+		return v, fmt.Errorf("querying old value for OldCode: %w", err)
 	}
-	return oldValue.Code1, nil
+	return oldValue.Code, nil
 }
 
-// ResetCode1 resets all changes to the "code1" field.
-func (m *RecoveryCodeMutation) ResetCode1() {
-	m.code1 = nil
+// ResetCode resets all changes to the "code" field.
+func (m *RecoveryCodeMutation) ResetCode() {
+	m.code = nil
 }
 
-// SetUsed1 sets the "used1" field.
-func (m *RecoveryCodeMutation) SetUsed1(b bool) {
-	m.used1 = &b
+// SetUsed sets the "used" field.
+func (m *RecoveryCodeMutation) SetUsed(b bool) {
+	m.used = &b
 }
 
-// Used1 returns the value of the "used1" field in the mutation.
-func (m *RecoveryCodeMutation) Used1() (r bool, exists bool) {
-	v := m.used1
+// Used returns the value of the "used" field in the mutation.
+func (m *RecoveryCodeMutation) Used() (r bool, exists bool) {
+	v := m.used
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldUsed1 returns the old "used1" field's value of the RecoveryCode entity.
+// OldUsed returns the old "used" field's value of the RecoveryCode entity.
 // If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed1(ctx context.Context) (v bool, err error) {
+func (m *RecoveryCodeMutation) OldUsed(ctx context.Context) (v bool, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed1 is only allowed on UpdateOne operations")
+		return v, errors.New("OldUsed is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed1 requires an ID field in the mutation")
+		return v, errors.New("OldUsed requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed1: %w", err)
+		return v, fmt.Errorf("querying old value for OldUsed: %w", err)
 	}
-	return oldValue.Used1, nil
+	return oldValue.Used, nil
 }
 
-// ResetUsed1 resets all changes to the "used1" field.
-func (m *RecoveryCodeMutation) ResetUsed1() {
-	m.used1 = nil
-}
-
-// SetCode2 sets the "code2" field.
-func (m *RecoveryCodeMutation) SetCode2(s string) {
-	m.code2 = &s
-}
-
-// Code2 returns the value of the "code2" field in the mutation.
-func (m *RecoveryCodeMutation) Code2() (r string, exists bool) {
-	v := m.code2
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode2 returns the old "code2" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode2(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode2 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode2 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode2: %w", err)
-	}
-	return oldValue.Code2, nil
-}
-
-// ResetCode2 resets all changes to the "code2" field.
-func (m *RecoveryCodeMutation) ResetCode2() {
-	m.code2 = nil
-}
-
-// SetUsed2 sets the "used2" field.
-func (m *RecoveryCodeMutation) SetUsed2(b bool) {
-	m.used2 = &b
-}
-
-// Used2 returns the value of the "used2" field in the mutation.
-func (m *RecoveryCodeMutation) Used2() (r bool, exists bool) {
-	v := m.used2
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed2 returns the old "used2" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed2(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed2 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed2 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed2: %w", err)
-	}
-	return oldValue.Used2, nil
-}
-
-// ResetUsed2 resets all changes to the "used2" field.
-func (m *RecoveryCodeMutation) ResetUsed2() {
-	m.used2 = nil
-}
-
-// SetCode3 sets the "code3" field.
-func (m *RecoveryCodeMutation) SetCode3(s string) {
-	m.code3 = &s
-}
-
-// Code3 returns the value of the "code3" field in the mutation.
-func (m *RecoveryCodeMutation) Code3() (r string, exists bool) {
-	v := m.code3
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode3 returns the old "code3" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode3(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode3 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode3 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode3: %w", err)
-	}
-	return oldValue.Code3, nil
-}
-
-// ResetCode3 resets all changes to the "code3" field.
-func (m *RecoveryCodeMutation) ResetCode3() {
-	m.code3 = nil
-}
-
-// SetUsed3 sets the "used3" field.
-func (m *RecoveryCodeMutation) SetUsed3(b bool) {
-	m.used3 = &b
-}
-
-// Used3 returns the value of the "used3" field in the mutation.
-func (m *RecoveryCodeMutation) Used3() (r bool, exists bool) {
-	v := m.used3
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed3 returns the old "used3" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed3(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed3 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed3 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed3: %w", err)
-	}
-	return oldValue.Used3, nil
-}
-
-// ResetUsed3 resets all changes to the "used3" field.
-func (m *RecoveryCodeMutation) ResetUsed3() {
-	m.used3 = nil
-}
-
-// SetCode4 sets the "code4" field.
-func (m *RecoveryCodeMutation) SetCode4(s string) {
-	m.code4 = &s
-}
-
-// Code4 returns the value of the "code4" field in the mutation.
-func (m *RecoveryCodeMutation) Code4() (r string, exists bool) {
-	v := m.code4
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode4 returns the old "code4" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode4(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode4 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode4 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode4: %w", err)
-	}
-	return oldValue.Code4, nil
-}
-
-// ResetCode4 resets all changes to the "code4" field.
-func (m *RecoveryCodeMutation) ResetCode4() {
-	m.code4 = nil
-}
-
-// SetUsed4 sets the "used4" field.
-func (m *RecoveryCodeMutation) SetUsed4(b bool) {
-	m.used4 = &b
-}
-
-// Used4 returns the value of the "used4" field in the mutation.
-func (m *RecoveryCodeMutation) Used4() (r bool, exists bool) {
-	v := m.used4
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed4 returns the old "used4" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed4(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed4 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed4 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed4: %w", err)
-	}
-	return oldValue.Used4, nil
-}
-
-// ResetUsed4 resets all changes to the "used4" field.
-func (m *RecoveryCodeMutation) ResetUsed4() {
-	m.used4 = nil
-}
-
-// SetCode5 sets the "code5" field.
-func (m *RecoveryCodeMutation) SetCode5(s string) {
-	m.code5 = &s
-}
-
-// Code5 returns the value of the "code5" field in the mutation.
-func (m *RecoveryCodeMutation) Code5() (r string, exists bool) {
-	v := m.code5
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode5 returns the old "code5" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode5(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode5 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode5 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode5: %w", err)
-	}
-	return oldValue.Code5, nil
-}
-
-// ResetCode5 resets all changes to the "code5" field.
-func (m *RecoveryCodeMutation) ResetCode5() {
-	m.code5 = nil
-}
-
-// SetUsed5 sets the "used5" field.
-func (m *RecoveryCodeMutation) SetUsed5(b bool) {
-	m.used5 = &b
-}
-
-// Used5 returns the value of the "used5" field in the mutation.
-func (m *RecoveryCodeMutation) Used5() (r bool, exists bool) {
-	v := m.used5
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed5 returns the old "used5" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed5(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed5 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed5 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed5: %w", err)
-	}
-	return oldValue.Used5, nil
-}
-
-// ResetUsed5 resets all changes to the "used5" field.
-func (m *RecoveryCodeMutation) ResetUsed5() {
-	m.used5 = nil
-}
-
-// SetCode6 sets the "code6" field.
-func (m *RecoveryCodeMutation) SetCode6(s string) {
-	m.code6 = &s
-}
-
-// Code6 returns the value of the "code6" field in the mutation.
-func (m *RecoveryCodeMutation) Code6() (r string, exists bool) {
-	v := m.code6
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode6 returns the old "code6" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode6(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode6 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode6 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode6: %w", err)
-	}
-	return oldValue.Code6, nil
-}
-
-// ResetCode6 resets all changes to the "code6" field.
-func (m *RecoveryCodeMutation) ResetCode6() {
-	m.code6 = nil
-}
-
-// SetUsed6 sets the "used6" field.
-func (m *RecoveryCodeMutation) SetUsed6(b bool) {
-	m.used6 = &b
-}
-
-// Used6 returns the value of the "used6" field in the mutation.
-func (m *RecoveryCodeMutation) Used6() (r bool, exists bool) {
-	v := m.used6
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed6 returns the old "used6" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed6(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed6 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed6 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed6: %w", err)
-	}
-	return oldValue.Used6, nil
-}
-
-// ResetUsed6 resets all changes to the "used6" field.
-func (m *RecoveryCodeMutation) ResetUsed6() {
-	m.used6 = nil
-}
-
-// SetCode7 sets the "code7" field.
-func (m *RecoveryCodeMutation) SetCode7(s string) {
-	m.code7 = &s
-}
-
-// Code7 returns the value of the "code7" field in the mutation.
-func (m *RecoveryCodeMutation) Code7() (r string, exists bool) {
-	v := m.code7
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode7 returns the old "code7" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode7(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode7 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode7 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode7: %w", err)
-	}
-	return oldValue.Code7, nil
-}
-
-// ResetCode7 resets all changes to the "code7" field.
-func (m *RecoveryCodeMutation) ResetCode7() {
-	m.code7 = nil
-}
-
-// SetUsed7 sets the "used7" field.
-func (m *RecoveryCodeMutation) SetUsed7(b bool) {
-	m.used7 = &b
-}
-
-// Used7 returns the value of the "used7" field in the mutation.
-func (m *RecoveryCodeMutation) Used7() (r bool, exists bool) {
-	v := m.used7
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed7 returns the old "used7" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed7(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed7 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed7 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed7: %w", err)
-	}
-	return oldValue.Used7, nil
-}
-
-// ResetUsed7 resets all changes to the "used7" field.
-func (m *RecoveryCodeMutation) ResetUsed7() {
-	m.used7 = nil
-}
-
-// SetCode8 sets the "code8" field.
-func (m *RecoveryCodeMutation) SetCode8(s string) {
-	m.code8 = &s
-}
-
-// Code8 returns the value of the "code8" field in the mutation.
-func (m *RecoveryCodeMutation) Code8() (r string, exists bool) {
-	v := m.code8
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode8 returns the old "code8" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode8(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode8 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode8 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode8: %w", err)
-	}
-	return oldValue.Code8, nil
-}
-
-// ResetCode8 resets all changes to the "code8" field.
-func (m *RecoveryCodeMutation) ResetCode8() {
-	m.code8 = nil
-}
-
-// SetUsed8 sets the "used8" field.
-func (m *RecoveryCodeMutation) SetUsed8(b bool) {
-	m.used8 = &b
-}
-
-// Used8 returns the value of the "used8" field in the mutation.
-func (m *RecoveryCodeMutation) Used8() (r bool, exists bool) {
-	v := m.used8
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed8 returns the old "used8" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed8(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed8 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed8 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed8: %w", err)
-	}
-	return oldValue.Used8, nil
-}
-
-// ResetUsed8 resets all changes to the "used8" field.
-func (m *RecoveryCodeMutation) ResetUsed8() {
-	m.used8 = nil
-}
-
-// SetCode9 sets the "code9" field.
-func (m *RecoveryCodeMutation) SetCode9(s string) {
-	m.code9 = &s
-}
-
-// Code9 returns the value of the "code9" field in the mutation.
-func (m *RecoveryCodeMutation) Code9() (r string, exists bool) {
-	v := m.code9
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode9 returns the old "code9" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode9(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode9 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode9 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode9: %w", err)
-	}
-	return oldValue.Code9, nil
-}
-
-// ResetCode9 resets all changes to the "code9" field.
-func (m *RecoveryCodeMutation) ResetCode9() {
-	m.code9 = nil
-}
-
-// SetUsed9 sets the "used9" field.
-func (m *RecoveryCodeMutation) SetUsed9(b bool) {
-	m.used9 = &b
-}
-
-// Used9 returns the value of the "used9" field in the mutation.
-func (m *RecoveryCodeMutation) Used9() (r bool, exists bool) {
-	v := m.used9
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed9 returns the old "used9" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed9(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed9 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed9 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed9: %w", err)
-	}
-	return oldValue.Used9, nil
-}
-
-// ResetUsed9 resets all changes to the "used9" field.
-func (m *RecoveryCodeMutation) ResetUsed9() {
-	m.used9 = nil
-}
-
-// SetCode10 sets the "code10" field.
-func (m *RecoveryCodeMutation) SetCode10(s string) {
-	m.code10 = &s
-}
-
-// Code10 returns the value of the "code10" field in the mutation.
-func (m *RecoveryCodeMutation) Code10() (r string, exists bool) {
-	v := m.code10
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldCode10 returns the old "code10" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldCode10(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldCode10 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldCode10 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldCode10: %w", err)
-	}
-	return oldValue.Code10, nil
-}
-
-// ResetCode10 resets all changes to the "code10" field.
-func (m *RecoveryCodeMutation) ResetCode10() {
-	m.code10 = nil
-}
-
-// SetUsed10 sets the "used10" field.
-func (m *RecoveryCodeMutation) SetUsed10(b bool) {
-	m.used10 = &b
-}
-
-// Used10 returns the value of the "used10" field in the mutation.
-func (m *RecoveryCodeMutation) Used10() (r bool, exists bool) {
-	v := m.used10
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldUsed10 returns the old "used10" field's value of the RecoveryCode entity.
-// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *RecoveryCodeMutation) OldUsed10(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldUsed10 is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldUsed10 requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldUsed10: %w", err)
-	}
-	return oldValue.Used10, nil
-}
-
-// ResetUsed10 resets all changes to the "used10" field.
-func (m *RecoveryCodeMutation) ResetUsed10() {
-	m.used10 = nil
+// ResetUsed resets all changes to the "used" field.
+func (m *RecoveryCodeMutation) ResetUsed() {
+	m.used = nil
 }
 
 // AddUserIDs adds the "user" edge to the User entity by ids.
@@ -17353,66 +16687,12 @@ func (m *RecoveryCodeMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *RecoveryCodeMutation) Fields() []string {
-	fields := make([]string, 0, 20)
-	if m.code1 != nil {
-		fields = append(fields, recoverycode.FieldCode1)
+	fields := make([]string, 0, 2)
+	if m.code != nil {
+		fields = append(fields, recoverycode.FieldCode)
 	}
-	if m.used1 != nil {
-		fields = append(fields, recoverycode.FieldUsed1)
-	}
-	if m.code2 != nil {
-		fields = append(fields, recoverycode.FieldCode2)
-	}
-	if m.used2 != nil {
-		fields = append(fields, recoverycode.FieldUsed2)
-	}
-	if m.code3 != nil {
-		fields = append(fields, recoverycode.FieldCode3)
-	}
-	if m.used3 != nil {
-		fields = append(fields, recoverycode.FieldUsed3)
-	}
-	if m.code4 != nil {
-		fields = append(fields, recoverycode.FieldCode4)
-	}
-	if m.used4 != nil {
-		fields = append(fields, recoverycode.FieldUsed4)
-	}
-	if m.code5 != nil {
-		fields = append(fields, recoverycode.FieldCode5)
-	}
-	if m.used5 != nil {
-		fields = append(fields, recoverycode.FieldUsed5)
-	}
-	if m.code6 != nil {
-		fields = append(fields, recoverycode.FieldCode6)
-	}
-	if m.used6 != nil {
-		fields = append(fields, recoverycode.FieldUsed6)
-	}
-	if m.code7 != nil {
-		fields = append(fields, recoverycode.FieldCode7)
-	}
-	if m.used7 != nil {
-		fields = append(fields, recoverycode.FieldUsed7)
-	}
-	if m.code8 != nil {
-		fields = append(fields, recoverycode.FieldCode8)
-	}
-	if m.used8 != nil {
-		fields = append(fields, recoverycode.FieldUsed8)
-	}
-	if m.code9 != nil {
-		fields = append(fields, recoverycode.FieldCode9)
-	}
-	if m.used9 != nil {
-		fields = append(fields, recoverycode.FieldUsed9)
-	}
-	if m.code10 != nil {
-		fields = append(fields, recoverycode.FieldCode10)
-	}
-	if m.used10 != nil {
-		fields = append(fields, recoverycode.FieldUsed10)
+	if m.used != nil {
+		fields = append(fields, recoverycode.FieldUsed)
 	}
 	return fields
 }
@@ -17422,46 +16702,10 @@ func (m *RecoveryCodeMutation) Fields() []string {
 // schema.
 func (m *RecoveryCodeMutation) Field(name string) (ent.Value, bool) {
 	switch name {
-	case recoverycode.FieldCode1:
-		return m.Code1()
-	case recoverycode.FieldUsed1:
-		return m.Used1()
-	case recoverycode.FieldCode2:
-		return m.Code2()
-	case recoverycode.FieldUsed2:
-		return m.Used2()
-	case recoverycode.FieldCode3:
-		return m.Code3()
-	case recoverycode.FieldUsed3:
-		return m.Used3()
-	case recoverycode.FieldCode4:
-		return m.Code4()
-	case recoverycode.FieldUsed4:
-		return m.Used4()
-	case recoverycode.FieldCode5:
-		return m.Code5()
-	case recoverycode.FieldUsed5:
-		return m.Used5()
-	case recoverycode.FieldCode6:
-		return m.Code6()
-	case recoverycode.FieldUsed6:
-		return m.Used6()
-	case recoverycode.FieldCode7:
-		return m.Code7()
-	case recoverycode.FieldUsed7:
-		return m.Used7()
-	case recoverycode.FieldCode8:
-		return m.Code8()
-	case recoverycode.FieldUsed8:
-		return m.Used8()
-	case recoverycode.FieldCode9:
-		return m.Code9()
-	case recoverycode.FieldUsed9:
-		return m.Used9()
-	case recoverycode.FieldCode10:
-		return m.Code10()
-	case recoverycode.FieldUsed10:
-		return m.Used10()
+	case recoverycode.FieldCode:
+		return m.Code()
+	case recoverycode.FieldUsed:
+		return m.Used()
 	}
 	return nil, false
 }
@@ -17471,46 +16715,10 @@ func (m *RecoveryCodeMutation) Field(name string) (ent.Value, bool) {
 // database failed.
 func (m *RecoveryCodeMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
 	switch name {
-	case recoverycode.FieldCode1:
-		return m.OldCode1(ctx)
-	case recoverycode.FieldUsed1:
-		return m.OldUsed1(ctx)
-	case recoverycode.FieldCode2:
-		return m.OldCode2(ctx)
-	case recoverycode.FieldUsed2:
-		return m.OldUsed2(ctx)
-	case recoverycode.FieldCode3:
-		return m.OldCode3(ctx)
-	case recoverycode.FieldUsed3:
-		return m.OldUsed3(ctx)
-	case recoverycode.FieldCode4:
-		return m.OldCode4(ctx)
-	case recoverycode.FieldUsed4:
-		return m.OldUsed4(ctx)
-	case recoverycode.FieldCode5:
-		return m.OldCode5(ctx)
-	case recoverycode.FieldUsed5:
-		return m.OldUsed5(ctx)
-	case recoverycode.FieldCode6:
-		return m.OldCode6(ctx)
-	case recoverycode.FieldUsed6:
-		return m.OldUsed6(ctx)
-	case recoverycode.FieldCode7:
-		return m.OldCode7(ctx)
-	case recoverycode.FieldUsed7:
-		return m.OldUsed7(ctx)
-	case recoverycode.FieldCode8:
-		return m.OldCode8(ctx)
-	case recoverycode.FieldUsed8:
-		return m.OldUsed8(ctx)
-	case recoverycode.FieldCode9:
-		return m.OldCode9(ctx)
-	case recoverycode.FieldUsed9:
-		return m.OldUsed9(ctx)
-	case recoverycode.FieldCode10:
-		return m.OldCode10(ctx)
-	case recoverycode.FieldUsed10:
-		return m.OldUsed10(ctx)
+	case recoverycode.FieldCode:
+		return m.OldCode(ctx)
+	case recoverycode.FieldUsed:
+		return m.OldUsed(ctx)
 	}
 	return nil, fmt.Errorf("unknown RecoveryCode field %s", name)
 }
@@ -17520,145 +16728,19 @@ func (m *RecoveryCodeMutation) OldField(ctx context.Context, name string) (ent.V
 // type.
 func (m *RecoveryCodeMutation) SetField(name string, value ent.Value) error {
 	switch name {
-	case recoverycode.FieldCode1:
+	case recoverycode.FieldCode:
 		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetCode1(v)
+		m.SetCode(v)
 		return nil
-	case recoverycode.FieldUsed1:
+	case recoverycode.FieldUsed:
 		v, ok := value.(bool)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetUsed1(v)
-		return nil
-	case recoverycode.FieldCode2:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode2(v)
-		return nil
-	case recoverycode.FieldUsed2:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed2(v)
-		return nil
-	case recoverycode.FieldCode3:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode3(v)
-		return nil
-	case recoverycode.FieldUsed3:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed3(v)
-		return nil
-	case recoverycode.FieldCode4:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode4(v)
-		return nil
-	case recoverycode.FieldUsed4:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed4(v)
-		return nil
-	case recoverycode.FieldCode5:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode5(v)
-		return nil
-	case recoverycode.FieldUsed5:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed5(v)
-		return nil
-	case recoverycode.FieldCode6:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode6(v)
-		return nil
-	case recoverycode.FieldUsed6:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed6(v)
-		return nil
-	case recoverycode.FieldCode7:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode7(v)
-		return nil
-	case recoverycode.FieldUsed7:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed7(v)
-		return nil
-	case recoverycode.FieldCode8:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode8(v)
-		return nil
-	case recoverycode.FieldUsed8:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed8(v)
-		return nil
-	case recoverycode.FieldCode9:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode9(v)
-		return nil
-	case recoverycode.FieldUsed9:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed9(v)
-		return nil
-	case recoverycode.FieldCode10:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetCode10(v)
-		return nil
-	case recoverycode.FieldUsed10:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetUsed10(v)
+		m.SetUsed(v)
 		return nil
 	}
 	return fmt.Errorf("unknown RecoveryCode field %s", name)
@@ -17709,65 +16791,11 @@ func (m *RecoveryCodeMutation) ClearField(name string) error {
 // It returns an error if the field is not defined in the schema.
 func (m *RecoveryCodeMutation) ResetField(name string) error {
 	switch name {
-	case recoverycode.FieldCode1:
-		m.ResetCode1()
+	case recoverycode.FieldCode:
+		m.ResetCode()
 		return nil
-	case recoverycode.FieldUsed1:
-		m.ResetUsed1()
-		return nil
-	case recoverycode.FieldCode2:
-		m.ResetCode2()
-		return nil
-	case recoverycode.FieldUsed2:
-		m.ResetUsed2()
-		return nil
-	case recoverycode.FieldCode3:
-		m.ResetCode3()
-		return nil
-	case recoverycode.FieldUsed3:
-		m.ResetUsed3()
-		return nil
-	case recoverycode.FieldCode4:
-		m.ResetCode4()
-		return nil
-	case recoverycode.FieldUsed4:
-		m.ResetUsed4()
-		return nil
-	case recoverycode.FieldCode5:
-		m.ResetCode5()
-		return nil
-	case recoverycode.FieldUsed5:
-		m.ResetUsed5()
-		return nil
-	case recoverycode.FieldCode6:
-		m.ResetCode6()
-		return nil
-	case recoverycode.FieldUsed6:
-		m.ResetUsed6()
-		return nil
-	case recoverycode.FieldCode7:
-		m.ResetCode7()
-		return nil
-	case recoverycode.FieldUsed7:
-		m.ResetUsed7()
-		return nil
-	case recoverycode.FieldCode8:
-		m.ResetCode8()
-		return nil
-	case recoverycode.FieldUsed8:
-		m.ResetUsed8()
-		return nil
-	case recoverycode.FieldCode9:
-		m.ResetCode9()
-		return nil
-	case recoverycode.FieldUsed9:
-		m.ResetUsed9()
-		return nil
-	case recoverycode.FieldCode10:
-		m.ResetCode10()
-		return nil
-	case recoverycode.FieldUsed10:
-		m.ResetUsed10()
+	case recoverycode.FieldUsed:
+		m.ResetUsed()
 		return nil
 	}
 	return fmt.Errorf("unknown RecoveryCode field %s", name)

@@ -483,26 +483,8 @@ var (
 	// RecoveryCodesColumns holds the columns for the "recovery_codes" table.
 	RecoveryCodesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "code1", Type: field.TypeString},
-		{Name: "used1", Type: field.TypeBool, Default: false},
-		{Name: "code2", Type: field.TypeString},
-		{Name: "used2", Type: field.TypeBool, Default: false},
-		{Name: "code3", Type: field.TypeString},
-		{Name: "used3", Type: field.TypeBool, Default: false},
-		{Name: "code4", Type: field.TypeString},
-		{Name: "used4", Type: field.TypeBool, Default: false},
-		{Name: "code5", Type: field.TypeString},
-		{Name: "used5", Type: field.TypeBool, Default: false},
-		{Name: "code6", Type: field.TypeString},
-		{Name: "used6", Type: field.TypeBool, Default: false},
-		{Name: "code7", Type: field.TypeString},
-		{Name: "used7", Type: field.TypeBool, Default: false},
-		{Name: "code8", Type: field.TypeString},
-		{Name: "used8", Type: field.TypeBool, Default: false},
-		{Name: "code9", Type: field.TypeString},
-		{Name: "used9", Type: field.TypeBool, Default: false},
-		{Name: "code10", Type: field.TypeString},
-		{Name: "used10", Type: field.TypeBool, Default: false},
+		{Name: "code", Type: field.TypeString},
+		{Name: "used", Type: field.TypeBool, Default: false},
 	}
 	// RecoveryCodesTable holds the schema information for the "recovery_codes" table.
 	RecoveryCodesTable = &schema.Table{

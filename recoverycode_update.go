@@ -29,282 +29,30 @@ func (rcu *RecoveryCodeUpdate) Where(ps ...predicate.RecoveryCode) *RecoveryCode
 	return rcu
 }
 
-// SetCode1 sets the "code1" field.
-func (rcu *RecoveryCodeUpdate) SetCode1(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode1(s)
+// SetCode sets the "code" field.
+func (rcu *RecoveryCodeUpdate) SetCode(s string) *RecoveryCodeUpdate {
+	rcu.mutation.SetCode(s)
 	return rcu
 }
 
-// SetNillableCode1 sets the "code1" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode1(s *string) *RecoveryCodeUpdate {
+// SetNillableCode sets the "code" field if the given value is not nil.
+func (rcu *RecoveryCodeUpdate) SetNillableCode(s *string) *RecoveryCodeUpdate {
 	if s != nil {
-		rcu.SetCode1(*s)
+		rcu.SetCode(*s)
 	}
 	return rcu
 }
 
-// SetUsed1 sets the "used1" field.
-func (rcu *RecoveryCodeUpdate) SetUsed1(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed1(b)
+// SetUsed sets the "used" field.
+func (rcu *RecoveryCodeUpdate) SetUsed(b bool) *RecoveryCodeUpdate {
+	rcu.mutation.SetUsed(b)
 	return rcu
 }
 
-// SetNillableUsed1 sets the "used1" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed1(b *bool) *RecoveryCodeUpdate {
+// SetNillableUsed sets the "used" field if the given value is not nil.
+func (rcu *RecoveryCodeUpdate) SetNillableUsed(b *bool) *RecoveryCodeUpdate {
 	if b != nil {
-		rcu.SetUsed1(*b)
-	}
-	return rcu
-}
-
-// SetCode2 sets the "code2" field.
-func (rcu *RecoveryCodeUpdate) SetCode2(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode2(s)
-	return rcu
-}
-
-// SetNillableCode2 sets the "code2" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode2(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode2(*s)
-	}
-	return rcu
-}
-
-// SetUsed2 sets the "used2" field.
-func (rcu *RecoveryCodeUpdate) SetUsed2(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed2(b)
-	return rcu
-}
-
-// SetNillableUsed2 sets the "used2" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed2(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed2(*b)
-	}
-	return rcu
-}
-
-// SetCode3 sets the "code3" field.
-func (rcu *RecoveryCodeUpdate) SetCode3(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode3(s)
-	return rcu
-}
-
-// SetNillableCode3 sets the "code3" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode3(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode3(*s)
-	}
-	return rcu
-}
-
-// SetUsed3 sets the "used3" field.
-func (rcu *RecoveryCodeUpdate) SetUsed3(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed3(b)
-	return rcu
-}
-
-// SetNillableUsed3 sets the "used3" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed3(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed3(*b)
-	}
-	return rcu
-}
-
-// SetCode4 sets the "code4" field.
-func (rcu *RecoveryCodeUpdate) SetCode4(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode4(s)
-	return rcu
-}
-
-// SetNillableCode4 sets the "code4" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode4(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode4(*s)
-	}
-	return rcu
-}
-
-// SetUsed4 sets the "used4" field.
-func (rcu *RecoveryCodeUpdate) SetUsed4(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed4(b)
-	return rcu
-}
-
-// SetNillableUsed4 sets the "used4" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed4(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed4(*b)
-	}
-	return rcu
-}
-
-// SetCode5 sets the "code5" field.
-func (rcu *RecoveryCodeUpdate) SetCode5(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode5(s)
-	return rcu
-}
-
-// SetNillableCode5 sets the "code5" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode5(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode5(*s)
-	}
-	return rcu
-}
-
-// SetUsed5 sets the "used5" field.
-func (rcu *RecoveryCodeUpdate) SetUsed5(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed5(b)
-	return rcu
-}
-
-// SetNillableUsed5 sets the "used5" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed5(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed5(*b)
-	}
-	return rcu
-}
-
-// SetCode6 sets the "code6" field.
-func (rcu *RecoveryCodeUpdate) SetCode6(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode6(s)
-	return rcu
-}
-
-// SetNillableCode6 sets the "code6" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode6(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode6(*s)
-	}
-	return rcu
-}
-
-// SetUsed6 sets the "used6" field.
-func (rcu *RecoveryCodeUpdate) SetUsed6(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed6(b)
-	return rcu
-}
-
-// SetNillableUsed6 sets the "used6" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed6(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed6(*b)
-	}
-	return rcu
-}
-
-// SetCode7 sets the "code7" field.
-func (rcu *RecoveryCodeUpdate) SetCode7(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode7(s)
-	return rcu
-}
-
-// SetNillableCode7 sets the "code7" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode7(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode7(*s)
-	}
-	return rcu
-}
-
-// SetUsed7 sets the "used7" field.
-func (rcu *RecoveryCodeUpdate) SetUsed7(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed7(b)
-	return rcu
-}
-
-// SetNillableUsed7 sets the "used7" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed7(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed7(*b)
-	}
-	return rcu
-}
-
-// SetCode8 sets the "code8" field.
-func (rcu *RecoveryCodeUpdate) SetCode8(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode8(s)
-	return rcu
-}
-
-// SetNillableCode8 sets the "code8" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode8(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode8(*s)
-	}
-	return rcu
-}
-
-// SetUsed8 sets the "used8" field.
-func (rcu *RecoveryCodeUpdate) SetUsed8(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed8(b)
-	return rcu
-}
-
-// SetNillableUsed8 sets the "used8" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed8(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed8(*b)
-	}
-	return rcu
-}
-
-// SetCode9 sets the "code9" field.
-func (rcu *RecoveryCodeUpdate) SetCode9(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode9(s)
-	return rcu
-}
-
-// SetNillableCode9 sets the "code9" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode9(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode9(*s)
-	}
-	return rcu
-}
-
-// SetUsed9 sets the "used9" field.
-func (rcu *RecoveryCodeUpdate) SetUsed9(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed9(b)
-	return rcu
-}
-
-// SetNillableUsed9 sets the "used9" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed9(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed9(*b)
-	}
-	return rcu
-}
-
-// SetCode10 sets the "code10" field.
-func (rcu *RecoveryCodeUpdate) SetCode10(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode10(s)
-	return rcu
-}
-
-// SetNillableCode10 sets the "code10" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode10(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode10(*s)
-	}
-	return rcu
-}
-
-// SetUsed10 sets the "used10" field.
-func (rcu *RecoveryCodeUpdate) SetUsed10(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed10(b)
-	return rcu
-}
-
-// SetNillableUsed10 sets the "used10" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed10(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed10(*b)
+		rcu.SetUsed(*b)
 	}
 	return rcu
 }
@@ -379,54 +127,9 @@ func (rcu *RecoveryCodeUpdate) ExecX(ctx context.Context) {
 
 // check runs all checks and user-defined validators on the builder.
 func (rcu *RecoveryCodeUpdate) check() error {
-	if v, ok := rcu.mutation.Code1(); ok {
-		if err := recoverycode.Code1Validator(v); err != nil {
-			return &ValidationError{Name: "code1", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code1": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code2(); ok {
-		if err := recoverycode.Code2Validator(v); err != nil {
-			return &ValidationError{Name: "code2", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code2": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code3(); ok {
-		if err := recoverycode.Code3Validator(v); err != nil {
-			return &ValidationError{Name: "code3", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code3": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code4(); ok {
-		if err := recoverycode.Code4Validator(v); err != nil {
-			return &ValidationError{Name: "code4", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code4": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code5(); ok {
-		if err := recoverycode.Code5Validator(v); err != nil {
-			return &ValidationError{Name: "code5", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code5": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code6(); ok {
-		if err := recoverycode.Code6Validator(v); err != nil {
-			return &ValidationError{Name: "code6", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code6": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code7(); ok {
-		if err := recoverycode.Code7Validator(v); err != nil {
-			return &ValidationError{Name: "code7", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code7": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code8(); ok {
-		if err := recoverycode.Code8Validator(v); err != nil {
-			return &ValidationError{Name: "code8", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code8": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code9(); ok {
-		if err := recoverycode.Code9Validator(v); err != nil {
-			return &ValidationError{Name: "code9", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code9": %w`, err)}
-		}
-	}
-	if v, ok := rcu.mutation.Code10(); ok {
-		if err := recoverycode.Code10Validator(v); err != nil {
-			return &ValidationError{Name: "code10", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code10": %w`, err)}
+	if v, ok := rcu.mutation.Code(); ok {
+		if err := recoverycode.CodeValidator(v); err != nil {
+			return &ValidationError{Name: "code", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code": %w`, err)}
 		}
 	}
 	return nil
@@ -450,65 +153,11 @@ func (rcu *RecoveryCodeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := rcu.mutation.Code1(); ok {
-		_spec.SetField(recoverycode.FieldCode1, field.TypeString, value)
+	if value, ok := rcu.mutation.Code(); ok {
+		_spec.SetField(recoverycode.FieldCode, field.TypeString, value)
 	}
-	if value, ok := rcu.mutation.Used1(); ok {
-		_spec.SetField(recoverycode.FieldUsed1, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code2(); ok {
-		_spec.SetField(recoverycode.FieldCode2, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used2(); ok {
-		_spec.SetField(recoverycode.FieldUsed2, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code3(); ok {
-		_spec.SetField(recoverycode.FieldCode3, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used3(); ok {
-		_spec.SetField(recoverycode.FieldUsed3, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code4(); ok {
-		_spec.SetField(recoverycode.FieldCode4, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used4(); ok {
-		_spec.SetField(recoverycode.FieldUsed4, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code5(); ok {
-		_spec.SetField(recoverycode.FieldCode5, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used5(); ok {
-		_spec.SetField(recoverycode.FieldUsed5, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code6(); ok {
-		_spec.SetField(recoverycode.FieldCode6, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used6(); ok {
-		_spec.SetField(recoverycode.FieldUsed6, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code7(); ok {
-		_spec.SetField(recoverycode.FieldCode7, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used7(); ok {
-		_spec.SetField(recoverycode.FieldUsed7, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code8(); ok {
-		_spec.SetField(recoverycode.FieldCode8, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used8(); ok {
-		_spec.SetField(recoverycode.FieldUsed8, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code9(); ok {
-		_spec.SetField(recoverycode.FieldCode9, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used9(); ok {
-		_spec.SetField(recoverycode.FieldUsed9, field.TypeBool, value)
-	}
-	if value, ok := rcu.mutation.Code10(); ok {
-		_spec.SetField(recoverycode.FieldCode10, field.TypeString, value)
-	}
-	if value, ok := rcu.mutation.Used10(); ok {
-		_spec.SetField(recoverycode.FieldUsed10, field.TypeBool, value)
+	if value, ok := rcu.mutation.Used(); ok {
+		_spec.SetField(recoverycode.FieldUsed, field.TypeBool, value)
 	}
 	if rcu.mutation.UserCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -577,282 +226,30 @@ type RecoveryCodeUpdateOne struct {
 	modifiers []func(*sql.UpdateBuilder)
 }
 
-// SetCode1 sets the "code1" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode1(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode1(s)
+// SetCode sets the "code" field.
+func (rcuo *RecoveryCodeUpdateOne) SetCode(s string) *RecoveryCodeUpdateOne {
+	rcuo.mutation.SetCode(s)
 	return rcuo
 }
 
-// SetNillableCode1 sets the "code1" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode1(s *string) *RecoveryCodeUpdateOne {
+// SetNillableCode sets the "code" field if the given value is not nil.
+func (rcuo *RecoveryCodeUpdateOne) SetNillableCode(s *string) *RecoveryCodeUpdateOne {
 	if s != nil {
-		rcuo.SetCode1(*s)
+		rcuo.SetCode(*s)
 	}
 	return rcuo
 }
 
-// SetUsed1 sets the "used1" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed1(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed1(b)
+// SetUsed sets the "used" field.
+func (rcuo *RecoveryCodeUpdateOne) SetUsed(b bool) *RecoveryCodeUpdateOne {
+	rcuo.mutation.SetUsed(b)
 	return rcuo
 }
 
-// SetNillableUsed1 sets the "used1" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed1(b *bool) *RecoveryCodeUpdateOne {
+// SetNillableUsed sets the "used" field if the given value is not nil.
+func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed(b *bool) *RecoveryCodeUpdateOne {
 	if b != nil {
-		rcuo.SetUsed1(*b)
-	}
-	return rcuo
-}
-
-// SetCode2 sets the "code2" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode2(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode2(s)
-	return rcuo
-}
-
-// SetNillableCode2 sets the "code2" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode2(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode2(*s)
-	}
-	return rcuo
-}
-
-// SetUsed2 sets the "used2" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed2(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed2(b)
-	return rcuo
-}
-
-// SetNillableUsed2 sets the "used2" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed2(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed2(*b)
-	}
-	return rcuo
-}
-
-// SetCode3 sets the "code3" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode3(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode3(s)
-	return rcuo
-}
-
-// SetNillableCode3 sets the "code3" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode3(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode3(*s)
-	}
-	return rcuo
-}
-
-// SetUsed3 sets the "used3" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed3(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed3(b)
-	return rcuo
-}
-
-// SetNillableUsed3 sets the "used3" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed3(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed3(*b)
-	}
-	return rcuo
-}
-
-// SetCode4 sets the "code4" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode4(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode4(s)
-	return rcuo
-}
-
-// SetNillableCode4 sets the "code4" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode4(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode4(*s)
-	}
-	return rcuo
-}
-
-// SetUsed4 sets the "used4" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed4(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed4(b)
-	return rcuo
-}
-
-// SetNillableUsed4 sets the "used4" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed4(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed4(*b)
-	}
-	return rcuo
-}
-
-// SetCode5 sets the "code5" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode5(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode5(s)
-	return rcuo
-}
-
-// SetNillableCode5 sets the "code5" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode5(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode5(*s)
-	}
-	return rcuo
-}
-
-// SetUsed5 sets the "used5" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed5(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed5(b)
-	return rcuo
-}
-
-// SetNillableUsed5 sets the "used5" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed5(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed5(*b)
-	}
-	return rcuo
-}
-
-// SetCode6 sets the "code6" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode6(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode6(s)
-	return rcuo
-}
-
-// SetNillableCode6 sets the "code6" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode6(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode6(*s)
-	}
-	return rcuo
-}
-
-// SetUsed6 sets the "used6" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed6(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed6(b)
-	return rcuo
-}
-
-// SetNillableUsed6 sets the "used6" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed6(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed6(*b)
-	}
-	return rcuo
-}
-
-// SetCode7 sets the "code7" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode7(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode7(s)
-	return rcuo
-}
-
-// SetNillableCode7 sets the "code7" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode7(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode7(*s)
-	}
-	return rcuo
-}
-
-// SetUsed7 sets the "used7" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed7(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed7(b)
-	return rcuo
-}
-
-// SetNillableUsed7 sets the "used7" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed7(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed7(*b)
-	}
-	return rcuo
-}
-
-// SetCode8 sets the "code8" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode8(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode8(s)
-	return rcuo
-}
-
-// SetNillableCode8 sets the "code8" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode8(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode8(*s)
-	}
-	return rcuo
-}
-
-// SetUsed8 sets the "used8" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed8(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed8(b)
-	return rcuo
-}
-
-// SetNillableUsed8 sets the "used8" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed8(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed8(*b)
-	}
-	return rcuo
-}
-
-// SetCode9 sets the "code9" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode9(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode9(s)
-	return rcuo
-}
-
-// SetNillableCode9 sets the "code9" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode9(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode9(*s)
-	}
-	return rcuo
-}
-
-// SetUsed9 sets the "used9" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed9(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed9(b)
-	return rcuo
-}
-
-// SetNillableUsed9 sets the "used9" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed9(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed9(*b)
-	}
-	return rcuo
-}
-
-// SetCode10 sets the "code10" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode10(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode10(s)
-	return rcuo
-}
-
-// SetNillableCode10 sets the "code10" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode10(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode10(*s)
-	}
-	return rcuo
-}
-
-// SetUsed10 sets the "used10" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed10(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed10(b)
-	return rcuo
-}
-
-// SetNillableUsed10 sets the "used10" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed10(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed10(*b)
+		rcuo.SetUsed(*b)
 	}
 	return rcuo
 }
@@ -940,54 +337,9 @@ func (rcuo *RecoveryCodeUpdateOne) ExecX(ctx context.Context) {
 
 // check runs all checks and user-defined validators on the builder.
 func (rcuo *RecoveryCodeUpdateOne) check() error {
-	if v, ok := rcuo.mutation.Code1(); ok {
-		if err := recoverycode.Code1Validator(v); err != nil {
-			return &ValidationError{Name: "code1", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code1": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code2(); ok {
-		if err := recoverycode.Code2Validator(v); err != nil {
-			return &ValidationError{Name: "code2", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code2": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code3(); ok {
-		if err := recoverycode.Code3Validator(v); err != nil {
-			return &ValidationError{Name: "code3", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code3": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code4(); ok {
-		if err := recoverycode.Code4Validator(v); err != nil {
-			return &ValidationError{Name: "code4", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code4": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code5(); ok {
-		if err := recoverycode.Code5Validator(v); err != nil {
-			return &ValidationError{Name: "code5", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code5": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code6(); ok {
-		if err := recoverycode.Code6Validator(v); err != nil {
-			return &ValidationError{Name: "code6", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code6": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code7(); ok {
-		if err := recoverycode.Code7Validator(v); err != nil {
-			return &ValidationError{Name: "code7", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code7": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code8(); ok {
-		if err := recoverycode.Code8Validator(v); err != nil {
-			return &ValidationError{Name: "code8", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code8": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code9(); ok {
-		if err := recoverycode.Code9Validator(v); err != nil {
-			return &ValidationError{Name: "code9", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code9": %w`, err)}
-		}
-	}
-	if v, ok := rcuo.mutation.Code10(); ok {
-		if err := recoverycode.Code10Validator(v); err != nil {
-			return &ValidationError{Name: "code10", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code10": %w`, err)}
+	if v, ok := rcuo.mutation.Code(); ok {
+		if err := recoverycode.CodeValidator(v); err != nil {
+			return &ValidationError{Name: "code", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code": %w`, err)}
 		}
 	}
 	return nil
@@ -1028,65 +380,11 @@ func (rcuo *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *Recovery
 			}
 		}
 	}
-	if value, ok := rcuo.mutation.Code1(); ok {
-		_spec.SetField(recoverycode.FieldCode1, field.TypeString, value)
+	if value, ok := rcuo.mutation.Code(); ok {
+		_spec.SetField(recoverycode.FieldCode, field.TypeString, value)
 	}
-	if value, ok := rcuo.mutation.Used1(); ok {
-		_spec.SetField(recoverycode.FieldUsed1, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code2(); ok {
-		_spec.SetField(recoverycode.FieldCode2, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used2(); ok {
-		_spec.SetField(recoverycode.FieldUsed2, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code3(); ok {
-		_spec.SetField(recoverycode.FieldCode3, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used3(); ok {
-		_spec.SetField(recoverycode.FieldUsed3, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code4(); ok {
-		_spec.SetField(recoverycode.FieldCode4, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used4(); ok {
-		_spec.SetField(recoverycode.FieldUsed4, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code5(); ok {
-		_spec.SetField(recoverycode.FieldCode5, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used5(); ok {
-		_spec.SetField(recoverycode.FieldUsed5, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code6(); ok {
-		_spec.SetField(recoverycode.FieldCode6, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used6(); ok {
-		_spec.SetField(recoverycode.FieldUsed6, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code7(); ok {
-		_spec.SetField(recoverycode.FieldCode7, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used7(); ok {
-		_spec.SetField(recoverycode.FieldUsed7, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code8(); ok {
-		_spec.SetField(recoverycode.FieldCode8, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used8(); ok {
-		_spec.SetField(recoverycode.FieldUsed8, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code9(); ok {
-		_spec.SetField(recoverycode.FieldCode9, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used9(); ok {
-		_spec.SetField(recoverycode.FieldUsed9, field.TypeBool, value)
-	}
-	if value, ok := rcuo.mutation.Code10(); ok {
-		_spec.SetField(recoverycode.FieldCode10, field.TypeString, value)
-	}
-	if value, ok := rcuo.mutation.Used10(); ok {
-		_spec.SetField(recoverycode.FieldUsed10, field.TypeBool, value)
+	if value, ok := rcuo.mutation.Used(); ok {
+		_spec.SetField(recoverycode.FieldUsed, field.TypeBool, value)
 	}
 	if rcuo.mutation.UserCleared() {
 		edge := &sqlgraph.EdgeSpec{

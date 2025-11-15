@@ -12,46 +12,10 @@ const (
 	Label = "recovery_code"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldCode1 holds the string denoting the code1 field in the database.
-	FieldCode1 = "code1"
-	// FieldUsed1 holds the string denoting the used1 field in the database.
-	FieldUsed1 = "used1"
-	// FieldCode2 holds the string denoting the code2 field in the database.
-	FieldCode2 = "code2"
-	// FieldUsed2 holds the string denoting the used2 field in the database.
-	FieldUsed2 = "used2"
-	// FieldCode3 holds the string denoting the code3 field in the database.
-	FieldCode3 = "code3"
-	// FieldUsed3 holds the string denoting the used3 field in the database.
-	FieldUsed3 = "used3"
-	// FieldCode4 holds the string denoting the code4 field in the database.
-	FieldCode4 = "code4"
-	// FieldUsed4 holds the string denoting the used4 field in the database.
-	FieldUsed4 = "used4"
-	// FieldCode5 holds the string denoting the code5 field in the database.
-	FieldCode5 = "code5"
-	// FieldUsed5 holds the string denoting the used5 field in the database.
-	FieldUsed5 = "used5"
-	// FieldCode6 holds the string denoting the code6 field in the database.
-	FieldCode6 = "code6"
-	// FieldUsed6 holds the string denoting the used6 field in the database.
-	FieldUsed6 = "used6"
-	// FieldCode7 holds the string denoting the code7 field in the database.
-	FieldCode7 = "code7"
-	// FieldUsed7 holds the string denoting the used7 field in the database.
-	FieldUsed7 = "used7"
-	// FieldCode8 holds the string denoting the code8 field in the database.
-	FieldCode8 = "code8"
-	// FieldUsed8 holds the string denoting the used8 field in the database.
-	FieldUsed8 = "used8"
-	// FieldCode9 holds the string denoting the code9 field in the database.
-	FieldCode9 = "code9"
-	// FieldUsed9 holds the string denoting the used9 field in the database.
-	FieldUsed9 = "used9"
-	// FieldCode10 holds the string denoting the code10 field in the database.
-	FieldCode10 = "code10"
-	// FieldUsed10 holds the string denoting the used10 field in the database.
-	FieldUsed10 = "used10"
+	// FieldCode holds the string denoting the code field in the database.
+	FieldCode = "code"
+	// FieldUsed holds the string denoting the used field in the database.
+	FieldUsed = "used"
 	// EdgeUser holds the string denoting the user edge name in mutations.
 	EdgeUser = "user"
 	// UserFieldID holds the string denoting the ID field of the User.
@@ -68,26 +32,8 @@ const (
 // Columns holds all SQL columns for recoverycode fields.
 var Columns = []string{
 	FieldID,
-	FieldCode1,
-	FieldUsed1,
-	FieldCode2,
-	FieldUsed2,
-	FieldCode3,
-	FieldUsed3,
-	FieldCode4,
-	FieldUsed4,
-	FieldCode5,
-	FieldUsed5,
-	FieldCode6,
-	FieldUsed6,
-	FieldCode7,
-	FieldUsed7,
-	FieldCode8,
-	FieldUsed8,
-	FieldCode9,
-	FieldUsed9,
-	FieldCode10,
-	FieldUsed10,
+	FieldCode,
+	FieldUsed,
 }
 
 var (
@@ -107,46 +53,10 @@ func ValidColumn(column string) bool {
 }
 
 var (
-	// Code1Validator is a validator for the "code1" field. It is called by the builders before save.
-	Code1Validator func(string) error
-	// DefaultUsed1 holds the default value on creation for the "used1" field.
-	DefaultUsed1 bool
-	// Code2Validator is a validator for the "code2" field. It is called by the builders before save.
-	Code2Validator func(string) error
-	// DefaultUsed2 holds the default value on creation for the "used2" field.
-	DefaultUsed2 bool
-	// Code3Validator is a validator for the "code3" field. It is called by the builders before save.
-	Code3Validator func(string) error
-	// DefaultUsed3 holds the default value on creation for the "used3" field.
-	DefaultUsed3 bool
-	// Code4Validator is a validator for the "code4" field. It is called by the builders before save.
-	Code4Validator func(string) error
-	// DefaultUsed4 holds the default value on creation for the "used4" field.
-	DefaultUsed4 bool
-	// Code5Validator is a validator for the "code5" field. It is called by the builders before save.
-	Code5Validator func(string) error
-	// DefaultUsed5 holds the default value on creation for the "used5" field.
-	DefaultUsed5 bool
-	// Code6Validator is a validator for the "code6" field. It is called by the builders before save.
-	Code6Validator func(string) error
-	// DefaultUsed6 holds the default value on creation for the "used6" field.
-	DefaultUsed6 bool
-	// Code7Validator is a validator for the "code7" field. It is called by the builders before save.
-	Code7Validator func(string) error
-	// DefaultUsed7 holds the default value on creation for the "used7" field.
-	DefaultUsed7 bool
-	// Code8Validator is a validator for the "code8" field. It is called by the builders before save.
-	Code8Validator func(string) error
-	// DefaultUsed8 holds the default value on creation for the "used8" field.
-	DefaultUsed8 bool
-	// Code9Validator is a validator for the "code9" field. It is called by the builders before save.
-	Code9Validator func(string) error
-	// DefaultUsed9 holds the default value on creation for the "used9" field.
-	DefaultUsed9 bool
-	// Code10Validator is a validator for the "code10" field. It is called by the builders before save.
-	Code10Validator func(string) error
-	// DefaultUsed10 holds the default value on creation for the "used10" field.
-	DefaultUsed10 bool
+	// CodeValidator is a validator for the "code" field. It is called by the builders before save.
+	CodeValidator func(string) error
+	// DefaultUsed holds the default value on creation for the "used" field.
+	DefaultUsed bool
 )
 
 // OrderOption defines the ordering options for the RecoveryCode queries.
@@ -157,104 +67,14 @@ func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
 }
 
-// ByCode1 orders the results by the code1 field.
-func ByCode1(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode1, opts...).ToFunc()
+// ByCode orders the results by the code field.
+func ByCode(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldCode, opts...).ToFunc()
 }
 
-// ByUsed1 orders the results by the used1 field.
-func ByUsed1(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed1, opts...).ToFunc()
-}
-
-// ByCode2 orders the results by the code2 field.
-func ByCode2(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode2, opts...).ToFunc()
-}
-
-// ByUsed2 orders the results by the used2 field.
-func ByUsed2(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed2, opts...).ToFunc()
-}
-
-// ByCode3 orders the results by the code3 field.
-func ByCode3(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode3, opts...).ToFunc()
-}
-
-// ByUsed3 orders the results by the used3 field.
-func ByUsed3(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed3, opts...).ToFunc()
-}
-
-// ByCode4 orders the results by the code4 field.
-func ByCode4(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode4, opts...).ToFunc()
-}
-
-// ByUsed4 orders the results by the used4 field.
-func ByUsed4(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed4, opts...).ToFunc()
-}
-
-// ByCode5 orders the results by the code5 field.
-func ByCode5(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode5, opts...).ToFunc()
-}
-
-// ByUsed5 orders the results by the used5 field.
-func ByUsed5(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed5, opts...).ToFunc()
-}
-
-// ByCode6 orders the results by the code6 field.
-func ByCode6(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode6, opts...).ToFunc()
-}
-
-// ByUsed6 orders the results by the used6 field.
-func ByUsed6(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed6, opts...).ToFunc()
-}
-
-// ByCode7 orders the results by the code7 field.
-func ByCode7(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode7, opts...).ToFunc()
-}
-
-// ByUsed7 orders the results by the used7 field.
-func ByUsed7(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed7, opts...).ToFunc()
-}
-
-// ByCode8 orders the results by the code8 field.
-func ByCode8(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode8, opts...).ToFunc()
-}
-
-// ByUsed8 orders the results by the used8 field.
-func ByUsed8(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed8, opts...).ToFunc()
-}
-
-// ByCode9 orders the results by the code9 field.
-func ByCode9(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode9, opts...).ToFunc()
-}
-
-// ByUsed9 orders the results by the used9 field.
-func ByUsed9(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed9, opts...).ToFunc()
-}
-
-// ByCode10 orders the results by the code10 field.
-func ByCode10(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldCode10, opts...).ToFunc()
-}
-
-// ByUsed10 orders the results by the used10 field.
-func ByUsed10(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldUsed10, opts...).ToFunc()
+// ByUsed orders the results by the used field.
+func ByUsed(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUsed, opts...).ToFunc()
 }
 
 // ByUserCount orders the results by user count.

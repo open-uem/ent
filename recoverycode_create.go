@@ -22,202 +22,22 @@ type RecoveryCodeCreate struct {
 	conflict []sql.ConflictOption
 }
 
-// SetCode1 sets the "code1" field.
-func (rcc *RecoveryCodeCreate) SetCode1(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode1(s)
+// SetCode sets the "code" field.
+func (rcc *RecoveryCodeCreate) SetCode(s string) *RecoveryCodeCreate {
+	rcc.mutation.SetCode(s)
 	return rcc
 }
 
-// SetUsed1 sets the "used1" field.
-func (rcc *RecoveryCodeCreate) SetUsed1(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed1(b)
+// SetUsed sets the "used" field.
+func (rcc *RecoveryCodeCreate) SetUsed(b bool) *RecoveryCodeCreate {
+	rcc.mutation.SetUsed(b)
 	return rcc
 }
 
-// SetNillableUsed1 sets the "used1" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed1(b *bool) *RecoveryCodeCreate {
+// SetNillableUsed sets the "used" field if the given value is not nil.
+func (rcc *RecoveryCodeCreate) SetNillableUsed(b *bool) *RecoveryCodeCreate {
 	if b != nil {
-		rcc.SetUsed1(*b)
-	}
-	return rcc
-}
-
-// SetCode2 sets the "code2" field.
-func (rcc *RecoveryCodeCreate) SetCode2(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode2(s)
-	return rcc
-}
-
-// SetUsed2 sets the "used2" field.
-func (rcc *RecoveryCodeCreate) SetUsed2(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed2(b)
-	return rcc
-}
-
-// SetNillableUsed2 sets the "used2" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed2(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed2(*b)
-	}
-	return rcc
-}
-
-// SetCode3 sets the "code3" field.
-func (rcc *RecoveryCodeCreate) SetCode3(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode3(s)
-	return rcc
-}
-
-// SetUsed3 sets the "used3" field.
-func (rcc *RecoveryCodeCreate) SetUsed3(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed3(b)
-	return rcc
-}
-
-// SetNillableUsed3 sets the "used3" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed3(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed3(*b)
-	}
-	return rcc
-}
-
-// SetCode4 sets the "code4" field.
-func (rcc *RecoveryCodeCreate) SetCode4(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode4(s)
-	return rcc
-}
-
-// SetUsed4 sets the "used4" field.
-func (rcc *RecoveryCodeCreate) SetUsed4(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed4(b)
-	return rcc
-}
-
-// SetNillableUsed4 sets the "used4" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed4(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed4(*b)
-	}
-	return rcc
-}
-
-// SetCode5 sets the "code5" field.
-func (rcc *RecoveryCodeCreate) SetCode5(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode5(s)
-	return rcc
-}
-
-// SetUsed5 sets the "used5" field.
-func (rcc *RecoveryCodeCreate) SetUsed5(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed5(b)
-	return rcc
-}
-
-// SetNillableUsed5 sets the "used5" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed5(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed5(*b)
-	}
-	return rcc
-}
-
-// SetCode6 sets the "code6" field.
-func (rcc *RecoveryCodeCreate) SetCode6(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode6(s)
-	return rcc
-}
-
-// SetUsed6 sets the "used6" field.
-func (rcc *RecoveryCodeCreate) SetUsed6(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed6(b)
-	return rcc
-}
-
-// SetNillableUsed6 sets the "used6" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed6(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed6(*b)
-	}
-	return rcc
-}
-
-// SetCode7 sets the "code7" field.
-func (rcc *RecoveryCodeCreate) SetCode7(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode7(s)
-	return rcc
-}
-
-// SetUsed7 sets the "used7" field.
-func (rcc *RecoveryCodeCreate) SetUsed7(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed7(b)
-	return rcc
-}
-
-// SetNillableUsed7 sets the "used7" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed7(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed7(*b)
-	}
-	return rcc
-}
-
-// SetCode8 sets the "code8" field.
-func (rcc *RecoveryCodeCreate) SetCode8(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode8(s)
-	return rcc
-}
-
-// SetUsed8 sets the "used8" field.
-func (rcc *RecoveryCodeCreate) SetUsed8(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed8(b)
-	return rcc
-}
-
-// SetNillableUsed8 sets the "used8" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed8(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed8(*b)
-	}
-	return rcc
-}
-
-// SetCode9 sets the "code9" field.
-func (rcc *RecoveryCodeCreate) SetCode9(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode9(s)
-	return rcc
-}
-
-// SetUsed9 sets the "used9" field.
-func (rcc *RecoveryCodeCreate) SetUsed9(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed9(b)
-	return rcc
-}
-
-// SetNillableUsed9 sets the "used9" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed9(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed9(*b)
-	}
-	return rcc
-}
-
-// SetCode10 sets the "code10" field.
-func (rcc *RecoveryCodeCreate) SetCode10(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode10(s)
-	return rcc
-}
-
-// SetUsed10 sets the "used10" field.
-func (rcc *RecoveryCodeCreate) SetUsed10(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed10(b)
-	return rcc
-}
-
-// SetNillableUsed10 sets the "used10" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed10(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed10(*b)
+		rcc.SetUsed(*b)
 	}
 	return rcc
 }
@@ -272,159 +92,24 @@ func (rcc *RecoveryCodeCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (rcc *RecoveryCodeCreate) defaults() {
-	if _, ok := rcc.mutation.Used1(); !ok {
-		v := recoverycode.DefaultUsed1
-		rcc.mutation.SetUsed1(v)
-	}
-	if _, ok := rcc.mutation.Used2(); !ok {
-		v := recoverycode.DefaultUsed2
-		rcc.mutation.SetUsed2(v)
-	}
-	if _, ok := rcc.mutation.Used3(); !ok {
-		v := recoverycode.DefaultUsed3
-		rcc.mutation.SetUsed3(v)
-	}
-	if _, ok := rcc.mutation.Used4(); !ok {
-		v := recoverycode.DefaultUsed4
-		rcc.mutation.SetUsed4(v)
-	}
-	if _, ok := rcc.mutation.Used5(); !ok {
-		v := recoverycode.DefaultUsed5
-		rcc.mutation.SetUsed5(v)
-	}
-	if _, ok := rcc.mutation.Used6(); !ok {
-		v := recoverycode.DefaultUsed6
-		rcc.mutation.SetUsed6(v)
-	}
-	if _, ok := rcc.mutation.Used7(); !ok {
-		v := recoverycode.DefaultUsed7
-		rcc.mutation.SetUsed7(v)
-	}
-	if _, ok := rcc.mutation.Used8(); !ok {
-		v := recoverycode.DefaultUsed8
-		rcc.mutation.SetUsed8(v)
-	}
-	if _, ok := rcc.mutation.Used9(); !ok {
-		v := recoverycode.DefaultUsed9
-		rcc.mutation.SetUsed9(v)
-	}
-	if _, ok := rcc.mutation.Used10(); !ok {
-		v := recoverycode.DefaultUsed10
-		rcc.mutation.SetUsed10(v)
+	if _, ok := rcc.mutation.Used(); !ok {
+		v := recoverycode.DefaultUsed
+		rcc.mutation.SetUsed(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (rcc *RecoveryCodeCreate) check() error {
-	if _, ok := rcc.mutation.Code1(); !ok {
-		return &ValidationError{Name: "code1", err: errors.New(`ent: missing required field "RecoveryCode.code1"`)}
+	if _, ok := rcc.mutation.Code(); !ok {
+		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RecoveryCode.code"`)}
 	}
-	if v, ok := rcc.mutation.Code1(); ok {
-		if err := recoverycode.Code1Validator(v); err != nil {
-			return &ValidationError{Name: "code1", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code1": %w`, err)}
+	if v, ok := rcc.mutation.Code(); ok {
+		if err := recoverycode.CodeValidator(v); err != nil {
+			return &ValidationError{Name: "code", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code": %w`, err)}
 		}
 	}
-	if _, ok := rcc.mutation.Used1(); !ok {
-		return &ValidationError{Name: "used1", err: errors.New(`ent: missing required field "RecoveryCode.used1"`)}
-	}
-	if _, ok := rcc.mutation.Code2(); !ok {
-		return &ValidationError{Name: "code2", err: errors.New(`ent: missing required field "RecoveryCode.code2"`)}
-	}
-	if v, ok := rcc.mutation.Code2(); ok {
-		if err := recoverycode.Code2Validator(v); err != nil {
-			return &ValidationError{Name: "code2", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code2": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used2(); !ok {
-		return &ValidationError{Name: "used2", err: errors.New(`ent: missing required field "RecoveryCode.used2"`)}
-	}
-	if _, ok := rcc.mutation.Code3(); !ok {
-		return &ValidationError{Name: "code3", err: errors.New(`ent: missing required field "RecoveryCode.code3"`)}
-	}
-	if v, ok := rcc.mutation.Code3(); ok {
-		if err := recoverycode.Code3Validator(v); err != nil {
-			return &ValidationError{Name: "code3", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code3": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used3(); !ok {
-		return &ValidationError{Name: "used3", err: errors.New(`ent: missing required field "RecoveryCode.used3"`)}
-	}
-	if _, ok := rcc.mutation.Code4(); !ok {
-		return &ValidationError{Name: "code4", err: errors.New(`ent: missing required field "RecoveryCode.code4"`)}
-	}
-	if v, ok := rcc.mutation.Code4(); ok {
-		if err := recoverycode.Code4Validator(v); err != nil {
-			return &ValidationError{Name: "code4", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code4": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used4(); !ok {
-		return &ValidationError{Name: "used4", err: errors.New(`ent: missing required field "RecoveryCode.used4"`)}
-	}
-	if _, ok := rcc.mutation.Code5(); !ok {
-		return &ValidationError{Name: "code5", err: errors.New(`ent: missing required field "RecoveryCode.code5"`)}
-	}
-	if v, ok := rcc.mutation.Code5(); ok {
-		if err := recoverycode.Code5Validator(v); err != nil {
-			return &ValidationError{Name: "code5", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code5": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used5(); !ok {
-		return &ValidationError{Name: "used5", err: errors.New(`ent: missing required field "RecoveryCode.used5"`)}
-	}
-	if _, ok := rcc.mutation.Code6(); !ok {
-		return &ValidationError{Name: "code6", err: errors.New(`ent: missing required field "RecoveryCode.code6"`)}
-	}
-	if v, ok := rcc.mutation.Code6(); ok {
-		if err := recoverycode.Code6Validator(v); err != nil {
-			return &ValidationError{Name: "code6", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code6": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used6(); !ok {
-		return &ValidationError{Name: "used6", err: errors.New(`ent: missing required field "RecoveryCode.used6"`)}
-	}
-	if _, ok := rcc.mutation.Code7(); !ok {
-		return &ValidationError{Name: "code7", err: errors.New(`ent: missing required field "RecoveryCode.code7"`)}
-	}
-	if v, ok := rcc.mutation.Code7(); ok {
-		if err := recoverycode.Code7Validator(v); err != nil {
-			return &ValidationError{Name: "code7", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code7": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used7(); !ok {
-		return &ValidationError{Name: "used7", err: errors.New(`ent: missing required field "RecoveryCode.used7"`)}
-	}
-	if _, ok := rcc.mutation.Code8(); !ok {
-		return &ValidationError{Name: "code8", err: errors.New(`ent: missing required field "RecoveryCode.code8"`)}
-	}
-	if v, ok := rcc.mutation.Code8(); ok {
-		if err := recoverycode.Code8Validator(v); err != nil {
-			return &ValidationError{Name: "code8", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code8": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used8(); !ok {
-		return &ValidationError{Name: "used8", err: errors.New(`ent: missing required field "RecoveryCode.used8"`)}
-	}
-	if _, ok := rcc.mutation.Code9(); !ok {
-		return &ValidationError{Name: "code9", err: errors.New(`ent: missing required field "RecoveryCode.code9"`)}
-	}
-	if v, ok := rcc.mutation.Code9(); ok {
-		if err := recoverycode.Code9Validator(v); err != nil {
-			return &ValidationError{Name: "code9", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code9": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used9(); !ok {
-		return &ValidationError{Name: "used9", err: errors.New(`ent: missing required field "RecoveryCode.used9"`)}
-	}
-	if _, ok := rcc.mutation.Code10(); !ok {
-		return &ValidationError{Name: "code10", err: errors.New(`ent: missing required field "RecoveryCode.code10"`)}
-	}
-	if v, ok := rcc.mutation.Code10(); ok {
-		if err := recoverycode.Code10Validator(v); err != nil {
-			return &ValidationError{Name: "code10", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code10": %w`, err)}
-		}
-	}
-	if _, ok := rcc.mutation.Used10(); !ok {
-		return &ValidationError{Name: "used10", err: errors.New(`ent: missing required field "RecoveryCode.used10"`)}
+	if _, ok := rcc.mutation.Used(); !ok {
+		return &ValidationError{Name: "used", err: errors.New(`ent: missing required field "RecoveryCode.used"`)}
 	}
 	return nil
 }
@@ -453,85 +138,13 @@ func (rcc *RecoveryCodeCreate) createSpec() (*RecoveryCode, *sqlgraph.CreateSpec
 		_spec = sqlgraph.NewCreateSpec(recoverycode.Table, sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt))
 	)
 	_spec.OnConflict = rcc.conflict
-	if value, ok := rcc.mutation.Code1(); ok {
-		_spec.SetField(recoverycode.FieldCode1, field.TypeString, value)
-		_node.Code1 = value
+	if value, ok := rcc.mutation.Code(); ok {
+		_spec.SetField(recoverycode.FieldCode, field.TypeString, value)
+		_node.Code = value
 	}
-	if value, ok := rcc.mutation.Used1(); ok {
-		_spec.SetField(recoverycode.FieldUsed1, field.TypeBool, value)
-		_node.Used1 = value
-	}
-	if value, ok := rcc.mutation.Code2(); ok {
-		_spec.SetField(recoverycode.FieldCode2, field.TypeString, value)
-		_node.Code2 = value
-	}
-	if value, ok := rcc.mutation.Used2(); ok {
-		_spec.SetField(recoverycode.FieldUsed2, field.TypeBool, value)
-		_node.Used2 = value
-	}
-	if value, ok := rcc.mutation.Code3(); ok {
-		_spec.SetField(recoverycode.FieldCode3, field.TypeString, value)
-		_node.Code3 = value
-	}
-	if value, ok := rcc.mutation.Used3(); ok {
-		_spec.SetField(recoverycode.FieldUsed3, field.TypeBool, value)
-		_node.Used3 = value
-	}
-	if value, ok := rcc.mutation.Code4(); ok {
-		_spec.SetField(recoverycode.FieldCode4, field.TypeString, value)
-		_node.Code4 = value
-	}
-	if value, ok := rcc.mutation.Used4(); ok {
-		_spec.SetField(recoverycode.FieldUsed4, field.TypeBool, value)
-		_node.Used4 = value
-	}
-	if value, ok := rcc.mutation.Code5(); ok {
-		_spec.SetField(recoverycode.FieldCode5, field.TypeString, value)
-		_node.Code5 = value
-	}
-	if value, ok := rcc.mutation.Used5(); ok {
-		_spec.SetField(recoverycode.FieldUsed5, field.TypeBool, value)
-		_node.Used5 = value
-	}
-	if value, ok := rcc.mutation.Code6(); ok {
-		_spec.SetField(recoverycode.FieldCode6, field.TypeString, value)
-		_node.Code6 = value
-	}
-	if value, ok := rcc.mutation.Used6(); ok {
-		_spec.SetField(recoverycode.FieldUsed6, field.TypeBool, value)
-		_node.Used6 = value
-	}
-	if value, ok := rcc.mutation.Code7(); ok {
-		_spec.SetField(recoverycode.FieldCode7, field.TypeString, value)
-		_node.Code7 = value
-	}
-	if value, ok := rcc.mutation.Used7(); ok {
-		_spec.SetField(recoverycode.FieldUsed7, field.TypeBool, value)
-		_node.Used7 = value
-	}
-	if value, ok := rcc.mutation.Code8(); ok {
-		_spec.SetField(recoverycode.FieldCode8, field.TypeString, value)
-		_node.Code8 = value
-	}
-	if value, ok := rcc.mutation.Used8(); ok {
-		_spec.SetField(recoverycode.FieldUsed8, field.TypeBool, value)
-		_node.Used8 = value
-	}
-	if value, ok := rcc.mutation.Code9(); ok {
-		_spec.SetField(recoverycode.FieldCode9, field.TypeString, value)
-		_node.Code9 = value
-	}
-	if value, ok := rcc.mutation.Used9(); ok {
-		_spec.SetField(recoverycode.FieldUsed9, field.TypeBool, value)
-		_node.Used9 = value
-	}
-	if value, ok := rcc.mutation.Code10(); ok {
-		_spec.SetField(recoverycode.FieldCode10, field.TypeString, value)
-		_node.Code10 = value
-	}
-	if value, ok := rcc.mutation.Used10(); ok {
-		_spec.SetField(recoverycode.FieldUsed10, field.TypeBool, value)
-		_node.Used10 = value
+	if value, ok := rcc.mutation.Used(); ok {
+		_spec.SetField(recoverycode.FieldUsed, field.TypeBool, value)
+		_node.Used = value
 	}
 	if nodes := rcc.mutation.UserIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -556,7 +169,7 @@ func (rcc *RecoveryCodeCreate) createSpec() (*RecoveryCode, *sqlgraph.CreateSpec
 // of the `INSERT` statement. For example:
 //
 //	client.RecoveryCode.Create().
-//		SetCode1(v).
+//		SetCode(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -565,7 +178,7 @@ func (rcc *RecoveryCodeCreate) createSpec() (*RecoveryCode, *sqlgraph.CreateSpec
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.RecoveryCodeUpsert) {
-//			SetCode1(v+v).
+//			SetCode(v+v).
 //		}).
 //		Exec(ctx)
 func (rcc *RecoveryCodeCreate) OnConflict(opts ...sql.ConflictOption) *RecoveryCodeUpsertOne {
@@ -601,243 +214,27 @@ type (
 	}
 )
 
-// SetCode1 sets the "code1" field.
-func (u *RecoveryCodeUpsert) SetCode1(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode1, v)
+// SetCode sets the "code" field.
+func (u *RecoveryCodeUpsert) SetCode(v string) *RecoveryCodeUpsert {
+	u.Set(recoverycode.FieldCode, v)
 	return u
 }
 
-// UpdateCode1 sets the "code1" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode1() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode1)
+// UpdateCode sets the "code" field to the value that was provided on create.
+func (u *RecoveryCodeUpsert) UpdateCode() *RecoveryCodeUpsert {
+	u.SetExcluded(recoverycode.FieldCode)
 	return u
 }
 
-// SetUsed1 sets the "used1" field.
-func (u *RecoveryCodeUpsert) SetUsed1(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed1, v)
+// SetUsed sets the "used" field.
+func (u *RecoveryCodeUpsert) SetUsed(v bool) *RecoveryCodeUpsert {
+	u.Set(recoverycode.FieldUsed, v)
 	return u
 }
 
-// UpdateUsed1 sets the "used1" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed1() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed1)
-	return u
-}
-
-// SetCode2 sets the "code2" field.
-func (u *RecoveryCodeUpsert) SetCode2(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode2, v)
-	return u
-}
-
-// UpdateCode2 sets the "code2" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode2() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode2)
-	return u
-}
-
-// SetUsed2 sets the "used2" field.
-func (u *RecoveryCodeUpsert) SetUsed2(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed2, v)
-	return u
-}
-
-// UpdateUsed2 sets the "used2" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed2() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed2)
-	return u
-}
-
-// SetCode3 sets the "code3" field.
-func (u *RecoveryCodeUpsert) SetCode3(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode3, v)
-	return u
-}
-
-// UpdateCode3 sets the "code3" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode3() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode3)
-	return u
-}
-
-// SetUsed3 sets the "used3" field.
-func (u *RecoveryCodeUpsert) SetUsed3(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed3, v)
-	return u
-}
-
-// UpdateUsed3 sets the "used3" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed3() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed3)
-	return u
-}
-
-// SetCode4 sets the "code4" field.
-func (u *RecoveryCodeUpsert) SetCode4(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode4, v)
-	return u
-}
-
-// UpdateCode4 sets the "code4" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode4() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode4)
-	return u
-}
-
-// SetUsed4 sets the "used4" field.
-func (u *RecoveryCodeUpsert) SetUsed4(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed4, v)
-	return u
-}
-
-// UpdateUsed4 sets the "used4" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed4() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed4)
-	return u
-}
-
-// SetCode5 sets the "code5" field.
-func (u *RecoveryCodeUpsert) SetCode5(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode5, v)
-	return u
-}
-
-// UpdateCode5 sets the "code5" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode5() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode5)
-	return u
-}
-
-// SetUsed5 sets the "used5" field.
-func (u *RecoveryCodeUpsert) SetUsed5(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed5, v)
-	return u
-}
-
-// UpdateUsed5 sets the "used5" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed5() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed5)
-	return u
-}
-
-// SetCode6 sets the "code6" field.
-func (u *RecoveryCodeUpsert) SetCode6(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode6, v)
-	return u
-}
-
-// UpdateCode6 sets the "code6" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode6() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode6)
-	return u
-}
-
-// SetUsed6 sets the "used6" field.
-func (u *RecoveryCodeUpsert) SetUsed6(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed6, v)
-	return u
-}
-
-// UpdateUsed6 sets the "used6" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed6() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed6)
-	return u
-}
-
-// SetCode7 sets the "code7" field.
-func (u *RecoveryCodeUpsert) SetCode7(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode7, v)
-	return u
-}
-
-// UpdateCode7 sets the "code7" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode7() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode7)
-	return u
-}
-
-// SetUsed7 sets the "used7" field.
-func (u *RecoveryCodeUpsert) SetUsed7(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed7, v)
-	return u
-}
-
-// UpdateUsed7 sets the "used7" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed7() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed7)
-	return u
-}
-
-// SetCode8 sets the "code8" field.
-func (u *RecoveryCodeUpsert) SetCode8(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode8, v)
-	return u
-}
-
-// UpdateCode8 sets the "code8" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode8() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode8)
-	return u
-}
-
-// SetUsed8 sets the "used8" field.
-func (u *RecoveryCodeUpsert) SetUsed8(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed8, v)
-	return u
-}
-
-// UpdateUsed8 sets the "used8" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed8() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed8)
-	return u
-}
-
-// SetCode9 sets the "code9" field.
-func (u *RecoveryCodeUpsert) SetCode9(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode9, v)
-	return u
-}
-
-// UpdateCode9 sets the "code9" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode9() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode9)
-	return u
-}
-
-// SetUsed9 sets the "used9" field.
-func (u *RecoveryCodeUpsert) SetUsed9(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed9, v)
-	return u
-}
-
-// UpdateUsed9 sets the "used9" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed9() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed9)
-	return u
-}
-
-// SetCode10 sets the "code10" field.
-func (u *RecoveryCodeUpsert) SetCode10(v string) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldCode10, v)
-	return u
-}
-
-// UpdateCode10 sets the "code10" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateCode10() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldCode10)
-	return u
-}
-
-// SetUsed10 sets the "used10" field.
-func (u *RecoveryCodeUpsert) SetUsed10(v bool) *RecoveryCodeUpsert {
-	u.Set(recoverycode.FieldUsed10, v)
-	return u
-}
-
-// UpdateUsed10 sets the "used10" field to the value that was provided on create.
-func (u *RecoveryCodeUpsert) UpdateUsed10() *RecoveryCodeUpsert {
-	u.SetExcluded(recoverycode.FieldUsed10)
+// UpdateUsed sets the "used" field to the value that was provided on create.
+func (u *RecoveryCodeUpsert) UpdateUsed() *RecoveryCodeUpsert {
+	u.SetExcluded(recoverycode.FieldUsed)
 	return u
 }
 
@@ -881,283 +278,31 @@ func (u *RecoveryCodeUpsertOne) Update(set func(*RecoveryCodeUpsert)) *RecoveryC
 	return u
 }
 
-// SetCode1 sets the "code1" field.
-func (u *RecoveryCodeUpsertOne) SetCode1(v string) *RecoveryCodeUpsertOne {
+// SetCode sets the "code" field.
+func (u *RecoveryCodeUpsertOne) SetCode(v string) *RecoveryCodeUpsertOne {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode1(v)
+		s.SetCode(v)
 	})
 }
 
-// UpdateCode1 sets the "code1" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode1() *RecoveryCodeUpsertOne {
+// UpdateCode sets the "code" field to the value that was provided on create.
+func (u *RecoveryCodeUpsertOne) UpdateCode() *RecoveryCodeUpsertOne {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode1()
+		s.UpdateCode()
 	})
 }
 
-// SetUsed1 sets the "used1" field.
-func (u *RecoveryCodeUpsertOne) SetUsed1(v bool) *RecoveryCodeUpsertOne {
+// SetUsed sets the "used" field.
+func (u *RecoveryCodeUpsertOne) SetUsed(v bool) *RecoveryCodeUpsertOne {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed1(v)
+		s.SetUsed(v)
 	})
 }
 
-// UpdateUsed1 sets the "used1" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed1() *RecoveryCodeUpsertOne {
+// UpdateUsed sets the "used" field to the value that was provided on create.
+func (u *RecoveryCodeUpsertOne) UpdateUsed() *RecoveryCodeUpsertOne {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed1()
-	})
-}
-
-// SetCode2 sets the "code2" field.
-func (u *RecoveryCodeUpsertOne) SetCode2(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode2(v)
-	})
-}
-
-// UpdateCode2 sets the "code2" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode2() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode2()
-	})
-}
-
-// SetUsed2 sets the "used2" field.
-func (u *RecoveryCodeUpsertOne) SetUsed2(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed2(v)
-	})
-}
-
-// UpdateUsed2 sets the "used2" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed2() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed2()
-	})
-}
-
-// SetCode3 sets the "code3" field.
-func (u *RecoveryCodeUpsertOne) SetCode3(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode3(v)
-	})
-}
-
-// UpdateCode3 sets the "code3" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode3() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode3()
-	})
-}
-
-// SetUsed3 sets the "used3" field.
-func (u *RecoveryCodeUpsertOne) SetUsed3(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed3(v)
-	})
-}
-
-// UpdateUsed3 sets the "used3" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed3() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed3()
-	})
-}
-
-// SetCode4 sets the "code4" field.
-func (u *RecoveryCodeUpsertOne) SetCode4(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode4(v)
-	})
-}
-
-// UpdateCode4 sets the "code4" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode4() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode4()
-	})
-}
-
-// SetUsed4 sets the "used4" field.
-func (u *RecoveryCodeUpsertOne) SetUsed4(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed4(v)
-	})
-}
-
-// UpdateUsed4 sets the "used4" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed4() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed4()
-	})
-}
-
-// SetCode5 sets the "code5" field.
-func (u *RecoveryCodeUpsertOne) SetCode5(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode5(v)
-	})
-}
-
-// UpdateCode5 sets the "code5" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode5() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode5()
-	})
-}
-
-// SetUsed5 sets the "used5" field.
-func (u *RecoveryCodeUpsertOne) SetUsed5(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed5(v)
-	})
-}
-
-// UpdateUsed5 sets the "used5" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed5() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed5()
-	})
-}
-
-// SetCode6 sets the "code6" field.
-func (u *RecoveryCodeUpsertOne) SetCode6(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode6(v)
-	})
-}
-
-// UpdateCode6 sets the "code6" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode6() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode6()
-	})
-}
-
-// SetUsed6 sets the "used6" field.
-func (u *RecoveryCodeUpsertOne) SetUsed6(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed6(v)
-	})
-}
-
-// UpdateUsed6 sets the "used6" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed6() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed6()
-	})
-}
-
-// SetCode7 sets the "code7" field.
-func (u *RecoveryCodeUpsertOne) SetCode7(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode7(v)
-	})
-}
-
-// UpdateCode7 sets the "code7" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode7() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode7()
-	})
-}
-
-// SetUsed7 sets the "used7" field.
-func (u *RecoveryCodeUpsertOne) SetUsed7(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed7(v)
-	})
-}
-
-// UpdateUsed7 sets the "used7" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed7() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed7()
-	})
-}
-
-// SetCode8 sets the "code8" field.
-func (u *RecoveryCodeUpsertOne) SetCode8(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode8(v)
-	})
-}
-
-// UpdateCode8 sets the "code8" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode8() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode8()
-	})
-}
-
-// SetUsed8 sets the "used8" field.
-func (u *RecoveryCodeUpsertOne) SetUsed8(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed8(v)
-	})
-}
-
-// UpdateUsed8 sets the "used8" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed8() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed8()
-	})
-}
-
-// SetCode9 sets the "code9" field.
-func (u *RecoveryCodeUpsertOne) SetCode9(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode9(v)
-	})
-}
-
-// UpdateCode9 sets the "code9" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode9() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode9()
-	})
-}
-
-// SetUsed9 sets the "used9" field.
-func (u *RecoveryCodeUpsertOne) SetUsed9(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed9(v)
-	})
-}
-
-// UpdateUsed9 sets the "used9" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed9() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed9()
-	})
-}
-
-// SetCode10 sets the "code10" field.
-func (u *RecoveryCodeUpsertOne) SetCode10(v string) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode10(v)
-	})
-}
-
-// UpdateCode10 sets the "code10" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateCode10() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode10()
-	})
-}
-
-// SetUsed10 sets the "used10" field.
-func (u *RecoveryCodeUpsertOne) SetUsed10(v bool) *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed10(v)
-	})
-}
-
-// UpdateUsed10 sets the "used10" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertOne) UpdateUsed10() *RecoveryCodeUpsertOne {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed10()
+		s.UpdateUsed()
 	})
 }
 
@@ -1296,7 +441,7 @@ func (rccb *RecoveryCodeCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.RecoveryCodeUpsert) {
-//			SetCode1(v+v).
+//			SetCode(v+v).
 //		}).
 //		Exec(ctx)
 func (rccb *RecoveryCodeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RecoveryCodeUpsertBulk {
@@ -1365,283 +510,31 @@ func (u *RecoveryCodeUpsertBulk) Update(set func(*RecoveryCodeUpsert)) *Recovery
 	return u
 }
 
-// SetCode1 sets the "code1" field.
-func (u *RecoveryCodeUpsertBulk) SetCode1(v string) *RecoveryCodeUpsertBulk {
+// SetCode sets the "code" field.
+func (u *RecoveryCodeUpsertBulk) SetCode(v string) *RecoveryCodeUpsertBulk {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode1(v)
+		s.SetCode(v)
 	})
 }
 
-// UpdateCode1 sets the "code1" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode1() *RecoveryCodeUpsertBulk {
+// UpdateCode sets the "code" field to the value that was provided on create.
+func (u *RecoveryCodeUpsertBulk) UpdateCode() *RecoveryCodeUpsertBulk {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode1()
+		s.UpdateCode()
 	})
 }
 
-// SetUsed1 sets the "used1" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed1(v bool) *RecoveryCodeUpsertBulk {
+// SetUsed sets the "used" field.
+func (u *RecoveryCodeUpsertBulk) SetUsed(v bool) *RecoveryCodeUpsertBulk {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed1(v)
+		s.SetUsed(v)
 	})
 }
 
-// UpdateUsed1 sets the "used1" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed1() *RecoveryCodeUpsertBulk {
+// UpdateUsed sets the "used" field to the value that was provided on create.
+func (u *RecoveryCodeUpsertBulk) UpdateUsed() *RecoveryCodeUpsertBulk {
 	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed1()
-	})
-}
-
-// SetCode2 sets the "code2" field.
-func (u *RecoveryCodeUpsertBulk) SetCode2(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode2(v)
-	})
-}
-
-// UpdateCode2 sets the "code2" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode2() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode2()
-	})
-}
-
-// SetUsed2 sets the "used2" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed2(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed2(v)
-	})
-}
-
-// UpdateUsed2 sets the "used2" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed2() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed2()
-	})
-}
-
-// SetCode3 sets the "code3" field.
-func (u *RecoveryCodeUpsertBulk) SetCode3(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode3(v)
-	})
-}
-
-// UpdateCode3 sets the "code3" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode3() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode3()
-	})
-}
-
-// SetUsed3 sets the "used3" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed3(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed3(v)
-	})
-}
-
-// UpdateUsed3 sets the "used3" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed3() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed3()
-	})
-}
-
-// SetCode4 sets the "code4" field.
-func (u *RecoveryCodeUpsertBulk) SetCode4(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode4(v)
-	})
-}
-
-// UpdateCode4 sets the "code4" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode4() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode4()
-	})
-}
-
-// SetUsed4 sets the "used4" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed4(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed4(v)
-	})
-}
-
-// UpdateUsed4 sets the "used4" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed4() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed4()
-	})
-}
-
-// SetCode5 sets the "code5" field.
-func (u *RecoveryCodeUpsertBulk) SetCode5(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode5(v)
-	})
-}
-
-// UpdateCode5 sets the "code5" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode5() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode5()
-	})
-}
-
-// SetUsed5 sets the "used5" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed5(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed5(v)
-	})
-}
-
-// UpdateUsed5 sets the "used5" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed5() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed5()
-	})
-}
-
-// SetCode6 sets the "code6" field.
-func (u *RecoveryCodeUpsertBulk) SetCode6(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode6(v)
-	})
-}
-
-// UpdateCode6 sets the "code6" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode6() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode6()
-	})
-}
-
-// SetUsed6 sets the "used6" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed6(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed6(v)
-	})
-}
-
-// UpdateUsed6 sets the "used6" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed6() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed6()
-	})
-}
-
-// SetCode7 sets the "code7" field.
-func (u *RecoveryCodeUpsertBulk) SetCode7(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode7(v)
-	})
-}
-
-// UpdateCode7 sets the "code7" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode7() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode7()
-	})
-}
-
-// SetUsed7 sets the "used7" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed7(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed7(v)
-	})
-}
-
-// UpdateUsed7 sets the "used7" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed7() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed7()
-	})
-}
-
-// SetCode8 sets the "code8" field.
-func (u *RecoveryCodeUpsertBulk) SetCode8(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode8(v)
-	})
-}
-
-// UpdateCode8 sets the "code8" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode8() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode8()
-	})
-}
-
-// SetUsed8 sets the "used8" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed8(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed8(v)
-	})
-}
-
-// UpdateUsed8 sets the "used8" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed8() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed8()
-	})
-}
-
-// SetCode9 sets the "code9" field.
-func (u *RecoveryCodeUpsertBulk) SetCode9(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode9(v)
-	})
-}
-
-// UpdateCode9 sets the "code9" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode9() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode9()
-	})
-}
-
-// SetUsed9 sets the "used9" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed9(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed9(v)
-	})
-}
-
-// UpdateUsed9 sets the "used9" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed9() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed9()
-	})
-}
-
-// SetCode10 sets the "code10" field.
-func (u *RecoveryCodeUpsertBulk) SetCode10(v string) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetCode10(v)
-	})
-}
-
-// UpdateCode10 sets the "code10" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateCode10() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateCode10()
-	})
-}
-
-// SetUsed10 sets the "used10" field.
-func (u *RecoveryCodeUpsertBulk) SetUsed10(v bool) *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.SetUsed10(v)
-	})
-}
-
-// UpdateUsed10 sets the "used10" field to the value that was provided on create.
-func (u *RecoveryCodeUpsertBulk) UpdateUsed10() *RecoveryCodeUpsertBulk {
-	return u.Update(func(s *RecoveryCodeUpsert) {
-		s.UpdateUsed10()
+		s.UpdateUsed()
 	})
 }
 

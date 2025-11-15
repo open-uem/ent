@@ -301,12 +301,12 @@ func (rcq *RecoveryCodeQuery) WithUser(opts ...func(*UserQuery)) *RecoveryCodeQu
 // Example:
 //
 //	var v []struct {
-//		Code1 string `json:"code1,omitempty"`
+//		Code string `json:"code,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.RecoveryCode.Query().
-//		GroupBy(recoverycode.FieldCode1).
+//		GroupBy(recoverycode.FieldCode).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (rcq *RecoveryCodeQuery) GroupBy(field string, fields ...string) *RecoveryCodeGroupBy {
@@ -324,11 +324,11 @@ func (rcq *RecoveryCodeQuery) GroupBy(field string, fields ...string) *RecoveryC
 // Example:
 //
 //	var v []struct {
-//		Code1 string `json:"code1,omitempty"`
+//		Code string `json:"code,omitempty"`
 //	}
 //
 //	client.RecoveryCode.Query().
-//		Select(recoverycode.FieldCode1).
+//		Select(recoverycode.FieldCode).
 //		Scan(ctx, &v)
 func (rcq *RecoveryCodeQuery) Select(fields ...string) *RecoveryCodeSelect {
 	rcq.ctx.Fields = append(rcq.ctx.Fields, fields...)
