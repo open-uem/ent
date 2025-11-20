@@ -692,6 +692,10 @@ func init() {
 	userDescForgotPasswordCodeExpiresAt := userFields[23].Descriptor()
 	// user.DefaultForgotPasswordCodeExpiresAt holds the default value on creation for the forgot_password_code_expires_at field.
 	user.DefaultForgotPasswordCodeExpiresAt = userDescForgotPasswordCodeExpiresAt.Default.(func() time.Time)
+	// userDescNewUserToken is the schema descriptor for new_user_token field.
+	userDescNewUserToken := userFields[24].Descriptor()
+	// user.DefaultNewUserToken holds the default value on creation for the new_user_token field.
+	user.DefaultNewUserToken = userDescNewUserToken.Default.(string)
 	// userDescID is the schema descriptor for id field.
 	userDescID := userFields[0].Descriptor()
 	// user.IDValidator is a validator for the "id" field. It is called by the builders before save.

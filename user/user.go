@@ -164,6 +164,8 @@ var (
 	DefaultForgotPasswordCode string
 	// DefaultForgotPasswordCodeExpiresAt holds the default value on creation for the "forgot_password_code_expires_at" field.
 	DefaultForgotPasswordCodeExpiresAt func() time.Time
+	// DefaultNewUserToken holds the default value on creation for the "new_user_token" field.
+	DefaultNewUserToken string
 	// IDValidator is a validator for the "id" field. It is called by the builders before save.
 	IDValidator func(string) error
 )

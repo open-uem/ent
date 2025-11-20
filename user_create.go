@@ -492,6 +492,10 @@ func (uc *UserCreate) defaults() {
 		v := user.DefaultForgotPasswordCodeExpiresAt()
 		uc.mutation.SetForgotPasswordCodeExpiresAt(v)
 	}
+	if _, ok := uc.mutation.NewUserToken(); !ok {
+		v := user.DefaultNewUserToken
+		uc.mutation.SetNewUserToken(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
