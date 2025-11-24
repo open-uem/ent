@@ -175,6 +175,20 @@ func (ac *AuthenticationCreate) SetNillableOIDCAutoApprove(b *bool) *Authenticat
 	return ac
 }
 
+// SetUsePasswd sets the "use_passwd" field.
+func (ac *AuthenticationCreate) SetUsePasswd(b bool) *AuthenticationCreate {
+	ac.mutation.SetUsePasswd(b)
+	return ac
+}
+
+// SetNillableUsePasswd sets the "use_passwd" field if the given value is not nil.
+func (ac *AuthenticationCreate) SetNillableUsePasswd(b *bool) *AuthenticationCreate {
+	if b != nil {
+		ac.SetUsePasswd(*b)
+	}
+	return ac
+}
+
 // Mutation returns the AuthenticationMutation object of the builder.
 func (ac *AuthenticationCreate) Mutation() *AuthenticationMutation {
 	return ac.mutation
@@ -254,6 +268,10 @@ func (ac *AuthenticationCreate) defaults() {
 		v := authentication.DefaultOIDCAutoApprove
 		ac.mutation.SetOIDCAutoApprove(v)
 	}
+	if _, ok := ac.mutation.UsePasswd(); !ok {
+		v := authentication.DefaultUsePasswd
+		ac.mutation.SetUsePasswd(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -328,6 +346,10 @@ func (ac *AuthenticationCreate) createSpec() (*Authentication, *sqlgraph.CreateS
 	if value, ok := ac.mutation.OIDCAutoApprove(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoApprove, field.TypeBool, value)
 		_node.OIDCAutoApprove = value
+	}
+	if value, ok := ac.mutation.UsePasswd(); ok {
+		_spec.SetField(authentication.FieldUsePasswd, field.TypeBool, value)
+		_node.UsePasswd = value
 	}
 	return _node, _spec
 }
@@ -576,6 +598,24 @@ func (u *AuthenticationUpsert) UpdateOIDCAutoApprove() *AuthenticationUpsert {
 // ClearOIDCAutoApprove clears the value of the "OIDC_auto_approve" field.
 func (u *AuthenticationUpsert) ClearOIDCAutoApprove() *AuthenticationUpsert {
 	u.SetNull(authentication.FieldOIDCAutoApprove)
+	return u
+}
+
+// SetUsePasswd sets the "use_passwd" field.
+func (u *AuthenticationUpsert) SetUsePasswd(v bool) *AuthenticationUpsert {
+	u.Set(authentication.FieldUsePasswd, v)
+	return u
+}
+
+// UpdateUsePasswd sets the "use_passwd" field to the value that was provided on create.
+func (u *AuthenticationUpsert) UpdateUsePasswd() *AuthenticationUpsert {
+	u.SetExcluded(authentication.FieldUsePasswd)
+	return u
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (u *AuthenticationUpsert) ClearUsePasswd() *AuthenticationUpsert {
+	u.SetNull(authentication.FieldUsePasswd)
 	return u
 }
 
@@ -847,6 +887,27 @@ func (u *AuthenticationUpsertOne) UpdateOIDCAutoApprove() *AuthenticationUpsertO
 func (u *AuthenticationUpsertOne) ClearOIDCAutoApprove() *AuthenticationUpsertOne {
 	return u.Update(func(s *AuthenticationUpsert) {
 		s.ClearOIDCAutoApprove()
+	})
+}
+
+// SetUsePasswd sets the "use_passwd" field.
+func (u *AuthenticationUpsertOne) SetUsePasswd(v bool) *AuthenticationUpsertOne {
+	return u.Update(func(s *AuthenticationUpsert) {
+		s.SetUsePasswd(v)
+	})
+}
+
+// UpdateUsePasswd sets the "use_passwd" field to the value that was provided on create.
+func (u *AuthenticationUpsertOne) UpdateUsePasswd() *AuthenticationUpsertOne {
+	return u.Update(func(s *AuthenticationUpsert) {
+		s.UpdateUsePasswd()
+	})
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (u *AuthenticationUpsertOne) ClearUsePasswd() *AuthenticationUpsertOne {
+	return u.Update(func(s *AuthenticationUpsert) {
+		s.ClearUsePasswd()
 	})
 }
 
@@ -1282,6 +1343,27 @@ func (u *AuthenticationUpsertBulk) UpdateOIDCAutoApprove() *AuthenticationUpsert
 func (u *AuthenticationUpsertBulk) ClearOIDCAutoApprove() *AuthenticationUpsertBulk {
 	return u.Update(func(s *AuthenticationUpsert) {
 		s.ClearOIDCAutoApprove()
+	})
+}
+
+// SetUsePasswd sets the "use_passwd" field.
+func (u *AuthenticationUpsertBulk) SetUsePasswd(v bool) *AuthenticationUpsertBulk {
+	return u.Update(func(s *AuthenticationUpsert) {
+		s.SetUsePasswd(v)
+	})
+}
+
+// UpdateUsePasswd sets the "use_passwd" field to the value that was provided on create.
+func (u *AuthenticationUpsertBulk) UpdateUsePasswd() *AuthenticationUpsertBulk {
+	return u.Update(func(s *AuthenticationUpsert) {
+		s.UpdateUsePasswd()
+	})
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (u *AuthenticationUpsertBulk) ClearUsePasswd() *AuthenticationUpsertBulk {
+	return u.Update(func(s *AuthenticationUpsert) {
+		s.ClearUsePasswd()
 	})
 }
 

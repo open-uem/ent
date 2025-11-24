@@ -122,6 +122,7 @@ var (
 		{Name: "oidc_keycloak_public_key", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "oidc_auto_create_account", Type: field.TypeBool, Nullable: true, Default: true},
 		{Name: "oidc_auto_approve", Type: field.TypeBool, Nullable: true, Default: true},
+		{Name: "use_passwd", Type: field.TypeBool, Nullable: true, Default: true},
 	}
 	// AuthenticationsTable holds the schema information for the "authentications" table.
 	AuthenticationsTable = &schema.Table{

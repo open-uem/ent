@@ -5079,6 +5079,7 @@ type AuthenticationMutation struct {
 	_OIDC_keycloak_public_key   *string
 	_OIDC_auto_create_account   *bool
 	_OIDC_auto_approve          *bool
+	use_passwd                  *bool
 	clearedFields               map[string]struct{}
 	done                        bool
 	oldValue                    func(context.Context) (*Authentication, error)
@@ -5722,6 +5723,55 @@ func (m *AuthenticationMutation) ResetOIDCAutoApprove() {
 	delete(m.clearedFields, authentication.FieldOIDCAutoApprove)
 }
 
+// SetUsePasswd sets the "use_passwd" field.
+func (m *AuthenticationMutation) SetUsePasswd(b bool) {
+	m.use_passwd = &b
+}
+
+// UsePasswd returns the value of the "use_passwd" field in the mutation.
+func (m *AuthenticationMutation) UsePasswd() (r bool, exists bool) {
+	v := m.use_passwd
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUsePasswd returns the old "use_passwd" field's value of the Authentication entity.
+// If the Authentication object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *AuthenticationMutation) OldUsePasswd(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUsePasswd is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUsePasswd requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUsePasswd: %w", err)
+	}
+	return oldValue.UsePasswd, nil
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (m *AuthenticationMutation) ClearUsePasswd() {
+	m.use_passwd = nil
+	m.clearedFields[authentication.FieldUsePasswd] = struct{}{}
+}
+
+// UsePasswdCleared returns if the "use_passwd" field was cleared in this mutation.
+func (m *AuthenticationMutation) UsePasswdCleared() bool {
+	_, ok := m.clearedFields[authentication.FieldUsePasswd]
+	return ok
+}
+
+// ResetUsePasswd resets all changes to the "use_passwd" field.
+func (m *AuthenticationMutation) ResetUsePasswd() {
+	m.use_passwd = nil
+	delete(m.clearedFields, authentication.FieldUsePasswd)
+}
+
 // Where appends a list predicates to the AuthenticationMutation builder.
 func (m *AuthenticationMutation) Where(ps ...predicate.Authentication) {
 	m.predicates = append(m.predicates, ps...)
@@ -5756,7 +5806,7 @@ func (m *AuthenticationMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *AuthenticationMutation) Fields() []string {
-	fields := make([]string, 0, 11)
+	fields := make([]string, 0, 12)
 	if m.use_certificates != nil {
 		fields = append(fields, authentication.FieldUseCertificates)
 	}
@@ -5790,6 +5840,9 @@ func (m *AuthenticationMutation) Fields() []string {
 	if m._OIDC_auto_approve != nil {
 		fields = append(fields, authentication.FieldOIDCAutoApprove)
 	}
+	if m.use_passwd != nil {
+		fields = append(fields, authentication.FieldUsePasswd)
+	}
 	return fields
 }
 
@@ -5820,6 +5873,8 @@ func (m *AuthenticationMutation) Field(name string) (ent.Value, bool) {
 		return m.OIDCAutoCreateAccount()
 	case authentication.FieldOIDCAutoApprove:
 		return m.OIDCAutoApprove()
+	case authentication.FieldUsePasswd:
+		return m.UsePasswd()
 	}
 	return nil, false
 }
@@ -5851,6 +5906,8 @@ func (m *AuthenticationMutation) OldField(ctx context.Context, name string) (ent
 		return m.OldOIDCAutoCreateAccount(ctx)
 	case authentication.FieldOIDCAutoApprove:
 		return m.OldOIDCAutoApprove(ctx)
+	case authentication.FieldUsePasswd:
+		return m.OldUsePasswd(ctx)
 	}
 	return nil, fmt.Errorf("unknown Authentication field %s", name)
 }
@@ -5937,6 +5994,13 @@ func (m *AuthenticationMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetOIDCAutoApprove(v)
 		return nil
+	case authentication.FieldUsePasswd:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUsePasswd(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Authentication field %s", name)
 }
@@ -6000,6 +6064,9 @@ func (m *AuthenticationMutation) ClearedFields() []string {
 	if m.FieldCleared(authentication.FieldOIDCAutoApprove) {
 		fields = append(fields, authentication.FieldOIDCAutoApprove)
 	}
+	if m.FieldCleared(authentication.FieldUsePasswd) {
+		fields = append(fields, authentication.FieldUsePasswd)
+	}
 	return fields
 }
 
@@ -6047,6 +6114,9 @@ func (m *AuthenticationMutation) ClearField(name string) error {
 	case authentication.FieldOIDCAutoApprove:
 		m.ClearOIDCAutoApprove()
 		return nil
+	case authentication.FieldUsePasswd:
+		m.ClearUsePasswd()
+		return nil
 	}
 	return fmt.Errorf("unknown Authentication nullable field %s", name)
 }
@@ -6087,6 +6157,9 @@ func (m *AuthenticationMutation) ResetField(name string) error {
 		return nil
 	case authentication.FieldOIDCAutoApprove:
 		m.ResetOIDCAutoApprove()
+		return nil
+	case authentication.FieldUsePasswd:
+		m.ResetUsePasswd()
 		return nil
 	}
 	return fmt.Errorf("unknown Authentication field %s", name)

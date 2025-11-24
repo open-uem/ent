@@ -174,6 +174,10 @@ func init() {
 	authenticationDescOIDCAutoApprove := authenticationFields[10].Descriptor()
 	// authentication.DefaultOIDCAutoApprove holds the default value on creation for the OIDC_auto_approve field.
 	authentication.DefaultOIDCAutoApprove = authenticationDescOIDCAutoApprove.Default.(bool)
+	// authenticationDescUsePasswd is the schema descriptor for use_passwd field.
+	authenticationDescUsePasswd := authenticationFields[11].Descriptor()
+	// authentication.DefaultUsePasswd holds the default value on creation for the use_passwd field.
+	authentication.DefaultUsePasswd = authenticationDescUsePasswd.Default.(bool)
 	deploymentFields := schema.Deployment{}.Fields()
 	_ = deploymentFields
 	// deploymentDescInstalled is the schema descriptor for installed field.

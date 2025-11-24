@@ -38,7 +38,9 @@ type Authentication struct {
 	OIDCAutoCreateAccount bool `json:"OIDC_auto_create_account,omitempty"`
 	// OIDCAutoApprove holds the value of the "OIDC_auto_approve" field.
 	OIDCAutoApprove bool `json:"OIDC_auto_approve,omitempty"`
-	selectValues    sql.SelectValues
+	// UsePasswd holds the value of the "use_passwd" field.
+	UsePasswd    bool `json:"use_passwd,omitempty"`
+	selectValues sql.SelectValues
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -46,7 +48,7 @@ func (*Authentication) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case authentication.FieldUseCertificates, authentication.FieldAllowRegister, authentication.FieldUseOIDC, authentication.FieldOIDCAutoCreateAccount, authentication.FieldOIDCAutoApprove:
+		case authentication.FieldUseCertificates, authentication.FieldAllowRegister, authentication.FieldUseOIDC, authentication.FieldOIDCAutoCreateAccount, authentication.FieldOIDCAutoApprove, authentication.FieldUsePasswd:
 			values[i] = new(sql.NullBool)
 		case authentication.FieldID:
 			values[i] = new(sql.NullInt64)
@@ -139,6 +141,12 @@ func (a *Authentication) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				a.OIDCAutoApprove = value.Bool
 			}
+		case authentication.FieldUsePasswd:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field use_passwd", values[i])
+			} else if value.Valid {
+				a.UsePasswd = value.Bool
+			}
 		default:
 			a.selectValues.Set(columns[i], values[i])
 		}
@@ -207,6 +215,9 @@ func (a *Authentication) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_auto_approve=")
 	builder.WriteString(fmt.Sprintf("%v", a.OIDCAutoApprove))
+	builder.WriteString(", ")
+	builder.WriteString("use_passwd=")
+	builder.WriteString(fmt.Sprintf("%v", a.UsePasswd))
 	builder.WriteByte(')')
 	return builder.String()
 }

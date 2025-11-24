@@ -33,6 +33,8 @@ const (
 	FieldOIDCAutoCreateAccount = "oidc_auto_create_account"
 	// FieldOIDCAutoApprove holds the string denoting the oidc_auto_approve field in the database.
 	FieldOIDCAutoApprove = "oidc_auto_approve"
+	// FieldUsePasswd holds the string denoting the use_passwd field in the database.
+	FieldUsePasswd = "use_passwd"
 	// Table holds the table name of the authentication in the database.
 	Table = "authentications"
 )
@@ -51,6 +53,7 @@ var Columns = []string{
 	FieldOIDCKeycloakPublicKey,
 	FieldOIDCAutoCreateAccount,
 	FieldOIDCAutoApprove,
+	FieldUsePasswd,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -86,6 +89,8 @@ var (
 	DefaultOIDCAutoCreateAccount bool
 	// DefaultOIDCAutoApprove holds the default value on creation for the "OIDC_auto_approve" field.
 	DefaultOIDCAutoApprove bool
+	// DefaultUsePasswd holds the default value on creation for the "use_passwd" field.
+	DefaultUsePasswd bool
 )
 
 // OrderOption defines the ordering options for the Authentication queries.
@@ -149,4 +154,9 @@ func ByOIDCAutoCreateAccount(opts ...sql.OrderTermOption) OrderOption {
 // ByOIDCAutoApprove orders the results by the OIDC_auto_approve field.
 func ByOIDCAutoApprove(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldOIDCAutoApprove, opts...).ToFunc()
+}
+
+// ByUsePasswd orders the results by the use_passwd field.
+func ByUsePasswd(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUsePasswd, opts...).ToFunc()
 }
