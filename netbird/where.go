@@ -63,6 +63,31 @@ func Installed(v bool) predicate.Netbird {
 	return predicate.Netbird(sql.FieldEQ(FieldInstalled, v))
 }
 
+// IP applies equality check predicate on the "ip" field. It's identical to IPEQ.
+func IP(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldIP, v))
+}
+
+// Profile applies equality check predicate on the "profile" field. It's identical to ProfileEQ.
+func Profile(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldProfile, v))
+}
+
+// ManagementURL applies equality check predicate on the "management_url" field. It's identical to ManagementURLEQ.
+func ManagementURL(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldManagementURL, v))
+}
+
+// ManagementConnected applies equality check predicate on the "management_connected" field. It's identical to ManagementConnectedEQ.
+func ManagementConnected(v bool) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldManagementConnected, v))
+}
+
+// SSHEnabled applies equality check predicate on the "ssh_enabled" field. It's identical to SSHEnabledEQ.
+func SSHEnabled(v bool) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldSSHEnabled, v))
+}
+
 // VersionEQ applies the EQ predicate on the "version" field.
 func VersionEQ(v string) predicate.Netbird {
 	return predicate.Netbird(sql.FieldEQ(FieldVersion, v))
@@ -136,6 +161,251 @@ func InstalledEQ(v bool) predicate.Netbird {
 // InstalledNEQ applies the NEQ predicate on the "installed" field.
 func InstalledNEQ(v bool) predicate.Netbird {
 	return predicate.Netbird(sql.FieldNEQ(FieldInstalled, v))
+}
+
+// IPEQ applies the EQ predicate on the "ip" field.
+func IPEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldIP, v))
+}
+
+// IPNEQ applies the NEQ predicate on the "ip" field.
+func IPNEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldIP, v))
+}
+
+// IPIn applies the In predicate on the "ip" field.
+func IPIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldIn(FieldIP, vs...))
+}
+
+// IPNotIn applies the NotIn predicate on the "ip" field.
+func IPNotIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotIn(FieldIP, vs...))
+}
+
+// IPGT applies the GT predicate on the "ip" field.
+func IPGT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGT(FieldIP, v))
+}
+
+// IPGTE applies the GTE predicate on the "ip" field.
+func IPGTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGTE(FieldIP, v))
+}
+
+// IPLT applies the LT predicate on the "ip" field.
+func IPLT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLT(FieldIP, v))
+}
+
+// IPLTE applies the LTE predicate on the "ip" field.
+func IPLTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLTE(FieldIP, v))
+}
+
+// IPContains applies the Contains predicate on the "ip" field.
+func IPContains(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContains(FieldIP, v))
+}
+
+// IPHasPrefix applies the HasPrefix predicate on the "ip" field.
+func IPHasPrefix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasPrefix(FieldIP, v))
+}
+
+// IPHasSuffix applies the HasSuffix predicate on the "ip" field.
+func IPHasSuffix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasSuffix(FieldIP, v))
+}
+
+// IPIsNil applies the IsNil predicate on the "ip" field.
+func IPIsNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldIsNull(FieldIP))
+}
+
+// IPNotNil applies the NotNil predicate on the "ip" field.
+func IPNotNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotNull(FieldIP))
+}
+
+// IPEqualFold applies the EqualFold predicate on the "ip" field.
+func IPEqualFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEqualFold(FieldIP, v))
+}
+
+// IPContainsFold applies the ContainsFold predicate on the "ip" field.
+func IPContainsFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContainsFold(FieldIP, v))
+}
+
+// ProfileEQ applies the EQ predicate on the "profile" field.
+func ProfileEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldProfile, v))
+}
+
+// ProfileNEQ applies the NEQ predicate on the "profile" field.
+func ProfileNEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldProfile, v))
+}
+
+// ProfileIn applies the In predicate on the "profile" field.
+func ProfileIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldIn(FieldProfile, vs...))
+}
+
+// ProfileNotIn applies the NotIn predicate on the "profile" field.
+func ProfileNotIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotIn(FieldProfile, vs...))
+}
+
+// ProfileGT applies the GT predicate on the "profile" field.
+func ProfileGT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGT(FieldProfile, v))
+}
+
+// ProfileGTE applies the GTE predicate on the "profile" field.
+func ProfileGTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGTE(FieldProfile, v))
+}
+
+// ProfileLT applies the LT predicate on the "profile" field.
+func ProfileLT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLT(FieldProfile, v))
+}
+
+// ProfileLTE applies the LTE predicate on the "profile" field.
+func ProfileLTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLTE(FieldProfile, v))
+}
+
+// ProfileContains applies the Contains predicate on the "profile" field.
+func ProfileContains(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContains(FieldProfile, v))
+}
+
+// ProfileHasPrefix applies the HasPrefix predicate on the "profile" field.
+func ProfileHasPrefix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasPrefix(FieldProfile, v))
+}
+
+// ProfileHasSuffix applies the HasSuffix predicate on the "profile" field.
+func ProfileHasSuffix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasSuffix(FieldProfile, v))
+}
+
+// ProfileIsNil applies the IsNil predicate on the "profile" field.
+func ProfileIsNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldIsNull(FieldProfile))
+}
+
+// ProfileNotNil applies the NotNil predicate on the "profile" field.
+func ProfileNotNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotNull(FieldProfile))
+}
+
+// ProfileEqualFold applies the EqualFold predicate on the "profile" field.
+func ProfileEqualFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEqualFold(FieldProfile, v))
+}
+
+// ProfileContainsFold applies the ContainsFold predicate on the "profile" field.
+func ProfileContainsFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContainsFold(FieldProfile, v))
+}
+
+// ManagementURLEQ applies the EQ predicate on the "management_url" field.
+func ManagementURLEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldManagementURL, v))
+}
+
+// ManagementURLNEQ applies the NEQ predicate on the "management_url" field.
+func ManagementURLNEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldManagementURL, v))
+}
+
+// ManagementURLIn applies the In predicate on the "management_url" field.
+func ManagementURLIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldIn(FieldManagementURL, vs...))
+}
+
+// ManagementURLNotIn applies the NotIn predicate on the "management_url" field.
+func ManagementURLNotIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotIn(FieldManagementURL, vs...))
+}
+
+// ManagementURLGT applies the GT predicate on the "management_url" field.
+func ManagementURLGT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGT(FieldManagementURL, v))
+}
+
+// ManagementURLGTE applies the GTE predicate on the "management_url" field.
+func ManagementURLGTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGTE(FieldManagementURL, v))
+}
+
+// ManagementURLLT applies the LT predicate on the "management_url" field.
+func ManagementURLLT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLT(FieldManagementURL, v))
+}
+
+// ManagementURLLTE applies the LTE predicate on the "management_url" field.
+func ManagementURLLTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLTE(FieldManagementURL, v))
+}
+
+// ManagementURLContains applies the Contains predicate on the "management_url" field.
+func ManagementURLContains(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContains(FieldManagementURL, v))
+}
+
+// ManagementURLHasPrefix applies the HasPrefix predicate on the "management_url" field.
+func ManagementURLHasPrefix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasPrefix(FieldManagementURL, v))
+}
+
+// ManagementURLHasSuffix applies the HasSuffix predicate on the "management_url" field.
+func ManagementURLHasSuffix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasSuffix(FieldManagementURL, v))
+}
+
+// ManagementURLIsNil applies the IsNil predicate on the "management_url" field.
+func ManagementURLIsNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldIsNull(FieldManagementURL))
+}
+
+// ManagementURLNotNil applies the NotNil predicate on the "management_url" field.
+func ManagementURLNotNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotNull(FieldManagementURL))
+}
+
+// ManagementURLEqualFold applies the EqualFold predicate on the "management_url" field.
+func ManagementURLEqualFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEqualFold(FieldManagementURL, v))
+}
+
+// ManagementURLContainsFold applies the ContainsFold predicate on the "management_url" field.
+func ManagementURLContainsFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContainsFold(FieldManagementURL, v))
+}
+
+// ManagementConnectedEQ applies the EQ predicate on the "management_connected" field.
+func ManagementConnectedEQ(v bool) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldManagementConnected, v))
+}
+
+// ManagementConnectedNEQ applies the NEQ predicate on the "management_connected" field.
+func ManagementConnectedNEQ(v bool) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldManagementConnected, v))
+}
+
+// SSHEnabledEQ applies the EQ predicate on the "ssh_enabled" field.
+func SSHEnabledEQ(v bool) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldSSHEnabled, v))
+}
+
+// SSHEnabledNEQ applies the NEQ predicate on the "ssh_enabled" field.
+func SSHEnabledNEQ(v bool) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldSSHEnabled, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

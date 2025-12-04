@@ -216,6 +216,26 @@ func init() {
 	netbirdDescInstalled := netbirdFields[1].Descriptor()
 	// netbird.DefaultInstalled holds the default value on creation for the installed field.
 	netbird.DefaultInstalled = netbirdDescInstalled.Default.(bool)
+	// netbirdDescIP is the schema descriptor for ip field.
+	netbirdDescIP := netbirdFields[2].Descriptor()
+	// netbird.DefaultIP holds the default value on creation for the ip field.
+	netbird.DefaultIP = netbirdDescIP.Default.(string)
+	// netbirdDescProfile is the schema descriptor for profile field.
+	netbirdDescProfile := netbirdFields[3].Descriptor()
+	// netbird.DefaultProfile holds the default value on creation for the profile field.
+	netbird.DefaultProfile = netbirdDescProfile.Default.(string)
+	// netbirdDescManagementURL is the schema descriptor for management_url field.
+	netbirdDescManagementURL := netbirdFields[4].Descriptor()
+	// netbird.DefaultManagementURL holds the default value on creation for the management_url field.
+	netbird.DefaultManagementURL = netbirdDescManagementURL.Default.(string)
+	// netbirdDescManagementConnected is the schema descriptor for management_connected field.
+	netbirdDescManagementConnected := netbirdFields[5].Descriptor()
+	// netbird.DefaultManagementConnected holds the default value on creation for the management_connected field.
+	netbird.DefaultManagementConnected = netbirdDescManagementConnected.Default.(bool)
+	// netbirdDescSSHEnabled is the schema descriptor for ssh_enabled field.
+	netbirdDescSSHEnabled := netbirdFields[6].Descriptor()
+	// netbird.DefaultSSHEnabled holds the default value on creation for the ssh_enabled field.
+	netbird.DefaultSSHEnabled = netbirdDescSSHEnabled.Default.(bool)
 	netbirdsettingsFields := schema.NetbirdSettings{}.Fields()
 	_ = netbirdsettingsFields
 	// netbirdsettingsDescManagementURL is the schema descriptor for management_url field.

@@ -57,6 +57,94 @@ func (nu *NetbirdUpdate) SetNillableInstalled(b *bool) *NetbirdUpdate {
 	return nu
 }
 
+// SetIP sets the "ip" field.
+func (nu *NetbirdUpdate) SetIP(s string) *NetbirdUpdate {
+	nu.mutation.SetIP(s)
+	return nu
+}
+
+// SetNillableIP sets the "ip" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableIP(s *string) *NetbirdUpdate {
+	if s != nil {
+		nu.SetIP(*s)
+	}
+	return nu
+}
+
+// ClearIP clears the value of the "ip" field.
+func (nu *NetbirdUpdate) ClearIP() *NetbirdUpdate {
+	nu.mutation.ClearIP()
+	return nu
+}
+
+// SetProfile sets the "profile" field.
+func (nu *NetbirdUpdate) SetProfile(s string) *NetbirdUpdate {
+	nu.mutation.SetProfile(s)
+	return nu
+}
+
+// SetNillableProfile sets the "profile" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableProfile(s *string) *NetbirdUpdate {
+	if s != nil {
+		nu.SetProfile(*s)
+	}
+	return nu
+}
+
+// ClearProfile clears the value of the "profile" field.
+func (nu *NetbirdUpdate) ClearProfile() *NetbirdUpdate {
+	nu.mutation.ClearProfile()
+	return nu
+}
+
+// SetManagementURL sets the "management_url" field.
+func (nu *NetbirdUpdate) SetManagementURL(s string) *NetbirdUpdate {
+	nu.mutation.SetManagementURL(s)
+	return nu
+}
+
+// SetNillableManagementURL sets the "management_url" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableManagementURL(s *string) *NetbirdUpdate {
+	if s != nil {
+		nu.SetManagementURL(*s)
+	}
+	return nu
+}
+
+// ClearManagementURL clears the value of the "management_url" field.
+func (nu *NetbirdUpdate) ClearManagementURL() *NetbirdUpdate {
+	nu.mutation.ClearManagementURL()
+	return nu
+}
+
+// SetManagementConnected sets the "management_connected" field.
+func (nu *NetbirdUpdate) SetManagementConnected(b bool) *NetbirdUpdate {
+	nu.mutation.SetManagementConnected(b)
+	return nu
+}
+
+// SetNillableManagementConnected sets the "management_connected" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableManagementConnected(b *bool) *NetbirdUpdate {
+	if b != nil {
+		nu.SetManagementConnected(*b)
+	}
+	return nu
+}
+
+// SetSSHEnabled sets the "ssh_enabled" field.
+func (nu *NetbirdUpdate) SetSSHEnabled(b bool) *NetbirdUpdate {
+	nu.mutation.SetSSHEnabled(b)
+	return nu
+}
+
+// SetNillableSSHEnabled sets the "ssh_enabled" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableSSHEnabled(b *bool) *NetbirdUpdate {
+	if b != nil {
+		nu.SetSSHEnabled(*b)
+	}
+	return nu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (nu *NetbirdUpdate) SetOwnerID(id string) *NetbirdUpdate {
 	nu.mutation.SetOwnerID(id)
@@ -138,6 +226,30 @@ func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nu.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 	}
+	if value, ok := nu.mutation.IP(); ok {
+		_spec.SetField(netbird.FieldIP, field.TypeString, value)
+	}
+	if nu.mutation.IPCleared() {
+		_spec.ClearField(netbird.FieldIP, field.TypeString)
+	}
+	if value, ok := nu.mutation.Profile(); ok {
+		_spec.SetField(netbird.FieldProfile, field.TypeString, value)
+	}
+	if nu.mutation.ProfileCleared() {
+		_spec.ClearField(netbird.FieldProfile, field.TypeString)
+	}
+	if value, ok := nu.mutation.ManagementURL(); ok {
+		_spec.SetField(netbird.FieldManagementURL, field.TypeString, value)
+	}
+	if nu.mutation.ManagementURLCleared() {
+		_spec.ClearField(netbird.FieldManagementURL, field.TypeString)
+	}
+	if value, ok := nu.mutation.ManagementConnected(); ok {
+		_spec.SetField(netbird.FieldManagementConnected, field.TypeBool, value)
+	}
+	if value, ok := nu.mutation.SSHEnabled(); ok {
+		_spec.SetField(netbird.FieldSSHEnabled, field.TypeBool, value)
+	}
 	if nu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
@@ -213,6 +325,94 @@ func (nuo *NetbirdUpdateOne) SetInstalled(b bool) *NetbirdUpdateOne {
 func (nuo *NetbirdUpdateOne) SetNillableInstalled(b *bool) *NetbirdUpdateOne {
 	if b != nil {
 		nuo.SetInstalled(*b)
+	}
+	return nuo
+}
+
+// SetIP sets the "ip" field.
+func (nuo *NetbirdUpdateOne) SetIP(s string) *NetbirdUpdateOne {
+	nuo.mutation.SetIP(s)
+	return nuo
+}
+
+// SetNillableIP sets the "ip" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableIP(s *string) *NetbirdUpdateOne {
+	if s != nil {
+		nuo.SetIP(*s)
+	}
+	return nuo
+}
+
+// ClearIP clears the value of the "ip" field.
+func (nuo *NetbirdUpdateOne) ClearIP() *NetbirdUpdateOne {
+	nuo.mutation.ClearIP()
+	return nuo
+}
+
+// SetProfile sets the "profile" field.
+func (nuo *NetbirdUpdateOne) SetProfile(s string) *NetbirdUpdateOne {
+	nuo.mutation.SetProfile(s)
+	return nuo
+}
+
+// SetNillableProfile sets the "profile" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableProfile(s *string) *NetbirdUpdateOne {
+	if s != nil {
+		nuo.SetProfile(*s)
+	}
+	return nuo
+}
+
+// ClearProfile clears the value of the "profile" field.
+func (nuo *NetbirdUpdateOne) ClearProfile() *NetbirdUpdateOne {
+	nuo.mutation.ClearProfile()
+	return nuo
+}
+
+// SetManagementURL sets the "management_url" field.
+func (nuo *NetbirdUpdateOne) SetManagementURL(s string) *NetbirdUpdateOne {
+	nuo.mutation.SetManagementURL(s)
+	return nuo
+}
+
+// SetNillableManagementURL sets the "management_url" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableManagementURL(s *string) *NetbirdUpdateOne {
+	if s != nil {
+		nuo.SetManagementURL(*s)
+	}
+	return nuo
+}
+
+// ClearManagementURL clears the value of the "management_url" field.
+func (nuo *NetbirdUpdateOne) ClearManagementURL() *NetbirdUpdateOne {
+	nuo.mutation.ClearManagementURL()
+	return nuo
+}
+
+// SetManagementConnected sets the "management_connected" field.
+func (nuo *NetbirdUpdateOne) SetManagementConnected(b bool) *NetbirdUpdateOne {
+	nuo.mutation.SetManagementConnected(b)
+	return nuo
+}
+
+// SetNillableManagementConnected sets the "management_connected" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableManagementConnected(b *bool) *NetbirdUpdateOne {
+	if b != nil {
+		nuo.SetManagementConnected(*b)
+	}
+	return nuo
+}
+
+// SetSSHEnabled sets the "ssh_enabled" field.
+func (nuo *NetbirdUpdateOne) SetSSHEnabled(b bool) *NetbirdUpdateOne {
+	nuo.mutation.SetSSHEnabled(b)
+	return nuo
+}
+
+// SetNillableSSHEnabled sets the "ssh_enabled" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableSSHEnabled(b *bool) *NetbirdUpdateOne {
+	if b != nil {
+		nuo.SetSSHEnabled(*b)
 	}
 	return nuo
 }
@@ -327,6 +527,30 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 	}
 	if value, ok := nuo.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
+	}
+	if value, ok := nuo.mutation.IP(); ok {
+		_spec.SetField(netbird.FieldIP, field.TypeString, value)
+	}
+	if nuo.mutation.IPCleared() {
+		_spec.ClearField(netbird.FieldIP, field.TypeString)
+	}
+	if value, ok := nuo.mutation.Profile(); ok {
+		_spec.SetField(netbird.FieldProfile, field.TypeString, value)
+	}
+	if nuo.mutation.ProfileCleared() {
+		_spec.ClearField(netbird.FieldProfile, field.TypeString)
+	}
+	if value, ok := nuo.mutation.ManagementURL(); ok {
+		_spec.SetField(netbird.FieldManagementURL, field.TypeString, value)
+	}
+	if nuo.mutation.ManagementURLCleared() {
+		_spec.ClearField(netbird.FieldManagementURL, field.TypeString)
+	}
+	if value, ok := nuo.mutation.ManagementConnected(); ok {
+		_spec.SetField(netbird.FieldManagementConnected, field.TypeBool, value)
+	}
+	if value, ok := nuo.mutation.SSHEnabled(); ok {
+		_spec.SetField(netbird.FieldSSHEnabled, field.TypeBool, value)
 	}
 	if nuo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

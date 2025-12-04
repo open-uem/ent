@@ -16,6 +16,16 @@ const (
 	FieldVersion = "version"
 	// FieldInstalled holds the string denoting the installed field in the database.
 	FieldInstalled = "installed"
+	// FieldIP holds the string denoting the ip field in the database.
+	FieldIP = "ip"
+	// FieldProfile holds the string denoting the profile field in the database.
+	FieldProfile = "profile"
+	// FieldManagementURL holds the string denoting the management_url field in the database.
+	FieldManagementURL = "management_url"
+	// FieldManagementConnected holds the string denoting the management_connected field in the database.
+	FieldManagementConnected = "management_connected"
+	// FieldSSHEnabled holds the string denoting the ssh_enabled field in the database.
+	FieldSSHEnabled = "ssh_enabled"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -36,6 +46,11 @@ var Columns = []string{
 	FieldID,
 	FieldVersion,
 	FieldInstalled,
+	FieldIP,
+	FieldProfile,
+	FieldManagementURL,
+	FieldManagementConnected,
+	FieldSSHEnabled,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "netbirds"
@@ -64,6 +79,16 @@ var (
 	DefaultVersion string
 	// DefaultInstalled holds the default value on creation for the "installed" field.
 	DefaultInstalled bool
+	// DefaultIP holds the default value on creation for the "ip" field.
+	DefaultIP string
+	// DefaultProfile holds the default value on creation for the "profile" field.
+	DefaultProfile string
+	// DefaultManagementURL holds the default value on creation for the "management_url" field.
+	DefaultManagementURL string
+	// DefaultManagementConnected holds the default value on creation for the "management_connected" field.
+	DefaultManagementConnected bool
+	// DefaultSSHEnabled holds the default value on creation for the "ssh_enabled" field.
+	DefaultSSHEnabled bool
 )
 
 // OrderOption defines the ordering options for the Netbird queries.
@@ -82,6 +107,31 @@ func ByVersion(opts ...sql.OrderTermOption) OrderOption {
 // ByInstalled orders the results by the installed field.
 func ByInstalled(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldInstalled, opts...).ToFunc()
+}
+
+// ByIP orders the results by the ip field.
+func ByIP(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldIP, opts...).ToFunc()
+}
+
+// ByProfile orders the results by the profile field.
+func ByProfile(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldProfile, opts...).ToFunc()
+}
+
+// ByManagementURL orders the results by the management_url field.
+func ByManagementURL(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldManagementURL, opts...).ToFunc()
+}
+
+// ByManagementConnected orders the results by the management_connected field.
+func ByManagementConnected(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldManagementConnected, opts...).ToFunc()
+}
+
+// BySSHEnabled orders the results by the ssh_enabled field.
+func BySSHEnabled(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldSSHEnabled, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

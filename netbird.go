@@ -21,6 +21,16 @@ type Netbird struct {
 	Version string `json:"version,omitempty"`
 	// Installed holds the value of the "installed" field.
 	Installed bool `json:"installed,omitempty"`
+	// IP holds the value of the "ip" field.
+	IP string `json:"ip,omitempty"`
+	// Profile holds the value of the "profile" field.
+	Profile string `json:"profile,omitempty"`
+	// ManagementURL holds the value of the "management_url" field.
+	ManagementURL string `json:"management_url,omitempty"`
+	// ManagementConnected holds the value of the "management_connected" field.
+	ManagementConnected bool `json:"management_connected,omitempty"`
+	// SSHEnabled holds the value of the "ssh_enabled" field.
+	SSHEnabled bool `json:"ssh_enabled,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the NetbirdQuery when eager-loading is set.
 	Edges         NetbirdEdges `json:"edges"`
@@ -53,11 +63,11 @@ func (*Netbird) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case netbird.FieldInstalled:
+		case netbird.FieldInstalled, netbird.FieldManagementConnected, netbird.FieldSSHEnabled:
 			values[i] = new(sql.NullBool)
 		case netbird.FieldID:
 			values[i] = new(sql.NullInt64)
-		case netbird.FieldVersion:
+		case netbird.FieldVersion, netbird.FieldIP, netbird.FieldProfile, netbird.FieldManagementURL:
 			values[i] = new(sql.NullString)
 		case netbird.ForeignKeys[0]: // agent_netbird
 			values[i] = new(sql.NullString)
@@ -93,6 +103,36 @@ func (n *Netbird) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field installed", values[i])
 			} else if value.Valid {
 				n.Installed = value.Bool
+			}
+		case netbird.FieldIP:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field ip", values[i])
+			} else if value.Valid {
+				n.IP = value.String
+			}
+		case netbird.FieldProfile:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field profile", values[i])
+			} else if value.Valid {
+				n.Profile = value.String
+			}
+		case netbird.FieldManagementURL:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field management_url", values[i])
+			} else if value.Valid {
+				n.ManagementURL = value.String
+			}
+		case netbird.FieldManagementConnected:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field management_connected", values[i])
+			} else if value.Valid {
+				n.ManagementConnected = value.Bool
+			}
+		case netbird.FieldSSHEnabled:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field ssh_enabled", values[i])
+			} else if value.Valid {
+				n.SSHEnabled = value.Bool
 			}
 		case netbird.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -147,6 +187,21 @@ func (n *Netbird) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("installed=")
 	builder.WriteString(fmt.Sprintf("%v", n.Installed))
+	builder.WriteString(", ")
+	builder.WriteString("ip=")
+	builder.WriteString(n.IP)
+	builder.WriteString(", ")
+	builder.WriteString("profile=")
+	builder.WriteString(n.Profile)
+	builder.WriteString(", ")
+	builder.WriteString("management_url=")
+	builder.WriteString(n.ManagementURL)
+	builder.WriteString(", ")
+	builder.WriteString("management_connected=")
+	builder.WriteString(fmt.Sprintf("%v", n.ManagementConnected))
+	builder.WriteString(", ")
+	builder.WriteString("ssh_enabled=")
+	builder.WriteString(fmt.Sprintf("%v", n.SSHEnabled))
 	builder.WriteByte(')')
 	return builder.String()
 }

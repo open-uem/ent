@@ -16,6 +16,11 @@ func (Netbird) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("version").Default(""),
 		field.Bool("installed").Default(false),
+		field.String("ip").Default("").Optional(),
+		field.String("profile").Default("").Optional(),
+		field.String("management_url").Default("").Optional(),
+		field.Bool("management_connected").Default(false),
+		field.Bool("ssh_enabled").Default(false),
 	}
 }
 

@@ -50,6 +50,76 @@ func (nc *NetbirdCreate) SetNillableInstalled(b *bool) *NetbirdCreate {
 	return nc
 }
 
+// SetIP sets the "ip" field.
+func (nc *NetbirdCreate) SetIP(s string) *NetbirdCreate {
+	nc.mutation.SetIP(s)
+	return nc
+}
+
+// SetNillableIP sets the "ip" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableIP(s *string) *NetbirdCreate {
+	if s != nil {
+		nc.SetIP(*s)
+	}
+	return nc
+}
+
+// SetProfile sets the "profile" field.
+func (nc *NetbirdCreate) SetProfile(s string) *NetbirdCreate {
+	nc.mutation.SetProfile(s)
+	return nc
+}
+
+// SetNillableProfile sets the "profile" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableProfile(s *string) *NetbirdCreate {
+	if s != nil {
+		nc.SetProfile(*s)
+	}
+	return nc
+}
+
+// SetManagementURL sets the "management_url" field.
+func (nc *NetbirdCreate) SetManagementURL(s string) *NetbirdCreate {
+	nc.mutation.SetManagementURL(s)
+	return nc
+}
+
+// SetNillableManagementURL sets the "management_url" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableManagementURL(s *string) *NetbirdCreate {
+	if s != nil {
+		nc.SetManagementURL(*s)
+	}
+	return nc
+}
+
+// SetManagementConnected sets the "management_connected" field.
+func (nc *NetbirdCreate) SetManagementConnected(b bool) *NetbirdCreate {
+	nc.mutation.SetManagementConnected(b)
+	return nc
+}
+
+// SetNillableManagementConnected sets the "management_connected" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableManagementConnected(b *bool) *NetbirdCreate {
+	if b != nil {
+		nc.SetManagementConnected(*b)
+	}
+	return nc
+}
+
+// SetSSHEnabled sets the "ssh_enabled" field.
+func (nc *NetbirdCreate) SetSSHEnabled(b bool) *NetbirdCreate {
+	nc.mutation.SetSSHEnabled(b)
+	return nc
+}
+
+// SetNillableSSHEnabled sets the "ssh_enabled" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableSSHEnabled(b *bool) *NetbirdCreate {
+	if b != nil {
+		nc.SetSSHEnabled(*b)
+	}
+	return nc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (nc *NetbirdCreate) SetOwnerID(id string) *NetbirdCreate {
 	nc.mutation.SetOwnerID(id)
@@ -104,6 +174,26 @@ func (nc *NetbirdCreate) defaults() {
 		v := netbird.DefaultInstalled
 		nc.mutation.SetInstalled(v)
 	}
+	if _, ok := nc.mutation.IP(); !ok {
+		v := netbird.DefaultIP
+		nc.mutation.SetIP(v)
+	}
+	if _, ok := nc.mutation.Profile(); !ok {
+		v := netbird.DefaultProfile
+		nc.mutation.SetProfile(v)
+	}
+	if _, ok := nc.mutation.ManagementURL(); !ok {
+		v := netbird.DefaultManagementURL
+		nc.mutation.SetManagementURL(v)
+	}
+	if _, ok := nc.mutation.ManagementConnected(); !ok {
+		v := netbird.DefaultManagementConnected
+		nc.mutation.SetManagementConnected(v)
+	}
+	if _, ok := nc.mutation.SSHEnabled(); !ok {
+		v := netbird.DefaultSSHEnabled
+		nc.mutation.SetSSHEnabled(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -113,6 +203,12 @@ func (nc *NetbirdCreate) check() error {
 	}
 	if _, ok := nc.mutation.Installed(); !ok {
 		return &ValidationError{Name: "installed", err: errors.New(`ent: missing required field "Netbird.installed"`)}
+	}
+	if _, ok := nc.mutation.ManagementConnected(); !ok {
+		return &ValidationError{Name: "management_connected", err: errors.New(`ent: missing required field "Netbird.management_connected"`)}
+	}
+	if _, ok := nc.mutation.SSHEnabled(); !ok {
+		return &ValidationError{Name: "ssh_enabled", err: errors.New(`ent: missing required field "Netbird.ssh_enabled"`)}
 	}
 	if len(nc.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "Netbird.owner"`)}
@@ -151,6 +247,26 @@ func (nc *NetbirdCreate) createSpec() (*Netbird, *sqlgraph.CreateSpec) {
 	if value, ok := nc.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 		_node.Installed = value
+	}
+	if value, ok := nc.mutation.IP(); ok {
+		_spec.SetField(netbird.FieldIP, field.TypeString, value)
+		_node.IP = value
+	}
+	if value, ok := nc.mutation.Profile(); ok {
+		_spec.SetField(netbird.FieldProfile, field.TypeString, value)
+		_node.Profile = value
+	}
+	if value, ok := nc.mutation.ManagementURL(); ok {
+		_spec.SetField(netbird.FieldManagementURL, field.TypeString, value)
+		_node.ManagementURL = value
+	}
+	if value, ok := nc.mutation.ManagementConnected(); ok {
+		_spec.SetField(netbird.FieldManagementConnected, field.TypeBool, value)
+		_node.ManagementConnected = value
+	}
+	if value, ok := nc.mutation.SSHEnabled(); ok {
+		_spec.SetField(netbird.FieldSSHEnabled, field.TypeBool, value)
+		_node.SSHEnabled = value
 	}
 	if nodes := nc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -245,6 +361,84 @@ func (u *NetbirdUpsert) UpdateInstalled() *NetbirdUpsert {
 	return u
 }
 
+// SetIP sets the "ip" field.
+func (u *NetbirdUpsert) SetIP(v string) *NetbirdUpsert {
+	u.Set(netbird.FieldIP, v)
+	return u
+}
+
+// UpdateIP sets the "ip" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateIP() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldIP)
+	return u
+}
+
+// ClearIP clears the value of the "ip" field.
+func (u *NetbirdUpsert) ClearIP() *NetbirdUpsert {
+	u.SetNull(netbird.FieldIP)
+	return u
+}
+
+// SetProfile sets the "profile" field.
+func (u *NetbirdUpsert) SetProfile(v string) *NetbirdUpsert {
+	u.Set(netbird.FieldProfile, v)
+	return u
+}
+
+// UpdateProfile sets the "profile" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateProfile() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldProfile)
+	return u
+}
+
+// ClearProfile clears the value of the "profile" field.
+func (u *NetbirdUpsert) ClearProfile() *NetbirdUpsert {
+	u.SetNull(netbird.FieldProfile)
+	return u
+}
+
+// SetManagementURL sets the "management_url" field.
+func (u *NetbirdUpsert) SetManagementURL(v string) *NetbirdUpsert {
+	u.Set(netbird.FieldManagementURL, v)
+	return u
+}
+
+// UpdateManagementURL sets the "management_url" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateManagementURL() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldManagementURL)
+	return u
+}
+
+// ClearManagementURL clears the value of the "management_url" field.
+func (u *NetbirdUpsert) ClearManagementURL() *NetbirdUpsert {
+	u.SetNull(netbird.FieldManagementURL)
+	return u
+}
+
+// SetManagementConnected sets the "management_connected" field.
+func (u *NetbirdUpsert) SetManagementConnected(v bool) *NetbirdUpsert {
+	u.Set(netbird.FieldManagementConnected, v)
+	return u
+}
+
+// UpdateManagementConnected sets the "management_connected" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateManagementConnected() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldManagementConnected)
+	return u
+}
+
+// SetSSHEnabled sets the "ssh_enabled" field.
+func (u *NetbirdUpsert) SetSSHEnabled(v bool) *NetbirdUpsert {
+	u.Set(netbird.FieldSSHEnabled, v)
+	return u
+}
+
+// UpdateSSHEnabled sets the "ssh_enabled" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateSSHEnabled() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldSSHEnabled)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create.
 // Using this option is equivalent to using:
 //
@@ -310,6 +504,97 @@ func (u *NetbirdUpsertOne) SetInstalled(v bool) *NetbirdUpsertOne {
 func (u *NetbirdUpsertOne) UpdateInstalled() *NetbirdUpsertOne {
 	return u.Update(func(s *NetbirdUpsert) {
 		s.UpdateInstalled()
+	})
+}
+
+// SetIP sets the "ip" field.
+func (u *NetbirdUpsertOne) SetIP(v string) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetIP(v)
+	})
+}
+
+// UpdateIP sets the "ip" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateIP() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateIP()
+	})
+}
+
+// ClearIP clears the value of the "ip" field.
+func (u *NetbirdUpsertOne) ClearIP() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearIP()
+	})
+}
+
+// SetProfile sets the "profile" field.
+func (u *NetbirdUpsertOne) SetProfile(v string) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetProfile(v)
+	})
+}
+
+// UpdateProfile sets the "profile" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateProfile() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateProfile()
+	})
+}
+
+// ClearProfile clears the value of the "profile" field.
+func (u *NetbirdUpsertOne) ClearProfile() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearProfile()
+	})
+}
+
+// SetManagementURL sets the "management_url" field.
+func (u *NetbirdUpsertOne) SetManagementURL(v string) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetManagementURL(v)
+	})
+}
+
+// UpdateManagementURL sets the "management_url" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateManagementURL() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateManagementURL()
+	})
+}
+
+// ClearManagementURL clears the value of the "management_url" field.
+func (u *NetbirdUpsertOne) ClearManagementURL() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearManagementURL()
+	})
+}
+
+// SetManagementConnected sets the "management_connected" field.
+func (u *NetbirdUpsertOne) SetManagementConnected(v bool) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetManagementConnected(v)
+	})
+}
+
+// UpdateManagementConnected sets the "management_connected" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateManagementConnected() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateManagementConnected()
+	})
+}
+
+// SetSSHEnabled sets the "ssh_enabled" field.
+func (u *NetbirdUpsertOne) SetSSHEnabled(v bool) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetSSHEnabled(v)
+	})
+}
+
+// UpdateSSHEnabled sets the "ssh_enabled" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateSSHEnabled() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateSSHEnabled()
 	})
 }
 
@@ -542,6 +827,97 @@ func (u *NetbirdUpsertBulk) SetInstalled(v bool) *NetbirdUpsertBulk {
 func (u *NetbirdUpsertBulk) UpdateInstalled() *NetbirdUpsertBulk {
 	return u.Update(func(s *NetbirdUpsert) {
 		s.UpdateInstalled()
+	})
+}
+
+// SetIP sets the "ip" field.
+func (u *NetbirdUpsertBulk) SetIP(v string) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetIP(v)
+	})
+}
+
+// UpdateIP sets the "ip" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateIP() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateIP()
+	})
+}
+
+// ClearIP clears the value of the "ip" field.
+func (u *NetbirdUpsertBulk) ClearIP() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearIP()
+	})
+}
+
+// SetProfile sets the "profile" field.
+func (u *NetbirdUpsertBulk) SetProfile(v string) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetProfile(v)
+	})
+}
+
+// UpdateProfile sets the "profile" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateProfile() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateProfile()
+	})
+}
+
+// ClearProfile clears the value of the "profile" field.
+func (u *NetbirdUpsertBulk) ClearProfile() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearProfile()
+	})
+}
+
+// SetManagementURL sets the "management_url" field.
+func (u *NetbirdUpsertBulk) SetManagementURL(v string) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetManagementURL(v)
+	})
+}
+
+// UpdateManagementURL sets the "management_url" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateManagementURL() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateManagementURL()
+	})
+}
+
+// ClearManagementURL clears the value of the "management_url" field.
+func (u *NetbirdUpsertBulk) ClearManagementURL() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearManagementURL()
+	})
+}
+
+// SetManagementConnected sets the "management_connected" field.
+func (u *NetbirdUpsertBulk) SetManagementConnected(v bool) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetManagementConnected(v)
+	})
+}
+
+// UpdateManagementConnected sets the "management_connected" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateManagementConnected() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateManagementConnected()
+	})
+}
+
+// SetSSHEnabled sets the "ssh_enabled" field.
+func (u *NetbirdUpsertBulk) SetSSHEnabled(v bool) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetSSHEnabled(v)
+	})
+}
+
+// UpdateSSHEnabled sets the "ssh_enabled" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateSSHEnabled() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateSSHEnabled()
 	})
 }
 
