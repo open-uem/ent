@@ -16,6 +16,7 @@ func (Netbird) Fields() []ent.Field {
 	return []ent.Field{
 		field.String("version").Default(""),
 		field.Bool("installed").Default(false),
+		field.String("service_status").Default(""),
 		field.String("ip").Default("").Optional(),
 		field.String("profile").Default("").Optional(),
 		field.String("management_url").Default("").Optional(),

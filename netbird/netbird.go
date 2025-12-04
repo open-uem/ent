@@ -16,6 +16,8 @@ const (
 	FieldVersion = "version"
 	// FieldInstalled holds the string denoting the installed field in the database.
 	FieldInstalled = "installed"
+	// FieldServiceStatus holds the string denoting the service_status field in the database.
+	FieldServiceStatus = "service_status"
 	// FieldIP holds the string denoting the ip field in the database.
 	FieldIP = "ip"
 	// FieldProfile holds the string denoting the profile field in the database.
@@ -54,6 +56,7 @@ var Columns = []string{
 	FieldID,
 	FieldVersion,
 	FieldInstalled,
+	FieldServiceStatus,
 	FieldIP,
 	FieldProfile,
 	FieldManagementURL,
@@ -91,6 +94,8 @@ var (
 	DefaultVersion string
 	// DefaultInstalled holds the default value on creation for the "installed" field.
 	DefaultInstalled bool
+	// DefaultServiceStatus holds the default value on creation for the "service_status" field.
+	DefaultServiceStatus string
 	// DefaultIP holds the default value on creation for the "ip" field.
 	DefaultIP string
 	// DefaultProfile holds the default value on creation for the "profile" field.
@@ -127,6 +132,11 @@ func ByVersion(opts ...sql.OrderTermOption) OrderOption {
 // ByInstalled orders the results by the installed field.
 func ByInstalled(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldInstalled, opts...).ToFunc()
+}
+
+// ByServiceStatus orders the results by the service_status field.
+func ByServiceStatus(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldServiceStatus, opts...).ToFunc()
 }
 
 // ByIP orders the results by the ip field.

@@ -57,6 +57,20 @@ func (nu *NetbirdUpdate) SetNillableInstalled(b *bool) *NetbirdUpdate {
 	return nu
 }
 
+// SetServiceStatus sets the "service_status" field.
+func (nu *NetbirdUpdate) SetServiceStatus(s string) *NetbirdUpdate {
+	nu.mutation.SetServiceStatus(s)
+	return nu
+}
+
+// SetNillableServiceStatus sets the "service_status" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableServiceStatus(s *string) *NetbirdUpdate {
+	if s != nil {
+		nu.SetServiceStatus(*s)
+	}
+	return nu
+}
+
 // SetIP sets the "ip" field.
 func (nu *NetbirdUpdate) SetIP(s string) *NetbirdUpdate {
 	nu.mutation.SetIP(s)
@@ -314,6 +328,9 @@ func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nu.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 	}
+	if value, ok := nu.mutation.ServiceStatus(); ok {
+		_spec.SetField(netbird.FieldServiceStatus, field.TypeString, value)
+	}
 	if value, ok := nu.mutation.IP(); ok {
 		_spec.SetField(netbird.FieldIP, field.TypeString, value)
 	}
@@ -440,6 +457,20 @@ func (nuo *NetbirdUpdateOne) SetInstalled(b bool) *NetbirdUpdateOne {
 func (nuo *NetbirdUpdateOne) SetNillableInstalled(b *bool) *NetbirdUpdateOne {
 	if b != nil {
 		nuo.SetInstalled(*b)
+	}
+	return nuo
+}
+
+// SetServiceStatus sets the "service_status" field.
+func (nuo *NetbirdUpdateOne) SetServiceStatus(s string) *NetbirdUpdateOne {
+	nuo.mutation.SetServiceStatus(s)
+	return nuo
+}
+
+// SetNillableServiceStatus sets the "service_status" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableServiceStatus(s *string) *NetbirdUpdateOne {
+	if s != nil {
+		nuo.SetServiceStatus(*s)
 	}
 	return nuo
 }
@@ -730,6 +761,9 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 	}
 	if value, ok := nuo.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
+	}
+	if value, ok := nuo.mutation.ServiceStatus(); ok {
+		_spec.SetField(netbird.FieldServiceStatus, field.TypeString, value)
 	}
 	if value, ok := nuo.mutation.IP(); ok {
 		_spec.SetField(netbird.FieldIP, field.TypeString, value)

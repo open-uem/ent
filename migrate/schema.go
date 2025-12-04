@@ -311,6 +311,7 @@ var (
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "version", Type: field.TypeString, Default: ""},
 		{Name: "installed", Type: field.TypeBool, Default: false},
+		{Name: "service_status", Type: field.TypeString, Default: ""},
 		{Name: "ip", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "profile", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "management_url", Type: field.TypeString, Nullable: true, Default: ""},
@@ -330,7 +331,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "netbirds_agents_netbird",
-				Columns:    []*schema.Column{NetbirdsColumns[12]},
+				Columns:    []*schema.Column{NetbirdsColumns[13]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

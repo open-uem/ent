@@ -216,40 +216,44 @@ func init() {
 	netbirdDescInstalled := netbirdFields[1].Descriptor()
 	// netbird.DefaultInstalled holds the default value on creation for the installed field.
 	netbird.DefaultInstalled = netbirdDescInstalled.Default.(bool)
+	// netbirdDescServiceStatus is the schema descriptor for service_status field.
+	netbirdDescServiceStatus := netbirdFields[2].Descriptor()
+	// netbird.DefaultServiceStatus holds the default value on creation for the service_status field.
+	netbird.DefaultServiceStatus = netbirdDescServiceStatus.Default.(string)
 	// netbirdDescIP is the schema descriptor for ip field.
-	netbirdDescIP := netbirdFields[2].Descriptor()
+	netbirdDescIP := netbirdFields[3].Descriptor()
 	// netbird.DefaultIP holds the default value on creation for the ip field.
 	netbird.DefaultIP = netbirdDescIP.Default.(string)
 	// netbirdDescProfile is the schema descriptor for profile field.
-	netbirdDescProfile := netbirdFields[3].Descriptor()
+	netbirdDescProfile := netbirdFields[4].Descriptor()
 	// netbird.DefaultProfile holds the default value on creation for the profile field.
 	netbird.DefaultProfile = netbirdDescProfile.Default.(string)
 	// netbirdDescManagementURL is the schema descriptor for management_url field.
-	netbirdDescManagementURL := netbirdFields[4].Descriptor()
+	netbirdDescManagementURL := netbirdFields[5].Descriptor()
 	// netbird.DefaultManagementURL holds the default value on creation for the management_url field.
 	netbird.DefaultManagementURL = netbirdDescManagementURL.Default.(string)
 	// netbirdDescManagementConnected is the schema descriptor for management_connected field.
-	netbirdDescManagementConnected := netbirdFields[5].Descriptor()
+	netbirdDescManagementConnected := netbirdFields[6].Descriptor()
 	// netbird.DefaultManagementConnected holds the default value on creation for the management_connected field.
 	netbird.DefaultManagementConnected = netbirdDescManagementConnected.Default.(bool)
 	// netbirdDescSignalURL is the schema descriptor for signal_url field.
-	netbirdDescSignalURL := netbirdFields[6].Descriptor()
+	netbirdDescSignalURL := netbirdFields[7].Descriptor()
 	// netbird.DefaultSignalURL holds the default value on creation for the signal_url field.
 	netbird.DefaultSignalURL = netbirdDescSignalURL.Default.(string)
 	// netbirdDescSignalConnected is the schema descriptor for signal_connected field.
-	netbirdDescSignalConnected := netbirdFields[7].Descriptor()
+	netbirdDescSignalConnected := netbirdFields[8].Descriptor()
 	// netbird.DefaultSignalConnected holds the default value on creation for the signal_connected field.
 	netbird.DefaultSignalConnected = netbirdDescSignalConnected.Default.(bool)
 	// netbirdDescSSHEnabled is the schema descriptor for ssh_enabled field.
-	netbirdDescSSHEnabled := netbirdFields[8].Descriptor()
+	netbirdDescSSHEnabled := netbirdFields[9].Descriptor()
 	// netbird.DefaultSSHEnabled holds the default value on creation for the ssh_enabled field.
 	netbird.DefaultSSHEnabled = netbirdDescSSHEnabled.Default.(bool)
 	// netbirdDescPeersTotal is the schema descriptor for peers_total field.
-	netbirdDescPeersTotal := netbirdFields[9].Descriptor()
+	netbirdDescPeersTotal := netbirdFields[10].Descriptor()
 	// netbird.DefaultPeersTotal holds the default value on creation for the peers_total field.
 	netbird.DefaultPeersTotal = netbirdDescPeersTotal.Default.(int)
 	// netbirdDescPeersConnected is the schema descriptor for peers_connected field.
-	netbirdDescPeersConnected := netbirdFields[10].Descriptor()
+	netbirdDescPeersConnected := netbirdFields[11].Descriptor()
 	// netbird.DefaultPeersConnected holds the default value on creation for the peers_connected field.
 	netbird.DefaultPeersConnected = netbirdDescPeersConnected.Default.(int)
 	netbirdsettingsFields := schema.NetbirdSettings{}.Fields()

@@ -11419,6 +11419,7 @@ type NetbirdMutation struct {
 	id                   *int
 	version              *string
 	installed            *bool
+	service_status       *string
 	ip                   *string
 	profile              *string
 	management_url       *string
@@ -11606,6 +11607,42 @@ func (m *NetbirdMutation) OldInstalled(ctx context.Context) (v bool, err error) 
 // ResetInstalled resets all changes to the "installed" field.
 func (m *NetbirdMutation) ResetInstalled() {
 	m.installed = nil
+}
+
+// SetServiceStatus sets the "service_status" field.
+func (m *NetbirdMutation) SetServiceStatus(s string) {
+	m.service_status = &s
+}
+
+// ServiceStatus returns the value of the "service_status" field in the mutation.
+func (m *NetbirdMutation) ServiceStatus() (r string, exists bool) {
+	v := m.service_status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldServiceStatus returns the old "service_status" field's value of the Netbird entity.
+// If the Netbird object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NetbirdMutation) OldServiceStatus(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldServiceStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldServiceStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldServiceStatus: %w", err)
+	}
+	return oldValue.ServiceStatus, nil
+}
+
+// ResetServiceStatus resets all changes to the "service_status" field.
+func (m *NetbirdMutation) ResetServiceStatus() {
+	m.service_status = nil
 }
 
 // SetIP sets the "ip" field.
@@ -12125,12 +12162,15 @@ func (m *NetbirdMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *NetbirdMutation) Fields() []string {
-	fields := make([]string, 0, 11)
+	fields := make([]string, 0, 12)
 	if m.version != nil {
 		fields = append(fields, netbird.FieldVersion)
 	}
 	if m.installed != nil {
 		fields = append(fields, netbird.FieldInstalled)
+	}
+	if m.service_status != nil {
+		fields = append(fields, netbird.FieldServiceStatus)
 	}
 	if m.ip != nil {
 		fields = append(fields, netbird.FieldIP)
@@ -12171,6 +12211,8 @@ func (m *NetbirdMutation) Field(name string) (ent.Value, bool) {
 		return m.Version()
 	case netbird.FieldInstalled:
 		return m.Installed()
+	case netbird.FieldServiceStatus:
+		return m.ServiceStatus()
 	case netbird.FieldIP:
 		return m.IP()
 	case netbird.FieldProfile:
@@ -12202,6 +12244,8 @@ func (m *NetbirdMutation) OldField(ctx context.Context, name string) (ent.Value,
 		return m.OldVersion(ctx)
 	case netbird.FieldInstalled:
 		return m.OldInstalled(ctx)
+	case netbird.FieldServiceStatus:
+		return m.OldServiceStatus(ctx)
 	case netbird.FieldIP:
 		return m.OldIP(ctx)
 	case netbird.FieldProfile:
@@ -12242,6 +12286,13 @@ func (m *NetbirdMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetInstalled(v)
+		return nil
+	case netbird.FieldServiceStatus:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetServiceStatus(v)
 		return nil
 	case netbird.FieldIP:
 		v, ok := value.(string)
@@ -12426,6 +12477,9 @@ func (m *NetbirdMutation) ResetField(name string) error {
 		return nil
 	case netbird.FieldInstalled:
 		m.ResetInstalled()
+		return nil
+	case netbird.FieldServiceStatus:
+		m.ResetServiceStatus()
 		return nil
 	case netbird.FieldIP:
 		m.ResetIP()

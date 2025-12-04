@@ -50,6 +50,20 @@ func (nc *NetbirdCreate) SetNillableInstalled(b *bool) *NetbirdCreate {
 	return nc
 }
 
+// SetServiceStatus sets the "service_status" field.
+func (nc *NetbirdCreate) SetServiceStatus(s string) *NetbirdCreate {
+	nc.mutation.SetServiceStatus(s)
+	return nc
+}
+
+// SetNillableServiceStatus sets the "service_status" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableServiceStatus(s *string) *NetbirdCreate {
+	if s != nil {
+		nc.SetServiceStatus(*s)
+	}
+	return nc
+}
+
 // SetIP sets the "ip" field.
 func (nc *NetbirdCreate) SetIP(s string) *NetbirdCreate {
 	nc.mutation.SetIP(s)
@@ -230,6 +244,10 @@ func (nc *NetbirdCreate) defaults() {
 		v := netbird.DefaultInstalled
 		nc.mutation.SetInstalled(v)
 	}
+	if _, ok := nc.mutation.ServiceStatus(); !ok {
+		v := netbird.DefaultServiceStatus
+		nc.mutation.SetServiceStatus(v)
+	}
 	if _, ok := nc.mutation.IP(); !ok {
 		v := netbird.DefaultIP
 		nc.mutation.SetIP(v)
@@ -275,6 +293,9 @@ func (nc *NetbirdCreate) check() error {
 	}
 	if _, ok := nc.mutation.Installed(); !ok {
 		return &ValidationError{Name: "installed", err: errors.New(`ent: missing required field "Netbird.installed"`)}
+	}
+	if _, ok := nc.mutation.ServiceStatus(); !ok {
+		return &ValidationError{Name: "service_status", err: errors.New(`ent: missing required field "Netbird.service_status"`)}
 	}
 	if _, ok := nc.mutation.ManagementConnected(); !ok {
 		return &ValidationError{Name: "management_connected", err: errors.New(`ent: missing required field "Netbird.management_connected"`)}
@@ -322,6 +343,10 @@ func (nc *NetbirdCreate) createSpec() (*Netbird, *sqlgraph.CreateSpec) {
 	if value, ok := nc.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 		_node.Installed = value
+	}
+	if value, ok := nc.mutation.ServiceStatus(); ok {
+		_spec.SetField(netbird.FieldServiceStatus, field.TypeString, value)
+		_node.ServiceStatus = value
 	}
 	if value, ok := nc.mutation.IP(); ok {
 		_spec.SetField(netbird.FieldIP, field.TypeString, value)
@@ -449,6 +474,18 @@ func (u *NetbirdUpsert) SetInstalled(v bool) *NetbirdUpsert {
 // UpdateInstalled sets the "installed" field to the value that was provided on create.
 func (u *NetbirdUpsert) UpdateInstalled() *NetbirdUpsert {
 	u.SetExcluded(netbird.FieldInstalled)
+	return u
+}
+
+// SetServiceStatus sets the "service_status" field.
+func (u *NetbirdUpsert) SetServiceStatus(v string) *NetbirdUpsert {
+	u.Set(netbird.FieldServiceStatus, v)
+	return u
+}
+
+// UpdateServiceStatus sets the "service_status" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateServiceStatus() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldServiceStatus)
 	return u
 }
 
@@ -673,6 +710,20 @@ func (u *NetbirdUpsertOne) SetInstalled(v bool) *NetbirdUpsertOne {
 func (u *NetbirdUpsertOne) UpdateInstalled() *NetbirdUpsertOne {
 	return u.Update(func(s *NetbirdUpsert) {
 		s.UpdateInstalled()
+	})
+}
+
+// SetServiceStatus sets the "service_status" field.
+func (u *NetbirdUpsertOne) SetServiceStatus(v string) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetServiceStatus(v)
+	})
+}
+
+// UpdateServiceStatus sets the "service_status" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateServiceStatus() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateServiceStatus()
 	})
 }
 
@@ -1087,6 +1138,20 @@ func (u *NetbirdUpsertBulk) SetInstalled(v bool) *NetbirdUpsertBulk {
 func (u *NetbirdUpsertBulk) UpdateInstalled() *NetbirdUpsertBulk {
 	return u.Update(func(s *NetbirdUpsert) {
 		s.UpdateInstalled()
+	})
+}
+
+// SetServiceStatus sets the "service_status" field.
+func (u *NetbirdUpsertBulk) SetServiceStatus(v string) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetServiceStatus(v)
+	})
+}
+
+// UpdateServiceStatus sets the "service_status" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateServiceStatus() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateServiceStatus()
 	})
 }
 

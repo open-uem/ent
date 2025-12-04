@@ -21,6 +21,8 @@ type Netbird struct {
 	Version string `json:"version,omitempty"`
 	// Installed holds the value of the "installed" field.
 	Installed bool `json:"installed,omitempty"`
+	// ServiceStatus holds the value of the "service_status" field.
+	ServiceStatus string `json:"service_status,omitempty"`
 	// IP holds the value of the "ip" field.
 	IP string `json:"ip,omitempty"`
 	// Profile holds the value of the "profile" field.
@@ -75,7 +77,7 @@ func (*Netbird) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case netbird.FieldID, netbird.FieldPeersTotal, netbird.FieldPeersConnected:
 			values[i] = new(sql.NullInt64)
-		case netbird.FieldVersion, netbird.FieldIP, netbird.FieldProfile, netbird.FieldManagementURL, netbird.FieldSignalURL:
+		case netbird.FieldVersion, netbird.FieldServiceStatus, netbird.FieldIP, netbird.FieldProfile, netbird.FieldManagementURL, netbird.FieldSignalURL:
 			values[i] = new(sql.NullString)
 		case netbird.ForeignKeys[0]: // agent_netbird
 			values[i] = new(sql.NullString)
@@ -111,6 +113,12 @@ func (n *Netbird) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field installed", values[i])
 			} else if value.Valid {
 				n.Installed = value.Bool
+			}
+		case netbird.FieldServiceStatus:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field service_status", values[i])
+			} else if value.Valid {
+				n.ServiceStatus = value.String
 			}
 		case netbird.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -219,6 +227,9 @@ func (n *Netbird) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("installed=")
 	builder.WriteString(fmt.Sprintf("%v", n.Installed))
+	builder.WriteString(", ")
+	builder.WriteString("service_status=")
+	builder.WriteString(n.ServiceStatus)
 	builder.WriteString(", ")
 	builder.WriteString("ip=")
 	builder.WriteString(n.IP)

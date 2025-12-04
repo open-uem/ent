@@ -63,6 +63,11 @@ func Installed(v bool) predicate.Netbird {
 	return predicate.Netbird(sql.FieldEQ(FieldInstalled, v))
 }
 
+// ServiceStatus applies equality check predicate on the "service_status" field. It's identical to ServiceStatusEQ.
+func ServiceStatus(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldServiceStatus, v))
+}
+
 // IP applies equality check predicate on the "ip" field. It's identical to IPEQ.
 func IP(v string) predicate.Netbird {
 	return predicate.Netbird(sql.FieldEQ(FieldIP, v))
@@ -181,6 +186,71 @@ func InstalledEQ(v bool) predicate.Netbird {
 // InstalledNEQ applies the NEQ predicate on the "installed" field.
 func InstalledNEQ(v bool) predicate.Netbird {
 	return predicate.Netbird(sql.FieldNEQ(FieldInstalled, v))
+}
+
+// ServiceStatusEQ applies the EQ predicate on the "service_status" field.
+func ServiceStatusEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldServiceStatus, v))
+}
+
+// ServiceStatusNEQ applies the NEQ predicate on the "service_status" field.
+func ServiceStatusNEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldServiceStatus, v))
+}
+
+// ServiceStatusIn applies the In predicate on the "service_status" field.
+func ServiceStatusIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldIn(FieldServiceStatus, vs...))
+}
+
+// ServiceStatusNotIn applies the NotIn predicate on the "service_status" field.
+func ServiceStatusNotIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotIn(FieldServiceStatus, vs...))
+}
+
+// ServiceStatusGT applies the GT predicate on the "service_status" field.
+func ServiceStatusGT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGT(FieldServiceStatus, v))
+}
+
+// ServiceStatusGTE applies the GTE predicate on the "service_status" field.
+func ServiceStatusGTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGTE(FieldServiceStatus, v))
+}
+
+// ServiceStatusLT applies the LT predicate on the "service_status" field.
+func ServiceStatusLT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLT(FieldServiceStatus, v))
+}
+
+// ServiceStatusLTE applies the LTE predicate on the "service_status" field.
+func ServiceStatusLTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLTE(FieldServiceStatus, v))
+}
+
+// ServiceStatusContains applies the Contains predicate on the "service_status" field.
+func ServiceStatusContains(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContains(FieldServiceStatus, v))
+}
+
+// ServiceStatusHasPrefix applies the HasPrefix predicate on the "service_status" field.
+func ServiceStatusHasPrefix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasPrefix(FieldServiceStatus, v))
+}
+
+// ServiceStatusHasSuffix applies the HasSuffix predicate on the "service_status" field.
+func ServiceStatusHasSuffix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasSuffix(FieldServiceStatus, v))
+}
+
+// ServiceStatusEqualFold applies the EqualFold predicate on the "service_status" field.
+func ServiceStatusEqualFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEqualFold(FieldServiceStatus, v))
+}
+
+// ServiceStatusContainsFold applies the ContainsFold predicate on the "service_status" field.
+func ServiceStatusContainsFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContainsFold(FieldServiceStatus, v))
 }
 
 // IPEQ applies the EQ predicate on the "ip" field.
