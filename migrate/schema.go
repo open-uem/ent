@@ -321,6 +321,8 @@ var (
 		{Name: "ssh_enabled", Type: field.TypeBool, Default: false},
 		{Name: "peers_total", Type: field.TypeInt, Nullable: true, Default: 0},
 		{Name: "peers_connected", Type: field.TypeInt, Nullable: true, Default: 0},
+		{Name: "profiles_available", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "dns_server", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "agent_netbird", Type: field.TypeString, Unique: true},
 	}
 	// NetbirdsTable holds the schema information for the "netbirds" table.
@@ -331,7 +333,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "netbirds_agents_netbird",
-				Columns:    []*schema.Column{NetbirdsColumns[13]},
+				Columns:    []*schema.Column{NetbirdsColumns[15]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

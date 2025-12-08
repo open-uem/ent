@@ -11431,6 +11431,8 @@ type NetbirdMutation struct {
 	addpeers_total       *int
 	peers_connected      *int
 	addpeers_connected   *int
+	profiles_available   *string
+	dns_server           *string
 	clearedFields        map[string]struct{}
 	owner                *string
 	clearedowner         bool
@@ -12089,6 +12091,104 @@ func (m *NetbirdMutation) ResetPeersConnected() {
 	delete(m.clearedFields, netbird.FieldPeersConnected)
 }
 
+// SetProfilesAvailable sets the "profiles_available" field.
+func (m *NetbirdMutation) SetProfilesAvailable(s string) {
+	m.profiles_available = &s
+}
+
+// ProfilesAvailable returns the value of the "profiles_available" field in the mutation.
+func (m *NetbirdMutation) ProfilesAvailable() (r string, exists bool) {
+	v := m.profiles_available
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldProfilesAvailable returns the old "profiles_available" field's value of the Netbird entity.
+// If the Netbird object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NetbirdMutation) OldProfilesAvailable(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldProfilesAvailable is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldProfilesAvailable requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldProfilesAvailable: %w", err)
+	}
+	return oldValue.ProfilesAvailable, nil
+}
+
+// ClearProfilesAvailable clears the value of the "profiles_available" field.
+func (m *NetbirdMutation) ClearProfilesAvailable() {
+	m.profiles_available = nil
+	m.clearedFields[netbird.FieldProfilesAvailable] = struct{}{}
+}
+
+// ProfilesAvailableCleared returns if the "profiles_available" field was cleared in this mutation.
+func (m *NetbirdMutation) ProfilesAvailableCleared() bool {
+	_, ok := m.clearedFields[netbird.FieldProfilesAvailable]
+	return ok
+}
+
+// ResetProfilesAvailable resets all changes to the "profiles_available" field.
+func (m *NetbirdMutation) ResetProfilesAvailable() {
+	m.profiles_available = nil
+	delete(m.clearedFields, netbird.FieldProfilesAvailable)
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (m *NetbirdMutation) SetDNSServer(s string) {
+	m.dns_server = &s
+}
+
+// DNSServer returns the value of the "dns_server" field in the mutation.
+func (m *NetbirdMutation) DNSServer() (r string, exists bool) {
+	v := m.dns_server
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDNSServer returns the old "dns_server" field's value of the Netbird entity.
+// If the Netbird object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NetbirdMutation) OldDNSServer(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDNSServer is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDNSServer requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDNSServer: %w", err)
+	}
+	return oldValue.DNSServer, nil
+}
+
+// ClearDNSServer clears the value of the "dns_server" field.
+func (m *NetbirdMutation) ClearDNSServer() {
+	m.dns_server = nil
+	m.clearedFields[netbird.FieldDNSServer] = struct{}{}
+}
+
+// DNSServerCleared returns if the "dns_server" field was cleared in this mutation.
+func (m *NetbirdMutation) DNSServerCleared() bool {
+	_, ok := m.clearedFields[netbird.FieldDNSServer]
+	return ok
+}
+
+// ResetDNSServer resets all changes to the "dns_server" field.
+func (m *NetbirdMutation) ResetDNSServer() {
+	m.dns_server = nil
+	delete(m.clearedFields, netbird.FieldDNSServer)
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
 func (m *NetbirdMutation) SetOwnerID(id string) {
 	m.owner = &id
@@ -12162,7 +12262,7 @@ func (m *NetbirdMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *NetbirdMutation) Fields() []string {
-	fields := make([]string, 0, 12)
+	fields := make([]string, 0, 14)
 	if m.version != nil {
 		fields = append(fields, netbird.FieldVersion)
 	}
@@ -12199,6 +12299,12 @@ func (m *NetbirdMutation) Fields() []string {
 	if m.peers_connected != nil {
 		fields = append(fields, netbird.FieldPeersConnected)
 	}
+	if m.profiles_available != nil {
+		fields = append(fields, netbird.FieldProfilesAvailable)
+	}
+	if m.dns_server != nil {
+		fields = append(fields, netbird.FieldDNSServer)
+	}
 	return fields
 }
 
@@ -12231,6 +12337,10 @@ func (m *NetbirdMutation) Field(name string) (ent.Value, bool) {
 		return m.PeersTotal()
 	case netbird.FieldPeersConnected:
 		return m.PeersConnected()
+	case netbird.FieldProfilesAvailable:
+		return m.ProfilesAvailable()
+	case netbird.FieldDNSServer:
+		return m.DNSServer()
 	}
 	return nil, false
 }
@@ -12264,6 +12374,10 @@ func (m *NetbirdMutation) OldField(ctx context.Context, name string) (ent.Value,
 		return m.OldPeersTotal(ctx)
 	case netbird.FieldPeersConnected:
 		return m.OldPeersConnected(ctx)
+	case netbird.FieldProfilesAvailable:
+		return m.OldProfilesAvailable(ctx)
+	case netbird.FieldDNSServer:
+		return m.OldDNSServer(ctx)
 	}
 	return nil, fmt.Errorf("unknown Netbird field %s", name)
 }
@@ -12357,6 +12471,20 @@ func (m *NetbirdMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetPeersConnected(v)
 		return nil
+	case netbird.FieldProfilesAvailable:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetProfilesAvailable(v)
+		return nil
+	case netbird.FieldDNSServer:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDNSServer(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Netbird field %s", name)
 }
@@ -12432,6 +12560,12 @@ func (m *NetbirdMutation) ClearedFields() []string {
 	if m.FieldCleared(netbird.FieldPeersConnected) {
 		fields = append(fields, netbird.FieldPeersConnected)
 	}
+	if m.FieldCleared(netbird.FieldProfilesAvailable) {
+		fields = append(fields, netbird.FieldProfilesAvailable)
+	}
+	if m.FieldCleared(netbird.FieldDNSServer) {
+		fields = append(fields, netbird.FieldDNSServer)
+	}
 	return fields
 }
 
@@ -12463,6 +12597,12 @@ func (m *NetbirdMutation) ClearField(name string) error {
 		return nil
 	case netbird.FieldPeersConnected:
 		m.ClearPeersConnected()
+		return nil
+	case netbird.FieldProfilesAvailable:
+		m.ClearProfilesAvailable()
+		return nil
+	case netbird.FieldDNSServer:
+		m.ClearDNSServer()
 		return nil
 	}
 	return fmt.Errorf("unknown Netbird nullable field %s", name)
@@ -12507,6 +12647,12 @@ func (m *NetbirdMutation) ResetField(name string) error {
 		return nil
 	case netbird.FieldPeersConnected:
 		m.ResetPeersConnected()
+		return nil
+	case netbird.FieldProfilesAvailable:
+		m.ResetProfilesAvailable()
+		return nil
+	case netbird.FieldDNSServer:
+		m.ResetDNSServer()
 		return nil
 	}
 	return fmt.Errorf("unknown Netbird field %s", name)

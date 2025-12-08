@@ -41,6 +41,10 @@ type Netbird struct {
 	PeersTotal int `json:"peers_total,omitempty"`
 	// PeersConnected holds the value of the "peers_connected" field.
 	PeersConnected int `json:"peers_connected,omitempty"`
+	// ProfilesAvailable holds the value of the "profiles_available" field.
+	ProfilesAvailable string `json:"profiles_available,omitempty"`
+	// DNSServer holds the value of the "dns_server" field.
+	DNSServer string `json:"dns_server,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the NetbirdQuery when eager-loading is set.
 	Edges         NetbirdEdges `json:"edges"`
@@ -77,7 +81,7 @@ func (*Netbird) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case netbird.FieldID, netbird.FieldPeersTotal, netbird.FieldPeersConnected:
 			values[i] = new(sql.NullInt64)
-		case netbird.FieldVersion, netbird.FieldServiceStatus, netbird.FieldIP, netbird.FieldProfile, netbird.FieldManagementURL, netbird.FieldSignalURL:
+		case netbird.FieldVersion, netbird.FieldServiceStatus, netbird.FieldIP, netbird.FieldProfile, netbird.FieldManagementURL, netbird.FieldSignalURL, netbird.FieldProfilesAvailable, netbird.FieldDNSServer:
 			values[i] = new(sql.NullString)
 		case netbird.ForeignKeys[0]: // agent_netbird
 			values[i] = new(sql.NullString)
@@ -174,6 +178,18 @@ func (n *Netbird) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				n.PeersConnected = int(value.Int64)
 			}
+		case netbird.FieldProfilesAvailable:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field profiles_available", values[i])
+			} else if value.Valid {
+				n.ProfilesAvailable = value.String
+			}
+		case netbird.FieldDNSServer:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field dns_server", values[i])
+			} else if value.Valid {
+				n.DNSServer = value.String
+			}
 		case netbird.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_netbird", values[i])
@@ -257,6 +273,12 @@ func (n *Netbird) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("peers_connected=")
 	builder.WriteString(fmt.Sprintf("%v", n.PeersConnected))
+	builder.WriteString(", ")
+	builder.WriteString("profiles_available=")
+	builder.WriteString(n.ProfilesAvailable)
+	builder.WriteString(", ")
+	builder.WriteString("dns_server=")
+	builder.WriteString(n.DNSServer)
 	builder.WriteByte(')')
 	return builder.String()
 }

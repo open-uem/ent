@@ -36,6 +36,10 @@ const (
 	FieldPeersTotal = "peers_total"
 	// FieldPeersConnected holds the string denoting the peers_connected field in the database.
 	FieldPeersConnected = "peers_connected"
+	// FieldProfilesAvailable holds the string denoting the profiles_available field in the database.
+	FieldProfilesAvailable = "profiles_available"
+	// FieldDNSServer holds the string denoting the dns_server field in the database.
+	FieldDNSServer = "dns_server"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -66,6 +70,8 @@ var Columns = []string{
 	FieldSSHEnabled,
 	FieldPeersTotal,
 	FieldPeersConnected,
+	FieldProfilesAvailable,
+	FieldDNSServer,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "netbirds"
@@ -114,6 +120,10 @@ var (
 	DefaultPeersTotal int
 	// DefaultPeersConnected holds the default value on creation for the "peers_connected" field.
 	DefaultPeersConnected int
+	// DefaultProfilesAvailable holds the default value on creation for the "profiles_available" field.
+	DefaultProfilesAvailable string
+	// DefaultDNSServer holds the default value on creation for the "dns_server" field.
+	DefaultDNSServer string
 )
 
 // OrderOption defines the ordering options for the Netbird queries.
@@ -182,6 +192,16 @@ func ByPeersTotal(opts ...sql.OrderTermOption) OrderOption {
 // ByPeersConnected orders the results by the peers_connected field.
 func ByPeersConnected(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldPeersConnected, opts...).ToFunc()
+}
+
+// ByProfilesAvailable orders the results by the profiles_available field.
+func ByProfilesAvailable(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldProfilesAvailable, opts...).ToFunc()
+}
+
+// ByDNSServer orders the results by the dns_server field.
+func ByDNSServer(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldDNSServer, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

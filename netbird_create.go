@@ -190,6 +190,34 @@ func (nc *NetbirdCreate) SetNillablePeersConnected(i *int) *NetbirdCreate {
 	return nc
 }
 
+// SetProfilesAvailable sets the "profiles_available" field.
+func (nc *NetbirdCreate) SetProfilesAvailable(s string) *NetbirdCreate {
+	nc.mutation.SetProfilesAvailable(s)
+	return nc
+}
+
+// SetNillableProfilesAvailable sets the "profiles_available" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableProfilesAvailable(s *string) *NetbirdCreate {
+	if s != nil {
+		nc.SetProfilesAvailable(*s)
+	}
+	return nc
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (nc *NetbirdCreate) SetDNSServer(s string) *NetbirdCreate {
+	nc.mutation.SetDNSServer(s)
+	return nc
+}
+
+// SetNillableDNSServer sets the "dns_server" field if the given value is not nil.
+func (nc *NetbirdCreate) SetNillableDNSServer(s *string) *NetbirdCreate {
+	if s != nil {
+		nc.SetDNSServer(*s)
+	}
+	return nc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (nc *NetbirdCreate) SetOwnerID(id string) *NetbirdCreate {
 	nc.mutation.SetOwnerID(id)
@@ -283,6 +311,14 @@ func (nc *NetbirdCreate) defaults() {
 	if _, ok := nc.mutation.PeersConnected(); !ok {
 		v := netbird.DefaultPeersConnected
 		nc.mutation.SetPeersConnected(v)
+	}
+	if _, ok := nc.mutation.ProfilesAvailable(); !ok {
+		v := netbird.DefaultProfilesAvailable
+		nc.mutation.SetProfilesAvailable(v)
+	}
+	if _, ok := nc.mutation.DNSServer(); !ok {
+		v := netbird.DefaultDNSServer
+		nc.mutation.SetDNSServer(v)
 	}
 }
 
@@ -383,6 +419,14 @@ func (nc *NetbirdCreate) createSpec() (*Netbird, *sqlgraph.CreateSpec) {
 	if value, ok := nc.mutation.PeersConnected(); ok {
 		_spec.SetField(netbird.FieldPeersConnected, field.TypeInt, value)
 		_node.PeersConnected = value
+	}
+	if value, ok := nc.mutation.ProfilesAvailable(); ok {
+		_spec.SetField(netbird.FieldProfilesAvailable, field.TypeString, value)
+		_node.ProfilesAvailable = value
+	}
+	if value, ok := nc.mutation.DNSServer(); ok {
+		_spec.SetField(netbird.FieldDNSServer, field.TypeString, value)
+		_node.DNSServer = value
 	}
 	if nodes := nc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -642,6 +686,42 @@ func (u *NetbirdUpsert) AddPeersConnected(v int) *NetbirdUpsert {
 // ClearPeersConnected clears the value of the "peers_connected" field.
 func (u *NetbirdUpsert) ClearPeersConnected() *NetbirdUpsert {
 	u.SetNull(netbird.FieldPeersConnected)
+	return u
+}
+
+// SetProfilesAvailable sets the "profiles_available" field.
+func (u *NetbirdUpsert) SetProfilesAvailable(v string) *NetbirdUpsert {
+	u.Set(netbird.FieldProfilesAvailable, v)
+	return u
+}
+
+// UpdateProfilesAvailable sets the "profiles_available" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateProfilesAvailable() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldProfilesAvailable)
+	return u
+}
+
+// ClearProfilesAvailable clears the value of the "profiles_available" field.
+func (u *NetbirdUpsert) ClearProfilesAvailable() *NetbirdUpsert {
+	u.SetNull(netbird.FieldProfilesAvailable)
+	return u
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (u *NetbirdUpsert) SetDNSServer(v string) *NetbirdUpsert {
+	u.Set(netbird.FieldDNSServer, v)
+	return u
+}
+
+// UpdateDNSServer sets the "dns_server" field to the value that was provided on create.
+func (u *NetbirdUpsert) UpdateDNSServer() *NetbirdUpsert {
+	u.SetExcluded(netbird.FieldDNSServer)
+	return u
+}
+
+// ClearDNSServer clears the value of the "dns_server" field.
+func (u *NetbirdUpsert) ClearDNSServer() *NetbirdUpsert {
+	u.SetNull(netbird.FieldDNSServer)
 	return u
 }
 
@@ -906,6 +986,48 @@ func (u *NetbirdUpsertOne) UpdatePeersConnected() *NetbirdUpsertOne {
 func (u *NetbirdUpsertOne) ClearPeersConnected() *NetbirdUpsertOne {
 	return u.Update(func(s *NetbirdUpsert) {
 		s.ClearPeersConnected()
+	})
+}
+
+// SetProfilesAvailable sets the "profiles_available" field.
+func (u *NetbirdUpsertOne) SetProfilesAvailable(v string) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetProfilesAvailable(v)
+	})
+}
+
+// UpdateProfilesAvailable sets the "profiles_available" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateProfilesAvailable() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateProfilesAvailable()
+	})
+}
+
+// ClearProfilesAvailable clears the value of the "profiles_available" field.
+func (u *NetbirdUpsertOne) ClearProfilesAvailable() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearProfilesAvailable()
+	})
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (u *NetbirdUpsertOne) SetDNSServer(v string) *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetDNSServer(v)
+	})
+}
+
+// UpdateDNSServer sets the "dns_server" field to the value that was provided on create.
+func (u *NetbirdUpsertOne) UpdateDNSServer() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateDNSServer()
+	})
+}
+
+// ClearDNSServer clears the value of the "dns_server" field.
+func (u *NetbirdUpsertOne) ClearDNSServer() *NetbirdUpsertOne {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearDNSServer()
 	})
 }
 
@@ -1334,6 +1456,48 @@ func (u *NetbirdUpsertBulk) UpdatePeersConnected() *NetbirdUpsertBulk {
 func (u *NetbirdUpsertBulk) ClearPeersConnected() *NetbirdUpsertBulk {
 	return u.Update(func(s *NetbirdUpsert) {
 		s.ClearPeersConnected()
+	})
+}
+
+// SetProfilesAvailable sets the "profiles_available" field.
+func (u *NetbirdUpsertBulk) SetProfilesAvailable(v string) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetProfilesAvailable(v)
+	})
+}
+
+// UpdateProfilesAvailable sets the "profiles_available" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateProfilesAvailable() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateProfilesAvailable()
+	})
+}
+
+// ClearProfilesAvailable clears the value of the "profiles_available" field.
+func (u *NetbirdUpsertBulk) ClearProfilesAvailable() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearProfilesAvailable()
+	})
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (u *NetbirdUpsertBulk) SetDNSServer(v string) *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.SetDNSServer(v)
+	})
+}
+
+// UpdateDNSServer sets the "dns_server" field to the value that was provided on create.
+func (u *NetbirdUpsertBulk) UpdateDNSServer() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.UpdateDNSServer()
+	})
+}
+
+// ClearDNSServer clears the value of the "dns_server" field.
+func (u *NetbirdUpsertBulk) ClearDNSServer() *NetbirdUpsertBulk {
+	return u.Update(func(s *NetbirdUpsert) {
+		s.ClearDNSServer()
 	})
 }
 

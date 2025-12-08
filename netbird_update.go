@@ -247,6 +247,46 @@ func (nu *NetbirdUpdate) ClearPeersConnected() *NetbirdUpdate {
 	return nu
 }
 
+// SetProfilesAvailable sets the "profiles_available" field.
+func (nu *NetbirdUpdate) SetProfilesAvailable(s string) *NetbirdUpdate {
+	nu.mutation.SetProfilesAvailable(s)
+	return nu
+}
+
+// SetNillableProfilesAvailable sets the "profiles_available" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableProfilesAvailable(s *string) *NetbirdUpdate {
+	if s != nil {
+		nu.SetProfilesAvailable(*s)
+	}
+	return nu
+}
+
+// ClearProfilesAvailable clears the value of the "profiles_available" field.
+func (nu *NetbirdUpdate) ClearProfilesAvailable() *NetbirdUpdate {
+	nu.mutation.ClearProfilesAvailable()
+	return nu
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (nu *NetbirdUpdate) SetDNSServer(s string) *NetbirdUpdate {
+	nu.mutation.SetDNSServer(s)
+	return nu
+}
+
+// SetNillableDNSServer sets the "dns_server" field if the given value is not nil.
+func (nu *NetbirdUpdate) SetNillableDNSServer(s *string) *NetbirdUpdate {
+	if s != nil {
+		nu.SetDNSServer(*s)
+	}
+	return nu
+}
+
+// ClearDNSServer clears the value of the "dns_server" field.
+func (nu *NetbirdUpdate) ClearDNSServer() *NetbirdUpdate {
+	nu.mutation.ClearDNSServer()
+	return nu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (nu *NetbirdUpdate) SetOwnerID(id string) *NetbirdUpdate {
 	nu.mutation.SetOwnerID(id)
@@ -381,6 +421,18 @@ func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if nu.mutation.PeersConnectedCleared() {
 		_spec.ClearField(netbird.FieldPeersConnected, field.TypeInt)
+	}
+	if value, ok := nu.mutation.ProfilesAvailable(); ok {
+		_spec.SetField(netbird.FieldProfilesAvailable, field.TypeString, value)
+	}
+	if nu.mutation.ProfilesAvailableCleared() {
+		_spec.ClearField(netbird.FieldProfilesAvailable, field.TypeString)
+	}
+	if value, ok := nu.mutation.DNSServer(); ok {
+		_spec.SetField(netbird.FieldDNSServer, field.TypeString, value)
+	}
+	if nu.mutation.DNSServerCleared() {
+		_spec.ClearField(netbird.FieldDNSServer, field.TypeString)
 	}
 	if nu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -651,6 +703,46 @@ func (nuo *NetbirdUpdateOne) ClearPeersConnected() *NetbirdUpdateOne {
 	return nuo
 }
 
+// SetProfilesAvailable sets the "profiles_available" field.
+func (nuo *NetbirdUpdateOne) SetProfilesAvailable(s string) *NetbirdUpdateOne {
+	nuo.mutation.SetProfilesAvailable(s)
+	return nuo
+}
+
+// SetNillableProfilesAvailable sets the "profiles_available" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableProfilesAvailable(s *string) *NetbirdUpdateOne {
+	if s != nil {
+		nuo.SetProfilesAvailable(*s)
+	}
+	return nuo
+}
+
+// ClearProfilesAvailable clears the value of the "profiles_available" field.
+func (nuo *NetbirdUpdateOne) ClearProfilesAvailable() *NetbirdUpdateOne {
+	nuo.mutation.ClearProfilesAvailable()
+	return nuo
+}
+
+// SetDNSServer sets the "dns_server" field.
+func (nuo *NetbirdUpdateOne) SetDNSServer(s string) *NetbirdUpdateOne {
+	nuo.mutation.SetDNSServer(s)
+	return nuo
+}
+
+// SetNillableDNSServer sets the "dns_server" field if the given value is not nil.
+func (nuo *NetbirdUpdateOne) SetNillableDNSServer(s *string) *NetbirdUpdateOne {
+	if s != nil {
+		nuo.SetDNSServer(*s)
+	}
+	return nuo
+}
+
+// ClearDNSServer clears the value of the "dns_server" field.
+func (nuo *NetbirdUpdateOne) ClearDNSServer() *NetbirdUpdateOne {
+	nuo.mutation.ClearDNSServer()
+	return nuo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (nuo *NetbirdUpdateOne) SetOwnerID(id string) *NetbirdUpdateOne {
 	nuo.mutation.SetOwnerID(id)
@@ -815,6 +907,18 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 	}
 	if nuo.mutation.PeersConnectedCleared() {
 		_spec.ClearField(netbird.FieldPeersConnected, field.TypeInt)
+	}
+	if value, ok := nuo.mutation.ProfilesAvailable(); ok {
+		_spec.SetField(netbird.FieldProfilesAvailable, field.TypeString, value)
+	}
+	if nuo.mutation.ProfilesAvailableCleared() {
+		_spec.ClearField(netbird.FieldProfilesAvailable, field.TypeString)
+	}
+	if value, ok := nuo.mutation.DNSServer(); ok {
+		_spec.SetField(netbird.FieldDNSServer, field.TypeString, value)
+	}
+	if nuo.mutation.DNSServerCleared() {
+		_spec.ClearField(netbird.FieldDNSServer, field.TypeString)
 	}
 	if nuo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

@@ -26,6 +26,8 @@ func (Netbird) Fields() []ent.Field {
 		field.Bool("ssh_enabled").Default(false),
 		field.Int("peers_total").Default(0).Optional(),
 		field.Int("peers_connected").Default(0).Optional(),
+		field.String("profiles_available").Default("").Optional(),
+		field.String("dns_server").Default("").Optional(),
 	}
 }
 

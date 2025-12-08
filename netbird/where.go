@@ -113,6 +113,16 @@ func PeersConnected(v int) predicate.Netbird {
 	return predicate.Netbird(sql.FieldEQ(FieldPeersConnected, v))
 }
 
+// ProfilesAvailable applies equality check predicate on the "profiles_available" field. It's identical to ProfilesAvailableEQ.
+func ProfilesAvailable(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldProfilesAvailable, v))
+}
+
+// DNSServer applies equality check predicate on the "dns_server" field. It's identical to DNSServerEQ.
+func DNSServer(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldDNSServer, v))
+}
+
 // VersionEQ applies the EQ predicate on the "version" field.
 func VersionEQ(v string) predicate.Netbird {
 	return predicate.Netbird(sql.FieldEQ(FieldVersion, v))
@@ -681,6 +691,156 @@ func PeersConnectedIsNil() predicate.Netbird {
 // PeersConnectedNotNil applies the NotNil predicate on the "peers_connected" field.
 func PeersConnectedNotNil() predicate.Netbird {
 	return predicate.Netbird(sql.FieldNotNull(FieldPeersConnected))
+}
+
+// ProfilesAvailableEQ applies the EQ predicate on the "profiles_available" field.
+func ProfilesAvailableEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableNEQ applies the NEQ predicate on the "profiles_available" field.
+func ProfilesAvailableNEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableIn applies the In predicate on the "profiles_available" field.
+func ProfilesAvailableIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldIn(FieldProfilesAvailable, vs...))
+}
+
+// ProfilesAvailableNotIn applies the NotIn predicate on the "profiles_available" field.
+func ProfilesAvailableNotIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotIn(FieldProfilesAvailable, vs...))
+}
+
+// ProfilesAvailableGT applies the GT predicate on the "profiles_available" field.
+func ProfilesAvailableGT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGT(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableGTE applies the GTE predicate on the "profiles_available" field.
+func ProfilesAvailableGTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGTE(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableLT applies the LT predicate on the "profiles_available" field.
+func ProfilesAvailableLT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLT(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableLTE applies the LTE predicate on the "profiles_available" field.
+func ProfilesAvailableLTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLTE(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableContains applies the Contains predicate on the "profiles_available" field.
+func ProfilesAvailableContains(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContains(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableHasPrefix applies the HasPrefix predicate on the "profiles_available" field.
+func ProfilesAvailableHasPrefix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasPrefix(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableHasSuffix applies the HasSuffix predicate on the "profiles_available" field.
+func ProfilesAvailableHasSuffix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasSuffix(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableIsNil applies the IsNil predicate on the "profiles_available" field.
+func ProfilesAvailableIsNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldIsNull(FieldProfilesAvailable))
+}
+
+// ProfilesAvailableNotNil applies the NotNil predicate on the "profiles_available" field.
+func ProfilesAvailableNotNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotNull(FieldProfilesAvailable))
+}
+
+// ProfilesAvailableEqualFold applies the EqualFold predicate on the "profiles_available" field.
+func ProfilesAvailableEqualFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEqualFold(FieldProfilesAvailable, v))
+}
+
+// ProfilesAvailableContainsFold applies the ContainsFold predicate on the "profiles_available" field.
+func ProfilesAvailableContainsFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContainsFold(FieldProfilesAvailable, v))
+}
+
+// DNSServerEQ applies the EQ predicate on the "dns_server" field.
+func DNSServerEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEQ(FieldDNSServer, v))
+}
+
+// DNSServerNEQ applies the NEQ predicate on the "dns_server" field.
+func DNSServerNEQ(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNEQ(FieldDNSServer, v))
+}
+
+// DNSServerIn applies the In predicate on the "dns_server" field.
+func DNSServerIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldIn(FieldDNSServer, vs...))
+}
+
+// DNSServerNotIn applies the NotIn predicate on the "dns_server" field.
+func DNSServerNotIn(vs ...string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotIn(FieldDNSServer, vs...))
+}
+
+// DNSServerGT applies the GT predicate on the "dns_server" field.
+func DNSServerGT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGT(FieldDNSServer, v))
+}
+
+// DNSServerGTE applies the GTE predicate on the "dns_server" field.
+func DNSServerGTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldGTE(FieldDNSServer, v))
+}
+
+// DNSServerLT applies the LT predicate on the "dns_server" field.
+func DNSServerLT(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLT(FieldDNSServer, v))
+}
+
+// DNSServerLTE applies the LTE predicate on the "dns_server" field.
+func DNSServerLTE(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldLTE(FieldDNSServer, v))
+}
+
+// DNSServerContains applies the Contains predicate on the "dns_server" field.
+func DNSServerContains(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContains(FieldDNSServer, v))
+}
+
+// DNSServerHasPrefix applies the HasPrefix predicate on the "dns_server" field.
+func DNSServerHasPrefix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasPrefix(FieldDNSServer, v))
+}
+
+// DNSServerHasSuffix applies the HasSuffix predicate on the "dns_server" field.
+func DNSServerHasSuffix(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldHasSuffix(FieldDNSServer, v))
+}
+
+// DNSServerIsNil applies the IsNil predicate on the "dns_server" field.
+func DNSServerIsNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldIsNull(FieldDNSServer))
+}
+
+// DNSServerNotNil applies the NotNil predicate on the "dns_server" field.
+func DNSServerNotNil() predicate.Netbird {
+	return predicate.Netbird(sql.FieldNotNull(FieldDNSServer))
+}
+
+// DNSServerEqualFold applies the EqualFold predicate on the "dns_server" field.
+func DNSServerEqualFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldEqualFold(FieldDNSServer, v))
+}
+
+// DNSServerContainsFold applies the ContainsFold predicate on the "dns_server" field.
+func DNSServerContainsFold(v string) predicate.Netbird {
+	return predicate.Netbird(sql.FieldContainsFold(FieldDNSServer, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

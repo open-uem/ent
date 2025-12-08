@@ -256,6 +256,14 @@ func init() {
 	netbirdDescPeersConnected := netbirdFields[11].Descriptor()
 	// netbird.DefaultPeersConnected holds the default value on creation for the peers_connected field.
 	netbird.DefaultPeersConnected = netbirdDescPeersConnected.Default.(int)
+	// netbirdDescProfilesAvailable is the schema descriptor for profiles_available field.
+	netbirdDescProfilesAvailable := netbirdFields[12].Descriptor()
+	// netbird.DefaultProfilesAvailable holds the default value on creation for the profiles_available field.
+	netbird.DefaultProfilesAvailable = netbirdDescProfilesAvailable.Default.(string)
+	// netbirdDescDNSServer is the schema descriptor for dns_server field.
+	netbirdDescDNSServer := netbirdFields[13].Descriptor()
+	// netbird.DefaultDNSServer holds the default value on creation for the dns_server field.
+	netbird.DefaultDNSServer = netbirdDescDNSServer.Default.(string)
 	netbirdsettingsFields := schema.NetbirdSettings{}.Fields()
 	_ = netbirdsettingsFields
 	// netbirdsettingsDescManagementURL is the schema descriptor for management_url field.
