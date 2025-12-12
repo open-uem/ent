@@ -518,7 +518,7 @@ var (
 				Symbol:     "profile_issues_profiles_issues",
 				Columns:    []*schema.Column{ProfileIssuesColumns[3]},
 				RefColumns: []*schema.Column{ProfilesColumns[0]},
-				OnDelete:   schema.SetNull,
+				OnDelete:   schema.Cascade,
 			},
 			{
 				Symbol:     "profile_issues_agents_agents",
@@ -916,7 +916,7 @@ var (
 				Symbol:     "tasks_profiles_tasks",
 				Columns:    []*schema.Column{TasksColumns[89]},
 				RefColumns: []*schema.Column{ProfilesColumns[0]},
-				OnDelete:   schema.SetNull,
+				OnDelete:   schema.Cascade,
 			},
 		},
 	}
