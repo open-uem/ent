@@ -28954,6 +28954,8 @@ type TaskMutation struct {
 	addversion                                 *int
 	tenant                                     *int
 	addtenant                                  *int
+	netbird_groups                             *string
+	netbird_allow_extra_dns_labels             *string
 	clearedFields                              map[string]struct{}
 	tags                                       map[int]struct{}
 	removedtags                                map[int]struct{}
@@ -33293,6 +33295,104 @@ func (m *TaskMutation) ResetTenant() {
 	delete(m.clearedFields, task.FieldTenant)
 }
 
+// SetNetbirdGroups sets the "netbird_groups" field.
+func (m *TaskMutation) SetNetbirdGroups(s string) {
+	m.netbird_groups = &s
+}
+
+// NetbirdGroups returns the value of the "netbird_groups" field in the mutation.
+func (m *TaskMutation) NetbirdGroups() (r string, exists bool) {
+	v := m.netbird_groups
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldNetbirdGroups returns the old "netbird_groups" field's value of the Task entity.
+// If the Task object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *TaskMutation) OldNetbirdGroups(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldNetbirdGroups is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldNetbirdGroups requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldNetbirdGroups: %w", err)
+	}
+	return oldValue.NetbirdGroups, nil
+}
+
+// ClearNetbirdGroups clears the value of the "netbird_groups" field.
+func (m *TaskMutation) ClearNetbirdGroups() {
+	m.netbird_groups = nil
+	m.clearedFields[task.FieldNetbirdGroups] = struct{}{}
+}
+
+// NetbirdGroupsCleared returns if the "netbird_groups" field was cleared in this mutation.
+func (m *TaskMutation) NetbirdGroupsCleared() bool {
+	_, ok := m.clearedFields[task.FieldNetbirdGroups]
+	return ok
+}
+
+// ResetNetbirdGroups resets all changes to the "netbird_groups" field.
+func (m *TaskMutation) ResetNetbirdGroups() {
+	m.netbird_groups = nil
+	delete(m.clearedFields, task.FieldNetbirdGroups)
+}
+
+// SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
+func (m *TaskMutation) SetNetbirdAllowExtraDNSLabels(s string) {
+	m.netbird_allow_extra_dns_labels = &s
+}
+
+// NetbirdAllowExtraDNSLabels returns the value of the "netbird_allow_extra_dns_labels" field in the mutation.
+func (m *TaskMutation) NetbirdAllowExtraDNSLabels() (r string, exists bool) {
+	v := m.netbird_allow_extra_dns_labels
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldNetbirdAllowExtraDNSLabels returns the old "netbird_allow_extra_dns_labels" field's value of the Task entity.
+// If the Task object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *TaskMutation) OldNetbirdAllowExtraDNSLabels(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldNetbirdAllowExtraDNSLabels is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldNetbirdAllowExtraDNSLabels requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldNetbirdAllowExtraDNSLabels: %w", err)
+	}
+	return oldValue.NetbirdAllowExtraDNSLabels, nil
+}
+
+// ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
+func (m *TaskMutation) ClearNetbirdAllowExtraDNSLabels() {
+	m.netbird_allow_extra_dns_labels = nil
+	m.clearedFields[task.FieldNetbirdAllowExtraDNSLabels] = struct{}{}
+}
+
+// NetbirdAllowExtraDNSLabelsCleared returns if the "netbird_allow_extra_dns_labels" field was cleared in this mutation.
+func (m *TaskMutation) NetbirdAllowExtraDNSLabelsCleared() bool {
+	_, ok := m.clearedFields[task.FieldNetbirdAllowExtraDNSLabels]
+	return ok
+}
+
+// ResetNetbirdAllowExtraDNSLabels resets all changes to the "netbird_allow_extra_dns_labels" field.
+func (m *TaskMutation) ResetNetbirdAllowExtraDNSLabels() {
+	m.netbird_allow_extra_dns_labels = nil
+	delete(m.clearedFields, task.FieldNetbirdAllowExtraDNSLabels)
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by ids.
 func (m *TaskMutation) AddTagIDs(ids ...int) {
 	if m.tags == nil {
@@ -33420,7 +33520,7 @@ func (m *TaskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *TaskMutation) Fields() []string {
-	fields := make([]string, 0, 86)
+	fields := make([]string, 0, 88)
 	if m.name != nil {
 		fields = append(fields, task.FieldName)
 	}
@@ -33679,6 +33779,12 @@ func (m *TaskMutation) Fields() []string {
 	if m.tenant != nil {
 		fields = append(fields, task.FieldTenant)
 	}
+	if m.netbird_groups != nil {
+		fields = append(fields, task.FieldNetbirdGroups)
+	}
+	if m.netbird_allow_extra_dns_labels != nil {
+		fields = append(fields, task.FieldNetbirdAllowExtraDNSLabels)
+	}
 	return fields
 }
 
@@ -33859,6 +33965,10 @@ func (m *TaskMutation) Field(name string) (ent.Value, bool) {
 		return m.Version()
 	case task.FieldTenant:
 		return m.Tenant()
+	case task.FieldNetbirdGroups:
+		return m.NetbirdGroups()
+	case task.FieldNetbirdAllowExtraDNSLabels:
+		return m.NetbirdAllowExtraDNSLabels()
 	}
 	return nil, false
 }
@@ -34040,6 +34150,10 @@ func (m *TaskMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldVersion(ctx)
 	case task.FieldTenant:
 		return m.OldTenant(ctx)
+	case task.FieldNetbirdGroups:
+		return m.OldNetbirdGroups(ctx)
+	case task.FieldNetbirdAllowExtraDNSLabels:
+		return m.OldNetbirdAllowExtraDNSLabels(ctx)
 	}
 	return nil, fmt.Errorf("unknown Task field %s", name)
 }
@@ -34651,6 +34765,20 @@ func (m *TaskMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetTenant(v)
 		return nil
+	case task.FieldNetbirdGroups:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetNetbirdGroups(v)
+		return nil
+	case task.FieldNetbirdAllowExtraDNSLabels:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetNetbirdAllowExtraDNSLabels(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)
 }
@@ -34960,6 +35088,12 @@ func (m *TaskMutation) ClearedFields() []string {
 	if m.FieldCleared(task.FieldTenant) {
 		fields = append(fields, task.FieldTenant)
 	}
+	if m.FieldCleared(task.FieldNetbirdGroups) {
+		fields = append(fields, task.FieldNetbirdGroups)
+	}
+	if m.FieldCleared(task.FieldNetbirdAllowExtraDNSLabels) {
+		fields = append(fields, task.FieldNetbirdAllowExtraDNSLabels)
+	}
 	return fields
 }
 
@@ -35226,6 +35360,12 @@ func (m *TaskMutation) ClearField(name string) error {
 	case task.FieldTenant:
 		m.ClearTenant()
 		return nil
+	case task.FieldNetbirdGroups:
+		m.ClearNetbirdGroups()
+		return nil
+	case task.FieldNetbirdAllowExtraDNSLabels:
+		m.ClearNetbirdAllowExtraDNSLabels()
+		return nil
 	}
 	return fmt.Errorf("unknown Task nullable field %s", name)
 }
@@ -35491,6 +35631,12 @@ func (m *TaskMutation) ResetField(name string) error {
 		return nil
 	case task.FieldTenant:
 		m.ResetTenant()
+		return nil
+	case task.FieldNetbirdGroups:
+		m.ResetNetbirdGroups()
+		return nil
+	case task.FieldNetbirdAllowExtraDNSLabels:
+		m.ResetNetbirdAllowExtraDNSLabels()
 		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)

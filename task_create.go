@@ -1212,6 +1212,34 @@ func (tc *TaskCreate) SetNillableTenant(i *int) *TaskCreate {
 	return tc
 }
 
+// SetNetbirdGroups sets the "netbird_groups" field.
+func (tc *TaskCreate) SetNetbirdGroups(s string) *TaskCreate {
+	tc.mutation.SetNetbirdGroups(s)
+	return tc
+}
+
+// SetNillableNetbirdGroups sets the "netbird_groups" field if the given value is not nil.
+func (tc *TaskCreate) SetNillableNetbirdGroups(s *string) *TaskCreate {
+	if s != nil {
+		tc.SetNetbirdGroups(*s)
+	}
+	return tc
+}
+
+// SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
+func (tc *TaskCreate) SetNetbirdAllowExtraDNSLabels(s string) *TaskCreate {
+	tc.mutation.SetNetbirdAllowExtraDNSLabels(s)
+	return tc
+}
+
+// SetNillableNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field if the given value is not nil.
+func (tc *TaskCreate) SetNillableNetbirdAllowExtraDNSLabels(s *string) *TaskCreate {
+	if s != nil {
+		tc.SetNetbirdAllowExtraDNSLabels(*s)
+	}
+	return tc
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tc *TaskCreate) AddTagIDs(ids ...int) *TaskCreate {
 	tc.mutation.AddTagIDs(ids...)
@@ -1492,6 +1520,14 @@ func (tc *TaskCreate) defaults() {
 	if _, ok := tc.mutation.Version(); !ok {
 		v := task.DefaultVersion
 		tc.mutation.SetVersion(v)
+	}
+	if _, ok := tc.mutation.NetbirdGroups(); !ok {
+		v := task.DefaultNetbirdGroups
+		tc.mutation.SetNetbirdGroups(v)
+	}
+	if _, ok := tc.mutation.NetbirdAllowExtraDNSLabels(); !ok {
+		v := task.DefaultNetbirdAllowExtraDNSLabels
+		tc.mutation.SetNetbirdAllowExtraDNSLabels(v)
 	}
 }
 
@@ -1908,6 +1944,14 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 	if value, ok := tc.mutation.Tenant(); ok {
 		_spec.SetField(task.FieldTenant, field.TypeInt, value)
 		_node.Tenant = value
+	}
+	if value, ok := tc.mutation.NetbirdGroups(); ok {
+		_spec.SetField(task.FieldNetbirdGroups, field.TypeString, value)
+		_node.NetbirdGroups = value
+	}
+	if value, ok := tc.mutation.NetbirdAllowExtraDNSLabels(); ok {
+		_spec.SetField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeString, value)
+		_node.NetbirdAllowExtraDNSLabels = value
 	}
 	if nodes := tc.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -3539,6 +3583,42 @@ func (u *TaskUpsert) AddTenant(v int) *TaskUpsert {
 // ClearTenant clears the value of the "tenant" field.
 func (u *TaskUpsert) ClearTenant() *TaskUpsert {
 	u.SetNull(task.FieldTenant)
+	return u
+}
+
+// SetNetbirdGroups sets the "netbird_groups" field.
+func (u *TaskUpsert) SetNetbirdGroups(v string) *TaskUpsert {
+	u.Set(task.FieldNetbirdGroups, v)
+	return u
+}
+
+// UpdateNetbirdGroups sets the "netbird_groups" field to the value that was provided on create.
+func (u *TaskUpsert) UpdateNetbirdGroups() *TaskUpsert {
+	u.SetExcluded(task.FieldNetbirdGroups)
+	return u
+}
+
+// ClearNetbirdGroups clears the value of the "netbird_groups" field.
+func (u *TaskUpsert) ClearNetbirdGroups() *TaskUpsert {
+	u.SetNull(task.FieldNetbirdGroups)
+	return u
+}
+
+// SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
+func (u *TaskUpsert) SetNetbirdAllowExtraDNSLabels(v string) *TaskUpsert {
+	u.Set(task.FieldNetbirdAllowExtraDNSLabels, v)
+	return u
+}
+
+// UpdateNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field to the value that was provided on create.
+func (u *TaskUpsert) UpdateNetbirdAllowExtraDNSLabels() *TaskUpsert {
+	u.SetExcluded(task.FieldNetbirdAllowExtraDNSLabels)
+	return u
+}
+
+// ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
+func (u *TaskUpsert) ClearNetbirdAllowExtraDNSLabels() *TaskUpsert {
+	u.SetNull(task.FieldNetbirdAllowExtraDNSLabels)
 	return u
 }
 
@@ -5385,6 +5465,48 @@ func (u *TaskUpsertOne) UpdateTenant() *TaskUpsertOne {
 func (u *TaskUpsertOne) ClearTenant() *TaskUpsertOne {
 	return u.Update(func(s *TaskUpsert) {
 		s.ClearTenant()
+	})
+}
+
+// SetNetbirdGroups sets the "netbird_groups" field.
+func (u *TaskUpsertOne) SetNetbirdGroups(v string) *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetNetbirdGroups(v)
+	})
+}
+
+// UpdateNetbirdGroups sets the "netbird_groups" field to the value that was provided on create.
+func (u *TaskUpsertOne) UpdateNetbirdGroups() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateNetbirdGroups()
+	})
+}
+
+// ClearNetbirdGroups clears the value of the "netbird_groups" field.
+func (u *TaskUpsertOne) ClearNetbirdGroups() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearNetbirdGroups()
+	})
+}
+
+// SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
+func (u *TaskUpsertOne) SetNetbirdAllowExtraDNSLabels(v string) *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetNetbirdAllowExtraDNSLabels(v)
+	})
+}
+
+// UpdateNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field to the value that was provided on create.
+func (u *TaskUpsertOne) UpdateNetbirdAllowExtraDNSLabels() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateNetbirdAllowExtraDNSLabels()
+	})
+}
+
+// ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
+func (u *TaskUpsertOne) ClearNetbirdAllowExtraDNSLabels() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearNetbirdAllowExtraDNSLabels()
 	})
 }
 
@@ -7395,6 +7517,48 @@ func (u *TaskUpsertBulk) UpdateTenant() *TaskUpsertBulk {
 func (u *TaskUpsertBulk) ClearTenant() *TaskUpsertBulk {
 	return u.Update(func(s *TaskUpsert) {
 		s.ClearTenant()
+	})
+}
+
+// SetNetbirdGroups sets the "netbird_groups" field.
+func (u *TaskUpsertBulk) SetNetbirdGroups(v string) *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetNetbirdGroups(v)
+	})
+}
+
+// UpdateNetbirdGroups sets the "netbird_groups" field to the value that was provided on create.
+func (u *TaskUpsertBulk) UpdateNetbirdGroups() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateNetbirdGroups()
+	})
+}
+
+// ClearNetbirdGroups clears the value of the "netbird_groups" field.
+func (u *TaskUpsertBulk) ClearNetbirdGroups() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearNetbirdGroups()
+	})
+}
+
+// SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
+func (u *TaskUpsertBulk) SetNetbirdAllowExtraDNSLabels(v string) *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetNetbirdAllowExtraDNSLabels(v)
+	})
+}
+
+// UpdateNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field to the value that was provided on create.
+func (u *TaskUpsertBulk) UpdateNetbirdAllowExtraDNSLabels() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateNetbirdAllowExtraDNSLabels()
+	})
+}
+
+// ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
+func (u *TaskUpsertBulk) ClearNetbirdAllowExtraDNSLabels() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearNetbirdAllowExtraDNSLabels()
 	})
 }
 

@@ -902,6 +902,8 @@ var (
 		{Name: "apt_upgrade_type", Type: field.TypeEnum, Nullable: true, Enums: []string{"dist", "full", "no", "safe", "yes"}, Default: "no"},
 		{Name: "version", Type: field.TypeInt, Nullable: true, Default: 1},
 		{Name: "tenant", Type: field.TypeInt, Nullable: true},
+		{Name: "netbird_groups", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "netbird_allow_extra_dns_labels", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "profile_tasks", Type: field.TypeInt, Nullable: true},
 	}
 	// TasksTable holds the schema information for the "tasks" table.
@@ -912,7 +914,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "tasks_profiles_tasks",
-				Columns:    []*schema.Column{TasksColumns[87]},
+				Columns:    []*schema.Column{TasksColumns[89]},
 				RefColumns: []*schema.Column{ProfilesColumns[0]},
 				OnDelete:   schema.SetNull,
 			},

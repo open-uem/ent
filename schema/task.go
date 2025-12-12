@@ -142,6 +142,8 @@ func (Task) Fields() []ent.Field {
 		field.Enum("apt_upgrade_type").Values("dist", "full", "no", "safe", "yes").Optional().Default("no"),
 		field.Int("version").Optional().Default(1),
 		field.Int("tenant").Optional(),
+		field.String("netbird_groups").Optional().Default(""),
+		field.String("netbird_allow_extra_dns_labels").Optional().Default(""),
 	}
 }
 

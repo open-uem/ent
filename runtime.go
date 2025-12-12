@@ -678,6 +678,14 @@ func init() {
 	taskDescVersion := taskFields[84].Descriptor()
 	// task.DefaultVersion holds the default value on creation for the version field.
 	task.DefaultVersion = taskDescVersion.Default.(int)
+	// taskDescNetbirdGroups is the schema descriptor for netbird_groups field.
+	taskDescNetbirdGroups := taskFields[86].Descriptor()
+	// task.DefaultNetbirdGroups holds the default value on creation for the netbird_groups field.
+	task.DefaultNetbirdGroups = taskDescNetbirdGroups.Default.(string)
+	// taskDescNetbirdAllowExtraDNSLabels is the schema descriptor for netbird_allow_extra_dns_labels field.
+	taskDescNetbirdAllowExtraDNSLabels := taskFields[87].Descriptor()
+	// task.DefaultNetbirdAllowExtraDNSLabels holds the default value on creation for the netbird_allow_extra_dns_labels field.
+	task.DefaultNetbirdAllowExtraDNSLabels = taskDescNetbirdAllowExtraDNSLabels.Default.(string)
 	tenantFields := schema.Tenant{}.Fields()
 	_ = tenantFields
 	// tenantDescCreated is the schema descriptor for created field.
