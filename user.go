@@ -35,6 +35,10 @@ type User struct {
 	Expiry time.Time `json:"expiry,omitempty"`
 	// Openid holds the value of the "openid" field.
 	Openid bool `json:"openid,omitempty"`
+	// Passwd holds the value of the "passwd" field.
+	Passwd bool `json:"passwd,omitempty"`
+	// Use2fa holds the value of the "use2fa" field.
+	Use2fa bool `json:"use2fa,omitempty"`
 	// Created holds the value of the "created" field.
 	Created time.Time `json:"created,omitempty"`
 	// Modified holds the value of the "modified" field.
@@ -51,6 +55,16 @@ type User struct {
 	TokenExpiry int `json:"token_expiry,omitempty"`
 	// Hash holds the value of the "hash" field.
 	Hash string `json:"hash,omitempty"`
+	// TotpSecret holds the value of the "totp_secret" field.
+	TotpSecret string `json:"totp_secret,omitempty"`
+	// TotpSecretConfirmed holds the value of the "totp_secret_confirmed" field.
+	TotpSecretConfirmed bool `json:"totp_secret_confirmed,omitempty"`
+	// ForgotPasswordCode holds the value of the "forgot_password_code" field.
+	ForgotPasswordCode string `json:"forgot_password_code,omitempty"`
+	// ForgotPasswordCodeExpiresAt holds the value of the "forgot_password_code_expires_at" field.
+	ForgotPasswordCodeExpiresAt time.Time `json:"forgot_password_code_expires_at,omitempty"`
+	// NewUserToken holds the value of the "new_user_token" field.
+	NewUserToken string `json:"new_user_token,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the UserQuery when eager-loading is set.
 	Edges        UserEdges `json:"edges"`
@@ -61,9 +75,11 @@ type User struct {
 type UserEdges struct {
 	// Sessions holds the value of the sessions edge.
 	Sessions []*Sessions `json:"sessions,omitempty"`
+	// Recoverycodes holds the value of the recoverycodes edge.
+	Recoverycodes []*RecoveryCode `json:"recoverycodes,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [1]bool
+	loadedTypes [2]bool
 }
 
 // SessionsOrErr returns the Sessions value or an error if the edge
@@ -75,18 +91,27 @@ func (e UserEdges) SessionsOrErr() ([]*Sessions, error) {
 	return nil, &NotLoadedError{edge: "sessions"}
 }
 
+// RecoverycodesOrErr returns the Recoverycodes value or an error if the edge
+// was not loaded in eager-loading.
+func (e UserEdges) RecoverycodesOrErr() ([]*RecoveryCode, error) {
+	if e.loadedTypes[1] {
+		return e.Recoverycodes, nil
+	}
+	return nil, &NotLoadedError{edge: "recoverycodes"}
+}
+
 // scanValues returns the types for scanning values from sql.Rows.
 func (*User) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case user.FieldEmailVerified, user.FieldOpenid:
+		case user.FieldEmailVerified, user.FieldOpenid, user.FieldPasswd, user.FieldUse2fa, user.FieldTotpSecretConfirmed:
 			values[i] = new(sql.NullBool)
 		case user.FieldTokenExpiry:
 			values[i] = new(sql.NullInt64)
-		case user.FieldID, user.FieldName, user.FieldEmail, user.FieldPhone, user.FieldCountry, user.FieldRegister, user.FieldCertClearPassword, user.FieldAccessToken, user.FieldRefreshToken, user.FieldIDToken, user.FieldTokenType, user.FieldHash:
+		case user.FieldID, user.FieldName, user.FieldEmail, user.FieldPhone, user.FieldCountry, user.FieldRegister, user.FieldCertClearPassword, user.FieldAccessToken, user.FieldRefreshToken, user.FieldIDToken, user.FieldTokenType, user.FieldHash, user.FieldTotpSecret, user.FieldForgotPasswordCode, user.FieldNewUserToken:
 			values[i] = new(sql.NullString)
-		case user.FieldExpiry, user.FieldCreated, user.FieldModified:
+		case user.FieldExpiry, user.FieldCreated, user.FieldModified, user.FieldForgotPasswordCodeExpiresAt:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -163,6 +188,18 @@ func (u *User) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				u.Openid = value.Bool
 			}
+		case user.FieldPasswd:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field passwd", values[i])
+			} else if value.Valid {
+				u.Passwd = value.Bool
+			}
+		case user.FieldUse2fa:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field use2fa", values[i])
+			} else if value.Valid {
+				u.Use2fa = value.Bool
+			}
 		case user.FieldCreated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created", values[i])
@@ -211,6 +248,36 @@ func (u *User) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				u.Hash = value.String
 			}
+		case user.FieldTotpSecret:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field totp_secret", values[i])
+			} else if value.Valid {
+				u.TotpSecret = value.String
+			}
+		case user.FieldTotpSecretConfirmed:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field totp_secret_confirmed", values[i])
+			} else if value.Valid {
+				u.TotpSecretConfirmed = value.Bool
+			}
+		case user.FieldForgotPasswordCode:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field forgot_password_code", values[i])
+			} else if value.Valid {
+				u.ForgotPasswordCode = value.String
+			}
+		case user.FieldForgotPasswordCodeExpiresAt:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field forgot_password_code_expires_at", values[i])
+			} else if value.Valid {
+				u.ForgotPasswordCodeExpiresAt = value.Time
+			}
+		case user.FieldNewUserToken:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field new_user_token", values[i])
+			} else if value.Valid {
+				u.NewUserToken = value.String
+			}
 		default:
 			u.selectValues.Set(columns[i], values[i])
 		}
@@ -227,6 +294,11 @@ func (u *User) Value(name string) (ent.Value, error) {
 // QuerySessions queries the "sessions" edge of the User entity.
 func (u *User) QuerySessions() *SessionsQuery {
 	return NewUserClient(u.config).QuerySessions(u)
+}
+
+// QueryRecoverycodes queries the "recoverycodes" edge of the User entity.
+func (u *User) QueryRecoverycodes() *RecoveryCodeQuery {
+	return NewUserClient(u.config).QueryRecoverycodes(u)
 }
 
 // Update returns a builder for updating this User.
@@ -279,6 +351,12 @@ func (u *User) String() string {
 	builder.WriteString("openid=")
 	builder.WriteString(fmt.Sprintf("%v", u.Openid))
 	builder.WriteString(", ")
+	builder.WriteString("passwd=")
+	builder.WriteString(fmt.Sprintf("%v", u.Passwd))
+	builder.WriteString(", ")
+	builder.WriteString("use2fa=")
+	builder.WriteString(fmt.Sprintf("%v", u.Use2fa))
+	builder.WriteString(", ")
 	builder.WriteString("created=")
 	builder.WriteString(u.Created.Format(time.ANSIC))
 	builder.WriteString(", ")
@@ -302,6 +380,21 @@ func (u *User) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
 	builder.WriteString(u.Hash)
+	builder.WriteString(", ")
+	builder.WriteString("totp_secret=")
+	builder.WriteString(u.TotpSecret)
+	builder.WriteString(", ")
+	builder.WriteString("totp_secret_confirmed=")
+	builder.WriteString(fmt.Sprintf("%v", u.TotpSecretConfirmed))
+	builder.WriteString(", ")
+	builder.WriteString("forgot_password_code=")
+	builder.WriteString(u.ForgotPasswordCode)
+	builder.WriteString(", ")
+	builder.WriteString("forgot_password_code_expires_at=")
+	builder.WriteString(u.ForgotPasswordCodeExpiresAt.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("new_user_token=")
+	builder.WriteString(u.NewUserToken)
 	builder.WriteByte(')')
 	return builder.String()
 }

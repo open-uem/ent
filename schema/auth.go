@@ -24,5 +24,6 @@ func (Authentication) Fields() []ent.Field {
 		field.String("OIDC_keycloak_public_key").Optional().Default(""),
 		field.Bool("OIDC_auto_create_account").Optional().Default(true),
 		field.Bool("OIDC_auto_approve").Optional().Default(true),
+		field.Bool("use_passwd").Optional().Default(true),
 	}
 }

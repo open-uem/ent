@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/revocation"
 	"github.com/open-uem/ent/rustdesk"
 	"github.com/open-uem/ent/schema"
@@ -180,6 +181,10 @@ func init() {
 	authenticationDescOIDCAutoApprove := authenticationFields[10].Descriptor()
 	// authentication.DefaultOIDCAutoApprove holds the default value on creation for the OIDC_auto_approve field.
 	authentication.DefaultOIDCAutoApprove = authenticationDescOIDCAutoApprove.Default.(bool)
+	// authenticationDescUsePasswd is the schema descriptor for use_passwd field.
+	authenticationDescUsePasswd := authenticationFields[11].Descriptor()
+	// authentication.DefaultUsePasswd holds the default value on creation for the use_passwd field.
+	authentication.DefaultUsePasswd = authenticationDescUsePasswd.Default.(bool)
 	deploymentFields := schema.Deployment{}.Fields()
 	_ = deploymentFields
 	// deploymentDescInstalled is the schema descriptor for installed field.
@@ -304,6 +309,16 @@ func init() {
 	profileissue.DefaultWhen = profileissueDescWhen.Default.(func() time.Time)
 	// profileissue.UpdateDefaultWhen holds the default value on update for the when field.
 	profileissue.UpdateDefaultWhen = profileissueDescWhen.UpdateDefault.(func() time.Time)
+	recoverycodeFields := schema.RecoveryCode{}.Fields()
+	_ = recoverycodeFields
+	// recoverycodeDescCode is the schema descriptor for code field.
+	recoverycodeDescCode := recoverycodeFields[0].Descriptor()
+	// recoverycode.CodeValidator is a validator for the "code" field. It is called by the builders before save.
+	recoverycode.CodeValidator = recoverycodeDescCode.Validators[0].(func(string) error)
+	// recoverycodeDescUsed is the schema descriptor for used field.
+	recoverycodeDescUsed := recoverycodeFields[1].Descriptor()
+	// recoverycode.DefaultUsed holds the default value on creation for the used field.
+	recoverycode.DefaultUsed = recoverycodeDescUsed.Default.(bool)
 	revocationFields := schema.Revocation{}.Fields()
 	_ = revocationFields
 	// revocationDescReason is the schema descriptor for reason field.
@@ -716,40 +731,68 @@ func init() {
 	userDescOpenid := userFields[9].Descriptor()
 	// user.DefaultOpenid holds the default value on creation for the openid field.
 	user.DefaultOpenid = userDescOpenid.Default.(bool)
+	// userDescPasswd is the schema descriptor for passwd field.
+	userDescPasswd := userFields[10].Descriptor()
+	// user.DefaultPasswd holds the default value on creation for the passwd field.
+	user.DefaultPasswd = userDescPasswd.Default.(bool)
+	// userDescUse2fa is the schema descriptor for use2fa field.
+	userDescUse2fa := userFields[11].Descriptor()
+	// user.DefaultUse2fa holds the default value on creation for the use2fa field.
+	user.DefaultUse2fa = userDescUse2fa.Default.(bool)
 	// userDescCreated is the schema descriptor for created field.
-	userDescCreated := userFields[10].Descriptor()
+	userDescCreated := userFields[12].Descriptor()
 	// user.DefaultCreated holds the default value on creation for the created field.
 	user.DefaultCreated = userDescCreated.Default.(func() time.Time)
 	// userDescModified is the schema descriptor for modified field.
-	userDescModified := userFields[11].Descriptor()
+	userDescModified := userFields[13].Descriptor()
 	// user.DefaultModified holds the default value on creation for the modified field.
 	user.DefaultModified = userDescModified.Default.(func() time.Time)
 	// user.UpdateDefaultModified holds the default value on update for the modified field.
 	user.UpdateDefaultModified = userDescModified.UpdateDefault.(func() time.Time)
 	// userDescAccessToken is the schema descriptor for access_token field.
-	userDescAccessToken := userFields[12].Descriptor()
+	userDescAccessToken := userFields[14].Descriptor()
 	// user.DefaultAccessToken holds the default value on creation for the access_token field.
 	user.DefaultAccessToken = userDescAccessToken.Default.(string)
 	// userDescRefreshToken is the schema descriptor for refresh_token field.
-	userDescRefreshToken := userFields[13].Descriptor()
+	userDescRefreshToken := userFields[15].Descriptor()
 	// user.DefaultRefreshToken holds the default value on creation for the refresh_token field.
 	user.DefaultRefreshToken = userDescRefreshToken.Default.(string)
 	// userDescIDToken is the schema descriptor for id_token field.
-	userDescIDToken := userFields[14].Descriptor()
+	userDescIDToken := userFields[16].Descriptor()
 	// user.DefaultIDToken holds the default value on creation for the id_token field.
 	user.DefaultIDToken = userDescIDToken.Default.(string)
 	// userDescTokenType is the schema descriptor for token_type field.
-	userDescTokenType := userFields[15].Descriptor()
+	userDescTokenType := userFields[17].Descriptor()
 	// user.DefaultTokenType holds the default value on creation for the token_type field.
 	user.DefaultTokenType = userDescTokenType.Default.(string)
 	// userDescTokenExpiry is the schema descriptor for token_expiry field.
-	userDescTokenExpiry := userFields[16].Descriptor()
+	userDescTokenExpiry := userFields[18].Descriptor()
 	// user.DefaultTokenExpiry holds the default value on creation for the token_expiry field.
 	user.DefaultTokenExpiry = userDescTokenExpiry.Default.(int)
 	// userDescHash is the schema descriptor for hash field.
-	userDescHash := userFields[17].Descriptor()
+	userDescHash := userFields[19].Descriptor()
 	// user.DefaultHash holds the default value on creation for the hash field.
 	user.DefaultHash = userDescHash.Default.(string)
+	// userDescTotpSecret is the schema descriptor for totp_secret field.
+	userDescTotpSecret := userFields[20].Descriptor()
+	// user.DefaultTotpSecret holds the default value on creation for the totp_secret field.
+	user.DefaultTotpSecret = userDescTotpSecret.Default.(string)
+	// userDescTotpSecretConfirmed is the schema descriptor for totp_secret_confirmed field.
+	userDescTotpSecretConfirmed := userFields[21].Descriptor()
+	// user.DefaultTotpSecretConfirmed holds the default value on creation for the totp_secret_confirmed field.
+	user.DefaultTotpSecretConfirmed = userDescTotpSecretConfirmed.Default.(bool)
+	// userDescForgotPasswordCode is the schema descriptor for forgot_password_code field.
+	userDescForgotPasswordCode := userFields[22].Descriptor()
+	// user.DefaultForgotPasswordCode holds the default value on creation for the forgot_password_code field.
+	user.DefaultForgotPasswordCode = userDescForgotPasswordCode.Default.(string)
+	// userDescForgotPasswordCodeExpiresAt is the schema descriptor for forgot_password_code_expires_at field.
+	userDescForgotPasswordCodeExpiresAt := userFields[23].Descriptor()
+	// user.DefaultForgotPasswordCodeExpiresAt holds the default value on creation for the forgot_password_code_expires_at field.
+	user.DefaultForgotPasswordCodeExpiresAt = userDescForgotPasswordCodeExpiresAt.Default.(func() time.Time)
+	// userDescNewUserToken is the schema descriptor for new_user_token field.
+	userDescNewUserToken := userFields[24].Descriptor()
+	// user.DefaultNewUserToken holds the default value on creation for the new_user_token field.
+	user.DefaultNewUserToken = userDescNewUserToken.Default.(string)
 	// userDescID is the schema descriptor for id field.
 	userDescID := userFields[0].Descriptor()
 	// user.IDValidator is a validator for the "id" field. It is called by the builders before save.

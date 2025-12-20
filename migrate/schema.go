@@ -123,6 +123,7 @@ var (
 		{Name: "oidc_keycloak_public_key", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "oidc_auto_create_account", Type: field.TypeBool, Nullable: true, Default: true},
 		{Name: "oidc_auto_approve", Type: field.TypeBool, Nullable: true, Default: true},
+		{Name: "use_passwd", Type: field.TypeBool, Nullable: true, Default: true},
 	}
 	// AuthenticationsTable holds the schema information for the "authentications" table.
 	AuthenticationsTable = &schema.Table{
@@ -525,6 +526,27 @@ var (
 				Columns:    []*schema.Column{ProfileIssuesColumns[4]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.SetNull,
+			},
+		},
+	}
+	// RecoveryCodesColumns holds the columns for the "recovery_codes" table.
+	RecoveryCodesColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "code", Type: field.TypeString},
+		{Name: "used", Type: field.TypeBool, Default: false},
+		{Name: "user_recoverycodes", Type: field.TypeString, Nullable: true},
+	}
+	// RecoveryCodesTable holds the schema information for the "recovery_codes" table.
+	RecoveryCodesTable = &schema.Table{
+		Name:       "recovery_codes",
+		Columns:    RecoveryCodesColumns,
+		PrimaryKey: []*schema.Column{RecoveryCodesColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "recovery_codes_users_recoverycodes",
+				Columns:    []*schema.Column{RecoveryCodesColumns[3]},
+				RefColumns: []*schema.Column{UsersColumns[0]},
+				OnDelete:   schema.Cascade,
 			},
 		},
 	}
@@ -979,6 +1001,8 @@ var (
 		{Name: "cert_clear_password", Type: field.TypeString, Nullable: true},
 		{Name: "expiry", Type: field.TypeTime, Nullable: true},
 		{Name: "openid", Type: field.TypeBool, Nullable: true, Default: false},
+		{Name: "passwd", Type: field.TypeBool, Nullable: true, Default: false},
+		{Name: "use2fa", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "created", Type: field.TypeTime, Nullable: true},
 		{Name: "modified", Type: field.TypeTime, Nullable: true},
 		{Name: "access_token", Type: field.TypeString, Nullable: true, Default: ""},
@@ -987,6 +1011,11 @@ var (
 		{Name: "token_type", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "token_expiry", Type: field.TypeInt, Nullable: true, Default: 0},
 		{Name: "hash", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "totp_secret", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "totp_secret_confirmed", Type: field.TypeBool, Nullable: true, Default: false},
+		{Name: "forgot_password_code", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "forgot_password_code_expires_at", Type: field.TypeTime, Nullable: true},
+		{Name: "new_user_token", Type: field.TypeString, Nullable: true, Default: ""},
 	}
 	// UsersTable holds the schema information for the "users" table.
 	UsersTable = &schema.Table{
@@ -1144,6 +1173,7 @@ var (
 		PrintersTable,
 		ProfilesTable,
 		ProfileIssuesTable,
+		RecoveryCodesTable,
 		ReleasesTable,
 		RevocationsTable,
 		RustdesksTable,
@@ -1186,6 +1216,7 @@ func init() {
 	ProfilesTable.ForeignKeys[0].RefTable = SitesTable
 	ProfileIssuesTable.ForeignKeys[0].RefTable = ProfilesTable
 	ProfileIssuesTable.ForeignKeys[1].RefTable = AgentsTable
+	RecoveryCodesTable.ForeignKeys[0].RefTable = UsersTable
 	SessionsTable.ForeignKeys[0].RefTable = UsersTable
 	SettingsTable.ForeignKeys[0].RefTable = TagsTable
 	SettingsTable.ForeignKeys[1].RefTable = TenantsTable

@@ -248,6 +248,26 @@ func (au *AuthenticationUpdate) ClearOIDCAutoApprove() *AuthenticationUpdate {
 	return au
 }
 
+// SetUsePasswd sets the "use_passwd" field.
+func (au *AuthenticationUpdate) SetUsePasswd(b bool) *AuthenticationUpdate {
+	au.mutation.SetUsePasswd(b)
+	return au
+}
+
+// SetNillableUsePasswd sets the "use_passwd" field if the given value is not nil.
+func (au *AuthenticationUpdate) SetNillableUsePasswd(b *bool) *AuthenticationUpdate {
+	if b != nil {
+		au.SetUsePasswd(*b)
+	}
+	return au
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (au *AuthenticationUpdate) ClearUsePasswd() *AuthenticationUpdate {
+	au.mutation.ClearUsePasswd()
+	return au
+}
+
 // Mutation returns the AuthenticationMutation object of the builder.
 func (au *AuthenticationUpdate) Mutation() *AuthenticationMutation {
 	return au.mutation
@@ -360,6 +380,12 @@ func (au *AuthenticationUpdate) sqlSave(ctx context.Context) (n int, err error) 
 	}
 	if au.mutation.OIDCAutoApproveCleared() {
 		_spec.ClearField(authentication.FieldOIDCAutoApprove, field.TypeBool)
+	}
+	if value, ok := au.mutation.UsePasswd(); ok {
+		_spec.SetField(authentication.FieldUsePasswd, field.TypeBool, value)
+	}
+	if au.mutation.UsePasswdCleared() {
+		_spec.ClearField(authentication.FieldUsePasswd, field.TypeBool)
 	}
 	_spec.AddModifiers(au.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
@@ -603,6 +629,26 @@ func (auo *AuthenticationUpdateOne) ClearOIDCAutoApprove() *AuthenticationUpdate
 	return auo
 }
 
+// SetUsePasswd sets the "use_passwd" field.
+func (auo *AuthenticationUpdateOne) SetUsePasswd(b bool) *AuthenticationUpdateOne {
+	auo.mutation.SetUsePasswd(b)
+	return auo
+}
+
+// SetNillableUsePasswd sets the "use_passwd" field if the given value is not nil.
+func (auo *AuthenticationUpdateOne) SetNillableUsePasswd(b *bool) *AuthenticationUpdateOne {
+	if b != nil {
+		auo.SetUsePasswd(*b)
+	}
+	return auo
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (auo *AuthenticationUpdateOne) ClearUsePasswd() *AuthenticationUpdateOne {
+	auo.mutation.ClearUsePasswd()
+	return auo
+}
+
 // Mutation returns the AuthenticationMutation object of the builder.
 func (auo *AuthenticationUpdateOne) Mutation() *AuthenticationMutation {
 	return auo.mutation
@@ -745,6 +791,12 @@ func (auo *AuthenticationUpdateOne) sqlSave(ctx context.Context) (_node *Authent
 	}
 	if auo.mutation.OIDCAutoApproveCleared() {
 		_spec.ClearField(authentication.FieldOIDCAutoApprove, field.TypeBool)
+	}
+	if value, ok := auo.mutation.UsePasswd(); ok {
+		_spec.SetField(authentication.FieldUsePasswd, field.TypeBool, value)
+	}
+	if auo.mutation.UsePasswdCleared() {
+		_spec.ClearField(authentication.FieldUsePasswd, field.TypeBool)
 	}
 	_spec.AddModifiers(auo.modifiers...)
 	_node = &Authentication{config: auo.config}

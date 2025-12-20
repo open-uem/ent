@@ -13,6 +13,7 @@ import (
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
 	"github.com/open-uem/ent/predicate"
+	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/sessions"
 	"github.com/open-uem/ent/user"
 )
@@ -20,12 +21,13 @@ import (
 // UserQuery is the builder for querying User entities.
 type UserQuery struct {
 	config
-	ctx          *QueryContext
-	order        []user.OrderOption
-	inters       []Interceptor
-	predicates   []predicate.User
-	withSessions *SessionsQuery
-	modifiers    []func(*sql.Selector)
+	ctx               *QueryContext
+	order             []user.OrderOption
+	inters            []Interceptor
+	predicates        []predicate.User
+	withSessions      *SessionsQuery
+	withRecoverycodes *RecoveryCodeQuery
+	modifiers         []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -77,6 +79,28 @@ func (uq *UserQuery) QuerySessions() *SessionsQuery {
 			sqlgraph.From(user.Table, user.FieldID, selector),
 			sqlgraph.To(sessions.Table, sessions.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, user.SessionsTable, user.SessionsColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryRecoverycodes chains the current query on the "recoverycodes" edge.
+func (uq *UserQuery) QueryRecoverycodes() *RecoveryCodeQuery {
+	query := (&RecoveryCodeClient{config: uq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := uq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := uq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, selector),
+			sqlgraph.To(recoverycode.Table, recoverycode.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, user.RecoverycodesTable, user.RecoverycodesColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
 		return fromU, nil
@@ -271,12 +295,13 @@ func (uq *UserQuery) Clone() *UserQuery {
 		return nil
 	}
 	return &UserQuery{
-		config:       uq.config,
-		ctx:          uq.ctx.Clone(),
-		order:        append([]user.OrderOption{}, uq.order...),
-		inters:       append([]Interceptor{}, uq.inters...),
-		predicates:   append([]predicate.User{}, uq.predicates...),
-		withSessions: uq.withSessions.Clone(),
+		config:            uq.config,
+		ctx:               uq.ctx.Clone(),
+		order:             append([]user.OrderOption{}, uq.order...),
+		inters:            append([]Interceptor{}, uq.inters...),
+		predicates:        append([]predicate.User{}, uq.predicates...),
+		withSessions:      uq.withSessions.Clone(),
+		withRecoverycodes: uq.withRecoverycodes.Clone(),
 		// clone intermediate query.
 		sql:       uq.sql.Clone(),
 		path:      uq.path,
@@ -292,6 +317,17 @@ func (uq *UserQuery) WithSessions(opts ...func(*SessionsQuery)) *UserQuery {
 		opt(query)
 	}
 	uq.withSessions = query
+	return uq
+}
+
+// WithRecoverycodes tells the query-builder to eager-load the nodes that are connected to
+// the "recoverycodes" edge. The optional arguments are used to configure the query builder of the edge.
+func (uq *UserQuery) WithRecoverycodes(opts ...func(*RecoveryCodeQuery)) *UserQuery {
+	query := (&RecoveryCodeClient{config: uq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	uq.withRecoverycodes = query
 	return uq
 }
 
@@ -373,8 +409,9 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 	var (
 		nodes       = []*User{}
 		_spec       = uq.querySpec()
-		loadedTypes = [1]bool{
+		loadedTypes = [2]bool{
 			uq.withSessions != nil,
+			uq.withRecoverycodes != nil,
 		}
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
@@ -402,6 +439,13 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 		if err := uq.loadSessions(ctx, query, nodes,
 			func(n *User) { n.Edges.Sessions = []*Sessions{} },
 			func(n *User, e *Sessions) { n.Edges.Sessions = append(n.Edges.Sessions, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := uq.withRecoverycodes; query != nil {
+		if err := uq.loadRecoverycodes(ctx, query, nodes,
+			func(n *User) { n.Edges.Recoverycodes = []*RecoveryCode{} },
+			func(n *User, e *RecoveryCode) { n.Edges.Recoverycodes = append(n.Edges.Recoverycodes, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -434,6 +478,37 @@ func (uq *UserQuery) loadSessions(ctx context.Context, query *SessionsQuery, nod
 		node, ok := nodeids[*fk]
 		if !ok {
 			return fmt.Errorf(`unexpected referenced foreign-key "user_sessions" returned %v for node %v`, *fk, n.ID)
+		}
+		assign(node, n)
+	}
+	return nil
+}
+func (uq *UserQuery) loadRecoverycodes(ctx context.Context, query *RecoveryCodeQuery, nodes []*User, init func(*User), assign func(*User, *RecoveryCode)) error {
+	fks := make([]driver.Value, 0, len(nodes))
+	nodeids := make(map[string]*User)
+	for i := range nodes {
+		fks = append(fks, nodes[i].ID)
+		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
+	}
+	query.withFKs = true
+	query.Where(predicate.RecoveryCode(func(s *sql.Selector) {
+		s.Where(sql.InValues(s.C(user.RecoverycodesColumn), fks...))
+	}))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		fk := n.user_recoverycodes
+		if fk == nil {
+			return fmt.Errorf(`foreign-key "user_recoverycodes" is nil for node %v`, n.ID)
+		}
+		node, ok := nodeids[*fk]
+		if !ok {
+			return fmt.Errorf(`unexpected referenced foreign-key "user_recoverycodes" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
 	}

@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/sessions"
 	"github.com/open-uem/ent/user"
 )
@@ -142,6 +143,34 @@ func (uc *UserCreate) SetNillableOpenid(b *bool) *UserCreate {
 	return uc
 }
 
+// SetPasswd sets the "passwd" field.
+func (uc *UserCreate) SetPasswd(b bool) *UserCreate {
+	uc.mutation.SetPasswd(b)
+	return uc
+}
+
+// SetNillablePasswd sets the "passwd" field if the given value is not nil.
+func (uc *UserCreate) SetNillablePasswd(b *bool) *UserCreate {
+	if b != nil {
+		uc.SetPasswd(*b)
+	}
+	return uc
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (uc *UserCreate) SetUse2fa(b bool) *UserCreate {
+	uc.mutation.SetUse2fa(b)
+	return uc
+}
+
+// SetNillableUse2fa sets the "use2fa" field if the given value is not nil.
+func (uc *UserCreate) SetNillableUse2fa(b *bool) *UserCreate {
+	if b != nil {
+		uc.SetUse2fa(*b)
+	}
+	return uc
+}
+
 // SetCreated sets the "created" field.
 func (uc *UserCreate) SetCreated(t time.Time) *UserCreate {
 	uc.mutation.SetCreated(t)
@@ -254,6 +283,76 @@ func (uc *UserCreate) SetNillableHash(s *string) *UserCreate {
 	return uc
 }
 
+// SetTotpSecret sets the "totp_secret" field.
+func (uc *UserCreate) SetTotpSecret(s string) *UserCreate {
+	uc.mutation.SetTotpSecret(s)
+	return uc
+}
+
+// SetNillableTotpSecret sets the "totp_secret" field if the given value is not nil.
+func (uc *UserCreate) SetNillableTotpSecret(s *string) *UserCreate {
+	if s != nil {
+		uc.SetTotpSecret(*s)
+	}
+	return uc
+}
+
+// SetTotpSecretConfirmed sets the "totp_secret_confirmed" field.
+func (uc *UserCreate) SetTotpSecretConfirmed(b bool) *UserCreate {
+	uc.mutation.SetTotpSecretConfirmed(b)
+	return uc
+}
+
+// SetNillableTotpSecretConfirmed sets the "totp_secret_confirmed" field if the given value is not nil.
+func (uc *UserCreate) SetNillableTotpSecretConfirmed(b *bool) *UserCreate {
+	if b != nil {
+		uc.SetTotpSecretConfirmed(*b)
+	}
+	return uc
+}
+
+// SetForgotPasswordCode sets the "forgot_password_code" field.
+func (uc *UserCreate) SetForgotPasswordCode(s string) *UserCreate {
+	uc.mutation.SetForgotPasswordCode(s)
+	return uc
+}
+
+// SetNillableForgotPasswordCode sets the "forgot_password_code" field if the given value is not nil.
+func (uc *UserCreate) SetNillableForgotPasswordCode(s *string) *UserCreate {
+	if s != nil {
+		uc.SetForgotPasswordCode(*s)
+	}
+	return uc
+}
+
+// SetForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field.
+func (uc *UserCreate) SetForgotPasswordCodeExpiresAt(t time.Time) *UserCreate {
+	uc.mutation.SetForgotPasswordCodeExpiresAt(t)
+	return uc
+}
+
+// SetNillableForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field if the given value is not nil.
+func (uc *UserCreate) SetNillableForgotPasswordCodeExpiresAt(t *time.Time) *UserCreate {
+	if t != nil {
+		uc.SetForgotPasswordCodeExpiresAt(*t)
+	}
+	return uc
+}
+
+// SetNewUserToken sets the "new_user_token" field.
+func (uc *UserCreate) SetNewUserToken(s string) *UserCreate {
+	uc.mutation.SetNewUserToken(s)
+	return uc
+}
+
+// SetNillableNewUserToken sets the "new_user_token" field if the given value is not nil.
+func (uc *UserCreate) SetNillableNewUserToken(s *string) *UserCreate {
+	if s != nil {
+		uc.SetNewUserToken(*s)
+	}
+	return uc
+}
+
 // SetID sets the "id" field.
 func (uc *UserCreate) SetID(s string) *UserCreate {
 	uc.mutation.SetID(s)
@@ -273,6 +372,21 @@ func (uc *UserCreate) AddSessions(s ...*Sessions) *UserCreate {
 		ids[i] = s[i].ID
 	}
 	return uc.AddSessionIDs(ids...)
+}
+
+// AddRecoverycodeIDs adds the "recoverycodes" edge to the RecoveryCode entity by IDs.
+func (uc *UserCreate) AddRecoverycodeIDs(ids ...int) *UserCreate {
+	uc.mutation.AddRecoverycodeIDs(ids...)
+	return uc
+}
+
+// AddRecoverycodes adds the "recoverycodes" edges to the RecoveryCode entity.
+func (uc *UserCreate) AddRecoverycodes(r ...*RecoveryCode) *UserCreate {
+	ids := make([]int, len(r))
+	for i := range r {
+		ids[i] = r[i].ID
+	}
+	return uc.AddRecoverycodeIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -322,6 +436,14 @@ func (uc *UserCreate) defaults() {
 		v := user.DefaultOpenid
 		uc.mutation.SetOpenid(v)
 	}
+	if _, ok := uc.mutation.Passwd(); !ok {
+		v := user.DefaultPasswd
+		uc.mutation.SetPasswd(v)
+	}
+	if _, ok := uc.mutation.Use2fa(); !ok {
+		v := user.DefaultUse2fa
+		uc.mutation.SetUse2fa(v)
+	}
 	if _, ok := uc.mutation.Created(); !ok {
 		v := user.DefaultCreated()
 		uc.mutation.SetCreated(v)
@@ -353,6 +475,26 @@ func (uc *UserCreate) defaults() {
 	if _, ok := uc.mutation.Hash(); !ok {
 		v := user.DefaultHash
 		uc.mutation.SetHash(v)
+	}
+	if _, ok := uc.mutation.TotpSecret(); !ok {
+		v := user.DefaultTotpSecret
+		uc.mutation.SetTotpSecret(v)
+	}
+	if _, ok := uc.mutation.TotpSecretConfirmed(); !ok {
+		v := user.DefaultTotpSecretConfirmed
+		uc.mutation.SetTotpSecretConfirmed(v)
+	}
+	if _, ok := uc.mutation.ForgotPasswordCode(); !ok {
+		v := user.DefaultForgotPasswordCode
+		uc.mutation.SetForgotPasswordCode(v)
+	}
+	if _, ok := uc.mutation.ForgotPasswordCodeExpiresAt(); !ok {
+		v := user.DefaultForgotPasswordCodeExpiresAt()
+		uc.mutation.SetForgotPasswordCodeExpiresAt(v)
+	}
+	if _, ok := uc.mutation.NewUserToken(); !ok {
+		v := user.DefaultNewUserToken
+		uc.mutation.SetNewUserToken(v)
 	}
 }
 
@@ -444,6 +586,14 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		_spec.SetField(user.FieldOpenid, field.TypeBool, value)
 		_node.Openid = value
 	}
+	if value, ok := uc.mutation.Passwd(); ok {
+		_spec.SetField(user.FieldPasswd, field.TypeBool, value)
+		_node.Passwd = value
+	}
+	if value, ok := uc.mutation.Use2fa(); ok {
+		_spec.SetField(user.FieldUse2fa, field.TypeBool, value)
+		_node.Use2fa = value
+	}
 	if value, ok := uc.mutation.Created(); ok {
 		_spec.SetField(user.FieldCreated, field.TypeTime, value)
 		_node.Created = value
@@ -476,6 +626,26 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		_spec.SetField(user.FieldHash, field.TypeString, value)
 		_node.Hash = value
 	}
+	if value, ok := uc.mutation.TotpSecret(); ok {
+		_spec.SetField(user.FieldTotpSecret, field.TypeString, value)
+		_node.TotpSecret = value
+	}
+	if value, ok := uc.mutation.TotpSecretConfirmed(); ok {
+		_spec.SetField(user.FieldTotpSecretConfirmed, field.TypeBool, value)
+		_node.TotpSecretConfirmed = value
+	}
+	if value, ok := uc.mutation.ForgotPasswordCode(); ok {
+		_spec.SetField(user.FieldForgotPasswordCode, field.TypeString, value)
+		_node.ForgotPasswordCode = value
+	}
+	if value, ok := uc.mutation.ForgotPasswordCodeExpiresAt(); ok {
+		_spec.SetField(user.FieldForgotPasswordCodeExpiresAt, field.TypeTime, value)
+		_node.ForgotPasswordCodeExpiresAt = value
+	}
+	if value, ok := uc.mutation.NewUserToken(); ok {
+		_spec.SetField(user.FieldNewUserToken, field.TypeString, value)
+		_node.NewUserToken = value
+	}
 	if nodes := uc.mutation.SessionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
@@ -485,6 +655,22 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(sessions.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := uc.mutation.RecoverycodesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   user.RecoverycodesTable,
+			Columns: []string{user.RecoverycodesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
@@ -688,6 +874,42 @@ func (u *UserUpsert) ClearOpenid() *UserUpsert {
 	return u
 }
 
+// SetPasswd sets the "passwd" field.
+func (u *UserUpsert) SetPasswd(v bool) *UserUpsert {
+	u.Set(user.FieldPasswd, v)
+	return u
+}
+
+// UpdatePasswd sets the "passwd" field to the value that was provided on create.
+func (u *UserUpsert) UpdatePasswd() *UserUpsert {
+	u.SetExcluded(user.FieldPasswd)
+	return u
+}
+
+// ClearPasswd clears the value of the "passwd" field.
+func (u *UserUpsert) ClearPasswd() *UserUpsert {
+	u.SetNull(user.FieldPasswd)
+	return u
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (u *UserUpsert) SetUse2fa(v bool) *UserUpsert {
+	u.Set(user.FieldUse2fa, v)
+	return u
+}
+
+// UpdateUse2fa sets the "use2fa" field to the value that was provided on create.
+func (u *UserUpsert) UpdateUse2fa() *UserUpsert {
+	u.SetExcluded(user.FieldUse2fa)
+	return u
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (u *UserUpsert) ClearUse2fa() *UserUpsert {
+	u.SetNull(user.FieldUse2fa)
+	return u
+}
+
 // SetCreated sets the "created" field.
 func (u *UserUpsert) SetCreated(v time.Time) *UserUpsert {
 	u.Set(user.FieldCreated, v)
@@ -835,6 +1057,96 @@ func (u *UserUpsert) UpdateHash() *UserUpsert {
 // ClearHash clears the value of the "hash" field.
 func (u *UserUpsert) ClearHash() *UserUpsert {
 	u.SetNull(user.FieldHash)
+	return u
+}
+
+// SetTotpSecret sets the "totp_secret" field.
+func (u *UserUpsert) SetTotpSecret(v string) *UserUpsert {
+	u.Set(user.FieldTotpSecret, v)
+	return u
+}
+
+// UpdateTotpSecret sets the "totp_secret" field to the value that was provided on create.
+func (u *UserUpsert) UpdateTotpSecret() *UserUpsert {
+	u.SetExcluded(user.FieldTotpSecret)
+	return u
+}
+
+// ClearTotpSecret clears the value of the "totp_secret" field.
+func (u *UserUpsert) ClearTotpSecret() *UserUpsert {
+	u.SetNull(user.FieldTotpSecret)
+	return u
+}
+
+// SetTotpSecretConfirmed sets the "totp_secret_confirmed" field.
+func (u *UserUpsert) SetTotpSecretConfirmed(v bool) *UserUpsert {
+	u.Set(user.FieldTotpSecretConfirmed, v)
+	return u
+}
+
+// UpdateTotpSecretConfirmed sets the "totp_secret_confirmed" field to the value that was provided on create.
+func (u *UserUpsert) UpdateTotpSecretConfirmed() *UserUpsert {
+	u.SetExcluded(user.FieldTotpSecretConfirmed)
+	return u
+}
+
+// ClearTotpSecretConfirmed clears the value of the "totp_secret_confirmed" field.
+func (u *UserUpsert) ClearTotpSecretConfirmed() *UserUpsert {
+	u.SetNull(user.FieldTotpSecretConfirmed)
+	return u
+}
+
+// SetForgotPasswordCode sets the "forgot_password_code" field.
+func (u *UserUpsert) SetForgotPasswordCode(v string) *UserUpsert {
+	u.Set(user.FieldForgotPasswordCode, v)
+	return u
+}
+
+// UpdateForgotPasswordCode sets the "forgot_password_code" field to the value that was provided on create.
+func (u *UserUpsert) UpdateForgotPasswordCode() *UserUpsert {
+	u.SetExcluded(user.FieldForgotPasswordCode)
+	return u
+}
+
+// ClearForgotPasswordCode clears the value of the "forgot_password_code" field.
+func (u *UserUpsert) ClearForgotPasswordCode() *UserUpsert {
+	u.SetNull(user.FieldForgotPasswordCode)
+	return u
+}
+
+// SetForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field.
+func (u *UserUpsert) SetForgotPasswordCodeExpiresAt(v time.Time) *UserUpsert {
+	u.Set(user.FieldForgotPasswordCodeExpiresAt, v)
+	return u
+}
+
+// UpdateForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field to the value that was provided on create.
+func (u *UserUpsert) UpdateForgotPasswordCodeExpiresAt() *UserUpsert {
+	u.SetExcluded(user.FieldForgotPasswordCodeExpiresAt)
+	return u
+}
+
+// ClearForgotPasswordCodeExpiresAt clears the value of the "forgot_password_code_expires_at" field.
+func (u *UserUpsert) ClearForgotPasswordCodeExpiresAt() *UserUpsert {
+	u.SetNull(user.FieldForgotPasswordCodeExpiresAt)
+	return u
+}
+
+// SetNewUserToken sets the "new_user_token" field.
+func (u *UserUpsert) SetNewUserToken(v string) *UserUpsert {
+	u.Set(user.FieldNewUserToken, v)
+	return u
+}
+
+// UpdateNewUserToken sets the "new_user_token" field to the value that was provided on create.
+func (u *UserUpsert) UpdateNewUserToken() *UserUpsert {
+	u.SetExcluded(user.FieldNewUserToken)
+	return u
+}
+
+// ClearNewUserToken clears the value of the "new_user_token" field.
+func (u *UserUpsert) ClearNewUserToken() *UserUpsert {
+	u.SetNull(user.FieldNewUserToken)
 	return u
 }
 
@@ -1054,6 +1366,48 @@ func (u *UserUpsertOne) ClearOpenid() *UserUpsertOne {
 	})
 }
 
+// SetPasswd sets the "passwd" field.
+func (u *UserUpsertOne) SetPasswd(v bool) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetPasswd(v)
+	})
+}
+
+// UpdatePasswd sets the "passwd" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdatePasswd() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdatePasswd()
+	})
+}
+
+// ClearPasswd clears the value of the "passwd" field.
+func (u *UserUpsertOne) ClearPasswd() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearPasswd()
+	})
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (u *UserUpsertOne) SetUse2fa(v bool) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetUse2fa(v)
+	})
+}
+
+// UpdateUse2fa sets the "use2fa" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateUse2fa() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateUse2fa()
+	})
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (u *UserUpsertOne) ClearUse2fa() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearUse2fa()
+	})
+}
+
 // SetCreated sets the "created" field.
 func (u *UserUpsertOne) SetCreated(v time.Time) *UserUpsertOne {
 	return u.Update(func(s *UserUpsert) {
@@ -1226,6 +1580,111 @@ func (u *UserUpsertOne) UpdateHash() *UserUpsertOne {
 func (u *UserUpsertOne) ClearHash() *UserUpsertOne {
 	return u.Update(func(s *UserUpsert) {
 		s.ClearHash()
+	})
+}
+
+// SetTotpSecret sets the "totp_secret" field.
+func (u *UserUpsertOne) SetTotpSecret(v string) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetTotpSecret(v)
+	})
+}
+
+// UpdateTotpSecret sets the "totp_secret" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateTotpSecret() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateTotpSecret()
+	})
+}
+
+// ClearTotpSecret clears the value of the "totp_secret" field.
+func (u *UserUpsertOne) ClearTotpSecret() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearTotpSecret()
+	})
+}
+
+// SetTotpSecretConfirmed sets the "totp_secret_confirmed" field.
+func (u *UserUpsertOne) SetTotpSecretConfirmed(v bool) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetTotpSecretConfirmed(v)
+	})
+}
+
+// UpdateTotpSecretConfirmed sets the "totp_secret_confirmed" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateTotpSecretConfirmed() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateTotpSecretConfirmed()
+	})
+}
+
+// ClearTotpSecretConfirmed clears the value of the "totp_secret_confirmed" field.
+func (u *UserUpsertOne) ClearTotpSecretConfirmed() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearTotpSecretConfirmed()
+	})
+}
+
+// SetForgotPasswordCode sets the "forgot_password_code" field.
+func (u *UserUpsertOne) SetForgotPasswordCode(v string) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetForgotPasswordCode(v)
+	})
+}
+
+// UpdateForgotPasswordCode sets the "forgot_password_code" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateForgotPasswordCode() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateForgotPasswordCode()
+	})
+}
+
+// ClearForgotPasswordCode clears the value of the "forgot_password_code" field.
+func (u *UserUpsertOne) ClearForgotPasswordCode() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearForgotPasswordCode()
+	})
+}
+
+// SetForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field.
+func (u *UserUpsertOne) SetForgotPasswordCodeExpiresAt(v time.Time) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetForgotPasswordCodeExpiresAt(v)
+	})
+}
+
+// UpdateForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateForgotPasswordCodeExpiresAt() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateForgotPasswordCodeExpiresAt()
+	})
+}
+
+// ClearForgotPasswordCodeExpiresAt clears the value of the "forgot_password_code_expires_at" field.
+func (u *UserUpsertOne) ClearForgotPasswordCodeExpiresAt() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearForgotPasswordCodeExpiresAt()
+	})
+}
+
+// SetNewUserToken sets the "new_user_token" field.
+func (u *UserUpsertOne) SetNewUserToken(v string) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetNewUserToken(v)
+	})
+}
+
+// UpdateNewUserToken sets the "new_user_token" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateNewUserToken() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateNewUserToken()
+	})
+}
+
+// ClearNewUserToken clears the value of the "new_user_token" field.
+func (u *UserUpsertOne) ClearNewUserToken() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearNewUserToken()
 	})
 }
 
@@ -1612,6 +2071,48 @@ func (u *UserUpsertBulk) ClearOpenid() *UserUpsertBulk {
 	})
 }
 
+// SetPasswd sets the "passwd" field.
+func (u *UserUpsertBulk) SetPasswd(v bool) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetPasswd(v)
+	})
+}
+
+// UpdatePasswd sets the "passwd" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdatePasswd() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdatePasswd()
+	})
+}
+
+// ClearPasswd clears the value of the "passwd" field.
+func (u *UserUpsertBulk) ClearPasswd() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearPasswd()
+	})
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (u *UserUpsertBulk) SetUse2fa(v bool) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetUse2fa(v)
+	})
+}
+
+// UpdateUse2fa sets the "use2fa" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateUse2fa() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateUse2fa()
+	})
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (u *UserUpsertBulk) ClearUse2fa() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearUse2fa()
+	})
+}
+
 // SetCreated sets the "created" field.
 func (u *UserUpsertBulk) SetCreated(v time.Time) *UserUpsertBulk {
 	return u.Update(func(s *UserUpsert) {
@@ -1784,6 +2285,111 @@ func (u *UserUpsertBulk) UpdateHash() *UserUpsertBulk {
 func (u *UserUpsertBulk) ClearHash() *UserUpsertBulk {
 	return u.Update(func(s *UserUpsert) {
 		s.ClearHash()
+	})
+}
+
+// SetTotpSecret sets the "totp_secret" field.
+func (u *UserUpsertBulk) SetTotpSecret(v string) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetTotpSecret(v)
+	})
+}
+
+// UpdateTotpSecret sets the "totp_secret" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateTotpSecret() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateTotpSecret()
+	})
+}
+
+// ClearTotpSecret clears the value of the "totp_secret" field.
+func (u *UserUpsertBulk) ClearTotpSecret() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearTotpSecret()
+	})
+}
+
+// SetTotpSecretConfirmed sets the "totp_secret_confirmed" field.
+func (u *UserUpsertBulk) SetTotpSecretConfirmed(v bool) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetTotpSecretConfirmed(v)
+	})
+}
+
+// UpdateTotpSecretConfirmed sets the "totp_secret_confirmed" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateTotpSecretConfirmed() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateTotpSecretConfirmed()
+	})
+}
+
+// ClearTotpSecretConfirmed clears the value of the "totp_secret_confirmed" field.
+func (u *UserUpsertBulk) ClearTotpSecretConfirmed() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearTotpSecretConfirmed()
+	})
+}
+
+// SetForgotPasswordCode sets the "forgot_password_code" field.
+func (u *UserUpsertBulk) SetForgotPasswordCode(v string) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetForgotPasswordCode(v)
+	})
+}
+
+// UpdateForgotPasswordCode sets the "forgot_password_code" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateForgotPasswordCode() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateForgotPasswordCode()
+	})
+}
+
+// ClearForgotPasswordCode clears the value of the "forgot_password_code" field.
+func (u *UserUpsertBulk) ClearForgotPasswordCode() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearForgotPasswordCode()
+	})
+}
+
+// SetForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field.
+func (u *UserUpsertBulk) SetForgotPasswordCodeExpiresAt(v time.Time) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetForgotPasswordCodeExpiresAt(v)
+	})
+}
+
+// UpdateForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateForgotPasswordCodeExpiresAt() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateForgotPasswordCodeExpiresAt()
+	})
+}
+
+// ClearForgotPasswordCodeExpiresAt clears the value of the "forgot_password_code_expires_at" field.
+func (u *UserUpsertBulk) ClearForgotPasswordCodeExpiresAt() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearForgotPasswordCodeExpiresAt()
+	})
+}
+
+// SetNewUserToken sets the "new_user_token" field.
+func (u *UserUpsertBulk) SetNewUserToken(v string) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetNewUserToken(v)
+	})
+}
+
+// UpdateNewUserToken sets the "new_user_token" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateNewUserToken() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateNewUserToken()
+	})
+}
+
+// ClearNewUserToken clears the value of the "new_user_token" field.
+func (u *UserUpsertBulk) ClearNewUserToken() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.ClearNewUserToken()
 	})
 }
 

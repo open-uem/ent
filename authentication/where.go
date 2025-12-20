@@ -107,6 +107,11 @@ func OIDCAutoApprove(v bool) predicate.Authentication {
 	return predicate.Authentication(sql.FieldEQ(FieldOIDCAutoApprove, v))
 }
 
+// UsePasswd applies equality check predicate on the "use_passwd" field. It's identical to UsePasswdEQ.
+func UsePasswd(v bool) predicate.Authentication {
+	return predicate.Authentication(sql.FieldEQ(FieldUsePasswd, v))
+}
+
 // UseCertificatesEQ applies the EQ predicate on the "use_certificates" field.
 func UseCertificatesEQ(v bool) predicate.Authentication {
 	return predicate.Authentication(sql.FieldEQ(FieldUseCertificates, v))
@@ -655,6 +660,26 @@ func OIDCAutoApproveIsNil() predicate.Authentication {
 // OIDCAutoApproveNotNil applies the NotNil predicate on the "OIDC_auto_approve" field.
 func OIDCAutoApproveNotNil() predicate.Authentication {
 	return predicate.Authentication(sql.FieldNotNull(FieldOIDCAutoApprove))
+}
+
+// UsePasswdEQ applies the EQ predicate on the "use_passwd" field.
+func UsePasswdEQ(v bool) predicate.Authentication {
+	return predicate.Authentication(sql.FieldEQ(FieldUsePasswd, v))
+}
+
+// UsePasswdNEQ applies the NEQ predicate on the "use_passwd" field.
+func UsePasswdNEQ(v bool) predicate.Authentication {
+	return predicate.Authentication(sql.FieldNEQ(FieldUsePasswd, v))
+}
+
+// UsePasswdIsNil applies the IsNil predicate on the "use_passwd" field.
+func UsePasswdIsNil() predicate.Authentication {
+	return predicate.Authentication(sql.FieldIsNull(FieldUsePasswd))
+}
+
+// UsePasswdNotNil applies the NotNil predicate on the "use_passwd" field.
+func UsePasswdNotNil() predicate.Authentication {
+	return predicate.Authentication(sql.FieldNotNull(FieldUsePasswd))
 }
 
 // And groups predicates with the AND operator between them.

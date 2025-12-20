@@ -32,6 +32,7 @@ import (
 	"github.com/open-uem/ent/printer"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/release"
 	"github.com/open-uem/ent/revocation"
 	"github.com/open-uem/ent/rustdesk"
@@ -78,6 +79,7 @@ const (
 	TypePrinter               = "Printer"
 	TypeProfile               = "Profile"
 	TypeProfileIssue          = "ProfileIssue"
+	TypeRecoveryCode          = "RecoveryCode"
 	TypeRelease               = "Release"
 	TypeRevocation            = "Revocation"
 	TypeRustdesk              = "Rustdesk"
@@ -5194,6 +5196,7 @@ type AuthenticationMutation struct {
 	_OIDC_keycloak_public_key   *string
 	_OIDC_auto_create_account   *bool
 	_OIDC_auto_approve          *bool
+	use_passwd                  *bool
 	clearedFields               map[string]struct{}
 	done                        bool
 	oldValue                    func(context.Context) (*Authentication, error)
@@ -5837,6 +5840,55 @@ func (m *AuthenticationMutation) ResetOIDCAutoApprove() {
 	delete(m.clearedFields, authentication.FieldOIDCAutoApprove)
 }
 
+// SetUsePasswd sets the "use_passwd" field.
+func (m *AuthenticationMutation) SetUsePasswd(b bool) {
+	m.use_passwd = &b
+}
+
+// UsePasswd returns the value of the "use_passwd" field in the mutation.
+func (m *AuthenticationMutation) UsePasswd() (r bool, exists bool) {
+	v := m.use_passwd
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUsePasswd returns the old "use_passwd" field's value of the Authentication entity.
+// If the Authentication object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *AuthenticationMutation) OldUsePasswd(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUsePasswd is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUsePasswd requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUsePasswd: %w", err)
+	}
+	return oldValue.UsePasswd, nil
+}
+
+// ClearUsePasswd clears the value of the "use_passwd" field.
+func (m *AuthenticationMutation) ClearUsePasswd() {
+	m.use_passwd = nil
+	m.clearedFields[authentication.FieldUsePasswd] = struct{}{}
+}
+
+// UsePasswdCleared returns if the "use_passwd" field was cleared in this mutation.
+func (m *AuthenticationMutation) UsePasswdCleared() bool {
+	_, ok := m.clearedFields[authentication.FieldUsePasswd]
+	return ok
+}
+
+// ResetUsePasswd resets all changes to the "use_passwd" field.
+func (m *AuthenticationMutation) ResetUsePasswd() {
+	m.use_passwd = nil
+	delete(m.clearedFields, authentication.FieldUsePasswd)
+}
+
 // Where appends a list predicates to the AuthenticationMutation builder.
 func (m *AuthenticationMutation) Where(ps ...predicate.Authentication) {
 	m.predicates = append(m.predicates, ps...)
@@ -5871,7 +5923,7 @@ func (m *AuthenticationMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *AuthenticationMutation) Fields() []string {
-	fields := make([]string, 0, 11)
+	fields := make([]string, 0, 12)
 	if m.use_certificates != nil {
 		fields = append(fields, authentication.FieldUseCertificates)
 	}
@@ -5905,6 +5957,9 @@ func (m *AuthenticationMutation) Fields() []string {
 	if m._OIDC_auto_approve != nil {
 		fields = append(fields, authentication.FieldOIDCAutoApprove)
 	}
+	if m.use_passwd != nil {
+		fields = append(fields, authentication.FieldUsePasswd)
+	}
 	return fields
 }
 
@@ -5935,6 +5990,8 @@ func (m *AuthenticationMutation) Field(name string) (ent.Value, bool) {
 		return m.OIDCAutoCreateAccount()
 	case authentication.FieldOIDCAutoApprove:
 		return m.OIDCAutoApprove()
+	case authentication.FieldUsePasswd:
+		return m.UsePasswd()
 	}
 	return nil, false
 }
@@ -5966,6 +6023,8 @@ func (m *AuthenticationMutation) OldField(ctx context.Context, name string) (ent
 		return m.OldOIDCAutoCreateAccount(ctx)
 	case authentication.FieldOIDCAutoApprove:
 		return m.OldOIDCAutoApprove(ctx)
+	case authentication.FieldUsePasswd:
+		return m.OldUsePasswd(ctx)
 	}
 	return nil, fmt.Errorf("unknown Authentication field %s", name)
 }
@@ -6052,6 +6111,13 @@ func (m *AuthenticationMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetOIDCAutoApprove(v)
 		return nil
+	case authentication.FieldUsePasswd:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUsePasswd(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Authentication field %s", name)
 }
@@ -6115,6 +6181,9 @@ func (m *AuthenticationMutation) ClearedFields() []string {
 	if m.FieldCleared(authentication.FieldOIDCAutoApprove) {
 		fields = append(fields, authentication.FieldOIDCAutoApprove)
 	}
+	if m.FieldCleared(authentication.FieldUsePasswd) {
+		fields = append(fields, authentication.FieldUsePasswd)
+	}
 	return fields
 }
 
@@ -6162,6 +6231,9 @@ func (m *AuthenticationMutation) ClearField(name string) error {
 	case authentication.FieldOIDCAutoApprove:
 		m.ClearOIDCAutoApprove()
 		return nil
+	case authentication.FieldUsePasswd:
+		m.ClearUsePasswd()
+		return nil
 	}
 	return fmt.Errorf("unknown Authentication nullable field %s", name)
 }
@@ -6202,6 +6274,9 @@ func (m *AuthenticationMutation) ResetField(name string) error {
 		return nil
 	case authentication.FieldOIDCAutoApprove:
 		m.ResetOIDCAutoApprove()
+		return nil
+	case authentication.FieldUsePasswd:
+		m.ResetUsePasswd()
 		return nil
 	}
 	return fmt.Errorf("unknown Authentication field %s", name)
@@ -18506,6 +18581,453 @@ func (m *ProfileIssueMutation) ResetEdge(name string) error {
 		return nil
 	}
 	return fmt.Errorf("unknown ProfileIssue edge %s", name)
+}
+
+// RecoveryCodeMutation represents an operation that mutates the RecoveryCode nodes in the graph.
+type RecoveryCodeMutation struct {
+	config
+	op            Op
+	typ           string
+	id            *int
+	code          *string
+	used          *bool
+	clearedFields map[string]struct{}
+	user          *string
+	cleareduser   bool
+	done          bool
+	oldValue      func(context.Context) (*RecoveryCode, error)
+	predicates    []predicate.RecoveryCode
+}
+
+var _ ent.Mutation = (*RecoveryCodeMutation)(nil)
+
+// recoverycodeOption allows management of the mutation configuration using functional options.
+type recoverycodeOption func(*RecoveryCodeMutation)
+
+// newRecoveryCodeMutation creates new mutation for the RecoveryCode entity.
+func newRecoveryCodeMutation(c config, op Op, opts ...recoverycodeOption) *RecoveryCodeMutation {
+	m := &RecoveryCodeMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeRecoveryCode,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withRecoveryCodeID sets the ID field of the mutation.
+func withRecoveryCodeID(id int) recoverycodeOption {
+	return func(m *RecoveryCodeMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *RecoveryCode
+		)
+		m.oldValue = func(ctx context.Context) (*RecoveryCode, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().RecoveryCode.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withRecoveryCode sets the old RecoveryCode of the mutation.
+func withRecoveryCode(node *RecoveryCode) recoverycodeOption {
+	return func(m *RecoveryCodeMutation) {
+		m.oldValue = func(context.Context) (*RecoveryCode, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m RecoveryCodeMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m RecoveryCodeMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *RecoveryCodeMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *RecoveryCodeMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().RecoveryCode.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetCode sets the "code" field.
+func (m *RecoveryCodeMutation) SetCode(s string) {
+	m.code = &s
+}
+
+// Code returns the value of the "code" field in the mutation.
+func (m *RecoveryCodeMutation) Code() (r string, exists bool) {
+	v := m.code
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCode returns the old "code" field's value of the RecoveryCode entity.
+// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RecoveryCodeMutation) OldCode(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCode is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCode requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCode: %w", err)
+	}
+	return oldValue.Code, nil
+}
+
+// ResetCode resets all changes to the "code" field.
+func (m *RecoveryCodeMutation) ResetCode() {
+	m.code = nil
+}
+
+// SetUsed sets the "used" field.
+func (m *RecoveryCodeMutation) SetUsed(b bool) {
+	m.used = &b
+}
+
+// Used returns the value of the "used" field in the mutation.
+func (m *RecoveryCodeMutation) Used() (r bool, exists bool) {
+	v := m.used
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUsed returns the old "used" field's value of the RecoveryCode entity.
+// If the RecoveryCode object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *RecoveryCodeMutation) OldUsed(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUsed is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUsed requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUsed: %w", err)
+	}
+	return oldValue.Used, nil
+}
+
+// ResetUsed resets all changes to the "used" field.
+func (m *RecoveryCodeMutation) ResetUsed() {
+	m.used = nil
+}
+
+// SetUserID sets the "user" edge to the User entity by id.
+func (m *RecoveryCodeMutation) SetUserID(id string) {
+	m.user = &id
+}
+
+// ClearUser clears the "user" edge to the User entity.
+func (m *RecoveryCodeMutation) ClearUser() {
+	m.cleareduser = true
+}
+
+// UserCleared reports if the "user" edge to the User entity was cleared.
+func (m *RecoveryCodeMutation) UserCleared() bool {
+	return m.cleareduser
+}
+
+// UserID returns the "user" edge ID in the mutation.
+func (m *RecoveryCodeMutation) UserID() (id string, exists bool) {
+	if m.user != nil {
+		return *m.user, true
+	}
+	return
+}
+
+// UserIDs returns the "user" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// UserID instead. It exists only for internal usage by the builders.
+func (m *RecoveryCodeMutation) UserIDs() (ids []string) {
+	if id := m.user; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetUser resets all changes to the "user" edge.
+func (m *RecoveryCodeMutation) ResetUser() {
+	m.user = nil
+	m.cleareduser = false
+}
+
+// Where appends a list predicates to the RecoveryCodeMutation builder.
+func (m *RecoveryCodeMutation) Where(ps ...predicate.RecoveryCode) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the RecoveryCodeMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *RecoveryCodeMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.RecoveryCode, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *RecoveryCodeMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *RecoveryCodeMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (RecoveryCode).
+func (m *RecoveryCodeMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *RecoveryCodeMutation) Fields() []string {
+	fields := make([]string, 0, 2)
+	if m.code != nil {
+		fields = append(fields, recoverycode.FieldCode)
+	}
+	if m.used != nil {
+		fields = append(fields, recoverycode.FieldUsed)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *RecoveryCodeMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case recoverycode.FieldCode:
+		return m.Code()
+	case recoverycode.FieldUsed:
+		return m.Used()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *RecoveryCodeMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case recoverycode.FieldCode:
+		return m.OldCode(ctx)
+	case recoverycode.FieldUsed:
+		return m.OldUsed(ctx)
+	}
+	return nil, fmt.Errorf("unknown RecoveryCode field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *RecoveryCodeMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case recoverycode.FieldCode:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCode(v)
+		return nil
+	case recoverycode.FieldUsed:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUsed(v)
+		return nil
+	}
+	return fmt.Errorf("unknown RecoveryCode field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *RecoveryCodeMutation) AddedFields() []string {
+	return nil
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *RecoveryCodeMutation) AddedField(name string) (ent.Value, bool) {
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *RecoveryCodeMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	}
+	return fmt.Errorf("unknown RecoveryCode numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *RecoveryCodeMutation) ClearedFields() []string {
+	return nil
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *RecoveryCodeMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *RecoveryCodeMutation) ClearField(name string) error {
+	return fmt.Errorf("unknown RecoveryCode nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *RecoveryCodeMutation) ResetField(name string) error {
+	switch name {
+	case recoverycode.FieldCode:
+		m.ResetCode()
+		return nil
+	case recoverycode.FieldUsed:
+		m.ResetUsed()
+		return nil
+	}
+	return fmt.Errorf("unknown RecoveryCode field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *RecoveryCodeMutation) AddedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.user != nil {
+		edges = append(edges, recoverycode.EdgeUser)
+	}
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *RecoveryCodeMutation) AddedIDs(name string) []ent.Value {
+	switch name {
+	case recoverycode.EdgeUser:
+		if id := m.user; id != nil {
+			return []ent.Value{*id}
+		}
+	}
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *RecoveryCodeMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 1)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *RecoveryCodeMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *RecoveryCodeMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.cleareduser {
+		edges = append(edges, recoverycode.EdgeUser)
+	}
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *RecoveryCodeMutation) EdgeCleared(name string) bool {
+	switch name {
+	case recoverycode.EdgeUser:
+		return m.cleareduser
+	}
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *RecoveryCodeMutation) ClearEdge(name string) error {
+	switch name {
+	case recoverycode.EdgeUser:
+		m.ClearUser()
+		return nil
+	}
+	return fmt.Errorf("unknown RecoveryCode unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *RecoveryCodeMutation) ResetEdge(name string) error {
+	switch name {
+	case recoverycode.EdgeUser:
+		m.ResetUser()
+		return nil
+	}
+	return fmt.Errorf("unknown RecoveryCode edge %s", name)
 }
 
 // ReleaseMutation represents an operation that mutates the Release nodes in the graph.
@@ -37480,34 +38002,44 @@ func (m *UpdateMutation) ResetEdge(name string) error {
 // UserMutation represents an operation that mutates the User nodes in the graph.
 type UserMutation struct {
 	config
-	op                  Op
-	typ                 string
-	id                  *string
-	name                *string
-	email               *string
-	phone               *string
-	country             *string
-	email_verified      *bool
-	register            *string
-	cert_clear_password *string
-	expiry              *time.Time
-	openid              *bool
-	created             *time.Time
-	modified            *time.Time
-	access_token        *string
-	refresh_token       *string
-	id_token            *string
-	token_type          *string
-	token_expiry        *int
-	addtoken_expiry     *int
-	hash                *string
-	clearedFields       map[string]struct{}
-	sessions            map[string]struct{}
-	removedsessions     map[string]struct{}
-	clearedsessions     bool
-	done                bool
-	oldValue            func(context.Context) (*User, error)
-	predicates          []predicate.User
+	op                              Op
+	typ                             string
+	id                              *string
+	name                            *string
+	email                           *string
+	phone                           *string
+	country                         *string
+	email_verified                  *bool
+	register                        *string
+	cert_clear_password             *string
+	expiry                          *time.Time
+	openid                          *bool
+	passwd                          *bool
+	use2fa                          *bool
+	created                         *time.Time
+	modified                        *time.Time
+	access_token                    *string
+	refresh_token                   *string
+	id_token                        *string
+	token_type                      *string
+	token_expiry                    *int
+	addtoken_expiry                 *int
+	hash                            *string
+	totp_secret                     *string
+	totp_secret_confirmed           *bool
+	forgot_password_code            *string
+	forgot_password_code_expires_at *time.Time
+	new_user_token                  *string
+	clearedFields                   map[string]struct{}
+	sessions                        map[string]struct{}
+	removedsessions                 map[string]struct{}
+	clearedsessions                 bool
+	recoverycodes                   map[int]struct{}
+	removedrecoverycodes            map[int]struct{}
+	clearedrecoverycodes            bool
+	done                            bool
+	oldValue                        func(context.Context) (*User, error)
+	predicates                      []predicate.User
 }
 
 var _ ent.Mutation = (*UserMutation)(nil)
@@ -38016,6 +38548,104 @@ func (m *UserMutation) ResetOpenid() {
 	delete(m.clearedFields, user.FieldOpenid)
 }
 
+// SetPasswd sets the "passwd" field.
+func (m *UserMutation) SetPasswd(b bool) {
+	m.passwd = &b
+}
+
+// Passwd returns the value of the "passwd" field in the mutation.
+func (m *UserMutation) Passwd() (r bool, exists bool) {
+	v := m.passwd
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldPasswd returns the old "passwd" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldPasswd(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldPasswd is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldPasswd requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldPasswd: %w", err)
+	}
+	return oldValue.Passwd, nil
+}
+
+// ClearPasswd clears the value of the "passwd" field.
+func (m *UserMutation) ClearPasswd() {
+	m.passwd = nil
+	m.clearedFields[user.FieldPasswd] = struct{}{}
+}
+
+// PasswdCleared returns if the "passwd" field was cleared in this mutation.
+func (m *UserMutation) PasswdCleared() bool {
+	_, ok := m.clearedFields[user.FieldPasswd]
+	return ok
+}
+
+// ResetPasswd resets all changes to the "passwd" field.
+func (m *UserMutation) ResetPasswd() {
+	m.passwd = nil
+	delete(m.clearedFields, user.FieldPasswd)
+}
+
+// SetUse2fa sets the "use2fa" field.
+func (m *UserMutation) SetUse2fa(b bool) {
+	m.use2fa = &b
+}
+
+// Use2fa returns the value of the "use2fa" field in the mutation.
+func (m *UserMutation) Use2fa() (r bool, exists bool) {
+	v := m.use2fa
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUse2fa returns the old "use2fa" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldUse2fa(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUse2fa is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUse2fa requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUse2fa: %w", err)
+	}
+	return oldValue.Use2fa, nil
+}
+
+// ClearUse2fa clears the value of the "use2fa" field.
+func (m *UserMutation) ClearUse2fa() {
+	m.use2fa = nil
+	m.clearedFields[user.FieldUse2fa] = struct{}{}
+}
+
+// Use2faCleared returns if the "use2fa" field was cleared in this mutation.
+func (m *UserMutation) Use2faCleared() bool {
+	_, ok := m.clearedFields[user.FieldUse2fa]
+	return ok
+}
+
+// ResetUse2fa resets all changes to the "use2fa" field.
+func (m *UserMutation) ResetUse2fa() {
+	m.use2fa = nil
+	delete(m.clearedFields, user.FieldUse2fa)
+}
+
 // SetCreated sets the "created" field.
 func (m *UserMutation) SetCreated(t time.Time) {
 	m.created = &t
@@ -38429,6 +39059,251 @@ func (m *UserMutation) ResetHash() {
 	delete(m.clearedFields, user.FieldHash)
 }
 
+// SetTotpSecret sets the "totp_secret" field.
+func (m *UserMutation) SetTotpSecret(s string) {
+	m.totp_secret = &s
+}
+
+// TotpSecret returns the value of the "totp_secret" field in the mutation.
+func (m *UserMutation) TotpSecret() (r string, exists bool) {
+	v := m.totp_secret
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTotpSecret returns the old "totp_secret" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldTotpSecret(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTotpSecret is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTotpSecret requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTotpSecret: %w", err)
+	}
+	return oldValue.TotpSecret, nil
+}
+
+// ClearTotpSecret clears the value of the "totp_secret" field.
+func (m *UserMutation) ClearTotpSecret() {
+	m.totp_secret = nil
+	m.clearedFields[user.FieldTotpSecret] = struct{}{}
+}
+
+// TotpSecretCleared returns if the "totp_secret" field was cleared in this mutation.
+func (m *UserMutation) TotpSecretCleared() bool {
+	_, ok := m.clearedFields[user.FieldTotpSecret]
+	return ok
+}
+
+// ResetTotpSecret resets all changes to the "totp_secret" field.
+func (m *UserMutation) ResetTotpSecret() {
+	m.totp_secret = nil
+	delete(m.clearedFields, user.FieldTotpSecret)
+}
+
+// SetTotpSecretConfirmed sets the "totp_secret_confirmed" field.
+func (m *UserMutation) SetTotpSecretConfirmed(b bool) {
+	m.totp_secret_confirmed = &b
+}
+
+// TotpSecretConfirmed returns the value of the "totp_secret_confirmed" field in the mutation.
+func (m *UserMutation) TotpSecretConfirmed() (r bool, exists bool) {
+	v := m.totp_secret_confirmed
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTotpSecretConfirmed returns the old "totp_secret_confirmed" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldTotpSecretConfirmed(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTotpSecretConfirmed is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTotpSecretConfirmed requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTotpSecretConfirmed: %w", err)
+	}
+	return oldValue.TotpSecretConfirmed, nil
+}
+
+// ClearTotpSecretConfirmed clears the value of the "totp_secret_confirmed" field.
+func (m *UserMutation) ClearTotpSecretConfirmed() {
+	m.totp_secret_confirmed = nil
+	m.clearedFields[user.FieldTotpSecretConfirmed] = struct{}{}
+}
+
+// TotpSecretConfirmedCleared returns if the "totp_secret_confirmed" field was cleared in this mutation.
+func (m *UserMutation) TotpSecretConfirmedCleared() bool {
+	_, ok := m.clearedFields[user.FieldTotpSecretConfirmed]
+	return ok
+}
+
+// ResetTotpSecretConfirmed resets all changes to the "totp_secret_confirmed" field.
+func (m *UserMutation) ResetTotpSecretConfirmed() {
+	m.totp_secret_confirmed = nil
+	delete(m.clearedFields, user.FieldTotpSecretConfirmed)
+}
+
+// SetForgotPasswordCode sets the "forgot_password_code" field.
+func (m *UserMutation) SetForgotPasswordCode(s string) {
+	m.forgot_password_code = &s
+}
+
+// ForgotPasswordCode returns the value of the "forgot_password_code" field in the mutation.
+func (m *UserMutation) ForgotPasswordCode() (r string, exists bool) {
+	v := m.forgot_password_code
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldForgotPasswordCode returns the old "forgot_password_code" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldForgotPasswordCode(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldForgotPasswordCode is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldForgotPasswordCode requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldForgotPasswordCode: %w", err)
+	}
+	return oldValue.ForgotPasswordCode, nil
+}
+
+// ClearForgotPasswordCode clears the value of the "forgot_password_code" field.
+func (m *UserMutation) ClearForgotPasswordCode() {
+	m.forgot_password_code = nil
+	m.clearedFields[user.FieldForgotPasswordCode] = struct{}{}
+}
+
+// ForgotPasswordCodeCleared returns if the "forgot_password_code" field was cleared in this mutation.
+func (m *UserMutation) ForgotPasswordCodeCleared() bool {
+	_, ok := m.clearedFields[user.FieldForgotPasswordCode]
+	return ok
+}
+
+// ResetForgotPasswordCode resets all changes to the "forgot_password_code" field.
+func (m *UserMutation) ResetForgotPasswordCode() {
+	m.forgot_password_code = nil
+	delete(m.clearedFields, user.FieldForgotPasswordCode)
+}
+
+// SetForgotPasswordCodeExpiresAt sets the "forgot_password_code_expires_at" field.
+func (m *UserMutation) SetForgotPasswordCodeExpiresAt(t time.Time) {
+	m.forgot_password_code_expires_at = &t
+}
+
+// ForgotPasswordCodeExpiresAt returns the value of the "forgot_password_code_expires_at" field in the mutation.
+func (m *UserMutation) ForgotPasswordCodeExpiresAt() (r time.Time, exists bool) {
+	v := m.forgot_password_code_expires_at
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldForgotPasswordCodeExpiresAt returns the old "forgot_password_code_expires_at" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldForgotPasswordCodeExpiresAt(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldForgotPasswordCodeExpiresAt is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldForgotPasswordCodeExpiresAt requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldForgotPasswordCodeExpiresAt: %w", err)
+	}
+	return oldValue.ForgotPasswordCodeExpiresAt, nil
+}
+
+// ClearForgotPasswordCodeExpiresAt clears the value of the "forgot_password_code_expires_at" field.
+func (m *UserMutation) ClearForgotPasswordCodeExpiresAt() {
+	m.forgot_password_code_expires_at = nil
+	m.clearedFields[user.FieldForgotPasswordCodeExpiresAt] = struct{}{}
+}
+
+// ForgotPasswordCodeExpiresAtCleared returns if the "forgot_password_code_expires_at" field was cleared in this mutation.
+func (m *UserMutation) ForgotPasswordCodeExpiresAtCleared() bool {
+	_, ok := m.clearedFields[user.FieldForgotPasswordCodeExpiresAt]
+	return ok
+}
+
+// ResetForgotPasswordCodeExpiresAt resets all changes to the "forgot_password_code_expires_at" field.
+func (m *UserMutation) ResetForgotPasswordCodeExpiresAt() {
+	m.forgot_password_code_expires_at = nil
+	delete(m.clearedFields, user.FieldForgotPasswordCodeExpiresAt)
+}
+
+// SetNewUserToken sets the "new_user_token" field.
+func (m *UserMutation) SetNewUserToken(s string) {
+	m.new_user_token = &s
+}
+
+// NewUserToken returns the value of the "new_user_token" field in the mutation.
+func (m *UserMutation) NewUserToken() (r string, exists bool) {
+	v := m.new_user_token
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldNewUserToken returns the old "new_user_token" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldNewUserToken(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldNewUserToken is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldNewUserToken requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldNewUserToken: %w", err)
+	}
+	return oldValue.NewUserToken, nil
+}
+
+// ClearNewUserToken clears the value of the "new_user_token" field.
+func (m *UserMutation) ClearNewUserToken() {
+	m.new_user_token = nil
+	m.clearedFields[user.FieldNewUserToken] = struct{}{}
+}
+
+// NewUserTokenCleared returns if the "new_user_token" field was cleared in this mutation.
+func (m *UserMutation) NewUserTokenCleared() bool {
+	_, ok := m.clearedFields[user.FieldNewUserToken]
+	return ok
+}
+
+// ResetNewUserToken resets all changes to the "new_user_token" field.
+func (m *UserMutation) ResetNewUserToken() {
+	m.new_user_token = nil
+	delete(m.clearedFields, user.FieldNewUserToken)
+}
+
 // AddSessionIDs adds the "sessions" edge to the Sessions entity by ids.
 func (m *UserMutation) AddSessionIDs(ids ...string) {
 	if m.sessions == nil {
@@ -38483,6 +39358,60 @@ func (m *UserMutation) ResetSessions() {
 	m.removedsessions = nil
 }
 
+// AddRecoverycodeIDs adds the "recoverycodes" edge to the RecoveryCode entity by ids.
+func (m *UserMutation) AddRecoverycodeIDs(ids ...int) {
+	if m.recoverycodes == nil {
+		m.recoverycodes = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.recoverycodes[ids[i]] = struct{}{}
+	}
+}
+
+// ClearRecoverycodes clears the "recoverycodes" edge to the RecoveryCode entity.
+func (m *UserMutation) ClearRecoverycodes() {
+	m.clearedrecoverycodes = true
+}
+
+// RecoverycodesCleared reports if the "recoverycodes" edge to the RecoveryCode entity was cleared.
+func (m *UserMutation) RecoverycodesCleared() bool {
+	return m.clearedrecoverycodes
+}
+
+// RemoveRecoverycodeIDs removes the "recoverycodes" edge to the RecoveryCode entity by IDs.
+func (m *UserMutation) RemoveRecoverycodeIDs(ids ...int) {
+	if m.removedrecoverycodes == nil {
+		m.removedrecoverycodes = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.recoverycodes, ids[i])
+		m.removedrecoverycodes[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedRecoverycodes returns the removed IDs of the "recoverycodes" edge to the RecoveryCode entity.
+func (m *UserMutation) RemovedRecoverycodesIDs() (ids []int) {
+	for id := range m.removedrecoverycodes {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// RecoverycodesIDs returns the "recoverycodes" edge IDs in the mutation.
+func (m *UserMutation) RecoverycodesIDs() (ids []int) {
+	for id := range m.recoverycodes {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetRecoverycodes resets all changes to the "recoverycodes" edge.
+func (m *UserMutation) ResetRecoverycodes() {
+	m.recoverycodes = nil
+	m.clearedrecoverycodes = false
+	m.removedrecoverycodes = nil
+}
+
 // Where appends a list predicates to the UserMutation builder.
 func (m *UserMutation) Where(ps ...predicate.User) {
 	m.predicates = append(m.predicates, ps...)
@@ -38517,7 +39446,7 @@ func (m *UserMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *UserMutation) Fields() []string {
-	fields := make([]string, 0, 17)
+	fields := make([]string, 0, 24)
 	if m.name != nil {
 		fields = append(fields, user.FieldName)
 	}
@@ -38545,6 +39474,12 @@ func (m *UserMutation) Fields() []string {
 	if m.openid != nil {
 		fields = append(fields, user.FieldOpenid)
 	}
+	if m.passwd != nil {
+		fields = append(fields, user.FieldPasswd)
+	}
+	if m.use2fa != nil {
+		fields = append(fields, user.FieldUse2fa)
+	}
 	if m.created != nil {
 		fields = append(fields, user.FieldCreated)
 	}
@@ -38568,6 +39503,21 @@ func (m *UserMutation) Fields() []string {
 	}
 	if m.hash != nil {
 		fields = append(fields, user.FieldHash)
+	}
+	if m.totp_secret != nil {
+		fields = append(fields, user.FieldTotpSecret)
+	}
+	if m.totp_secret_confirmed != nil {
+		fields = append(fields, user.FieldTotpSecretConfirmed)
+	}
+	if m.forgot_password_code != nil {
+		fields = append(fields, user.FieldForgotPasswordCode)
+	}
+	if m.forgot_password_code_expires_at != nil {
+		fields = append(fields, user.FieldForgotPasswordCodeExpiresAt)
+	}
+	if m.new_user_token != nil {
+		fields = append(fields, user.FieldNewUserToken)
 	}
 	return fields
 }
@@ -38595,6 +39545,10 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.Expiry()
 	case user.FieldOpenid:
 		return m.Openid()
+	case user.FieldPasswd:
+		return m.Passwd()
+	case user.FieldUse2fa:
+		return m.Use2fa()
 	case user.FieldCreated:
 		return m.Created()
 	case user.FieldModified:
@@ -38611,6 +39565,16 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.TokenExpiry()
 	case user.FieldHash:
 		return m.Hash()
+	case user.FieldTotpSecret:
+		return m.TotpSecret()
+	case user.FieldTotpSecretConfirmed:
+		return m.TotpSecretConfirmed()
+	case user.FieldForgotPasswordCode:
+		return m.ForgotPasswordCode()
+	case user.FieldForgotPasswordCodeExpiresAt:
+		return m.ForgotPasswordCodeExpiresAt()
+	case user.FieldNewUserToken:
+		return m.NewUserToken()
 	}
 	return nil, false
 }
@@ -38638,6 +39602,10 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldExpiry(ctx)
 	case user.FieldOpenid:
 		return m.OldOpenid(ctx)
+	case user.FieldPasswd:
+		return m.OldPasswd(ctx)
+	case user.FieldUse2fa:
+		return m.OldUse2fa(ctx)
 	case user.FieldCreated:
 		return m.OldCreated(ctx)
 	case user.FieldModified:
@@ -38654,6 +39622,16 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldTokenExpiry(ctx)
 	case user.FieldHash:
 		return m.OldHash(ctx)
+	case user.FieldTotpSecret:
+		return m.OldTotpSecret(ctx)
+	case user.FieldTotpSecretConfirmed:
+		return m.OldTotpSecretConfirmed(ctx)
+	case user.FieldForgotPasswordCode:
+		return m.OldForgotPasswordCode(ctx)
+	case user.FieldForgotPasswordCodeExpiresAt:
+		return m.OldForgotPasswordCodeExpiresAt(ctx)
+	case user.FieldNewUserToken:
+		return m.OldNewUserToken(ctx)
 	}
 	return nil, fmt.Errorf("unknown User field %s", name)
 }
@@ -38726,6 +39704,20 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetOpenid(v)
 		return nil
+	case user.FieldPasswd:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetPasswd(v)
+		return nil
+	case user.FieldUse2fa:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUse2fa(v)
+		return nil
 	case user.FieldCreated:
 		v, ok := value.(time.Time)
 		if !ok {
@@ -38781,6 +39773,41 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetHash(v)
+		return nil
+	case user.FieldTotpSecret:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTotpSecret(v)
+		return nil
+	case user.FieldTotpSecretConfirmed:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTotpSecretConfirmed(v)
+		return nil
+	case user.FieldForgotPasswordCode:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetForgotPasswordCode(v)
+		return nil
+	case user.FieldForgotPasswordCodeExpiresAt:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetForgotPasswordCodeExpiresAt(v)
+		return nil
+	case user.FieldNewUserToken:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetNewUserToken(v)
 		return nil
 	}
 	return fmt.Errorf("unknown User field %s", name)
@@ -38845,6 +39872,12 @@ func (m *UserMutation) ClearedFields() []string {
 	if m.FieldCleared(user.FieldOpenid) {
 		fields = append(fields, user.FieldOpenid)
 	}
+	if m.FieldCleared(user.FieldPasswd) {
+		fields = append(fields, user.FieldPasswd)
+	}
+	if m.FieldCleared(user.FieldUse2fa) {
+		fields = append(fields, user.FieldUse2fa)
+	}
 	if m.FieldCleared(user.FieldCreated) {
 		fields = append(fields, user.FieldCreated)
 	}
@@ -38868,6 +39901,21 @@ func (m *UserMutation) ClearedFields() []string {
 	}
 	if m.FieldCleared(user.FieldHash) {
 		fields = append(fields, user.FieldHash)
+	}
+	if m.FieldCleared(user.FieldTotpSecret) {
+		fields = append(fields, user.FieldTotpSecret)
+	}
+	if m.FieldCleared(user.FieldTotpSecretConfirmed) {
+		fields = append(fields, user.FieldTotpSecretConfirmed)
+	}
+	if m.FieldCleared(user.FieldForgotPasswordCode) {
+		fields = append(fields, user.FieldForgotPasswordCode)
+	}
+	if m.FieldCleared(user.FieldForgotPasswordCodeExpiresAt) {
+		fields = append(fields, user.FieldForgotPasswordCodeExpiresAt)
+	}
+	if m.FieldCleared(user.FieldNewUserToken) {
+		fields = append(fields, user.FieldNewUserToken)
 	}
 	return fields
 }
@@ -38901,6 +39949,12 @@ func (m *UserMutation) ClearField(name string) error {
 	case user.FieldOpenid:
 		m.ClearOpenid()
 		return nil
+	case user.FieldPasswd:
+		m.ClearPasswd()
+		return nil
+	case user.FieldUse2fa:
+		m.ClearUse2fa()
+		return nil
 	case user.FieldCreated:
 		m.ClearCreated()
 		return nil
@@ -38924,6 +39978,21 @@ func (m *UserMutation) ClearField(name string) error {
 		return nil
 	case user.FieldHash:
 		m.ClearHash()
+		return nil
+	case user.FieldTotpSecret:
+		m.ClearTotpSecret()
+		return nil
+	case user.FieldTotpSecretConfirmed:
+		m.ClearTotpSecretConfirmed()
+		return nil
+	case user.FieldForgotPasswordCode:
+		m.ClearForgotPasswordCode()
+		return nil
+	case user.FieldForgotPasswordCodeExpiresAt:
+		m.ClearForgotPasswordCodeExpiresAt()
+		return nil
+	case user.FieldNewUserToken:
+		m.ClearNewUserToken()
 		return nil
 	}
 	return fmt.Errorf("unknown User nullable field %s", name)
@@ -38960,6 +40029,12 @@ func (m *UserMutation) ResetField(name string) error {
 	case user.FieldOpenid:
 		m.ResetOpenid()
 		return nil
+	case user.FieldPasswd:
+		m.ResetPasswd()
+		return nil
+	case user.FieldUse2fa:
+		m.ResetUse2fa()
+		return nil
 	case user.FieldCreated:
 		m.ResetCreated()
 		return nil
@@ -38984,15 +40059,33 @@ func (m *UserMutation) ResetField(name string) error {
 	case user.FieldHash:
 		m.ResetHash()
 		return nil
+	case user.FieldTotpSecret:
+		m.ResetTotpSecret()
+		return nil
+	case user.FieldTotpSecretConfirmed:
+		m.ResetTotpSecretConfirmed()
+		return nil
+	case user.FieldForgotPasswordCode:
+		m.ResetForgotPasswordCode()
+		return nil
+	case user.FieldForgotPasswordCodeExpiresAt:
+		m.ResetForgotPasswordCodeExpiresAt()
+		return nil
+	case user.FieldNewUserToken:
+		m.ResetNewUserToken()
+		return nil
 	}
 	return fmt.Errorf("unknown User field %s", name)
 }
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *UserMutation) AddedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 2)
 	if m.sessions != nil {
 		edges = append(edges, user.EdgeSessions)
+	}
+	if m.recoverycodes != nil {
+		edges = append(edges, user.EdgeRecoverycodes)
 	}
 	return edges
 }
@@ -39007,15 +40100,24 @@ func (m *UserMutation) AddedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case user.EdgeRecoverycodes:
+		ids := make([]ent.Value, 0, len(m.recoverycodes))
+		for id := range m.recoverycodes {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *UserMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 2)
 	if m.removedsessions != nil {
 		edges = append(edges, user.EdgeSessions)
+	}
+	if m.removedrecoverycodes != nil {
+		edges = append(edges, user.EdgeRecoverycodes)
 	}
 	return edges
 }
@@ -39030,15 +40132,24 @@ func (m *UserMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case user.EdgeRecoverycodes:
+		ids := make([]ent.Value, 0, len(m.removedrecoverycodes))
+		for id := range m.removedrecoverycodes {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *UserMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 2)
 	if m.clearedsessions {
 		edges = append(edges, user.EdgeSessions)
+	}
+	if m.clearedrecoverycodes {
+		edges = append(edges, user.EdgeRecoverycodes)
 	}
 	return edges
 }
@@ -39049,6 +40160,8 @@ func (m *UserMutation) EdgeCleared(name string) bool {
 	switch name {
 	case user.EdgeSessions:
 		return m.clearedsessions
+	case user.EdgeRecoverycodes:
+		return m.clearedrecoverycodes
 	}
 	return false
 }
@@ -39067,6 +40180,9 @@ func (m *UserMutation) ResetEdge(name string) error {
 	switch name {
 	case user.EdgeSessions:
 		m.ResetSessions()
+		return nil
+	case user.EdgeRecoverycodes:
+		m.ResetRecoverycodes()
 		return nil
 	}
 	return fmt.Errorf("unknown User edge %s", name)

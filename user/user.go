@@ -32,6 +32,10 @@ const (
 	FieldExpiry = "expiry"
 	// FieldOpenid holds the string denoting the openid field in the database.
 	FieldOpenid = "openid"
+	// FieldPasswd holds the string denoting the passwd field in the database.
+	FieldPasswd = "passwd"
+	// FieldUse2fa holds the string denoting the use2fa field in the database.
+	FieldUse2fa = "use2fa"
 	// FieldCreated holds the string denoting the created field in the database.
 	FieldCreated = "created"
 	// FieldModified holds the string denoting the modified field in the database.
@@ -48,10 +52,24 @@ const (
 	FieldTokenExpiry = "token_expiry"
 	// FieldHash holds the string denoting the hash field in the database.
 	FieldHash = "hash"
+	// FieldTotpSecret holds the string denoting the totp_secret field in the database.
+	FieldTotpSecret = "totp_secret"
+	// FieldTotpSecretConfirmed holds the string denoting the totp_secret_confirmed field in the database.
+	FieldTotpSecretConfirmed = "totp_secret_confirmed"
+	// FieldForgotPasswordCode holds the string denoting the forgot_password_code field in the database.
+	FieldForgotPasswordCode = "forgot_password_code"
+	// FieldForgotPasswordCodeExpiresAt holds the string denoting the forgot_password_code_expires_at field in the database.
+	FieldForgotPasswordCodeExpiresAt = "forgot_password_code_expires_at"
+	// FieldNewUserToken holds the string denoting the new_user_token field in the database.
+	FieldNewUserToken = "new_user_token"
 	// EdgeSessions holds the string denoting the sessions edge name in mutations.
 	EdgeSessions = "sessions"
+	// EdgeRecoverycodes holds the string denoting the recoverycodes edge name in mutations.
+	EdgeRecoverycodes = "recoverycodes"
 	// SessionsFieldID holds the string denoting the ID field of the Sessions.
 	SessionsFieldID = "token"
+	// RecoveryCodeFieldID holds the string denoting the ID field of the RecoveryCode.
+	RecoveryCodeFieldID = "id"
 	// Table holds the table name of the user in the database.
 	Table = "users"
 	// SessionsTable is the table that holds the sessions relation/edge.
@@ -61,6 +79,13 @@ const (
 	SessionsInverseTable = "sessions"
 	// SessionsColumn is the table column denoting the sessions relation/edge.
 	SessionsColumn = "user_sessions"
+	// RecoverycodesTable is the table that holds the recoverycodes relation/edge.
+	RecoverycodesTable = "recovery_codes"
+	// RecoverycodesInverseTable is the table name for the RecoveryCode entity.
+	// It exists in this package in order to avoid circular dependency with the "recoverycode" package.
+	RecoverycodesInverseTable = "recovery_codes"
+	// RecoverycodesColumn is the table column denoting the recoverycodes relation/edge.
+	RecoverycodesColumn = "user_recoverycodes"
 )
 
 // Columns holds all SQL columns for user fields.
@@ -75,6 +100,8 @@ var Columns = []string{
 	FieldCertClearPassword,
 	FieldExpiry,
 	FieldOpenid,
+	FieldPasswd,
+	FieldUse2fa,
 	FieldCreated,
 	FieldModified,
 	FieldAccessToken,
@@ -83,6 +110,11 @@ var Columns = []string{
 	FieldTokenType,
 	FieldTokenExpiry,
 	FieldHash,
+	FieldTotpSecret,
+	FieldTotpSecretConfirmed,
+	FieldForgotPasswordCode,
+	FieldForgotPasswordCodeExpiresAt,
+	FieldNewUserToken,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -102,6 +134,10 @@ var (
 	DefaultRegister string
 	// DefaultOpenid holds the default value on creation for the "openid" field.
 	DefaultOpenid bool
+	// DefaultPasswd holds the default value on creation for the "passwd" field.
+	DefaultPasswd bool
+	// DefaultUse2fa holds the default value on creation for the "use2fa" field.
+	DefaultUse2fa bool
 	// DefaultCreated holds the default value on creation for the "created" field.
 	DefaultCreated func() time.Time
 	// DefaultModified holds the default value on creation for the "modified" field.
@@ -120,6 +156,16 @@ var (
 	DefaultTokenExpiry int
 	// DefaultHash holds the default value on creation for the "hash" field.
 	DefaultHash string
+	// DefaultTotpSecret holds the default value on creation for the "totp_secret" field.
+	DefaultTotpSecret string
+	// DefaultTotpSecretConfirmed holds the default value on creation for the "totp_secret_confirmed" field.
+	DefaultTotpSecretConfirmed bool
+	// DefaultForgotPasswordCode holds the default value on creation for the "forgot_password_code" field.
+	DefaultForgotPasswordCode string
+	// DefaultForgotPasswordCodeExpiresAt holds the default value on creation for the "forgot_password_code_expires_at" field.
+	DefaultForgotPasswordCodeExpiresAt func() time.Time
+	// DefaultNewUserToken holds the default value on creation for the "new_user_token" field.
+	DefaultNewUserToken string
 	// IDValidator is a validator for the "id" field. It is called by the builders before save.
 	IDValidator func(string) error
 )
@@ -177,6 +223,16 @@ func ByOpenid(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldOpenid, opts...).ToFunc()
 }
 
+// ByPasswd orders the results by the passwd field.
+func ByPasswd(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldPasswd, opts...).ToFunc()
+}
+
+// ByUse2fa orders the results by the use2fa field.
+func ByUse2fa(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUse2fa, opts...).ToFunc()
+}
+
 // ByCreated orders the results by the created field.
 func ByCreated(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldCreated, opts...).ToFunc()
@@ -217,6 +273,31 @@ func ByHash(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldHash, opts...).ToFunc()
 }
 
+// ByTotpSecret orders the results by the totp_secret field.
+func ByTotpSecret(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldTotpSecret, opts...).ToFunc()
+}
+
+// ByTotpSecretConfirmed orders the results by the totp_secret_confirmed field.
+func ByTotpSecretConfirmed(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldTotpSecretConfirmed, opts...).ToFunc()
+}
+
+// ByForgotPasswordCode orders the results by the forgot_password_code field.
+func ByForgotPasswordCode(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldForgotPasswordCode, opts...).ToFunc()
+}
+
+// ByForgotPasswordCodeExpiresAt orders the results by the forgot_password_code_expires_at field.
+func ByForgotPasswordCodeExpiresAt(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldForgotPasswordCodeExpiresAt, opts...).ToFunc()
+}
+
+// ByNewUserToken orders the results by the new_user_token field.
+func ByNewUserToken(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldNewUserToken, opts...).ToFunc()
+}
+
 // BySessionsCount orders the results by sessions count.
 func BySessionsCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
@@ -230,10 +311,31 @@ func BySessions(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newSessionsStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
+
+// ByRecoverycodesCount orders the results by recoverycodes count.
+func ByRecoverycodesCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newRecoverycodesStep(), opts...)
+	}
+}
+
+// ByRecoverycodes orders the results by recoverycodes terms.
+func ByRecoverycodes(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newRecoverycodesStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newSessionsStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(SessionsInverseTable, SessionsFieldID),
 		sqlgraph.Edge(sqlgraph.O2M, false, SessionsTable, SessionsColumn),
+	)
+}
+func newRecoverycodesStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(RecoverycodesInverseTable, RecoveryCodeFieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, RecoverycodesTable, RecoverycodesColumn),
 	)
 }
