@@ -83,6 +83,11 @@ func BitlockerStatus(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerStatus, v))
 }
 
+// DriveType applies equality check predicate on the "drive_type" field. It's identical to DriveTypeEQ.
+func DriveType(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldDriveType, v))
+}
+
 // LabelEQ applies the EQ predicate on the "label" field.
 func LabelEQ(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldLabel, v))
@@ -561,6 +566,81 @@ func BitlockerStatusEqualFold(v string) predicate.LogicalDisk {
 // BitlockerStatusContainsFold applies the ContainsFold predicate on the "bitlocker_status" field.
 func BitlockerStatusContainsFold(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerStatus, v))
+}
+
+// DriveTypeEQ applies the EQ predicate on the "drive_type" field.
+func DriveTypeEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldDriveType, v))
+}
+
+// DriveTypeNEQ applies the NEQ predicate on the "drive_type" field.
+func DriveTypeNEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldDriveType, v))
+}
+
+// DriveTypeIn applies the In predicate on the "drive_type" field.
+func DriveTypeIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldDriveType, vs...))
+}
+
+// DriveTypeNotIn applies the NotIn predicate on the "drive_type" field.
+func DriveTypeNotIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldDriveType, vs...))
+}
+
+// DriveTypeGT applies the GT predicate on the "drive_type" field.
+func DriveTypeGT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldDriveType, v))
+}
+
+// DriveTypeGTE applies the GTE predicate on the "drive_type" field.
+func DriveTypeGTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldDriveType, v))
+}
+
+// DriveTypeLT applies the LT predicate on the "drive_type" field.
+func DriveTypeLT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldDriveType, v))
+}
+
+// DriveTypeLTE applies the LTE predicate on the "drive_type" field.
+func DriveTypeLTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldDriveType, v))
+}
+
+// DriveTypeContains applies the Contains predicate on the "drive_type" field.
+func DriveTypeContains(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContains(FieldDriveType, v))
+}
+
+// DriveTypeHasPrefix applies the HasPrefix predicate on the "drive_type" field.
+func DriveTypeHasPrefix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasPrefix(FieldDriveType, v))
+}
+
+// DriveTypeHasSuffix applies the HasSuffix predicate on the "drive_type" field.
+func DriveTypeHasSuffix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasSuffix(FieldDriveType, v))
+}
+
+// DriveTypeIsNil applies the IsNil predicate on the "drive_type" field.
+func DriveTypeIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldDriveType))
+}
+
+// DriveTypeNotNil applies the NotNil predicate on the "drive_type" field.
+func DriveTypeNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldDriveType))
+}
+
+// DriveTypeEqualFold applies the EqualFold predicate on the "drive_type" field.
+func DriveTypeEqualFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEqualFold(FieldDriveType, v))
+}
+
+// DriveTypeContainsFold applies the ContainsFold predicate on the "drive_type" field.
+func DriveTypeContainsFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContainsFold(FieldDriveType, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

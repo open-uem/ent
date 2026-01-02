@@ -112,6 +112,20 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerStatus(s *string) *LogicalDisk
 	return ldc
 }
 
+// SetDriveType sets the "drive_type" field.
+func (ldc *LogicalDiskCreate) SetDriveType(s string) *LogicalDiskCreate {
+	ldc.mutation.SetDriveType(s)
+	return ldc
+}
+
+// SetNillableDriveType sets the "drive_type" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableDriveType(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetDriveType(*s)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -229,6 +243,10 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerStatus(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerStatus, field.TypeString, value)
 		_node.BitlockerStatus = value
+	}
+	if value, ok := ldc.mutation.DriveType(); ok {
+		_spec.SetField(logicaldisk.FieldDriveType, field.TypeString, value)
+		_node.DriveType = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -419,6 +437,24 @@ func (u *LogicalDiskUpsert) ClearBitlockerStatus() *LogicalDiskUpsert {
 	return u
 }
 
+// SetDriveType sets the "drive_type" field.
+func (u *LogicalDiskUpsert) SetDriveType(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldDriveType, v)
+	return u
+}
+
+// UpdateDriveType sets the "drive_type" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateDriveType() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldDriveType)
+	return u
+}
+
+// ClearDriveType clears the value of the "drive_type" field.
+func (u *LogicalDiskUpsert) ClearDriveType() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldDriveType)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create.
 // Using this option is equivalent to using:
 //
@@ -596,6 +632,27 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerStatus() *LogicalDiskUpsertOne {
 func (u *LogicalDiskUpsertOne) ClearBitlockerStatus() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerStatus()
+	})
+}
+
+// SetDriveType sets the "drive_type" field.
+func (u *LogicalDiskUpsertOne) SetDriveType(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetDriveType(v)
+	})
+}
+
+// UpdateDriveType sets the "drive_type" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateDriveType() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateDriveType()
+	})
+}
+
+// ClearDriveType clears the value of the "drive_type" field.
+func (u *LogicalDiskUpsertOne) ClearDriveType() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearDriveType()
 	})
 }
 
@@ -940,6 +997,27 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerStatus() *LogicalDiskUpsertBulk {
 func (u *LogicalDiskUpsertBulk) ClearBitlockerStatus() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerStatus()
+	})
+}
+
+// SetDriveType sets the "drive_type" field.
+func (u *LogicalDiskUpsertBulk) SetDriveType(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetDriveType(v)
+	})
+}
+
+// UpdateDriveType sets the "drive_type" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateDriveType() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateDriveType()
+	})
+}
+
+// ClearDriveType clears the value of the "drive_type" field.
+func (u *LogicalDiskUpsertBulk) ClearDriveType() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearDriveType()
 	})
 }
 

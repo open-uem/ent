@@ -207,6 +207,7 @@ var (
 		{Name: "remaining_space_in_units", Type: field.TypeString, Nullable: true},
 		{Name: "volume_name", Type: field.TypeString, Nullable: true},
 		{Name: "bitlocker_status", Type: field.TypeString, Nullable: true},
+		{Name: "drive_type", Type: field.TypeString, Nullable: true},
 		{Name: "agent_logicaldisks", Type: field.TypeString},
 	}
 	// LogicalDisksTable holds the schema information for the "logical_disks" table.
@@ -217,7 +218,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "logical_disks_agents_logicaldisks",
-				Columns:    []*schema.Column{LogicalDisksColumns[8]},
+				Columns:    []*schema.Column{LogicalDisksColumns[9]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
