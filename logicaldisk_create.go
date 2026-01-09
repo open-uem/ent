@@ -112,16 +112,16 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerStatus(s *string) *LogicalDisk
 	return ldc
 }
 
-// SetDriveType sets the "drive_type" field.
-func (ldc *LogicalDiskCreate) SetDriveType(s string) *LogicalDiskCreate {
-	ldc.mutation.SetDriveType(s)
+// SetVolumeType sets the "volume_type" field.
+func (ldc *LogicalDiskCreate) SetVolumeType(s string) *LogicalDiskCreate {
+	ldc.mutation.SetVolumeType(s)
 	return ldc
 }
 
-// SetNillableDriveType sets the "drive_type" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableDriveType(s *string) *LogicalDiskCreate {
+// SetNillableVolumeType sets the "volume_type" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableVolumeType(s *string) *LogicalDiskCreate {
 	if s != nil {
-		ldc.SetDriveType(*s)
+		ldc.SetVolumeType(*s)
 	}
 	return ldc
 }
@@ -244,9 +244,9 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 		_spec.SetField(logicaldisk.FieldBitlockerStatus, field.TypeString, value)
 		_node.BitlockerStatus = value
 	}
-	if value, ok := ldc.mutation.DriveType(); ok {
-		_spec.SetField(logicaldisk.FieldDriveType, field.TypeString, value)
-		_node.DriveType = value
+	if value, ok := ldc.mutation.VolumeType(); ok {
+		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeString, value)
+		_node.VolumeType = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -437,21 +437,21 @@ func (u *LogicalDiskUpsert) ClearBitlockerStatus() *LogicalDiskUpsert {
 	return u
 }
 
-// SetDriveType sets the "drive_type" field.
-func (u *LogicalDiskUpsert) SetDriveType(v string) *LogicalDiskUpsert {
-	u.Set(logicaldisk.FieldDriveType, v)
+// SetVolumeType sets the "volume_type" field.
+func (u *LogicalDiskUpsert) SetVolumeType(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldVolumeType, v)
 	return u
 }
 
-// UpdateDriveType sets the "drive_type" field to the value that was provided on create.
-func (u *LogicalDiskUpsert) UpdateDriveType() *LogicalDiskUpsert {
-	u.SetExcluded(logicaldisk.FieldDriveType)
+// UpdateVolumeType sets the "volume_type" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateVolumeType() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldVolumeType)
 	return u
 }
 
-// ClearDriveType clears the value of the "drive_type" field.
-func (u *LogicalDiskUpsert) ClearDriveType() *LogicalDiskUpsert {
-	u.SetNull(logicaldisk.FieldDriveType)
+// ClearVolumeType clears the value of the "volume_type" field.
+func (u *LogicalDiskUpsert) ClearVolumeType() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldVolumeType)
 	return u
 }
 
@@ -635,24 +635,24 @@ func (u *LogicalDiskUpsertOne) ClearBitlockerStatus() *LogicalDiskUpsertOne {
 	})
 }
 
-// SetDriveType sets the "drive_type" field.
-func (u *LogicalDiskUpsertOne) SetDriveType(v string) *LogicalDiskUpsertOne {
+// SetVolumeType sets the "volume_type" field.
+func (u *LogicalDiskUpsertOne) SetVolumeType(v string) *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
-		s.SetDriveType(v)
+		s.SetVolumeType(v)
 	})
 }
 
-// UpdateDriveType sets the "drive_type" field to the value that was provided on create.
-func (u *LogicalDiskUpsertOne) UpdateDriveType() *LogicalDiskUpsertOne {
+// UpdateVolumeType sets the "volume_type" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateVolumeType() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
-		s.UpdateDriveType()
+		s.UpdateVolumeType()
 	})
 }
 
-// ClearDriveType clears the value of the "drive_type" field.
-func (u *LogicalDiskUpsertOne) ClearDriveType() *LogicalDiskUpsertOne {
+// ClearVolumeType clears the value of the "volume_type" field.
+func (u *LogicalDiskUpsertOne) ClearVolumeType() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
-		s.ClearDriveType()
+		s.ClearVolumeType()
 	})
 }
 
@@ -1000,24 +1000,24 @@ func (u *LogicalDiskUpsertBulk) ClearBitlockerStatus() *LogicalDiskUpsertBulk {
 	})
 }
 
-// SetDriveType sets the "drive_type" field.
-func (u *LogicalDiskUpsertBulk) SetDriveType(v string) *LogicalDiskUpsertBulk {
+// SetVolumeType sets the "volume_type" field.
+func (u *LogicalDiskUpsertBulk) SetVolumeType(v string) *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
-		s.SetDriveType(v)
+		s.SetVolumeType(v)
 	})
 }
 
-// UpdateDriveType sets the "drive_type" field to the value that was provided on create.
-func (u *LogicalDiskUpsertBulk) UpdateDriveType() *LogicalDiskUpsertBulk {
+// UpdateVolumeType sets the "volume_type" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateVolumeType() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
-		s.UpdateDriveType()
+		s.UpdateVolumeType()
 	})
 }
 
-// ClearDriveType clears the value of the "drive_type" field.
-func (u *LogicalDiskUpsertBulk) ClearDriveType() *LogicalDiskUpsertBulk {
+// ClearVolumeType clears the value of the "volume_type" field.
+func (u *LogicalDiskUpsertBulk) ClearVolumeType() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
-		s.ClearDriveType()
+		s.ClearVolumeType()
 	})
 }
 

@@ -31,8 +31,8 @@ type LogicalDisk struct {
 	VolumeName string `json:"volume_name,omitempty"`
 	// BitlockerStatus holds the value of the "bitlocker_status" field.
 	BitlockerStatus string `json:"bitlocker_status,omitempty"`
-	// DriveType holds the value of the "drive_type" field.
-	DriveType string `json:"drive_type,omitempty"`
+	// VolumeType holds the value of the "volume_type" field.
+	VolumeType string `json:"volume_type,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -67,7 +67,7 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case logicaldisk.FieldID, logicaldisk.FieldUsage:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldDriveType:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldVolumeType:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -134,11 +134,11 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				ld.BitlockerStatus = value.String
 			}
-		case logicaldisk.FieldDriveType:
+		case logicaldisk.FieldVolumeType:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field drive_type", values[i])
+				return fmt.Errorf("unexpected type %T for field volume_type", values[i])
 			} else if value.Valid {
-				ld.DriveType = value.String
+				ld.VolumeType = value.String
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -209,8 +209,8 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString("bitlocker_status=")
 	builder.WriteString(ld.BitlockerStatus)
 	builder.WriteString(", ")
-	builder.WriteString("drive_type=")
-	builder.WriteString(ld.DriveType)
+	builder.WriteString("volume_type=")
+	builder.WriteString(ld.VolumeType)
 	builder.WriteByte(')')
 	return builder.String()
 }

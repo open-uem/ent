@@ -26,8 +26,8 @@ const (
 	FieldVolumeName = "volume_name"
 	// FieldBitlockerStatus holds the string denoting the bitlocker_status field in the database.
 	FieldBitlockerStatus = "bitlocker_status"
-	// FieldDriveType holds the string denoting the drive_type field in the database.
-	FieldDriveType = "drive_type"
+	// FieldVolumeType holds the string denoting the volume_type field in the database.
+	FieldVolumeType = "volume_type"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -53,7 +53,7 @@ var Columns = []string{
 	FieldRemainingSpaceInUnits,
 	FieldVolumeName,
 	FieldBitlockerStatus,
-	FieldDriveType,
+	FieldVolumeType,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -125,9 +125,9 @@ func ByBitlockerStatus(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBitlockerStatus, opts...).ToFunc()
 }
 
-// ByDriveType orders the results by the drive_type field.
-func ByDriveType(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldDriveType, opts...).ToFunc()
+// ByVolumeType orders the results by the volume_type field.
+func ByVolumeType(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldVolumeType, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

@@ -164,23 +164,23 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerStatus() *LogicalDiskUpdate {
 	return ldu
 }
 
-// SetDriveType sets the "drive_type" field.
-func (ldu *LogicalDiskUpdate) SetDriveType(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetDriveType(s)
+// SetVolumeType sets the "volume_type" field.
+func (ldu *LogicalDiskUpdate) SetVolumeType(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetVolumeType(s)
 	return ldu
 }
 
-// SetNillableDriveType sets the "drive_type" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableDriveType(s *string) *LogicalDiskUpdate {
+// SetNillableVolumeType sets the "volume_type" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableVolumeType(s *string) *LogicalDiskUpdate {
 	if s != nil {
-		ldu.SetDriveType(*s)
+		ldu.SetVolumeType(*s)
 	}
 	return ldu
 }
 
-// ClearDriveType clears the value of the "drive_type" field.
-func (ldu *LogicalDiskUpdate) ClearDriveType() *LogicalDiskUpdate {
-	ldu.mutation.ClearDriveType()
+// ClearVolumeType clears the value of the "volume_type" field.
+func (ldu *LogicalDiskUpdate) ClearVolumeType() *LogicalDiskUpdate {
+	ldu.mutation.ClearVolumeType()
 	return ldu
 }
 
@@ -298,11 +298,11 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if ldu.mutation.BitlockerStatusCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
 	}
-	if value, ok := ldu.mutation.DriveType(); ok {
-		_spec.SetField(logicaldisk.FieldDriveType, field.TypeString, value)
+	if value, ok := ldu.mutation.VolumeType(); ok {
+		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeString, value)
 	}
-	if ldu.mutation.DriveTypeCleared() {
-		_spec.ClearField(logicaldisk.FieldDriveType, field.TypeString)
+	if ldu.mutation.VolumeTypeCleared() {
+		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -490,23 +490,23 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerStatus() *LogicalDiskUpdateOne {
 	return lduo
 }
 
-// SetDriveType sets the "drive_type" field.
-func (lduo *LogicalDiskUpdateOne) SetDriveType(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetDriveType(s)
+// SetVolumeType sets the "volume_type" field.
+func (lduo *LogicalDiskUpdateOne) SetVolumeType(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetVolumeType(s)
 	return lduo
 }
 
-// SetNillableDriveType sets the "drive_type" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableDriveType(s *string) *LogicalDiskUpdateOne {
+// SetNillableVolumeType sets the "volume_type" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableVolumeType(s *string) *LogicalDiskUpdateOne {
 	if s != nil {
-		lduo.SetDriveType(*s)
+		lduo.SetVolumeType(*s)
 	}
 	return lduo
 }
 
-// ClearDriveType clears the value of the "drive_type" field.
-func (lduo *LogicalDiskUpdateOne) ClearDriveType() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearDriveType()
+// ClearVolumeType clears the value of the "volume_type" field.
+func (lduo *LogicalDiskUpdateOne) ClearVolumeType() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearVolumeType()
 	return lduo
 }
 
@@ -654,11 +654,11 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	if lduo.mutation.BitlockerStatusCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
 	}
-	if value, ok := lduo.mutation.DriveType(); ok {
-		_spec.SetField(logicaldisk.FieldDriveType, field.TypeString, value)
+	if value, ok := lduo.mutation.VolumeType(); ok {
+		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeString, value)
 	}
-	if lduo.mutation.DriveTypeCleared() {
-		_spec.ClearField(logicaldisk.FieldDriveType, field.TypeString)
+	if lduo.mutation.VolumeTypeCleared() {
+		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

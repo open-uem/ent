@@ -8637,7 +8637,7 @@ type LogicalDiskMutation struct {
 	remaining_space_in_units *string
 	volume_name              *string
 	bitlocker_status         *string
-	drive_type               *string
+	volume_type              *string
 	clearedFields            map[string]struct{}
 	owner                    *string
 	clearedowner             bool
@@ -9081,53 +9081,53 @@ func (m *LogicalDiskMutation) ResetBitlockerStatus() {
 	delete(m.clearedFields, logicaldisk.FieldBitlockerStatus)
 }
 
-// SetDriveType sets the "drive_type" field.
-func (m *LogicalDiskMutation) SetDriveType(s string) {
-	m.drive_type = &s
+// SetVolumeType sets the "volume_type" field.
+func (m *LogicalDiskMutation) SetVolumeType(s string) {
+	m.volume_type = &s
 }
 
-// DriveType returns the value of the "drive_type" field in the mutation.
-func (m *LogicalDiskMutation) DriveType() (r string, exists bool) {
-	v := m.drive_type
+// VolumeType returns the value of the "volume_type" field in the mutation.
+func (m *LogicalDiskMutation) VolumeType() (r string, exists bool) {
+	v := m.volume_type
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldDriveType returns the old "drive_type" field's value of the LogicalDisk entity.
+// OldVolumeType returns the old "volume_type" field's value of the LogicalDisk entity.
 // If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *LogicalDiskMutation) OldDriveType(ctx context.Context) (v string, err error) {
+func (m *LogicalDiskMutation) OldVolumeType(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldDriveType is only allowed on UpdateOne operations")
+		return v, errors.New("OldVolumeType is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldDriveType requires an ID field in the mutation")
+		return v, errors.New("OldVolumeType requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldDriveType: %w", err)
+		return v, fmt.Errorf("querying old value for OldVolumeType: %w", err)
 	}
-	return oldValue.DriveType, nil
+	return oldValue.VolumeType, nil
 }
 
-// ClearDriveType clears the value of the "drive_type" field.
-func (m *LogicalDiskMutation) ClearDriveType() {
-	m.drive_type = nil
-	m.clearedFields[logicaldisk.FieldDriveType] = struct{}{}
+// ClearVolumeType clears the value of the "volume_type" field.
+func (m *LogicalDiskMutation) ClearVolumeType() {
+	m.volume_type = nil
+	m.clearedFields[logicaldisk.FieldVolumeType] = struct{}{}
 }
 
-// DriveTypeCleared returns if the "drive_type" field was cleared in this mutation.
-func (m *LogicalDiskMutation) DriveTypeCleared() bool {
-	_, ok := m.clearedFields[logicaldisk.FieldDriveType]
+// VolumeTypeCleared returns if the "volume_type" field was cleared in this mutation.
+func (m *LogicalDiskMutation) VolumeTypeCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldVolumeType]
 	return ok
 }
 
-// ResetDriveType resets all changes to the "drive_type" field.
-func (m *LogicalDiskMutation) ResetDriveType() {
-	m.drive_type = nil
-	delete(m.clearedFields, logicaldisk.FieldDriveType)
+// ResetVolumeType resets all changes to the "volume_type" field.
+func (m *LogicalDiskMutation) ResetVolumeType() {
+	m.volume_type = nil
+	delete(m.clearedFields, logicaldisk.FieldVolumeType)
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
@@ -9225,8 +9225,8 @@ func (m *LogicalDiskMutation) Fields() []string {
 	if m.bitlocker_status != nil {
 		fields = append(fields, logicaldisk.FieldBitlockerStatus)
 	}
-	if m.drive_type != nil {
-		fields = append(fields, logicaldisk.FieldDriveType)
+	if m.volume_type != nil {
+		fields = append(fields, logicaldisk.FieldVolumeType)
 	}
 	return fields
 }
@@ -9250,8 +9250,8 @@ func (m *LogicalDiskMutation) Field(name string) (ent.Value, bool) {
 		return m.VolumeName()
 	case logicaldisk.FieldBitlockerStatus:
 		return m.BitlockerStatus()
-	case logicaldisk.FieldDriveType:
-		return m.DriveType()
+	case logicaldisk.FieldVolumeType:
+		return m.VolumeType()
 	}
 	return nil, false
 }
@@ -9275,8 +9275,8 @@ func (m *LogicalDiskMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldVolumeName(ctx)
 	case logicaldisk.FieldBitlockerStatus:
 		return m.OldBitlockerStatus(ctx)
-	case logicaldisk.FieldDriveType:
-		return m.OldDriveType(ctx)
+	case logicaldisk.FieldVolumeType:
+		return m.OldVolumeType(ctx)
 	}
 	return nil, fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -9335,12 +9335,12 @@ func (m *LogicalDiskMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetBitlockerStatus(v)
 		return nil
-	case logicaldisk.FieldDriveType:
+	case logicaldisk.FieldVolumeType:
 		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetDriveType(v)
+		m.SetVolumeType(v)
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)
@@ -9402,8 +9402,8 @@ func (m *LogicalDiskMutation) ClearedFields() []string {
 	if m.FieldCleared(logicaldisk.FieldBitlockerStatus) {
 		fields = append(fields, logicaldisk.FieldBitlockerStatus)
 	}
-	if m.FieldCleared(logicaldisk.FieldDriveType) {
-		fields = append(fields, logicaldisk.FieldDriveType)
+	if m.FieldCleared(logicaldisk.FieldVolumeType) {
+		fields = append(fields, logicaldisk.FieldVolumeType)
 	}
 	return fields
 }
@@ -9434,8 +9434,8 @@ func (m *LogicalDiskMutation) ClearField(name string) error {
 	case logicaldisk.FieldBitlockerStatus:
 		m.ClearBitlockerStatus()
 		return nil
-	case logicaldisk.FieldDriveType:
-		m.ClearDriveType()
+	case logicaldisk.FieldVolumeType:
+		m.ClearVolumeType()
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk nullable field %s", name)
@@ -9466,8 +9466,8 @@ func (m *LogicalDiskMutation) ResetField(name string) error {
 	case logicaldisk.FieldBitlockerStatus:
 		m.ResetBitlockerStatus()
 		return nil
-	case logicaldisk.FieldDriveType:
-		m.ResetDriveType()
+	case logicaldisk.FieldVolumeType:
+		m.ResetVolumeType()
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)
