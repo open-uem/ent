@@ -22,6 +22,9 @@ func (LogicalDisk) Fields() []ent.Field {
 		field.String("volume_name").Optional(),
 		field.String("bitlocker_status").Optional(),
 		field.Uint32("volume_type").Optional(),
+		field.Int32("bitlocker_conversion_status").Optional(),
+		field.Int32("bitlocker_encryption_percentage").Optional(),
+		field.Int32("bitlocker_recovery_key").Optional(),
 	}
 }
 

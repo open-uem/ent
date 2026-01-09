@@ -8626,25 +8626,31 @@ func (m *DeploymentMutation) ResetEdge(name string) error {
 // LogicalDiskMutation represents an operation that mutates the LogicalDisk nodes in the graph.
 type LogicalDiskMutation struct {
 	config
-	op                       Op
-	typ                      string
-	id                       *int
-	label                    *string
-	filesystem               *string
-	usage                    *int8
-	addusage                 *int8
-	size_in_units            *string
-	remaining_space_in_units *string
-	volume_name              *string
-	bitlocker_status         *string
-	volume_type              *uint32
-	addvolume_type           *int32
-	clearedFields            map[string]struct{}
-	owner                    *string
-	clearedowner             bool
-	done                     bool
-	oldValue                 func(context.Context) (*LogicalDisk, error)
-	predicates               []predicate.LogicalDisk
+	op                                 Op
+	typ                                string
+	id                                 *int
+	label                              *string
+	filesystem                         *string
+	usage                              *int8
+	addusage                           *int8
+	size_in_units                      *string
+	remaining_space_in_units           *string
+	volume_name                        *string
+	bitlocker_status                   *string
+	volume_type                        *uint32
+	addvolume_type                     *int32
+	bitlocker_conversion_status        *int32
+	addbitlocker_conversion_status     *int32
+	bitlocker_encryption_percentage    *int32
+	addbitlocker_encryption_percentage *int32
+	bitlocker_recovery_key             *int32
+	addbitlocker_recovery_key          *int32
+	clearedFields                      map[string]struct{}
+	owner                              *string
+	clearedowner                       bool
+	done                               bool
+	oldValue                           func(context.Context) (*LogicalDisk, error)
+	predicates                         []predicate.LogicalDisk
 }
 
 var _ ent.Mutation = (*LogicalDiskMutation)(nil)
@@ -9152,6 +9158,216 @@ func (m *LogicalDiskMutation) ResetVolumeType() {
 	delete(m.clearedFields, logicaldisk.FieldVolumeType)
 }
 
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (m *LogicalDiskMutation) SetBitlockerConversionStatus(i int32) {
+	m.bitlocker_conversion_status = &i
+	m.addbitlocker_conversion_status = nil
+}
+
+// BitlockerConversionStatus returns the value of the "bitlocker_conversion_status" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerConversionStatus() (r int32, exists bool) {
+	v := m.bitlocker_conversion_status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerConversionStatus returns the old "bitlocker_conversion_status" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerConversionStatus(ctx context.Context) (v int32, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerConversionStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerConversionStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerConversionStatus: %w", err)
+	}
+	return oldValue.BitlockerConversionStatus, nil
+}
+
+// AddBitlockerConversionStatus adds i to the "bitlocker_conversion_status" field.
+func (m *LogicalDiskMutation) AddBitlockerConversionStatus(i int32) {
+	if m.addbitlocker_conversion_status != nil {
+		*m.addbitlocker_conversion_status += i
+	} else {
+		m.addbitlocker_conversion_status = &i
+	}
+}
+
+// AddedBitlockerConversionStatus returns the value that was added to the "bitlocker_conversion_status" field in this mutation.
+func (m *LogicalDiskMutation) AddedBitlockerConversionStatus() (r int32, exists bool) {
+	v := m.addbitlocker_conversion_status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearBitlockerConversionStatus clears the value of the "bitlocker_conversion_status" field.
+func (m *LogicalDiskMutation) ClearBitlockerConversionStatus() {
+	m.bitlocker_conversion_status = nil
+	m.addbitlocker_conversion_status = nil
+	m.clearedFields[logicaldisk.FieldBitlockerConversionStatus] = struct{}{}
+}
+
+// BitlockerConversionStatusCleared returns if the "bitlocker_conversion_status" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerConversionStatusCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerConversionStatus]
+	return ok
+}
+
+// ResetBitlockerConversionStatus resets all changes to the "bitlocker_conversion_status" field.
+func (m *LogicalDiskMutation) ResetBitlockerConversionStatus() {
+	m.bitlocker_conversion_status = nil
+	m.addbitlocker_conversion_status = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerConversionStatus)
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (m *LogicalDiskMutation) SetBitlockerEncryptionPercentage(i int32) {
+	m.bitlocker_encryption_percentage = &i
+	m.addbitlocker_encryption_percentage = nil
+}
+
+// BitlockerEncryptionPercentage returns the value of the "bitlocker_encryption_percentage" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerEncryptionPercentage() (r int32, exists bool) {
+	v := m.bitlocker_encryption_percentage
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerEncryptionPercentage returns the old "bitlocker_encryption_percentage" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerEncryptionPercentage(ctx context.Context) (v int32, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerEncryptionPercentage is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerEncryptionPercentage requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerEncryptionPercentage: %w", err)
+	}
+	return oldValue.BitlockerEncryptionPercentage, nil
+}
+
+// AddBitlockerEncryptionPercentage adds i to the "bitlocker_encryption_percentage" field.
+func (m *LogicalDiskMutation) AddBitlockerEncryptionPercentage(i int32) {
+	if m.addbitlocker_encryption_percentage != nil {
+		*m.addbitlocker_encryption_percentage += i
+	} else {
+		m.addbitlocker_encryption_percentage = &i
+	}
+}
+
+// AddedBitlockerEncryptionPercentage returns the value that was added to the "bitlocker_encryption_percentage" field in this mutation.
+func (m *LogicalDiskMutation) AddedBitlockerEncryptionPercentage() (r int32, exists bool) {
+	v := m.addbitlocker_encryption_percentage
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearBitlockerEncryptionPercentage clears the value of the "bitlocker_encryption_percentage" field.
+func (m *LogicalDiskMutation) ClearBitlockerEncryptionPercentage() {
+	m.bitlocker_encryption_percentage = nil
+	m.addbitlocker_encryption_percentage = nil
+	m.clearedFields[logicaldisk.FieldBitlockerEncryptionPercentage] = struct{}{}
+}
+
+// BitlockerEncryptionPercentageCleared returns if the "bitlocker_encryption_percentage" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerEncryptionPercentageCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerEncryptionPercentage]
+	return ok
+}
+
+// ResetBitlockerEncryptionPercentage resets all changes to the "bitlocker_encryption_percentage" field.
+func (m *LogicalDiskMutation) ResetBitlockerEncryptionPercentage() {
+	m.bitlocker_encryption_percentage = nil
+	m.addbitlocker_encryption_percentage = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerEncryptionPercentage)
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (m *LogicalDiskMutation) SetBitlockerRecoveryKey(i int32) {
+	m.bitlocker_recovery_key = &i
+	m.addbitlocker_recovery_key = nil
+}
+
+// BitlockerRecoveryKey returns the value of the "bitlocker_recovery_key" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerRecoveryKey() (r int32, exists bool) {
+	v := m.bitlocker_recovery_key
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerRecoveryKey returns the old "bitlocker_recovery_key" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerRecoveryKey(ctx context.Context) (v int32, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerRecoveryKey is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerRecoveryKey requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerRecoveryKey: %w", err)
+	}
+	return oldValue.BitlockerRecoveryKey, nil
+}
+
+// AddBitlockerRecoveryKey adds i to the "bitlocker_recovery_key" field.
+func (m *LogicalDiskMutation) AddBitlockerRecoveryKey(i int32) {
+	if m.addbitlocker_recovery_key != nil {
+		*m.addbitlocker_recovery_key += i
+	} else {
+		m.addbitlocker_recovery_key = &i
+	}
+}
+
+// AddedBitlockerRecoveryKey returns the value that was added to the "bitlocker_recovery_key" field in this mutation.
+func (m *LogicalDiskMutation) AddedBitlockerRecoveryKey() (r int32, exists bool) {
+	v := m.addbitlocker_recovery_key
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (m *LogicalDiskMutation) ClearBitlockerRecoveryKey() {
+	m.bitlocker_recovery_key = nil
+	m.addbitlocker_recovery_key = nil
+	m.clearedFields[logicaldisk.FieldBitlockerRecoveryKey] = struct{}{}
+}
+
+// BitlockerRecoveryKeyCleared returns if the "bitlocker_recovery_key" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerRecoveryKeyCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerRecoveryKey]
+	return ok
+}
+
+// ResetBitlockerRecoveryKey resets all changes to the "bitlocker_recovery_key" field.
+func (m *LogicalDiskMutation) ResetBitlockerRecoveryKey() {
+	m.bitlocker_recovery_key = nil
+	m.addbitlocker_recovery_key = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerRecoveryKey)
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
 func (m *LogicalDiskMutation) SetOwnerID(id string) {
 	m.owner = &id
@@ -9225,7 +9441,7 @@ func (m *LogicalDiskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *LogicalDiskMutation) Fields() []string {
-	fields := make([]string, 0, 8)
+	fields := make([]string, 0, 11)
 	if m.label != nil {
 		fields = append(fields, logicaldisk.FieldLabel)
 	}
@@ -9249,6 +9465,15 @@ func (m *LogicalDiskMutation) Fields() []string {
 	}
 	if m.volume_type != nil {
 		fields = append(fields, logicaldisk.FieldVolumeType)
+	}
+	if m.bitlocker_conversion_status != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerConversionStatus)
+	}
+	if m.bitlocker_encryption_percentage != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerEncryptionPercentage)
+	}
+	if m.bitlocker_recovery_key != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerRecoveryKey)
 	}
 	return fields
 }
@@ -9274,6 +9499,12 @@ func (m *LogicalDiskMutation) Field(name string) (ent.Value, bool) {
 		return m.BitlockerStatus()
 	case logicaldisk.FieldVolumeType:
 		return m.VolumeType()
+	case logicaldisk.FieldBitlockerConversionStatus:
+		return m.BitlockerConversionStatus()
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		return m.BitlockerEncryptionPercentage()
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		return m.BitlockerRecoveryKey()
 	}
 	return nil, false
 }
@@ -9299,6 +9530,12 @@ func (m *LogicalDiskMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldBitlockerStatus(ctx)
 	case logicaldisk.FieldVolumeType:
 		return m.OldVolumeType(ctx)
+	case logicaldisk.FieldBitlockerConversionStatus:
+		return m.OldBitlockerConversionStatus(ctx)
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		return m.OldBitlockerEncryptionPercentage(ctx)
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		return m.OldBitlockerRecoveryKey(ctx)
 	}
 	return nil, fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -9364,6 +9601,27 @@ func (m *LogicalDiskMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetVolumeType(v)
 		return nil
+	case logicaldisk.FieldBitlockerConversionStatus:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerConversionStatus(v)
+		return nil
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerEncryptionPercentage(v)
+		return nil
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerRecoveryKey(v)
+		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -9378,6 +9636,15 @@ func (m *LogicalDiskMutation) AddedFields() []string {
 	if m.addvolume_type != nil {
 		fields = append(fields, logicaldisk.FieldVolumeType)
 	}
+	if m.addbitlocker_conversion_status != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerConversionStatus)
+	}
+	if m.addbitlocker_encryption_percentage != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerEncryptionPercentage)
+	}
+	if m.addbitlocker_recovery_key != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerRecoveryKey)
+	}
 	return fields
 }
 
@@ -9390,6 +9657,12 @@ func (m *LogicalDiskMutation) AddedField(name string) (ent.Value, bool) {
 		return m.AddedUsage()
 	case logicaldisk.FieldVolumeType:
 		return m.AddedVolumeType()
+	case logicaldisk.FieldBitlockerConversionStatus:
+		return m.AddedBitlockerConversionStatus()
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		return m.AddedBitlockerEncryptionPercentage()
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		return m.AddedBitlockerRecoveryKey()
 	}
 	return nil, false
 }
@@ -9412,6 +9685,27 @@ func (m *LogicalDiskMutation) AddField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.AddVolumeType(v)
+		return nil
+	case logicaldisk.FieldBitlockerConversionStatus:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddBitlockerConversionStatus(v)
+		return nil
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddBitlockerEncryptionPercentage(v)
+		return nil
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		v, ok := value.(int32)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddBitlockerRecoveryKey(v)
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk numeric field %s", name)
@@ -9438,6 +9732,15 @@ func (m *LogicalDiskMutation) ClearedFields() []string {
 	}
 	if m.FieldCleared(logicaldisk.FieldVolumeType) {
 		fields = append(fields, logicaldisk.FieldVolumeType)
+	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerConversionStatus) {
+		fields = append(fields, logicaldisk.FieldBitlockerConversionStatus)
+	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerEncryptionPercentage) {
+		fields = append(fields, logicaldisk.FieldBitlockerEncryptionPercentage)
+	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerRecoveryKey) {
+		fields = append(fields, logicaldisk.FieldBitlockerRecoveryKey)
 	}
 	return fields
 }
@@ -9471,6 +9774,15 @@ func (m *LogicalDiskMutation) ClearField(name string) error {
 	case logicaldisk.FieldVolumeType:
 		m.ClearVolumeType()
 		return nil
+	case logicaldisk.FieldBitlockerConversionStatus:
+		m.ClearBitlockerConversionStatus()
+		return nil
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		m.ClearBitlockerEncryptionPercentage()
+		return nil
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		m.ClearBitlockerRecoveryKey()
+		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk nullable field %s", name)
 }
@@ -9502,6 +9814,15 @@ func (m *LogicalDiskMutation) ResetField(name string) error {
 		return nil
 	case logicaldisk.FieldVolumeType:
 		m.ResetVolumeType()
+		return nil
+	case logicaldisk.FieldBitlockerConversionStatus:
+		m.ResetBitlockerConversionStatus()
+		return nil
+	case logicaldisk.FieldBitlockerEncryptionPercentage:
+		m.ResetBitlockerEncryptionPercentage()
+		return nil
+	case logicaldisk.FieldBitlockerRecoveryKey:
+		m.ResetBitlockerRecoveryKey()
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)

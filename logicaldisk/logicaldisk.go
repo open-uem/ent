@@ -28,6 +28,12 @@ const (
 	FieldBitlockerStatus = "bitlocker_status"
 	// FieldVolumeType holds the string denoting the volume_type field in the database.
 	FieldVolumeType = "volume_type"
+	// FieldBitlockerConversionStatus holds the string denoting the bitlocker_conversion_status field in the database.
+	FieldBitlockerConversionStatus = "bitlocker_conversion_status"
+	// FieldBitlockerEncryptionPercentage holds the string denoting the bitlocker_encryption_percentage field in the database.
+	FieldBitlockerEncryptionPercentage = "bitlocker_encryption_percentage"
+	// FieldBitlockerRecoveryKey holds the string denoting the bitlocker_recovery_key field in the database.
+	FieldBitlockerRecoveryKey = "bitlocker_recovery_key"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -54,6 +60,9 @@ var Columns = []string{
 	FieldVolumeName,
 	FieldBitlockerStatus,
 	FieldVolumeType,
+	FieldBitlockerConversionStatus,
+	FieldBitlockerEncryptionPercentage,
+	FieldBitlockerRecoveryKey,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -128,6 +137,21 @@ func ByBitlockerStatus(opts ...sql.OrderTermOption) OrderOption {
 // ByVolumeType orders the results by the volume_type field.
 func ByVolumeType(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldVolumeType, opts...).ToFunc()
+}
+
+// ByBitlockerConversionStatus orders the results by the bitlocker_conversion_status field.
+func ByBitlockerConversionStatus(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerConversionStatus, opts...).ToFunc()
+}
+
+// ByBitlockerEncryptionPercentage orders the results by the bitlocker_encryption_percentage field.
+func ByBitlockerEncryptionPercentage(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerEncryptionPercentage, opts...).ToFunc()
+}
+
+// ByBitlockerRecoveryKey orders the results by the bitlocker_recovery_key field.
+func ByBitlockerRecoveryKey(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerRecoveryKey, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

@@ -191,6 +191,87 @@ func (ldu *LogicalDiskUpdate) ClearVolumeType() *LogicalDiskUpdate {
 	return ldu
 }
 
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerConversionStatus(i int32) *LogicalDiskUpdate {
+	ldu.mutation.ResetBitlockerConversionStatus()
+	ldu.mutation.SetBitlockerConversionStatus(i)
+	return ldu
+}
+
+// SetNillableBitlockerConversionStatus sets the "bitlocker_conversion_status" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerConversionStatus(i *int32) *LogicalDiskUpdate {
+	if i != nil {
+		ldu.SetBitlockerConversionStatus(*i)
+	}
+	return ldu
+}
+
+// AddBitlockerConversionStatus adds i to the "bitlocker_conversion_status" field.
+func (ldu *LogicalDiskUpdate) AddBitlockerConversionStatus(i int32) *LogicalDiskUpdate {
+	ldu.mutation.AddBitlockerConversionStatus(i)
+	return ldu
+}
+
+// ClearBitlockerConversionStatus clears the value of the "bitlocker_conversion_status" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerConversionStatus() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerConversionStatus()
+	return ldu
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerEncryptionPercentage(i int32) *LogicalDiskUpdate {
+	ldu.mutation.ResetBitlockerEncryptionPercentage()
+	ldu.mutation.SetBitlockerEncryptionPercentage(i)
+	return ldu
+}
+
+// SetNillableBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerEncryptionPercentage(i *int32) *LogicalDiskUpdate {
+	if i != nil {
+		ldu.SetBitlockerEncryptionPercentage(*i)
+	}
+	return ldu
+}
+
+// AddBitlockerEncryptionPercentage adds i to the "bitlocker_encryption_percentage" field.
+func (ldu *LogicalDiskUpdate) AddBitlockerEncryptionPercentage(i int32) *LogicalDiskUpdate {
+	ldu.mutation.AddBitlockerEncryptionPercentage(i)
+	return ldu
+}
+
+// ClearBitlockerEncryptionPercentage clears the value of the "bitlocker_encryption_percentage" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerEncryptionPercentage() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerEncryptionPercentage()
+	return ldu
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerRecoveryKey(i int32) *LogicalDiskUpdate {
+	ldu.mutation.ResetBitlockerRecoveryKey()
+	ldu.mutation.SetBitlockerRecoveryKey(i)
+	return ldu
+}
+
+// SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerRecoveryKey(i *int32) *LogicalDiskUpdate {
+	if i != nil {
+		ldu.SetBitlockerRecoveryKey(*i)
+	}
+	return ldu
+}
+
+// AddBitlockerRecoveryKey adds i to the "bitlocker_recovery_key" field.
+func (ldu *LogicalDiskUpdate) AddBitlockerRecoveryKey(i int32) *LogicalDiskUpdate {
+	ldu.mutation.AddBitlockerRecoveryKey(i)
+	return ldu
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerRecoveryKey() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerRecoveryKey()
+	return ldu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
 	ldu.mutation.SetOwnerID(id)
@@ -313,6 +394,33 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if ldu.mutation.VolumeTypeCleared() {
 		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeUint32)
+	}
+	if value, ok := ldu.mutation.BitlockerConversionStatus(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32, value)
+	}
+	if value, ok := ldu.mutation.AddedBitlockerConversionStatus(); ok {
+		_spec.AddField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32, value)
+	}
+	if ldu.mutation.BitlockerConversionStatusCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32)
+	}
+	if value, ok := ldu.mutation.BitlockerEncryptionPercentage(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32, value)
+	}
+	if value, ok := ldu.mutation.AddedBitlockerEncryptionPercentage(); ok {
+		_spec.AddField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32, value)
+	}
+	if ldu.mutation.BitlockerEncryptionPercentageCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32)
+	}
+	if value, ok := ldu.mutation.BitlockerRecoveryKey(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+	}
+	if value, ok := ldu.mutation.AddedBitlockerRecoveryKey(); ok {
+		_spec.AddField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+	}
+	if ldu.mutation.BitlockerRecoveryKeyCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -527,6 +635,87 @@ func (lduo *LogicalDiskUpdateOne) ClearVolumeType() *LogicalDiskUpdateOne {
 	return lduo
 }
 
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerConversionStatus(i int32) *LogicalDiskUpdateOne {
+	lduo.mutation.ResetBitlockerConversionStatus()
+	lduo.mutation.SetBitlockerConversionStatus(i)
+	return lduo
+}
+
+// SetNillableBitlockerConversionStatus sets the "bitlocker_conversion_status" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerConversionStatus(i *int32) *LogicalDiskUpdateOne {
+	if i != nil {
+		lduo.SetBitlockerConversionStatus(*i)
+	}
+	return lduo
+}
+
+// AddBitlockerConversionStatus adds i to the "bitlocker_conversion_status" field.
+func (lduo *LogicalDiskUpdateOne) AddBitlockerConversionStatus(i int32) *LogicalDiskUpdateOne {
+	lduo.mutation.AddBitlockerConversionStatus(i)
+	return lduo
+}
+
+// ClearBitlockerConversionStatus clears the value of the "bitlocker_conversion_status" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerConversionStatus() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerConversionStatus()
+	return lduo
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerEncryptionPercentage(i int32) *LogicalDiskUpdateOne {
+	lduo.mutation.ResetBitlockerEncryptionPercentage()
+	lduo.mutation.SetBitlockerEncryptionPercentage(i)
+	return lduo
+}
+
+// SetNillableBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerEncryptionPercentage(i *int32) *LogicalDiskUpdateOne {
+	if i != nil {
+		lduo.SetBitlockerEncryptionPercentage(*i)
+	}
+	return lduo
+}
+
+// AddBitlockerEncryptionPercentage adds i to the "bitlocker_encryption_percentage" field.
+func (lduo *LogicalDiskUpdateOne) AddBitlockerEncryptionPercentage(i int32) *LogicalDiskUpdateOne {
+	lduo.mutation.AddBitlockerEncryptionPercentage(i)
+	return lduo
+}
+
+// ClearBitlockerEncryptionPercentage clears the value of the "bitlocker_encryption_percentage" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerEncryptionPercentage() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerEncryptionPercentage()
+	return lduo
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerRecoveryKey(i int32) *LogicalDiskUpdateOne {
+	lduo.mutation.ResetBitlockerRecoveryKey()
+	lduo.mutation.SetBitlockerRecoveryKey(i)
+	return lduo
+}
+
+// SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerRecoveryKey(i *int32) *LogicalDiskUpdateOne {
+	if i != nil {
+		lduo.SetBitlockerRecoveryKey(*i)
+	}
+	return lduo
+}
+
+// AddBitlockerRecoveryKey adds i to the "bitlocker_recovery_key" field.
+func (lduo *LogicalDiskUpdateOne) AddBitlockerRecoveryKey(i int32) *LogicalDiskUpdateOne {
+	lduo.mutation.AddBitlockerRecoveryKey(i)
+	return lduo
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerRecoveryKey() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerRecoveryKey()
+	return lduo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
 	lduo.mutation.SetOwnerID(id)
@@ -679,6 +868,33 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	}
 	if lduo.mutation.VolumeTypeCleared() {
 		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeUint32)
+	}
+	if value, ok := lduo.mutation.BitlockerConversionStatus(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32, value)
+	}
+	if value, ok := lduo.mutation.AddedBitlockerConversionStatus(); ok {
+		_spec.AddField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32, value)
+	}
+	if lduo.mutation.BitlockerConversionStatusCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32)
+	}
+	if value, ok := lduo.mutation.BitlockerEncryptionPercentage(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32, value)
+	}
+	if value, ok := lduo.mutation.AddedBitlockerEncryptionPercentage(); ok {
+		_spec.AddField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32, value)
+	}
+	if lduo.mutation.BitlockerEncryptionPercentageCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32)
+	}
+	if value, ok := lduo.mutation.BitlockerRecoveryKey(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+	}
+	if value, ok := lduo.mutation.AddedBitlockerRecoveryKey(); ok {
+		_spec.AddField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+	}
+	if lduo.mutation.BitlockerRecoveryKeyCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

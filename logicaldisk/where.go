@@ -88,6 +88,21 @@ func VolumeType(v uint32) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldVolumeType, v))
 }
 
+// BitlockerConversionStatus applies equality check predicate on the "bitlocker_conversion_status" field. It's identical to BitlockerConversionStatusEQ.
+func BitlockerConversionStatus(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerEncryptionPercentage applies equality check predicate on the "bitlocker_encryption_percentage" field. It's identical to BitlockerEncryptionPercentageEQ.
+func BitlockerEncryptionPercentage(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerRecoveryKey applies equality check predicate on the "bitlocker_recovery_key" field. It's identical to BitlockerRecoveryKeyEQ.
+func BitlockerRecoveryKey(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerRecoveryKey, v))
+}
+
 // LabelEQ applies the EQ predicate on the "label" field.
 func LabelEQ(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldLabel, v))
@@ -616,6 +631,156 @@ func VolumeTypeIsNil() predicate.LogicalDisk {
 // VolumeTypeNotNil applies the NotNil predicate on the "volume_type" field.
 func VolumeTypeNotNil() predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldNotNull(FieldVolumeType))
+}
+
+// BitlockerConversionStatusEQ applies the EQ predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusEQ(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerConversionStatusNEQ applies the NEQ predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusNEQ(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerConversionStatusIn applies the In predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusIn(vs ...int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerConversionStatus, vs...))
+}
+
+// BitlockerConversionStatusNotIn applies the NotIn predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusNotIn(vs ...int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerConversionStatus, vs...))
+}
+
+// BitlockerConversionStatusGT applies the GT predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusGT(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerConversionStatusGTE applies the GTE predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusGTE(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerConversionStatusLT applies the LT predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusLT(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerConversionStatusLTE applies the LTE predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusLTE(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerConversionStatus, v))
+}
+
+// BitlockerConversionStatusIsNil applies the IsNil predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerConversionStatus))
+}
+
+// BitlockerConversionStatusNotNil applies the NotNil predicate on the "bitlocker_conversion_status" field.
+func BitlockerConversionStatusNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerConversionStatus))
+}
+
+// BitlockerEncryptionPercentageEQ applies the EQ predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageEQ(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerEncryptionPercentageNEQ applies the NEQ predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageNEQ(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerEncryptionPercentageIn applies the In predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageIn(vs ...int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerEncryptionPercentage, vs...))
+}
+
+// BitlockerEncryptionPercentageNotIn applies the NotIn predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageNotIn(vs ...int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerEncryptionPercentage, vs...))
+}
+
+// BitlockerEncryptionPercentageGT applies the GT predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageGT(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerEncryptionPercentageGTE applies the GTE predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageGTE(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerEncryptionPercentageLT applies the LT predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageLT(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerEncryptionPercentageLTE applies the LTE predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageLTE(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerEncryptionPercentage, v))
+}
+
+// BitlockerEncryptionPercentageIsNil applies the IsNil predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerEncryptionPercentage))
+}
+
+// BitlockerEncryptionPercentageNotNil applies the NotNil predicate on the "bitlocker_encryption_percentage" field.
+func BitlockerEncryptionPercentageNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerEncryptionPercentage))
+}
+
+// BitlockerRecoveryKeyEQ applies the EQ predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyEQ(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerRecoveryKeyNEQ applies the NEQ predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyNEQ(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerRecoveryKeyIn applies the In predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyIn(vs ...int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerRecoveryKey, vs...))
+}
+
+// BitlockerRecoveryKeyNotIn applies the NotIn predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyNotIn(vs ...int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerRecoveryKey, vs...))
+}
+
+// BitlockerRecoveryKeyGT applies the GT predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyGT(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerRecoveryKeyGTE applies the GTE predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyGTE(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerRecoveryKeyLT applies the LT predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyLT(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerRecoveryKeyLTE applies the LTE predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyLTE(v int32) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerRecoveryKeyIsNil applies the IsNil predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerRecoveryKey))
+}
+
+// BitlockerRecoveryKeyNotNil applies the NotNil predicate on the "bitlocker_recovery_key" field.
+func BitlockerRecoveryKeyNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerRecoveryKey))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

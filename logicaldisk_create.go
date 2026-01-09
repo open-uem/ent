@@ -126,6 +126,48 @@ func (ldc *LogicalDiskCreate) SetNillableVolumeType(u *uint32) *LogicalDiskCreat
 	return ldc
 }
 
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (ldc *LogicalDiskCreate) SetBitlockerConversionStatus(i int32) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerConversionStatus(i)
+	return ldc
+}
+
+// SetNillableBitlockerConversionStatus sets the "bitlocker_conversion_status" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerConversionStatus(i *int32) *LogicalDiskCreate {
+	if i != nil {
+		ldc.SetBitlockerConversionStatus(*i)
+	}
+	return ldc
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (ldc *LogicalDiskCreate) SetBitlockerEncryptionPercentage(i int32) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerEncryptionPercentage(i)
+	return ldc
+}
+
+// SetNillableBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerEncryptionPercentage(i *int32) *LogicalDiskCreate {
+	if i != nil {
+		ldc.SetBitlockerEncryptionPercentage(*i)
+	}
+	return ldc
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (ldc *LogicalDiskCreate) SetBitlockerRecoveryKey(i int32) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerRecoveryKey(i)
+	return ldc
+}
+
+// SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerRecoveryKey(i *int32) *LogicalDiskCreate {
+	if i != nil {
+		ldc.SetBitlockerRecoveryKey(*i)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -247,6 +289,18 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.VolumeType(); ok {
 		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeUint32, value)
 		_node.VolumeType = value
+	}
+	if value, ok := ldc.mutation.BitlockerConversionStatus(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerConversionStatus, field.TypeInt32, value)
+		_node.BitlockerConversionStatus = value
+	}
+	if value, ok := ldc.mutation.BitlockerEncryptionPercentage(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32, value)
+		_node.BitlockerEncryptionPercentage = value
+	}
+	if value, ok := ldc.mutation.BitlockerRecoveryKey(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+		_node.BitlockerRecoveryKey = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -461,6 +515,78 @@ func (u *LogicalDiskUpsert) ClearVolumeType() *LogicalDiskUpsert {
 	return u
 }
 
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsert) SetBitlockerConversionStatus(v int32) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerConversionStatus, v)
+	return u
+}
+
+// UpdateBitlockerConversionStatus sets the "bitlocker_conversion_status" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerConversionStatus() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerConversionStatus)
+	return u
+}
+
+// AddBitlockerConversionStatus adds v to the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsert) AddBitlockerConversionStatus(v int32) *LogicalDiskUpsert {
+	u.Add(logicaldisk.FieldBitlockerConversionStatus, v)
+	return u
+}
+
+// ClearBitlockerConversionStatus clears the value of the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsert) ClearBitlockerConversionStatus() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerConversionStatus)
+	return u
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsert) SetBitlockerEncryptionPercentage(v int32) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerEncryptionPercentage, v)
+	return u
+}
+
+// UpdateBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerEncryptionPercentage() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerEncryptionPercentage)
+	return u
+}
+
+// AddBitlockerEncryptionPercentage adds v to the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsert) AddBitlockerEncryptionPercentage(v int32) *LogicalDiskUpsert {
+	u.Add(logicaldisk.FieldBitlockerEncryptionPercentage, v)
+	return u
+}
+
+// ClearBitlockerEncryptionPercentage clears the value of the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsert) ClearBitlockerEncryptionPercentage() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerEncryptionPercentage)
+	return u
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsert) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerRecoveryKey, v)
+	return u
+}
+
+// UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerRecoveryKey() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerRecoveryKey)
+	return u
+}
+
+// AddBitlockerRecoveryKey adds v to the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsert) AddBitlockerRecoveryKey(v int32) *LogicalDiskUpsert {
+	u.Add(logicaldisk.FieldBitlockerRecoveryKey, v)
+	return u
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsert) ClearBitlockerRecoveryKey() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerRecoveryKey)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create.
 // Using this option is equivalent to using:
 //
@@ -666,6 +792,90 @@ func (u *LogicalDiskUpsertOne) UpdateVolumeType() *LogicalDiskUpsertOne {
 func (u *LogicalDiskUpsertOne) ClearVolumeType() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearVolumeType()
+	})
+}
+
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerConversionStatus(v int32) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerConversionStatus(v)
+	})
+}
+
+// AddBitlockerConversionStatus adds v to the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsertOne) AddBitlockerConversionStatus(v int32) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddBitlockerConversionStatus(v)
+	})
+}
+
+// UpdateBitlockerConversionStatus sets the "bitlocker_conversion_status" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerConversionStatus() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerConversionStatus()
+	})
+}
+
+// ClearBitlockerConversionStatus clears the value of the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerConversionStatus() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerConversionStatus()
+	})
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerEncryptionPercentage(v int32) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerEncryptionPercentage(v)
+	})
+}
+
+// AddBitlockerEncryptionPercentage adds v to the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsertOne) AddBitlockerEncryptionPercentage(v int32) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddBitlockerEncryptionPercentage(v)
+	})
+}
+
+// UpdateBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerEncryptionPercentage() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerEncryptionPercentage()
+	})
+}
+
+// ClearBitlockerEncryptionPercentage clears the value of the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerEncryptionPercentage() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerEncryptionPercentage()
+	})
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerRecoveryKey(v)
+	})
+}
+
+// AddBitlockerRecoveryKey adds v to the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertOne) AddBitlockerRecoveryKey(v int32) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddBitlockerRecoveryKey(v)
+	})
+}
+
+// UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerRecoveryKey() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerRecoveryKey()
+	})
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerRecoveryKey() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerRecoveryKey()
 	})
 }
 
@@ -1038,6 +1248,90 @@ func (u *LogicalDiskUpsertBulk) UpdateVolumeType() *LogicalDiskUpsertBulk {
 func (u *LogicalDiskUpsertBulk) ClearVolumeType() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearVolumeType()
+	})
+}
+
+// SetBitlockerConversionStatus sets the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerConversionStatus(v int32) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerConversionStatus(v)
+	})
+}
+
+// AddBitlockerConversionStatus adds v to the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsertBulk) AddBitlockerConversionStatus(v int32) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddBitlockerConversionStatus(v)
+	})
+}
+
+// UpdateBitlockerConversionStatus sets the "bitlocker_conversion_status" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerConversionStatus() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerConversionStatus()
+	})
+}
+
+// ClearBitlockerConversionStatus clears the value of the "bitlocker_conversion_status" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerConversionStatus() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerConversionStatus()
+	})
+}
+
+// SetBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerEncryptionPercentage(v int32) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerEncryptionPercentage(v)
+	})
+}
+
+// AddBitlockerEncryptionPercentage adds v to the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsertBulk) AddBitlockerEncryptionPercentage(v int32) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddBitlockerEncryptionPercentage(v)
+	})
+}
+
+// UpdateBitlockerEncryptionPercentage sets the "bitlocker_encryption_percentage" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerEncryptionPercentage() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerEncryptionPercentage()
+	})
+}
+
+// ClearBitlockerEncryptionPercentage clears the value of the "bitlocker_encryption_percentage" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerEncryptionPercentage() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerEncryptionPercentage()
+	})
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerRecoveryKey(v)
+	})
+}
+
+// AddBitlockerRecoveryKey adds v to the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertBulk) AddBitlockerRecoveryKey(v int32) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddBitlockerRecoveryKey(v)
+	})
+}
+
+// UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerRecoveryKey() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerRecoveryKey()
+	})
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerRecoveryKey() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerRecoveryKey()
 	})
 }
 
