@@ -165,16 +165,23 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerStatus() *LogicalDiskUpdate {
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (ldu *LogicalDiskUpdate) SetVolumeType(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetVolumeType(s)
+func (ldu *LogicalDiskUpdate) SetVolumeType(i int) *LogicalDiskUpdate {
+	ldu.mutation.ResetVolumeType()
+	ldu.mutation.SetVolumeType(i)
 	return ldu
 }
 
 // SetNillableVolumeType sets the "volume_type" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableVolumeType(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetVolumeType(*s)
+func (ldu *LogicalDiskUpdate) SetNillableVolumeType(i *int) *LogicalDiskUpdate {
+	if i != nil {
+		ldu.SetVolumeType(*i)
 	}
+	return ldu
+}
+
+// AddVolumeType adds i to the "volume_type" field.
+func (ldu *LogicalDiskUpdate) AddVolumeType(i int) *LogicalDiskUpdate {
+	ldu.mutation.AddVolumeType(i)
 	return ldu
 }
 
@@ -299,10 +306,13 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
 	}
 	if value, ok := ldu.mutation.VolumeType(); ok {
-		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeString, value)
+		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeInt, value)
+	}
+	if value, ok := ldu.mutation.AddedVolumeType(); ok {
+		_spec.AddField(logicaldisk.FieldVolumeType, field.TypeInt, value)
 	}
 	if ldu.mutation.VolumeTypeCleared() {
-		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeString)
+		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeInt)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -491,16 +501,23 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerStatus() *LogicalDiskUpdateOne {
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (lduo *LogicalDiskUpdateOne) SetVolumeType(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetVolumeType(s)
+func (lduo *LogicalDiskUpdateOne) SetVolumeType(i int) *LogicalDiskUpdateOne {
+	lduo.mutation.ResetVolumeType()
+	lduo.mutation.SetVolumeType(i)
 	return lduo
 }
 
 // SetNillableVolumeType sets the "volume_type" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableVolumeType(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetVolumeType(*s)
+func (lduo *LogicalDiskUpdateOne) SetNillableVolumeType(i *int) *LogicalDiskUpdateOne {
+	if i != nil {
+		lduo.SetVolumeType(*i)
 	}
+	return lduo
+}
+
+// AddVolumeType adds i to the "volume_type" field.
+func (lduo *LogicalDiskUpdateOne) AddVolumeType(i int) *LogicalDiskUpdateOne {
+	lduo.mutation.AddVolumeType(i)
 	return lduo
 }
 
@@ -655,10 +672,13 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
 	}
 	if value, ok := lduo.mutation.VolumeType(); ok {
-		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeString, value)
+		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeInt, value)
+	}
+	if value, ok := lduo.mutation.AddedVolumeType(); ok {
+		_spec.AddField(logicaldisk.FieldVolumeType, field.TypeInt, value)
 	}
 	if lduo.mutation.VolumeTypeCleared() {
-		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeString)
+		_spec.ClearField(logicaldisk.FieldVolumeType, field.TypeInt)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

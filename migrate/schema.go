@@ -207,7 +207,7 @@ var (
 		{Name: "remaining_space_in_units", Type: field.TypeString, Nullable: true},
 		{Name: "volume_name", Type: field.TypeString, Nullable: true},
 		{Name: "bitlocker_status", Type: field.TypeString, Nullable: true},
-		{Name: "volume_type", Type: field.TypeString, Nullable: true},
+		{Name: "volume_type", Type: field.TypeInt, Nullable: true},
 		{Name: "agent_logicaldisks", Type: field.TypeString},
 	}
 	// LogicalDisksTable holds the schema information for the "logical_disks" table.

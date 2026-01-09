@@ -113,15 +113,15 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerStatus(s *string) *LogicalDisk
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (ldc *LogicalDiskCreate) SetVolumeType(s string) *LogicalDiskCreate {
-	ldc.mutation.SetVolumeType(s)
+func (ldc *LogicalDiskCreate) SetVolumeType(i int) *LogicalDiskCreate {
+	ldc.mutation.SetVolumeType(i)
 	return ldc
 }
 
 // SetNillableVolumeType sets the "volume_type" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableVolumeType(s *string) *LogicalDiskCreate {
-	if s != nil {
-		ldc.SetVolumeType(*s)
+func (ldc *LogicalDiskCreate) SetNillableVolumeType(i *int) *LogicalDiskCreate {
+	if i != nil {
+		ldc.SetVolumeType(*i)
 	}
 	return ldc
 }
@@ -245,7 +245,7 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 		_node.BitlockerStatus = value
 	}
 	if value, ok := ldc.mutation.VolumeType(); ok {
-		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeString, value)
+		_spec.SetField(logicaldisk.FieldVolumeType, field.TypeInt, value)
 		_node.VolumeType = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
@@ -438,7 +438,7 @@ func (u *LogicalDiskUpsert) ClearBitlockerStatus() *LogicalDiskUpsert {
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (u *LogicalDiskUpsert) SetVolumeType(v string) *LogicalDiskUpsert {
+func (u *LogicalDiskUpsert) SetVolumeType(v int) *LogicalDiskUpsert {
 	u.Set(logicaldisk.FieldVolumeType, v)
 	return u
 }
@@ -446,6 +446,12 @@ func (u *LogicalDiskUpsert) SetVolumeType(v string) *LogicalDiskUpsert {
 // UpdateVolumeType sets the "volume_type" field to the value that was provided on create.
 func (u *LogicalDiskUpsert) UpdateVolumeType() *LogicalDiskUpsert {
 	u.SetExcluded(logicaldisk.FieldVolumeType)
+	return u
+}
+
+// AddVolumeType adds v to the "volume_type" field.
+func (u *LogicalDiskUpsert) AddVolumeType(v int) *LogicalDiskUpsert {
+	u.Add(logicaldisk.FieldVolumeType, v)
 	return u
 }
 
@@ -636,9 +642,16 @@ func (u *LogicalDiskUpsertOne) ClearBitlockerStatus() *LogicalDiskUpsertOne {
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (u *LogicalDiskUpsertOne) SetVolumeType(v string) *LogicalDiskUpsertOne {
+func (u *LogicalDiskUpsertOne) SetVolumeType(v int) *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.SetVolumeType(v)
+	})
+}
+
+// AddVolumeType adds v to the "volume_type" field.
+func (u *LogicalDiskUpsertOne) AddVolumeType(v int) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddVolumeType(v)
 	})
 }
 
@@ -1001,9 +1014,16 @@ func (u *LogicalDiskUpsertBulk) ClearBitlockerStatus() *LogicalDiskUpsertBulk {
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (u *LogicalDiskUpsertBulk) SetVolumeType(v string) *LogicalDiskUpsertBulk {
+func (u *LogicalDiskUpsertBulk) SetVolumeType(v int) *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.SetVolumeType(v)
+	})
+}
+
+// AddVolumeType adds v to the "volume_type" field.
+func (u *LogicalDiskUpsertBulk) AddVolumeType(v int) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.AddVolumeType(v)
 	})
 }
 

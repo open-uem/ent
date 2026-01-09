@@ -32,7 +32,7 @@ type LogicalDisk struct {
 	// BitlockerStatus holds the value of the "bitlocker_status" field.
 	BitlockerStatus string `json:"bitlocker_status,omitempty"`
 	// VolumeType holds the value of the "volume_type" field.
-	VolumeType string `json:"volume_type,omitempty"`
+	VolumeType int `json:"volume_type,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -65,9 +65,9 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case logicaldisk.FieldID, logicaldisk.FieldUsage:
+		case logicaldisk.FieldID, logicaldisk.FieldUsage, logicaldisk.FieldVolumeType:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldVolumeType:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -135,10 +135,10 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 				ld.BitlockerStatus = value.String
 			}
 		case logicaldisk.FieldVolumeType:
-			if value, ok := values[i].(*sql.NullString); !ok {
+			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field volume_type", values[i])
 			} else if value.Valid {
-				ld.VolumeType = value.String
+				ld.VolumeType = int(value.Int64)
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -210,7 +210,7 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString(ld.BitlockerStatus)
 	builder.WriteString(", ")
 	builder.WriteString("volume_type=")
-	builder.WriteString(ld.VolumeType)
+	builder.WriteString(fmt.Sprintf("%v", ld.VolumeType))
 	builder.WriteByte(')')
 	return builder.String()
 }

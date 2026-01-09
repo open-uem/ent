@@ -84,7 +84,7 @@ func BitlockerStatus(v string) predicate.LogicalDisk {
 }
 
 // VolumeType applies equality check predicate on the "volume_type" field. It's identical to VolumeTypeEQ.
-func VolumeType(v string) predicate.LogicalDisk {
+func VolumeType(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldVolumeType, v))
 }
 
@@ -569,58 +569,43 @@ func BitlockerStatusContainsFold(v string) predicate.LogicalDisk {
 }
 
 // VolumeTypeEQ applies the EQ predicate on the "volume_type" field.
-func VolumeTypeEQ(v string) predicate.LogicalDisk {
+func VolumeTypeEQ(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldVolumeType, v))
 }
 
 // VolumeTypeNEQ applies the NEQ predicate on the "volume_type" field.
-func VolumeTypeNEQ(v string) predicate.LogicalDisk {
+func VolumeTypeNEQ(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldNEQ(FieldVolumeType, v))
 }
 
 // VolumeTypeIn applies the In predicate on the "volume_type" field.
-func VolumeTypeIn(vs ...string) predicate.LogicalDisk {
+func VolumeTypeIn(vs ...int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldIn(FieldVolumeType, vs...))
 }
 
 // VolumeTypeNotIn applies the NotIn predicate on the "volume_type" field.
-func VolumeTypeNotIn(vs ...string) predicate.LogicalDisk {
+func VolumeTypeNotIn(vs ...int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldNotIn(FieldVolumeType, vs...))
 }
 
 // VolumeTypeGT applies the GT predicate on the "volume_type" field.
-func VolumeTypeGT(v string) predicate.LogicalDisk {
+func VolumeTypeGT(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldGT(FieldVolumeType, v))
 }
 
 // VolumeTypeGTE applies the GTE predicate on the "volume_type" field.
-func VolumeTypeGTE(v string) predicate.LogicalDisk {
+func VolumeTypeGTE(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldGTE(FieldVolumeType, v))
 }
 
 // VolumeTypeLT applies the LT predicate on the "volume_type" field.
-func VolumeTypeLT(v string) predicate.LogicalDisk {
+func VolumeTypeLT(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldLT(FieldVolumeType, v))
 }
 
 // VolumeTypeLTE applies the LTE predicate on the "volume_type" field.
-func VolumeTypeLTE(v string) predicate.LogicalDisk {
+func VolumeTypeLTE(v int) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldLTE(FieldVolumeType, v))
-}
-
-// VolumeTypeContains applies the Contains predicate on the "volume_type" field.
-func VolumeTypeContains(v string) predicate.LogicalDisk {
-	return predicate.LogicalDisk(sql.FieldContains(FieldVolumeType, v))
-}
-
-// VolumeTypeHasPrefix applies the HasPrefix predicate on the "volume_type" field.
-func VolumeTypeHasPrefix(v string) predicate.LogicalDisk {
-	return predicate.LogicalDisk(sql.FieldHasPrefix(FieldVolumeType, v))
-}
-
-// VolumeTypeHasSuffix applies the HasSuffix predicate on the "volume_type" field.
-func VolumeTypeHasSuffix(v string) predicate.LogicalDisk {
-	return predicate.LogicalDisk(sql.FieldHasSuffix(FieldVolumeType, v))
 }
 
 // VolumeTypeIsNil applies the IsNil predicate on the "volume_type" field.
@@ -631,16 +616,6 @@ func VolumeTypeIsNil() predicate.LogicalDisk {
 // VolumeTypeNotNil applies the NotNil predicate on the "volume_type" field.
 func VolumeTypeNotNil() predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldNotNull(FieldVolumeType))
-}
-
-// VolumeTypeEqualFold applies the EqualFold predicate on the "volume_type" field.
-func VolumeTypeEqualFold(v string) predicate.LogicalDisk {
-	return predicate.LogicalDisk(sql.FieldEqualFold(FieldVolumeType, v))
-}
-
-// VolumeTypeContainsFold applies the ContainsFold predicate on the "volume_type" field.
-func VolumeTypeContainsFold(v string) predicate.LogicalDisk {
-	return predicate.LogicalDisk(sql.FieldContainsFold(FieldVolumeType, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

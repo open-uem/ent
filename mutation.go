@@ -8637,7 +8637,8 @@ type LogicalDiskMutation struct {
 	remaining_space_in_units *string
 	volume_name              *string
 	bitlocker_status         *string
-	volume_type              *string
+	volume_type              *int
+	addvolume_type           *int
 	clearedFields            map[string]struct{}
 	owner                    *string
 	clearedowner             bool
@@ -9082,12 +9083,13 @@ func (m *LogicalDiskMutation) ResetBitlockerStatus() {
 }
 
 // SetVolumeType sets the "volume_type" field.
-func (m *LogicalDiskMutation) SetVolumeType(s string) {
-	m.volume_type = &s
+func (m *LogicalDiskMutation) SetVolumeType(i int) {
+	m.volume_type = &i
+	m.addvolume_type = nil
 }
 
 // VolumeType returns the value of the "volume_type" field in the mutation.
-func (m *LogicalDiskMutation) VolumeType() (r string, exists bool) {
+func (m *LogicalDiskMutation) VolumeType() (r int, exists bool) {
 	v := m.volume_type
 	if v == nil {
 		return
@@ -9098,7 +9100,7 @@ func (m *LogicalDiskMutation) VolumeType() (r string, exists bool) {
 // OldVolumeType returns the old "volume_type" field's value of the LogicalDisk entity.
 // If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *LogicalDiskMutation) OldVolumeType(ctx context.Context) (v string, err error) {
+func (m *LogicalDiskMutation) OldVolumeType(ctx context.Context) (v int, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldVolumeType is only allowed on UpdateOne operations")
 	}
@@ -9112,9 +9114,28 @@ func (m *LogicalDiskMutation) OldVolumeType(ctx context.Context) (v string, err 
 	return oldValue.VolumeType, nil
 }
 
+// AddVolumeType adds i to the "volume_type" field.
+func (m *LogicalDiskMutation) AddVolumeType(i int) {
+	if m.addvolume_type != nil {
+		*m.addvolume_type += i
+	} else {
+		m.addvolume_type = &i
+	}
+}
+
+// AddedVolumeType returns the value that was added to the "volume_type" field in this mutation.
+func (m *LogicalDiskMutation) AddedVolumeType() (r int, exists bool) {
+	v := m.addvolume_type
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
 // ClearVolumeType clears the value of the "volume_type" field.
 func (m *LogicalDiskMutation) ClearVolumeType() {
 	m.volume_type = nil
+	m.addvolume_type = nil
 	m.clearedFields[logicaldisk.FieldVolumeType] = struct{}{}
 }
 
@@ -9127,6 +9148,7 @@ func (m *LogicalDiskMutation) VolumeTypeCleared() bool {
 // ResetVolumeType resets all changes to the "volume_type" field.
 func (m *LogicalDiskMutation) ResetVolumeType() {
 	m.volume_type = nil
+	m.addvolume_type = nil
 	delete(m.clearedFields, logicaldisk.FieldVolumeType)
 }
 
@@ -9336,7 +9358,7 @@ func (m *LogicalDiskMutation) SetField(name string, value ent.Value) error {
 		m.SetBitlockerStatus(v)
 		return nil
 	case logicaldisk.FieldVolumeType:
-		v, ok := value.(string)
+		v, ok := value.(int)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
@@ -9353,6 +9375,9 @@ func (m *LogicalDiskMutation) AddedFields() []string {
 	if m.addusage != nil {
 		fields = append(fields, logicaldisk.FieldUsage)
 	}
+	if m.addvolume_type != nil {
+		fields = append(fields, logicaldisk.FieldVolumeType)
+	}
 	return fields
 }
 
@@ -9363,6 +9388,8 @@ func (m *LogicalDiskMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
 	case logicaldisk.FieldUsage:
 		return m.AddedUsage()
+	case logicaldisk.FieldVolumeType:
+		return m.AddedVolumeType()
 	}
 	return nil, false
 }
@@ -9378,6 +9405,13 @@ func (m *LogicalDiskMutation) AddField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.AddUsage(v)
+		return nil
+	case logicaldisk.FieldVolumeType:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddVolumeType(v)
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk numeric field %s", name)
