@@ -32,7 +32,7 @@ type LogicalDisk struct {
 	// BitlockerStatus holds the value of the "bitlocker_status" field.
 	BitlockerStatus string `json:"bitlocker_status,omitempty"`
 	// VolumeType holds the value of the "volume_type" field.
-	VolumeType int `json:"volume_type,omitempty"`
+	VolumeType uint32 `json:"volume_type,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -138,7 +138,7 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field volume_type", values[i])
 			} else if value.Valid {
-				ld.VolumeType = int(value.Int64)
+				ld.VolumeType = uint32(value.Int64)
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
