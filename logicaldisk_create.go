@@ -155,15 +155,15 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerEncryptionPercentage(i *int32)
 }
 
 // SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
-func (ldc *LogicalDiskCreate) SetBitlockerRecoveryKey(i int32) *LogicalDiskCreate {
-	ldc.mutation.SetBitlockerRecoveryKey(i)
+func (ldc *LogicalDiskCreate) SetBitlockerRecoveryKey(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerRecoveryKey(s)
 	return ldc
 }
 
 // SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableBitlockerRecoveryKey(i *int32) *LogicalDiskCreate {
-	if i != nil {
-		ldc.SetBitlockerRecoveryKey(*i)
+func (ldc *LogicalDiskCreate) SetNillableBitlockerRecoveryKey(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerRecoveryKey(*s)
 	}
 	return ldc
 }
@@ -299,7 +299,7 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 		_node.BitlockerEncryptionPercentage = value
 	}
 	if value, ok := ldc.mutation.BitlockerRecoveryKey(); ok {
-		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
 		_node.BitlockerRecoveryKey = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
@@ -564,7 +564,7 @@ func (u *LogicalDiskUpsert) ClearBitlockerEncryptionPercentage() *LogicalDiskUps
 }
 
 // SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
-func (u *LogicalDiskUpsert) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsert {
+func (u *LogicalDiskUpsert) SetBitlockerRecoveryKey(v string) *LogicalDiskUpsert {
 	u.Set(logicaldisk.FieldBitlockerRecoveryKey, v)
 	return u
 }
@@ -572,12 +572,6 @@ func (u *LogicalDiskUpsert) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsert 
 // UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
 func (u *LogicalDiskUpsert) UpdateBitlockerRecoveryKey() *LogicalDiskUpsert {
 	u.SetExcluded(logicaldisk.FieldBitlockerRecoveryKey)
-	return u
-}
-
-// AddBitlockerRecoveryKey adds v to the "bitlocker_recovery_key" field.
-func (u *LogicalDiskUpsert) AddBitlockerRecoveryKey(v int32) *LogicalDiskUpsert {
-	u.Add(logicaldisk.FieldBitlockerRecoveryKey, v)
 	return u
 }
 
@@ -852,16 +846,9 @@ func (u *LogicalDiskUpsertOne) ClearBitlockerEncryptionPercentage() *LogicalDisk
 }
 
 // SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
-func (u *LogicalDiskUpsertOne) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsertOne {
+func (u *LogicalDiskUpsertOne) SetBitlockerRecoveryKey(v string) *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.SetBitlockerRecoveryKey(v)
-	})
-}
-
-// AddBitlockerRecoveryKey adds v to the "bitlocker_recovery_key" field.
-func (u *LogicalDiskUpsertOne) AddBitlockerRecoveryKey(v int32) *LogicalDiskUpsertOne {
-	return u.Update(func(s *LogicalDiskUpsert) {
-		s.AddBitlockerRecoveryKey(v)
 	})
 }
 
@@ -1308,16 +1295,9 @@ func (u *LogicalDiskUpsertBulk) ClearBitlockerEncryptionPercentage() *LogicalDis
 }
 
 // SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
-func (u *LogicalDiskUpsertBulk) SetBitlockerRecoveryKey(v int32) *LogicalDiskUpsertBulk {
+func (u *LogicalDiskUpsertBulk) SetBitlockerRecoveryKey(v string) *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.SetBitlockerRecoveryKey(v)
-	})
-}
-
-// AddBitlockerRecoveryKey adds v to the "bitlocker_recovery_key" field.
-func (u *LogicalDiskUpsertBulk) AddBitlockerRecoveryKey(v int32) *LogicalDiskUpsertBulk {
-	return u.Update(func(s *LogicalDiskUpsert) {
-		s.AddBitlockerRecoveryKey(v)
 	})
 }
 

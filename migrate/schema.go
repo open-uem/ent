@@ -210,7 +210,7 @@ var (
 		{Name: "volume_type", Type: field.TypeUint32, Nullable: true},
 		{Name: "bitlocker_conversion_status", Type: field.TypeInt32, Nullable: true},
 		{Name: "bitlocker_encryption_percentage", Type: field.TypeInt32, Nullable: true},
-		{Name: "bitlocker_recovery_key", Type: field.TypeInt32, Nullable: true},
+		{Name: "bitlocker_recovery_key", Type: field.TypeString, Nullable: true},
 		{Name: "agent_logicaldisks", Type: field.TypeString},
 	}
 	// LogicalDisksTable holds the schema information for the "logical_disks" table.

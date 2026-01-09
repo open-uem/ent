@@ -246,23 +246,16 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerEncryptionPercentage() *LogicalDiskU
 }
 
 // SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
-func (ldu *LogicalDiskUpdate) SetBitlockerRecoveryKey(i int32) *LogicalDiskUpdate {
-	ldu.mutation.ResetBitlockerRecoveryKey()
-	ldu.mutation.SetBitlockerRecoveryKey(i)
+func (ldu *LogicalDiskUpdate) SetBitlockerRecoveryKey(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerRecoveryKey(s)
 	return ldu
 }
 
 // SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableBitlockerRecoveryKey(i *int32) *LogicalDiskUpdate {
-	if i != nil {
-		ldu.SetBitlockerRecoveryKey(*i)
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerRecoveryKey(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerRecoveryKey(*s)
 	}
-	return ldu
-}
-
-// AddBitlockerRecoveryKey adds i to the "bitlocker_recovery_key" field.
-func (ldu *LogicalDiskUpdate) AddBitlockerRecoveryKey(i int32) *LogicalDiskUpdate {
-	ldu.mutation.AddBitlockerRecoveryKey(i)
 	return ldu
 }
 
@@ -414,13 +407,10 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		_spec.ClearField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32)
 	}
 	if value, ok := ldu.mutation.BitlockerRecoveryKey(); ok {
-		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
-	}
-	if value, ok := ldu.mutation.AddedBitlockerRecoveryKey(); ok {
-		_spec.AddField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
 	}
 	if ldu.mutation.BitlockerRecoveryKeyCleared() {
-		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32)
+		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -690,23 +680,16 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerEncryptionPercentage() *LogicalD
 }
 
 // SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
-func (lduo *LogicalDiskUpdateOne) SetBitlockerRecoveryKey(i int32) *LogicalDiskUpdateOne {
-	lduo.mutation.ResetBitlockerRecoveryKey()
-	lduo.mutation.SetBitlockerRecoveryKey(i)
+func (lduo *LogicalDiskUpdateOne) SetBitlockerRecoveryKey(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerRecoveryKey(s)
 	return lduo
 }
 
 // SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerRecoveryKey(i *int32) *LogicalDiskUpdateOne {
-	if i != nil {
-		lduo.SetBitlockerRecoveryKey(*i)
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerRecoveryKey(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerRecoveryKey(*s)
 	}
-	return lduo
-}
-
-// AddBitlockerRecoveryKey adds i to the "bitlocker_recovery_key" field.
-func (lduo *LogicalDiskUpdateOne) AddBitlockerRecoveryKey(i int32) *LogicalDiskUpdateOne {
-	lduo.mutation.AddBitlockerRecoveryKey(i)
 	return lduo
 }
 
@@ -888,13 +871,10 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 		_spec.ClearField(logicaldisk.FieldBitlockerEncryptionPercentage, field.TypeInt32)
 	}
 	if value, ok := lduo.mutation.BitlockerRecoveryKey(); ok {
-		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
-	}
-	if value, ok := lduo.mutation.AddedBitlockerRecoveryKey(); ok {
-		_spec.AddField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32, value)
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
 	}
 	if lduo.mutation.BitlockerRecoveryKeyCleared() {
-		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeInt32)
+		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

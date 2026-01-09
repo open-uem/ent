@@ -38,7 +38,7 @@ type LogicalDisk struct {
 	// BitlockerEncryptionPercentage holds the value of the "bitlocker_encryption_percentage" field.
 	BitlockerEncryptionPercentage int32 `json:"bitlocker_encryption_percentage,omitempty"`
 	// BitlockerRecoveryKey holds the value of the "bitlocker_recovery_key" field.
-	BitlockerRecoveryKey int32 `json:"bitlocker_recovery_key,omitempty"`
+	BitlockerRecoveryKey string `json:"bitlocker_recovery_key,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -71,9 +71,9 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case logicaldisk.FieldID, logicaldisk.FieldUsage, logicaldisk.FieldVolumeType, logicaldisk.FieldBitlockerConversionStatus, logicaldisk.FieldBitlockerEncryptionPercentage, logicaldisk.FieldBitlockerRecoveryKey:
+		case logicaldisk.FieldID, logicaldisk.FieldUsage, logicaldisk.FieldVolumeType, logicaldisk.FieldBitlockerConversionStatus, logicaldisk.FieldBitlockerEncryptionPercentage:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -159,10 +159,10 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 				ld.BitlockerEncryptionPercentage = int32(value.Int64)
 			}
 		case logicaldisk.FieldBitlockerRecoveryKey:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
+			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field bitlocker_recovery_key", values[i])
 			} else if value.Valid {
-				ld.BitlockerRecoveryKey = int32(value.Int64)
+				ld.BitlockerRecoveryKey = value.String
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -243,7 +243,7 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString(fmt.Sprintf("%v", ld.BitlockerEncryptionPercentage))
 	builder.WriteString(", ")
 	builder.WriteString("bitlocker_recovery_key=")
-	builder.WriteString(fmt.Sprintf("%v", ld.BitlockerRecoveryKey))
+	builder.WriteString(ld.BitlockerRecoveryKey)
 	builder.WriteByte(')')
 	return builder.String()
 }
