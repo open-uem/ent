@@ -265,6 +265,26 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerRecoveryKey() *LogicalDiskUpdate {
 	return ldu
 }
 
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerOperationInProgress(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerOperationInProgress(s)
+	return ldu
+}
+
+// SetNillableBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerOperationInProgress(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerOperationInProgress(*s)
+	}
+	return ldu
+}
+
+// ClearBitlockerOperationInProgress clears the value of the "bitlocker_operation_in_progress" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerOperationInProgress() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerOperationInProgress()
+	return ldu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
 	ldu.mutation.SetOwnerID(id)
@@ -411,6 +431,12 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if ldu.mutation.BitlockerRecoveryKeyCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString)
+	}
+	if value, ok := ldu.mutation.BitlockerOperationInProgress(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerOperationInProgress, field.TypeString, value)
+	}
+	if ldu.mutation.BitlockerOperationInProgressCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerOperationInProgress, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -699,6 +725,26 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerRecoveryKey() *LogicalDiskUpdate
 	return lduo
 }
 
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerOperationInProgress(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerOperationInProgress(s)
+	return lduo
+}
+
+// SetNillableBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerOperationInProgress(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerOperationInProgress(*s)
+	}
+	return lduo
+}
+
+// ClearBitlockerOperationInProgress clears the value of the "bitlocker_operation_in_progress" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerOperationInProgress() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerOperationInProgress()
+	return lduo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
 	lduo.mutation.SetOwnerID(id)
@@ -875,6 +921,12 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	}
 	if lduo.mutation.BitlockerRecoveryKeyCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString)
+	}
+	if value, ok := lduo.mutation.BitlockerOperationInProgress(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerOperationInProgress, field.TypeString, value)
+	}
+	if lduo.mutation.BitlockerOperationInProgressCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerOperationInProgress, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

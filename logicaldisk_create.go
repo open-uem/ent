@@ -168,6 +168,20 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerRecoveryKey(s *string) *Logica
 	return ldc
 }
 
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (ldc *LogicalDiskCreate) SetBitlockerOperationInProgress(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerOperationInProgress(s)
+	return ldc
+}
+
+// SetNillableBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerOperationInProgress(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerOperationInProgress(*s)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -301,6 +315,10 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerRecoveryKey(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
 		_node.BitlockerRecoveryKey = value
+	}
+	if value, ok := ldc.mutation.BitlockerOperationInProgress(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerOperationInProgress, field.TypeString, value)
+		_node.BitlockerOperationInProgress = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -578,6 +596,24 @@ func (u *LogicalDiskUpsert) UpdateBitlockerRecoveryKey() *LogicalDiskUpsert {
 // ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
 func (u *LogicalDiskUpsert) ClearBitlockerRecoveryKey() *LogicalDiskUpsert {
 	u.SetNull(logicaldisk.FieldBitlockerRecoveryKey)
+	return u
+}
+
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (u *LogicalDiskUpsert) SetBitlockerOperationInProgress(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerOperationInProgress, v)
+	return u
+}
+
+// UpdateBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerOperationInProgress() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerOperationInProgress)
+	return u
+}
+
+// ClearBitlockerOperationInProgress clears the value of the "bitlocker_operation_in_progress" field.
+func (u *LogicalDiskUpsert) ClearBitlockerOperationInProgress() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerOperationInProgress)
 	return u
 }
 
@@ -863,6 +899,27 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerRecoveryKey() *LogicalDiskUpsertOn
 func (u *LogicalDiskUpsertOne) ClearBitlockerRecoveryKey() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerRecoveryKey()
+	})
+}
+
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerOperationInProgress(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerOperationInProgress(v)
+	})
+}
+
+// UpdateBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerOperationInProgress() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerOperationInProgress()
+	})
+}
+
+// ClearBitlockerOperationInProgress clears the value of the "bitlocker_operation_in_progress" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerOperationInProgress() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerOperationInProgress()
 	})
 }
 
@@ -1312,6 +1369,27 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerRecoveryKey() *LogicalDiskUpsertB
 func (u *LogicalDiskUpsertBulk) ClearBitlockerRecoveryKey() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerRecoveryKey()
+	})
+}
+
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerOperationInProgress(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerOperationInProgress(v)
+	})
+}
+
+// UpdateBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerOperationInProgress() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerOperationInProgress()
+	})
+}
+
+// ClearBitlockerOperationInProgress clears the value of the "bitlocker_operation_in_progress" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerOperationInProgress() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerOperationInProgress()
 	})
 }
 

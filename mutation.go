@@ -8644,6 +8644,7 @@ type LogicalDiskMutation struct {
 	bitlocker_encryption_percentage    *int32
 	addbitlocker_encryption_percentage *int32
 	bitlocker_recovery_key             *string
+	bitlocker_operation_in_progress    *string
 	clearedFields                      map[string]struct{}
 	owner                              *string
 	clearedowner                       bool
@@ -9346,6 +9347,55 @@ func (m *LogicalDiskMutation) ResetBitlockerRecoveryKey() {
 	delete(m.clearedFields, logicaldisk.FieldBitlockerRecoveryKey)
 }
 
+// SetBitlockerOperationInProgress sets the "bitlocker_operation_in_progress" field.
+func (m *LogicalDiskMutation) SetBitlockerOperationInProgress(s string) {
+	m.bitlocker_operation_in_progress = &s
+}
+
+// BitlockerOperationInProgress returns the value of the "bitlocker_operation_in_progress" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerOperationInProgress() (r string, exists bool) {
+	v := m.bitlocker_operation_in_progress
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerOperationInProgress returns the old "bitlocker_operation_in_progress" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerOperationInProgress(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerOperationInProgress is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerOperationInProgress requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerOperationInProgress: %w", err)
+	}
+	return oldValue.BitlockerOperationInProgress, nil
+}
+
+// ClearBitlockerOperationInProgress clears the value of the "bitlocker_operation_in_progress" field.
+func (m *LogicalDiskMutation) ClearBitlockerOperationInProgress() {
+	m.bitlocker_operation_in_progress = nil
+	m.clearedFields[logicaldisk.FieldBitlockerOperationInProgress] = struct{}{}
+}
+
+// BitlockerOperationInProgressCleared returns if the "bitlocker_operation_in_progress" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerOperationInProgressCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerOperationInProgress]
+	return ok
+}
+
+// ResetBitlockerOperationInProgress resets all changes to the "bitlocker_operation_in_progress" field.
+func (m *LogicalDiskMutation) ResetBitlockerOperationInProgress() {
+	m.bitlocker_operation_in_progress = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerOperationInProgress)
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
 func (m *LogicalDiskMutation) SetOwnerID(id string) {
 	m.owner = &id
@@ -9419,7 +9469,7 @@ func (m *LogicalDiskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *LogicalDiskMutation) Fields() []string {
-	fields := make([]string, 0, 11)
+	fields := make([]string, 0, 12)
 	if m.label != nil {
 		fields = append(fields, logicaldisk.FieldLabel)
 	}
@@ -9453,6 +9503,9 @@ func (m *LogicalDiskMutation) Fields() []string {
 	if m.bitlocker_recovery_key != nil {
 		fields = append(fields, logicaldisk.FieldBitlockerRecoveryKey)
 	}
+	if m.bitlocker_operation_in_progress != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerOperationInProgress)
+	}
 	return fields
 }
 
@@ -9483,6 +9536,8 @@ func (m *LogicalDiskMutation) Field(name string) (ent.Value, bool) {
 		return m.BitlockerEncryptionPercentage()
 	case logicaldisk.FieldBitlockerRecoveryKey:
 		return m.BitlockerRecoveryKey()
+	case logicaldisk.FieldBitlockerOperationInProgress:
+		return m.BitlockerOperationInProgress()
 	}
 	return nil, false
 }
@@ -9514,6 +9569,8 @@ func (m *LogicalDiskMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldBitlockerEncryptionPercentage(ctx)
 	case logicaldisk.FieldBitlockerRecoveryKey:
 		return m.OldBitlockerRecoveryKey(ctx)
+	case logicaldisk.FieldBitlockerOperationInProgress:
+		return m.OldBitlockerOperationInProgress(ctx)
 	}
 	return nil, fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -9599,6 +9656,13 @@ func (m *LogicalDiskMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetBitlockerRecoveryKey(v)
+		return nil
+	case logicaldisk.FieldBitlockerOperationInProgress:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerOperationInProgress(v)
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)
@@ -9708,6 +9772,9 @@ func (m *LogicalDiskMutation) ClearedFields() []string {
 	if m.FieldCleared(logicaldisk.FieldBitlockerRecoveryKey) {
 		fields = append(fields, logicaldisk.FieldBitlockerRecoveryKey)
 	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerOperationInProgress) {
+		fields = append(fields, logicaldisk.FieldBitlockerOperationInProgress)
+	}
 	return fields
 }
 
@@ -9749,6 +9816,9 @@ func (m *LogicalDiskMutation) ClearField(name string) error {
 	case logicaldisk.FieldBitlockerRecoveryKey:
 		m.ClearBitlockerRecoveryKey()
 		return nil
+	case logicaldisk.FieldBitlockerOperationInProgress:
+		m.ClearBitlockerOperationInProgress()
+		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk nullable field %s", name)
 }
@@ -9789,6 +9859,9 @@ func (m *LogicalDiskMutation) ResetField(name string) error {
 		return nil
 	case logicaldisk.FieldBitlockerRecoveryKey:
 		m.ResetBitlockerRecoveryKey()
+		return nil
+	case logicaldisk.FieldBitlockerOperationInProgress:
+		m.ResetBitlockerOperationInProgress()
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)

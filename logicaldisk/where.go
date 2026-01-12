@@ -103,6 +103,11 @@ func BitlockerRecoveryKey(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerRecoveryKey, v))
 }
 
+// BitlockerOperationInProgress applies equality check predicate on the "bitlocker_operation_in_progress" field. It's identical to BitlockerOperationInProgressEQ.
+func BitlockerOperationInProgress(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerOperationInProgress, v))
+}
+
 // LabelEQ applies the EQ predicate on the "label" field.
 func LabelEQ(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldLabel, v))
@@ -806,6 +811,81 @@ func BitlockerRecoveryKeyEqualFold(v string) predicate.LogicalDisk {
 // BitlockerRecoveryKeyContainsFold applies the ContainsFold predicate on the "bitlocker_recovery_key" field.
 func BitlockerRecoveryKeyContainsFold(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerRecoveryKey, v))
+}
+
+// BitlockerOperationInProgressEQ applies the EQ predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressNEQ applies the NEQ predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressNEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressIn applies the In predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerOperationInProgress, vs...))
+}
+
+// BitlockerOperationInProgressNotIn applies the NotIn predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressNotIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerOperationInProgress, vs...))
+}
+
+// BitlockerOperationInProgressGT applies the GT predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressGT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressGTE applies the GTE predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressGTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressLT applies the LT predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressLT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressLTE applies the LTE predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressLTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressContains applies the Contains predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressContains(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContains(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressHasPrefix applies the HasPrefix predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressHasPrefix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasPrefix(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressHasSuffix applies the HasSuffix predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressHasSuffix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasSuffix(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressIsNil applies the IsNil predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerOperationInProgress))
+}
+
+// BitlockerOperationInProgressNotNil applies the NotNil predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerOperationInProgress))
+}
+
+// BitlockerOperationInProgressEqualFold applies the EqualFold predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressEqualFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEqualFold(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationInProgressContainsFold applies the ContainsFold predicate on the "bitlocker_operation_in_progress" field.
+func BitlockerOperationInProgressContainsFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerOperationInProgress, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.
