@@ -36,6 +36,8 @@ const (
 	FieldBitlockerRecoveryKey = "bitlocker_recovery_key"
 	// FieldBitlockerOperationInProgress holds the string denoting the bitlocker_operation_in_progress field in the database.
 	FieldBitlockerOperationInProgress = "bitlocker_operation_in_progress"
+	// FieldBitlockerOperationResult holds the string denoting the bitlocker_operation_result field in the database.
+	FieldBitlockerOperationResult = "bitlocker_operation_result"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -66,6 +68,7 @@ var Columns = []string{
 	FieldBitlockerEncryptionPercentage,
 	FieldBitlockerRecoveryKey,
 	FieldBitlockerOperationInProgress,
+	FieldBitlockerOperationResult,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -160,6 +163,11 @@ func ByBitlockerRecoveryKey(opts ...sql.OrderTermOption) OrderOption {
 // ByBitlockerOperationInProgress orders the results by the bitlocker_operation_in_progress field.
 func ByBitlockerOperationInProgress(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBitlockerOperationInProgress, opts...).ToFunc()
+}
+
+// ByBitlockerOperationResult orders the results by the bitlocker_operation_result field.
+func ByBitlockerOperationResult(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerOperationResult, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

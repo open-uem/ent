@@ -108,6 +108,11 @@ func BitlockerOperationInProgress(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerOperationInProgress, v))
 }
 
+// BitlockerOperationResult applies equality check predicate on the "bitlocker_operation_result" field. It's identical to BitlockerOperationResultEQ.
+func BitlockerOperationResult(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerOperationResult, v))
+}
+
 // LabelEQ applies the EQ predicate on the "label" field.
 func LabelEQ(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldLabel, v))
@@ -886,6 +891,81 @@ func BitlockerOperationInProgressEqualFold(v string) predicate.LogicalDisk {
 // BitlockerOperationInProgressContainsFold applies the ContainsFold predicate on the "bitlocker_operation_in_progress" field.
 func BitlockerOperationInProgressContainsFold(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerOperationInProgress, v))
+}
+
+// BitlockerOperationResultEQ applies the EQ predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultNEQ applies the NEQ predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultNEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultIn applies the In predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerOperationResult, vs...))
+}
+
+// BitlockerOperationResultNotIn applies the NotIn predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultNotIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerOperationResult, vs...))
+}
+
+// BitlockerOperationResultGT applies the GT predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultGT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultGTE applies the GTE predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultGTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultLT applies the LT predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultLT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultLTE applies the LTE predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultLTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultContains applies the Contains predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultContains(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContains(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultHasPrefix applies the HasPrefix predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultHasPrefix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasPrefix(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultHasSuffix applies the HasSuffix predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultHasSuffix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasSuffix(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultIsNil applies the IsNil predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerOperationResult))
+}
+
+// BitlockerOperationResultNotNil applies the NotNil predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerOperationResult))
+}
+
+// BitlockerOperationResultEqualFold applies the EqualFold predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultEqualFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEqualFold(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerOperationResultContainsFold applies the ContainsFold predicate on the "bitlocker_operation_result" field.
+func BitlockerOperationResultContainsFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerOperationResult, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

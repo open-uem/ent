@@ -41,6 +41,8 @@ type LogicalDisk struct {
 	BitlockerRecoveryKey string `json:"bitlocker_recovery_key,omitempty"`
 	// BitlockerOperationInProgress holds the value of the "bitlocker_operation_in_progress" field.
 	BitlockerOperationInProgress string `json:"bitlocker_operation_in_progress,omitempty"`
+	// BitlockerOperationResult holds the value of the "bitlocker_operation_result" field.
+	BitlockerOperationResult string `json:"bitlocker_operation_result,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -75,7 +77,7 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case logicaldisk.FieldID, logicaldisk.FieldUsage, logicaldisk.FieldVolumeType, logicaldisk.FieldBitlockerConversionStatus, logicaldisk.FieldBitlockerEncryptionPercentage:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey, logicaldisk.FieldBitlockerOperationInProgress:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey, logicaldisk.FieldBitlockerOperationInProgress, logicaldisk.FieldBitlockerOperationResult:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -172,6 +174,12 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				ld.BitlockerOperationInProgress = value.String
 			}
+		case logicaldisk.FieldBitlockerOperationResult:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field bitlocker_operation_result", values[i])
+			} else if value.Valid {
+				ld.BitlockerOperationResult = value.String
+			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_logicaldisks", values[i])
@@ -255,6 +263,9 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("bitlocker_operation_in_progress=")
 	builder.WriteString(ld.BitlockerOperationInProgress)
+	builder.WriteString(", ")
+	builder.WriteString("bitlocker_operation_result=")
+	builder.WriteString(ld.BitlockerOperationResult)
 	builder.WriteByte(')')
 	return builder.String()
 }

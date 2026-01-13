@@ -26,6 +26,7 @@ func (LogicalDisk) Fields() []ent.Field {
 		field.Int32("bitlocker_encryption_percentage").Optional(),
 		field.String("bitlocker_recovery_key").Optional(),
 		field.String("bitlocker_operation_in_progress").Optional(),
+		field.String("bitlocker_operation_result").Optional(),
 	}
 }
 
