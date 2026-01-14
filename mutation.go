@@ -8648,6 +8648,7 @@ type LogicalDiskMutation struct {
 	bitlocker_operation_result                     *string
 	bitlocker_is_auto_unlock_enabled               *bool
 	bitlocker_external_key_volume_key_protector_id *string
+	bitlocker_key_protectors_types                 *string
 	clearedFields                                  map[string]struct{}
 	owner                                          *string
 	clearedowner                                   bool
@@ -9546,6 +9547,55 @@ func (m *LogicalDiskMutation) ResetBitlockerExternalKeyVolumeKeyProtectorID() {
 	delete(m.clearedFields, logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID)
 }
 
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (m *LogicalDiskMutation) SetBitlockerKeyProtectorsTypes(s string) {
+	m.bitlocker_key_protectors_types = &s
+}
+
+// BitlockerKeyProtectorsTypes returns the value of the "bitlocker_key_protectors_types" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerKeyProtectorsTypes() (r string, exists bool) {
+	v := m.bitlocker_key_protectors_types
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerKeyProtectorsTypes returns the old "bitlocker_key_protectors_types" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerKeyProtectorsTypes(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerKeyProtectorsTypes is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerKeyProtectorsTypes requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerKeyProtectorsTypes: %w", err)
+	}
+	return oldValue.BitlockerKeyProtectorsTypes, nil
+}
+
+// ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
+func (m *LogicalDiskMutation) ClearBitlockerKeyProtectorsTypes() {
+	m.bitlocker_key_protectors_types = nil
+	m.clearedFields[logicaldisk.FieldBitlockerKeyProtectorsTypes] = struct{}{}
+}
+
+// BitlockerKeyProtectorsTypesCleared returns if the "bitlocker_key_protectors_types" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerKeyProtectorsTypesCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerKeyProtectorsTypes]
+	return ok
+}
+
+// ResetBitlockerKeyProtectorsTypes resets all changes to the "bitlocker_key_protectors_types" field.
+func (m *LogicalDiskMutation) ResetBitlockerKeyProtectorsTypes() {
+	m.bitlocker_key_protectors_types = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerKeyProtectorsTypes)
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
 func (m *LogicalDiskMutation) SetOwnerID(id string) {
 	m.owner = &id
@@ -9619,7 +9669,7 @@ func (m *LogicalDiskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *LogicalDiskMutation) Fields() []string {
-	fields := make([]string, 0, 15)
+	fields := make([]string, 0, 16)
 	if m.label != nil {
 		fields = append(fields, logicaldisk.FieldLabel)
 	}
@@ -9665,6 +9715,9 @@ func (m *LogicalDiskMutation) Fields() []string {
 	if m.bitlocker_external_key_volume_key_protector_id != nil {
 		fields = append(fields, logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID)
 	}
+	if m.bitlocker_key_protectors_types != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerKeyProtectorsTypes)
+	}
 	return fields
 }
 
@@ -9703,6 +9756,8 @@ func (m *LogicalDiskMutation) Field(name string) (ent.Value, bool) {
 		return m.BitlockerIsAutoUnlockEnabled()
 	case logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID:
 		return m.BitlockerExternalKeyVolumeKeyProtectorID()
+	case logicaldisk.FieldBitlockerKeyProtectorsTypes:
+		return m.BitlockerKeyProtectorsTypes()
 	}
 	return nil, false
 }
@@ -9742,6 +9797,8 @@ func (m *LogicalDiskMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldBitlockerIsAutoUnlockEnabled(ctx)
 	case logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID:
 		return m.OldBitlockerExternalKeyVolumeKeyProtectorID(ctx)
+	case logicaldisk.FieldBitlockerKeyProtectorsTypes:
+		return m.OldBitlockerKeyProtectorsTypes(ctx)
 	}
 	return nil, fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -9855,6 +9912,13 @@ func (m *LogicalDiskMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetBitlockerExternalKeyVolumeKeyProtectorID(v)
+		return nil
+	case logicaldisk.FieldBitlockerKeyProtectorsTypes:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerKeyProtectorsTypes(v)
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)
@@ -9976,6 +10040,9 @@ func (m *LogicalDiskMutation) ClearedFields() []string {
 	if m.FieldCleared(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID) {
 		fields = append(fields, logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID)
 	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerKeyProtectorsTypes) {
+		fields = append(fields, logicaldisk.FieldBitlockerKeyProtectorsTypes)
+	}
 	return fields
 }
 
@@ -10029,6 +10096,9 @@ func (m *LogicalDiskMutation) ClearField(name string) error {
 	case logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID:
 		m.ClearBitlockerExternalKeyVolumeKeyProtectorID()
 		return nil
+	case logicaldisk.FieldBitlockerKeyProtectorsTypes:
+		m.ClearBitlockerKeyProtectorsTypes()
+		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk nullable field %s", name)
 }
@@ -10081,6 +10151,9 @@ func (m *LogicalDiskMutation) ResetField(name string) error {
 		return nil
 	case logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID:
 		m.ResetBitlockerExternalKeyVolumeKeyProtectorID()
+		return nil
+	case logicaldisk.FieldBitlockerKeyProtectorsTypes:
+		m.ResetBitlockerKeyProtectorsTypes()
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)

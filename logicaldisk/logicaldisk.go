@@ -42,6 +42,8 @@ const (
 	FieldBitlockerIsAutoUnlockEnabled = "bitlocker_is_auto_unlock_enabled"
 	// FieldBitlockerExternalKeyVolumeKeyProtectorID holds the string denoting the bitlocker_external_key_volume_key_protector_id field in the database.
 	FieldBitlockerExternalKeyVolumeKeyProtectorID = "bitlocker_external_key_volume_key_protector_id"
+	// FieldBitlockerKeyProtectorsTypes holds the string denoting the bitlocker_key_protectors_types field in the database.
+	FieldBitlockerKeyProtectorsTypes = "bitlocker_key_protectors_types"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -75,6 +77,7 @@ var Columns = []string{
 	FieldBitlockerOperationResult,
 	FieldBitlockerIsAutoUnlockEnabled,
 	FieldBitlockerExternalKeyVolumeKeyProtectorID,
+	FieldBitlockerKeyProtectorsTypes,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -186,6 +189,11 @@ func ByBitlockerIsAutoUnlockEnabled(opts ...sql.OrderTermOption) OrderOption {
 // ByBitlockerExternalKeyVolumeKeyProtectorID orders the results by the bitlocker_external_key_volume_key_protector_id field.
 func ByBitlockerExternalKeyVolumeKeyProtectorID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBitlockerExternalKeyVolumeKeyProtectorID, opts...).ToFunc()
+}
+
+// ByBitlockerKeyProtectorsTypes orders the results by the bitlocker_key_protectors_types field.
+func ByBitlockerKeyProtectorsTypes(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerKeyProtectorsTypes, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

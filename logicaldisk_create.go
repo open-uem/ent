@@ -224,6 +224,20 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerExternalKeyVolumeKeyProtectorI
 	return ldc
 }
 
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (ldc *LogicalDiskCreate) SetBitlockerKeyProtectorsTypes(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerKeyProtectorsTypes(s)
+	return ldc
+}
+
+// SetNillableBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerKeyProtectorsTypes(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerKeyProtectorsTypes(*s)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -377,6 +391,10 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerExternalKeyVolumeKeyProtectorID(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString, value)
 		_node.BitlockerExternalKeyVolumeKeyProtectorID = value
+	}
+	if value, ok := ldc.mutation.BitlockerKeyProtectorsTypes(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString, value)
+		_node.BitlockerKeyProtectorsTypes = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -726,6 +744,24 @@ func (u *LogicalDiskUpsert) UpdateBitlockerExternalKeyVolumeKeyProtectorID() *Lo
 // ClearBitlockerExternalKeyVolumeKeyProtectorID clears the value of the "bitlocker_external_key_volume_key_protector_id" field.
 func (u *LogicalDiskUpsert) ClearBitlockerExternalKeyVolumeKeyProtectorID() *LogicalDiskUpsert {
 	u.SetNull(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID)
+	return u
+}
+
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (u *LogicalDiskUpsert) SetBitlockerKeyProtectorsTypes(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerKeyProtectorsTypes, v)
+	return u
+}
+
+// UpdateBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerKeyProtectorsTypes() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerKeyProtectorsTypes)
+	return u
+}
+
+// ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
+func (u *LogicalDiskUpsert) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerKeyProtectorsTypes)
 	return u
 }
 
@@ -1095,6 +1131,27 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerExternalKeyVolumeKeyProtectorID() 
 func (u *LogicalDiskUpsertOne) ClearBitlockerExternalKeyVolumeKeyProtectorID() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerExternalKeyVolumeKeyProtectorID()
+	})
+}
+
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerKeyProtectorsTypes(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerKeyProtectorsTypes(v)
+	})
+}
+
+// UpdateBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerKeyProtectorsTypes() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerKeyProtectorsTypes()
+	})
+}
+
+// ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerKeyProtectorsTypes()
 	})
 }
 
@@ -1628,6 +1685,27 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerExternalKeyVolumeKeyProtectorID()
 func (u *LogicalDiskUpsertBulk) ClearBitlockerExternalKeyVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerExternalKeyVolumeKeyProtectorID()
+	})
+}
+
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerKeyProtectorsTypes(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerKeyProtectorsTypes(v)
+	})
+}
+
+// UpdateBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerKeyProtectorsTypes() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerKeyProtectorsTypes()
+	})
+}
+
+// ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerKeyProtectorsTypes()
 	})
 }
 

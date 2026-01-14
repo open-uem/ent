@@ -345,6 +345,26 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerExternalKeyVolumeKeyProtectorID() *L
 	return ldu
 }
 
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerKeyProtectorsTypes(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerKeyProtectorsTypes(s)
+	return ldu
+}
+
+// SetNillableBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerKeyProtectorsTypes(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerKeyProtectorsTypes(*s)
+	}
+	return ldu
+}
+
+// ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerKeyProtectorsTypes()
+	return ldu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
 	ldu.mutation.SetOwnerID(id)
@@ -515,6 +535,12 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if ldu.mutation.BitlockerExternalKeyVolumeKeyProtectorIDCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString)
+	}
+	if value, ok := ldu.mutation.BitlockerKeyProtectorsTypes(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString, value)
+	}
+	if ldu.mutation.BitlockerKeyProtectorsTypesCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -883,6 +909,26 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerExternalKeyVolumeKeyProtectorID(
 	return lduo
 }
 
+// SetBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerKeyProtectorsTypes(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerKeyProtectorsTypes(s)
+	return lduo
+}
+
+// SetNillableBitlockerKeyProtectorsTypes sets the "bitlocker_key_protectors_types" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerKeyProtectorsTypes(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerKeyProtectorsTypes(*s)
+	}
+	return lduo
+}
+
+// ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerKeyProtectorsTypes()
+	return lduo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
 	lduo.mutation.SetOwnerID(id)
@@ -1083,6 +1129,12 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	}
 	if lduo.mutation.BitlockerExternalKeyVolumeKeyProtectorIDCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString)
+	}
+	if value, ok := lduo.mutation.BitlockerKeyProtectorsTypes(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString, value)
+	}
+	if lduo.mutation.BitlockerKeyProtectorsTypesCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
