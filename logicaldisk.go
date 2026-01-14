@@ -45,8 +45,8 @@ type LogicalDisk struct {
 	BitlockerOperationResult string `json:"bitlocker_operation_result,omitempty"`
 	// BitlockerIsAutoUnlockEnabled holds the value of the "bitlocker_is_auto_unlock_enabled" field.
 	BitlockerIsAutoUnlockEnabled bool `json:"bitlocker_is_auto_unlock_enabled,omitempty"`
-	// BitlockerVolumeKeyProtectorID holds the value of the "bitlocker_volume_key_protector_id" field.
-	BitlockerVolumeKeyProtectorID string `json:"bitlocker_volume_key_protector_id,omitempty"`
+	// BitlockerExternalKeyVolumeKeyProtectorID holds the value of the "bitlocker_external_key_volume_key_protector_id" field.
+	BitlockerExternalKeyVolumeKeyProtectorID string `json:"bitlocker_external_key_volume_key_protector_id,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -83,7 +83,7 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case logicaldisk.FieldID, logicaldisk.FieldUsage, logicaldisk.FieldVolumeType, logicaldisk.FieldBitlockerConversionStatus, logicaldisk.FieldBitlockerEncryptionPercentage:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey, logicaldisk.FieldBitlockerOperationInProgress, logicaldisk.FieldBitlockerOperationResult, logicaldisk.FieldBitlockerVolumeKeyProtectorID:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey, logicaldisk.FieldBitlockerOperationInProgress, logicaldisk.FieldBitlockerOperationResult, logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -192,11 +192,11 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				ld.BitlockerIsAutoUnlockEnabled = value.Bool
 			}
-		case logicaldisk.FieldBitlockerVolumeKeyProtectorID:
+		case logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field bitlocker_volume_key_protector_id", values[i])
+				return fmt.Errorf("unexpected type %T for field bitlocker_external_key_volume_key_protector_id", values[i])
 			} else if value.Valid {
-				ld.BitlockerVolumeKeyProtectorID = value.String
+				ld.BitlockerExternalKeyVolumeKeyProtectorID = value.String
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -288,8 +288,8 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString("bitlocker_is_auto_unlock_enabled=")
 	builder.WriteString(fmt.Sprintf("%v", ld.BitlockerIsAutoUnlockEnabled))
 	builder.WriteString(", ")
-	builder.WriteString("bitlocker_volume_key_protector_id=")
-	builder.WriteString(ld.BitlockerVolumeKeyProtectorID)
+	builder.WriteString("bitlocker_external_key_volume_key_protector_id=")
+	builder.WriteString(ld.BitlockerExternalKeyVolumeKeyProtectorID)
 	builder.WriteByte(')')
 	return builder.String()
 }

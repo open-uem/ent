@@ -325,23 +325,23 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerIsAutoUnlockEnabled() *LogicalDiskUp
 	return ldu
 }
 
-// SetBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field.
-func (ldu *LogicalDiskUpdate) SetBitlockerVolumeKeyProtectorID(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetBitlockerVolumeKeyProtectorID(s)
+// SetBitlockerExternalKeyVolumeKeyProtectorID sets the "bitlocker_external_key_volume_key_protector_id" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerExternalKeyVolumeKeyProtectorID(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerExternalKeyVolumeKeyProtectorID(s)
 	return ldu
 }
 
-// SetNillableBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableBitlockerVolumeKeyProtectorID(s *string) *LogicalDiskUpdate {
+// SetNillableBitlockerExternalKeyVolumeKeyProtectorID sets the "bitlocker_external_key_volume_key_protector_id" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerExternalKeyVolumeKeyProtectorID(s *string) *LogicalDiskUpdate {
 	if s != nil {
-		ldu.SetBitlockerVolumeKeyProtectorID(*s)
+		ldu.SetBitlockerExternalKeyVolumeKeyProtectorID(*s)
 	}
 	return ldu
 }
 
-// ClearBitlockerVolumeKeyProtectorID clears the value of the "bitlocker_volume_key_protector_id" field.
-func (ldu *LogicalDiskUpdate) ClearBitlockerVolumeKeyProtectorID() *LogicalDiskUpdate {
-	ldu.mutation.ClearBitlockerVolumeKeyProtectorID()
+// ClearBitlockerExternalKeyVolumeKeyProtectorID clears the value of the "bitlocker_external_key_volume_key_protector_id" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerExternalKeyVolumeKeyProtectorID() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerExternalKeyVolumeKeyProtectorID()
 	return ldu
 }
 
@@ -510,11 +510,11 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if ldu.mutation.BitlockerIsAutoUnlockEnabledCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerIsAutoUnlockEnabled, field.TypeBool)
 	}
-	if value, ok := ldu.mutation.BitlockerVolumeKeyProtectorID(); ok {
-		_spec.SetField(logicaldisk.FieldBitlockerVolumeKeyProtectorID, field.TypeString, value)
+	if value, ok := ldu.mutation.BitlockerExternalKeyVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString, value)
 	}
-	if ldu.mutation.BitlockerVolumeKeyProtectorIDCleared() {
-		_spec.ClearField(logicaldisk.FieldBitlockerVolumeKeyProtectorID, field.TypeString)
+	if ldu.mutation.BitlockerExternalKeyVolumeKeyProtectorIDCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -863,23 +863,23 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerIsAutoUnlockEnabled() *LogicalDi
 	return lduo
 }
 
-// SetBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field.
-func (lduo *LogicalDiskUpdateOne) SetBitlockerVolumeKeyProtectorID(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetBitlockerVolumeKeyProtectorID(s)
+// SetBitlockerExternalKeyVolumeKeyProtectorID sets the "bitlocker_external_key_volume_key_protector_id" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerExternalKeyVolumeKeyProtectorID(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerExternalKeyVolumeKeyProtectorID(s)
 	return lduo
 }
 
-// SetNillableBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerVolumeKeyProtectorID(s *string) *LogicalDiskUpdateOne {
+// SetNillableBitlockerExternalKeyVolumeKeyProtectorID sets the "bitlocker_external_key_volume_key_protector_id" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerExternalKeyVolumeKeyProtectorID(s *string) *LogicalDiskUpdateOne {
 	if s != nil {
-		lduo.SetBitlockerVolumeKeyProtectorID(*s)
+		lduo.SetBitlockerExternalKeyVolumeKeyProtectorID(*s)
 	}
 	return lduo
 }
 
-// ClearBitlockerVolumeKeyProtectorID clears the value of the "bitlocker_volume_key_protector_id" field.
-func (lduo *LogicalDiskUpdateOne) ClearBitlockerVolumeKeyProtectorID() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearBitlockerVolumeKeyProtectorID()
+// ClearBitlockerExternalKeyVolumeKeyProtectorID clears the value of the "bitlocker_external_key_volume_key_protector_id" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerExternalKeyVolumeKeyProtectorID() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerExternalKeyVolumeKeyProtectorID()
 	return lduo
 }
 
@@ -1078,11 +1078,11 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	if lduo.mutation.BitlockerIsAutoUnlockEnabledCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerIsAutoUnlockEnabled, field.TypeBool)
 	}
-	if value, ok := lduo.mutation.BitlockerVolumeKeyProtectorID(); ok {
-		_spec.SetField(logicaldisk.FieldBitlockerVolumeKeyProtectorID, field.TypeString, value)
+	if value, ok := lduo.mutation.BitlockerExternalKeyVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString, value)
 	}
-	if lduo.mutation.BitlockerVolumeKeyProtectorIDCleared() {
-		_spec.ClearField(logicaldisk.FieldBitlockerVolumeKeyProtectorID, field.TypeString)
+	if lduo.mutation.BitlockerExternalKeyVolumeKeyProtectorIDCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
