@@ -27,6 +27,8 @@ func (LogicalDisk) Fields() []ent.Field {
 		field.String("bitlocker_recovery_key").Optional(),
 		field.String("bitlocker_operation_in_progress").Optional(),
 		field.String("bitlocker_operation_result").Optional(),
+		field.Bool("bitlocker_is_auto_unlock_enabled").Optional().Default(false),
+		field.String("bitlocker_volume_key_protector_id").Optional(),
 	}
 }
 

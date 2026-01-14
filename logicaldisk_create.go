@@ -196,6 +196,34 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerOperationResult(s *string) *Lo
 	return ldc
 }
 
+// SetBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field.
+func (ldc *LogicalDiskCreate) SetBitlockerIsAutoUnlockEnabled(b bool) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerIsAutoUnlockEnabled(b)
+	return ldc
+}
+
+// SetNillableBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerIsAutoUnlockEnabled(b *bool) *LogicalDiskCreate {
+	if b != nil {
+		ldc.SetBitlockerIsAutoUnlockEnabled(*b)
+	}
+	return ldc
+}
+
+// SetBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field.
+func (ldc *LogicalDiskCreate) SetBitlockerVolumeKeyProtectorID(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerVolumeKeyProtectorID(s)
+	return ldc
+}
+
+// SetNillableBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerVolumeKeyProtectorID(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerVolumeKeyProtectorID(*s)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -245,6 +273,10 @@ func (ldc *LogicalDiskCreate) defaults() {
 	if _, ok := ldc.mutation.Usage(); !ok {
 		v := logicaldisk.DefaultUsage
 		ldc.mutation.SetUsage(v)
+	}
+	if _, ok := ldc.mutation.BitlockerIsAutoUnlockEnabled(); !ok {
+		v := logicaldisk.DefaultBitlockerIsAutoUnlockEnabled
+		ldc.mutation.SetBitlockerIsAutoUnlockEnabled(v)
 	}
 }
 
@@ -337,6 +369,14 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerOperationResult(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerOperationResult, field.TypeString, value)
 		_node.BitlockerOperationResult = value
+	}
+	if value, ok := ldc.mutation.BitlockerIsAutoUnlockEnabled(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerIsAutoUnlockEnabled, field.TypeBool, value)
+		_node.BitlockerIsAutoUnlockEnabled = value
+	}
+	if value, ok := ldc.mutation.BitlockerVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerVolumeKeyProtectorID, field.TypeString, value)
+		_node.BitlockerVolumeKeyProtectorID = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -650,6 +690,42 @@ func (u *LogicalDiskUpsert) UpdateBitlockerOperationResult() *LogicalDiskUpsert 
 // ClearBitlockerOperationResult clears the value of the "bitlocker_operation_result" field.
 func (u *LogicalDiskUpsert) ClearBitlockerOperationResult() *LogicalDiskUpsert {
 	u.SetNull(logicaldisk.FieldBitlockerOperationResult)
+	return u
+}
+
+// SetBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field.
+func (u *LogicalDiskUpsert) SetBitlockerIsAutoUnlockEnabled(v bool) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerIsAutoUnlockEnabled, v)
+	return u
+}
+
+// UpdateBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerIsAutoUnlockEnabled() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerIsAutoUnlockEnabled)
+	return u
+}
+
+// ClearBitlockerIsAutoUnlockEnabled clears the value of the "bitlocker_is_auto_unlock_enabled" field.
+func (u *LogicalDiskUpsert) ClearBitlockerIsAutoUnlockEnabled() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerIsAutoUnlockEnabled)
+	return u
+}
+
+// SetBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field.
+func (u *LogicalDiskUpsert) SetBitlockerVolumeKeyProtectorID(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerVolumeKeyProtectorID, v)
+	return u
+}
+
+// UpdateBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerVolumeKeyProtectorID() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerVolumeKeyProtectorID)
+	return u
+}
+
+// ClearBitlockerVolumeKeyProtectorID clears the value of the "bitlocker_volume_key_protector_id" field.
+func (u *LogicalDiskUpsert) ClearBitlockerVolumeKeyProtectorID() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerVolumeKeyProtectorID)
 	return u
 }
 
@@ -977,6 +1053,48 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerOperationResult() *LogicalDiskUpse
 func (u *LogicalDiskUpsertOne) ClearBitlockerOperationResult() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerOperationResult()
+	})
+}
+
+// SetBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerIsAutoUnlockEnabled(v bool) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerIsAutoUnlockEnabled(v)
+	})
+}
+
+// UpdateBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerIsAutoUnlockEnabled() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerIsAutoUnlockEnabled()
+	})
+}
+
+// ClearBitlockerIsAutoUnlockEnabled clears the value of the "bitlocker_is_auto_unlock_enabled" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerIsAutoUnlockEnabled() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerIsAutoUnlockEnabled()
+	})
+}
+
+// SetBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerVolumeKeyProtectorID(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerVolumeKeyProtectorID(v)
+	})
+}
+
+// UpdateBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerVolumeKeyProtectorID() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerVolumeKeyProtectorID()
+	})
+}
+
+// ClearBitlockerVolumeKeyProtectorID clears the value of the "bitlocker_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerVolumeKeyProtectorID() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerVolumeKeyProtectorID()
 	})
 }
 
@@ -1468,6 +1586,48 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerOperationResult() *LogicalDiskUps
 func (u *LogicalDiskUpsertBulk) ClearBitlockerOperationResult() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerOperationResult()
+	})
+}
+
+// SetBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerIsAutoUnlockEnabled(v bool) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerIsAutoUnlockEnabled(v)
+	})
+}
+
+// UpdateBitlockerIsAutoUnlockEnabled sets the "bitlocker_is_auto_unlock_enabled" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerIsAutoUnlockEnabled() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerIsAutoUnlockEnabled()
+	})
+}
+
+// ClearBitlockerIsAutoUnlockEnabled clears the value of the "bitlocker_is_auto_unlock_enabled" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerIsAutoUnlockEnabled() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerIsAutoUnlockEnabled()
+	})
+}
+
+// SetBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerVolumeKeyProtectorID(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerVolumeKeyProtectorID(v)
+	})
+}
+
+// UpdateBitlockerVolumeKeyProtectorID sets the "bitlocker_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerVolumeKeyProtectorID()
+	})
+}
+
+// ClearBitlockerVolumeKeyProtectorID clears the value of the "bitlocker_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerVolumeKeyProtectorID()
 	})
 }
 

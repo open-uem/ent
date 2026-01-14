@@ -113,6 +113,16 @@ func BitlockerOperationResult(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerOperationResult, v))
 }
 
+// BitlockerIsAutoUnlockEnabled applies equality check predicate on the "bitlocker_is_auto_unlock_enabled" field. It's identical to BitlockerIsAutoUnlockEnabledEQ.
+func BitlockerIsAutoUnlockEnabled(v bool) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerIsAutoUnlockEnabled, v))
+}
+
+// BitlockerVolumeKeyProtectorID applies equality check predicate on the "bitlocker_volume_key_protector_id" field. It's identical to BitlockerVolumeKeyProtectorIDEQ.
+func BitlockerVolumeKeyProtectorID(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
 // LabelEQ applies the EQ predicate on the "label" field.
 func LabelEQ(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldLabel, v))
@@ -966,6 +976,101 @@ func BitlockerOperationResultEqualFold(v string) predicate.LogicalDisk {
 // BitlockerOperationResultContainsFold applies the ContainsFold predicate on the "bitlocker_operation_result" field.
 func BitlockerOperationResultContainsFold(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerOperationResult, v))
+}
+
+// BitlockerIsAutoUnlockEnabledEQ applies the EQ predicate on the "bitlocker_is_auto_unlock_enabled" field.
+func BitlockerIsAutoUnlockEnabledEQ(v bool) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerIsAutoUnlockEnabled, v))
+}
+
+// BitlockerIsAutoUnlockEnabledNEQ applies the NEQ predicate on the "bitlocker_is_auto_unlock_enabled" field.
+func BitlockerIsAutoUnlockEnabledNEQ(v bool) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerIsAutoUnlockEnabled, v))
+}
+
+// BitlockerIsAutoUnlockEnabledIsNil applies the IsNil predicate on the "bitlocker_is_auto_unlock_enabled" field.
+func BitlockerIsAutoUnlockEnabledIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerIsAutoUnlockEnabled))
+}
+
+// BitlockerIsAutoUnlockEnabledNotNil applies the NotNil predicate on the "bitlocker_is_auto_unlock_enabled" field.
+func BitlockerIsAutoUnlockEnabledNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerIsAutoUnlockEnabled))
+}
+
+// BitlockerVolumeKeyProtectorIDEQ applies the EQ predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDNEQ applies the NEQ predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDNEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDIn applies the In predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerVolumeKeyProtectorID, vs...))
+}
+
+// BitlockerVolumeKeyProtectorIDNotIn applies the NotIn predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDNotIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerVolumeKeyProtectorID, vs...))
+}
+
+// BitlockerVolumeKeyProtectorIDGT applies the GT predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDGT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDGTE applies the GTE predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDGTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDLT applies the LT predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDLT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDLTE applies the LTE predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDLTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDContains applies the Contains predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDContains(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContains(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDHasPrefix applies the HasPrefix predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDHasPrefix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasPrefix(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDHasSuffix applies the HasSuffix predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDHasSuffix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasSuffix(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDIsNil applies the IsNil predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerVolumeKeyProtectorID))
+}
+
+// BitlockerVolumeKeyProtectorIDNotNil applies the NotNil predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerVolumeKeyProtectorID))
+}
+
+// BitlockerVolumeKeyProtectorIDEqualFold applies the EqualFold predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDEqualFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEqualFold(FieldBitlockerVolumeKeyProtectorID, v))
+}
+
+// BitlockerVolumeKeyProtectorIDContainsFold applies the ContainsFold predicate on the "bitlocker_volume_key_protector_id" field.
+func BitlockerVolumeKeyProtectorIDContainsFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerVolumeKeyProtectorID, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

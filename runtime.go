@@ -211,6 +211,10 @@ func init() {
 	logicaldiskDescUsage := logicaldiskFields[2].Descriptor()
 	// logicaldisk.DefaultUsage holds the default value on creation for the usage field.
 	logicaldisk.DefaultUsage = logicaldiskDescUsage.Default.(int8)
+	// logicaldiskDescBitlockerIsAutoUnlockEnabled is the schema descriptor for bitlocker_is_auto_unlock_enabled field.
+	logicaldiskDescBitlockerIsAutoUnlockEnabled := logicaldiskFields[13].Descriptor()
+	// logicaldisk.DefaultBitlockerIsAutoUnlockEnabled holds the default value on creation for the bitlocker_is_auto_unlock_enabled field.
+	logicaldisk.DefaultBitlockerIsAutoUnlockEnabled = logicaldiskDescBitlockerIsAutoUnlockEnabled.Default.(bool)
 	netbirdFields := schema.Netbird{}.Fields()
 	_ = netbirdFields
 	// netbirdDescVersion is the schema descriptor for version field.
