@@ -216,6 +216,7 @@ var (
 		{Name: "bitlocker_is_auto_unlock_enabled", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "bitlocker_external_key_volume_key_protector_id", Type: field.TypeString, Nullable: true},
 		{Name: "bitlocker_key_protectors_types", Type: field.TypeString, Nullable: true},
+		{Name: "bitlocker_passphrase", Type: field.TypeString, Nullable: true},
 		{Name: "agent_logicaldisks", Type: field.TypeString},
 	}
 	// LogicalDisksTable holds the schema information for the "logical_disks" table.
@@ -226,7 +227,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "logical_disks_agents_logicaldisks",
-				Columns:    []*schema.Column{LogicalDisksColumns[17]},
+				Columns:    []*schema.Column{LogicalDisksColumns[18]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

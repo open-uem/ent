@@ -128,6 +128,11 @@ func BitlockerKeyProtectorsTypes(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerKeyProtectorsTypes, v))
 }
 
+// BitlockerPassphrase applies equality check predicate on the "bitlocker_passphrase" field. It's identical to BitlockerPassphraseEQ.
+func BitlockerPassphrase(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerPassphrase, v))
+}
+
 // LabelEQ applies the EQ predicate on the "label" field.
 func LabelEQ(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldEQ(FieldLabel, v))
@@ -1151,6 +1156,81 @@ func BitlockerKeyProtectorsTypesEqualFold(v string) predicate.LogicalDisk {
 // BitlockerKeyProtectorsTypesContainsFold applies the ContainsFold predicate on the "bitlocker_key_protectors_types" field.
 func BitlockerKeyProtectorsTypesContainsFold(v string) predicate.LogicalDisk {
 	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerKeyProtectorsTypes, v))
+}
+
+// BitlockerPassphraseEQ applies the EQ predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEQ(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseNEQ applies the NEQ predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseNEQ(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNEQ(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseIn applies the In predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIn(FieldBitlockerPassphrase, vs...))
+}
+
+// BitlockerPassphraseNotIn applies the NotIn predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseNotIn(vs ...string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotIn(FieldBitlockerPassphrase, vs...))
+}
+
+// BitlockerPassphraseGT applies the GT predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseGT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGT(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseGTE applies the GTE predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseGTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldGTE(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseLT applies the LT predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseLT(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLT(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseLTE applies the LTE predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseLTE(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldLTE(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseContains applies the Contains predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseContains(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContains(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseHasPrefix applies the HasPrefix predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseHasPrefix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasPrefix(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseHasSuffix applies the HasSuffix predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseHasSuffix(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldHasSuffix(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseIsNil applies the IsNil predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseIsNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldIsNull(FieldBitlockerPassphrase))
+}
+
+// BitlockerPassphraseNotNil applies the NotNil predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseNotNil() predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldNotNull(FieldBitlockerPassphrase))
+}
+
+// BitlockerPassphraseEqualFold applies the EqualFold predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseEqualFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldEqualFold(FieldBitlockerPassphrase, v))
+}
+
+// BitlockerPassphraseContainsFold applies the ContainsFold predicate on the "bitlocker_passphrase" field.
+func BitlockerPassphraseContainsFold(v string) predicate.LogicalDisk {
+	return predicate.LogicalDisk(sql.FieldContainsFold(FieldBitlockerPassphrase, v))
 }
 
 // HasOwner applies the HasEdge predicate on the "owner" edge.

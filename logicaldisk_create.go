@@ -238,6 +238,20 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerKeyProtectorsTypes(s *string) 
 	return ldc
 }
 
+// SetBitlockerPassphrase sets the "bitlocker_passphrase" field.
+func (ldc *LogicalDiskCreate) SetBitlockerPassphrase(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerPassphrase(s)
+	return ldc
+}
+
+// SetNillableBitlockerPassphrase sets the "bitlocker_passphrase" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerPassphrase(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerPassphrase(*s)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -395,6 +409,10 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerKeyProtectorsTypes(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString, value)
 		_node.BitlockerKeyProtectorsTypes = value
+	}
+	if value, ok := ldc.mutation.BitlockerPassphrase(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerPassphrase, field.TypeString, value)
+		_node.BitlockerPassphrase = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -762,6 +780,24 @@ func (u *LogicalDiskUpsert) UpdateBitlockerKeyProtectorsTypes() *LogicalDiskUpse
 // ClearBitlockerKeyProtectorsTypes clears the value of the "bitlocker_key_protectors_types" field.
 func (u *LogicalDiskUpsert) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpsert {
 	u.SetNull(logicaldisk.FieldBitlockerKeyProtectorsTypes)
+	return u
+}
+
+// SetBitlockerPassphrase sets the "bitlocker_passphrase" field.
+func (u *LogicalDiskUpsert) SetBitlockerPassphrase(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerPassphrase, v)
+	return u
+}
+
+// UpdateBitlockerPassphrase sets the "bitlocker_passphrase" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerPassphrase() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerPassphrase)
+	return u
+}
+
+// ClearBitlockerPassphrase clears the value of the "bitlocker_passphrase" field.
+func (u *LogicalDiskUpsert) ClearBitlockerPassphrase() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerPassphrase)
 	return u
 }
 
@@ -1152,6 +1188,27 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerKeyProtectorsTypes() *LogicalDiskU
 func (u *LogicalDiskUpsertOne) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerKeyProtectorsTypes()
+	})
+}
+
+// SetBitlockerPassphrase sets the "bitlocker_passphrase" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerPassphrase(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerPassphrase(v)
+	})
+}
+
+// UpdateBitlockerPassphrase sets the "bitlocker_passphrase" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerPassphrase() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerPassphrase()
+	})
+}
+
+// ClearBitlockerPassphrase clears the value of the "bitlocker_passphrase" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerPassphrase() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerPassphrase()
 	})
 }
 
@@ -1706,6 +1763,27 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerKeyProtectorsTypes() *LogicalDisk
 func (u *LogicalDiskUpsertBulk) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerKeyProtectorsTypes()
+	})
+}
+
+// SetBitlockerPassphrase sets the "bitlocker_passphrase" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerPassphrase(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerPassphrase(v)
+	})
+}
+
+// UpdateBitlockerPassphrase sets the "bitlocker_passphrase" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerPassphrase() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerPassphrase()
+	})
+}
+
+// ClearBitlockerPassphrase clears the value of the "bitlocker_passphrase" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerPassphrase() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerPassphrase()
 	})
 }
 

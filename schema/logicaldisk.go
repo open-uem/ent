@@ -30,6 +30,7 @@ func (LogicalDisk) Fields() []ent.Field {
 		field.Bool("bitlocker_is_auto_unlock_enabled").Optional().Default(false),
 		field.String("bitlocker_external_key_volume_key_protector_id").Optional(),
 		field.String("bitlocker_key_protectors_types").Optional(),
+		field.String("bitlocker_passphrase").Optional(),
 	}
 }
 

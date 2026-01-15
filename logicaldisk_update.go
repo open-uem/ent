@@ -365,6 +365,26 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerKeyProtectorsTypes() *LogicalDiskUpd
 	return ldu
 }
 
+// SetBitlockerPassphrase sets the "bitlocker_passphrase" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerPassphrase(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerPassphrase(s)
+	return ldu
+}
+
+// SetNillableBitlockerPassphrase sets the "bitlocker_passphrase" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerPassphrase(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerPassphrase(*s)
+	}
+	return ldu
+}
+
+// ClearBitlockerPassphrase clears the value of the "bitlocker_passphrase" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerPassphrase() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerPassphrase()
+	return ldu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
 	ldu.mutation.SetOwnerID(id)
@@ -541,6 +561,12 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if ldu.mutation.BitlockerKeyProtectorsTypesCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString)
+	}
+	if value, ok := ldu.mutation.BitlockerPassphrase(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerPassphrase, field.TypeString, value)
+	}
+	if ldu.mutation.BitlockerPassphraseCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerPassphrase, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -929,6 +955,26 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerKeyProtectorsTypes() *LogicalDis
 	return lduo
 }
 
+// SetBitlockerPassphrase sets the "bitlocker_passphrase" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerPassphrase(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerPassphrase(s)
+	return lduo
+}
+
+// SetNillableBitlockerPassphrase sets the "bitlocker_passphrase" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerPassphrase(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerPassphrase(*s)
+	}
+	return lduo
+}
+
+// ClearBitlockerPassphrase clears the value of the "bitlocker_passphrase" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerPassphrase() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerPassphrase()
+	return lduo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
 	lduo.mutation.SetOwnerID(id)
@@ -1135,6 +1181,12 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	}
 	if lduo.mutation.BitlockerKeyProtectorsTypesCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerKeyProtectorsTypes, field.TypeString)
+	}
+	if value, ok := lduo.mutation.BitlockerPassphrase(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerPassphrase, field.TypeString, value)
+	}
+	if lduo.mutation.BitlockerPassphraseCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerPassphrase, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
