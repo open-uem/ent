@@ -46,6 +46,8 @@ const (
 	FieldBitlockerKeyProtectorsTypes = "bitlocker_key_protectors_types"
 	// FieldBitlockerPassphrase holds the string denoting the bitlocker_passphrase field in the database.
 	FieldBitlockerPassphrase = "bitlocker_passphrase"
+	// FieldBitlockerPassphraseVolumeKeyProtectorID holds the string denoting the bitlocker_passphrase_volume_key_protector_id field in the database.
+	FieldBitlockerPassphraseVolumeKeyProtectorID = "bitlocker_passphrase_volume_key_protector_id"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -81,6 +83,7 @@ var Columns = []string{
 	FieldBitlockerExternalKeyVolumeKeyProtectorID,
 	FieldBitlockerKeyProtectorsTypes,
 	FieldBitlockerPassphrase,
+	FieldBitlockerPassphraseVolumeKeyProtectorID,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -202,6 +205,11 @@ func ByBitlockerKeyProtectorsTypes(opts ...sql.OrderTermOption) OrderOption {
 // ByBitlockerPassphrase orders the results by the bitlocker_passphrase field.
 func ByBitlockerPassphrase(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBitlockerPassphrase, opts...).ToFunc()
+}
+
+// ByBitlockerPassphraseVolumeKeyProtectorID orders the results by the bitlocker_passphrase_volume_key_protector_id field.
+func ByBitlockerPassphraseVolumeKeyProtectorID(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerPassphraseVolumeKeyProtectorID, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.
