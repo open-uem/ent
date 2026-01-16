@@ -8626,37 +8626,39 @@ func (m *DeploymentMutation) ResetEdge(name string) error {
 // LogicalDiskMutation represents an operation that mutates the LogicalDisk nodes in the graph.
 type LogicalDiskMutation struct {
 	config
-	op                                             Op
-	typ                                            string
-	id                                             *int
-	label                                          *string
-	filesystem                                     *string
-	usage                                          *int8
-	addusage                                       *int8
-	size_in_units                                  *string
-	remaining_space_in_units                       *string
-	volume_name                                    *string
-	bitlocker_status                               *string
-	volume_type                                    *uint32
-	addvolume_type                                 *int32
-	bitlocker_conversion_status                    *int32
-	addbitlocker_conversion_status                 *int32
-	bitlocker_encryption_percentage                *int32
-	addbitlocker_encryption_percentage             *int32
-	bitlocker_recovery_key                         *string
-	bitlocker_operation_in_progress                *string
-	bitlocker_operation_result                     *string
-	bitlocker_is_auto_unlock_enabled               *bool
-	bitlocker_external_key_volume_key_protector_id *string
-	bitlocker_key_protectors_types                 *string
-	bitlocker_passphrase                           *string
-	bitlocker_passphrase_volume_key_protector_id   *string
-	clearedFields                                  map[string]struct{}
-	owner                                          *string
-	clearedowner                                   bool
-	done                                           bool
-	oldValue                                       func(context.Context) (*LogicalDisk, error)
-	predicates                                     []predicate.LogicalDisk
+	op                                                 Op
+	typ                                                string
+	id                                                 *int
+	label                                              *string
+	filesystem                                         *string
+	usage                                              *int8
+	addusage                                           *int8
+	size_in_units                                      *string
+	remaining_space_in_units                           *string
+	volume_name                                        *string
+	bitlocker_status                                   *string
+	volume_type                                        *uint32
+	addvolume_type                                     *int32
+	bitlocker_conversion_status                        *int32
+	addbitlocker_conversion_status                     *int32
+	bitlocker_encryption_percentage                    *int32
+	addbitlocker_encryption_percentage                 *int32
+	bitlocker_recovery_key                             *string
+	bitlocker_operation_in_progress                    *string
+	bitlocker_operation_result                         *string
+	bitlocker_is_auto_unlock_enabled                   *bool
+	bitlocker_external_key_volume_key_protector_id     *string
+	bitlocker_key_protectors_types                     *string
+	bitlocker_passphrase                               *string
+	bitlocker_passphrase_volume_key_protector_id       *string
+	bitlocker_tpm_volume_key_protector_id              *string
+	bitlocker_numeric_password_volume_key_protector_id *string
+	clearedFields                                      map[string]struct{}
+	owner                                              *string
+	clearedowner                                       bool
+	done                                               bool
+	oldValue                                           func(context.Context) (*LogicalDisk, error)
+	predicates                                         []predicate.LogicalDisk
 }
 
 var _ ent.Mutation = (*LogicalDiskMutation)(nil)
@@ -9696,6 +9698,104 @@ func (m *LogicalDiskMutation) ResetBitlockerPassphraseVolumeKeyProtectorID() {
 	delete(m.clearedFields, logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID)
 }
 
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (m *LogicalDiskMutation) SetBitlockerTpmVolumeKeyProtectorID(s string) {
+	m.bitlocker_tpm_volume_key_protector_id = &s
+}
+
+// BitlockerTpmVolumeKeyProtectorID returns the value of the "bitlocker_tpm_volume_key_protector_id" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerTpmVolumeKeyProtectorID() (r string, exists bool) {
+	v := m.bitlocker_tpm_volume_key_protector_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerTpmVolumeKeyProtectorID returns the old "bitlocker_tpm_volume_key_protector_id" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerTpmVolumeKeyProtectorID(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerTpmVolumeKeyProtectorID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerTpmVolumeKeyProtectorID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerTpmVolumeKeyProtectorID: %w", err)
+	}
+	return oldValue.BitlockerTpmVolumeKeyProtectorID, nil
+}
+
+// ClearBitlockerTpmVolumeKeyProtectorID clears the value of the "bitlocker_tpm_volume_key_protector_id" field.
+func (m *LogicalDiskMutation) ClearBitlockerTpmVolumeKeyProtectorID() {
+	m.bitlocker_tpm_volume_key_protector_id = nil
+	m.clearedFields[logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID] = struct{}{}
+}
+
+// BitlockerTpmVolumeKeyProtectorIDCleared returns if the "bitlocker_tpm_volume_key_protector_id" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerTpmVolumeKeyProtectorIDCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID]
+	return ok
+}
+
+// ResetBitlockerTpmVolumeKeyProtectorID resets all changes to the "bitlocker_tpm_volume_key_protector_id" field.
+func (m *LogicalDiskMutation) ResetBitlockerTpmVolumeKeyProtectorID() {
+	m.bitlocker_tpm_volume_key_protector_id = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID)
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (m *LogicalDiskMutation) SetBitlockerNumericPasswordVolumeKeyProtectorID(s string) {
+	m.bitlocker_numeric_password_volume_key_protector_id = &s
+}
+
+// BitlockerNumericPasswordVolumeKeyProtectorID returns the value of the "bitlocker_numeric_password_volume_key_protector_id" field in the mutation.
+func (m *LogicalDiskMutation) BitlockerNumericPasswordVolumeKeyProtectorID() (r string, exists bool) {
+	v := m.bitlocker_numeric_password_volume_key_protector_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBitlockerNumericPasswordVolumeKeyProtectorID returns the old "bitlocker_numeric_password_volume_key_protector_id" field's value of the LogicalDisk entity.
+// If the LogicalDisk object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *LogicalDiskMutation) OldBitlockerNumericPasswordVolumeKeyProtectorID(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBitlockerNumericPasswordVolumeKeyProtectorID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBitlockerNumericPasswordVolumeKeyProtectorID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBitlockerNumericPasswordVolumeKeyProtectorID: %w", err)
+	}
+	return oldValue.BitlockerNumericPasswordVolumeKeyProtectorID, nil
+}
+
+// ClearBitlockerNumericPasswordVolumeKeyProtectorID clears the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (m *LogicalDiskMutation) ClearBitlockerNumericPasswordVolumeKeyProtectorID() {
+	m.bitlocker_numeric_password_volume_key_protector_id = nil
+	m.clearedFields[logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID] = struct{}{}
+}
+
+// BitlockerNumericPasswordVolumeKeyProtectorIDCleared returns if the "bitlocker_numeric_password_volume_key_protector_id" field was cleared in this mutation.
+func (m *LogicalDiskMutation) BitlockerNumericPasswordVolumeKeyProtectorIDCleared() bool {
+	_, ok := m.clearedFields[logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID]
+	return ok
+}
+
+// ResetBitlockerNumericPasswordVolumeKeyProtectorID resets all changes to the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (m *LogicalDiskMutation) ResetBitlockerNumericPasswordVolumeKeyProtectorID() {
+	m.bitlocker_numeric_password_volume_key_protector_id = nil
+	delete(m.clearedFields, logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID)
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
 func (m *LogicalDiskMutation) SetOwnerID(id string) {
 	m.owner = &id
@@ -9769,7 +9869,7 @@ func (m *LogicalDiskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *LogicalDiskMutation) Fields() []string {
-	fields := make([]string, 0, 18)
+	fields := make([]string, 0, 20)
 	if m.label != nil {
 		fields = append(fields, logicaldisk.FieldLabel)
 	}
@@ -9824,6 +9924,12 @@ func (m *LogicalDiskMutation) Fields() []string {
 	if m.bitlocker_passphrase_volume_key_protector_id != nil {
 		fields = append(fields, logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID)
 	}
+	if m.bitlocker_tpm_volume_key_protector_id != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID)
+	}
+	if m.bitlocker_numeric_password_volume_key_protector_id != nil {
+		fields = append(fields, logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID)
+	}
 	return fields
 }
 
@@ -9868,6 +9974,10 @@ func (m *LogicalDiskMutation) Field(name string) (ent.Value, bool) {
 		return m.BitlockerPassphrase()
 	case logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID:
 		return m.BitlockerPassphraseVolumeKeyProtectorID()
+	case logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID:
+		return m.BitlockerTpmVolumeKeyProtectorID()
+	case logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
+		return m.BitlockerNumericPasswordVolumeKeyProtectorID()
 	}
 	return nil, false
 }
@@ -9913,6 +10023,10 @@ func (m *LogicalDiskMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldBitlockerPassphrase(ctx)
 	case logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID:
 		return m.OldBitlockerPassphraseVolumeKeyProtectorID(ctx)
+	case logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID:
+		return m.OldBitlockerTpmVolumeKeyProtectorID(ctx)
+	case logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
+		return m.OldBitlockerNumericPasswordVolumeKeyProtectorID(ctx)
 	}
 	return nil, fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -10048,6 +10162,20 @@ func (m *LogicalDiskMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetBitlockerPassphraseVolumeKeyProtectorID(v)
 		return nil
+	case logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerTpmVolumeKeyProtectorID(v)
+		return nil
+	case logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBitlockerNumericPasswordVolumeKeyProtectorID(v)
+		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)
 }
@@ -10177,6 +10305,12 @@ func (m *LogicalDiskMutation) ClearedFields() []string {
 	if m.FieldCleared(logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID) {
 		fields = append(fields, logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID)
 	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID) {
+		fields = append(fields, logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID)
+	}
+	if m.FieldCleared(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID) {
+		fields = append(fields, logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID)
+	}
 	return fields
 }
 
@@ -10239,6 +10373,12 @@ func (m *LogicalDiskMutation) ClearField(name string) error {
 	case logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID:
 		m.ClearBitlockerPassphraseVolumeKeyProtectorID()
 		return nil
+	case logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID:
+		m.ClearBitlockerTpmVolumeKeyProtectorID()
+		return nil
+	case logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
+		m.ClearBitlockerNumericPasswordVolumeKeyProtectorID()
+		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk nullable field %s", name)
 }
@@ -10300,6 +10440,12 @@ func (m *LogicalDiskMutation) ResetField(name string) error {
 		return nil
 	case logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID:
 		m.ResetBitlockerPassphraseVolumeKeyProtectorID()
+		return nil
+	case logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID:
+		m.ResetBitlockerTpmVolumeKeyProtectorID()
+		return nil
+	case logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
+		m.ResetBitlockerNumericPasswordVolumeKeyProtectorID()
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk field %s", name)

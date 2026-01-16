@@ -405,6 +405,46 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerPassphraseVolumeKeyProtectorID() *Lo
 	return ldu
 }
 
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerTpmVolumeKeyProtectorID(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerTpmVolumeKeyProtectorID(s)
+	return ldu
+}
+
+// SetNillableBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerTpmVolumeKeyProtectorID(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerTpmVolumeKeyProtectorID(*s)
+	}
+	return ldu
+}
+
+// ClearBitlockerTpmVolumeKeyProtectorID clears the value of the "bitlocker_tpm_volume_key_protector_id" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerTpmVolumeKeyProtectorID()
+	return ldu
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerNumericPasswordVolumeKeyProtectorID(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerNumericPasswordVolumeKeyProtectorID(s)
+	return ldu
+}
+
+// SetNillableBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerNumericPasswordVolumeKeyProtectorID(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerNumericPasswordVolumeKeyProtectorID(*s)
+	}
+	return ldu
+}
+
+// ClearBitlockerNumericPasswordVolumeKeyProtectorID clears the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerNumericPasswordVolumeKeyProtectorID()
+	return ldu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
 	ldu.mutation.SetOwnerID(id)
@@ -593,6 +633,18 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if ldu.mutation.BitlockerPassphraseVolumeKeyProtectorIDCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID, field.TypeString)
+	}
+	if value, ok := ldu.mutation.BitlockerTpmVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, field.TypeString, value)
+	}
+	if ldu.mutation.BitlockerTpmVolumeKeyProtectorIDCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, field.TypeString)
+	}
+	if value, ok := ldu.mutation.BitlockerNumericPasswordVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID, field.TypeString, value)
+	}
+	if ldu.mutation.BitlockerNumericPasswordVolumeKeyProtectorIDCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID, field.TypeString)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -1021,6 +1073,46 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerPassphraseVolumeKeyProtectorID()
 	return lduo
 }
 
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerTpmVolumeKeyProtectorID(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerTpmVolumeKeyProtectorID(s)
+	return lduo
+}
+
+// SetNillableBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerTpmVolumeKeyProtectorID(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerTpmVolumeKeyProtectorID(*s)
+	}
+	return lduo
+}
+
+// ClearBitlockerTpmVolumeKeyProtectorID clears the value of the "bitlocker_tpm_volume_key_protector_id" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerTpmVolumeKeyProtectorID()
+	return lduo
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerNumericPasswordVolumeKeyProtectorID(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerNumericPasswordVolumeKeyProtectorID(s)
+	return lduo
+}
+
+// SetNillableBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerNumericPasswordVolumeKeyProtectorID(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerNumericPasswordVolumeKeyProtectorID(*s)
+	}
+	return lduo
+}
+
+// ClearBitlockerNumericPasswordVolumeKeyProtectorID clears the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerNumericPasswordVolumeKeyProtectorID()
+	return lduo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
 	lduo.mutation.SetOwnerID(id)
@@ -1239,6 +1331,18 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	}
 	if lduo.mutation.BitlockerPassphraseVolumeKeyProtectorIDCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID, field.TypeString)
+	}
+	if value, ok := lduo.mutation.BitlockerTpmVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, field.TypeString, value)
+	}
+	if lduo.mutation.BitlockerTpmVolumeKeyProtectorIDCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, field.TypeString)
+	}
+	if value, ok := lduo.mutation.BitlockerNumericPasswordVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID, field.TypeString, value)
+	}
+	if lduo.mutation.BitlockerNumericPasswordVolumeKeyProtectorIDCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID, field.TypeString)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

@@ -266,6 +266,34 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerPassphraseVolumeKeyProtectorID
 	return ldc
 }
 
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (ldc *LogicalDiskCreate) SetBitlockerTpmVolumeKeyProtectorID(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerTpmVolumeKeyProtectorID(s)
+	return ldc
+}
+
+// SetNillableBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerTpmVolumeKeyProtectorID(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerTpmVolumeKeyProtectorID(*s)
+	}
+	return ldc
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (ldc *LogicalDiskCreate) SetBitlockerNumericPasswordVolumeKeyProtectorID(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerNumericPasswordVolumeKeyProtectorID(s)
+	return ldc
+}
+
+// SetNillableBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerNumericPasswordVolumeKeyProtectorID(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerNumericPasswordVolumeKeyProtectorID(*s)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -431,6 +459,14 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerPassphraseVolumeKeyProtectorID(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID, field.TypeString, value)
 		_node.BitlockerPassphraseVolumeKeyProtectorID = value
+	}
+	if value, ok := ldc.mutation.BitlockerTpmVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, field.TypeString, value)
+		_node.BitlockerTpmVolumeKeyProtectorID = value
+	}
+	if value, ok := ldc.mutation.BitlockerNumericPasswordVolumeKeyProtectorID(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID, field.TypeString, value)
+		_node.BitlockerNumericPasswordVolumeKeyProtectorID = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -834,6 +870,42 @@ func (u *LogicalDiskUpsert) UpdateBitlockerPassphraseVolumeKeyProtectorID() *Log
 // ClearBitlockerPassphraseVolumeKeyProtectorID clears the value of the "bitlocker_passphrase_volume_key_protector_id" field.
 func (u *LogicalDiskUpsert) ClearBitlockerPassphraseVolumeKeyProtectorID() *LogicalDiskUpsert {
 	u.SetNull(logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID)
+	return u
+}
+
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (u *LogicalDiskUpsert) SetBitlockerTpmVolumeKeyProtectorID(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, v)
+	return u
+}
+
+// UpdateBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID)
+	return u
+}
+
+// ClearBitlockerTpmVolumeKeyProtectorID clears the value of the "bitlocker_tpm_volume_key_protector_id" field.
+func (u *LogicalDiskUpsert) ClearBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID)
+	return u
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (u *LogicalDiskUpsert) SetBitlockerNumericPasswordVolumeKeyProtectorID(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID, v)
+	return u
+}
+
+// UpdateBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID)
+	return u
+}
+
+// ClearBitlockerNumericPasswordVolumeKeyProtectorID clears the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (u *LogicalDiskUpsert) ClearBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID)
 	return u
 }
 
@@ -1266,6 +1338,48 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerPassphraseVolumeKeyProtectorID() *
 func (u *LogicalDiskUpsertOne) ClearBitlockerPassphraseVolumeKeyProtectorID() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerPassphraseVolumeKeyProtectorID()
+	})
+}
+
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerTpmVolumeKeyProtectorID(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerTpmVolumeKeyProtectorID(v)
+	})
+}
+
+// UpdateBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerTpmVolumeKeyProtectorID()
+	})
+}
+
+// ClearBitlockerTpmVolumeKeyProtectorID clears the value of the "bitlocker_tpm_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerTpmVolumeKeyProtectorID()
+	})
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerNumericPasswordVolumeKeyProtectorID(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerNumericPasswordVolumeKeyProtectorID(v)
+	})
+}
+
+// UpdateBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerNumericPasswordVolumeKeyProtectorID()
+	})
+}
+
+// ClearBitlockerNumericPasswordVolumeKeyProtectorID clears the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerNumericPasswordVolumeKeyProtectorID()
 	})
 }
 
@@ -1862,6 +1976,48 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerPassphraseVolumeKeyProtectorID() 
 func (u *LogicalDiskUpsertBulk) ClearBitlockerPassphraseVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerPassphraseVolumeKeyProtectorID()
+	})
+}
+
+// SetBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerTpmVolumeKeyProtectorID(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerTpmVolumeKeyProtectorID(v)
+	})
+}
+
+// UpdateBitlockerTpmVolumeKeyProtectorID sets the "bitlocker_tpm_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerTpmVolumeKeyProtectorID()
+	})
+}
+
+// ClearBitlockerTpmVolumeKeyProtectorID clears the value of the "bitlocker_tpm_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerTpmVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerTpmVolumeKeyProtectorID()
+	})
+}
+
+// SetBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerNumericPasswordVolumeKeyProtectorID(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerNumericPasswordVolumeKeyProtectorID(v)
+	})
+}
+
+// UpdateBitlockerNumericPasswordVolumeKeyProtectorID sets the "bitlocker_numeric_password_volume_key_protector_id" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerNumericPasswordVolumeKeyProtectorID()
+	})
+}
+
+// ClearBitlockerNumericPasswordVolumeKeyProtectorID clears the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerNumericPasswordVolumeKeyProtectorID() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerNumericPasswordVolumeKeyProtectorID()
 	})
 }
 

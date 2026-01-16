@@ -218,6 +218,8 @@ var (
 		{Name: "bitlocker_key_protectors_types", Type: field.TypeString, Nullable: true},
 		{Name: "bitlocker_passphrase", Type: field.TypeString, Nullable: true},
 		{Name: "bitlocker_passphrase_volume_key_protector_id", Type: field.TypeString, Nullable: true},
+		{Name: "bitlocker_tpm_volume_key_protector_id", Type: field.TypeString, Nullable: true},
+		{Name: "bitlocker_numeric_password_volume_key_protector_id", Type: field.TypeString, Nullable: true},
 		{Name: "agent_logicaldisks", Type: field.TypeString},
 	}
 	// LogicalDisksTable holds the schema information for the "logical_disks" table.
@@ -228,7 +230,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "logical_disks_agents_logicaldisks",
-				Columns:    []*schema.Column{LogicalDisksColumns[19]},
+				Columns:    []*schema.Column{LogicalDisksColumns[21]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

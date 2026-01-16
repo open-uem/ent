@@ -53,6 +53,10 @@ type LogicalDisk struct {
 	BitlockerPassphrase string `json:"bitlocker_passphrase,omitempty"`
 	// BitlockerPassphraseVolumeKeyProtectorID holds the value of the "bitlocker_passphrase_volume_key_protector_id" field.
 	BitlockerPassphraseVolumeKeyProtectorID string `json:"bitlocker_passphrase_volume_key_protector_id,omitempty"`
+	// BitlockerTpmVolumeKeyProtectorID holds the value of the "bitlocker_tpm_volume_key_protector_id" field.
+	BitlockerTpmVolumeKeyProtectorID string `json:"bitlocker_tpm_volume_key_protector_id,omitempty"`
+	// BitlockerNumericPasswordVolumeKeyProtectorID holds the value of the "bitlocker_numeric_password_volume_key_protector_id" field.
+	BitlockerNumericPasswordVolumeKeyProtectorID string `json:"bitlocker_numeric_password_volume_key_protector_id,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -89,7 +93,7 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case logicaldisk.FieldID, logicaldisk.FieldUsage, logicaldisk.FieldVolumeType, logicaldisk.FieldBitlockerConversionStatus, logicaldisk.FieldBitlockerEncryptionPercentage:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey, logicaldisk.FieldBitlockerOperationInProgress, logicaldisk.FieldBitlockerOperationResult, logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, logicaldisk.FieldBitlockerKeyProtectorsTypes, logicaldisk.FieldBitlockerPassphrase, logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey, logicaldisk.FieldBitlockerOperationInProgress, logicaldisk.FieldBitlockerOperationResult, logicaldisk.FieldBitlockerExternalKeyVolumeKeyProtectorID, logicaldisk.FieldBitlockerKeyProtectorsTypes, logicaldisk.FieldBitlockerPassphrase, logicaldisk.FieldBitlockerPassphraseVolumeKeyProtectorID, logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID, logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -222,6 +226,18 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				ld.BitlockerPassphraseVolumeKeyProtectorID = value.String
 			}
+		case logicaldisk.FieldBitlockerTpmVolumeKeyProtectorID:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field bitlocker_tpm_volume_key_protector_id", values[i])
+			} else if value.Valid {
+				ld.BitlockerTpmVolumeKeyProtectorID = value.String
+			}
+		case logicaldisk.FieldBitlockerNumericPasswordVolumeKeyProtectorID:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field bitlocker_numeric_password_volume_key_protector_id", values[i])
+			} else if value.Valid {
+				ld.BitlockerNumericPasswordVolumeKeyProtectorID = value.String
+			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_logicaldisks", values[i])
@@ -323,6 +339,12 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("bitlocker_passphrase_volume_key_protector_id=")
 	builder.WriteString(ld.BitlockerPassphraseVolumeKeyProtectorID)
+	builder.WriteString(", ")
+	builder.WriteString("bitlocker_tpm_volume_key_protector_id=")
+	builder.WriteString(ld.BitlockerTpmVolumeKeyProtectorID)
+	builder.WriteString(", ")
+	builder.WriteString("bitlocker_numeric_password_volume_key_protector_id=")
+	builder.WriteString(ld.BitlockerNumericPasswordVolumeKeyProtectorID)
 	builder.WriteByte(')')
 	return builder.String()
 }

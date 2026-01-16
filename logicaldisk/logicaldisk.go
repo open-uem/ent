@@ -48,6 +48,10 @@ const (
 	FieldBitlockerPassphrase = "bitlocker_passphrase"
 	// FieldBitlockerPassphraseVolumeKeyProtectorID holds the string denoting the bitlocker_passphrase_volume_key_protector_id field in the database.
 	FieldBitlockerPassphraseVolumeKeyProtectorID = "bitlocker_passphrase_volume_key_protector_id"
+	// FieldBitlockerTpmVolumeKeyProtectorID holds the string denoting the bitlocker_tpm_volume_key_protector_id field in the database.
+	FieldBitlockerTpmVolumeKeyProtectorID = "bitlocker_tpm_volume_key_protector_id"
+	// FieldBitlockerNumericPasswordVolumeKeyProtectorID holds the string denoting the bitlocker_numeric_password_volume_key_protector_id field in the database.
+	FieldBitlockerNumericPasswordVolumeKeyProtectorID = "bitlocker_numeric_password_volume_key_protector_id"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -84,6 +88,8 @@ var Columns = []string{
 	FieldBitlockerKeyProtectorsTypes,
 	FieldBitlockerPassphrase,
 	FieldBitlockerPassphraseVolumeKeyProtectorID,
+	FieldBitlockerTpmVolumeKeyProtectorID,
+	FieldBitlockerNumericPasswordVolumeKeyProtectorID,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -210,6 +216,16 @@ func ByBitlockerPassphrase(opts ...sql.OrderTermOption) OrderOption {
 // ByBitlockerPassphraseVolumeKeyProtectorID orders the results by the bitlocker_passphrase_volume_key_protector_id field.
 func ByBitlockerPassphraseVolumeKeyProtectorID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBitlockerPassphraseVolumeKeyProtectorID, opts...).ToFunc()
+}
+
+// ByBitlockerTpmVolumeKeyProtectorID orders the results by the bitlocker_tpm_volume_key_protector_id field.
+func ByBitlockerTpmVolumeKeyProtectorID(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerTpmVolumeKeyProtectorID, opts...).ToFunc()
+}
+
+// ByBitlockerNumericPasswordVolumeKeyProtectorID orders the results by the bitlocker_numeric_password_volume_key_protector_id field.
+func ByBitlockerNumericPasswordVolumeKeyProtectorID(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerNumericPasswordVolumeKeyProtectorID, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.
