@@ -949,22 +949,6 @@ func (c *AgentClient) QueryNetbird(a *Agent) *NetbirdQuery {
 	return query
 }
 
-// QueryTasksreports queries the tasksreports edge of a Agent.
-func (c *AgentClient) QueryTasksreports(a *Agent) *TaskReportQuery {
-	query := (&TaskReportClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(agent.Table, agent.FieldID, id),
-			sqlgraph.To(taskreport.Table, taskreport.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, agent.TasksreportsTable, agent.TasksreportsColumn),
-		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
 // Hooks returns the client hooks.
 func (c *AgentClient) Hooks() []Hook {
 	return c.hooks.Agent
@@ -3860,6 +3844,22 @@ func (c *ProfileIssueClient) QueryAgents(pi *ProfileIssue) *AgentQuery {
 	return query
 }
 
+// QueryTasksreports queries the tasksreports edge of a ProfileIssue.
+func (c *ProfileIssueClient) QueryTasksreports(pi *ProfileIssue) *TaskReportQuery {
+	query := (&TaskReportClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := pi.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(profileissue.Table, profileissue.FieldID, id),
+			sqlgraph.To(taskreport.Table, taskreport.FieldID),
+			sqlgraph.Edge(sqlgraph.O2O, false, profileissue.TasksreportsTable, profileissue.TasksreportsColumn),
+		)
+		fromV = sqlgraph.Neighbors(pi.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *ProfileIssueClient) Hooks() []Hook {
 	return c.hooks.ProfileIssue
@@ -5744,22 +5744,6 @@ func (c *TaskClient) QueryProfile(t *Task) *ProfileQuery {
 	return query
 }
 
-// QueryReports queries the reports edge of a Task.
-func (c *TaskClient) QueryReports(t *Task) *TaskReportQuery {
-	query := (&TaskReportClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := t.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(task.Table, task.FieldID, id),
-			sqlgraph.To(taskreport.Table, taskreport.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, task.ReportsTable, task.ReportsColumn),
-		)
-		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
 // Hooks returns the client hooks.
 func (c *TaskClient) Hooks() []Hook {
 	return c.hooks.Task
@@ -5893,31 +5877,15 @@ func (c *TaskReportClient) GetX(ctx context.Context, id int) *TaskReport {
 	return obj
 }
 
-// QueryAgent queries the agent edge of a TaskReport.
-func (c *TaskReportClient) QueryAgent(tr *TaskReport) *AgentQuery {
-	query := (&AgentClient{config: c.config}).Query()
+// QueryProfileissue queries the profileissue edge of a TaskReport.
+func (c *TaskReportClient) QueryProfileissue(tr *TaskReport) *ProfileIssueQuery {
+	query := (&ProfileIssueClient{config: c.config}).Query()
 	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
 		id := tr.ID
 		step := sqlgraph.NewStep(
 			sqlgraph.From(taskreport.Table, taskreport.FieldID, id),
-			sqlgraph.To(agent.Table, agent.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, taskreport.AgentTable, taskreport.AgentColumn),
-		)
-		fromV = sqlgraph.Neighbors(tr.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
-// QueryTask queries the task edge of a TaskReport.
-func (c *TaskReportClient) QueryTask(tr *TaskReport) *TaskQuery {
-	query := (&TaskClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := tr.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(taskreport.Table, taskreport.FieldID, id),
-			sqlgraph.To(task.Table, task.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, taskreport.TaskTable, taskreport.TaskColumn),
+			sqlgraph.To(profileissue.Table, profileissue.FieldID),
+			sqlgraph.Edge(sqlgraph.O2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
 		)
 		fromV = sqlgraph.Neighbors(tr.driver.Dialect(), step)
 		return fromV, nil

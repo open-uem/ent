@@ -10,9 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/predicate"
-	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/profileissue"
 	"github.com/open-uem/ent/taskreport"
 )
 
@@ -104,42 +103,23 @@ func (tru *TaskReportUpdate) ClearEnd() *TaskReportUpdate {
 	return tru
 }
 
-// SetAgentID sets the "agent" edge to the Agent entity by ID.
-func (tru *TaskReportUpdate) SetAgentID(id string) *TaskReportUpdate {
-	tru.mutation.SetAgentID(id)
+// SetProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID.
+func (tru *TaskReportUpdate) SetProfileissueID(id int) *TaskReportUpdate {
+	tru.mutation.SetProfileissueID(id)
 	return tru
 }
 
-// SetNillableAgentID sets the "agent" edge to the Agent entity by ID if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableAgentID(id *string) *TaskReportUpdate {
+// SetNillableProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID if the given value is not nil.
+func (tru *TaskReportUpdate) SetNillableProfileissueID(id *int) *TaskReportUpdate {
 	if id != nil {
-		tru = tru.SetAgentID(*id)
+		tru = tru.SetProfileissueID(*id)
 	}
 	return tru
 }
 
-// SetAgent sets the "agent" edge to the Agent entity.
-func (tru *TaskReportUpdate) SetAgent(a *Agent) *TaskReportUpdate {
-	return tru.SetAgentID(a.ID)
-}
-
-// SetTaskID sets the "task" edge to the Task entity by ID.
-func (tru *TaskReportUpdate) SetTaskID(id int) *TaskReportUpdate {
-	tru.mutation.SetTaskID(id)
-	return tru
-}
-
-// SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableTaskID(id *int) *TaskReportUpdate {
-	if id != nil {
-		tru = tru.SetTaskID(*id)
-	}
-	return tru
-}
-
-// SetTask sets the "task" edge to the Task entity.
-func (tru *TaskReportUpdate) SetTask(t *Task) *TaskReportUpdate {
-	return tru.SetTaskID(t.ID)
+// SetProfileissue sets the "profileissue" edge to the ProfileIssue entity.
+func (tru *TaskReportUpdate) SetProfileissue(p *ProfileIssue) *TaskReportUpdate {
+	return tru.SetProfileissueID(p.ID)
 }
 
 // Mutation returns the TaskReportMutation object of the builder.
@@ -147,15 +127,9 @@ func (tru *TaskReportUpdate) Mutation() *TaskReportMutation {
 	return tru.mutation
 }
 
-// ClearAgent clears the "agent" edge to the Agent entity.
-func (tru *TaskReportUpdate) ClearAgent() *TaskReportUpdate {
-	tru.mutation.ClearAgent()
-	return tru
-}
-
-// ClearTask clears the "task" edge to the Task entity.
-func (tru *TaskReportUpdate) ClearTask() *TaskReportUpdate {
-	tru.mutation.ClearTask()
+// ClearProfileissue clears the "profileissue" edge to the ProfileIssue entity.
+func (tru *TaskReportUpdate) ClearProfileissue() *TaskReportUpdate {
+	tru.mutation.ClearProfileissue()
 	return tru
 }
 
@@ -222,57 +196,28 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if tru.mutation.EndCleared() {
 		_spec.ClearField(taskreport.FieldEnd, field.TypeString)
 	}
-	if tru.mutation.AgentCleared() {
+	if tru.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
-			Table:   taskreport.AgentTable,
-			Columns: []string{taskreport.AgentColumn},
+			Table:   taskreport.ProfileissueTable,
+			Columns: []string{taskreport.ProfileissueColumn},
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
 			},
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tru.mutation.AgentIDs(); len(nodes) > 0 {
+	if nodes := tru.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
-			Table:   taskreport.AgentTable,
-			Columns: []string{taskreport.AgentColumn},
+			Table:   taskreport.ProfileissueTable,
+			Columns: []string{taskreport.ProfileissueColumn},
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
-	}
-	if tru.mutation.TaskCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   taskreport.TaskTable,
-			Columns: []string{taskreport.TaskColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := tru.mutation.TaskIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   taskreport.TaskTable,
-			Columns: []string{taskreport.TaskColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
+				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
@@ -376,42 +321,23 @@ func (truo *TaskReportUpdateOne) ClearEnd() *TaskReportUpdateOne {
 	return truo
 }
 
-// SetAgentID sets the "agent" edge to the Agent entity by ID.
-func (truo *TaskReportUpdateOne) SetAgentID(id string) *TaskReportUpdateOne {
-	truo.mutation.SetAgentID(id)
+// SetProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID.
+func (truo *TaskReportUpdateOne) SetProfileissueID(id int) *TaskReportUpdateOne {
+	truo.mutation.SetProfileissueID(id)
 	return truo
 }
 
-// SetNillableAgentID sets the "agent" edge to the Agent entity by ID if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableAgentID(id *string) *TaskReportUpdateOne {
+// SetNillableProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID if the given value is not nil.
+func (truo *TaskReportUpdateOne) SetNillableProfileissueID(id *int) *TaskReportUpdateOne {
 	if id != nil {
-		truo = truo.SetAgentID(*id)
+		truo = truo.SetProfileissueID(*id)
 	}
 	return truo
 }
 
-// SetAgent sets the "agent" edge to the Agent entity.
-func (truo *TaskReportUpdateOne) SetAgent(a *Agent) *TaskReportUpdateOne {
-	return truo.SetAgentID(a.ID)
-}
-
-// SetTaskID sets the "task" edge to the Task entity by ID.
-func (truo *TaskReportUpdateOne) SetTaskID(id int) *TaskReportUpdateOne {
-	truo.mutation.SetTaskID(id)
-	return truo
-}
-
-// SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableTaskID(id *int) *TaskReportUpdateOne {
-	if id != nil {
-		truo = truo.SetTaskID(*id)
-	}
-	return truo
-}
-
-// SetTask sets the "task" edge to the Task entity.
-func (truo *TaskReportUpdateOne) SetTask(t *Task) *TaskReportUpdateOne {
-	return truo.SetTaskID(t.ID)
+// SetProfileissue sets the "profileissue" edge to the ProfileIssue entity.
+func (truo *TaskReportUpdateOne) SetProfileissue(p *ProfileIssue) *TaskReportUpdateOne {
+	return truo.SetProfileissueID(p.ID)
 }
 
 // Mutation returns the TaskReportMutation object of the builder.
@@ -419,15 +345,9 @@ func (truo *TaskReportUpdateOne) Mutation() *TaskReportMutation {
 	return truo.mutation
 }
 
-// ClearAgent clears the "agent" edge to the Agent entity.
-func (truo *TaskReportUpdateOne) ClearAgent() *TaskReportUpdateOne {
-	truo.mutation.ClearAgent()
-	return truo
-}
-
-// ClearTask clears the "task" edge to the Task entity.
-func (truo *TaskReportUpdateOne) ClearTask() *TaskReportUpdateOne {
-	truo.mutation.ClearTask()
+// ClearProfileissue clears the "profileissue" edge to the ProfileIssue entity.
+func (truo *TaskReportUpdateOne) ClearProfileissue() *TaskReportUpdateOne {
+	truo.mutation.ClearProfileissue()
 	return truo
 }
 
@@ -524,57 +444,28 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 	if truo.mutation.EndCleared() {
 		_spec.ClearField(taskreport.FieldEnd, field.TypeString)
 	}
-	if truo.mutation.AgentCleared() {
+	if truo.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
-			Table:   taskreport.AgentTable,
-			Columns: []string{taskreport.AgentColumn},
+			Table:   taskreport.ProfileissueTable,
+			Columns: []string{taskreport.ProfileissueColumn},
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
 			},
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := truo.mutation.AgentIDs(); len(nodes) > 0 {
+	if nodes := truo.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
-			Table:   taskreport.AgentTable,
-			Columns: []string{taskreport.AgentColumn},
+			Table:   taskreport.ProfileissueTable,
+			Columns: []string{taskreport.ProfileissueColumn},
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
-	}
-	if truo.mutation.TaskCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   taskreport.TaskTable,
-			Columns: []string{taskreport.TaskColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := truo.mutation.TaskIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   taskreport.TaskTable,
-			Columns: []string{taskreport.TaskColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
+				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

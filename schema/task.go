@@ -2,7 +2,6 @@ package schema
 
 import (
 	"entgo.io/ent"
-	"entgo.io/ent/dialect/entsql"
 	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 )
@@ -153,6 +152,5 @@ func (Task) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.To("tags", Tag.Type),
 		edge.From("profile", Profile.Type).Unique().Ref("tasks"),
-		edge.To("reports", TaskReport.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 	}
 }

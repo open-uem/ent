@@ -10,8 +10,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/open-uem/ent/agent"
-	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/profileissue"
 	"github.com/open-uem/ent/taskreport"
 )
 
@@ -79,42 +78,23 @@ func (trc *TaskReportCreate) SetNillableEnd(s *string) *TaskReportCreate {
 	return trc
 }
 
-// SetAgentID sets the "agent" edge to the Agent entity by ID.
-func (trc *TaskReportCreate) SetAgentID(id string) *TaskReportCreate {
-	trc.mutation.SetAgentID(id)
+// SetProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID.
+func (trc *TaskReportCreate) SetProfileissueID(id int) *TaskReportCreate {
+	trc.mutation.SetProfileissueID(id)
 	return trc
 }
 
-// SetNillableAgentID sets the "agent" edge to the Agent entity by ID if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableAgentID(id *string) *TaskReportCreate {
+// SetNillableProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID if the given value is not nil.
+func (trc *TaskReportCreate) SetNillableProfileissueID(id *int) *TaskReportCreate {
 	if id != nil {
-		trc = trc.SetAgentID(*id)
+		trc = trc.SetProfileissueID(*id)
 	}
 	return trc
 }
 
-// SetAgent sets the "agent" edge to the Agent entity.
-func (trc *TaskReportCreate) SetAgent(a *Agent) *TaskReportCreate {
-	return trc.SetAgentID(a.ID)
-}
-
-// SetTaskID sets the "task" edge to the Task entity by ID.
-func (trc *TaskReportCreate) SetTaskID(id int) *TaskReportCreate {
-	trc.mutation.SetTaskID(id)
-	return trc
-}
-
-// SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableTaskID(id *int) *TaskReportCreate {
-	if id != nil {
-		trc = trc.SetTaskID(*id)
-	}
-	return trc
-}
-
-// SetTask sets the "task" edge to the Task entity.
-func (trc *TaskReportCreate) SetTask(t *Task) *TaskReportCreate {
-	return trc.SetTaskID(t.ID)
+// SetProfileissue sets the "profileissue" edge to the ProfileIssue entity.
+func (trc *TaskReportCreate) SetProfileissue(p *ProfileIssue) *TaskReportCreate {
+	return trc.SetProfileissueID(p.ID)
 }
 
 // Mutation returns the TaskReportMutation object of the builder.
@@ -218,38 +198,21 @@ func (trc *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)
 		_node.End = value
 	}
-	if nodes := trc.mutation.AgentIDs(); len(nodes) > 0 {
+	if nodes := trc.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
-			Table:   taskreport.AgentTable,
-			Columns: []string{taskreport.AgentColumn},
+			Table:   taskreport.ProfileissueTable,
+			Columns: []string{taskreport.ProfileissueColumn},
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
-		_node.agent_tasksreports = &nodes[0]
-		_spec.Edges = append(_spec.Edges, edge)
-	}
-	if nodes := trc.mutation.TaskIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   taskreport.TaskTable,
-			Columns: []string{taskreport.TaskColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_node.task_reports = &nodes[0]
+		_node.profile_issue_tasksreports = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec

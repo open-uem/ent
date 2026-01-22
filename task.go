@@ -207,11 +207,9 @@ type TaskEdges struct {
 	Tags []*Tag `json:"tags,omitempty"`
 	// Profile holds the value of the profile edge.
 	Profile *Profile `json:"profile,omitempty"`
-	// Reports holds the value of the reports edge.
-	Reports []*TaskReport `json:"reports,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [3]bool
+	loadedTypes [2]bool
 }
 
 // TagsOrErr returns the Tags value or an error if the edge
@@ -232,15 +230,6 @@ func (e TaskEdges) ProfileOrErr() (*Profile, error) {
 		return nil, &NotFoundError{label: profile.Label}
 	}
 	return nil, &NotLoadedError{edge: "profile"}
-}
-
-// ReportsOrErr returns the Reports value or an error if the edge
-// was not loaded in eager-loading.
-func (e TaskEdges) ReportsOrErr() ([]*TaskReport, error) {
-	if e.loadedTypes[2] {
-		return e.Reports, nil
-	}
-	return nil, &NotLoadedError{edge: "reports"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -835,11 +824,6 @@ func (t *Task) QueryTags() *TagQuery {
 // QueryProfile queries the "profile" edge of the Task entity.
 func (t *Task) QueryProfile() *ProfileQuery {
 	return NewTaskClient(t.config).QueryProfile(t)
-}
-
-// QueryReports queries the "reports" edge of the Task entity.
-func (t *Task) QueryReports() *TaskReportQuery {
-	return NewTaskClient(t.config).QueryReports(t)
 }
 
 // Update returns a builder for updating this Task.

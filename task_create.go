@@ -14,7 +14,6 @@ import (
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
-	"github.com/open-uem/ent/taskreport"
 )
 
 // TaskCreate is the builder for creating a Task entity.
@@ -1275,21 +1274,6 @@ func (tc *TaskCreate) SetProfile(p *Profile) *TaskCreate {
 	return tc.SetProfileID(p.ID)
 }
 
-// AddReportIDs adds the "reports" edge to the TaskReport entity by IDs.
-func (tc *TaskCreate) AddReportIDs(ids ...int) *TaskCreate {
-	tc.mutation.AddReportIDs(ids...)
-	return tc
-}
-
-// AddReports adds the "reports" edges to the TaskReport entity.
-func (tc *TaskCreate) AddReports(t ...*TaskReport) *TaskCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
-	}
-	return tc.AddReportIDs(ids...)
-}
-
 // Mutation returns the TaskMutation object of the builder.
 func (tc *TaskCreate) Mutation() *TaskMutation {
 	return tc.mutation
@@ -2000,22 +1984,6 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
 		_node.profile_tasks = &nodes[0]
-		_spec.Edges = append(_spec.Edges, edge)
-	}
-	if nodes := tc.mutation.ReportsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   task.ReportsTable,
-			Columns: []string{task.ReportsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec

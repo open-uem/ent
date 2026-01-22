@@ -308,44 +308,21 @@ func EndContainsFold(v string) predicate.TaskReport {
 	return predicate.TaskReport(sql.FieldContainsFold(FieldEnd, v))
 }
 
-// HasAgent applies the HasEdge predicate on the "agent" edge.
-func HasAgent() predicate.TaskReport {
+// HasProfileissue applies the HasEdge predicate on the "profileissue" edge.
+func HasProfileissue() predicate.TaskReport {
 	return predicate.TaskReport(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, AgentTable, AgentColumn),
+			sqlgraph.Edge(sqlgraph.O2O, true, ProfileissueTable, ProfileissueColumn),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})
 }
 
-// HasAgentWith applies the HasEdge predicate on the "agent" edge with a given conditions (other predicates).
-func HasAgentWith(preds ...predicate.Agent) predicate.TaskReport {
+// HasProfileissueWith applies the HasEdge predicate on the "profileissue" edge with a given conditions (other predicates).
+func HasProfileissueWith(preds ...predicate.ProfileIssue) predicate.TaskReport {
 	return predicate.TaskReport(func(s *sql.Selector) {
-		step := newAgentStep()
-		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
-			for _, p := range preds {
-				p(s)
-			}
-		})
-	})
-}
-
-// HasTask applies the HasEdge predicate on the "task" edge.
-func HasTask() predicate.TaskReport {
-	return predicate.TaskReport(func(s *sql.Selector) {
-		step := sqlgraph.NewStep(
-			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, TaskTable, TaskColumn),
-		)
-		sqlgraph.HasNeighbors(s, step)
-	})
-}
-
-// HasTaskWith applies the HasEdge predicate on the "task" edge with a given conditions (other predicates).
-func HasTaskWith(preds ...predicate.Task) predicate.TaskReport {
-	return predicate.TaskReport(func(s *sql.Selector) {
-		step := newTaskStep()
+		step := newProfileissueStep()
 		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
 			for _, p := range preds {
 				p(s)

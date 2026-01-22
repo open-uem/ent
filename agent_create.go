@@ -32,7 +32,6 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/systemupdate"
 	"github.com/open-uem/ent/tag"
-	"github.com/open-uem/ent/taskreport"
 	"github.com/open-uem/ent/update"
 	"github.com/open-uem/ent/wingetconfigexclusion"
 )
@@ -794,21 +793,6 @@ func (ac *AgentCreate) SetNetbird(n *Netbird) *AgentCreate {
 	return ac.SetNetbirdID(n.ID)
 }
 
-// AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
-func (ac *AgentCreate) AddTasksreportIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddTasksreportIDs(ids...)
-	return ac
-}
-
-// AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
-func (ac *AgentCreate) AddTasksreports(t ...*TaskReport) *AgentCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
-	}
-	return ac.AddTasksreportIDs(ids...)
-}
-
 // Mutation returns the AgentMutation object of the builder.
 func (ac *AgentCreate) Mutation() *AgentMutation {
 	return ac.mutation
@@ -1470,22 +1454,6 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges = append(_spec.Edges, edge)
-	}
-	if nodes := ac.mutation.TasksreportsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.TasksreportsTable,
-			Columns: []string{agent.TasksreportsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

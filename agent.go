@@ -134,11 +134,9 @@ type AgentEdges struct {
 	Physicaldisks []*PhysicalDisk `json:"physicaldisks,omitempty"`
 	// Netbird holds the value of the netbird edge.
 	Netbird *Netbird `json:"netbird,omitempty"`
-	// Tasksreports holds the value of the tasksreports edge.
-	Tasksreports []*TaskReport `json:"tasksreports,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [22]bool
+	loadedTypes [21]bool
 }
 
 // ComputerOrErr returns the Computer value or an error if the edge
@@ -340,15 +338,6 @@ func (e AgentEdges) NetbirdOrErr() (*Netbird, error) {
 		return nil, &NotFoundError{label: netbird.Label}
 	}
 	return nil, &NotLoadedError{edge: "netbird"}
-}
-
-// TasksreportsOrErr returns the Tasksreports value or an error if the edge
-// was not loaded in eager-loading.
-func (e AgentEdges) TasksreportsOrErr() ([]*TaskReport, error) {
-	if e.loadedTypes[21] {
-		return e.Tasksreports, nil
-	}
-	return nil, &NotLoadedError{edge: "tasksreports"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -688,11 +677,6 @@ func (a *Agent) QueryPhysicaldisks() *PhysicalDiskQuery {
 // QueryNetbird queries the "netbird" edge of the Agent entity.
 func (a *Agent) QueryNetbird() *NetbirdQuery {
 	return NewAgentClient(a.config).QueryNetbird(a)
-}
-
-// QueryTasksreports queries the "tasksreports" edge of the Agent entity.
-func (a *Agent) QueryTasksreports() *TaskReportQuery {
-	return NewAgentClient(a.config).QueryTasksreports(a)
 }
 
 // Update returns a builder for updating this Agent.

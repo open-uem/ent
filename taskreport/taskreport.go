@@ -20,28 +20,17 @@ const (
 	FieldFailed = "failed"
 	// FieldEnd holds the string denoting the end field in the database.
 	FieldEnd = "end"
-	// EdgeAgent holds the string denoting the agent edge name in mutations.
-	EdgeAgent = "agent"
-	// EdgeTask holds the string denoting the task edge name in mutations.
-	EdgeTask = "task"
-	// AgentFieldID holds the string denoting the ID field of the Agent.
-	AgentFieldID = "oid"
+	// EdgeProfileissue holds the string denoting the profileissue edge name in mutations.
+	EdgeProfileissue = "profileissue"
 	// Table holds the table name of the taskreport in the database.
 	Table = "task_reports"
-	// AgentTable is the table that holds the agent relation/edge.
-	AgentTable = "task_reports"
-	// AgentInverseTable is the table name for the Agent entity.
-	// It exists in this package in order to avoid circular dependency with the "agent" package.
-	AgentInverseTable = "agents"
-	// AgentColumn is the table column denoting the agent relation/edge.
-	AgentColumn = "agent_tasksreports"
-	// TaskTable is the table that holds the task relation/edge.
-	TaskTable = "task_reports"
-	// TaskInverseTable is the table name for the Task entity.
-	// It exists in this package in order to avoid circular dependency with the "task" package.
-	TaskInverseTable = "tasks"
-	// TaskColumn is the table column denoting the task relation/edge.
-	TaskColumn = "task_reports"
+	// ProfileissueTable is the table that holds the profileissue relation/edge.
+	ProfileissueTable = "task_reports"
+	// ProfileissueInverseTable is the table name for the ProfileIssue entity.
+	// It exists in this package in order to avoid circular dependency with the "profileissue" package.
+	ProfileissueInverseTable = "profile_issues"
+	// ProfileissueColumn is the table column denoting the profileissue relation/edge.
+	ProfileissueColumn = "profile_issue_tasksreports"
 )
 
 // Columns holds all SQL columns for taskreport fields.
@@ -56,8 +45,7 @@ var Columns = []string{
 // ForeignKeys holds the SQL foreign-keys that are owned by the "task_reports"
 // table and are not defined as standalone fields in the schema.
 var ForeignKeys = []string{
-	"agent_tasksreports",
-	"task_reports",
+	"profile_issue_tasksreports",
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -114,30 +102,16 @@ func ByEnd(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldEnd, opts...).ToFunc()
 }
 
-// ByAgentField orders the results by agent field.
-func ByAgentField(field string, opts ...sql.OrderTermOption) OrderOption {
+// ByProfileissueField orders the results by profileissue field.
+func ByProfileissueField(field string, opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newAgentStep(), sql.OrderByField(field, opts...))
+		sqlgraph.OrderByNeighborTerms(s, newProfileissueStep(), sql.OrderByField(field, opts...))
 	}
 }
-
-// ByTaskField orders the results by task field.
-func ByTaskField(field string, opts ...sql.OrderTermOption) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newTaskStep(), sql.OrderByField(field, opts...))
-	}
-}
-func newAgentStep() *sqlgraph.Step {
+func newProfileissueStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
-		sqlgraph.To(AgentInverseTable, AgentFieldID),
-		sqlgraph.Edge(sqlgraph.M2O, true, AgentTable, AgentColumn),
-	)
-}
-func newTaskStep() *sqlgraph.Step {
-	return sqlgraph.NewStep(
-		sqlgraph.From(Table, FieldID),
-		sqlgraph.To(TaskInverseTable, FieldID),
-		sqlgraph.Edge(sqlgraph.M2O, true, TaskTable, TaskColumn),
+		sqlgraph.To(ProfileissueInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.O2O, true, ProfileissueTable, ProfileissueColumn),
 	)
 }

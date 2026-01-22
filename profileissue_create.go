@@ -14,6 +14,7 @@ import (
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/taskreport"
 )
 
 // ProfileIssueCreate is the builder for creating a ProfileIssue entity.
@@ -88,6 +89,25 @@ func (pic *ProfileIssueCreate) SetNillableAgentsID(id *string) *ProfileIssueCrea
 // SetAgents sets the "agents" edge to the Agent entity.
 func (pic *ProfileIssueCreate) SetAgents(a *Agent) *ProfileIssueCreate {
 	return pic.SetAgentsID(a.ID)
+}
+
+// SetTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID.
+func (pic *ProfileIssueCreate) SetTasksreportsID(id int) *ProfileIssueCreate {
+	pic.mutation.SetTasksreportsID(id)
+	return pic
+}
+
+// SetNillableTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID if the given value is not nil.
+func (pic *ProfileIssueCreate) SetNillableTasksreportsID(id *int) *ProfileIssueCreate {
+	if id != nil {
+		pic = pic.SetTasksreportsID(*id)
+	}
+	return pic
+}
+
+// SetTasksreports sets the "tasksreports" edge to the TaskReport entity.
+func (pic *ProfileIssueCreate) SetTasksreports(t *TaskReport) *ProfileIssueCreate {
+	return pic.SetTasksreportsID(t.ID)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
@@ -200,6 +220,22 @@ func (pic *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
 		_node.profile_issue_agents = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := pic.mutation.TasksreportsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2O,
+			Inverse: false,
+			Table:   profileissue.TasksreportsTable,
+			Columns: []string{profileissue.TasksreportsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec

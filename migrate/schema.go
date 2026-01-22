@@ -953,8 +953,7 @@ var (
 		{Name: "std_error", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "failed", Type: field.TypeBool, Default: false},
 		{Name: "end", Type: field.TypeString, Nullable: true, Default: ""},
-		{Name: "agent_tasksreports", Type: field.TypeString, Nullable: true},
-		{Name: "task_reports", Type: field.TypeInt, Nullable: true},
+		{Name: "profile_issue_tasksreports", Type: field.TypeInt, Unique: true, Nullable: true},
 	}
 	// TaskReportsTable holds the schema information for the "task_reports" table.
 	TaskReportsTable = &schema.Table{
@@ -963,15 +962,9 @@ var (
 		PrimaryKey: []*schema.Column{TaskReportsColumns[0]},
 		ForeignKeys: []*schema.ForeignKey{
 			{
-				Symbol:     "task_reports_agents_tasksreports",
+				Symbol:     "task_reports_profile_issues_tasksreports",
 				Columns:    []*schema.Column{TaskReportsColumns[5]},
-				RefColumns: []*schema.Column{AgentsColumns[0]},
-				OnDelete:   schema.Cascade,
-			},
-			{
-				Symbol:     "task_reports_tasks_reports",
-				Columns:    []*schema.Column{TaskReportsColumns[6]},
-				RefColumns: []*schema.Column{TasksColumns[0]},
+				RefColumns: []*schema.Column{ProfileIssuesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
 		},
@@ -1260,8 +1253,7 @@ func init() {
 	TagsTable.ForeignKeys[1].RefTable = TasksTable
 	TagsTable.ForeignKeys[2].RefTable = TenantsTable
 	TasksTable.ForeignKeys[0].RefTable = ProfilesTable
-	TaskReportsTable.ForeignKeys[0].RefTable = AgentsTable
-	TaskReportsTable.ForeignKeys[1].RefTable = TasksTable
+	TaskReportsTable.ForeignKeys[0].RefTable = ProfileIssuesTable
 	TenantsTable.ForeignKeys[0].RefTable = NetbirdSettingsTable
 	UpdatesTable.ForeignKeys[0].RefTable = AgentsTable
 	WingetConfigExclusionsTable.ForeignKeys[0].RefTable = AgentsTable

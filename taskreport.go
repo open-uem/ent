@@ -8,8 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/open-uem/ent/agent"
-	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/profileissue"
 	"github.com/open-uem/ent/taskreport"
 )
 
@@ -28,43 +27,29 @@ type TaskReport struct {
 	End string `json:"end,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the TaskReportQuery when eager-loading is set.
-	Edges              TaskReportEdges `json:"edges"`
-	agent_tasksreports *string
-	task_reports       *int
-	selectValues       sql.SelectValues
+	Edges                      TaskReportEdges `json:"edges"`
+	profile_issue_tasksreports *int
+	selectValues               sql.SelectValues
 }
 
 // TaskReportEdges holds the relations/edges for other nodes in the graph.
 type TaskReportEdges struct {
-	// Agent holds the value of the agent edge.
-	Agent *Agent `json:"agent,omitempty"`
-	// Task holds the value of the task edge.
-	Task *Task `json:"task,omitempty"`
+	// Profileissue holds the value of the profileissue edge.
+	Profileissue *ProfileIssue `json:"profileissue,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [2]bool
+	loadedTypes [1]bool
 }
 
-// AgentOrErr returns the Agent value or an error if the edge
+// ProfileissueOrErr returns the Profileissue value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
-func (e TaskReportEdges) AgentOrErr() (*Agent, error) {
-	if e.Agent != nil {
-		return e.Agent, nil
+func (e TaskReportEdges) ProfileissueOrErr() (*ProfileIssue, error) {
+	if e.Profileissue != nil {
+		return e.Profileissue, nil
 	} else if e.loadedTypes[0] {
-		return nil, &NotFoundError{label: agent.Label}
+		return nil, &NotFoundError{label: profileissue.Label}
 	}
-	return nil, &NotLoadedError{edge: "agent"}
-}
-
-// TaskOrErr returns the Task value or an error if the edge
-// was not loaded in eager-loading, or loaded but was not found.
-func (e TaskReportEdges) TaskOrErr() (*Task, error) {
-	if e.Task != nil {
-		return e.Task, nil
-	} else if e.loadedTypes[1] {
-		return nil, &NotFoundError{label: task.Label}
-	}
-	return nil, &NotLoadedError{edge: "task"}
+	return nil, &NotLoadedError{edge: "profileissue"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -78,9 +63,7 @@ func (*TaskReport) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullInt64)
 		case taskreport.FieldStdOutput, taskreport.FieldStdError, taskreport.FieldEnd:
 			values[i] = new(sql.NullString)
-		case taskreport.ForeignKeys[0]: // agent_tasksreports
-			values[i] = new(sql.NullString)
-		case taskreport.ForeignKeys[1]: // task_reports
+		case taskreport.ForeignKeys[0]: // profile_issue_tasksreports
 			values[i] = new(sql.NullInt64)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -128,18 +111,11 @@ func (tr *TaskReport) assignValues(columns []string, values []any) error {
 				tr.End = value.String
 			}
 		case taskreport.ForeignKeys[0]:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field agent_tasksreports", values[i])
-			} else if value.Valid {
-				tr.agent_tasksreports = new(string)
-				*tr.agent_tasksreports = value.String
-			}
-		case taskreport.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for edge-field task_reports", value)
+				return fmt.Errorf("unexpected type %T for edge-field profile_issue_tasksreports", value)
 			} else if value.Valid {
-				tr.task_reports = new(int)
-				*tr.task_reports = int(value.Int64)
+				tr.profile_issue_tasksreports = new(int)
+				*tr.profile_issue_tasksreports = int(value.Int64)
 			}
 		default:
 			tr.selectValues.Set(columns[i], values[i])
@@ -154,14 +130,9 @@ func (tr *TaskReport) Value(name string) (ent.Value, error) {
 	return tr.selectValues.Get(name)
 }
 
-// QueryAgent queries the "agent" edge of the TaskReport entity.
-func (tr *TaskReport) QueryAgent() *AgentQuery {
-	return NewTaskReportClient(tr.config).QueryAgent(tr)
-}
-
-// QueryTask queries the "task" edge of the TaskReport entity.
-func (tr *TaskReport) QueryTask() *TaskQuery {
-	return NewTaskReportClient(tr.config).QueryTask(tr)
+// QueryProfileissue queries the "profileissue" edge of the TaskReport entity.
+func (tr *TaskReport) QueryProfileissue() *ProfileIssueQuery {
+	return NewTaskReportClient(tr.config).QueryProfileissue(tr)
 }
 
 // Update returns a builder for updating this TaskReport.
