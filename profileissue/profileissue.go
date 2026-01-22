@@ -119,10 +119,17 @@ func ByAgentsField(field string, opts ...sql.OrderTermOption) OrderOption {
 	}
 }
 
-// ByTasksreportsField orders the results by tasksreports field.
-func ByTasksreportsField(field string, opts ...sql.OrderTermOption) OrderOption {
+// ByTasksreportsCount orders the results by tasksreports count.
+func ByTasksreportsCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newTasksreportsStep(), sql.OrderByField(field, opts...))
+		sqlgraph.OrderByNeighborsCount(s, newTasksreportsStep(), opts...)
+	}
+}
+
+// ByTasksreports orders the results by tasksreports terms.
+func ByTasksreports(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newTasksreportsStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
 func newProfileStep() *sqlgraph.Step {
@@ -143,6 +150,6 @@ func newTasksreportsStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(TasksreportsInverseTable, FieldID),
-		sqlgraph.Edge(sqlgraph.O2O, false, TasksreportsTable, TasksreportsColumn),
+		sqlgraph.Edge(sqlgraph.O2M, false, TasksreportsTable, TasksreportsColumn),
 	)
 }

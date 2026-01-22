@@ -102,23 +102,19 @@ func (piu *ProfileIssueUpdate) SetAgents(a *Agent) *ProfileIssueUpdate {
 	return piu.SetAgentsID(a.ID)
 }
 
-// SetTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID.
-func (piu *ProfileIssueUpdate) SetTasksreportsID(id int) *ProfileIssueUpdate {
-	piu.mutation.SetTasksreportsID(id)
+// AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
+func (piu *ProfileIssueUpdate) AddTasksreportIDs(ids ...int) *ProfileIssueUpdate {
+	piu.mutation.AddTasksreportIDs(ids...)
 	return piu
 }
 
-// SetNillableTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID if the given value is not nil.
-func (piu *ProfileIssueUpdate) SetNillableTasksreportsID(id *int) *ProfileIssueUpdate {
-	if id != nil {
-		piu = piu.SetTasksreportsID(*id)
+// AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
+func (piu *ProfileIssueUpdate) AddTasksreports(t ...*TaskReport) *ProfileIssueUpdate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
 	}
-	return piu
-}
-
-// SetTasksreports sets the "tasksreports" edge to the TaskReport entity.
-func (piu *ProfileIssueUpdate) SetTasksreports(t *TaskReport) *ProfileIssueUpdate {
-	return piu.SetTasksreportsID(t.ID)
+	return piu.AddTasksreportIDs(ids...)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
@@ -138,10 +134,25 @@ func (piu *ProfileIssueUpdate) ClearAgents() *ProfileIssueUpdate {
 	return piu
 }
 
-// ClearTasksreports clears the "tasksreports" edge to the TaskReport entity.
+// ClearTasksreports clears all "tasksreports" edges to the TaskReport entity.
 func (piu *ProfileIssueUpdate) ClearTasksreports() *ProfileIssueUpdate {
 	piu.mutation.ClearTasksreports()
 	return piu
+}
+
+// RemoveTasksreportIDs removes the "tasksreports" edge to TaskReport entities by IDs.
+func (piu *ProfileIssueUpdate) RemoveTasksreportIDs(ids ...int) *ProfileIssueUpdate {
+	piu.mutation.RemoveTasksreportIDs(ids...)
+	return piu
+}
+
+// RemoveTasksreports removes "tasksreports" edges to TaskReport entities.
+func (piu *ProfileIssueUpdate) RemoveTasksreports(t ...*TaskReport) *ProfileIssueUpdate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return piu.RemoveTasksreportIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -267,7 +278,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if piu.mutation.TasksreportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.O2M,
 			Inverse: false,
 			Table:   profileissue.TasksreportsTable,
 			Columns: []string{profileissue.TasksreportsColumn},
@@ -278,9 +289,25 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
+	if nodes := piu.mutation.RemovedTasksreportsIDs(); len(nodes) > 0 && !piu.mutation.TasksreportsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   profileissue.TasksreportsTable,
+			Columns: []string{profileissue.TasksreportsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
 	if nodes := piu.mutation.TasksreportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.O2M,
 			Inverse: false,
 			Table:   profileissue.TasksreportsTable,
 			Columns: []string{profileissue.TasksreportsColumn},
@@ -386,23 +413,19 @@ func (piuo *ProfileIssueUpdateOne) SetAgents(a *Agent) *ProfileIssueUpdateOne {
 	return piuo.SetAgentsID(a.ID)
 }
 
-// SetTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID.
-func (piuo *ProfileIssueUpdateOne) SetTasksreportsID(id int) *ProfileIssueUpdateOne {
-	piuo.mutation.SetTasksreportsID(id)
+// AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
+func (piuo *ProfileIssueUpdateOne) AddTasksreportIDs(ids ...int) *ProfileIssueUpdateOne {
+	piuo.mutation.AddTasksreportIDs(ids...)
 	return piuo
 }
 
-// SetNillableTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID if the given value is not nil.
-func (piuo *ProfileIssueUpdateOne) SetNillableTasksreportsID(id *int) *ProfileIssueUpdateOne {
-	if id != nil {
-		piuo = piuo.SetTasksreportsID(*id)
+// AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
+func (piuo *ProfileIssueUpdateOne) AddTasksreports(t ...*TaskReport) *ProfileIssueUpdateOne {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
 	}
-	return piuo
-}
-
-// SetTasksreports sets the "tasksreports" edge to the TaskReport entity.
-func (piuo *ProfileIssueUpdateOne) SetTasksreports(t *TaskReport) *ProfileIssueUpdateOne {
-	return piuo.SetTasksreportsID(t.ID)
+	return piuo.AddTasksreportIDs(ids...)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
@@ -422,10 +445,25 @@ func (piuo *ProfileIssueUpdateOne) ClearAgents() *ProfileIssueUpdateOne {
 	return piuo
 }
 
-// ClearTasksreports clears the "tasksreports" edge to the TaskReport entity.
+// ClearTasksreports clears all "tasksreports" edges to the TaskReport entity.
 func (piuo *ProfileIssueUpdateOne) ClearTasksreports() *ProfileIssueUpdateOne {
 	piuo.mutation.ClearTasksreports()
 	return piuo
+}
+
+// RemoveTasksreportIDs removes the "tasksreports" edge to TaskReport entities by IDs.
+func (piuo *ProfileIssueUpdateOne) RemoveTasksreportIDs(ids ...int) *ProfileIssueUpdateOne {
+	piuo.mutation.RemoveTasksreportIDs(ids...)
+	return piuo
+}
+
+// RemoveTasksreports removes "tasksreports" edges to TaskReport entities.
+func (piuo *ProfileIssueUpdateOne) RemoveTasksreports(t ...*TaskReport) *ProfileIssueUpdateOne {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return piuo.RemoveTasksreportIDs(ids...)
 }
 
 // Where appends a list predicates to the ProfileIssueUpdate builder.
@@ -581,7 +619,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 	}
 	if piuo.mutation.TasksreportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.O2M,
 			Inverse: false,
 			Table:   profileissue.TasksreportsTable,
 			Columns: []string{profileissue.TasksreportsColumn},
@@ -592,9 +630,25 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
+	if nodes := piuo.mutation.RemovedTasksreportsIDs(); len(nodes) > 0 && !piuo.mutation.TasksreportsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   profileissue.TasksreportsTable,
+			Columns: []string{profileissue.TasksreportsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
 	if nodes := piuo.mutation.TasksreportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.O2M,
 			Inverse: false,
 			Table:   profileissue.TasksreportsTable,
 			Columns: []string{profileissue.TasksreportsColumn},

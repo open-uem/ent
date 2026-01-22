@@ -3852,7 +3852,7 @@ func (c *ProfileIssueClient) QueryTasksreports(pi *ProfileIssue) *TaskReportQuer
 		step := sqlgraph.NewStep(
 			sqlgraph.From(profileissue.Table, profileissue.FieldID, id),
 			sqlgraph.To(taskreport.Table, taskreport.FieldID),
-			sqlgraph.Edge(sqlgraph.O2O, false, profileissue.TasksreportsTable, profileissue.TasksreportsColumn),
+			sqlgraph.Edge(sqlgraph.O2M, false, profileissue.TasksreportsTable, profileissue.TasksreportsColumn),
 		)
 		fromV = sqlgraph.Neighbors(pi.driver.Dialect(), step)
 		return fromV, nil
@@ -5901,7 +5901,7 @@ func (c *TaskReportClient) QueryProfileissue(tr *TaskReport) *ProfileIssueQuery 
 		step := sqlgraph.NewStep(
 			sqlgraph.From(taskreport.Table, taskreport.FieldID, id),
 			sqlgraph.To(profileissue.Table, profileissue.FieldID),
-			sqlgraph.Edge(sqlgraph.O2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
+			sqlgraph.Edge(sqlgraph.M2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
 		)
 		fromV = sqlgraph.Neighbors(tr.driver.Dialect(), step)
 		return fromV, nil

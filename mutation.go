@@ -18105,7 +18105,8 @@ type ProfileIssueMutation struct {
 	clearedprofile      bool
 	agents              *string
 	clearedagents       bool
-	tasksreports        *int
+	tasksreports        map[int]struct{}
+	removedtasksreports map[int]struct{}
 	clearedtasksreports bool
 	done                bool
 	oldValue            func(context.Context) (*ProfileIssue, error)
@@ -18386,9 +18387,14 @@ func (m *ProfileIssueMutation) ResetAgents() {
 	m.clearedagents = false
 }
 
-// SetTasksreportsID sets the "tasksreports" edge to the TaskReport entity by id.
-func (m *ProfileIssueMutation) SetTasksreportsID(id int) {
-	m.tasksreports = &id
+// AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by ids.
+func (m *ProfileIssueMutation) AddTasksreportIDs(ids ...int) {
+	if m.tasksreports == nil {
+		m.tasksreports = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.tasksreports[ids[i]] = struct{}{}
+	}
 }
 
 // ClearTasksreports clears the "tasksreports" edge to the TaskReport entity.
@@ -18401,20 +18407,29 @@ func (m *ProfileIssueMutation) TasksreportsCleared() bool {
 	return m.clearedtasksreports
 }
 
-// TasksreportsID returns the "tasksreports" edge ID in the mutation.
-func (m *ProfileIssueMutation) TasksreportsID() (id int, exists bool) {
-	if m.tasksreports != nil {
-		return *m.tasksreports, true
+// RemoveTasksreportIDs removes the "tasksreports" edge to the TaskReport entity by IDs.
+func (m *ProfileIssueMutation) RemoveTasksreportIDs(ids ...int) {
+	if m.removedtasksreports == nil {
+		m.removedtasksreports = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.tasksreports, ids[i])
+		m.removedtasksreports[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedTasksreports returns the removed IDs of the "tasksreports" edge to the TaskReport entity.
+func (m *ProfileIssueMutation) RemovedTasksreportsIDs() (ids []int) {
+	for id := range m.removedtasksreports {
+		ids = append(ids, id)
 	}
 	return
 }
 
 // TasksreportsIDs returns the "tasksreports" edge IDs in the mutation.
-// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
-// TasksreportsID instead. It exists only for internal usage by the builders.
 func (m *ProfileIssueMutation) TasksreportsIDs() (ids []int) {
-	if id := m.tasksreports; id != nil {
-		ids = append(ids, *id)
+	for id := range m.tasksreports {
+		ids = append(ids, id)
 	}
 	return
 }
@@ -18423,6 +18438,7 @@ func (m *ProfileIssueMutation) TasksreportsIDs() (ids []int) {
 func (m *ProfileIssueMutation) ResetTasksreports() {
 	m.tasksreports = nil
 	m.clearedtasksreports = false
+	m.removedtasksreports = nil
 }
 
 // Where appends a list predicates to the ProfileIssueMutation builder.
@@ -18616,9 +18632,11 @@ func (m *ProfileIssueMutation) AddedIDs(name string) []ent.Value {
 			return []ent.Value{*id}
 		}
 	case profileissue.EdgeTasksreports:
-		if id := m.tasksreports; id != nil {
-			return []ent.Value{*id}
+		ids := make([]ent.Value, 0, len(m.tasksreports))
+		for id := range m.tasksreports {
+			ids = append(ids, id)
 		}
+		return ids
 	}
 	return nil
 }
@@ -18626,12 +18644,23 @@ func (m *ProfileIssueMutation) AddedIDs(name string) []ent.Value {
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *ProfileIssueMutation) RemovedEdges() []string {
 	edges := make([]string, 0, 3)
+	if m.removedtasksreports != nil {
+		edges = append(edges, profileissue.EdgeTasksreports)
+	}
 	return edges
 }
 
 // RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
 // the given name in this mutation.
 func (m *ProfileIssueMutation) RemovedIDs(name string) []ent.Value {
+	switch name {
+	case profileissue.EdgeTasksreports:
+		ids := make([]ent.Value, 0, len(m.removedtasksreports))
+		for id := range m.removedtasksreports {
+			ids = append(ids, id)
+		}
+		return ids
+	}
 	return nil
 }
 
@@ -18673,9 +18702,6 @@ func (m *ProfileIssueMutation) ClearEdge(name string) error {
 		return nil
 	case profileissue.EdgeAgents:
 		m.ClearAgents()
-		return nil
-	case profileissue.EdgeTasksreports:
-		m.ClearTasksreports()
 		return nil
 	}
 	return fmt.Errorf("unknown ProfileIssue unique edge %s", name)

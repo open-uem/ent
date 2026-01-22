@@ -224,7 +224,7 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if tru.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.M2O,
 			Inverse: true,
 			Table:   taskreport.ProfileissueTable,
 			Columns: []string{taskreport.ProfileissueColumn},
@@ -237,7 +237,7 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if nodes := tru.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.M2O,
 			Inverse: true,
 			Table:   taskreport.ProfileissueTable,
 			Columns: []string{taskreport.ProfileissueColumn},
@@ -526,7 +526,7 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 	}
 	if truo.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.M2O,
 			Inverse: true,
 			Table:   taskreport.ProfileissueTable,
 			Columns: []string{taskreport.ProfileissueColumn},
@@ -539,7 +539,7 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 	}
 	if nodes := truo.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.M2O,
 			Inverse: true,
 			Table:   taskreport.ProfileissueTable,
 			Columns: []string{taskreport.ProfileissueColumn},

@@ -129,7 +129,7 @@ func newProfileissueStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(ProfileissueInverseTable, FieldID),
-		sqlgraph.Edge(sqlgraph.O2O, true, ProfileissueTable, ProfileissueColumn),
+		sqlgraph.Edge(sqlgraph.M2O, true, ProfileissueTable, ProfileissueColumn),
 	)
 }
 func newTaskStep() *sqlgraph.Step {

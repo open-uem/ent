@@ -78,7 +78,7 @@ func (trq *TaskReportQuery) QueryProfileissue() *ProfileIssueQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(taskreport.Table, taskreport.FieldID, selector),
 			sqlgraph.To(profileissue.Table, profileissue.FieldID),
-			sqlgraph.Edge(sqlgraph.O2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
+			sqlgraph.Edge(sqlgraph.M2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(trq.driver.Dialect(), step)
 		return fromU, nil

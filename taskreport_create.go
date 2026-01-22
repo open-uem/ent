@@ -220,7 +220,7 @@ func (trc *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
 	}
 	if nodes := trc.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.M2O,
 			Inverse: true,
 			Table:   taskreport.ProfileissueTable,
 			Columns: []string{taskreport.ProfileissueColumn},

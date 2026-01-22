@@ -91,23 +91,19 @@ func (pic *ProfileIssueCreate) SetAgents(a *Agent) *ProfileIssueCreate {
 	return pic.SetAgentsID(a.ID)
 }
 
-// SetTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID.
-func (pic *ProfileIssueCreate) SetTasksreportsID(id int) *ProfileIssueCreate {
-	pic.mutation.SetTasksreportsID(id)
+// AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
+func (pic *ProfileIssueCreate) AddTasksreportIDs(ids ...int) *ProfileIssueCreate {
+	pic.mutation.AddTasksreportIDs(ids...)
 	return pic
 }
 
-// SetNillableTasksreportsID sets the "tasksreports" edge to the TaskReport entity by ID if the given value is not nil.
-func (pic *ProfileIssueCreate) SetNillableTasksreportsID(id *int) *ProfileIssueCreate {
-	if id != nil {
-		pic = pic.SetTasksreportsID(*id)
+// AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
+func (pic *ProfileIssueCreate) AddTasksreports(t ...*TaskReport) *ProfileIssueCreate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
 	}
-	return pic
-}
-
-// SetTasksreports sets the "tasksreports" edge to the TaskReport entity.
-func (pic *ProfileIssueCreate) SetTasksreports(t *TaskReport) *ProfileIssueCreate {
-	return pic.SetTasksreportsID(t.ID)
+	return pic.AddTasksreportIDs(ids...)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
@@ -224,7 +220,7 @@ func (pic *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec
 	}
 	if nodes := pic.mutation.TasksreportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2O,
+			Rel:     sqlgraph.O2M,
 			Inverse: false,
 			Table:   profileissue.TasksreportsTable,
 			Columns: []string{profileissue.TasksreportsColumn},

@@ -241,7 +241,7 @@ func HasTasksreports() predicate.ProfileIssue {
 	return predicate.ProfileIssue(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.O2O, false, TasksreportsTable, TasksreportsColumn),
+			sqlgraph.Edge(sqlgraph.O2M, false, TasksreportsTable, TasksreportsColumn),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})

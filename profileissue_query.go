@@ -125,7 +125,7 @@ func (piq *ProfileIssueQuery) QueryTasksreports() *TaskReportQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(profileissue.Table, profileissue.FieldID, selector),
 			sqlgraph.To(taskreport.Table, taskreport.FieldID),
-			sqlgraph.Edge(sqlgraph.O2O, false, profileissue.TasksreportsTable, profileissue.TasksreportsColumn),
+			sqlgraph.Edge(sqlgraph.O2M, false, profileissue.TasksreportsTable, profileissue.TasksreportsColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(piq.driver.Dialect(), step)
 		return fromU, nil
@@ -493,8 +493,9 @@ func (piq *ProfileIssueQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([
 		}
 	}
 	if query := piq.withTasksreports; query != nil {
-		if err := piq.loadTasksreports(ctx, query, nodes, nil,
-			func(n *ProfileIssue, e *TaskReport) { n.Edges.Tasksreports = e }); err != nil {
+		if err := piq.loadTasksreports(ctx, query, nodes,
+			func(n *ProfileIssue) { n.Edges.Tasksreports = []*TaskReport{} },
+			func(n *ProfileIssue, e *TaskReport) { n.Edges.Tasksreports = append(n.Edges.Tasksreports, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -571,6 +572,9 @@ func (piq *ProfileIssueQuery) loadTasksreports(ctx context.Context, query *TaskR
 	for i := range nodes {
 		fks = append(fks, nodes[i].ID)
 		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
 	}
 	query.withFKs = true
 	query.Where(predicate.TaskReport(func(s *sql.Selector) {

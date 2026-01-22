@@ -953,7 +953,7 @@ var (
 		{Name: "std_error", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "failed", Type: field.TypeBool, Default: false},
 		{Name: "end", Type: field.TypeString, Nullable: true, Default: ""},
-		{Name: "profile_issue_tasksreports", Type: field.TypeInt, Unique: true, Nullable: true},
+		{Name: "profile_issue_tasksreports", Type: field.TypeInt, Nullable: true},
 		{Name: "task_reports", Type: field.TypeInt, Nullable: true},
 	}
 	// TaskReportsTable holds the schema information for the "task_reports" table.

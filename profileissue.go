@@ -12,7 +12,6 @@ import (
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/profileissue"
-	"github.com/open-uem/ent/taskreport"
 )
 
 // ProfileIssue is the model entity for the ProfileIssue schema.
@@ -39,7 +38,7 @@ type ProfileIssueEdges struct {
 	// Agents holds the value of the agents edge.
 	Agents *Agent `json:"agents,omitempty"`
 	// Tasksreports holds the value of the tasksreports edge.
-	Tasksreports *TaskReport `json:"tasksreports,omitempty"`
+	Tasksreports []*TaskReport `json:"tasksreports,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
 	loadedTypes [3]bool
@@ -68,12 +67,10 @@ func (e ProfileIssueEdges) AgentsOrErr() (*Agent, error) {
 }
 
 // TasksreportsOrErr returns the Tasksreports value or an error if the edge
-// was not loaded in eager-loading, or loaded but was not found.
-func (e ProfileIssueEdges) TasksreportsOrErr() (*TaskReport, error) {
-	if e.Tasksreports != nil {
+// was not loaded in eager-loading.
+func (e ProfileIssueEdges) TasksreportsOrErr() ([]*TaskReport, error) {
+	if e.loadedTypes[2] {
 		return e.Tasksreports, nil
-	} else if e.loadedTypes[2] {
-		return nil, &NotFoundError{label: taskreport.Label}
 	}
 	return nil, &NotLoadedError{edge: "tasksreports"}
 }

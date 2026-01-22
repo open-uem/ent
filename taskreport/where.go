@@ -313,7 +313,7 @@ func HasProfileissue() predicate.TaskReport {
 	return predicate.TaskReport(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.O2O, true, ProfileissueTable, ProfileissueColumn),
+			sqlgraph.Edge(sqlgraph.M2O, true, ProfileissueTable, ProfileissueColumn),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})
