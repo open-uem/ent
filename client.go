@@ -5744,6 +5744,22 @@ func (c *TaskClient) QueryProfile(t *Task) *ProfileQuery {
 	return query
 }
 
+// QueryReports queries the reports edge of a Task.
+func (c *TaskClient) QueryReports(t *Task) *TaskReportQuery {
+	query := (&TaskReportClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := t.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(task.Table, task.FieldID, id),
+			sqlgraph.To(taskreport.Table, taskreport.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, task.ReportsTable, task.ReportsColumn),
+		)
+		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *TaskClient) Hooks() []Hook {
 	return c.hooks.Task
@@ -5886,6 +5902,22 @@ func (c *TaskReportClient) QueryProfileissue(tr *TaskReport) *ProfileIssueQuery 
 			sqlgraph.From(taskreport.Table, taskreport.FieldID, id),
 			sqlgraph.To(profileissue.Table, profileissue.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
+		)
+		fromV = sqlgraph.Neighbors(tr.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryTask queries the task edge of a TaskReport.
+func (c *TaskReportClient) QueryTask(tr *TaskReport) *TaskQuery {
+	query := (&TaskClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := tr.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(taskreport.Table, taskreport.FieldID, id),
+			sqlgraph.To(task.Table, task.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, taskreport.TaskTable, taskreport.TaskColumn),
 		)
 		fromV = sqlgraph.Neighbors(tr.driver.Dialect(), step)
 		return fromV, nil

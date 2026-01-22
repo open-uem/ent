@@ -22,6 +22,8 @@ const (
 	FieldEnd = "end"
 	// EdgeProfileissue holds the string denoting the profileissue edge name in mutations.
 	EdgeProfileissue = "profileissue"
+	// EdgeTask holds the string denoting the task edge name in mutations.
+	EdgeTask = "task"
 	// Table holds the table name of the taskreport in the database.
 	Table = "task_reports"
 	// ProfileissueTable is the table that holds the profileissue relation/edge.
@@ -31,6 +33,13 @@ const (
 	ProfileissueInverseTable = "profile_issues"
 	// ProfileissueColumn is the table column denoting the profileissue relation/edge.
 	ProfileissueColumn = "profile_issue_tasksreports"
+	// TaskTable is the table that holds the task relation/edge.
+	TaskTable = "task_reports"
+	// TaskInverseTable is the table name for the Task entity.
+	// It exists in this package in order to avoid circular dependency with the "task" package.
+	TaskInverseTable = "tasks"
+	// TaskColumn is the table column denoting the task relation/edge.
+	TaskColumn = "task_reports"
 )
 
 // Columns holds all SQL columns for taskreport fields.
@@ -46,6 +55,7 @@ var Columns = []string{
 // table and are not defined as standalone fields in the schema.
 var ForeignKeys = []string{
 	"profile_issue_tasksreports",
+	"task_reports",
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -108,10 +118,24 @@ func ByProfileissueField(field string, opts ...sql.OrderTermOption) OrderOption 
 		sqlgraph.OrderByNeighborTerms(s, newProfileissueStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByTaskField orders the results by task field.
+func ByTaskField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newTaskStep(), sql.OrderByField(field, opts...))
+	}
+}
 func newProfileissueStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(ProfileissueInverseTable, FieldID),
 		sqlgraph.Edge(sqlgraph.O2O, true, ProfileissueTable, ProfileissueColumn),
+	)
+}
+func newTaskStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(TaskInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, true, TaskTable, TaskColumn),
 	)
 }

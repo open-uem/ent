@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent/schema/field"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/task"
 	"github.com/open-uem/ent/taskreport"
 )
 
@@ -122,6 +123,25 @@ func (tru *TaskReportUpdate) SetProfileissue(p *ProfileIssue) *TaskReportUpdate 
 	return tru.SetProfileissueID(p.ID)
 }
 
+// SetTaskID sets the "task" edge to the Task entity by ID.
+func (tru *TaskReportUpdate) SetTaskID(id int) *TaskReportUpdate {
+	tru.mutation.SetTaskID(id)
+	return tru
+}
+
+// SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
+func (tru *TaskReportUpdate) SetNillableTaskID(id *int) *TaskReportUpdate {
+	if id != nil {
+		tru = tru.SetTaskID(*id)
+	}
+	return tru
+}
+
+// SetTask sets the "task" edge to the Task entity.
+func (tru *TaskReportUpdate) SetTask(t *Task) *TaskReportUpdate {
+	return tru.SetTaskID(t.ID)
+}
+
 // Mutation returns the TaskReportMutation object of the builder.
 func (tru *TaskReportUpdate) Mutation() *TaskReportMutation {
 	return tru.mutation
@@ -130,6 +150,12 @@ func (tru *TaskReportUpdate) Mutation() *TaskReportMutation {
 // ClearProfileissue clears the "profileissue" edge to the ProfileIssue entity.
 func (tru *TaskReportUpdate) ClearProfileissue() *TaskReportUpdate {
 	tru.mutation.ClearProfileissue()
+	return tru
+}
+
+// ClearTask clears the "task" edge to the Task entity.
+func (tru *TaskReportUpdate) ClearTask() *TaskReportUpdate {
+	tru.mutation.ClearTask()
 	return tru
 }
 
@@ -218,6 +244,35 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if tru.mutation.TaskCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   taskreport.TaskTable,
+			Columns: []string{taskreport.TaskColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tru.mutation.TaskIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   taskreport.TaskTable,
+			Columns: []string{taskreport.TaskColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
@@ -340,6 +395,25 @@ func (truo *TaskReportUpdateOne) SetProfileissue(p *ProfileIssue) *TaskReportUpd
 	return truo.SetProfileissueID(p.ID)
 }
 
+// SetTaskID sets the "task" edge to the Task entity by ID.
+func (truo *TaskReportUpdateOne) SetTaskID(id int) *TaskReportUpdateOne {
+	truo.mutation.SetTaskID(id)
+	return truo
+}
+
+// SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
+func (truo *TaskReportUpdateOne) SetNillableTaskID(id *int) *TaskReportUpdateOne {
+	if id != nil {
+		truo = truo.SetTaskID(*id)
+	}
+	return truo
+}
+
+// SetTask sets the "task" edge to the Task entity.
+func (truo *TaskReportUpdateOne) SetTask(t *Task) *TaskReportUpdateOne {
+	return truo.SetTaskID(t.ID)
+}
+
 // Mutation returns the TaskReportMutation object of the builder.
 func (truo *TaskReportUpdateOne) Mutation() *TaskReportMutation {
 	return truo.mutation
@@ -348,6 +422,12 @@ func (truo *TaskReportUpdateOne) Mutation() *TaskReportMutation {
 // ClearProfileissue clears the "profileissue" edge to the ProfileIssue entity.
 func (truo *TaskReportUpdateOne) ClearProfileissue() *TaskReportUpdateOne {
 	truo.mutation.ClearProfileissue()
+	return truo
+}
+
+// ClearTask clears the "task" edge to the Task entity.
+func (truo *TaskReportUpdateOne) ClearTask() *TaskReportUpdateOne {
+	truo.mutation.ClearTask()
 	return truo
 }
 
@@ -466,6 +546,35 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if truo.mutation.TaskCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   taskreport.TaskTable,
+			Columns: []string{taskreport.TaskColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := truo.mutation.TaskIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: true,
+			Table:   taskreport.TaskTable,
+			Columns: []string{taskreport.TaskColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

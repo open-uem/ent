@@ -29889,6 +29889,9 @@ type TaskMutation struct {
 	clearedtags                                bool
 	profile                                    *int
 	clearedprofile                             bool
+	reports                                    map[int]struct{}
+	removedreports                             map[int]struct{}
+	clearedreports                             bool
 	done                                       bool
 	oldValue                                   func(context.Context) (*Task, error)
 	predicates                                 []predicate.Task
@@ -34413,6 +34416,60 @@ func (m *TaskMutation) ResetProfile() {
 	m.clearedprofile = false
 }
 
+// AddReportIDs adds the "reports" edge to the TaskReport entity by ids.
+func (m *TaskMutation) AddReportIDs(ids ...int) {
+	if m.reports == nil {
+		m.reports = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.reports[ids[i]] = struct{}{}
+	}
+}
+
+// ClearReports clears the "reports" edge to the TaskReport entity.
+func (m *TaskMutation) ClearReports() {
+	m.clearedreports = true
+}
+
+// ReportsCleared reports if the "reports" edge to the TaskReport entity was cleared.
+func (m *TaskMutation) ReportsCleared() bool {
+	return m.clearedreports
+}
+
+// RemoveReportIDs removes the "reports" edge to the TaskReport entity by IDs.
+func (m *TaskMutation) RemoveReportIDs(ids ...int) {
+	if m.removedreports == nil {
+		m.removedreports = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.reports, ids[i])
+		m.removedreports[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedReports returns the removed IDs of the "reports" edge to the TaskReport entity.
+func (m *TaskMutation) RemovedReportsIDs() (ids []int) {
+	for id := range m.removedreports {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ReportsIDs returns the "reports" edge IDs in the mutation.
+func (m *TaskMutation) ReportsIDs() (ids []int) {
+	for id := range m.reports {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetReports resets all changes to the "reports" edge.
+func (m *TaskMutation) ResetReports() {
+	m.reports = nil
+	m.clearedreports = false
+	m.removedreports = nil
+}
+
 // Where appends a list predicates to the TaskMutation builder.
 func (m *TaskMutation) Where(ps ...predicate.Task) {
 	m.predicates = append(m.predicates, ps...)
@@ -36571,12 +36628,15 @@ func (m *TaskMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *TaskMutation) AddedEdges() []string {
-	edges := make([]string, 0, 2)
+	edges := make([]string, 0, 3)
 	if m.tags != nil {
 		edges = append(edges, task.EdgeTags)
 	}
 	if m.profile != nil {
 		edges = append(edges, task.EdgeProfile)
+	}
+	if m.reports != nil {
+		edges = append(edges, task.EdgeReports)
 	}
 	return edges
 }
@@ -36595,15 +36655,24 @@ func (m *TaskMutation) AddedIDs(name string) []ent.Value {
 		if id := m.profile; id != nil {
 			return []ent.Value{*id}
 		}
+	case task.EdgeReports:
+		ids := make([]ent.Value, 0, len(m.reports))
+		for id := range m.reports {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *TaskMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 2)
+	edges := make([]string, 0, 3)
 	if m.removedtags != nil {
 		edges = append(edges, task.EdgeTags)
+	}
+	if m.removedreports != nil {
+		edges = append(edges, task.EdgeReports)
 	}
 	return edges
 }
@@ -36618,18 +36687,27 @@ func (m *TaskMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case task.EdgeReports:
+		ids := make([]ent.Value, 0, len(m.removedreports))
+		for id := range m.removedreports {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *TaskMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 2)
+	edges := make([]string, 0, 3)
 	if m.clearedtags {
 		edges = append(edges, task.EdgeTags)
 	}
 	if m.clearedprofile {
 		edges = append(edges, task.EdgeProfile)
+	}
+	if m.clearedreports {
+		edges = append(edges, task.EdgeReports)
 	}
 	return edges
 }
@@ -36642,6 +36720,8 @@ func (m *TaskMutation) EdgeCleared(name string) bool {
 		return m.clearedtags
 	case task.EdgeProfile:
 		return m.clearedprofile
+	case task.EdgeReports:
+		return m.clearedreports
 	}
 	return false
 }
@@ -36667,6 +36747,9 @@ func (m *TaskMutation) ResetEdge(name string) error {
 	case task.EdgeProfile:
 		m.ResetProfile()
 		return nil
+	case task.EdgeReports:
+		m.ResetReports()
+		return nil
 	}
 	return fmt.Errorf("unknown Task edge %s", name)
 }
@@ -36684,6 +36767,8 @@ type TaskReportMutation struct {
 	clearedFields       map[string]struct{}
 	profileissue        *int
 	clearedprofileissue bool
+	task                *int
+	clearedtask         bool
 	done                bool
 	oldValue            func(context.Context) (*TaskReport, error)
 	predicates          []predicate.TaskReport
@@ -37009,6 +37094,45 @@ func (m *TaskReportMutation) ResetProfileissue() {
 	m.clearedprofileissue = false
 }
 
+// SetTaskID sets the "task" edge to the Task entity by id.
+func (m *TaskReportMutation) SetTaskID(id int) {
+	m.task = &id
+}
+
+// ClearTask clears the "task" edge to the Task entity.
+func (m *TaskReportMutation) ClearTask() {
+	m.clearedtask = true
+}
+
+// TaskCleared reports if the "task" edge to the Task entity was cleared.
+func (m *TaskReportMutation) TaskCleared() bool {
+	return m.clearedtask
+}
+
+// TaskID returns the "task" edge ID in the mutation.
+func (m *TaskReportMutation) TaskID() (id int, exists bool) {
+	if m.task != nil {
+		return *m.task, true
+	}
+	return
+}
+
+// TaskIDs returns the "task" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// TaskID instead. It exists only for internal usage by the builders.
+func (m *TaskReportMutation) TaskIDs() (ids []int) {
+	if id := m.task; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetTask resets all changes to the "task" edge.
+func (m *TaskReportMutation) ResetTask() {
+	m.task = nil
+	m.clearedtask = false
+}
+
 // Where appends a list predicates to the TaskReportMutation builder.
 func (m *TaskReportMutation) Where(ps ...predicate.TaskReport) {
 	m.predicates = append(m.predicates, ps...)
@@ -37214,9 +37338,12 @@ func (m *TaskReportMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *TaskReportMutation) AddedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 2)
 	if m.profileissue != nil {
 		edges = append(edges, taskreport.EdgeProfileissue)
+	}
+	if m.task != nil {
+		edges = append(edges, taskreport.EdgeTask)
 	}
 	return edges
 }
@@ -37229,13 +37356,17 @@ func (m *TaskReportMutation) AddedIDs(name string) []ent.Value {
 		if id := m.profileissue; id != nil {
 			return []ent.Value{*id}
 		}
+	case taskreport.EdgeTask:
+		if id := m.task; id != nil {
+			return []ent.Value{*id}
+		}
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *TaskReportMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 2)
 	return edges
 }
 
@@ -37247,9 +37378,12 @@ func (m *TaskReportMutation) RemovedIDs(name string) []ent.Value {
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *TaskReportMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 2)
 	if m.clearedprofileissue {
 		edges = append(edges, taskreport.EdgeProfileissue)
+	}
+	if m.clearedtask {
+		edges = append(edges, taskreport.EdgeTask)
 	}
 	return edges
 }
@@ -37260,6 +37394,8 @@ func (m *TaskReportMutation) EdgeCleared(name string) bool {
 	switch name {
 	case taskreport.EdgeProfileissue:
 		return m.clearedprofileissue
+	case taskreport.EdgeTask:
+		return m.clearedtask
 	}
 	return false
 }
@@ -37271,6 +37407,9 @@ func (m *TaskReportMutation) ClearEdge(name string) error {
 	case taskreport.EdgeProfileissue:
 		m.ClearProfileissue()
 		return nil
+	case taskreport.EdgeTask:
+		m.ClearTask()
+		return nil
 	}
 	return fmt.Errorf("unknown TaskReport unique edge %s", name)
 }
@@ -37281,6 +37420,9 @@ func (m *TaskReportMutation) ResetEdge(name string) error {
 	switch name {
 	case taskreport.EdgeProfileissue:
 		m.ResetProfileissue()
+		return nil
+	case taskreport.EdgeTask:
+		m.ResetTask()
 		return nil
 	}
 	return fmt.Errorf("unknown TaskReport edge %s", name)

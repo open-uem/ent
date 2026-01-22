@@ -13,6 +13,7 @@ import (
 	"entgo.io/ent/schema/field"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/task"
 	"github.com/open-uem/ent/taskreport"
 )
 
@@ -24,6 +25,7 @@ type TaskReportQuery struct {
 	inters           []Interceptor
 	predicates       []predicate.TaskReport
 	withProfileissue *ProfileIssueQuery
+	withTask         *TaskQuery
 	withFKs          bool
 	modifiers        []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
@@ -77,6 +79,28 @@ func (trq *TaskReportQuery) QueryProfileissue() *ProfileIssueQuery {
 			sqlgraph.From(taskreport.Table, taskreport.FieldID, selector),
 			sqlgraph.To(profileissue.Table, profileissue.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, true, taskreport.ProfileissueTable, taskreport.ProfileissueColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(trq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryTask chains the current query on the "task" edge.
+func (trq *TaskReportQuery) QueryTask() *TaskQuery {
+	query := (&TaskClient{config: trq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := trq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := trq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(taskreport.Table, taskreport.FieldID, selector),
+			sqlgraph.To(task.Table, task.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, taskreport.TaskTable, taskreport.TaskColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(trq.driver.Dialect(), step)
 		return fromU, nil
@@ -277,6 +301,7 @@ func (trq *TaskReportQuery) Clone() *TaskReportQuery {
 		inters:           append([]Interceptor{}, trq.inters...),
 		predicates:       append([]predicate.TaskReport{}, trq.predicates...),
 		withProfileissue: trq.withProfileissue.Clone(),
+		withTask:         trq.withTask.Clone(),
 		// clone intermediate query.
 		sql:       trq.sql.Clone(),
 		path:      trq.path,
@@ -292,6 +317,17 @@ func (trq *TaskReportQuery) WithProfileissue(opts ...func(*ProfileIssueQuery)) *
 		opt(query)
 	}
 	trq.withProfileissue = query
+	return trq
+}
+
+// WithTask tells the query-builder to eager-load the nodes that are connected to
+// the "task" edge. The optional arguments are used to configure the query builder of the edge.
+func (trq *TaskReportQuery) WithTask(opts ...func(*TaskQuery)) *TaskReportQuery {
+	query := (&TaskClient{config: trq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	trq.withTask = query
 	return trq
 }
 
@@ -374,11 +410,12 @@ func (trq *TaskReportQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 		nodes       = []*TaskReport{}
 		withFKs     = trq.withFKs
 		_spec       = trq.querySpec()
-		loadedTypes = [1]bool{
+		loadedTypes = [2]bool{
 			trq.withProfileissue != nil,
+			trq.withTask != nil,
 		}
 	)
-	if trq.withProfileissue != nil {
+	if trq.withProfileissue != nil || trq.withTask != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -411,6 +448,12 @@ func (trq *TaskReportQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 			return nil, err
 		}
 	}
+	if query := trq.withTask; query != nil {
+		if err := trq.loadTask(ctx, query, nodes, nil,
+			func(n *TaskReport, e *Task) { n.Edges.Task = e }); err != nil {
+			return nil, err
+		}
+	}
 	return nodes, nil
 }
 
@@ -439,6 +482,38 @@ func (trq *TaskReportQuery) loadProfileissue(ctx context.Context, query *Profile
 		nodes, ok := nodeids[n.ID]
 		if !ok {
 			return fmt.Errorf(`unexpected foreign-key "profile_issue_tasksreports" returned %v`, n.ID)
+		}
+		for i := range nodes {
+			assign(nodes[i], n)
+		}
+	}
+	return nil
+}
+func (trq *TaskReportQuery) loadTask(ctx context.Context, query *TaskQuery, nodes []*TaskReport, init func(*TaskReport), assign func(*TaskReport, *Task)) error {
+	ids := make([]int, 0, len(nodes))
+	nodeids := make(map[int][]*TaskReport)
+	for i := range nodes {
+		if nodes[i].task_reports == nil {
+			continue
+		}
+		fk := *nodes[i].task_reports
+		if _, ok := nodeids[fk]; !ok {
+			ids = append(ids, fk)
+		}
+		nodeids[fk] = append(nodeids[fk], nodes[i])
+	}
+	if len(ids) == 0 {
+		return nil
+	}
+	query.Where(task.IDIn(ids...))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nodeids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected foreign-key "task_reports" returned %v`, n.ID)
 		}
 		for i := range nodes {
 			assign(nodes[i], n)

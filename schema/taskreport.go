@@ -25,5 +25,6 @@ func (TaskReport) Fields() []ent.Field {
 func (TaskReport) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.From("profileissue", ProfileIssue.Type).Unique().Ref("tasksreports"),
+		edge.From("task", Task.Type).Unique().Ref("reports"),
 	}
 }

@@ -9,6 +9,7 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/task"
 	"github.com/open-uem/ent/taskreport"
 )
 
@@ -29,6 +30,7 @@ type TaskReport struct {
 	// The values are being populated by the TaskReportQuery when eager-loading is set.
 	Edges                      TaskReportEdges `json:"edges"`
 	profile_issue_tasksreports *int
+	task_reports               *int
 	selectValues               sql.SelectValues
 }
 
@@ -36,9 +38,11 @@ type TaskReport struct {
 type TaskReportEdges struct {
 	// Profileissue holds the value of the profileissue edge.
 	Profileissue *ProfileIssue `json:"profileissue,omitempty"`
+	// Task holds the value of the task edge.
+	Task *Task `json:"task,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [1]bool
+	loadedTypes [2]bool
 }
 
 // ProfileissueOrErr returns the Profileissue value or an error if the edge
@@ -50,6 +54,17 @@ func (e TaskReportEdges) ProfileissueOrErr() (*ProfileIssue, error) {
 		return nil, &NotFoundError{label: profileissue.Label}
 	}
 	return nil, &NotLoadedError{edge: "profileissue"}
+}
+
+// TaskOrErr returns the Task value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e TaskReportEdges) TaskOrErr() (*Task, error) {
+	if e.Task != nil {
+		return e.Task, nil
+	} else if e.loadedTypes[1] {
+		return nil, &NotFoundError{label: task.Label}
+	}
+	return nil, &NotLoadedError{edge: "task"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -64,6 +79,8 @@ func (*TaskReport) scanValues(columns []string) ([]any, error) {
 		case taskreport.FieldStdOutput, taskreport.FieldStdError, taskreport.FieldEnd:
 			values[i] = new(sql.NullString)
 		case taskreport.ForeignKeys[0]: // profile_issue_tasksreports
+			values[i] = new(sql.NullInt64)
+		case taskreport.ForeignKeys[1]: // task_reports
 			values[i] = new(sql.NullInt64)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -117,6 +134,13 @@ func (tr *TaskReport) assignValues(columns []string, values []any) error {
 				tr.profile_issue_tasksreports = new(int)
 				*tr.profile_issue_tasksreports = int(value.Int64)
 			}
+		case taskreport.ForeignKeys[1]:
+			if value, ok := values[i].(*sql.NullInt64); !ok {
+				return fmt.Errorf("unexpected type %T for edge-field task_reports", value)
+			} else if value.Valid {
+				tr.task_reports = new(int)
+				*tr.task_reports = int(value.Int64)
+			}
 		default:
 			tr.selectValues.Set(columns[i], values[i])
 		}
@@ -133,6 +157,11 @@ func (tr *TaskReport) Value(name string) (ent.Value, error) {
 // QueryProfileissue queries the "profileissue" edge of the TaskReport entity.
 func (tr *TaskReport) QueryProfileissue() *ProfileIssueQuery {
 	return NewTaskReportClient(tr.config).QueryProfileissue(tr)
+}
+
+// QueryTask queries the "task" edge of the TaskReport entity.
+func (tr *TaskReport) QueryTask() *TaskQuery {
+	return NewTaskReportClient(tr.config).QueryTask(tr)
 }
 
 // Update returns a builder for updating this TaskReport.
