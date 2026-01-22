@@ -24,6 +24,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/taskreport"
 	"github.com/open-uem/ent/tenant"
 	"github.com/open-uem/ent/user"
 	"github.com/open-uem/ent/wingetconfigexclusion"
@@ -713,6 +714,24 @@ func init() {
 	taskDescNetbirdAllowExtraDNSLabels := taskFields[87].Descriptor()
 	// task.DefaultNetbirdAllowExtraDNSLabels holds the default value on creation for the netbird_allow_extra_dns_labels field.
 	task.DefaultNetbirdAllowExtraDNSLabels = taskDescNetbirdAllowExtraDNSLabels.Default.(bool)
+	taskreportFields := schema.TaskReport{}.Fields()
+	_ = taskreportFields
+	// taskreportDescStdOutput is the schema descriptor for std_output field.
+	taskreportDescStdOutput := taskreportFields[0].Descriptor()
+	// taskreport.DefaultStdOutput holds the default value on creation for the std_output field.
+	taskreport.DefaultStdOutput = taskreportDescStdOutput.Default.(string)
+	// taskreportDescStdError is the schema descriptor for std_error field.
+	taskreportDescStdError := taskreportFields[1].Descriptor()
+	// taskreport.DefaultStdError holds the default value on creation for the std_error field.
+	taskreport.DefaultStdError = taskreportDescStdError.Default.(string)
+	// taskreportDescFailed is the schema descriptor for failed field.
+	taskreportDescFailed := taskreportFields[2].Descriptor()
+	// taskreport.DefaultFailed holds the default value on creation for the failed field.
+	taskreport.DefaultFailed = taskreportDescFailed.Default.(bool)
+	// taskreportDescEnd is the schema descriptor for end field.
+	taskreportDescEnd := taskreportFields[3].Descriptor()
+	// taskreport.DefaultEnd holds the default value on creation for the end field.
+	taskreport.DefaultEnd = taskreportDescEnd.Default.(string)
 	tenantFields := schema.Tenant{}.Fields()
 	_ = tenantFields
 	// tenantDescCreated is the schema descriptor for created field.

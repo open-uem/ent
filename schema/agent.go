@@ -76,6 +76,7 @@ func (Agent) Edges() []ent.Edge {
 		edge.From("site", Site.Type).Ref("agents"),
 		edge.To("physicaldisks", PhysicalDisk.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 		edge.To("netbird", Netbird.Type).Unique().Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
+		edge.To("tasksreports", TaskReport.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 	}
 }
 

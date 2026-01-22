@@ -117,6 +117,8 @@ const (
 	EdgePhysicaldisks = "physicaldisks"
 	// EdgeNetbird holds the string denoting the netbird edge name in mutations.
 	EdgeNetbird = "netbird"
+	// EdgeTasksreports holds the string denoting the tasksreports edge name in mutations.
+	EdgeTasksreports = "tasksreports"
 	// ComputerFieldID holds the string denoting the ID field of the Computer.
 	ComputerFieldID = "id"
 	// OperatingSystemFieldID holds the string denoting the ID field of the OperatingSystem.
@@ -159,6 +161,8 @@ const (
 	PhysicalDiskFieldID = "id"
 	// NetbirdFieldID holds the string denoting the ID field of the Netbird.
 	NetbirdFieldID = "id"
+	// TaskReportFieldID holds the string denoting the ID field of the TaskReport.
+	TaskReportFieldID = "id"
 	// Table holds the table name of the agent in the database.
 	Table = "agents"
 	// ComputerTable is the table that holds the computer relation/edge.
@@ -304,6 +308,13 @@ const (
 	NetbirdInverseTable = "netbirds"
 	// NetbirdColumn is the table column denoting the netbird relation/edge.
 	NetbirdColumn = "agent_netbird"
+	// TasksreportsTable is the table that holds the tasksreports relation/edge.
+	TasksreportsTable = "task_reports"
+	// TasksreportsInverseTable is the table name for the TaskReport entity.
+	// It exists in this package in order to avoid circular dependency with the "taskreport" package.
+	TasksreportsInverseTable = "task_reports"
+	// TasksreportsColumn is the table column denoting the tasksreports relation/edge.
+	TasksreportsColumn = "agent_tasksreports"
 )
 
 // Columns holds all SQL columns for agent fields.
@@ -892,6 +903,20 @@ func ByNetbirdField(field string, opts ...sql.OrderTermOption) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newNetbirdStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByTasksreportsCount orders the results by tasksreports count.
+func ByTasksreportsCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newTasksreportsStep(), opts...)
+	}
+}
+
+// ByTasksreports orders the results by tasksreports terms.
+func ByTasksreports(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newTasksreportsStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newComputerStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -1037,5 +1062,12 @@ func newNetbirdStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NetbirdInverseTable, NetbirdFieldID),
 		sqlgraph.Edge(sqlgraph.O2O, false, NetbirdTable, NetbirdColumn),
+	)
+}
+func newTasksreportsStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(TasksreportsInverseTable, TaskReportFieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, TasksreportsTable, TasksreportsColumn),
 	)
 }

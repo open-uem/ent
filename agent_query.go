@@ -33,6 +33,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/systemupdate"
 	"github.com/open-uem/ent/tag"
+	"github.com/open-uem/ent/taskreport"
 	"github.com/open-uem/ent/update"
 	"github.com/open-uem/ent/wingetconfigexclusion"
 )
@@ -65,6 +66,7 @@ type AgentQuery struct {
 	withSite                *SiteQuery
 	withPhysicaldisks       *PhysicalDiskQuery
 	withNetbird             *NetbirdQuery
+	withTasksreports        *TaskReportQuery
 	withFKs                 bool
 	modifiers               []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
@@ -565,6 +567,28 @@ func (aq *AgentQuery) QueryNetbird() *NetbirdQuery {
 	return query
 }
 
+// QueryTasksreports chains the current query on the "tasksreports" edge.
+func (aq *AgentQuery) QueryTasksreports() *TaskReportQuery {
+	query := (&TaskReportClient{config: aq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := aq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := aq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, selector),
+			sqlgraph.To(taskreport.Table, taskreport.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, agent.TasksreportsTable, agent.TasksreportsColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
 // First returns the first Agent entity from the query.
 // Returns a *NotFoundError when no Agent was found.
 func (aq *AgentQuery) First(ctx context.Context) (*Agent, error) {
@@ -778,6 +802,7 @@ func (aq *AgentQuery) Clone() *AgentQuery {
 		withSite:                aq.withSite.Clone(),
 		withPhysicaldisks:       aq.withPhysicaldisks.Clone(),
 		withNetbird:             aq.withNetbird.Clone(),
+		withTasksreports:        aq.withTasksreports.Clone(),
 		// clone intermediate query.
 		sql:       aq.sql.Clone(),
 		path:      aq.path,
@@ -1016,6 +1041,17 @@ func (aq *AgentQuery) WithNetbird(opts ...func(*NetbirdQuery)) *AgentQuery {
 	return aq
 }
 
+// WithTasksreports tells the query-builder to eager-load the nodes that are connected to
+// the "tasksreports" edge. The optional arguments are used to configure the query builder of the edge.
+func (aq *AgentQuery) WithTasksreports(opts ...func(*TaskReportQuery)) *AgentQuery {
+	query := (&TaskReportClient{config: aq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	aq.withTasksreports = query
+	return aq
+}
+
 // GroupBy is used to group vertices by one or more fields/columns.
 // It is often used with aggregate functions, like: count, max, mean, min, sum.
 //
@@ -1095,7 +1131,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		nodes       = []*Agent{}
 		withFKs     = aq.withFKs
 		_spec       = aq.querySpec()
-		loadedTypes = [21]bool{
+		loadedTypes = [22]bool{
 			aq.withComputer != nil,
 			aq.withOperatingsystem != nil,
 			aq.withSystemupdate != nil,
@@ -1117,6 +1153,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 			aq.withSite != nil,
 			aq.withPhysicaldisks != nil,
 			aq.withNetbird != nil,
+			aq.withTasksreports != nil,
 		}
 	)
 	if aq.withRelease != nil {
@@ -1286,6 +1323,13 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 	if query := aq.withNetbird; query != nil {
 		if err := aq.loadNetbird(ctx, query, nodes, nil,
 			func(n *Agent, e *Netbird) { n.Edges.Netbird = e }); err != nil {
+			return nil, err
+		}
+	}
+	if query := aq.withTasksreports; query != nil {
+		if err := aq.loadTasksreports(ctx, query, nodes,
+			func(n *Agent) { n.Edges.Tasksreports = []*TaskReport{} },
+			func(n *Agent, e *TaskReport) { n.Edges.Tasksreports = append(n.Edges.Tasksreports, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -1984,6 +2028,37 @@ func (aq *AgentQuery) loadNetbird(ctx context.Context, query *NetbirdQuery, node
 		node, ok := nodeids[*fk]
 		if !ok {
 			return fmt.Errorf(`unexpected referenced foreign-key "agent_netbird" returned %v for node %v`, *fk, n.ID)
+		}
+		assign(node, n)
+	}
+	return nil
+}
+func (aq *AgentQuery) loadTasksreports(ctx context.Context, query *TaskReportQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *TaskReport)) error {
+	fks := make([]driver.Value, 0, len(nodes))
+	nodeids := make(map[string]*Agent)
+	for i := range nodes {
+		fks = append(fks, nodes[i].ID)
+		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
+	}
+	query.withFKs = true
+	query.Where(predicate.TaskReport(func(s *sql.Selector) {
+		s.Where(sql.InValues(s.C(agent.TasksreportsColumn), fks...))
+	}))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		fk := n.agent_tasksreports
+		if fk == nil {
+			return fmt.Errorf(`foreign-key "agent_tasksreports" is nil for node %v`, n.ID)
+		}
+		node, ok := nodeids[*fk]
+		if !ok {
+			return fmt.Errorf(`unexpected referenced foreign-key "agent_tasksreports" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
 	}

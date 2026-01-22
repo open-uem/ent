@@ -946,6 +946,36 @@ var (
 			},
 		},
 	}
+	// TaskReportsColumns holds the columns for the "task_reports" table.
+	TaskReportsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "std_output", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "std_error", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "failed", Type: field.TypeBool, Default: false},
+		{Name: "end", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "agent_tasksreports", Type: field.TypeString, Nullable: true},
+		{Name: "task_reports", Type: field.TypeInt, Nullable: true},
+	}
+	// TaskReportsTable holds the schema information for the "task_reports" table.
+	TaskReportsTable = &schema.Table{
+		Name:       "task_reports",
+		Columns:    TaskReportsColumns,
+		PrimaryKey: []*schema.Column{TaskReportsColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "task_reports_agents_tasksreports",
+				Columns:    []*schema.Column{TaskReportsColumns[5]},
+				RefColumns: []*schema.Column{AgentsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "task_reports_tasks_reports",
+				Columns:    []*schema.Column{TaskReportsColumns[6]},
+				RefColumns: []*schema.Column{TasksColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
 	// TenantsColumns holds the columns for the "tenants" table.
 	TenantsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -1187,6 +1217,7 @@ var (
 		SystemUpdatesTable,
 		TagsTable,
 		TasksTable,
+		TaskReportsTable,
 		TenantsTable,
 		UpdatesTable,
 		UsersTable,
@@ -1229,6 +1260,8 @@ func init() {
 	TagsTable.ForeignKeys[1].RefTable = TasksTable
 	TagsTable.ForeignKeys[2].RefTable = TenantsTable
 	TasksTable.ForeignKeys[0].RefTable = ProfilesTable
+	TaskReportsTable.ForeignKeys[0].RefTable = AgentsTable
+	TaskReportsTable.ForeignKeys[1].RefTable = TasksTable
 	TenantsTable.ForeignKeys[0].RefTable = NetbirdSettingsTable
 	UpdatesTable.ForeignKeys[0].RefTable = AgentsTable
 	WingetConfigExclusionsTable.ForeignKeys[0].RefTable = AgentsTable
