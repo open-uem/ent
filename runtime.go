@@ -714,6 +714,10 @@ func init() {
 	taskDescNetbirdAllowExtraDNSLabels := taskFields[87].Descriptor()
 	// task.DefaultNetbirdAllowExtraDNSLabels holds the default value on creation for the netbird_allow_extra_dns_labels field.
 	task.DefaultNetbirdAllowExtraDNSLabels = taskDescNetbirdAllowExtraDNSLabels.Default.(bool)
+	// taskDescIgnoreErrors is the schema descriptor for ignore_errors field.
+	taskDescIgnoreErrors := taskFields[88].Descriptor()
+	// task.DefaultIgnoreErrors holds the default value on creation for the ignore_errors field.
+	task.DefaultIgnoreErrors = taskDescIgnoreErrors.Default.(bool)
 	taskreportFields := schema.TaskReport{}.Fields()
 	_ = taskreportFields
 	// taskreportDescStdOutput is the schema descriptor for std_output field.

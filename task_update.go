@@ -1794,6 +1794,26 @@ func (tu *TaskUpdate) ClearNetbirdAllowExtraDNSLabels() *TaskUpdate {
 	return tu
 }
 
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (tu *TaskUpdate) SetIgnoreErrors(b bool) *TaskUpdate {
+	tu.mutation.SetIgnoreErrors(b)
+	return tu
+}
+
+// SetNillableIgnoreErrors sets the "ignore_errors" field if the given value is not nil.
+func (tu *TaskUpdate) SetNillableIgnoreErrors(b *bool) *TaskUpdate {
+	if b != nil {
+		tu.SetIgnoreErrors(*b)
+	}
+	return tu
+}
+
+// ClearIgnoreErrors clears the value of the "ignore_errors" field.
+func (tu *TaskUpdate) ClearIgnoreErrors() *TaskUpdate {
+	tu.mutation.ClearIgnoreErrors()
+	return tu
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tu *TaskUpdate) AddTagIDs(ids ...int) *TaskUpdate {
 	tu.mutation.AddTagIDs(ids...)
@@ -2508,6 +2528,12 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if tu.mutation.NetbirdAllowExtraDNSLabelsCleared() {
 		_spec.ClearField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool)
+	}
+	if value, ok := tu.mutation.IgnoreErrors(); ok {
+		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
+	}
+	if tu.mutation.IgnoreErrorsCleared() {
+		_spec.ClearField(task.FieldIgnoreErrors, field.TypeBool)
 	}
 	if tu.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -4412,6 +4438,26 @@ func (tuo *TaskUpdateOne) ClearNetbirdAllowExtraDNSLabels() *TaskUpdateOne {
 	return tuo
 }
 
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (tuo *TaskUpdateOne) SetIgnoreErrors(b bool) *TaskUpdateOne {
+	tuo.mutation.SetIgnoreErrors(b)
+	return tuo
+}
+
+// SetNillableIgnoreErrors sets the "ignore_errors" field if the given value is not nil.
+func (tuo *TaskUpdateOne) SetNillableIgnoreErrors(b *bool) *TaskUpdateOne {
+	if b != nil {
+		tuo.SetIgnoreErrors(*b)
+	}
+	return tuo
+}
+
+// ClearIgnoreErrors clears the value of the "ignore_errors" field.
+func (tuo *TaskUpdateOne) ClearIgnoreErrors() *TaskUpdateOne {
+	tuo.mutation.ClearIgnoreErrors()
+	return tuo
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tuo *TaskUpdateOne) AddTagIDs(ids ...int) *TaskUpdateOne {
 	tuo.mutation.AddTagIDs(ids...)
@@ -5156,6 +5202,12 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 	}
 	if tuo.mutation.NetbirdAllowExtraDNSLabelsCleared() {
 		_spec.ClearField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool)
+	}
+	if value, ok := tuo.mutation.IgnoreErrors(); ok {
+		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
+	}
+	if tuo.mutation.IgnoreErrorsCleared() {
+		_spec.ClearField(task.FieldIgnoreErrors, field.TypeBool)
 	}
 	if tuo.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{

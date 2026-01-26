@@ -465,6 +465,11 @@ func NetbirdAllowExtraDNSLabels(v bool) predicate.Task {
 	return predicate.Task(sql.FieldEQ(FieldNetbirdAllowExtraDNSLabels, v))
 }
 
+// IgnoreErrors applies equality check predicate on the "ignore_errors" field. It's identical to IgnoreErrorsEQ.
+func IgnoreErrors(v bool) predicate.Task {
+	return predicate.Task(sql.FieldEQ(FieldIgnoreErrors, v))
+}
+
 // NameEQ applies the EQ predicate on the "name" field.
 func NameEQ(v string) predicate.Task {
 	return predicate.Task(sql.FieldEQ(FieldName, v))
@@ -5158,6 +5163,26 @@ func NetbirdAllowExtraDNSLabelsIsNil() predicate.Task {
 // NetbirdAllowExtraDNSLabelsNotNil applies the NotNil predicate on the "netbird_allow_extra_dns_labels" field.
 func NetbirdAllowExtraDNSLabelsNotNil() predicate.Task {
 	return predicate.Task(sql.FieldNotNull(FieldNetbirdAllowExtraDNSLabels))
+}
+
+// IgnoreErrorsEQ applies the EQ predicate on the "ignore_errors" field.
+func IgnoreErrorsEQ(v bool) predicate.Task {
+	return predicate.Task(sql.FieldEQ(FieldIgnoreErrors, v))
+}
+
+// IgnoreErrorsNEQ applies the NEQ predicate on the "ignore_errors" field.
+func IgnoreErrorsNEQ(v bool) predicate.Task {
+	return predicate.Task(sql.FieldNEQ(FieldIgnoreErrors, v))
+}
+
+// IgnoreErrorsIsNil applies the IsNil predicate on the "ignore_errors" field.
+func IgnoreErrorsIsNil() predicate.Task {
+	return predicate.Task(sql.FieldIsNull(FieldIgnoreErrors))
+}
+
+// IgnoreErrorsNotNil applies the NotNil predicate on the "ignore_errors" field.
+func IgnoreErrorsNotNil() predicate.Task {
+	return predicate.Task(sql.FieldNotNull(FieldIgnoreErrors))
 }
 
 // HasTags applies the HasEdge predicate on the "tags" edge.

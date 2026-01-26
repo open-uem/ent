@@ -145,6 +145,7 @@ func (Task) Fields() []ent.Field {
 		field.Int("tenant").Optional(),
 		field.String("netbird_groups").Optional().Default(""),
 		field.Bool("netbird_allow_extra_dns_labels").Optional().Default(false),
+		field.Bool("ignore_errors").Optional().Default(false),
 	}
 }
 

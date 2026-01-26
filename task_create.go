@@ -1241,6 +1241,20 @@ func (tc *TaskCreate) SetNillableNetbirdAllowExtraDNSLabels(b *bool) *TaskCreate
 	return tc
 }
 
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (tc *TaskCreate) SetIgnoreErrors(b bool) *TaskCreate {
+	tc.mutation.SetIgnoreErrors(b)
+	return tc
+}
+
+// SetNillableIgnoreErrors sets the "ignore_errors" field if the given value is not nil.
+func (tc *TaskCreate) SetNillableIgnoreErrors(b *bool) *TaskCreate {
+	if b != nil {
+		tc.SetIgnoreErrors(*b)
+	}
+	return tc
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tc *TaskCreate) AddTagIDs(ids ...int) *TaskCreate {
 	tc.mutation.AddTagIDs(ids...)
@@ -1544,6 +1558,10 @@ func (tc *TaskCreate) defaults() {
 	if _, ok := tc.mutation.NetbirdAllowExtraDNSLabels(); !ok {
 		v := task.DefaultNetbirdAllowExtraDNSLabels
 		tc.mutation.SetNetbirdAllowExtraDNSLabels(v)
+	}
+	if _, ok := tc.mutation.IgnoreErrors(); !ok {
+		v := task.DefaultIgnoreErrors
+		tc.mutation.SetIgnoreErrors(v)
 	}
 }
 
@@ -1968,6 +1986,10 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 	if value, ok := tc.mutation.NetbirdAllowExtraDNSLabels(); ok {
 		_spec.SetField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool, value)
 		_node.NetbirdAllowExtraDNSLabels = value
+	}
+	if value, ok := tc.mutation.IgnoreErrors(); ok {
+		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
+		_node.IgnoreErrors = value
 	}
 	if nodes := tc.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -3651,6 +3673,24 @@ func (u *TaskUpsert) UpdateNetbirdAllowExtraDNSLabels() *TaskUpsert {
 // ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
 func (u *TaskUpsert) ClearNetbirdAllowExtraDNSLabels() *TaskUpsert {
 	u.SetNull(task.FieldNetbirdAllowExtraDNSLabels)
+	return u
+}
+
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (u *TaskUpsert) SetIgnoreErrors(v bool) *TaskUpsert {
+	u.Set(task.FieldIgnoreErrors, v)
+	return u
+}
+
+// UpdateIgnoreErrors sets the "ignore_errors" field to the value that was provided on create.
+func (u *TaskUpsert) UpdateIgnoreErrors() *TaskUpsert {
+	u.SetExcluded(task.FieldIgnoreErrors)
+	return u
+}
+
+// ClearIgnoreErrors clears the value of the "ignore_errors" field.
+func (u *TaskUpsert) ClearIgnoreErrors() *TaskUpsert {
+	u.SetNull(task.FieldIgnoreErrors)
 	return u
 }
 
@@ -5539,6 +5579,27 @@ func (u *TaskUpsertOne) UpdateNetbirdAllowExtraDNSLabels() *TaskUpsertOne {
 func (u *TaskUpsertOne) ClearNetbirdAllowExtraDNSLabels() *TaskUpsertOne {
 	return u.Update(func(s *TaskUpsert) {
 		s.ClearNetbirdAllowExtraDNSLabels()
+	})
+}
+
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (u *TaskUpsertOne) SetIgnoreErrors(v bool) *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetIgnoreErrors(v)
+	})
+}
+
+// UpdateIgnoreErrors sets the "ignore_errors" field to the value that was provided on create.
+func (u *TaskUpsertOne) UpdateIgnoreErrors() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateIgnoreErrors()
+	})
+}
+
+// ClearIgnoreErrors clears the value of the "ignore_errors" field.
+func (u *TaskUpsertOne) ClearIgnoreErrors() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearIgnoreErrors()
 	})
 }
 
@@ -7591,6 +7652,27 @@ func (u *TaskUpsertBulk) UpdateNetbirdAllowExtraDNSLabels() *TaskUpsertBulk {
 func (u *TaskUpsertBulk) ClearNetbirdAllowExtraDNSLabels() *TaskUpsertBulk {
 	return u.Update(func(s *TaskUpsert) {
 		s.ClearNetbirdAllowExtraDNSLabels()
+	})
+}
+
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (u *TaskUpsertBulk) SetIgnoreErrors(v bool) *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetIgnoreErrors(v)
+	})
+}
+
+// UpdateIgnoreErrors sets the "ignore_errors" field to the value that was provided on create.
+func (u *TaskUpsertBulk) UpdateIgnoreErrors() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateIgnoreErrors()
+	})
+}
+
+// ClearIgnoreErrors clears the value of the "ignore_errors" field.
+func (u *TaskUpsertBulk) ClearIgnoreErrors() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearIgnoreErrors()
 	})
 }
 

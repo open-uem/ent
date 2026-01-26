@@ -29909,6 +29909,7 @@ type TaskMutation struct {
 	addtenant                                  *int
 	netbird_groups                             *string
 	netbird_allow_extra_dns_labels             *bool
+	ignore_errors                              *bool
 	clearedFields                              map[string]struct{}
 	tags                                       map[int]struct{}
 	removedtags                                map[int]struct{}
@@ -34349,6 +34350,55 @@ func (m *TaskMutation) ResetNetbirdAllowExtraDNSLabels() {
 	delete(m.clearedFields, task.FieldNetbirdAllowExtraDNSLabels)
 }
 
+// SetIgnoreErrors sets the "ignore_errors" field.
+func (m *TaskMutation) SetIgnoreErrors(b bool) {
+	m.ignore_errors = &b
+}
+
+// IgnoreErrors returns the value of the "ignore_errors" field in the mutation.
+func (m *TaskMutation) IgnoreErrors() (r bool, exists bool) {
+	v := m.ignore_errors
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIgnoreErrors returns the old "ignore_errors" field's value of the Task entity.
+// If the Task object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *TaskMutation) OldIgnoreErrors(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIgnoreErrors is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIgnoreErrors requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIgnoreErrors: %w", err)
+	}
+	return oldValue.IgnoreErrors, nil
+}
+
+// ClearIgnoreErrors clears the value of the "ignore_errors" field.
+func (m *TaskMutation) ClearIgnoreErrors() {
+	m.ignore_errors = nil
+	m.clearedFields[task.FieldIgnoreErrors] = struct{}{}
+}
+
+// IgnoreErrorsCleared returns if the "ignore_errors" field was cleared in this mutation.
+func (m *TaskMutation) IgnoreErrorsCleared() bool {
+	_, ok := m.clearedFields[task.FieldIgnoreErrors]
+	return ok
+}
+
+// ResetIgnoreErrors resets all changes to the "ignore_errors" field.
+func (m *TaskMutation) ResetIgnoreErrors() {
+	m.ignore_errors = nil
+	delete(m.clearedFields, task.FieldIgnoreErrors)
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by ids.
 func (m *TaskMutation) AddTagIDs(ids ...int) {
 	if m.tags == nil {
@@ -34530,7 +34580,7 @@ func (m *TaskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *TaskMutation) Fields() []string {
-	fields := make([]string, 0, 88)
+	fields := make([]string, 0, 89)
 	if m.name != nil {
 		fields = append(fields, task.FieldName)
 	}
@@ -34795,6 +34845,9 @@ func (m *TaskMutation) Fields() []string {
 	if m.netbird_allow_extra_dns_labels != nil {
 		fields = append(fields, task.FieldNetbirdAllowExtraDNSLabels)
 	}
+	if m.ignore_errors != nil {
+		fields = append(fields, task.FieldIgnoreErrors)
+	}
 	return fields
 }
 
@@ -34979,6 +35032,8 @@ func (m *TaskMutation) Field(name string) (ent.Value, bool) {
 		return m.NetbirdGroups()
 	case task.FieldNetbirdAllowExtraDNSLabels:
 		return m.NetbirdAllowExtraDNSLabels()
+	case task.FieldIgnoreErrors:
+		return m.IgnoreErrors()
 	}
 	return nil, false
 }
@@ -35164,6 +35219,8 @@ func (m *TaskMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldNetbirdGroups(ctx)
 	case task.FieldNetbirdAllowExtraDNSLabels:
 		return m.OldNetbirdAllowExtraDNSLabels(ctx)
+	case task.FieldIgnoreErrors:
+		return m.OldIgnoreErrors(ctx)
 	}
 	return nil, fmt.Errorf("unknown Task field %s", name)
 }
@@ -35789,6 +35846,13 @@ func (m *TaskMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetNetbirdAllowExtraDNSLabels(v)
 		return nil
+	case task.FieldIgnoreErrors:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIgnoreErrors(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)
 }
@@ -36104,6 +36168,9 @@ func (m *TaskMutation) ClearedFields() []string {
 	if m.FieldCleared(task.FieldNetbirdAllowExtraDNSLabels) {
 		fields = append(fields, task.FieldNetbirdAllowExtraDNSLabels)
 	}
+	if m.FieldCleared(task.FieldIgnoreErrors) {
+		fields = append(fields, task.FieldIgnoreErrors)
+	}
 	return fields
 }
 
@@ -36376,6 +36443,9 @@ func (m *TaskMutation) ClearField(name string) error {
 	case task.FieldNetbirdAllowExtraDNSLabels:
 		m.ClearNetbirdAllowExtraDNSLabels()
 		return nil
+	case task.FieldIgnoreErrors:
+		m.ClearIgnoreErrors()
+		return nil
 	}
 	return fmt.Errorf("unknown Task nullable field %s", name)
 }
@@ -36647,6 +36717,9 @@ func (m *TaskMutation) ResetField(name string) error {
 		return nil
 	case task.FieldNetbirdAllowExtraDNSLabels:
 		m.ResetNetbirdAllowExtraDNSLabels()
+		return nil
+	case task.FieldIgnoreErrors:
+		m.ResetIgnoreErrors()
 		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)

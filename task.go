@@ -194,6 +194,8 @@ type Task struct {
 	NetbirdGroups string `json:"netbird_groups,omitempty"`
 	// NetbirdAllowExtraDNSLabels holds the value of the "netbird_allow_extra_dns_labels" field.
 	NetbirdAllowExtraDNSLabels bool `json:"netbird_allow_extra_dns_labels,omitempty"`
+	// IgnoreErrors holds the value of the "ignore_errors" field.
+	IgnoreErrors bool `json:"ignore_errors,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the TaskQuery when eager-loading is set.
 	Edges         TaskEdges `json:"edges"`
@@ -248,7 +250,7 @@ func (*Task) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case task.FieldPackageLatest, task.FieldRegistryHex, task.FieldRegistryForce, task.FieldLocalUserDisable, task.FieldLocalUserPasswordChangeNotAllowed, task.FieldLocalUserPasswordChangeRequired, task.FieldLocalUserPasswordNeverExpires, task.FieldLocalUserAppend, task.FieldLocalUserCreateHome, task.FieldLocalUserForce, task.FieldLocalUserGenerateSSHKey, task.FieldLocalUserMoveHome, task.FieldLocalUserNonunique, task.FieldLocalUserPasswordLock, task.FieldLocalUserSystem, task.FieldLocalGroupSystem, task.FieldLocalGroupForce, task.FieldBrewUpdate, task.FieldBrewUpgradeAll, task.FieldBrewGreedy, task.FieldAptAllowDowngrade, task.FieldAptFailOnAutoremove, task.FieldAptForce, task.FieldAptInstallRecommends, task.FieldAptOnlyUpgrade, task.FieldAptPurge, task.FieldAptUpdateCache, task.FieldNetbirdAllowExtraDNSLabels:
+		case task.FieldPackageLatest, task.FieldRegistryHex, task.FieldRegistryForce, task.FieldLocalUserDisable, task.FieldLocalUserPasswordChangeNotAllowed, task.FieldLocalUserPasswordChangeRequired, task.FieldLocalUserPasswordNeverExpires, task.FieldLocalUserAppend, task.FieldLocalUserCreateHome, task.FieldLocalUserForce, task.FieldLocalUserGenerateSSHKey, task.FieldLocalUserMoveHome, task.FieldLocalUserNonunique, task.FieldLocalUserPasswordLock, task.FieldLocalUserSystem, task.FieldLocalGroupSystem, task.FieldLocalGroupForce, task.FieldBrewUpdate, task.FieldBrewUpgradeAll, task.FieldBrewGreedy, task.FieldAptAllowDowngrade, task.FieldAptFailOnAutoremove, task.FieldAptForce, task.FieldAptInstallRecommends, task.FieldAptOnlyUpgrade, task.FieldAptPurge, task.FieldAptUpdateCache, task.FieldNetbirdAllowExtraDNSLabels, task.FieldIgnoreErrors:
 			values[i] = new(sql.NullBool)
 		case task.FieldID, task.FieldVersion, task.FieldTenant:
 			values[i] = new(sql.NullInt64)
@@ -807,6 +809,12 @@ func (t *Task) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				t.NetbirdAllowExtraDNSLabels = value.Bool
 			}
+		case task.FieldIgnoreErrors:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field ignore_errors", values[i])
+			} else if value.Valid {
+				t.IgnoreErrors = value.Bool
+			}
 		case task.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field profile_tasks", value)
@@ -1128,6 +1136,9 @@ func (t *Task) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("netbird_allow_extra_dns_labels=")
 	builder.WriteString(fmt.Sprintf("%v", t.NetbirdAllowExtraDNSLabels))
+	builder.WriteString(", ")
+	builder.WriteString("ignore_errors=")
+	builder.WriteString(fmt.Sprintf("%v", t.IgnoreErrors))
 	builder.WriteByte(')')
 	return builder.String()
 }
