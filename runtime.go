@@ -722,6 +722,10 @@ func init() {
 	taskDescDisabled := taskFields[89].Descriptor()
 	// task.DefaultDisabled holds the default value on creation for the disabled field.
 	task.DefaultDisabled = taskDescDisabled.Default.(bool)
+	// taskDescOrder is the schema descriptor for order field.
+	taskDescOrder := taskFields[90].Descriptor()
+	// task.DefaultOrder holds the default value on creation for the order field.
+	task.DefaultOrder = taskDescOrder.Default.(int)
 	taskreportFields := schema.TaskReport{}.Fields()
 	_ = taskreportFields
 	// taskreportDescStdOutput is the schema descriptor for std_output field.

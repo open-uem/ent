@@ -1828,6 +1828,33 @@ func (tu *TaskUpdate) SetNillableDisabled(b *bool) *TaskUpdate {
 	return tu
 }
 
+// SetOrder sets the "order" field.
+func (tu *TaskUpdate) SetOrder(i int) *TaskUpdate {
+	tu.mutation.ResetOrder()
+	tu.mutation.SetOrder(i)
+	return tu
+}
+
+// SetNillableOrder sets the "order" field if the given value is not nil.
+func (tu *TaskUpdate) SetNillableOrder(i *int) *TaskUpdate {
+	if i != nil {
+		tu.SetOrder(*i)
+	}
+	return tu
+}
+
+// AddOrder adds i to the "order" field.
+func (tu *TaskUpdate) AddOrder(i int) *TaskUpdate {
+	tu.mutation.AddOrder(i)
+	return tu
+}
+
+// ClearOrder clears the value of the "order" field.
+func (tu *TaskUpdate) ClearOrder() *TaskUpdate {
+	tu.mutation.ClearOrder()
+	return tu
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tu *TaskUpdate) AddTagIDs(ids ...int) *TaskUpdate {
 	tu.mutation.AddTagIDs(ids...)
@@ -2551,6 +2578,15 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if value, ok := tu.mutation.Disabled(); ok {
 		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
+	}
+	if value, ok := tu.mutation.Order(); ok {
+		_spec.SetField(task.FieldOrder, field.TypeInt, value)
+	}
+	if value, ok := tu.mutation.AddedOrder(); ok {
+		_spec.AddField(task.FieldOrder, field.TypeInt, value)
+	}
+	if tu.mutation.OrderCleared() {
+		_spec.ClearField(task.FieldOrder, field.TypeInt)
 	}
 	if tu.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -4489,6 +4525,33 @@ func (tuo *TaskUpdateOne) SetNillableDisabled(b *bool) *TaskUpdateOne {
 	return tuo
 }
 
+// SetOrder sets the "order" field.
+func (tuo *TaskUpdateOne) SetOrder(i int) *TaskUpdateOne {
+	tuo.mutation.ResetOrder()
+	tuo.mutation.SetOrder(i)
+	return tuo
+}
+
+// SetNillableOrder sets the "order" field if the given value is not nil.
+func (tuo *TaskUpdateOne) SetNillableOrder(i *int) *TaskUpdateOne {
+	if i != nil {
+		tuo.SetOrder(*i)
+	}
+	return tuo
+}
+
+// AddOrder adds i to the "order" field.
+func (tuo *TaskUpdateOne) AddOrder(i int) *TaskUpdateOne {
+	tuo.mutation.AddOrder(i)
+	return tuo
+}
+
+// ClearOrder clears the value of the "order" field.
+func (tuo *TaskUpdateOne) ClearOrder() *TaskUpdateOne {
+	tuo.mutation.ClearOrder()
+	return tuo
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tuo *TaskUpdateOne) AddTagIDs(ids ...int) *TaskUpdateOne {
 	tuo.mutation.AddTagIDs(ids...)
@@ -5242,6 +5305,15 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 	}
 	if value, ok := tuo.mutation.Disabled(); ok {
 		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
+	}
+	if value, ok := tuo.mutation.Order(); ok {
+		_spec.SetField(task.FieldOrder, field.TypeInt, value)
+	}
+	if value, ok := tuo.mutation.AddedOrder(); ok {
+		_spec.AddField(task.FieldOrder, field.TypeInt, value)
+	}
+	if tuo.mutation.OrderCleared() {
+		_spec.ClearField(task.FieldOrder, field.TypeInt)
 	}
 	if tuo.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{

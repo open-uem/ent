@@ -932,6 +932,7 @@ var (
 		{Name: "netbird_allow_extra_dns_labels", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "ignore_errors", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "disabled", Type: field.TypeBool, Default: false},
+		{Name: "order", Type: field.TypeInt, Nullable: true, Default: 0},
 		{Name: "profile_tasks", Type: field.TypeInt, Nullable: true},
 	}
 	// TasksTable holds the schema information for the "tasks" table.
@@ -942,7 +943,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "tasks_profiles_tasks",
-				Columns:    []*schema.Column{TasksColumns[91]},
+				Columns:    []*schema.Column{TasksColumns[92]},
 				RefColumns: []*schema.Column{ProfilesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

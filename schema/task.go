@@ -147,6 +147,7 @@ func (Task) Fields() []ent.Field {
 		field.Bool("netbird_allow_extra_dns_labels").Optional().Default(false),
 		field.Bool("ignore_errors").Optional().Default(false),
 		field.Bool("disabled").Default(false),
+		field.Int("order").Optional().Default(0),
 	}
 }
 

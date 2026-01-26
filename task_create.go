@@ -1269,6 +1269,20 @@ func (tc *TaskCreate) SetNillableDisabled(b *bool) *TaskCreate {
 	return tc
 }
 
+// SetOrder sets the "order" field.
+func (tc *TaskCreate) SetOrder(i int) *TaskCreate {
+	tc.mutation.SetOrder(i)
+	return tc
+}
+
+// SetNillableOrder sets the "order" field if the given value is not nil.
+func (tc *TaskCreate) SetNillableOrder(i *int) *TaskCreate {
+	if i != nil {
+		tc.SetOrder(*i)
+	}
+	return tc
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tc *TaskCreate) AddTagIDs(ids ...int) *TaskCreate {
 	tc.mutation.AddTagIDs(ids...)
@@ -1580,6 +1594,10 @@ func (tc *TaskCreate) defaults() {
 	if _, ok := tc.mutation.Disabled(); !ok {
 		v := task.DefaultDisabled
 		tc.mutation.SetDisabled(v)
+	}
+	if _, ok := tc.mutation.Order(); !ok {
+		v := task.DefaultOrder
+		tc.mutation.SetOrder(v)
 	}
 }
 
@@ -2015,6 +2033,10 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 	if value, ok := tc.mutation.Disabled(); ok {
 		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
 		_node.Disabled = value
+	}
+	if value, ok := tc.mutation.Order(); ok {
+		_spec.SetField(task.FieldOrder, field.TypeInt, value)
+		_node.Order = value
 	}
 	if nodes := tc.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -3728,6 +3750,30 @@ func (u *TaskUpsert) SetDisabled(v bool) *TaskUpsert {
 // UpdateDisabled sets the "disabled" field to the value that was provided on create.
 func (u *TaskUpsert) UpdateDisabled() *TaskUpsert {
 	u.SetExcluded(task.FieldDisabled)
+	return u
+}
+
+// SetOrder sets the "order" field.
+func (u *TaskUpsert) SetOrder(v int) *TaskUpsert {
+	u.Set(task.FieldOrder, v)
+	return u
+}
+
+// UpdateOrder sets the "order" field to the value that was provided on create.
+func (u *TaskUpsert) UpdateOrder() *TaskUpsert {
+	u.SetExcluded(task.FieldOrder)
+	return u
+}
+
+// AddOrder adds v to the "order" field.
+func (u *TaskUpsert) AddOrder(v int) *TaskUpsert {
+	u.Add(task.FieldOrder, v)
+	return u
+}
+
+// ClearOrder clears the value of the "order" field.
+func (u *TaskUpsert) ClearOrder() *TaskUpsert {
+	u.SetNull(task.FieldOrder)
 	return u
 }
 
@@ -5651,6 +5697,34 @@ func (u *TaskUpsertOne) SetDisabled(v bool) *TaskUpsertOne {
 func (u *TaskUpsertOne) UpdateDisabled() *TaskUpsertOne {
 	return u.Update(func(s *TaskUpsert) {
 		s.UpdateDisabled()
+	})
+}
+
+// SetOrder sets the "order" field.
+func (u *TaskUpsertOne) SetOrder(v int) *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetOrder(v)
+	})
+}
+
+// AddOrder adds v to the "order" field.
+func (u *TaskUpsertOne) AddOrder(v int) *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.AddOrder(v)
+	})
+}
+
+// UpdateOrder sets the "order" field to the value that was provided on create.
+func (u *TaskUpsertOne) UpdateOrder() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateOrder()
+	})
+}
+
+// ClearOrder clears the value of the "order" field.
+func (u *TaskUpsertOne) ClearOrder() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearOrder()
 	})
 }
 
@@ -7738,6 +7812,34 @@ func (u *TaskUpsertBulk) SetDisabled(v bool) *TaskUpsertBulk {
 func (u *TaskUpsertBulk) UpdateDisabled() *TaskUpsertBulk {
 	return u.Update(func(s *TaskUpsert) {
 		s.UpdateDisabled()
+	})
+}
+
+// SetOrder sets the "order" field.
+func (u *TaskUpsertBulk) SetOrder(v int) *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetOrder(v)
+	})
+}
+
+// AddOrder adds v to the "order" field.
+func (u *TaskUpsertBulk) AddOrder(v int) *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.AddOrder(v)
+	})
+}
+
+// UpdateOrder sets the "order" field to the value that was provided on create.
+func (u *TaskUpsertBulk) UpdateOrder() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateOrder()
+	})
+}
+
+// ClearOrder clears the value of the "order" field.
+func (u *TaskUpsertBulk) ClearOrder() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.ClearOrder()
 	})
 }
 

@@ -29911,6 +29911,8 @@ type TaskMutation struct {
 	netbird_allow_extra_dns_labels             *bool
 	ignore_errors                              *bool
 	disabled                                   *bool
+	_order                                     *int
+	add_order                                  *int
 	clearedFields                              map[string]struct{}
 	tags                                       map[int]struct{}
 	removedtags                                map[int]struct{}
@@ -34436,6 +34438,76 @@ func (m *TaskMutation) ResetDisabled() {
 	m.disabled = nil
 }
 
+// SetOrder sets the "order" field.
+func (m *TaskMutation) SetOrder(i int) {
+	m._order = &i
+	m.add_order = nil
+}
+
+// Order returns the value of the "order" field in the mutation.
+func (m *TaskMutation) Order() (r int, exists bool) {
+	v := m._order
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldOrder returns the old "order" field's value of the Task entity.
+// If the Task object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *TaskMutation) OldOrder(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldOrder is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldOrder requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldOrder: %w", err)
+	}
+	return oldValue.Order, nil
+}
+
+// AddOrder adds i to the "order" field.
+func (m *TaskMutation) AddOrder(i int) {
+	if m.add_order != nil {
+		*m.add_order += i
+	} else {
+		m.add_order = &i
+	}
+}
+
+// AddedOrder returns the value that was added to the "order" field in this mutation.
+func (m *TaskMutation) AddedOrder() (r int, exists bool) {
+	v := m.add_order
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearOrder clears the value of the "order" field.
+func (m *TaskMutation) ClearOrder() {
+	m._order = nil
+	m.add_order = nil
+	m.clearedFields[task.FieldOrder] = struct{}{}
+}
+
+// OrderCleared returns if the "order" field was cleared in this mutation.
+func (m *TaskMutation) OrderCleared() bool {
+	_, ok := m.clearedFields[task.FieldOrder]
+	return ok
+}
+
+// ResetOrder resets all changes to the "order" field.
+func (m *TaskMutation) ResetOrder() {
+	m._order = nil
+	m.add_order = nil
+	delete(m.clearedFields, task.FieldOrder)
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by ids.
 func (m *TaskMutation) AddTagIDs(ids ...int) {
 	if m.tags == nil {
@@ -34617,7 +34689,7 @@ func (m *TaskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *TaskMutation) Fields() []string {
-	fields := make([]string, 0, 90)
+	fields := make([]string, 0, 91)
 	if m.name != nil {
 		fields = append(fields, task.FieldName)
 	}
@@ -34888,6 +34960,9 @@ func (m *TaskMutation) Fields() []string {
 	if m.disabled != nil {
 		fields = append(fields, task.FieldDisabled)
 	}
+	if m._order != nil {
+		fields = append(fields, task.FieldOrder)
+	}
 	return fields
 }
 
@@ -35076,6 +35151,8 @@ func (m *TaskMutation) Field(name string) (ent.Value, bool) {
 		return m.IgnoreErrors()
 	case task.FieldDisabled:
 		return m.Disabled()
+	case task.FieldOrder:
+		return m.Order()
 	}
 	return nil, false
 }
@@ -35265,6 +35342,8 @@ func (m *TaskMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldIgnoreErrors(ctx)
 	case task.FieldDisabled:
 		return m.OldDisabled(ctx)
+	case task.FieldOrder:
+		return m.OldOrder(ctx)
 	}
 	return nil, fmt.Errorf("unknown Task field %s", name)
 }
@@ -35904,6 +35983,13 @@ func (m *TaskMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetDisabled(v)
 		return nil
+	case task.FieldOrder:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetOrder(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)
 }
@@ -35918,6 +36004,9 @@ func (m *TaskMutation) AddedFields() []string {
 	if m.addtenant != nil {
 		fields = append(fields, task.FieldTenant)
 	}
+	if m.add_order != nil {
+		fields = append(fields, task.FieldOrder)
+	}
 	return fields
 }
 
@@ -35930,6 +36019,8 @@ func (m *TaskMutation) AddedField(name string) (ent.Value, bool) {
 		return m.AddedVersion()
 	case task.FieldTenant:
 		return m.AddedTenant()
+	case task.FieldOrder:
+		return m.AddedOrder()
 	}
 	return nil, false
 }
@@ -35952,6 +36043,13 @@ func (m *TaskMutation) AddField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.AddTenant(v)
+		return nil
+	case task.FieldOrder:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddOrder(v)
 		return nil
 	}
 	return fmt.Errorf("unknown Task numeric field %s", name)
@@ -36221,6 +36319,9 @@ func (m *TaskMutation) ClearedFields() []string {
 	}
 	if m.FieldCleared(task.FieldIgnoreErrors) {
 		fields = append(fields, task.FieldIgnoreErrors)
+	}
+	if m.FieldCleared(task.FieldOrder) {
+		fields = append(fields, task.FieldOrder)
 	}
 	return fields
 }
@@ -36496,6 +36597,9 @@ func (m *TaskMutation) ClearField(name string) error {
 		return nil
 	case task.FieldIgnoreErrors:
 		m.ClearIgnoreErrors()
+		return nil
+	case task.FieldOrder:
+		m.ClearOrder()
 		return nil
 	}
 	return fmt.Errorf("unknown Task nullable field %s", name)
@@ -36774,6 +36878,9 @@ func (m *TaskMutation) ResetField(name string) error {
 		return nil
 	case task.FieldDisabled:
 		m.ResetDisabled()
+		return nil
+	case task.FieldOrder:
+		m.ResetOrder()
 		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)
