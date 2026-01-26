@@ -29910,6 +29910,7 @@ type TaskMutation struct {
 	netbird_groups                             *string
 	netbird_allow_extra_dns_labels             *bool
 	ignore_errors                              *bool
+	disabled                                   *bool
 	clearedFields                              map[string]struct{}
 	tags                                       map[int]struct{}
 	removedtags                                map[int]struct{}
@@ -34399,6 +34400,42 @@ func (m *TaskMutation) ResetIgnoreErrors() {
 	delete(m.clearedFields, task.FieldIgnoreErrors)
 }
 
+// SetDisabled sets the "disabled" field.
+func (m *TaskMutation) SetDisabled(b bool) {
+	m.disabled = &b
+}
+
+// Disabled returns the value of the "disabled" field in the mutation.
+func (m *TaskMutation) Disabled() (r bool, exists bool) {
+	v := m.disabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDisabled returns the old "disabled" field's value of the Task entity.
+// If the Task object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *TaskMutation) OldDisabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDisabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDisabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDisabled: %w", err)
+	}
+	return oldValue.Disabled, nil
+}
+
+// ResetDisabled resets all changes to the "disabled" field.
+func (m *TaskMutation) ResetDisabled() {
+	m.disabled = nil
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by ids.
 func (m *TaskMutation) AddTagIDs(ids ...int) {
 	if m.tags == nil {
@@ -34580,7 +34617,7 @@ func (m *TaskMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *TaskMutation) Fields() []string {
-	fields := make([]string, 0, 89)
+	fields := make([]string, 0, 90)
 	if m.name != nil {
 		fields = append(fields, task.FieldName)
 	}
@@ -34848,6 +34885,9 @@ func (m *TaskMutation) Fields() []string {
 	if m.ignore_errors != nil {
 		fields = append(fields, task.FieldIgnoreErrors)
 	}
+	if m.disabled != nil {
+		fields = append(fields, task.FieldDisabled)
+	}
 	return fields
 }
 
@@ -35034,6 +35074,8 @@ func (m *TaskMutation) Field(name string) (ent.Value, bool) {
 		return m.NetbirdAllowExtraDNSLabels()
 	case task.FieldIgnoreErrors:
 		return m.IgnoreErrors()
+	case task.FieldDisabled:
+		return m.Disabled()
 	}
 	return nil, false
 }
@@ -35221,6 +35263,8 @@ func (m *TaskMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldNetbirdAllowExtraDNSLabels(ctx)
 	case task.FieldIgnoreErrors:
 		return m.OldIgnoreErrors(ctx)
+	case task.FieldDisabled:
+		return m.OldDisabled(ctx)
 	}
 	return nil, fmt.Errorf("unknown Task field %s", name)
 }
@@ -35852,6 +35896,13 @@ func (m *TaskMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetIgnoreErrors(v)
+		return nil
+	case task.FieldDisabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDisabled(v)
 		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)
@@ -36720,6 +36771,9 @@ func (m *TaskMutation) ResetField(name string) error {
 		return nil
 	case task.FieldIgnoreErrors:
 		m.ResetIgnoreErrors()
+		return nil
+	case task.FieldDisabled:
+		m.ResetDisabled()
 		return nil
 	}
 	return fmt.Errorf("unknown Task field %s", name)

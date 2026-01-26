@@ -1255,6 +1255,20 @@ func (tc *TaskCreate) SetNillableIgnoreErrors(b *bool) *TaskCreate {
 	return tc
 }
 
+// SetDisabled sets the "disabled" field.
+func (tc *TaskCreate) SetDisabled(b bool) *TaskCreate {
+	tc.mutation.SetDisabled(b)
+	return tc
+}
+
+// SetNillableDisabled sets the "disabled" field if the given value is not nil.
+func (tc *TaskCreate) SetNillableDisabled(b *bool) *TaskCreate {
+	if b != nil {
+		tc.SetDisabled(*b)
+	}
+	return tc
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tc *TaskCreate) AddTagIDs(ids ...int) *TaskCreate {
 	tc.mutation.AddTagIDs(ids...)
@@ -1563,6 +1577,10 @@ func (tc *TaskCreate) defaults() {
 		v := task.DefaultIgnoreErrors
 		tc.mutation.SetIgnoreErrors(v)
 	}
+	if _, ok := tc.mutation.Disabled(); !ok {
+		v := task.DefaultDisabled
+		tc.mutation.SetDisabled(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -1607,6 +1625,9 @@ func (tc *TaskCreate) check() error {
 		if err := task.AptUpgradeTypeValidator(v); err != nil {
 			return &ValidationError{Name: "apt_upgrade_type", err: fmt.Errorf(`ent: validator failed for field "Task.apt_upgrade_type": %w`, err)}
 		}
+	}
+	if _, ok := tc.mutation.Disabled(); !ok {
+		return &ValidationError{Name: "disabled", err: errors.New(`ent: missing required field "Task.disabled"`)}
 	}
 	return nil
 }
@@ -1990,6 +2011,10 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 	if value, ok := tc.mutation.IgnoreErrors(); ok {
 		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
 		_node.IgnoreErrors = value
+	}
+	if value, ok := tc.mutation.Disabled(); ok {
+		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
+		_node.Disabled = value
 	}
 	if nodes := tc.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -3691,6 +3716,18 @@ func (u *TaskUpsert) UpdateIgnoreErrors() *TaskUpsert {
 // ClearIgnoreErrors clears the value of the "ignore_errors" field.
 func (u *TaskUpsert) ClearIgnoreErrors() *TaskUpsert {
 	u.SetNull(task.FieldIgnoreErrors)
+	return u
+}
+
+// SetDisabled sets the "disabled" field.
+func (u *TaskUpsert) SetDisabled(v bool) *TaskUpsert {
+	u.Set(task.FieldDisabled, v)
+	return u
+}
+
+// UpdateDisabled sets the "disabled" field to the value that was provided on create.
+func (u *TaskUpsert) UpdateDisabled() *TaskUpsert {
+	u.SetExcluded(task.FieldDisabled)
 	return u
 }
 
@@ -5600,6 +5637,20 @@ func (u *TaskUpsertOne) UpdateIgnoreErrors() *TaskUpsertOne {
 func (u *TaskUpsertOne) ClearIgnoreErrors() *TaskUpsertOne {
 	return u.Update(func(s *TaskUpsert) {
 		s.ClearIgnoreErrors()
+	})
+}
+
+// SetDisabled sets the "disabled" field.
+func (u *TaskUpsertOne) SetDisabled(v bool) *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetDisabled(v)
+	})
+}
+
+// UpdateDisabled sets the "disabled" field to the value that was provided on create.
+func (u *TaskUpsertOne) UpdateDisabled() *TaskUpsertOne {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateDisabled()
 	})
 }
 
@@ -7673,6 +7724,20 @@ func (u *TaskUpsertBulk) UpdateIgnoreErrors() *TaskUpsertBulk {
 func (u *TaskUpsertBulk) ClearIgnoreErrors() *TaskUpsertBulk {
 	return u.Update(func(s *TaskUpsert) {
 		s.ClearIgnoreErrors()
+	})
+}
+
+// SetDisabled sets the "disabled" field.
+func (u *TaskUpsertBulk) SetDisabled(v bool) *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.SetDisabled(v)
+	})
+}
+
+// UpdateDisabled sets the "disabled" field to the value that was provided on create.
+func (u *TaskUpsertBulk) UpdateDisabled() *TaskUpsertBulk {
+	return u.Update(func(s *TaskUpsert) {
+		s.UpdateDisabled()
 	})
 }
 

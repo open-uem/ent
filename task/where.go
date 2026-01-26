@@ -470,6 +470,11 @@ func IgnoreErrors(v bool) predicate.Task {
 	return predicate.Task(sql.FieldEQ(FieldIgnoreErrors, v))
 }
 
+// Disabled applies equality check predicate on the "disabled" field. It's identical to DisabledEQ.
+func Disabled(v bool) predicate.Task {
+	return predicate.Task(sql.FieldEQ(FieldDisabled, v))
+}
+
 // NameEQ applies the EQ predicate on the "name" field.
 func NameEQ(v string) predicate.Task {
 	return predicate.Task(sql.FieldEQ(FieldName, v))
@@ -5183,6 +5188,16 @@ func IgnoreErrorsIsNil() predicate.Task {
 // IgnoreErrorsNotNil applies the NotNil predicate on the "ignore_errors" field.
 func IgnoreErrorsNotNil() predicate.Task {
 	return predicate.Task(sql.FieldNotNull(FieldIgnoreErrors))
+}
+
+// DisabledEQ applies the EQ predicate on the "disabled" field.
+func DisabledEQ(v bool) predicate.Task {
+	return predicate.Task(sql.FieldEQ(FieldDisabled, v))
+}
+
+// DisabledNEQ applies the NEQ predicate on the "disabled" field.
+func DisabledNEQ(v bool) predicate.Task {
+	return predicate.Task(sql.FieldNEQ(FieldDisabled, v))
 }
 
 // HasTags applies the HasEdge predicate on the "tags" edge.

@@ -718,6 +718,10 @@ func init() {
 	taskDescIgnoreErrors := taskFields[88].Descriptor()
 	// task.DefaultIgnoreErrors holds the default value on creation for the ignore_errors field.
 	task.DefaultIgnoreErrors = taskDescIgnoreErrors.Default.(bool)
+	// taskDescDisabled is the schema descriptor for disabled field.
+	taskDescDisabled := taskFields[89].Descriptor()
+	// task.DefaultDisabled holds the default value on creation for the disabled field.
+	task.DefaultDisabled = taskDescDisabled.Default.(bool)
 	taskreportFields := schema.TaskReport{}.Fields()
 	_ = taskreportFields
 	// taskreportDescStdOutput is the schema descriptor for std_output field.

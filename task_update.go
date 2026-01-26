@@ -1814,6 +1814,20 @@ func (tu *TaskUpdate) ClearIgnoreErrors() *TaskUpdate {
 	return tu
 }
 
+// SetDisabled sets the "disabled" field.
+func (tu *TaskUpdate) SetDisabled(b bool) *TaskUpdate {
+	tu.mutation.SetDisabled(b)
+	return tu
+}
+
+// SetNillableDisabled sets the "disabled" field if the given value is not nil.
+func (tu *TaskUpdate) SetNillableDisabled(b *bool) *TaskUpdate {
+	if b != nil {
+		tu.SetDisabled(*b)
+	}
+	return tu
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tu *TaskUpdate) AddTagIDs(ids ...int) *TaskUpdate {
 	tu.mutation.AddTagIDs(ids...)
@@ -2534,6 +2548,9 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if tu.mutation.IgnoreErrorsCleared() {
 		_spec.ClearField(task.FieldIgnoreErrors, field.TypeBool)
+	}
+	if value, ok := tu.mutation.Disabled(); ok {
+		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
 	}
 	if tu.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -4458,6 +4475,20 @@ func (tuo *TaskUpdateOne) ClearIgnoreErrors() *TaskUpdateOne {
 	return tuo
 }
 
+// SetDisabled sets the "disabled" field.
+func (tuo *TaskUpdateOne) SetDisabled(b bool) *TaskUpdateOne {
+	tuo.mutation.SetDisabled(b)
+	return tuo
+}
+
+// SetNillableDisabled sets the "disabled" field if the given value is not nil.
+func (tuo *TaskUpdateOne) SetNillableDisabled(b *bool) *TaskUpdateOne {
+	if b != nil {
+		tuo.SetDisabled(*b)
+	}
+	return tuo
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (tuo *TaskUpdateOne) AddTagIDs(ids ...int) *TaskUpdateOne {
 	tuo.mutation.AddTagIDs(ids...)
@@ -5208,6 +5239,9 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 	}
 	if tuo.mutation.IgnoreErrorsCleared() {
 		_spec.ClearField(task.FieldIgnoreErrors, field.TypeBool)
+	}
+	if value, ok := tuo.mutation.Disabled(); ok {
+		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
 	}
 	if tuo.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{

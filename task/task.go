@@ -192,6 +192,8 @@ const (
 	FieldNetbirdAllowExtraDNSLabels = "netbird_allow_extra_dns_labels"
 	// FieldIgnoreErrors holds the string denoting the ignore_errors field in the database.
 	FieldIgnoreErrors = "ignore_errors"
+	// FieldDisabled holds the string denoting the disabled field in the database.
+	FieldDisabled = "disabled"
 	// EdgeTags holds the string denoting the tags edge name in mutations.
 	EdgeTags = "tags"
 	// EdgeProfile holds the string denoting the profile edge name in mutations.
@@ -315,6 +317,7 @@ var Columns = []string{
 	FieldNetbirdGroups,
 	FieldNetbirdAllowExtraDNSLabels,
 	FieldIgnoreErrors,
+	FieldDisabled,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "tasks"
@@ -449,6 +452,8 @@ var (
 	DefaultNetbirdAllowExtraDNSLabels bool
 	// DefaultIgnoreErrors holds the default value on creation for the "ignore_errors" field.
 	DefaultIgnoreErrors bool
+	// DefaultDisabled holds the default value on creation for the "disabled" field.
+	DefaultDisabled bool
 )
 
 // Type defines the type for the "type" enum field.
@@ -1098,6 +1103,11 @@ func ByNetbirdAllowExtraDNSLabels(opts ...sql.OrderTermOption) OrderOption {
 // ByIgnoreErrors orders the results by the ignore_errors field.
 func ByIgnoreErrors(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldIgnoreErrors, opts...).ToFunc()
+}
+
+// ByDisabled orders the results by the disabled field.
+func ByDisabled(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldDisabled, opts...).ToFunc()
 }
 
 // ByTagsCount orders the results by tags count.
