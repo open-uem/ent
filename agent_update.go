@@ -21,6 +21,7 @@ import (
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
+	"github.com/open-uem/ent/nanomdminfo"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
@@ -975,6 +976,21 @@ func (au *AgentUpdate) AddMdmcommands(m ...*MDMCommand) *AgentUpdate {
 	return au.AddMdmcommandIDs(ids...)
 }
 
+// AddNanomdminfoIDs adds the "nanomdminfo" edge to the NanoMDMInfo entity by IDs.
+func (au *AgentUpdate) AddNanomdminfoIDs(ids ...int) *AgentUpdate {
+	au.mutation.AddNanomdminfoIDs(ids...)
+	return au
+}
+
+// AddNanomdminfo adds the "nanomdminfo" edges to the NanoMDMInfo entity.
+func (au *AgentUpdate) AddNanomdminfo(n ...*NanoMDMInfo) *AgentUpdate {
+	ids := make([]int, len(n))
+	for i := range n {
+		ids[i] = n[i].ID
+	}
+	return au.AddNanomdminfoIDs(ids...)
+}
+
 // Mutation returns the AgentMutation object of the builder.
 func (au *AgentUpdate) Mutation() *AgentMutation {
 	return au.mutation
@@ -1350,6 +1366,27 @@ func (au *AgentUpdate) RemoveMdmcommands(m ...*MDMCommand) *AgentUpdate {
 		ids[i] = m[i].ID
 	}
 	return au.RemoveMdmcommandIDs(ids...)
+}
+
+// ClearNanomdminfo clears all "nanomdminfo" edges to the NanoMDMInfo entity.
+func (au *AgentUpdate) ClearNanomdminfo() *AgentUpdate {
+	au.mutation.ClearNanomdminfo()
+	return au
+}
+
+// RemoveNanomdminfoIDs removes the "nanomdminfo" edge to NanoMDMInfo entities by IDs.
+func (au *AgentUpdate) RemoveNanomdminfoIDs(ids ...int) *AgentUpdate {
+	au.mutation.RemoveNanomdminfoIDs(ids...)
+	return au
+}
+
+// RemoveNanomdminfo removes "nanomdminfo" edges to NanoMDMInfo entities.
+func (au *AgentUpdate) RemoveNanomdminfo(n ...*NanoMDMInfo) *AgentUpdate {
+	ids := make([]int, len(n))
+	for i := range n {
+		ids[i] = n[i].ID
+	}
+	return au.RemoveNanomdminfoIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -2481,6 +2518,51 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if au.mutation.NanomdminfoCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdminfoTable,
+			Columns: []string{agent.NanomdminfoColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := au.mutation.RemovedNanomdminfoIDs(); len(nodes) > 0 && !au.mutation.NanomdminfoCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdminfoTable,
+			Columns: []string{agent.NanomdminfoColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := au.mutation.NanomdminfoIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdminfoTable,
+			Columns: []string{agent.NanomdminfoColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(au.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -3427,6 +3509,21 @@ func (auo *AgentUpdateOne) AddMdmcommands(m ...*MDMCommand) *AgentUpdateOne {
 	return auo.AddMdmcommandIDs(ids...)
 }
 
+// AddNanomdminfoIDs adds the "nanomdminfo" edge to the NanoMDMInfo entity by IDs.
+func (auo *AgentUpdateOne) AddNanomdminfoIDs(ids ...int) *AgentUpdateOne {
+	auo.mutation.AddNanomdminfoIDs(ids...)
+	return auo
+}
+
+// AddNanomdminfo adds the "nanomdminfo" edges to the NanoMDMInfo entity.
+func (auo *AgentUpdateOne) AddNanomdminfo(n ...*NanoMDMInfo) *AgentUpdateOne {
+	ids := make([]int, len(n))
+	for i := range n {
+		ids[i] = n[i].ID
+	}
+	return auo.AddNanomdminfoIDs(ids...)
+}
+
 // Mutation returns the AgentMutation object of the builder.
 func (auo *AgentUpdateOne) Mutation() *AgentMutation {
 	return auo.mutation
@@ -3802,6 +3899,27 @@ func (auo *AgentUpdateOne) RemoveMdmcommands(m ...*MDMCommand) *AgentUpdateOne {
 		ids[i] = m[i].ID
 	}
 	return auo.RemoveMdmcommandIDs(ids...)
+}
+
+// ClearNanomdminfo clears all "nanomdminfo" edges to the NanoMDMInfo entity.
+func (auo *AgentUpdateOne) ClearNanomdminfo() *AgentUpdateOne {
+	auo.mutation.ClearNanomdminfo()
+	return auo
+}
+
+// RemoveNanomdminfoIDs removes the "nanomdminfo" edge to NanoMDMInfo entities by IDs.
+func (auo *AgentUpdateOne) RemoveNanomdminfoIDs(ids ...int) *AgentUpdateOne {
+	auo.mutation.RemoveNanomdminfoIDs(ids...)
+	return auo
+}
+
+// RemoveNanomdminfo removes "nanomdminfo" edges to NanoMDMInfo entities.
+func (auo *AgentUpdateOne) RemoveNanomdminfo(n ...*NanoMDMInfo) *AgentUpdateOne {
+	ids := make([]int, len(n))
+	for i := range n {
+		ids[i] = n[i].ID
+	}
+	return auo.RemoveNanomdminfoIDs(ids...)
 }
 
 // Where appends a list predicates to the AgentUpdate builder.
@@ -4956,6 +5074,51 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if auo.mutation.NanomdminfoCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdminfoTable,
+			Columns: []string{agent.NanomdminfoColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := auo.mutation.RemovedNanomdminfoIDs(); len(nodes) > 0 && !auo.mutation.NanomdminfoCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdminfoTable,
+			Columns: []string{agent.NanomdminfoColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := auo.mutation.NanomdminfoIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdminfoTable,
+			Columns: []string{agent.NanomdminfoColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

@@ -153,6 +153,18 @@ func (f MonitorFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, err
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.MonitorMutation", m)
 }
 
+// The NanoMDMInfoFunc type is an adapter to allow the use of ordinary
+// function as NanoMDMInfo mutator.
+type NanoMDMInfoFunc func(context.Context, *ent.NanoMDMInfoMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f NanoMDMInfoFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.NanoMDMInfoMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.NanoMDMInfoMutation", m)
+}
+
 // The NetbirdFunc type is an adapter to allow the use of ordinary
 // function as Netbird mutator.
 type NetbirdFunc func(context.Context, *ent.NetbirdMutation) (ent.Value, error)

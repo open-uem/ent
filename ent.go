@@ -24,6 +24,7 @@ import (
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
+	"github.com/open-uem/ent/nanomdminfo"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -121,6 +122,7 @@ func checkColumn(table, column string) error {
 			memoryslot.Table:            memoryslot.ValidColumn,
 			metadata.Table:              metadata.ValidColumn,
 			monitor.Table:               monitor.ValidColumn,
+			nanomdminfo.Table:           nanomdminfo.ValidColumn,
 			netbird.Table:               netbird.ValidColumn,
 			netbirdsettings.Table:       netbirdsettings.ValidColumn,
 			networkadapter.Table:        networkadapter.ValidColumn,

@@ -328,6 +328,65 @@ var (
 			},
 		},
 	}
+	// NanoMdmInfosColumns holds the columns for the "nano_mdm_infos" table.
+	NanoMdmInfosColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "available_device_capacity_version", Type: field.TypeFloat64, Default: 0},
+		{Name: "awaiting_configuration", Type: field.TypeBool, Default: false},
+		{Name: "battery_level", Type: field.TypeFloat64, Default: -1},
+		{Name: "bluetooth_mac", Type: field.TypeString, Default: ""},
+		{Name: "build_version", Type: field.TypeString, Default: ""},
+		{Name: "current_console_managed_user", Type: field.TypeString, Default: ""},
+		{Name: "device_capacity", Type: field.TypeFloat64, Default: -1},
+		{Name: "device_name", Type: field.TypeString, Default: ""},
+		{Name: "eacs_preflight", Type: field.TypeString, Default: ""},
+		{Name: "ethernet_mac", Type: field.TypeString, Default: ""},
+		{Name: "has_battery", Type: field.TypeBool, Default: false},
+		{Name: "hostname", Type: field.TypeString, Default: ""},
+		{Name: "is_activation_lock_enabled", Type: field.TypeBool, Default: false},
+		{Name: "is_activation_lock_supported", Type: field.TypeBool, Default: false},
+		{Name: "is_apple_silicon", Type: field.TypeBool, Default: false},
+		{Name: "is_supervised", Type: field.TypeBool, Default: false},
+		{Name: "localhostname", Type: field.TypeString, Default: ""},
+		{Name: "model", Type: field.TypeString, Default: ""},
+		{Name: "model_name", Type: field.TypeString, Default: ""},
+		{Name: "auto_check_enabled", Type: field.TypeBool, Default: false},
+		{Name: "automatic_app_installation_enabled", Type: field.TypeBool, Default: false},
+		{Name: "automatic_os_installation_enabled", Type: field.TypeBool, Default: false},
+		{Name: "automatic_security_updates_enabled", Type: field.TypeBool, Default: false},
+		{Name: "background_download_enabled", Type: field.TypeBool, Default: false},
+		{Name: "catalog_url", Type: field.TypeString, Default: ""},
+		{Name: "is_default_catalog", Type: field.TypeBool, Default: false},
+		{Name: "previous_scan_date", Type: field.TypeTime},
+		{Name: "previous_scan_result", Type: field.TypeInt, Default: 0},
+		{Name: "os_version", Type: field.TypeString, Default: ""},
+		{Name: "pin_required_for_device_lock", Type: field.TypeBool, Default: false},
+		{Name: "pin_required_for_erase_device", Type: field.TypeBool, Default: false},
+		{Name: "product_name", Type: field.TypeString, Default: ""},
+		{Name: "provisioning_udid", Type: field.TypeString, Default: ""},
+		{Name: "serial_number", Type: field.TypeString, Default: ""},
+		{Name: "software_update_device_id", Type: field.TypeString, Default: ""},
+		{Name: "supplemental_build_version", Type: field.TypeString, Default: ""},
+		{Name: "supports_lom_device", Type: field.TypeBool, Default: false},
+		{Name: "supports_ios_app_installs", Type: field.TypeBool, Default: false},
+		{Name: "system_integrity_protection_enabled", Type: field.TypeBool, Default: false},
+		{Name: "udid", Type: field.TypeString, Default: ""},
+		{Name: "agent_nanomdminfo", Type: field.TypeString, Nullable: true},
+	}
+	// NanoMdmInfosTable holds the schema information for the "nano_mdm_infos" table.
+	NanoMdmInfosTable = &schema.Table{
+		Name:       "nano_mdm_infos",
+		Columns:    NanoMdmInfosColumns,
+		PrimaryKey: []*schema.Column{NanoMdmInfosColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "nano_mdm_infos_agents_nanomdminfo",
+				Columns:    []*schema.Column{NanoMdmInfosColumns[41]},
+				RefColumns: []*schema.Column{AgentsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
 	// NetbirdsColumns holds the columns for the "netbirds" table.
 	NetbirdsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -1188,6 +1247,7 @@ var (
 		MemorySlotsTable,
 		MetadataTable,
 		MonitorsTable,
+		NanoMdmInfosTable,
 		NetbirdsTable,
 		NetbirdSettingsTable,
 		NetworkAdaptersTable,
@@ -1232,6 +1292,7 @@ func init() {
 	MetadataTable.ForeignKeys[0].RefTable = AgentsTable
 	MetadataTable.ForeignKeys[1].RefTable = OrgMetadataTable
 	MonitorsTable.ForeignKeys[0].RefTable = AgentsTable
+	NanoMdmInfosTable.ForeignKeys[0].RefTable = AgentsTable
 	NetbirdsTable.ForeignKeys[0].RefTable = AgentsTable
 	NetworkAdaptersTable.ForeignKeys[0].RefTable = AgentsTable
 	OperatingSystemsTable.ForeignKeys[0].RefTable = AgentsTable

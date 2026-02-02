@@ -23,6 +23,7 @@ import (
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
+	"github.com/open-uem/ent/nanomdminfo"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -72,6 +73,7 @@ const (
 	TypeMemorySlot            = "MemorySlot"
 	TypeMetadata              = "Metadata"
 	TypeMonitor               = "Monitor"
+	TypeNanoMDMInfo           = "NanoMDMInfo"
 	TypeNetbird               = "Netbird"
 	TypeNetbirdSettings       = "NetbirdSettings"
 	TypeNetworkAdapter        = "NetworkAdapter"
@@ -196,6 +198,9 @@ type AgentMutation struct {
 	mdmcommands                map[string]struct{}
 	removedmdmcommands         map[string]struct{}
 	clearedmdmcommands         bool
+	nanomdminfo                map[int]struct{}
+	removednanomdminfo         map[int]struct{}
+	clearednanomdminfo         bool
 	done                       bool
 	oldValue                   func(context.Context) (*Agent, error)
 	predicates                 []predicate.Agent
@@ -2808,6 +2813,60 @@ func (m *AgentMutation) ResetMdmcommands() {
 	m.removedmdmcommands = nil
 }
 
+// AddNanomdminfoIDs adds the "nanomdminfo" edge to the NanoMDMInfo entity by ids.
+func (m *AgentMutation) AddNanomdminfoIDs(ids ...int) {
+	if m.nanomdminfo == nil {
+		m.nanomdminfo = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.nanomdminfo[ids[i]] = struct{}{}
+	}
+}
+
+// ClearNanomdminfo clears the "nanomdminfo" edge to the NanoMDMInfo entity.
+func (m *AgentMutation) ClearNanomdminfo() {
+	m.clearednanomdminfo = true
+}
+
+// NanomdminfoCleared reports if the "nanomdminfo" edge to the NanoMDMInfo entity was cleared.
+func (m *AgentMutation) NanomdminfoCleared() bool {
+	return m.clearednanomdminfo
+}
+
+// RemoveNanomdminfoIDs removes the "nanomdminfo" edge to the NanoMDMInfo entity by IDs.
+func (m *AgentMutation) RemoveNanomdminfoIDs(ids ...int) {
+	if m.removednanomdminfo == nil {
+		m.removednanomdminfo = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.nanomdminfo, ids[i])
+		m.removednanomdminfo[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedNanomdminfo returns the removed IDs of the "nanomdminfo" edge to the NanoMDMInfo entity.
+func (m *AgentMutation) RemovedNanomdminfoIDs() (ids []int) {
+	for id := range m.removednanomdminfo {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// NanomdminfoIDs returns the "nanomdminfo" edge IDs in the mutation.
+func (m *AgentMutation) NanomdminfoIDs() (ids []int) {
+	for id := range m.nanomdminfo {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetNanomdminfo resets all changes to the "nanomdminfo" edge.
+func (m *AgentMutation) ResetNanomdminfo() {
+	m.nanomdminfo = nil
+	m.clearednanomdminfo = false
+	m.removednanomdminfo = nil
+}
+
 // Where appends a list predicates to the AgentMutation builder.
 func (m *AgentMutation) Where(ps ...predicate.Agent) {
 	m.predicates = append(m.predicates, ps...)
@@ -3587,7 +3646,7 @@ func (m *AgentMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *AgentMutation) AddedEdges() []string {
-	edges := make([]string, 0, 22)
+	edges := make([]string, 0, 23)
 	if m.computer != nil {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3653,6 +3712,9 @@ func (m *AgentMutation) AddedEdges() []string {
 	}
 	if m.mdmcommands != nil {
 		edges = append(edges, agent.EdgeMdmcommands)
+	}
+	if m.nanomdminfo != nil {
+		edges = append(edges, agent.EdgeNanomdminfo)
 	}
 	return edges
 }
@@ -3781,13 +3843,19 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgeNanomdminfo:
+		ids := make([]ent.Value, 0, len(m.nanomdminfo))
+		for id := range m.nanomdminfo {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *AgentMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 22)
+	edges := make([]string, 0, 23)
 	if m.removedlogicaldisks != nil {
 		edges = append(edges, agent.EdgeLogicaldisks)
 	}
@@ -3835,6 +3903,9 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedmdmcommands != nil {
 		edges = append(edges, agent.EdgeMdmcommands)
+	}
+	if m.removednanomdminfo != nil {
+		edges = append(edges, agent.EdgeNanomdminfo)
 	}
 	return edges
 }
@@ -3939,13 +4010,19 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgeNanomdminfo:
+		ids := make([]ent.Value, 0, len(m.removednanomdminfo))
+		for id := range m.removednanomdminfo {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *AgentMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 22)
+	edges := make([]string, 0, 23)
 	if m.clearedcomputer {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -4012,6 +4089,9 @@ func (m *AgentMutation) ClearedEdges() []string {
 	if m.clearedmdmcommands {
 		edges = append(edges, agent.EdgeMdmcommands)
 	}
+	if m.clearednanomdminfo {
+		edges = append(edges, agent.EdgeNanomdminfo)
+	}
 	return edges
 }
 
@@ -4063,6 +4143,8 @@ func (m *AgentMutation) EdgeCleared(name string) bool {
 		return m.clearednetbird
 	case agent.EdgeMdmcommands:
 		return m.clearedmdmcommands
+	case agent.EdgeNanomdminfo:
+		return m.clearednanomdminfo
 	}
 	return false
 }
@@ -4162,6 +4244,9 @@ func (m *AgentMutation) ResetEdge(name string) error {
 		return nil
 	case agent.EdgeMdmcommands:
 		m.ResetMdmcommands()
+		return nil
+	case agent.EdgeNanomdminfo:
+		m.ResetNanomdminfo()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent edge %s", name)
@@ -12063,6 +12148,2640 @@ func (m *MonitorMutation) ResetEdge(name string) error {
 		return nil
 	}
 	return fmt.Errorf("unknown Monitor edge %s", name)
+}
+
+// NanoMDMInfoMutation represents an operation that mutates the NanoMDMInfo nodes in the graph.
+type NanoMDMInfoMutation struct {
+	config
+	op                                   Op
+	typ                                  string
+	id                                   *int
+	available_device_capacity_version    *float64
+	addavailable_device_capacity_version *float64
+	awaiting_configuration               *bool
+	battery_level                        *float64
+	addbattery_level                     *float64
+	bluetooth_mac                        *string
+	build_version                        *string
+	current_console_managed_user         *string
+	device_capacity                      *float64
+	adddevice_capacity                   *float64
+	device_name                          *string
+	eacs_preflight                       *string
+	ethernet_mac                         *string
+	has_battery                          *bool
+	hostname                             *string
+	is_activation_lock_enabled           *bool
+	is_activation_lock_supported         *bool
+	is_apple_silicon                     *bool
+	is_supervised                        *bool
+	localhostname                        *string
+	model                                *string
+	model_name                           *string
+	auto_check_enabled                   *bool
+	automatic_app_installation_enabled   *bool
+	automatic_os_installation_enabled    *bool
+	automatic_security_updates_enabled   *bool
+	background_download_enabled          *bool
+	catalog_url                          *string
+	is_default_catalog                   *bool
+	previous_scan_date                   *time.Time
+	previous_scan_result                 *int
+	addprevious_scan_result              *int
+	os_version                           *string
+	pin_required_for_device_lock         *bool
+	pin_required_for_erase_device        *bool
+	product_name                         *string
+	provisioning_udid                    *string
+	serial_number                        *string
+	software_update_device_id            *string
+	supplemental_build_version           *string
+	supports_lom_device                  *bool
+	supports_ios_app_installs            *bool
+	system_integrity_protection_enabled  *bool
+	udid                                 *string
+	clearedFields                        map[string]struct{}
+	agent                                *string
+	clearedagent                         bool
+	done                                 bool
+	oldValue                             func(context.Context) (*NanoMDMInfo, error)
+	predicates                           []predicate.NanoMDMInfo
+}
+
+var _ ent.Mutation = (*NanoMDMInfoMutation)(nil)
+
+// nanomdminfoOption allows management of the mutation configuration using functional options.
+type nanomdminfoOption func(*NanoMDMInfoMutation)
+
+// newNanoMDMInfoMutation creates new mutation for the NanoMDMInfo entity.
+func newNanoMDMInfoMutation(c config, op Op, opts ...nanomdminfoOption) *NanoMDMInfoMutation {
+	m := &NanoMDMInfoMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeNanoMDMInfo,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withNanoMDMInfoID sets the ID field of the mutation.
+func withNanoMDMInfoID(id int) nanomdminfoOption {
+	return func(m *NanoMDMInfoMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *NanoMDMInfo
+		)
+		m.oldValue = func(ctx context.Context) (*NanoMDMInfo, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().NanoMDMInfo.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withNanoMDMInfo sets the old NanoMDMInfo of the mutation.
+func withNanoMDMInfo(node *NanoMDMInfo) nanomdminfoOption {
+	return func(m *NanoMDMInfoMutation) {
+		m.oldValue = func(context.Context) (*NanoMDMInfo, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m NanoMDMInfoMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m NanoMDMInfoMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *NanoMDMInfoMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *NanoMDMInfoMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().NanoMDMInfo.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
+func (m *NanoMDMInfoMutation) SetAvailableDeviceCapacityVersion(f float64) {
+	m.available_device_capacity_version = &f
+	m.addavailable_device_capacity_version = nil
+}
+
+// AvailableDeviceCapacityVersion returns the value of the "available_device_capacity_version" field in the mutation.
+func (m *NanoMDMInfoMutation) AvailableDeviceCapacityVersion() (r float64, exists bool) {
+	v := m.available_device_capacity_version
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAvailableDeviceCapacityVersion returns the old "available_device_capacity_version" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldAvailableDeviceCapacityVersion(ctx context.Context) (v float64, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAvailableDeviceCapacityVersion is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAvailableDeviceCapacityVersion requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAvailableDeviceCapacityVersion: %w", err)
+	}
+	return oldValue.AvailableDeviceCapacityVersion, nil
+}
+
+// AddAvailableDeviceCapacityVersion adds f to the "available_device_capacity_version" field.
+func (m *NanoMDMInfoMutation) AddAvailableDeviceCapacityVersion(f float64) {
+	if m.addavailable_device_capacity_version != nil {
+		*m.addavailable_device_capacity_version += f
+	} else {
+		m.addavailable_device_capacity_version = &f
+	}
+}
+
+// AddedAvailableDeviceCapacityVersion returns the value that was added to the "available_device_capacity_version" field in this mutation.
+func (m *NanoMDMInfoMutation) AddedAvailableDeviceCapacityVersion() (r float64, exists bool) {
+	v := m.addavailable_device_capacity_version
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetAvailableDeviceCapacityVersion resets all changes to the "available_device_capacity_version" field.
+func (m *NanoMDMInfoMutation) ResetAvailableDeviceCapacityVersion() {
+	m.available_device_capacity_version = nil
+	m.addavailable_device_capacity_version = nil
+}
+
+// SetAwaitingConfiguration sets the "awaiting_configuration" field.
+func (m *NanoMDMInfoMutation) SetAwaitingConfiguration(b bool) {
+	m.awaiting_configuration = &b
+}
+
+// AwaitingConfiguration returns the value of the "awaiting_configuration" field in the mutation.
+func (m *NanoMDMInfoMutation) AwaitingConfiguration() (r bool, exists bool) {
+	v := m.awaiting_configuration
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAwaitingConfiguration returns the old "awaiting_configuration" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldAwaitingConfiguration(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAwaitingConfiguration is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAwaitingConfiguration requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAwaitingConfiguration: %w", err)
+	}
+	return oldValue.AwaitingConfiguration, nil
+}
+
+// ResetAwaitingConfiguration resets all changes to the "awaiting_configuration" field.
+func (m *NanoMDMInfoMutation) ResetAwaitingConfiguration() {
+	m.awaiting_configuration = nil
+}
+
+// SetBatteryLevel sets the "battery_level" field.
+func (m *NanoMDMInfoMutation) SetBatteryLevel(f float64) {
+	m.battery_level = &f
+	m.addbattery_level = nil
+}
+
+// BatteryLevel returns the value of the "battery_level" field in the mutation.
+func (m *NanoMDMInfoMutation) BatteryLevel() (r float64, exists bool) {
+	v := m.battery_level
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBatteryLevel returns the old "battery_level" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldBatteryLevel(ctx context.Context) (v float64, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBatteryLevel is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBatteryLevel requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBatteryLevel: %w", err)
+	}
+	return oldValue.BatteryLevel, nil
+}
+
+// AddBatteryLevel adds f to the "battery_level" field.
+func (m *NanoMDMInfoMutation) AddBatteryLevel(f float64) {
+	if m.addbattery_level != nil {
+		*m.addbattery_level += f
+	} else {
+		m.addbattery_level = &f
+	}
+}
+
+// AddedBatteryLevel returns the value that was added to the "battery_level" field in this mutation.
+func (m *NanoMDMInfoMutation) AddedBatteryLevel() (r float64, exists bool) {
+	v := m.addbattery_level
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetBatteryLevel resets all changes to the "battery_level" field.
+func (m *NanoMDMInfoMutation) ResetBatteryLevel() {
+	m.battery_level = nil
+	m.addbattery_level = nil
+}
+
+// SetBluetoothMAC sets the "bluetooth_mac" field.
+func (m *NanoMDMInfoMutation) SetBluetoothMAC(s string) {
+	m.bluetooth_mac = &s
+}
+
+// BluetoothMAC returns the value of the "bluetooth_mac" field in the mutation.
+func (m *NanoMDMInfoMutation) BluetoothMAC() (r string, exists bool) {
+	v := m.bluetooth_mac
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBluetoothMAC returns the old "bluetooth_mac" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldBluetoothMAC(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBluetoothMAC is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBluetoothMAC requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBluetoothMAC: %w", err)
+	}
+	return oldValue.BluetoothMAC, nil
+}
+
+// ResetBluetoothMAC resets all changes to the "bluetooth_mac" field.
+func (m *NanoMDMInfoMutation) ResetBluetoothMAC() {
+	m.bluetooth_mac = nil
+}
+
+// SetBuildVersion sets the "build_version" field.
+func (m *NanoMDMInfoMutation) SetBuildVersion(s string) {
+	m.build_version = &s
+}
+
+// BuildVersion returns the value of the "build_version" field in the mutation.
+func (m *NanoMDMInfoMutation) BuildVersion() (r string, exists bool) {
+	v := m.build_version
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBuildVersion returns the old "build_version" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldBuildVersion(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBuildVersion is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBuildVersion requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBuildVersion: %w", err)
+	}
+	return oldValue.BuildVersion, nil
+}
+
+// ResetBuildVersion resets all changes to the "build_version" field.
+func (m *NanoMDMInfoMutation) ResetBuildVersion() {
+	m.build_version = nil
+}
+
+// SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
+func (m *NanoMDMInfoMutation) SetCurrentConsoleManagedUser(s string) {
+	m.current_console_managed_user = &s
+}
+
+// CurrentConsoleManagedUser returns the value of the "current_console_managed_user" field in the mutation.
+func (m *NanoMDMInfoMutation) CurrentConsoleManagedUser() (r string, exists bool) {
+	v := m.current_console_managed_user
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCurrentConsoleManagedUser returns the old "current_console_managed_user" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldCurrentConsoleManagedUser(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCurrentConsoleManagedUser is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCurrentConsoleManagedUser requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCurrentConsoleManagedUser: %w", err)
+	}
+	return oldValue.CurrentConsoleManagedUser, nil
+}
+
+// ResetCurrentConsoleManagedUser resets all changes to the "current_console_managed_user" field.
+func (m *NanoMDMInfoMutation) ResetCurrentConsoleManagedUser() {
+	m.current_console_managed_user = nil
+}
+
+// SetDeviceCapacity sets the "device_capacity" field.
+func (m *NanoMDMInfoMutation) SetDeviceCapacity(f float64) {
+	m.device_capacity = &f
+	m.adddevice_capacity = nil
+}
+
+// DeviceCapacity returns the value of the "device_capacity" field in the mutation.
+func (m *NanoMDMInfoMutation) DeviceCapacity() (r float64, exists bool) {
+	v := m.device_capacity
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDeviceCapacity returns the old "device_capacity" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldDeviceCapacity(ctx context.Context) (v float64, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDeviceCapacity is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDeviceCapacity requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDeviceCapacity: %w", err)
+	}
+	return oldValue.DeviceCapacity, nil
+}
+
+// AddDeviceCapacity adds f to the "device_capacity" field.
+func (m *NanoMDMInfoMutation) AddDeviceCapacity(f float64) {
+	if m.adddevice_capacity != nil {
+		*m.adddevice_capacity += f
+	} else {
+		m.adddevice_capacity = &f
+	}
+}
+
+// AddedDeviceCapacity returns the value that was added to the "device_capacity" field in this mutation.
+func (m *NanoMDMInfoMutation) AddedDeviceCapacity() (r float64, exists bool) {
+	v := m.adddevice_capacity
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetDeviceCapacity resets all changes to the "device_capacity" field.
+func (m *NanoMDMInfoMutation) ResetDeviceCapacity() {
+	m.device_capacity = nil
+	m.adddevice_capacity = nil
+}
+
+// SetDeviceName sets the "device_name" field.
+func (m *NanoMDMInfoMutation) SetDeviceName(s string) {
+	m.device_name = &s
+}
+
+// DeviceName returns the value of the "device_name" field in the mutation.
+func (m *NanoMDMInfoMutation) DeviceName() (r string, exists bool) {
+	v := m.device_name
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDeviceName returns the old "device_name" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldDeviceName(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDeviceName is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDeviceName requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDeviceName: %w", err)
+	}
+	return oldValue.DeviceName, nil
+}
+
+// ResetDeviceName resets all changes to the "device_name" field.
+func (m *NanoMDMInfoMutation) ResetDeviceName() {
+	m.device_name = nil
+}
+
+// SetEacsPreflight sets the "eacs_preflight" field.
+func (m *NanoMDMInfoMutation) SetEacsPreflight(s string) {
+	m.eacs_preflight = &s
+}
+
+// EacsPreflight returns the value of the "eacs_preflight" field in the mutation.
+func (m *NanoMDMInfoMutation) EacsPreflight() (r string, exists bool) {
+	v := m.eacs_preflight
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldEacsPreflight returns the old "eacs_preflight" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldEacsPreflight(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldEacsPreflight is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldEacsPreflight requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldEacsPreflight: %w", err)
+	}
+	return oldValue.EacsPreflight, nil
+}
+
+// ResetEacsPreflight resets all changes to the "eacs_preflight" field.
+func (m *NanoMDMInfoMutation) ResetEacsPreflight() {
+	m.eacs_preflight = nil
+}
+
+// SetEthernetMAC sets the "ethernet_mac" field.
+func (m *NanoMDMInfoMutation) SetEthernetMAC(s string) {
+	m.ethernet_mac = &s
+}
+
+// EthernetMAC returns the value of the "ethernet_mac" field in the mutation.
+func (m *NanoMDMInfoMutation) EthernetMAC() (r string, exists bool) {
+	v := m.ethernet_mac
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldEthernetMAC returns the old "ethernet_mac" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldEthernetMAC(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldEthernetMAC is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldEthernetMAC requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldEthernetMAC: %w", err)
+	}
+	return oldValue.EthernetMAC, nil
+}
+
+// ResetEthernetMAC resets all changes to the "ethernet_mac" field.
+func (m *NanoMDMInfoMutation) ResetEthernetMAC() {
+	m.ethernet_mac = nil
+}
+
+// SetHasBattery sets the "has_battery" field.
+func (m *NanoMDMInfoMutation) SetHasBattery(b bool) {
+	m.has_battery = &b
+}
+
+// HasBattery returns the value of the "has_battery" field in the mutation.
+func (m *NanoMDMInfoMutation) HasBattery() (r bool, exists bool) {
+	v := m.has_battery
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldHasBattery returns the old "has_battery" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldHasBattery(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldHasBattery is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldHasBattery requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldHasBattery: %w", err)
+	}
+	return oldValue.HasBattery, nil
+}
+
+// ResetHasBattery resets all changes to the "has_battery" field.
+func (m *NanoMDMInfoMutation) ResetHasBattery() {
+	m.has_battery = nil
+}
+
+// SetHostname sets the "hostname" field.
+func (m *NanoMDMInfoMutation) SetHostname(s string) {
+	m.hostname = &s
+}
+
+// Hostname returns the value of the "hostname" field in the mutation.
+func (m *NanoMDMInfoMutation) Hostname() (r string, exists bool) {
+	v := m.hostname
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldHostname returns the old "hostname" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldHostname(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldHostname is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldHostname requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldHostname: %w", err)
+	}
+	return oldValue.Hostname, nil
+}
+
+// ResetHostname resets all changes to the "hostname" field.
+func (m *NanoMDMInfoMutation) ResetHostname() {
+	m.hostname = nil
+}
+
+// SetIsActivationLockEnabled sets the "is_activation_lock_enabled" field.
+func (m *NanoMDMInfoMutation) SetIsActivationLockEnabled(b bool) {
+	m.is_activation_lock_enabled = &b
+}
+
+// IsActivationLockEnabled returns the value of the "is_activation_lock_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) IsActivationLockEnabled() (r bool, exists bool) {
+	v := m.is_activation_lock_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsActivationLockEnabled returns the old "is_activation_lock_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldIsActivationLockEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsActivationLockEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsActivationLockEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsActivationLockEnabled: %w", err)
+	}
+	return oldValue.IsActivationLockEnabled, nil
+}
+
+// ResetIsActivationLockEnabled resets all changes to the "is_activation_lock_enabled" field.
+func (m *NanoMDMInfoMutation) ResetIsActivationLockEnabled() {
+	m.is_activation_lock_enabled = nil
+}
+
+// SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
+func (m *NanoMDMInfoMutation) SetIsActivationLockSupported(b bool) {
+	m.is_activation_lock_supported = &b
+}
+
+// IsActivationLockSupported returns the value of the "is_activation_lock_supported" field in the mutation.
+func (m *NanoMDMInfoMutation) IsActivationLockSupported() (r bool, exists bool) {
+	v := m.is_activation_lock_supported
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsActivationLockSupported returns the old "is_activation_lock_supported" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldIsActivationLockSupported(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsActivationLockSupported is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsActivationLockSupported requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsActivationLockSupported: %w", err)
+	}
+	return oldValue.IsActivationLockSupported, nil
+}
+
+// ResetIsActivationLockSupported resets all changes to the "is_activation_lock_supported" field.
+func (m *NanoMDMInfoMutation) ResetIsActivationLockSupported() {
+	m.is_activation_lock_supported = nil
+}
+
+// SetIsAppleSilicon sets the "is_apple_silicon" field.
+func (m *NanoMDMInfoMutation) SetIsAppleSilicon(b bool) {
+	m.is_apple_silicon = &b
+}
+
+// IsAppleSilicon returns the value of the "is_apple_silicon" field in the mutation.
+func (m *NanoMDMInfoMutation) IsAppleSilicon() (r bool, exists bool) {
+	v := m.is_apple_silicon
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsAppleSilicon returns the old "is_apple_silicon" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldIsAppleSilicon(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsAppleSilicon is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsAppleSilicon requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsAppleSilicon: %w", err)
+	}
+	return oldValue.IsAppleSilicon, nil
+}
+
+// ResetIsAppleSilicon resets all changes to the "is_apple_silicon" field.
+func (m *NanoMDMInfoMutation) ResetIsAppleSilicon() {
+	m.is_apple_silicon = nil
+}
+
+// SetIsSupervised sets the "is_supervised" field.
+func (m *NanoMDMInfoMutation) SetIsSupervised(b bool) {
+	m.is_supervised = &b
+}
+
+// IsSupervised returns the value of the "is_supervised" field in the mutation.
+func (m *NanoMDMInfoMutation) IsSupervised() (r bool, exists bool) {
+	v := m.is_supervised
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsSupervised returns the old "is_supervised" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldIsSupervised(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsSupervised is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsSupervised requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsSupervised: %w", err)
+	}
+	return oldValue.IsSupervised, nil
+}
+
+// ResetIsSupervised resets all changes to the "is_supervised" field.
+func (m *NanoMDMInfoMutation) ResetIsSupervised() {
+	m.is_supervised = nil
+}
+
+// SetLocalhostname sets the "localhostname" field.
+func (m *NanoMDMInfoMutation) SetLocalhostname(s string) {
+	m.localhostname = &s
+}
+
+// Localhostname returns the value of the "localhostname" field in the mutation.
+func (m *NanoMDMInfoMutation) Localhostname() (r string, exists bool) {
+	v := m.localhostname
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldLocalhostname returns the old "localhostname" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldLocalhostname(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldLocalhostname is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldLocalhostname requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldLocalhostname: %w", err)
+	}
+	return oldValue.Localhostname, nil
+}
+
+// ResetLocalhostname resets all changes to the "localhostname" field.
+func (m *NanoMDMInfoMutation) ResetLocalhostname() {
+	m.localhostname = nil
+}
+
+// SetModel sets the "model" field.
+func (m *NanoMDMInfoMutation) SetModel(s string) {
+	m.model = &s
+}
+
+// Model returns the value of the "model" field in the mutation.
+func (m *NanoMDMInfoMutation) Model() (r string, exists bool) {
+	v := m.model
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldModel returns the old "model" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldModel(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldModel is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldModel requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldModel: %w", err)
+	}
+	return oldValue.Model, nil
+}
+
+// ResetModel resets all changes to the "model" field.
+func (m *NanoMDMInfoMutation) ResetModel() {
+	m.model = nil
+}
+
+// SetModelName sets the "model_name" field.
+func (m *NanoMDMInfoMutation) SetModelName(s string) {
+	m.model_name = &s
+}
+
+// ModelName returns the value of the "model_name" field in the mutation.
+func (m *NanoMDMInfoMutation) ModelName() (r string, exists bool) {
+	v := m.model_name
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldModelName returns the old "model_name" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldModelName(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldModelName is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldModelName requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldModelName: %w", err)
+	}
+	return oldValue.ModelName, nil
+}
+
+// ResetModelName resets all changes to the "model_name" field.
+func (m *NanoMDMInfoMutation) ResetModelName() {
+	m.model_name = nil
+}
+
+// SetAutoCheckEnabled sets the "auto_check_enabled" field.
+func (m *NanoMDMInfoMutation) SetAutoCheckEnabled(b bool) {
+	m.auto_check_enabled = &b
+}
+
+// AutoCheckEnabled returns the value of the "auto_check_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) AutoCheckEnabled() (r bool, exists bool) {
+	v := m.auto_check_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAutoCheckEnabled returns the old "auto_check_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldAutoCheckEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAutoCheckEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAutoCheckEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAutoCheckEnabled: %w", err)
+	}
+	return oldValue.AutoCheckEnabled, nil
+}
+
+// ResetAutoCheckEnabled resets all changes to the "auto_check_enabled" field.
+func (m *NanoMDMInfoMutation) ResetAutoCheckEnabled() {
+	m.auto_check_enabled = nil
+}
+
+// SetAutomaticAppInstallationEnabled sets the "automatic_app_installation_enabled" field.
+func (m *NanoMDMInfoMutation) SetAutomaticAppInstallationEnabled(b bool) {
+	m.automatic_app_installation_enabled = &b
+}
+
+// AutomaticAppInstallationEnabled returns the value of the "automatic_app_installation_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) AutomaticAppInstallationEnabled() (r bool, exists bool) {
+	v := m.automatic_app_installation_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAutomaticAppInstallationEnabled returns the old "automatic_app_installation_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldAutomaticAppInstallationEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAutomaticAppInstallationEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAutomaticAppInstallationEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAutomaticAppInstallationEnabled: %w", err)
+	}
+	return oldValue.AutomaticAppInstallationEnabled, nil
+}
+
+// ResetAutomaticAppInstallationEnabled resets all changes to the "automatic_app_installation_enabled" field.
+func (m *NanoMDMInfoMutation) ResetAutomaticAppInstallationEnabled() {
+	m.automatic_app_installation_enabled = nil
+}
+
+// SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
+func (m *NanoMDMInfoMutation) SetAutomaticOsInstallationEnabled(b bool) {
+	m.automatic_os_installation_enabled = &b
+}
+
+// AutomaticOsInstallationEnabled returns the value of the "automatic_os_installation_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) AutomaticOsInstallationEnabled() (r bool, exists bool) {
+	v := m.automatic_os_installation_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAutomaticOsInstallationEnabled returns the old "automatic_os_installation_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldAutomaticOsInstallationEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAutomaticOsInstallationEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAutomaticOsInstallationEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAutomaticOsInstallationEnabled: %w", err)
+	}
+	return oldValue.AutomaticOsInstallationEnabled, nil
+}
+
+// ResetAutomaticOsInstallationEnabled resets all changes to the "automatic_os_installation_enabled" field.
+func (m *NanoMDMInfoMutation) ResetAutomaticOsInstallationEnabled() {
+	m.automatic_os_installation_enabled = nil
+}
+
+// SetAutomaticSecurityUpdatesEnabled sets the "automatic_security_updates_enabled" field.
+func (m *NanoMDMInfoMutation) SetAutomaticSecurityUpdatesEnabled(b bool) {
+	m.automatic_security_updates_enabled = &b
+}
+
+// AutomaticSecurityUpdatesEnabled returns the value of the "automatic_security_updates_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) AutomaticSecurityUpdatesEnabled() (r bool, exists bool) {
+	v := m.automatic_security_updates_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAutomaticSecurityUpdatesEnabled returns the old "automatic_security_updates_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldAutomaticSecurityUpdatesEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAutomaticSecurityUpdatesEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAutomaticSecurityUpdatesEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAutomaticSecurityUpdatesEnabled: %w", err)
+	}
+	return oldValue.AutomaticSecurityUpdatesEnabled, nil
+}
+
+// ResetAutomaticSecurityUpdatesEnabled resets all changes to the "automatic_security_updates_enabled" field.
+func (m *NanoMDMInfoMutation) ResetAutomaticSecurityUpdatesEnabled() {
+	m.automatic_security_updates_enabled = nil
+}
+
+// SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
+func (m *NanoMDMInfoMutation) SetBackgroundDownloadEnabled(b bool) {
+	m.background_download_enabled = &b
+}
+
+// BackgroundDownloadEnabled returns the value of the "background_download_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) BackgroundDownloadEnabled() (r bool, exists bool) {
+	v := m.background_download_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldBackgroundDownloadEnabled returns the old "background_download_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldBackgroundDownloadEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldBackgroundDownloadEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldBackgroundDownloadEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldBackgroundDownloadEnabled: %w", err)
+	}
+	return oldValue.BackgroundDownloadEnabled, nil
+}
+
+// ResetBackgroundDownloadEnabled resets all changes to the "background_download_enabled" field.
+func (m *NanoMDMInfoMutation) ResetBackgroundDownloadEnabled() {
+	m.background_download_enabled = nil
+}
+
+// SetCatalogURL sets the "catalog_url" field.
+func (m *NanoMDMInfoMutation) SetCatalogURL(s string) {
+	m.catalog_url = &s
+}
+
+// CatalogURL returns the value of the "catalog_url" field in the mutation.
+func (m *NanoMDMInfoMutation) CatalogURL() (r string, exists bool) {
+	v := m.catalog_url
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCatalogURL returns the old "catalog_url" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldCatalogURL(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCatalogURL is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCatalogURL requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCatalogURL: %w", err)
+	}
+	return oldValue.CatalogURL, nil
+}
+
+// ResetCatalogURL resets all changes to the "catalog_url" field.
+func (m *NanoMDMInfoMutation) ResetCatalogURL() {
+	m.catalog_url = nil
+}
+
+// SetIsDefaultCatalog sets the "is_default_catalog" field.
+func (m *NanoMDMInfoMutation) SetIsDefaultCatalog(b bool) {
+	m.is_default_catalog = &b
+}
+
+// IsDefaultCatalog returns the value of the "is_default_catalog" field in the mutation.
+func (m *NanoMDMInfoMutation) IsDefaultCatalog() (r bool, exists bool) {
+	v := m.is_default_catalog
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsDefaultCatalog returns the old "is_default_catalog" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldIsDefaultCatalog(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsDefaultCatalog is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsDefaultCatalog requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsDefaultCatalog: %w", err)
+	}
+	return oldValue.IsDefaultCatalog, nil
+}
+
+// ResetIsDefaultCatalog resets all changes to the "is_default_catalog" field.
+func (m *NanoMDMInfoMutation) ResetIsDefaultCatalog() {
+	m.is_default_catalog = nil
+}
+
+// SetPreviousScanDate sets the "previous_scan_date" field.
+func (m *NanoMDMInfoMutation) SetPreviousScanDate(t time.Time) {
+	m.previous_scan_date = &t
+}
+
+// PreviousScanDate returns the value of the "previous_scan_date" field in the mutation.
+func (m *NanoMDMInfoMutation) PreviousScanDate() (r time.Time, exists bool) {
+	v := m.previous_scan_date
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldPreviousScanDate returns the old "previous_scan_date" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldPreviousScanDate(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldPreviousScanDate is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldPreviousScanDate requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldPreviousScanDate: %w", err)
+	}
+	return oldValue.PreviousScanDate, nil
+}
+
+// ResetPreviousScanDate resets all changes to the "previous_scan_date" field.
+func (m *NanoMDMInfoMutation) ResetPreviousScanDate() {
+	m.previous_scan_date = nil
+}
+
+// SetPreviousScanResult sets the "previous_scan_result" field.
+func (m *NanoMDMInfoMutation) SetPreviousScanResult(i int) {
+	m.previous_scan_result = &i
+	m.addprevious_scan_result = nil
+}
+
+// PreviousScanResult returns the value of the "previous_scan_result" field in the mutation.
+func (m *NanoMDMInfoMutation) PreviousScanResult() (r int, exists bool) {
+	v := m.previous_scan_result
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldPreviousScanResult returns the old "previous_scan_result" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldPreviousScanResult(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldPreviousScanResult is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldPreviousScanResult requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldPreviousScanResult: %w", err)
+	}
+	return oldValue.PreviousScanResult, nil
+}
+
+// AddPreviousScanResult adds i to the "previous_scan_result" field.
+func (m *NanoMDMInfoMutation) AddPreviousScanResult(i int) {
+	if m.addprevious_scan_result != nil {
+		*m.addprevious_scan_result += i
+	} else {
+		m.addprevious_scan_result = &i
+	}
+}
+
+// AddedPreviousScanResult returns the value that was added to the "previous_scan_result" field in this mutation.
+func (m *NanoMDMInfoMutation) AddedPreviousScanResult() (r int, exists bool) {
+	v := m.addprevious_scan_result
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ResetPreviousScanResult resets all changes to the "previous_scan_result" field.
+func (m *NanoMDMInfoMutation) ResetPreviousScanResult() {
+	m.previous_scan_result = nil
+	m.addprevious_scan_result = nil
+}
+
+// SetOsVersion sets the "os_version" field.
+func (m *NanoMDMInfoMutation) SetOsVersion(s string) {
+	m.os_version = &s
+}
+
+// OsVersion returns the value of the "os_version" field in the mutation.
+func (m *NanoMDMInfoMutation) OsVersion() (r string, exists bool) {
+	v := m.os_version
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldOsVersion returns the old "os_version" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldOsVersion(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldOsVersion is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldOsVersion requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldOsVersion: %w", err)
+	}
+	return oldValue.OsVersion, nil
+}
+
+// ResetOsVersion resets all changes to the "os_version" field.
+func (m *NanoMDMInfoMutation) ResetOsVersion() {
+	m.os_version = nil
+}
+
+// SetPinRequiredForDeviceLock sets the "pin_required_for_device_lock" field.
+func (m *NanoMDMInfoMutation) SetPinRequiredForDeviceLock(b bool) {
+	m.pin_required_for_device_lock = &b
+}
+
+// PinRequiredForDeviceLock returns the value of the "pin_required_for_device_lock" field in the mutation.
+func (m *NanoMDMInfoMutation) PinRequiredForDeviceLock() (r bool, exists bool) {
+	v := m.pin_required_for_device_lock
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldPinRequiredForDeviceLock returns the old "pin_required_for_device_lock" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldPinRequiredForDeviceLock(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldPinRequiredForDeviceLock is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldPinRequiredForDeviceLock requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldPinRequiredForDeviceLock: %w", err)
+	}
+	return oldValue.PinRequiredForDeviceLock, nil
+}
+
+// ResetPinRequiredForDeviceLock resets all changes to the "pin_required_for_device_lock" field.
+func (m *NanoMDMInfoMutation) ResetPinRequiredForDeviceLock() {
+	m.pin_required_for_device_lock = nil
+}
+
+// SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
+func (m *NanoMDMInfoMutation) SetPinRequiredForEraseDevice(b bool) {
+	m.pin_required_for_erase_device = &b
+}
+
+// PinRequiredForEraseDevice returns the value of the "pin_required_for_erase_device" field in the mutation.
+func (m *NanoMDMInfoMutation) PinRequiredForEraseDevice() (r bool, exists bool) {
+	v := m.pin_required_for_erase_device
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldPinRequiredForEraseDevice returns the old "pin_required_for_erase_device" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldPinRequiredForEraseDevice(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldPinRequiredForEraseDevice is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldPinRequiredForEraseDevice requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldPinRequiredForEraseDevice: %w", err)
+	}
+	return oldValue.PinRequiredForEraseDevice, nil
+}
+
+// ResetPinRequiredForEraseDevice resets all changes to the "pin_required_for_erase_device" field.
+func (m *NanoMDMInfoMutation) ResetPinRequiredForEraseDevice() {
+	m.pin_required_for_erase_device = nil
+}
+
+// SetProductName sets the "product_name" field.
+func (m *NanoMDMInfoMutation) SetProductName(s string) {
+	m.product_name = &s
+}
+
+// ProductName returns the value of the "product_name" field in the mutation.
+func (m *NanoMDMInfoMutation) ProductName() (r string, exists bool) {
+	v := m.product_name
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldProductName returns the old "product_name" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldProductName(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldProductName is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldProductName requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldProductName: %w", err)
+	}
+	return oldValue.ProductName, nil
+}
+
+// ResetProductName resets all changes to the "product_name" field.
+func (m *NanoMDMInfoMutation) ResetProductName() {
+	m.product_name = nil
+}
+
+// SetProvisioningUdid sets the "provisioning_udid" field.
+func (m *NanoMDMInfoMutation) SetProvisioningUdid(s string) {
+	m.provisioning_udid = &s
+}
+
+// ProvisioningUdid returns the value of the "provisioning_udid" field in the mutation.
+func (m *NanoMDMInfoMutation) ProvisioningUdid() (r string, exists bool) {
+	v := m.provisioning_udid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldProvisioningUdid returns the old "provisioning_udid" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldProvisioningUdid(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldProvisioningUdid is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldProvisioningUdid requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldProvisioningUdid: %w", err)
+	}
+	return oldValue.ProvisioningUdid, nil
+}
+
+// ResetProvisioningUdid resets all changes to the "provisioning_udid" field.
+func (m *NanoMDMInfoMutation) ResetProvisioningUdid() {
+	m.provisioning_udid = nil
+}
+
+// SetSerialNumber sets the "serial_number" field.
+func (m *NanoMDMInfoMutation) SetSerialNumber(s string) {
+	m.serial_number = &s
+}
+
+// SerialNumber returns the value of the "serial_number" field in the mutation.
+func (m *NanoMDMInfoMutation) SerialNumber() (r string, exists bool) {
+	v := m.serial_number
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSerialNumber returns the old "serial_number" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldSerialNumber(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSerialNumber is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSerialNumber requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSerialNumber: %w", err)
+	}
+	return oldValue.SerialNumber, nil
+}
+
+// ResetSerialNumber resets all changes to the "serial_number" field.
+func (m *NanoMDMInfoMutation) ResetSerialNumber() {
+	m.serial_number = nil
+}
+
+// SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
+func (m *NanoMDMInfoMutation) SetSoftwareUpdateDeviceID(s string) {
+	m.software_update_device_id = &s
+}
+
+// SoftwareUpdateDeviceID returns the value of the "software_update_device_id" field in the mutation.
+func (m *NanoMDMInfoMutation) SoftwareUpdateDeviceID() (r string, exists bool) {
+	v := m.software_update_device_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSoftwareUpdateDeviceID returns the old "software_update_device_id" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldSoftwareUpdateDeviceID(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSoftwareUpdateDeviceID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSoftwareUpdateDeviceID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSoftwareUpdateDeviceID: %w", err)
+	}
+	return oldValue.SoftwareUpdateDeviceID, nil
+}
+
+// ResetSoftwareUpdateDeviceID resets all changes to the "software_update_device_id" field.
+func (m *NanoMDMInfoMutation) ResetSoftwareUpdateDeviceID() {
+	m.software_update_device_id = nil
+}
+
+// SetSupplementalBuildVersion sets the "supplemental_build_version" field.
+func (m *NanoMDMInfoMutation) SetSupplementalBuildVersion(s string) {
+	m.supplemental_build_version = &s
+}
+
+// SupplementalBuildVersion returns the value of the "supplemental_build_version" field in the mutation.
+func (m *NanoMDMInfoMutation) SupplementalBuildVersion() (r string, exists bool) {
+	v := m.supplemental_build_version
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSupplementalBuildVersion returns the old "supplemental_build_version" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldSupplementalBuildVersion(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSupplementalBuildVersion is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSupplementalBuildVersion requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSupplementalBuildVersion: %w", err)
+	}
+	return oldValue.SupplementalBuildVersion, nil
+}
+
+// ResetSupplementalBuildVersion resets all changes to the "supplemental_build_version" field.
+func (m *NanoMDMInfoMutation) ResetSupplementalBuildVersion() {
+	m.supplemental_build_version = nil
+}
+
+// SetSupportsLomDevice sets the "supports_lom_device" field.
+func (m *NanoMDMInfoMutation) SetSupportsLomDevice(b bool) {
+	m.supports_lom_device = &b
+}
+
+// SupportsLomDevice returns the value of the "supports_lom_device" field in the mutation.
+func (m *NanoMDMInfoMutation) SupportsLomDevice() (r bool, exists bool) {
+	v := m.supports_lom_device
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSupportsLomDevice returns the old "supports_lom_device" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldSupportsLomDevice(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSupportsLomDevice is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSupportsLomDevice requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSupportsLomDevice: %w", err)
+	}
+	return oldValue.SupportsLomDevice, nil
+}
+
+// ResetSupportsLomDevice resets all changes to the "supports_lom_device" field.
+func (m *NanoMDMInfoMutation) ResetSupportsLomDevice() {
+	m.supports_lom_device = nil
+}
+
+// SetSupportsIosAppInstalls sets the "supports_ios_app_installs" field.
+func (m *NanoMDMInfoMutation) SetSupportsIosAppInstalls(b bool) {
+	m.supports_ios_app_installs = &b
+}
+
+// SupportsIosAppInstalls returns the value of the "supports_ios_app_installs" field in the mutation.
+func (m *NanoMDMInfoMutation) SupportsIosAppInstalls() (r bool, exists bool) {
+	v := m.supports_ios_app_installs
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSupportsIosAppInstalls returns the old "supports_ios_app_installs" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldSupportsIosAppInstalls(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSupportsIosAppInstalls is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSupportsIosAppInstalls requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSupportsIosAppInstalls: %w", err)
+	}
+	return oldValue.SupportsIosAppInstalls, nil
+}
+
+// ResetSupportsIosAppInstalls resets all changes to the "supports_ios_app_installs" field.
+func (m *NanoMDMInfoMutation) ResetSupportsIosAppInstalls() {
+	m.supports_ios_app_installs = nil
+}
+
+// SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
+func (m *NanoMDMInfoMutation) SetSystemIntegrityProtectionEnabled(b bool) {
+	m.system_integrity_protection_enabled = &b
+}
+
+// SystemIntegrityProtectionEnabled returns the value of the "system_integrity_protection_enabled" field in the mutation.
+func (m *NanoMDMInfoMutation) SystemIntegrityProtectionEnabled() (r bool, exists bool) {
+	v := m.system_integrity_protection_enabled
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSystemIntegrityProtectionEnabled returns the old "system_integrity_protection_enabled" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldSystemIntegrityProtectionEnabled(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSystemIntegrityProtectionEnabled is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSystemIntegrityProtectionEnabled requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSystemIntegrityProtectionEnabled: %w", err)
+	}
+	return oldValue.SystemIntegrityProtectionEnabled, nil
+}
+
+// ResetSystemIntegrityProtectionEnabled resets all changes to the "system_integrity_protection_enabled" field.
+func (m *NanoMDMInfoMutation) ResetSystemIntegrityProtectionEnabled() {
+	m.system_integrity_protection_enabled = nil
+}
+
+// SetUdid sets the "udid" field.
+func (m *NanoMDMInfoMutation) SetUdid(s string) {
+	m.udid = &s
+}
+
+// Udid returns the value of the "udid" field in the mutation.
+func (m *NanoMDMInfoMutation) Udid() (r string, exists bool) {
+	v := m.udid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUdid returns the old "udid" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldUdid(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUdid is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUdid requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUdid: %w", err)
+	}
+	return oldValue.Udid, nil
+}
+
+// ResetUdid resets all changes to the "udid" field.
+func (m *NanoMDMInfoMutation) ResetUdid() {
+	m.udid = nil
+}
+
+// SetAgentID sets the "agent" edge to the Agent entity by id.
+func (m *NanoMDMInfoMutation) SetAgentID(id string) {
+	m.agent = &id
+}
+
+// ClearAgent clears the "agent" edge to the Agent entity.
+func (m *NanoMDMInfoMutation) ClearAgent() {
+	m.clearedagent = true
+}
+
+// AgentCleared reports if the "agent" edge to the Agent entity was cleared.
+func (m *NanoMDMInfoMutation) AgentCleared() bool {
+	return m.clearedagent
+}
+
+// AgentID returns the "agent" edge ID in the mutation.
+func (m *NanoMDMInfoMutation) AgentID() (id string, exists bool) {
+	if m.agent != nil {
+		return *m.agent, true
+	}
+	return
+}
+
+// AgentIDs returns the "agent" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// AgentID instead. It exists only for internal usage by the builders.
+func (m *NanoMDMInfoMutation) AgentIDs() (ids []string) {
+	if id := m.agent; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetAgent resets all changes to the "agent" edge.
+func (m *NanoMDMInfoMutation) ResetAgent() {
+	m.agent = nil
+	m.clearedagent = false
+}
+
+// Where appends a list predicates to the NanoMDMInfoMutation builder.
+func (m *NanoMDMInfoMutation) Where(ps ...predicate.NanoMDMInfo) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the NanoMDMInfoMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *NanoMDMInfoMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.NanoMDMInfo, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *NanoMDMInfoMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *NanoMDMInfoMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (NanoMDMInfo).
+func (m *NanoMDMInfoMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *NanoMDMInfoMutation) Fields() []string {
+	fields := make([]string, 0, 40)
+	if m.available_device_capacity_version != nil {
+		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacityVersion)
+	}
+	if m.awaiting_configuration != nil {
+		fields = append(fields, nanomdminfo.FieldAwaitingConfiguration)
+	}
+	if m.battery_level != nil {
+		fields = append(fields, nanomdminfo.FieldBatteryLevel)
+	}
+	if m.bluetooth_mac != nil {
+		fields = append(fields, nanomdminfo.FieldBluetoothMAC)
+	}
+	if m.build_version != nil {
+		fields = append(fields, nanomdminfo.FieldBuildVersion)
+	}
+	if m.current_console_managed_user != nil {
+		fields = append(fields, nanomdminfo.FieldCurrentConsoleManagedUser)
+	}
+	if m.device_capacity != nil {
+		fields = append(fields, nanomdminfo.FieldDeviceCapacity)
+	}
+	if m.device_name != nil {
+		fields = append(fields, nanomdminfo.FieldDeviceName)
+	}
+	if m.eacs_preflight != nil {
+		fields = append(fields, nanomdminfo.FieldEacsPreflight)
+	}
+	if m.ethernet_mac != nil {
+		fields = append(fields, nanomdminfo.FieldEthernetMAC)
+	}
+	if m.has_battery != nil {
+		fields = append(fields, nanomdminfo.FieldHasBattery)
+	}
+	if m.hostname != nil {
+		fields = append(fields, nanomdminfo.FieldHostname)
+	}
+	if m.is_activation_lock_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldIsActivationLockEnabled)
+	}
+	if m.is_activation_lock_supported != nil {
+		fields = append(fields, nanomdminfo.FieldIsActivationLockSupported)
+	}
+	if m.is_apple_silicon != nil {
+		fields = append(fields, nanomdminfo.FieldIsAppleSilicon)
+	}
+	if m.is_supervised != nil {
+		fields = append(fields, nanomdminfo.FieldIsSupervised)
+	}
+	if m.localhostname != nil {
+		fields = append(fields, nanomdminfo.FieldLocalhostname)
+	}
+	if m.model != nil {
+		fields = append(fields, nanomdminfo.FieldModel)
+	}
+	if m.model_name != nil {
+		fields = append(fields, nanomdminfo.FieldModelName)
+	}
+	if m.auto_check_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldAutoCheckEnabled)
+	}
+	if m.automatic_app_installation_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldAutomaticAppInstallationEnabled)
+	}
+	if m.automatic_os_installation_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldAutomaticOsInstallationEnabled)
+	}
+	if m.automatic_security_updates_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldAutomaticSecurityUpdatesEnabled)
+	}
+	if m.background_download_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldBackgroundDownloadEnabled)
+	}
+	if m.catalog_url != nil {
+		fields = append(fields, nanomdminfo.FieldCatalogURL)
+	}
+	if m.is_default_catalog != nil {
+		fields = append(fields, nanomdminfo.FieldIsDefaultCatalog)
+	}
+	if m.previous_scan_date != nil {
+		fields = append(fields, nanomdminfo.FieldPreviousScanDate)
+	}
+	if m.previous_scan_result != nil {
+		fields = append(fields, nanomdminfo.FieldPreviousScanResult)
+	}
+	if m.os_version != nil {
+		fields = append(fields, nanomdminfo.FieldOsVersion)
+	}
+	if m.pin_required_for_device_lock != nil {
+		fields = append(fields, nanomdminfo.FieldPinRequiredForDeviceLock)
+	}
+	if m.pin_required_for_erase_device != nil {
+		fields = append(fields, nanomdminfo.FieldPinRequiredForEraseDevice)
+	}
+	if m.product_name != nil {
+		fields = append(fields, nanomdminfo.FieldProductName)
+	}
+	if m.provisioning_udid != nil {
+		fields = append(fields, nanomdminfo.FieldProvisioningUdid)
+	}
+	if m.serial_number != nil {
+		fields = append(fields, nanomdminfo.FieldSerialNumber)
+	}
+	if m.software_update_device_id != nil {
+		fields = append(fields, nanomdminfo.FieldSoftwareUpdateDeviceID)
+	}
+	if m.supplemental_build_version != nil {
+		fields = append(fields, nanomdminfo.FieldSupplementalBuildVersion)
+	}
+	if m.supports_lom_device != nil {
+		fields = append(fields, nanomdminfo.FieldSupportsLomDevice)
+	}
+	if m.supports_ios_app_installs != nil {
+		fields = append(fields, nanomdminfo.FieldSupportsIosAppInstalls)
+	}
+	if m.system_integrity_protection_enabled != nil {
+		fields = append(fields, nanomdminfo.FieldSystemIntegrityProtectionEnabled)
+	}
+	if m.udid != nil {
+		fields = append(fields, nanomdminfo.FieldUdid)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *NanoMDMInfoMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		return m.AvailableDeviceCapacityVersion()
+	case nanomdminfo.FieldAwaitingConfiguration:
+		return m.AwaitingConfiguration()
+	case nanomdminfo.FieldBatteryLevel:
+		return m.BatteryLevel()
+	case nanomdminfo.FieldBluetoothMAC:
+		return m.BluetoothMAC()
+	case nanomdminfo.FieldBuildVersion:
+		return m.BuildVersion()
+	case nanomdminfo.FieldCurrentConsoleManagedUser:
+		return m.CurrentConsoleManagedUser()
+	case nanomdminfo.FieldDeviceCapacity:
+		return m.DeviceCapacity()
+	case nanomdminfo.FieldDeviceName:
+		return m.DeviceName()
+	case nanomdminfo.FieldEacsPreflight:
+		return m.EacsPreflight()
+	case nanomdminfo.FieldEthernetMAC:
+		return m.EthernetMAC()
+	case nanomdminfo.FieldHasBattery:
+		return m.HasBattery()
+	case nanomdminfo.FieldHostname:
+		return m.Hostname()
+	case nanomdminfo.FieldIsActivationLockEnabled:
+		return m.IsActivationLockEnabled()
+	case nanomdminfo.FieldIsActivationLockSupported:
+		return m.IsActivationLockSupported()
+	case nanomdminfo.FieldIsAppleSilicon:
+		return m.IsAppleSilicon()
+	case nanomdminfo.FieldIsSupervised:
+		return m.IsSupervised()
+	case nanomdminfo.FieldLocalhostname:
+		return m.Localhostname()
+	case nanomdminfo.FieldModel:
+		return m.Model()
+	case nanomdminfo.FieldModelName:
+		return m.ModelName()
+	case nanomdminfo.FieldAutoCheckEnabled:
+		return m.AutoCheckEnabled()
+	case nanomdminfo.FieldAutomaticAppInstallationEnabled:
+		return m.AutomaticAppInstallationEnabled()
+	case nanomdminfo.FieldAutomaticOsInstallationEnabled:
+		return m.AutomaticOsInstallationEnabled()
+	case nanomdminfo.FieldAutomaticSecurityUpdatesEnabled:
+		return m.AutomaticSecurityUpdatesEnabled()
+	case nanomdminfo.FieldBackgroundDownloadEnabled:
+		return m.BackgroundDownloadEnabled()
+	case nanomdminfo.FieldCatalogURL:
+		return m.CatalogURL()
+	case nanomdminfo.FieldIsDefaultCatalog:
+		return m.IsDefaultCatalog()
+	case nanomdminfo.FieldPreviousScanDate:
+		return m.PreviousScanDate()
+	case nanomdminfo.FieldPreviousScanResult:
+		return m.PreviousScanResult()
+	case nanomdminfo.FieldOsVersion:
+		return m.OsVersion()
+	case nanomdminfo.FieldPinRequiredForDeviceLock:
+		return m.PinRequiredForDeviceLock()
+	case nanomdminfo.FieldPinRequiredForEraseDevice:
+		return m.PinRequiredForEraseDevice()
+	case nanomdminfo.FieldProductName:
+		return m.ProductName()
+	case nanomdminfo.FieldProvisioningUdid:
+		return m.ProvisioningUdid()
+	case nanomdminfo.FieldSerialNumber:
+		return m.SerialNumber()
+	case nanomdminfo.FieldSoftwareUpdateDeviceID:
+		return m.SoftwareUpdateDeviceID()
+	case nanomdminfo.FieldSupplementalBuildVersion:
+		return m.SupplementalBuildVersion()
+	case nanomdminfo.FieldSupportsLomDevice:
+		return m.SupportsLomDevice()
+	case nanomdminfo.FieldSupportsIosAppInstalls:
+		return m.SupportsIosAppInstalls()
+	case nanomdminfo.FieldSystemIntegrityProtectionEnabled:
+		return m.SystemIntegrityProtectionEnabled()
+	case nanomdminfo.FieldUdid:
+		return m.Udid()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *NanoMDMInfoMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		return m.OldAvailableDeviceCapacityVersion(ctx)
+	case nanomdminfo.FieldAwaitingConfiguration:
+		return m.OldAwaitingConfiguration(ctx)
+	case nanomdminfo.FieldBatteryLevel:
+		return m.OldBatteryLevel(ctx)
+	case nanomdminfo.FieldBluetoothMAC:
+		return m.OldBluetoothMAC(ctx)
+	case nanomdminfo.FieldBuildVersion:
+		return m.OldBuildVersion(ctx)
+	case nanomdminfo.FieldCurrentConsoleManagedUser:
+		return m.OldCurrentConsoleManagedUser(ctx)
+	case nanomdminfo.FieldDeviceCapacity:
+		return m.OldDeviceCapacity(ctx)
+	case nanomdminfo.FieldDeviceName:
+		return m.OldDeviceName(ctx)
+	case nanomdminfo.FieldEacsPreflight:
+		return m.OldEacsPreflight(ctx)
+	case nanomdminfo.FieldEthernetMAC:
+		return m.OldEthernetMAC(ctx)
+	case nanomdminfo.FieldHasBattery:
+		return m.OldHasBattery(ctx)
+	case nanomdminfo.FieldHostname:
+		return m.OldHostname(ctx)
+	case nanomdminfo.FieldIsActivationLockEnabled:
+		return m.OldIsActivationLockEnabled(ctx)
+	case nanomdminfo.FieldIsActivationLockSupported:
+		return m.OldIsActivationLockSupported(ctx)
+	case nanomdminfo.FieldIsAppleSilicon:
+		return m.OldIsAppleSilicon(ctx)
+	case nanomdminfo.FieldIsSupervised:
+		return m.OldIsSupervised(ctx)
+	case nanomdminfo.FieldLocalhostname:
+		return m.OldLocalhostname(ctx)
+	case nanomdminfo.FieldModel:
+		return m.OldModel(ctx)
+	case nanomdminfo.FieldModelName:
+		return m.OldModelName(ctx)
+	case nanomdminfo.FieldAutoCheckEnabled:
+		return m.OldAutoCheckEnabled(ctx)
+	case nanomdminfo.FieldAutomaticAppInstallationEnabled:
+		return m.OldAutomaticAppInstallationEnabled(ctx)
+	case nanomdminfo.FieldAutomaticOsInstallationEnabled:
+		return m.OldAutomaticOsInstallationEnabled(ctx)
+	case nanomdminfo.FieldAutomaticSecurityUpdatesEnabled:
+		return m.OldAutomaticSecurityUpdatesEnabled(ctx)
+	case nanomdminfo.FieldBackgroundDownloadEnabled:
+		return m.OldBackgroundDownloadEnabled(ctx)
+	case nanomdminfo.FieldCatalogURL:
+		return m.OldCatalogURL(ctx)
+	case nanomdminfo.FieldIsDefaultCatalog:
+		return m.OldIsDefaultCatalog(ctx)
+	case nanomdminfo.FieldPreviousScanDate:
+		return m.OldPreviousScanDate(ctx)
+	case nanomdminfo.FieldPreviousScanResult:
+		return m.OldPreviousScanResult(ctx)
+	case nanomdminfo.FieldOsVersion:
+		return m.OldOsVersion(ctx)
+	case nanomdminfo.FieldPinRequiredForDeviceLock:
+		return m.OldPinRequiredForDeviceLock(ctx)
+	case nanomdminfo.FieldPinRequiredForEraseDevice:
+		return m.OldPinRequiredForEraseDevice(ctx)
+	case nanomdminfo.FieldProductName:
+		return m.OldProductName(ctx)
+	case nanomdminfo.FieldProvisioningUdid:
+		return m.OldProvisioningUdid(ctx)
+	case nanomdminfo.FieldSerialNumber:
+		return m.OldSerialNumber(ctx)
+	case nanomdminfo.FieldSoftwareUpdateDeviceID:
+		return m.OldSoftwareUpdateDeviceID(ctx)
+	case nanomdminfo.FieldSupplementalBuildVersion:
+		return m.OldSupplementalBuildVersion(ctx)
+	case nanomdminfo.FieldSupportsLomDevice:
+		return m.OldSupportsLomDevice(ctx)
+	case nanomdminfo.FieldSupportsIosAppInstalls:
+		return m.OldSupportsIosAppInstalls(ctx)
+	case nanomdminfo.FieldSystemIntegrityProtectionEnabled:
+		return m.OldSystemIntegrityProtectionEnabled(ctx)
+	case nanomdminfo.FieldUdid:
+		return m.OldUdid(ctx)
+	}
+	return nil, fmt.Errorf("unknown NanoMDMInfo field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *NanoMDMInfoMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAvailableDeviceCapacityVersion(v)
+		return nil
+	case nanomdminfo.FieldAwaitingConfiguration:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAwaitingConfiguration(v)
+		return nil
+	case nanomdminfo.FieldBatteryLevel:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBatteryLevel(v)
+		return nil
+	case nanomdminfo.FieldBluetoothMAC:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBluetoothMAC(v)
+		return nil
+	case nanomdminfo.FieldBuildVersion:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBuildVersion(v)
+		return nil
+	case nanomdminfo.FieldCurrentConsoleManagedUser:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCurrentConsoleManagedUser(v)
+		return nil
+	case nanomdminfo.FieldDeviceCapacity:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDeviceCapacity(v)
+		return nil
+	case nanomdminfo.FieldDeviceName:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDeviceName(v)
+		return nil
+	case nanomdminfo.FieldEacsPreflight:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetEacsPreflight(v)
+		return nil
+	case nanomdminfo.FieldEthernetMAC:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetEthernetMAC(v)
+		return nil
+	case nanomdminfo.FieldHasBattery:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetHasBattery(v)
+		return nil
+	case nanomdminfo.FieldHostname:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetHostname(v)
+		return nil
+	case nanomdminfo.FieldIsActivationLockEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsActivationLockEnabled(v)
+		return nil
+	case nanomdminfo.FieldIsActivationLockSupported:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsActivationLockSupported(v)
+		return nil
+	case nanomdminfo.FieldIsAppleSilicon:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsAppleSilicon(v)
+		return nil
+	case nanomdminfo.FieldIsSupervised:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsSupervised(v)
+		return nil
+	case nanomdminfo.FieldLocalhostname:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetLocalhostname(v)
+		return nil
+	case nanomdminfo.FieldModel:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetModel(v)
+		return nil
+	case nanomdminfo.FieldModelName:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetModelName(v)
+		return nil
+	case nanomdminfo.FieldAutoCheckEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAutoCheckEnabled(v)
+		return nil
+	case nanomdminfo.FieldAutomaticAppInstallationEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAutomaticAppInstallationEnabled(v)
+		return nil
+	case nanomdminfo.FieldAutomaticOsInstallationEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAutomaticOsInstallationEnabled(v)
+		return nil
+	case nanomdminfo.FieldAutomaticSecurityUpdatesEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAutomaticSecurityUpdatesEnabled(v)
+		return nil
+	case nanomdminfo.FieldBackgroundDownloadEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetBackgroundDownloadEnabled(v)
+		return nil
+	case nanomdminfo.FieldCatalogURL:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCatalogURL(v)
+		return nil
+	case nanomdminfo.FieldIsDefaultCatalog:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsDefaultCatalog(v)
+		return nil
+	case nanomdminfo.FieldPreviousScanDate:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetPreviousScanDate(v)
+		return nil
+	case nanomdminfo.FieldPreviousScanResult:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetPreviousScanResult(v)
+		return nil
+	case nanomdminfo.FieldOsVersion:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetOsVersion(v)
+		return nil
+	case nanomdminfo.FieldPinRequiredForDeviceLock:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetPinRequiredForDeviceLock(v)
+		return nil
+	case nanomdminfo.FieldPinRequiredForEraseDevice:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetPinRequiredForEraseDevice(v)
+		return nil
+	case nanomdminfo.FieldProductName:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetProductName(v)
+		return nil
+	case nanomdminfo.FieldProvisioningUdid:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetProvisioningUdid(v)
+		return nil
+	case nanomdminfo.FieldSerialNumber:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSerialNumber(v)
+		return nil
+	case nanomdminfo.FieldSoftwareUpdateDeviceID:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSoftwareUpdateDeviceID(v)
+		return nil
+	case nanomdminfo.FieldSupplementalBuildVersion:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSupplementalBuildVersion(v)
+		return nil
+	case nanomdminfo.FieldSupportsLomDevice:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSupportsLomDevice(v)
+		return nil
+	case nanomdminfo.FieldSupportsIosAppInstalls:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSupportsIosAppInstalls(v)
+		return nil
+	case nanomdminfo.FieldSystemIntegrityProtectionEnabled:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSystemIntegrityProtectionEnabled(v)
+		return nil
+	case nanomdminfo.FieldUdid:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUdid(v)
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMInfo field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *NanoMDMInfoMutation) AddedFields() []string {
+	var fields []string
+	if m.addavailable_device_capacity_version != nil {
+		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacityVersion)
+	}
+	if m.addbattery_level != nil {
+		fields = append(fields, nanomdminfo.FieldBatteryLevel)
+	}
+	if m.adddevice_capacity != nil {
+		fields = append(fields, nanomdminfo.FieldDeviceCapacity)
+	}
+	if m.addprevious_scan_result != nil {
+		fields = append(fields, nanomdminfo.FieldPreviousScanResult)
+	}
+	return fields
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *NanoMDMInfoMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		return m.AddedAvailableDeviceCapacityVersion()
+	case nanomdminfo.FieldBatteryLevel:
+		return m.AddedBatteryLevel()
+	case nanomdminfo.FieldDeviceCapacity:
+		return m.AddedDeviceCapacity()
+	case nanomdminfo.FieldPreviousScanResult:
+		return m.AddedPreviousScanResult()
+	}
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *NanoMDMInfoMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddAvailableDeviceCapacityVersion(v)
+		return nil
+	case nanomdminfo.FieldBatteryLevel:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddBatteryLevel(v)
+		return nil
+	case nanomdminfo.FieldDeviceCapacity:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddDeviceCapacity(v)
+		return nil
+	case nanomdminfo.FieldPreviousScanResult:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddPreviousScanResult(v)
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMInfo numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *NanoMDMInfoMutation) ClearedFields() []string {
+	return nil
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *NanoMDMInfoMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *NanoMDMInfoMutation) ClearField(name string) error {
+	return fmt.Errorf("unknown NanoMDMInfo nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *NanoMDMInfoMutation) ResetField(name string) error {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		m.ResetAvailableDeviceCapacityVersion()
+		return nil
+	case nanomdminfo.FieldAwaitingConfiguration:
+		m.ResetAwaitingConfiguration()
+		return nil
+	case nanomdminfo.FieldBatteryLevel:
+		m.ResetBatteryLevel()
+		return nil
+	case nanomdminfo.FieldBluetoothMAC:
+		m.ResetBluetoothMAC()
+		return nil
+	case nanomdminfo.FieldBuildVersion:
+		m.ResetBuildVersion()
+		return nil
+	case nanomdminfo.FieldCurrentConsoleManagedUser:
+		m.ResetCurrentConsoleManagedUser()
+		return nil
+	case nanomdminfo.FieldDeviceCapacity:
+		m.ResetDeviceCapacity()
+		return nil
+	case nanomdminfo.FieldDeviceName:
+		m.ResetDeviceName()
+		return nil
+	case nanomdminfo.FieldEacsPreflight:
+		m.ResetEacsPreflight()
+		return nil
+	case nanomdminfo.FieldEthernetMAC:
+		m.ResetEthernetMAC()
+		return nil
+	case nanomdminfo.FieldHasBattery:
+		m.ResetHasBattery()
+		return nil
+	case nanomdminfo.FieldHostname:
+		m.ResetHostname()
+		return nil
+	case nanomdminfo.FieldIsActivationLockEnabled:
+		m.ResetIsActivationLockEnabled()
+		return nil
+	case nanomdminfo.FieldIsActivationLockSupported:
+		m.ResetIsActivationLockSupported()
+		return nil
+	case nanomdminfo.FieldIsAppleSilicon:
+		m.ResetIsAppleSilicon()
+		return nil
+	case nanomdminfo.FieldIsSupervised:
+		m.ResetIsSupervised()
+		return nil
+	case nanomdminfo.FieldLocalhostname:
+		m.ResetLocalhostname()
+		return nil
+	case nanomdminfo.FieldModel:
+		m.ResetModel()
+		return nil
+	case nanomdminfo.FieldModelName:
+		m.ResetModelName()
+		return nil
+	case nanomdminfo.FieldAutoCheckEnabled:
+		m.ResetAutoCheckEnabled()
+		return nil
+	case nanomdminfo.FieldAutomaticAppInstallationEnabled:
+		m.ResetAutomaticAppInstallationEnabled()
+		return nil
+	case nanomdminfo.FieldAutomaticOsInstallationEnabled:
+		m.ResetAutomaticOsInstallationEnabled()
+		return nil
+	case nanomdminfo.FieldAutomaticSecurityUpdatesEnabled:
+		m.ResetAutomaticSecurityUpdatesEnabled()
+		return nil
+	case nanomdminfo.FieldBackgroundDownloadEnabled:
+		m.ResetBackgroundDownloadEnabled()
+		return nil
+	case nanomdminfo.FieldCatalogURL:
+		m.ResetCatalogURL()
+		return nil
+	case nanomdminfo.FieldIsDefaultCatalog:
+		m.ResetIsDefaultCatalog()
+		return nil
+	case nanomdminfo.FieldPreviousScanDate:
+		m.ResetPreviousScanDate()
+		return nil
+	case nanomdminfo.FieldPreviousScanResult:
+		m.ResetPreviousScanResult()
+		return nil
+	case nanomdminfo.FieldOsVersion:
+		m.ResetOsVersion()
+		return nil
+	case nanomdminfo.FieldPinRequiredForDeviceLock:
+		m.ResetPinRequiredForDeviceLock()
+		return nil
+	case nanomdminfo.FieldPinRequiredForEraseDevice:
+		m.ResetPinRequiredForEraseDevice()
+		return nil
+	case nanomdminfo.FieldProductName:
+		m.ResetProductName()
+		return nil
+	case nanomdminfo.FieldProvisioningUdid:
+		m.ResetProvisioningUdid()
+		return nil
+	case nanomdminfo.FieldSerialNumber:
+		m.ResetSerialNumber()
+		return nil
+	case nanomdminfo.FieldSoftwareUpdateDeviceID:
+		m.ResetSoftwareUpdateDeviceID()
+		return nil
+	case nanomdminfo.FieldSupplementalBuildVersion:
+		m.ResetSupplementalBuildVersion()
+		return nil
+	case nanomdminfo.FieldSupportsLomDevice:
+		m.ResetSupportsLomDevice()
+		return nil
+	case nanomdminfo.FieldSupportsIosAppInstalls:
+		m.ResetSupportsIosAppInstalls()
+		return nil
+	case nanomdminfo.FieldSystemIntegrityProtectionEnabled:
+		m.ResetSystemIntegrityProtectionEnabled()
+		return nil
+	case nanomdminfo.FieldUdid:
+		m.ResetUdid()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMInfo field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *NanoMDMInfoMutation) AddedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.agent != nil {
+		edges = append(edges, nanomdminfo.EdgeAgent)
+	}
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *NanoMDMInfoMutation) AddedIDs(name string) []ent.Value {
+	switch name {
+	case nanomdminfo.EdgeAgent:
+		if id := m.agent; id != nil {
+			return []ent.Value{*id}
+		}
+	}
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *NanoMDMInfoMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 1)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *NanoMDMInfoMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *NanoMDMInfoMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.clearedagent {
+		edges = append(edges, nanomdminfo.EdgeAgent)
+	}
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *NanoMDMInfoMutation) EdgeCleared(name string) bool {
+	switch name {
+	case nanomdminfo.EdgeAgent:
+		return m.clearedagent
+	}
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *NanoMDMInfoMutation) ClearEdge(name string) error {
+	switch name {
+	case nanomdminfo.EdgeAgent:
+		m.ClearAgent()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMInfo unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *NanoMDMInfoMutation) ResetEdge(name string) error {
+	switch name {
+	case nanomdminfo.EdgeAgent:
+		m.ResetAgent()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMInfo edge %s", name)
 }
 
 // NetbirdMutation represents an operation that mutates the Netbird nodes in the graph.

@@ -119,6 +119,8 @@ const (
 	EdgeNetbird = "netbird"
 	// EdgeMdmcommands holds the string denoting the mdmcommands edge name in mutations.
 	EdgeMdmcommands = "mdmcommands"
+	// EdgeNanomdminfo holds the string denoting the nanomdminfo edge name in mutations.
+	EdgeNanomdminfo = "nanomdminfo"
 	// ComputerFieldID holds the string denoting the ID field of the Computer.
 	ComputerFieldID = "id"
 	// OperatingSystemFieldID holds the string denoting the ID field of the OperatingSystem.
@@ -163,6 +165,8 @@ const (
 	NetbirdFieldID = "id"
 	// MDMCommandFieldID holds the string denoting the ID field of the MDMCommand.
 	MDMCommandFieldID = "uuid"
+	// NanoMDMInfoFieldID holds the string denoting the ID field of the NanoMDMInfo.
+	NanoMDMInfoFieldID = "id"
 	// Table holds the table name of the agent in the database.
 	Table = "agents"
 	// ComputerTable is the table that holds the computer relation/edge.
@@ -315,6 +319,13 @@ const (
 	MdmcommandsInverseTable = "mdm_commands"
 	// MdmcommandsColumn is the table column denoting the mdmcommands relation/edge.
 	MdmcommandsColumn = "agent_mdmcommands"
+	// NanomdminfoTable is the table that holds the nanomdminfo relation/edge.
+	NanomdminfoTable = "nano_mdm_infos"
+	// NanomdminfoInverseTable is the table name for the NanoMDMInfo entity.
+	// It exists in this package in order to avoid circular dependency with the "nanomdminfo" package.
+	NanomdminfoInverseTable = "nano_mdm_infos"
+	// NanomdminfoColumn is the table column denoting the nanomdminfo relation/edge.
+	NanomdminfoColumn = "agent_nanomdminfo"
 )
 
 // Columns holds all SQL columns for agent fields.
@@ -917,6 +928,20 @@ func ByMdmcommands(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newMdmcommandsStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
+
+// ByNanomdminfoCount orders the results by nanomdminfo count.
+func ByNanomdminfoCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newNanomdminfoStep(), opts...)
+	}
+}
+
+// ByNanomdminfo orders the results by nanomdminfo terms.
+func ByNanomdminfo(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newNanomdminfoStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newComputerStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -1069,5 +1094,12 @@ func newMdmcommandsStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(MdmcommandsInverseTable, MDMCommandFieldID),
 		sqlgraph.Edge(sqlgraph.O2M, false, MdmcommandsTable, MdmcommandsColumn),
+	)
+}
+func newNanomdminfoStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(NanomdminfoInverseTable, NanoMDMInfoFieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, NanomdminfoTable, NanomdminfoColumn),
 	)
 }

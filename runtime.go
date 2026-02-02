@@ -10,6 +10,7 @@ import (
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
 	"github.com/open-uem/ent/mdmcommand"
+	"github.com/open-uem/ent/nanomdminfo"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -218,6 +219,164 @@ func init() {
 	mdmcommandDescID := mdmcommandFields[0].Descriptor()
 	// mdmcommand.IDValidator is a validator for the "id" field. It is called by the builders before save.
 	mdmcommand.IDValidator = mdmcommandDescID.Validators[0].(func(string) error)
+	nanomdminfoFields := schema.NanoMDMInfo{}.Fields()
+	_ = nanomdminfoFields
+	// nanomdminfoDescAvailableDeviceCapacityVersion is the schema descriptor for available_device_capacity_version field.
+	nanomdminfoDescAvailableDeviceCapacityVersion := nanomdminfoFields[0].Descriptor()
+	// nanomdminfo.DefaultAvailableDeviceCapacityVersion holds the default value on creation for the available_device_capacity_version field.
+	nanomdminfo.DefaultAvailableDeviceCapacityVersion = nanomdminfoDescAvailableDeviceCapacityVersion.Default.(float64)
+	// nanomdminfoDescAwaitingConfiguration is the schema descriptor for awaiting_configuration field.
+	nanomdminfoDescAwaitingConfiguration := nanomdminfoFields[1].Descriptor()
+	// nanomdminfo.DefaultAwaitingConfiguration holds the default value on creation for the awaiting_configuration field.
+	nanomdminfo.DefaultAwaitingConfiguration = nanomdminfoDescAwaitingConfiguration.Default.(bool)
+	// nanomdminfoDescBatteryLevel is the schema descriptor for battery_level field.
+	nanomdminfoDescBatteryLevel := nanomdminfoFields[2].Descriptor()
+	// nanomdminfo.DefaultBatteryLevel holds the default value on creation for the battery_level field.
+	nanomdminfo.DefaultBatteryLevel = nanomdminfoDescBatteryLevel.Default.(float64)
+	// nanomdminfoDescBluetoothMAC is the schema descriptor for bluetooth_mac field.
+	nanomdminfoDescBluetoothMAC := nanomdminfoFields[3].Descriptor()
+	// nanomdminfo.DefaultBluetoothMAC holds the default value on creation for the bluetooth_mac field.
+	nanomdminfo.DefaultBluetoothMAC = nanomdminfoDescBluetoothMAC.Default.(string)
+	// nanomdminfoDescBuildVersion is the schema descriptor for build_version field.
+	nanomdminfoDescBuildVersion := nanomdminfoFields[4].Descriptor()
+	// nanomdminfo.DefaultBuildVersion holds the default value on creation for the build_version field.
+	nanomdminfo.DefaultBuildVersion = nanomdminfoDescBuildVersion.Default.(string)
+	// nanomdminfoDescCurrentConsoleManagedUser is the schema descriptor for current_console_managed_user field.
+	nanomdminfoDescCurrentConsoleManagedUser := nanomdminfoFields[5].Descriptor()
+	// nanomdminfo.DefaultCurrentConsoleManagedUser holds the default value on creation for the current_console_managed_user field.
+	nanomdminfo.DefaultCurrentConsoleManagedUser = nanomdminfoDescCurrentConsoleManagedUser.Default.(string)
+	// nanomdminfoDescDeviceCapacity is the schema descriptor for device_capacity field.
+	nanomdminfoDescDeviceCapacity := nanomdminfoFields[6].Descriptor()
+	// nanomdminfo.DefaultDeviceCapacity holds the default value on creation for the device_capacity field.
+	nanomdminfo.DefaultDeviceCapacity = nanomdminfoDescDeviceCapacity.Default.(float64)
+	// nanomdminfoDescDeviceName is the schema descriptor for device_name field.
+	nanomdminfoDescDeviceName := nanomdminfoFields[7].Descriptor()
+	// nanomdminfo.DefaultDeviceName holds the default value on creation for the device_name field.
+	nanomdminfo.DefaultDeviceName = nanomdminfoDescDeviceName.Default.(string)
+	// nanomdminfoDescEacsPreflight is the schema descriptor for eacs_preflight field.
+	nanomdminfoDescEacsPreflight := nanomdminfoFields[8].Descriptor()
+	// nanomdminfo.DefaultEacsPreflight holds the default value on creation for the eacs_preflight field.
+	nanomdminfo.DefaultEacsPreflight = nanomdminfoDescEacsPreflight.Default.(string)
+	// nanomdminfoDescEthernetMAC is the schema descriptor for ethernet_mac field.
+	nanomdminfoDescEthernetMAC := nanomdminfoFields[9].Descriptor()
+	// nanomdminfo.DefaultEthernetMAC holds the default value on creation for the ethernet_mac field.
+	nanomdminfo.DefaultEthernetMAC = nanomdminfoDescEthernetMAC.Default.(string)
+	// nanomdminfoDescHasBattery is the schema descriptor for has_battery field.
+	nanomdminfoDescHasBattery := nanomdminfoFields[10].Descriptor()
+	// nanomdminfo.DefaultHasBattery holds the default value on creation for the has_battery field.
+	nanomdminfo.DefaultHasBattery = nanomdminfoDescHasBattery.Default.(bool)
+	// nanomdminfoDescHostname is the schema descriptor for hostname field.
+	nanomdminfoDescHostname := nanomdminfoFields[11].Descriptor()
+	// nanomdminfo.DefaultHostname holds the default value on creation for the hostname field.
+	nanomdminfo.DefaultHostname = nanomdminfoDescHostname.Default.(string)
+	// nanomdminfoDescIsActivationLockEnabled is the schema descriptor for is_activation_lock_enabled field.
+	nanomdminfoDescIsActivationLockEnabled := nanomdminfoFields[12].Descriptor()
+	// nanomdminfo.DefaultIsActivationLockEnabled holds the default value on creation for the is_activation_lock_enabled field.
+	nanomdminfo.DefaultIsActivationLockEnabled = nanomdminfoDescIsActivationLockEnabled.Default.(bool)
+	// nanomdminfoDescIsActivationLockSupported is the schema descriptor for is_activation_lock_supported field.
+	nanomdminfoDescIsActivationLockSupported := nanomdminfoFields[13].Descriptor()
+	// nanomdminfo.DefaultIsActivationLockSupported holds the default value on creation for the is_activation_lock_supported field.
+	nanomdminfo.DefaultIsActivationLockSupported = nanomdminfoDescIsActivationLockSupported.Default.(bool)
+	// nanomdminfoDescIsAppleSilicon is the schema descriptor for is_apple_silicon field.
+	nanomdminfoDescIsAppleSilicon := nanomdminfoFields[14].Descriptor()
+	// nanomdminfo.DefaultIsAppleSilicon holds the default value on creation for the is_apple_silicon field.
+	nanomdminfo.DefaultIsAppleSilicon = nanomdminfoDescIsAppleSilicon.Default.(bool)
+	// nanomdminfoDescIsSupervised is the schema descriptor for is_supervised field.
+	nanomdminfoDescIsSupervised := nanomdminfoFields[15].Descriptor()
+	// nanomdminfo.DefaultIsSupervised holds the default value on creation for the is_supervised field.
+	nanomdminfo.DefaultIsSupervised = nanomdminfoDescIsSupervised.Default.(bool)
+	// nanomdminfoDescLocalhostname is the schema descriptor for localhostname field.
+	nanomdminfoDescLocalhostname := nanomdminfoFields[16].Descriptor()
+	// nanomdminfo.DefaultLocalhostname holds the default value on creation for the localhostname field.
+	nanomdminfo.DefaultLocalhostname = nanomdminfoDescLocalhostname.Default.(string)
+	// nanomdminfoDescModel is the schema descriptor for model field.
+	nanomdminfoDescModel := nanomdminfoFields[17].Descriptor()
+	// nanomdminfo.DefaultModel holds the default value on creation for the model field.
+	nanomdminfo.DefaultModel = nanomdminfoDescModel.Default.(string)
+	// nanomdminfoDescModelName is the schema descriptor for model_name field.
+	nanomdminfoDescModelName := nanomdminfoFields[18].Descriptor()
+	// nanomdminfo.DefaultModelName holds the default value on creation for the model_name field.
+	nanomdminfo.DefaultModelName = nanomdminfoDescModelName.Default.(string)
+	// nanomdminfoDescAutoCheckEnabled is the schema descriptor for auto_check_enabled field.
+	nanomdminfoDescAutoCheckEnabled := nanomdminfoFields[19].Descriptor()
+	// nanomdminfo.DefaultAutoCheckEnabled holds the default value on creation for the auto_check_enabled field.
+	nanomdminfo.DefaultAutoCheckEnabled = nanomdminfoDescAutoCheckEnabled.Default.(bool)
+	// nanomdminfoDescAutomaticAppInstallationEnabled is the schema descriptor for automatic_app_installation_enabled field.
+	nanomdminfoDescAutomaticAppInstallationEnabled := nanomdminfoFields[20].Descriptor()
+	// nanomdminfo.DefaultAutomaticAppInstallationEnabled holds the default value on creation for the automatic_app_installation_enabled field.
+	nanomdminfo.DefaultAutomaticAppInstallationEnabled = nanomdminfoDescAutomaticAppInstallationEnabled.Default.(bool)
+	// nanomdminfoDescAutomaticOsInstallationEnabled is the schema descriptor for automatic_os_installation_enabled field.
+	nanomdminfoDescAutomaticOsInstallationEnabled := nanomdminfoFields[21].Descriptor()
+	// nanomdminfo.DefaultAutomaticOsInstallationEnabled holds the default value on creation for the automatic_os_installation_enabled field.
+	nanomdminfo.DefaultAutomaticOsInstallationEnabled = nanomdminfoDescAutomaticOsInstallationEnabled.Default.(bool)
+	// nanomdminfoDescAutomaticSecurityUpdatesEnabled is the schema descriptor for automatic_security_updates_enabled field.
+	nanomdminfoDescAutomaticSecurityUpdatesEnabled := nanomdminfoFields[22].Descriptor()
+	// nanomdminfo.DefaultAutomaticSecurityUpdatesEnabled holds the default value on creation for the automatic_security_updates_enabled field.
+	nanomdminfo.DefaultAutomaticSecurityUpdatesEnabled = nanomdminfoDescAutomaticSecurityUpdatesEnabled.Default.(bool)
+	// nanomdminfoDescBackgroundDownloadEnabled is the schema descriptor for background_download_enabled field.
+	nanomdminfoDescBackgroundDownloadEnabled := nanomdminfoFields[23].Descriptor()
+	// nanomdminfo.DefaultBackgroundDownloadEnabled holds the default value on creation for the background_download_enabled field.
+	nanomdminfo.DefaultBackgroundDownloadEnabled = nanomdminfoDescBackgroundDownloadEnabled.Default.(bool)
+	// nanomdminfoDescCatalogURL is the schema descriptor for catalog_url field.
+	nanomdminfoDescCatalogURL := nanomdminfoFields[24].Descriptor()
+	// nanomdminfo.DefaultCatalogURL holds the default value on creation for the catalog_url field.
+	nanomdminfo.DefaultCatalogURL = nanomdminfoDescCatalogURL.Default.(string)
+	// nanomdminfoDescIsDefaultCatalog is the schema descriptor for is_default_catalog field.
+	nanomdminfoDescIsDefaultCatalog := nanomdminfoFields[25].Descriptor()
+	// nanomdminfo.DefaultIsDefaultCatalog holds the default value on creation for the is_default_catalog field.
+	nanomdminfo.DefaultIsDefaultCatalog = nanomdminfoDescIsDefaultCatalog.Default.(bool)
+	// nanomdminfoDescPreviousScanResult is the schema descriptor for previous_scan_result field.
+	nanomdminfoDescPreviousScanResult := nanomdminfoFields[27].Descriptor()
+	// nanomdminfo.DefaultPreviousScanResult holds the default value on creation for the previous_scan_result field.
+	nanomdminfo.DefaultPreviousScanResult = nanomdminfoDescPreviousScanResult.Default.(int)
+	// nanomdminfoDescOsVersion is the schema descriptor for os_version field.
+	nanomdminfoDescOsVersion := nanomdminfoFields[28].Descriptor()
+	// nanomdminfo.DefaultOsVersion holds the default value on creation for the os_version field.
+	nanomdminfo.DefaultOsVersion = nanomdminfoDescOsVersion.Default.(string)
+	// nanomdminfoDescPinRequiredForDeviceLock is the schema descriptor for pin_required_for_device_lock field.
+	nanomdminfoDescPinRequiredForDeviceLock := nanomdminfoFields[29].Descriptor()
+	// nanomdminfo.DefaultPinRequiredForDeviceLock holds the default value on creation for the pin_required_for_device_lock field.
+	nanomdminfo.DefaultPinRequiredForDeviceLock = nanomdminfoDescPinRequiredForDeviceLock.Default.(bool)
+	// nanomdminfoDescPinRequiredForEraseDevice is the schema descriptor for pin_required_for_erase_device field.
+	nanomdminfoDescPinRequiredForEraseDevice := nanomdminfoFields[30].Descriptor()
+	// nanomdminfo.DefaultPinRequiredForEraseDevice holds the default value on creation for the pin_required_for_erase_device field.
+	nanomdminfo.DefaultPinRequiredForEraseDevice = nanomdminfoDescPinRequiredForEraseDevice.Default.(bool)
+	// nanomdminfoDescProductName is the schema descriptor for product_name field.
+	nanomdminfoDescProductName := nanomdminfoFields[31].Descriptor()
+	// nanomdminfo.DefaultProductName holds the default value on creation for the product_name field.
+	nanomdminfo.DefaultProductName = nanomdminfoDescProductName.Default.(string)
+	// nanomdminfoDescProvisioningUdid is the schema descriptor for provisioning_udid field.
+	nanomdminfoDescProvisioningUdid := nanomdminfoFields[32].Descriptor()
+	// nanomdminfo.DefaultProvisioningUdid holds the default value on creation for the provisioning_udid field.
+	nanomdminfo.DefaultProvisioningUdid = nanomdminfoDescProvisioningUdid.Default.(string)
+	// nanomdminfoDescSerialNumber is the schema descriptor for serial_number field.
+	nanomdminfoDescSerialNumber := nanomdminfoFields[33].Descriptor()
+	// nanomdminfo.DefaultSerialNumber holds the default value on creation for the serial_number field.
+	nanomdminfo.DefaultSerialNumber = nanomdminfoDescSerialNumber.Default.(string)
+	// nanomdminfoDescSoftwareUpdateDeviceID is the schema descriptor for software_update_device_id field.
+	nanomdminfoDescSoftwareUpdateDeviceID := nanomdminfoFields[34].Descriptor()
+	// nanomdminfo.DefaultSoftwareUpdateDeviceID holds the default value on creation for the software_update_device_id field.
+	nanomdminfo.DefaultSoftwareUpdateDeviceID = nanomdminfoDescSoftwareUpdateDeviceID.Default.(string)
+	// nanomdminfoDescSupplementalBuildVersion is the schema descriptor for supplemental_build_version field.
+	nanomdminfoDescSupplementalBuildVersion := nanomdminfoFields[35].Descriptor()
+	// nanomdminfo.DefaultSupplementalBuildVersion holds the default value on creation for the supplemental_build_version field.
+	nanomdminfo.DefaultSupplementalBuildVersion = nanomdminfoDescSupplementalBuildVersion.Default.(string)
+	// nanomdminfoDescSupportsLomDevice is the schema descriptor for supports_lom_device field.
+	nanomdminfoDescSupportsLomDevice := nanomdminfoFields[36].Descriptor()
+	// nanomdminfo.DefaultSupportsLomDevice holds the default value on creation for the supports_lom_device field.
+	nanomdminfo.DefaultSupportsLomDevice = nanomdminfoDescSupportsLomDevice.Default.(bool)
+	// nanomdminfoDescSupportsIosAppInstalls is the schema descriptor for supports_ios_app_installs field.
+	nanomdminfoDescSupportsIosAppInstalls := nanomdminfoFields[37].Descriptor()
+	// nanomdminfo.DefaultSupportsIosAppInstalls holds the default value on creation for the supports_ios_app_installs field.
+	nanomdminfo.DefaultSupportsIosAppInstalls = nanomdminfoDescSupportsIosAppInstalls.Default.(bool)
+	// nanomdminfoDescSystemIntegrityProtectionEnabled is the schema descriptor for system_integrity_protection_enabled field.
+	nanomdminfoDescSystemIntegrityProtectionEnabled := nanomdminfoFields[38].Descriptor()
+	// nanomdminfo.DefaultSystemIntegrityProtectionEnabled holds the default value on creation for the system_integrity_protection_enabled field.
+	nanomdminfo.DefaultSystemIntegrityProtectionEnabled = nanomdminfoDescSystemIntegrityProtectionEnabled.Default.(bool)
+	// nanomdminfoDescUdid is the schema descriptor for udid field.
+	nanomdminfoDescUdid := nanomdminfoFields[39].Descriptor()
+	// nanomdminfo.DefaultUdid holds the default value on creation for the udid field.
+	nanomdminfo.DefaultUdid = nanomdminfoDescUdid.Default.(string)
 	netbirdFields := schema.Netbird{}.Fields()
 	_ = netbirdFields
 	// netbirdDescVersion is the schema descriptor for version field.

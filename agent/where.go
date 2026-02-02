@@ -2226,6 +2226,29 @@ func HasMdmcommandsWith(preds ...predicate.MDMCommand) predicate.Agent {
 	})
 }
 
+// HasNanomdminfo applies the HasEdge predicate on the "nanomdminfo" edge.
+func HasNanomdminfo() predicate.Agent {
+	return predicate.Agent(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, NanomdminfoTable, NanomdminfoColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasNanomdminfoWith applies the HasEdge predicate on the "nanomdminfo" edge with a given conditions (other predicates).
+func HasNanomdminfoWith(preds ...predicate.NanoMDMInfo) predicate.Agent {
+	return predicate.Agent(func(s *sql.Selector) {
+		step := newNanomdminfoStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.Agent) predicate.Agent {
 	return predicate.Agent(sql.AndPredicates(predicates...))

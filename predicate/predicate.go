@@ -42,6 +42,9 @@ type Metadata func(*sql.Selector)
 // Monitor is the predicate function for monitor builders.
 type Monitor func(*sql.Selector)
 
+// NanoMDMInfo is the predicate function for nanomdminfo builders.
+type NanoMDMInfo func(*sql.Selector)
+
 // Netbird is the predicate function for netbird builders.
 type Netbird func(*sql.Selector)
 
