@@ -16,8 +16,8 @@ const (
 	FieldID = "uuid"
 	// FieldWhen holds the string denoting the when field in the database.
 	FieldWhen = "when"
-	// FieldAgentStatus holds the string denoting the agent_status field in the database.
-	FieldAgentStatus = "agent_status"
+	// FieldType holds the string denoting the type field in the database.
+	FieldType = "type"
 	// EdgeAgents holds the string denoting the agents edge name in mutations.
 	EdgeAgents = "agents"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -37,7 +37,7 @@ const (
 var Columns = []string{
 	FieldID,
 	FieldWhen,
-	FieldAgentStatus,
+	FieldType,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "mdm_commands"
@@ -66,30 +66,30 @@ var (
 	IDValidator func(string) error
 )
 
-// AgentStatus defines the type for the "agent_status" enum field.
-type AgentStatus string
+// Type defines the type for the "type" enum field.
+type Type string
 
-// AgentStatusDeviceInformation is the default value of the AgentStatus enum.
-const DefaultAgentStatus = AgentStatusDeviceInformation
+// TypeDeviceInformation is the default value of the Type enum.
+const DefaultType = TypeDeviceInformation
 
-// AgentStatus values.
+// Type values.
 const (
-	AgentStatusDeviceInformation         AgentStatus = "DeviceInformation"
-	AgentStatusUsersList                 AgentStatus = "UsersList"
-	AgentStatusInstalledApllicationsList AgentStatus = "InstalledApllicationsList"
+	TypeDeviceInformation         Type = "DeviceInformation"
+	TypeUsersList                 Type = "UsersList"
+	TypeInstalledApllicationsList Type = "InstalledApllicationsList"
 )
 
-func (as AgentStatus) String() string {
-	return string(as)
+func (_type Type) String() string {
+	return string(_type)
 }
 
-// AgentStatusValidator is a validator for the "agent_status" field enum values. It is called by the builders before save.
-func AgentStatusValidator(as AgentStatus) error {
-	switch as {
-	case AgentStatusDeviceInformation, AgentStatusUsersList, AgentStatusInstalledApllicationsList:
+// TypeValidator is a validator for the "type" field enum values. It is called by the builders before save.
+func TypeValidator(_type Type) error {
+	switch _type {
+	case TypeDeviceInformation, TypeUsersList, TypeInstalledApllicationsList:
 		return nil
 	default:
-		return fmt.Errorf("mdmcommand: invalid enum value for agent_status field: %q", as)
+		return fmt.Errorf("mdmcommand: invalid enum value for type field: %q", _type)
 	}
 }
 
@@ -106,9 +106,9 @@ func ByWhen(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldWhen, opts...).ToFunc()
 }
 
-// ByAgentStatus orders the results by the agent_status field.
-func ByAgentStatus(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldAgentStatus, opts...).ToFunc()
+// ByType orders the results by the type field.
+func ByType(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldType, opts...).ToFunc()
 }
 
 // ByAgentsField orders the results by agents field.

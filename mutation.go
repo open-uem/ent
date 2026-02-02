@@ -9566,7 +9566,7 @@ type MDMCommandMutation struct {
 	typ           string
 	id            *string
 	when          *time.Time
-	agent_status  *mdmcommand.AgentStatus
+	_type         *mdmcommand.Type
 	clearedFields map[string]struct{}
 	agents        *string
 	clearedagents bool
@@ -9728,53 +9728,53 @@ func (m *MDMCommandMutation) ResetWhen() {
 	delete(m.clearedFields, mdmcommand.FieldWhen)
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (m *MDMCommandMutation) SetAgentStatus(ms mdmcommand.AgentStatus) {
-	m.agent_status = &ms
+// SetType sets the "type" field.
+func (m *MDMCommandMutation) SetType(value mdmcommand.Type) {
+	m._type = &value
 }
 
-// AgentStatus returns the value of the "agent_status" field in the mutation.
-func (m *MDMCommandMutation) AgentStatus() (r mdmcommand.AgentStatus, exists bool) {
-	v := m.agent_status
+// GetType returns the value of the "type" field in the mutation.
+func (m *MDMCommandMutation) GetType() (r mdmcommand.Type, exists bool) {
+	v := m._type
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldAgentStatus returns the old "agent_status" field's value of the MDMCommand entity.
+// OldType returns the old "type" field's value of the MDMCommand entity.
 // If the MDMCommand object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *MDMCommandMutation) OldAgentStatus(ctx context.Context) (v mdmcommand.AgentStatus, err error) {
+func (m *MDMCommandMutation) OldType(ctx context.Context) (v mdmcommand.Type, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldAgentStatus is only allowed on UpdateOne operations")
+		return v, errors.New("OldType is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldAgentStatus requires an ID field in the mutation")
+		return v, errors.New("OldType requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldAgentStatus: %w", err)
+		return v, fmt.Errorf("querying old value for OldType: %w", err)
 	}
-	return oldValue.AgentStatus, nil
+	return oldValue.Type, nil
 }
 
-// ClearAgentStatus clears the value of the "agent_status" field.
-func (m *MDMCommandMutation) ClearAgentStatus() {
-	m.agent_status = nil
-	m.clearedFields[mdmcommand.FieldAgentStatus] = struct{}{}
+// ClearType clears the value of the "type" field.
+func (m *MDMCommandMutation) ClearType() {
+	m._type = nil
+	m.clearedFields[mdmcommand.FieldType] = struct{}{}
 }
 
-// AgentStatusCleared returns if the "agent_status" field was cleared in this mutation.
-func (m *MDMCommandMutation) AgentStatusCleared() bool {
-	_, ok := m.clearedFields[mdmcommand.FieldAgentStatus]
+// TypeCleared returns if the "type" field was cleared in this mutation.
+func (m *MDMCommandMutation) TypeCleared() bool {
+	_, ok := m.clearedFields[mdmcommand.FieldType]
 	return ok
 }
 
-// ResetAgentStatus resets all changes to the "agent_status" field.
-func (m *MDMCommandMutation) ResetAgentStatus() {
-	m.agent_status = nil
-	delete(m.clearedFields, mdmcommand.FieldAgentStatus)
+// ResetType resets all changes to the "type" field.
+func (m *MDMCommandMutation) ResetType() {
+	m._type = nil
+	delete(m.clearedFields, mdmcommand.FieldType)
 }
 
 // SetAgentsID sets the "agents" edge to the Agent entity by id.
@@ -9854,8 +9854,8 @@ func (m *MDMCommandMutation) Fields() []string {
 	if m.when != nil {
 		fields = append(fields, mdmcommand.FieldWhen)
 	}
-	if m.agent_status != nil {
-		fields = append(fields, mdmcommand.FieldAgentStatus)
+	if m._type != nil {
+		fields = append(fields, mdmcommand.FieldType)
 	}
 	return fields
 }
@@ -9867,8 +9867,8 @@ func (m *MDMCommandMutation) Field(name string) (ent.Value, bool) {
 	switch name {
 	case mdmcommand.FieldWhen:
 		return m.When()
-	case mdmcommand.FieldAgentStatus:
-		return m.AgentStatus()
+	case mdmcommand.FieldType:
+		return m.GetType()
 	}
 	return nil, false
 }
@@ -9880,8 +9880,8 @@ func (m *MDMCommandMutation) OldField(ctx context.Context, name string) (ent.Val
 	switch name {
 	case mdmcommand.FieldWhen:
 		return m.OldWhen(ctx)
-	case mdmcommand.FieldAgentStatus:
-		return m.OldAgentStatus(ctx)
+	case mdmcommand.FieldType:
+		return m.OldType(ctx)
 	}
 	return nil, fmt.Errorf("unknown MDMCommand field %s", name)
 }
@@ -9898,12 +9898,12 @@ func (m *MDMCommandMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetWhen(v)
 		return nil
-	case mdmcommand.FieldAgentStatus:
-		v, ok := value.(mdmcommand.AgentStatus)
+	case mdmcommand.FieldType:
+		v, ok := value.(mdmcommand.Type)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetAgentStatus(v)
+		m.SetType(v)
 		return nil
 	}
 	return fmt.Errorf("unknown MDMCommand field %s", name)
@@ -9938,8 +9938,8 @@ func (m *MDMCommandMutation) ClearedFields() []string {
 	if m.FieldCleared(mdmcommand.FieldWhen) {
 		fields = append(fields, mdmcommand.FieldWhen)
 	}
-	if m.FieldCleared(mdmcommand.FieldAgentStatus) {
-		fields = append(fields, mdmcommand.FieldAgentStatus)
+	if m.FieldCleared(mdmcommand.FieldType) {
+		fields = append(fields, mdmcommand.FieldType)
 	}
 	return fields
 }
@@ -9958,8 +9958,8 @@ func (m *MDMCommandMutation) ClearField(name string) error {
 	case mdmcommand.FieldWhen:
 		m.ClearWhen()
 		return nil
-	case mdmcommand.FieldAgentStatus:
-		m.ClearAgentStatus()
+	case mdmcommand.FieldType:
+		m.ClearType()
 		return nil
 	}
 	return fmt.Errorf("unknown MDMCommand nullable field %s", name)
@@ -9972,8 +9972,8 @@ func (m *MDMCommandMutation) ResetField(name string) error {
 	case mdmcommand.FieldWhen:
 		m.ResetWhen()
 		return nil
-	case mdmcommand.FieldAgentStatus:
-		m.ResetAgentStatus()
+	case mdmcommand.FieldType:
+		m.ResetType()
 		return nil
 	}
 	return fmt.Errorf("unknown MDMCommand field %s", name)

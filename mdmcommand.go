@@ -20,8 +20,8 @@ type MDMCommand struct {
 	ID string `json:"id,omitempty"`
 	// When holds the value of the "when" field.
 	When time.Time `json:"when,omitempty"`
-	// AgentStatus holds the value of the "agent_status" field.
-	AgentStatus mdmcommand.AgentStatus `json:"agent_status,omitempty"`
+	// Type holds the value of the "type" field.
+	Type mdmcommand.Type `json:"type,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the MDMCommandQuery when eager-loading is set.
 	Edges             MDMCommandEdges `json:"edges"`
@@ -54,7 +54,7 @@ func (*MDMCommand) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case mdmcommand.FieldID, mdmcommand.FieldAgentStatus:
+		case mdmcommand.FieldID, mdmcommand.FieldType:
 			values[i] = new(sql.NullString)
 		case mdmcommand.FieldWhen:
 			values[i] = new(sql.NullTime)
@@ -87,11 +87,11 @@ func (mc *MDMCommand) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				mc.When = value.Time
 			}
-		case mdmcommand.FieldAgentStatus:
+		case mdmcommand.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field agent_status", values[i])
+				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				mc.AgentStatus = mdmcommand.AgentStatus(value.String)
+				mc.Type = mdmcommand.Type(value.String)
 			}
 		case mdmcommand.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -144,8 +144,8 @@ func (mc *MDMCommand) String() string {
 	builder.WriteString("when=")
 	builder.WriteString(mc.When.Format(time.ANSIC))
 	builder.WriteString(", ")
-	builder.WriteString("agent_status=")
-	builder.WriteString(fmt.Sprintf("%v", mc.AgentStatus))
+	builder.WriteString("type=")
+	builder.WriteString(fmt.Sprintf("%v", mc.Type))
 	builder.WriteByte(')')
 	return builder.String()
 }

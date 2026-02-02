@@ -227,7 +227,7 @@ var (
 	MdmCommandsColumns = []*schema.Column{
 		{Name: "uuid", Type: field.TypeString, Unique: true},
 		{Name: "when", Type: field.TypeTime, Nullable: true},
-		{Name: "agent_status", Type: field.TypeEnum, Nullable: true, Enums: []string{"DeviceInformation", "UsersList", "InstalledApllicationsList"}, Default: "DeviceInformation"},
+		{Name: "type", Type: field.TypeEnum, Nullable: true, Enums: []string{"DeviceInformation", "UsersList", "InstalledApllicationsList"}, Default: "DeviceInformation"},
 		{Name: "agent_mdmcommands", Type: field.TypeString, Nullable: true},
 	}
 	// MdmCommandsTable holds the schema information for the "mdm_commands" table.

@@ -120,34 +120,34 @@ func WhenNotNil() predicate.MDMCommand {
 	return predicate.MDMCommand(sql.FieldNotNull(FieldWhen))
 }
 
-// AgentStatusEQ applies the EQ predicate on the "agent_status" field.
-func AgentStatusEQ(v AgentStatus) predicate.MDMCommand {
-	return predicate.MDMCommand(sql.FieldEQ(FieldAgentStatus, v))
+// TypeEQ applies the EQ predicate on the "type" field.
+func TypeEQ(v Type) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldEQ(FieldType, v))
 }
 
-// AgentStatusNEQ applies the NEQ predicate on the "agent_status" field.
-func AgentStatusNEQ(v AgentStatus) predicate.MDMCommand {
-	return predicate.MDMCommand(sql.FieldNEQ(FieldAgentStatus, v))
+// TypeNEQ applies the NEQ predicate on the "type" field.
+func TypeNEQ(v Type) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldNEQ(FieldType, v))
 }
 
-// AgentStatusIn applies the In predicate on the "agent_status" field.
-func AgentStatusIn(vs ...AgentStatus) predicate.MDMCommand {
-	return predicate.MDMCommand(sql.FieldIn(FieldAgentStatus, vs...))
+// TypeIn applies the In predicate on the "type" field.
+func TypeIn(vs ...Type) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldIn(FieldType, vs...))
 }
 
-// AgentStatusNotIn applies the NotIn predicate on the "agent_status" field.
-func AgentStatusNotIn(vs ...AgentStatus) predicate.MDMCommand {
-	return predicate.MDMCommand(sql.FieldNotIn(FieldAgentStatus, vs...))
+// TypeNotIn applies the NotIn predicate on the "type" field.
+func TypeNotIn(vs ...Type) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldNotIn(FieldType, vs...))
 }
 
-// AgentStatusIsNil applies the IsNil predicate on the "agent_status" field.
-func AgentStatusIsNil() predicate.MDMCommand {
-	return predicate.MDMCommand(sql.FieldIsNull(FieldAgentStatus))
+// TypeIsNil applies the IsNil predicate on the "type" field.
+func TypeIsNil() predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldIsNull(FieldType))
 }
 
-// AgentStatusNotNil applies the NotNil predicate on the "agent_status" field.
-func AgentStatusNotNil() predicate.MDMCommand {
-	return predicate.MDMCommand(sql.FieldNotNull(FieldAgentStatus))
+// TypeNotNil applies the NotNil predicate on the "type" field.
+func TypeNotNil() predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldNotNull(FieldType))
 }
 
 // HasAgents applies the HasEdge predicate on the "agents" edge.

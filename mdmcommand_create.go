@@ -38,16 +38,16 @@ func (mcc *MDMCommandCreate) SetNillableWhen(t *time.Time) *MDMCommandCreate {
 	return mcc
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (mcc *MDMCommandCreate) SetAgentStatus(ms mdmcommand.AgentStatus) *MDMCommandCreate {
-	mcc.mutation.SetAgentStatus(ms)
+// SetType sets the "type" field.
+func (mcc *MDMCommandCreate) SetType(m mdmcommand.Type) *MDMCommandCreate {
+	mcc.mutation.SetType(m)
 	return mcc
 }
 
-// SetNillableAgentStatus sets the "agent_status" field if the given value is not nil.
-func (mcc *MDMCommandCreate) SetNillableAgentStatus(ms *mdmcommand.AgentStatus) *MDMCommandCreate {
-	if ms != nil {
-		mcc.SetAgentStatus(*ms)
+// SetNillableType sets the "type" field if the given value is not nil.
+func (mcc *MDMCommandCreate) SetNillableType(m *mdmcommand.Type) *MDMCommandCreate {
+	if m != nil {
+		mcc.SetType(*m)
 	}
 	return mcc
 }
@@ -112,17 +112,17 @@ func (mcc *MDMCommandCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (mcc *MDMCommandCreate) defaults() {
-	if _, ok := mcc.mutation.AgentStatus(); !ok {
-		v := mdmcommand.DefaultAgentStatus
-		mcc.mutation.SetAgentStatus(v)
+	if _, ok := mcc.mutation.GetType(); !ok {
+		v := mdmcommand.DefaultType
+		mcc.mutation.SetType(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (mcc *MDMCommandCreate) check() error {
-	if v, ok := mcc.mutation.AgentStatus(); ok {
-		if err := mdmcommand.AgentStatusValidator(v); err != nil {
-			return &ValidationError{Name: "agent_status", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.agent_status": %w`, err)}
+	if v, ok := mcc.mutation.GetType(); ok {
+		if err := mdmcommand.TypeValidator(v); err != nil {
+			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.type": %w`, err)}
 		}
 	}
 	if v, ok := mcc.mutation.ID(); ok {
@@ -170,9 +170,9 @@ func (mcc *MDMCommandCreate) createSpec() (*MDMCommand, *sqlgraph.CreateSpec) {
 		_spec.SetField(mdmcommand.FieldWhen, field.TypeTime, value)
 		_node.When = value
 	}
-	if value, ok := mcc.mutation.AgentStatus(); ok {
-		_spec.SetField(mdmcommand.FieldAgentStatus, field.TypeEnum, value)
-		_node.AgentStatus = value
+	if value, ok := mcc.mutation.GetType(); ok {
+		_spec.SetField(mdmcommand.FieldType, field.TypeEnum, value)
+		_node.Type = value
 	}
 	if nodes := mcc.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -261,21 +261,21 @@ func (u *MDMCommandUpsert) ClearWhen() *MDMCommandUpsert {
 	return u
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (u *MDMCommandUpsert) SetAgentStatus(v mdmcommand.AgentStatus) *MDMCommandUpsert {
-	u.Set(mdmcommand.FieldAgentStatus, v)
+// SetType sets the "type" field.
+func (u *MDMCommandUpsert) SetType(v mdmcommand.Type) *MDMCommandUpsert {
+	u.Set(mdmcommand.FieldType, v)
 	return u
 }
 
-// UpdateAgentStatus sets the "agent_status" field to the value that was provided on create.
-func (u *MDMCommandUpsert) UpdateAgentStatus() *MDMCommandUpsert {
-	u.SetExcluded(mdmcommand.FieldAgentStatus)
+// UpdateType sets the "type" field to the value that was provided on create.
+func (u *MDMCommandUpsert) UpdateType() *MDMCommandUpsert {
+	u.SetExcluded(mdmcommand.FieldType)
 	return u
 }
 
-// ClearAgentStatus clears the value of the "agent_status" field.
-func (u *MDMCommandUpsert) ClearAgentStatus() *MDMCommandUpsert {
-	u.SetNull(mdmcommand.FieldAgentStatus)
+// ClearType clears the value of the "type" field.
+func (u *MDMCommandUpsert) ClearType() *MDMCommandUpsert {
+	u.SetNull(mdmcommand.FieldType)
 	return u
 }
 
@@ -348,24 +348,24 @@ func (u *MDMCommandUpsertOne) ClearWhen() *MDMCommandUpsertOne {
 	})
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (u *MDMCommandUpsertOne) SetAgentStatus(v mdmcommand.AgentStatus) *MDMCommandUpsertOne {
+// SetType sets the "type" field.
+func (u *MDMCommandUpsertOne) SetType(v mdmcommand.Type) *MDMCommandUpsertOne {
 	return u.Update(func(s *MDMCommandUpsert) {
-		s.SetAgentStatus(v)
+		s.SetType(v)
 	})
 }
 
-// UpdateAgentStatus sets the "agent_status" field to the value that was provided on create.
-func (u *MDMCommandUpsertOne) UpdateAgentStatus() *MDMCommandUpsertOne {
+// UpdateType sets the "type" field to the value that was provided on create.
+func (u *MDMCommandUpsertOne) UpdateType() *MDMCommandUpsertOne {
 	return u.Update(func(s *MDMCommandUpsert) {
-		s.UpdateAgentStatus()
+		s.UpdateType()
 	})
 }
 
-// ClearAgentStatus clears the value of the "agent_status" field.
-func (u *MDMCommandUpsertOne) ClearAgentStatus() *MDMCommandUpsertOne {
+// ClearType clears the value of the "type" field.
+func (u *MDMCommandUpsertOne) ClearType() *MDMCommandUpsertOne {
 	return u.Update(func(s *MDMCommandUpsert) {
-		s.ClearAgentStatus()
+		s.ClearType()
 	})
 }
 
@@ -605,24 +605,24 @@ func (u *MDMCommandUpsertBulk) ClearWhen() *MDMCommandUpsertBulk {
 	})
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (u *MDMCommandUpsertBulk) SetAgentStatus(v mdmcommand.AgentStatus) *MDMCommandUpsertBulk {
+// SetType sets the "type" field.
+func (u *MDMCommandUpsertBulk) SetType(v mdmcommand.Type) *MDMCommandUpsertBulk {
 	return u.Update(func(s *MDMCommandUpsert) {
-		s.SetAgentStatus(v)
+		s.SetType(v)
 	})
 }
 
-// UpdateAgentStatus sets the "agent_status" field to the value that was provided on create.
-func (u *MDMCommandUpsertBulk) UpdateAgentStatus() *MDMCommandUpsertBulk {
+// UpdateType sets the "type" field to the value that was provided on create.
+func (u *MDMCommandUpsertBulk) UpdateType() *MDMCommandUpsertBulk {
 	return u.Update(func(s *MDMCommandUpsert) {
-		s.UpdateAgentStatus()
+		s.UpdateType()
 	})
 }
 
-// ClearAgentStatus clears the value of the "agent_status" field.
-func (u *MDMCommandUpsertBulk) ClearAgentStatus() *MDMCommandUpsertBulk {
+// ClearType clears the value of the "type" field.
+func (u *MDMCommandUpsertBulk) ClearType() *MDMCommandUpsertBulk {
 	return u.Update(func(s *MDMCommandUpsert) {
-		s.ClearAgentStatus()
+		s.ClearType()
 	})
 }
 

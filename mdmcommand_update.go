@@ -50,23 +50,23 @@ func (mcu *MDMCommandUpdate) ClearWhen() *MDMCommandUpdate {
 	return mcu
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (mcu *MDMCommandUpdate) SetAgentStatus(ms mdmcommand.AgentStatus) *MDMCommandUpdate {
-	mcu.mutation.SetAgentStatus(ms)
+// SetType sets the "type" field.
+func (mcu *MDMCommandUpdate) SetType(m mdmcommand.Type) *MDMCommandUpdate {
+	mcu.mutation.SetType(m)
 	return mcu
 }
 
-// SetNillableAgentStatus sets the "agent_status" field if the given value is not nil.
-func (mcu *MDMCommandUpdate) SetNillableAgentStatus(ms *mdmcommand.AgentStatus) *MDMCommandUpdate {
-	if ms != nil {
-		mcu.SetAgentStatus(*ms)
+// SetNillableType sets the "type" field if the given value is not nil.
+func (mcu *MDMCommandUpdate) SetNillableType(m *mdmcommand.Type) *MDMCommandUpdate {
+	if m != nil {
+		mcu.SetType(*m)
 	}
 	return mcu
 }
 
-// ClearAgentStatus clears the value of the "agent_status" field.
-func (mcu *MDMCommandUpdate) ClearAgentStatus() *MDMCommandUpdate {
-	mcu.mutation.ClearAgentStatus()
+// ClearType clears the value of the "type" field.
+func (mcu *MDMCommandUpdate) ClearType() *MDMCommandUpdate {
+	mcu.mutation.ClearType()
 	return mcu
 }
 
@@ -129,9 +129,9 @@ func (mcu *MDMCommandUpdate) ExecX(ctx context.Context) {
 
 // check runs all checks and user-defined validators on the builder.
 func (mcu *MDMCommandUpdate) check() error {
-	if v, ok := mcu.mutation.AgentStatus(); ok {
-		if err := mdmcommand.AgentStatusValidator(v); err != nil {
-			return &ValidationError{Name: "agent_status", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.agent_status": %w`, err)}
+	if v, ok := mcu.mutation.GetType(); ok {
+		if err := mdmcommand.TypeValidator(v); err != nil {
+			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.type": %w`, err)}
 		}
 	}
 	return nil
@@ -161,11 +161,11 @@ func (mcu *MDMCommandUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if mcu.mutation.WhenCleared() {
 		_spec.ClearField(mdmcommand.FieldWhen, field.TypeTime)
 	}
-	if value, ok := mcu.mutation.AgentStatus(); ok {
-		_spec.SetField(mdmcommand.FieldAgentStatus, field.TypeEnum, value)
+	if value, ok := mcu.mutation.GetType(); ok {
+		_spec.SetField(mdmcommand.FieldType, field.TypeEnum, value)
 	}
-	if mcu.mutation.AgentStatusCleared() {
-		_spec.ClearField(mdmcommand.FieldAgentStatus, field.TypeEnum)
+	if mcu.mutation.TypeCleared() {
+		_spec.ClearField(mdmcommand.FieldType, field.TypeEnum)
 	}
 	if mcu.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -238,23 +238,23 @@ func (mcuo *MDMCommandUpdateOne) ClearWhen() *MDMCommandUpdateOne {
 	return mcuo
 }
 
-// SetAgentStatus sets the "agent_status" field.
-func (mcuo *MDMCommandUpdateOne) SetAgentStatus(ms mdmcommand.AgentStatus) *MDMCommandUpdateOne {
-	mcuo.mutation.SetAgentStatus(ms)
+// SetType sets the "type" field.
+func (mcuo *MDMCommandUpdateOne) SetType(m mdmcommand.Type) *MDMCommandUpdateOne {
+	mcuo.mutation.SetType(m)
 	return mcuo
 }
 
-// SetNillableAgentStatus sets the "agent_status" field if the given value is not nil.
-func (mcuo *MDMCommandUpdateOne) SetNillableAgentStatus(ms *mdmcommand.AgentStatus) *MDMCommandUpdateOne {
-	if ms != nil {
-		mcuo.SetAgentStatus(*ms)
+// SetNillableType sets the "type" field if the given value is not nil.
+func (mcuo *MDMCommandUpdateOne) SetNillableType(m *mdmcommand.Type) *MDMCommandUpdateOne {
+	if m != nil {
+		mcuo.SetType(*m)
 	}
 	return mcuo
 }
 
-// ClearAgentStatus clears the value of the "agent_status" field.
-func (mcuo *MDMCommandUpdateOne) ClearAgentStatus() *MDMCommandUpdateOne {
-	mcuo.mutation.ClearAgentStatus()
+// ClearType clears the value of the "type" field.
+func (mcuo *MDMCommandUpdateOne) ClearType() *MDMCommandUpdateOne {
+	mcuo.mutation.ClearType()
 	return mcuo
 }
 
@@ -330,9 +330,9 @@ func (mcuo *MDMCommandUpdateOne) ExecX(ctx context.Context) {
 
 // check runs all checks and user-defined validators on the builder.
 func (mcuo *MDMCommandUpdateOne) check() error {
-	if v, ok := mcuo.mutation.AgentStatus(); ok {
-		if err := mdmcommand.AgentStatusValidator(v); err != nil {
-			return &ValidationError{Name: "agent_status", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.agent_status": %w`, err)}
+	if v, ok := mcuo.mutation.GetType(); ok {
+		if err := mdmcommand.TypeValidator(v); err != nil {
+			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.type": %w`, err)}
 		}
 	}
 	return nil
@@ -379,11 +379,11 @@ func (mcuo *MDMCommandUpdateOne) sqlSave(ctx context.Context) (_node *MDMCommand
 	if mcuo.mutation.WhenCleared() {
 		_spec.ClearField(mdmcommand.FieldWhen, field.TypeTime)
 	}
-	if value, ok := mcuo.mutation.AgentStatus(); ok {
-		_spec.SetField(mdmcommand.FieldAgentStatus, field.TypeEnum, value)
+	if value, ok := mcuo.mutation.GetType(); ok {
+		_spec.SetField(mdmcommand.FieldType, field.TypeEnum, value)
 	}
-	if mcuo.mutation.AgentStatusCleared() {
-		_spec.ClearField(mdmcommand.FieldAgentStatus, field.TypeEnum)
+	if mcuo.mutation.TypeCleared() {
+		_spec.ClearField(mdmcommand.FieldType, field.TypeEnum)
 	}
 	if mcuo.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
