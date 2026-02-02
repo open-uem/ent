@@ -12153,59 +12153,59 @@ func (m *MonitorMutation) ResetEdge(name string) error {
 // NanoMDMInfoMutation represents an operation that mutates the NanoMDMInfo nodes in the graph.
 type NanoMDMInfoMutation struct {
 	config
-	op                                   Op
-	typ                                  string
-	id                                   *int
-	available_device_capacity_version    *float64
-	addavailable_device_capacity_version *float64
-	awaiting_configuration               *bool
-	battery_level                        *float64
-	addbattery_level                     *float64
-	bluetooth_mac                        *string
-	build_version                        *string
-	current_console_managed_user         *string
-	device_capacity                      *float64
-	adddevice_capacity                   *float64
-	device_name                          *string
-	eacs_preflight                       *string
-	ethernet_mac                         *string
-	has_battery                          *bool
-	hostname                             *string
-	is_activation_lock_enabled           *bool
-	is_activation_lock_supported         *bool
-	is_apple_silicon                     *bool
-	is_supervised                        *bool
-	localhostname                        *string
-	model                                *string
-	model_name                           *string
-	auto_check_enabled                   *bool
-	automatic_app_installation_enabled   *bool
-	automatic_os_installation_enabled    *bool
-	automatic_security_updates_enabled   *bool
-	background_download_enabled          *bool
-	catalog_url                          *string
-	is_default_catalog                   *bool
-	previous_scan_date                   *time.Time
-	previous_scan_result                 *int
-	addprevious_scan_result              *int
-	os_version                           *string
-	pin_required_for_device_lock         *bool
-	pin_required_for_erase_device        *bool
-	product_name                         *string
-	provisioning_udid                    *string
-	serial_number                        *string
-	software_update_device_id            *string
-	supplemental_build_version           *string
-	supports_lom_device                  *bool
-	supports_ios_app_installs            *bool
-	system_integrity_protection_enabled  *bool
-	udid                                 *string
-	clearedFields                        map[string]struct{}
-	agent                                *string
-	clearedagent                         bool
-	done                                 bool
-	oldValue                             func(context.Context) (*NanoMDMInfo, error)
-	predicates                           []predicate.NanoMDMInfo
+	op                                  Op
+	typ                                 string
+	id                                  *int
+	available_device_capacity           *float64
+	addavailable_device_capacity        *float64
+	awaiting_configuration              *bool
+	battery_level                       *float64
+	addbattery_level                    *float64
+	bluetooth_mac                       *string
+	build_version                       *string
+	current_console_managed_user        *string
+	device_capacity                     *float64
+	adddevice_capacity                  *float64
+	device_name                         *string
+	eacs_preflight                      *string
+	ethernet_mac                        *string
+	has_battery                         *bool
+	hostname                            *string
+	is_activation_lock_enabled          *bool
+	is_activation_lock_supported        *bool
+	is_apple_silicon                    *bool
+	is_supervised                       *bool
+	localhostname                       *string
+	model                               *string
+	model_name                          *string
+	auto_check_enabled                  *bool
+	automatic_app_installation_enabled  *bool
+	automatic_os_installation_enabled   *bool
+	automatic_security_updates_enabled  *bool
+	background_download_enabled         *bool
+	catalog_url                         *string
+	is_default_catalog                  *bool
+	previous_scan_date                  *time.Time
+	previous_scan_result                *int
+	addprevious_scan_result             *int
+	os_version                          *string
+	pin_required_for_device_lock        *bool
+	pin_required_for_erase_device       *bool
+	product_name                        *string
+	provisioning_udid                   *string
+	serial_number                       *string
+	software_update_device_id           *string
+	supplemental_build_version          *string
+	supports_lom_device                 *bool
+	supports_ios_app_installs           *bool
+	system_integrity_protection_enabled *bool
+	udid                                *string
+	clearedFields                       map[string]struct{}
+	agent                               *string
+	clearedagent                        bool
+	done                                bool
+	oldValue                            func(context.Context) (*NanoMDMInfo, error)
+	predicates                          []predicate.NanoMDMInfo
 }
 
 var _ ent.Mutation = (*NanoMDMInfoMutation)(nil)
@@ -12306,60 +12306,60 @@ func (m *NanoMDMInfoMutation) IDs(ctx context.Context) ([]int, error) {
 	}
 }
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (m *NanoMDMInfoMutation) SetAvailableDeviceCapacityVersion(f float64) {
-	m.available_device_capacity_version = &f
-	m.addavailable_device_capacity_version = nil
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (m *NanoMDMInfoMutation) SetAvailableDeviceCapacity(f float64) {
+	m.available_device_capacity = &f
+	m.addavailable_device_capacity = nil
 }
 
-// AvailableDeviceCapacityVersion returns the value of the "available_device_capacity_version" field in the mutation.
-func (m *NanoMDMInfoMutation) AvailableDeviceCapacityVersion() (r float64, exists bool) {
-	v := m.available_device_capacity_version
+// AvailableDeviceCapacity returns the value of the "available_device_capacity" field in the mutation.
+func (m *NanoMDMInfoMutation) AvailableDeviceCapacity() (r float64, exists bool) {
+	v := m.available_device_capacity
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// OldAvailableDeviceCapacityVersion returns the old "available_device_capacity_version" field's value of the NanoMDMInfo entity.
+// OldAvailableDeviceCapacity returns the old "available_device_capacity" field's value of the NanoMDMInfo entity.
 // If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *NanoMDMInfoMutation) OldAvailableDeviceCapacityVersion(ctx context.Context) (v float64, err error) {
+func (m *NanoMDMInfoMutation) OldAvailableDeviceCapacity(ctx context.Context) (v float64, err error) {
 	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldAvailableDeviceCapacityVersion is only allowed on UpdateOne operations")
+		return v, errors.New("OldAvailableDeviceCapacity is only allowed on UpdateOne operations")
 	}
 	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldAvailableDeviceCapacityVersion requires an ID field in the mutation")
+		return v, errors.New("OldAvailableDeviceCapacity requires an ID field in the mutation")
 	}
 	oldValue, err := m.oldValue(ctx)
 	if err != nil {
-		return v, fmt.Errorf("querying old value for OldAvailableDeviceCapacityVersion: %w", err)
+		return v, fmt.Errorf("querying old value for OldAvailableDeviceCapacity: %w", err)
 	}
-	return oldValue.AvailableDeviceCapacityVersion, nil
+	return oldValue.AvailableDeviceCapacity, nil
 }
 
-// AddAvailableDeviceCapacityVersion adds f to the "available_device_capacity_version" field.
-func (m *NanoMDMInfoMutation) AddAvailableDeviceCapacityVersion(f float64) {
-	if m.addavailable_device_capacity_version != nil {
-		*m.addavailable_device_capacity_version += f
+// AddAvailableDeviceCapacity adds f to the "available_device_capacity" field.
+func (m *NanoMDMInfoMutation) AddAvailableDeviceCapacity(f float64) {
+	if m.addavailable_device_capacity != nil {
+		*m.addavailable_device_capacity += f
 	} else {
-		m.addavailable_device_capacity_version = &f
+		m.addavailable_device_capacity = &f
 	}
 }
 
-// AddedAvailableDeviceCapacityVersion returns the value that was added to the "available_device_capacity_version" field in this mutation.
-func (m *NanoMDMInfoMutation) AddedAvailableDeviceCapacityVersion() (r float64, exists bool) {
-	v := m.addavailable_device_capacity_version
+// AddedAvailableDeviceCapacity returns the value that was added to the "available_device_capacity" field in this mutation.
+func (m *NanoMDMInfoMutation) AddedAvailableDeviceCapacity() (r float64, exists bool) {
+	v := m.addavailable_device_capacity
 	if v == nil {
 		return
 	}
 	return *v, true
 }
 
-// ResetAvailableDeviceCapacityVersion resets all changes to the "available_device_capacity_version" field.
-func (m *NanoMDMInfoMutation) ResetAvailableDeviceCapacityVersion() {
-	m.available_device_capacity_version = nil
-	m.addavailable_device_capacity_version = nil
+// ResetAvailableDeviceCapacity resets all changes to the "available_device_capacity" field.
+func (m *NanoMDMInfoMutation) ResetAvailableDeviceCapacity() {
+	m.available_device_capacity = nil
+	m.addavailable_device_capacity = nil
 }
 
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
@@ -13900,8 +13900,8 @@ func (m *NanoMDMInfoMutation) Type() string {
 // AddedFields().
 func (m *NanoMDMInfoMutation) Fields() []string {
 	fields := make([]string, 0, 40)
-	if m.available_device_capacity_version != nil {
-		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacityVersion)
+	if m.available_device_capacity != nil {
+		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacity)
 	}
 	if m.awaiting_configuration != nil {
 		fields = append(fields, nanomdminfo.FieldAwaitingConfiguration)
@@ -14028,8 +14028,8 @@ func (m *NanoMDMInfoMutation) Fields() []string {
 // schema.
 func (m *NanoMDMInfoMutation) Field(name string) (ent.Value, bool) {
 	switch name {
-	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
-		return m.AvailableDeviceCapacityVersion()
+	case nanomdminfo.FieldAvailableDeviceCapacity:
+		return m.AvailableDeviceCapacity()
 	case nanomdminfo.FieldAwaitingConfiguration:
 		return m.AwaitingConfiguration()
 	case nanomdminfo.FieldBatteryLevel:
@@ -14117,8 +14117,8 @@ func (m *NanoMDMInfoMutation) Field(name string) (ent.Value, bool) {
 // database failed.
 func (m *NanoMDMInfoMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
 	switch name {
-	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
-		return m.OldAvailableDeviceCapacityVersion(ctx)
+	case nanomdminfo.FieldAvailableDeviceCapacity:
+		return m.OldAvailableDeviceCapacity(ctx)
 	case nanomdminfo.FieldAwaitingConfiguration:
 		return m.OldAwaitingConfiguration(ctx)
 	case nanomdminfo.FieldBatteryLevel:
@@ -14206,12 +14206,12 @@ func (m *NanoMDMInfoMutation) OldField(ctx context.Context, name string) (ent.Va
 // type.
 func (m *NanoMDMInfoMutation) SetField(name string, value ent.Value) error {
 	switch name {
-	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+	case nanomdminfo.FieldAvailableDeviceCapacity:
 		v, ok := value.(float64)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.SetAvailableDeviceCapacityVersion(v)
+		m.SetAvailableDeviceCapacity(v)
 		return nil
 	case nanomdminfo.FieldAwaitingConfiguration:
 		v, ok := value.(bool)
@@ -14494,8 +14494,8 @@ func (m *NanoMDMInfoMutation) SetField(name string, value ent.Value) error {
 // this mutation.
 func (m *NanoMDMInfoMutation) AddedFields() []string {
 	var fields []string
-	if m.addavailable_device_capacity_version != nil {
-		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacityVersion)
+	if m.addavailable_device_capacity != nil {
+		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacity)
 	}
 	if m.addbattery_level != nil {
 		fields = append(fields, nanomdminfo.FieldBatteryLevel)
@@ -14514,8 +14514,8 @@ func (m *NanoMDMInfoMutation) AddedFields() []string {
 // was not set, or was not defined in the schema.
 func (m *NanoMDMInfoMutation) AddedField(name string) (ent.Value, bool) {
 	switch name {
-	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
-		return m.AddedAvailableDeviceCapacityVersion()
+	case nanomdminfo.FieldAvailableDeviceCapacity:
+		return m.AddedAvailableDeviceCapacity()
 	case nanomdminfo.FieldBatteryLevel:
 		return m.AddedBatteryLevel()
 	case nanomdminfo.FieldDeviceCapacity:
@@ -14531,12 +14531,12 @@ func (m *NanoMDMInfoMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *NanoMDMInfoMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+	case nanomdminfo.FieldAvailableDeviceCapacity:
 		v, ok := value.(float64)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
-		m.AddAvailableDeviceCapacityVersion(v)
+		m.AddAvailableDeviceCapacity(v)
 		return nil
 	case nanomdminfo.FieldBatteryLevel:
 		v, ok := value.(float64)
@@ -14586,8 +14586,8 @@ func (m *NanoMDMInfoMutation) ClearField(name string) error {
 // It returns an error if the field is not defined in the schema.
 func (m *NanoMDMInfoMutation) ResetField(name string) error {
 	switch name {
-	case nanomdminfo.FieldAvailableDeviceCapacityVersion:
-		m.ResetAvailableDeviceCapacityVersion()
+	case nanomdminfo.FieldAvailableDeviceCapacity:
+		m.ResetAvailableDeviceCapacity()
 		return nil
 	case nanomdminfo.FieldAwaitingConfiguration:
 		m.ResetAwaitingConfiguration()

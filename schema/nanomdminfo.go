@@ -14,7 +14,7 @@ type NanoMDMInfo struct {
 // Fields of the NanoMDMInfo.
 func (NanoMDMInfo) Fields() []ent.Field {
 	return []ent.Field{
-		field.Float("available_device_capacity_version").Default(0),
+		field.Float("available_device_capacity").Default(0),
 		field.Bool("awaiting_configuration").Default(false),
 		field.Float("battery_level").Default(-1),
 		field.String("bluetooth_mac").Default(""),

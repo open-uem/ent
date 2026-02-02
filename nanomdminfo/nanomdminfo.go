@@ -12,8 +12,8 @@ const (
 	Label = "nano_mdm_info"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
-	// FieldAvailableDeviceCapacityVersion holds the string denoting the available_device_capacity_version field in the database.
-	FieldAvailableDeviceCapacityVersion = "available_device_capacity_version"
+	// FieldAvailableDeviceCapacity holds the string denoting the available_device_capacity field in the database.
+	FieldAvailableDeviceCapacity = "available_device_capacity"
 	// FieldAwaitingConfiguration holds the string denoting the awaiting_configuration field in the database.
 	FieldAwaitingConfiguration = "awaiting_configuration"
 	// FieldBatteryLevel holds the string denoting the battery_level field in the database.
@@ -110,7 +110,7 @@ const (
 // Columns holds all SQL columns for nanomdminfo fields.
 var Columns = []string{
 	FieldID,
-	FieldAvailableDeviceCapacityVersion,
+	FieldAvailableDeviceCapacity,
 	FieldAwaitingConfiguration,
 	FieldBatteryLevel,
 	FieldBluetoothMAC,
@@ -174,8 +174,8 @@ func ValidColumn(column string) bool {
 }
 
 var (
-	// DefaultAvailableDeviceCapacityVersion holds the default value on creation for the "available_device_capacity_version" field.
-	DefaultAvailableDeviceCapacityVersion float64
+	// DefaultAvailableDeviceCapacity holds the default value on creation for the "available_device_capacity" field.
+	DefaultAvailableDeviceCapacity float64
 	// DefaultAwaitingConfiguration holds the default value on creation for the "awaiting_configuration" field.
 	DefaultAwaitingConfiguration bool
 	// DefaultBatteryLevel holds the default value on creation for the "battery_level" field.
@@ -262,9 +262,9 @@ func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
 }
 
-// ByAvailableDeviceCapacityVersion orders the results by the available_device_capacity_version field.
-func ByAvailableDeviceCapacityVersion(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldAvailableDeviceCapacityVersion, opts...).ToFunc()
+// ByAvailableDeviceCapacity orders the results by the available_device_capacity field.
+func ByAvailableDeviceCapacity(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldAvailableDeviceCapacity, opts...).ToFunc()
 }
 
 // ByAwaitingConfiguration orders the results by the awaiting_configuration field.

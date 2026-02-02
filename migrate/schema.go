@@ -331,7 +331,7 @@ var (
 	// NanoMdmInfosColumns holds the columns for the "nano_mdm_infos" table.
 	NanoMdmInfosColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "available_device_capacity_version", Type: field.TypeFloat64, Default: 0},
+		{Name: "available_device_capacity", Type: field.TypeFloat64, Default: 0},
 		{Name: "awaiting_configuration", Type: field.TypeBool, Default: false},
 		{Name: "battery_level", Type: field.TypeFloat64, Default: -1},
 		{Name: "bluetooth_mac", Type: field.TypeString, Default: ""},

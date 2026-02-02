@@ -55,9 +55,9 @@ func IDLTE(id int) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldLTE(FieldID, id))
 }
 
-// AvailableDeviceCapacityVersion applies equality check predicate on the "available_device_capacity_version" field. It's identical to AvailableDeviceCapacityVersionEQ.
-func AvailableDeviceCapacityVersion(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacity applies equality check predicate on the "available_device_capacity" field. It's identical to AvailableDeviceCapacityEQ.
+func AvailableDeviceCapacity(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAvailableDeviceCapacity, v))
 }
 
 // AwaitingConfiguration applies equality check predicate on the "awaiting_configuration" field. It's identical to AwaitingConfigurationEQ.
@@ -255,44 +255,44 @@ func Udid(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldUdid, v))
 }
 
-// AvailableDeviceCapacityVersionEQ applies the EQ predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionEQ(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacityEQ applies the EQ predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityEQ(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAvailableDeviceCapacity, v))
 }
 
-// AvailableDeviceCapacityVersionNEQ applies the NEQ predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionNEQ(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacityNEQ applies the NEQ predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityNEQ(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAvailableDeviceCapacity, v))
 }
 
-// AvailableDeviceCapacityVersionIn applies the In predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionIn(vs ...float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldIn(FieldAvailableDeviceCapacityVersion, vs...))
+// AvailableDeviceCapacityIn applies the In predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityIn(vs ...float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIn(FieldAvailableDeviceCapacity, vs...))
 }
 
-// AvailableDeviceCapacityVersionNotIn applies the NotIn predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionNotIn(vs ...float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldNotIn(FieldAvailableDeviceCapacityVersion, vs...))
+// AvailableDeviceCapacityNotIn applies the NotIn predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityNotIn(vs ...float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotIn(FieldAvailableDeviceCapacity, vs...))
 }
 
-// AvailableDeviceCapacityVersionGT applies the GT predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionGT(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldGT(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacityGT applies the GT predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityGT(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldGT(FieldAvailableDeviceCapacity, v))
 }
 
-// AvailableDeviceCapacityVersionGTE applies the GTE predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionGTE(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldGTE(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacityGTE applies the GTE predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityGTE(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldGTE(FieldAvailableDeviceCapacity, v))
 }
 
-// AvailableDeviceCapacityVersionLT applies the LT predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionLT(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldLT(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacityLT applies the LT predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityLT(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldLT(FieldAvailableDeviceCapacity, v))
 }
 
-// AvailableDeviceCapacityVersionLTE applies the LTE predicate on the "available_device_capacity_version" field.
-func AvailableDeviceCapacityVersionLTE(v float64) predicate.NanoMDMInfo {
-	return predicate.NanoMDMInfo(sql.FieldLTE(FieldAvailableDeviceCapacityVersion, v))
+// AvailableDeviceCapacityLTE applies the LTE predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityLTE(v float64) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldLTE(FieldAvailableDeviceCapacity, v))
 }
 
 // AwaitingConfigurationEQ applies the EQ predicate on the "awaiting_configuration" field.

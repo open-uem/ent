@@ -301,12 +301,12 @@ func (nmiq *NanoMDMInfoQuery) WithAgent(opts ...func(*AgentQuery)) *NanoMDMInfoQ
 // Example:
 //
 //	var v []struct {
-//		AvailableDeviceCapacityVersion float64 `json:"available_device_capacity_version,omitempty"`
+//		AvailableDeviceCapacity float64 `json:"available_device_capacity,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.NanoMDMInfo.Query().
-//		GroupBy(nanomdminfo.FieldAvailableDeviceCapacityVersion).
+//		GroupBy(nanomdminfo.FieldAvailableDeviceCapacity).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (nmiq *NanoMDMInfoQuery) GroupBy(field string, fields ...string) *NanoMDMInfoGroupBy {
@@ -324,11 +324,11 @@ func (nmiq *NanoMDMInfoQuery) GroupBy(field string, fields ...string) *NanoMDMIn
 // Example:
 //
 //	var v []struct {
-//		AvailableDeviceCapacityVersion float64 `json:"available_device_capacity_version,omitempty"`
+//		AvailableDeviceCapacity float64 `json:"available_device_capacity,omitempty"`
 //	}
 //
 //	client.NanoMDMInfo.Query().
-//		Select(nanomdminfo.FieldAvailableDeviceCapacityVersion).
+//		Select(nanomdminfo.FieldAvailableDeviceCapacity).
 //		Scan(ctx, &v)
 func (nmiq *NanoMDMInfoQuery) Select(fields ...string) *NanoMDMInfoSelect {
 	nmiq.ctx.Fields = append(nmiq.ctx.Fields, fields...)

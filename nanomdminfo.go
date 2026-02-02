@@ -18,8 +18,8 @@ type NanoMDMInfo struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID int `json:"id,omitempty"`
-	// AvailableDeviceCapacityVersion holds the value of the "available_device_capacity_version" field.
-	AvailableDeviceCapacityVersion float64 `json:"available_device_capacity_version,omitempty"`
+	// AvailableDeviceCapacity holds the value of the "available_device_capacity" field.
+	AvailableDeviceCapacity float64 `json:"available_device_capacity,omitempty"`
 	// AwaitingConfiguration holds the value of the "awaiting_configuration" field.
 	AwaitingConfiguration bool `json:"awaiting_configuration,omitempty"`
 	// BatteryLevel holds the value of the "battery_level" field.
@@ -132,7 +132,7 @@ func (*NanoMDMInfo) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case nanomdminfo.FieldAwaitingConfiguration, nanomdminfo.FieldHasBattery, nanomdminfo.FieldIsActivationLockEnabled, nanomdminfo.FieldIsActivationLockSupported, nanomdminfo.FieldIsAppleSilicon, nanomdminfo.FieldIsSupervised, nanomdminfo.FieldAutoCheckEnabled, nanomdminfo.FieldAutomaticAppInstallationEnabled, nanomdminfo.FieldAutomaticOsInstallationEnabled, nanomdminfo.FieldAutomaticSecurityUpdatesEnabled, nanomdminfo.FieldBackgroundDownloadEnabled, nanomdminfo.FieldIsDefaultCatalog, nanomdminfo.FieldPinRequiredForDeviceLock, nanomdminfo.FieldPinRequiredForEraseDevice, nanomdminfo.FieldSupportsLomDevice, nanomdminfo.FieldSupportsIosAppInstalls, nanomdminfo.FieldSystemIntegrityProtectionEnabled:
 			values[i] = new(sql.NullBool)
-		case nanomdminfo.FieldAvailableDeviceCapacityVersion, nanomdminfo.FieldBatteryLevel, nanomdminfo.FieldDeviceCapacity:
+		case nanomdminfo.FieldAvailableDeviceCapacity, nanomdminfo.FieldBatteryLevel, nanomdminfo.FieldDeviceCapacity:
 			values[i] = new(sql.NullFloat64)
 		case nanomdminfo.FieldID, nanomdminfo.FieldPreviousScanResult:
 			values[i] = new(sql.NullInt64)
@@ -163,11 +163,11 @@ func (nmi *NanoMDMInfo) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			nmi.ID = int(value.Int64)
-		case nanomdminfo.FieldAvailableDeviceCapacityVersion:
+		case nanomdminfo.FieldAvailableDeviceCapacity:
 			if value, ok := values[i].(*sql.NullFloat64); !ok {
-				return fmt.Errorf("unexpected type %T for field available_device_capacity_version", values[i])
+				return fmt.Errorf("unexpected type %T for field available_device_capacity", values[i])
 			} else if value.Valid {
-				nmi.AvailableDeviceCapacityVersion = value.Float64
+				nmi.AvailableDeviceCapacity = value.Float64
 			}
 		case nanomdminfo.FieldAwaitingConfiguration:
 			if value, ok := values[i].(*sql.NullBool); !ok {
@@ -451,8 +451,8 @@ func (nmi *NanoMDMInfo) String() string {
 	var builder strings.Builder
 	builder.WriteString("NanoMDMInfo(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", nmi.ID))
-	builder.WriteString("available_device_capacity_version=")
-	builder.WriteString(fmt.Sprintf("%v", nmi.AvailableDeviceCapacityVersion))
+	builder.WriteString("available_device_capacity=")
+	builder.WriteString(fmt.Sprintf("%v", nmi.AvailableDeviceCapacity))
 	builder.WriteString(", ")
 	builder.WriteString("awaiting_configuration=")
 	builder.WriteString(fmt.Sprintf("%v", nmi.AwaitingConfiguration))

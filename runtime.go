@@ -221,10 +221,10 @@ func init() {
 	mdmcommand.IDValidator = mdmcommandDescID.Validators[0].(func(string) error)
 	nanomdminfoFields := schema.NanoMDMInfo{}.Fields()
 	_ = nanomdminfoFields
-	// nanomdminfoDescAvailableDeviceCapacityVersion is the schema descriptor for available_device_capacity_version field.
-	nanomdminfoDescAvailableDeviceCapacityVersion := nanomdminfoFields[0].Descriptor()
-	// nanomdminfo.DefaultAvailableDeviceCapacityVersion holds the default value on creation for the available_device_capacity_version field.
-	nanomdminfo.DefaultAvailableDeviceCapacityVersion = nanomdminfoDescAvailableDeviceCapacityVersion.Default.(float64)
+	// nanomdminfoDescAvailableDeviceCapacity is the schema descriptor for available_device_capacity field.
+	nanomdminfoDescAvailableDeviceCapacity := nanomdminfoFields[0].Descriptor()
+	// nanomdminfo.DefaultAvailableDeviceCapacity holds the default value on creation for the available_device_capacity field.
+	nanomdminfo.DefaultAvailableDeviceCapacity = nanomdminfoDescAvailableDeviceCapacity.Default.(float64)
 	// nanomdminfoDescAwaitingConfiguration is the schema descriptor for awaiting_configuration field.
 	nanomdminfoDescAwaitingConfiguration := nanomdminfoFields[1].Descriptor()
 	// nanomdminfo.DefaultAwaitingConfiguration holds the default value on creation for the awaiting_configuration field.

@@ -23,16 +23,16 @@ type NanoMDMInfoCreate struct {
 	conflict []sql.ConflictOption
 }
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (nmic *NanoMDMInfoCreate) SetAvailableDeviceCapacityVersion(f float64) *NanoMDMInfoCreate {
-	nmic.mutation.SetAvailableDeviceCapacityVersion(f)
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (nmic *NanoMDMInfoCreate) SetAvailableDeviceCapacity(f float64) *NanoMDMInfoCreate {
+	nmic.mutation.SetAvailableDeviceCapacity(f)
 	return nmic
 }
 
-// SetNillableAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field if the given value is not nil.
-func (nmic *NanoMDMInfoCreate) SetNillableAvailableDeviceCapacityVersion(f *float64) *NanoMDMInfoCreate {
+// SetNillableAvailableDeviceCapacity sets the "available_device_capacity" field if the given value is not nil.
+func (nmic *NanoMDMInfoCreate) SetNillableAvailableDeviceCapacity(f *float64) *NanoMDMInfoCreate {
 	if f != nil {
-		nmic.SetAvailableDeviceCapacityVersion(*f)
+		nmic.SetAvailableDeviceCapacity(*f)
 	}
 	return nmic
 }
@@ -629,9 +629,9 @@ func (nmic *NanoMDMInfoCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (nmic *NanoMDMInfoCreate) defaults() {
-	if _, ok := nmic.mutation.AvailableDeviceCapacityVersion(); !ok {
-		v := nanomdminfo.DefaultAvailableDeviceCapacityVersion
-		nmic.mutation.SetAvailableDeviceCapacityVersion(v)
+	if _, ok := nmic.mutation.AvailableDeviceCapacity(); !ok {
+		v := nanomdminfo.DefaultAvailableDeviceCapacity
+		nmic.mutation.SetAvailableDeviceCapacity(v)
 	}
 	if _, ok := nmic.mutation.AwaitingConfiguration(); !ok {
 		v := nanomdminfo.DefaultAwaitingConfiguration
@@ -789,8 +789,8 @@ func (nmic *NanoMDMInfoCreate) defaults() {
 
 // check runs all checks and user-defined validators on the builder.
 func (nmic *NanoMDMInfoCreate) check() error {
-	if _, ok := nmic.mutation.AvailableDeviceCapacityVersion(); !ok {
-		return &ValidationError{Name: "available_device_capacity_version", err: errors.New(`ent: missing required field "NanoMDMInfo.available_device_capacity_version"`)}
+	if _, ok := nmic.mutation.AvailableDeviceCapacity(); !ok {
+		return &ValidationError{Name: "available_device_capacity", err: errors.New(`ent: missing required field "NanoMDMInfo.available_device_capacity"`)}
 	}
 	if _, ok := nmic.mutation.AwaitingConfiguration(); !ok {
 		return &ValidationError{Name: "awaiting_configuration", err: errors.New(`ent: missing required field "NanoMDMInfo.awaiting_configuration"`)}
@@ -936,9 +936,9 @@ func (nmic *NanoMDMInfoCreate) createSpec() (*NanoMDMInfo, *sqlgraph.CreateSpec)
 		_spec = sqlgraph.NewCreateSpec(nanomdminfo.Table, sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt))
 	)
 	_spec.OnConflict = nmic.conflict
-	if value, ok := nmic.mutation.AvailableDeviceCapacityVersion(); ok {
-		_spec.SetField(nanomdminfo.FieldAvailableDeviceCapacityVersion, field.TypeFloat64, value)
-		_node.AvailableDeviceCapacityVersion = value
+	if value, ok := nmic.mutation.AvailableDeviceCapacity(); ok {
+		_spec.SetField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
+		_node.AvailableDeviceCapacity = value
 	}
 	if value, ok := nmic.mutation.AwaitingConfiguration(); ok {
 		_spec.SetField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool, value)
@@ -1120,7 +1120,7 @@ func (nmic *NanoMDMInfoCreate) createSpec() (*NanoMDMInfo, *sqlgraph.CreateSpec)
 // of the `INSERT` statement. For example:
 //
 //	client.NanoMDMInfo.Create().
-//		SetAvailableDeviceCapacityVersion(v).
+//		SetAvailableDeviceCapacity(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -1129,7 +1129,7 @@ func (nmic *NanoMDMInfoCreate) createSpec() (*NanoMDMInfo, *sqlgraph.CreateSpec)
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.NanoMDMInfoUpsert) {
-//			SetAvailableDeviceCapacityVersion(v+v).
+//			SetAvailableDeviceCapacity(v+v).
 //		}).
 //		Exec(ctx)
 func (nmic *NanoMDMInfoCreate) OnConflict(opts ...sql.ConflictOption) *NanoMDMInfoUpsertOne {
@@ -1165,21 +1165,21 @@ type (
 	}
 )
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (u *NanoMDMInfoUpsert) SetAvailableDeviceCapacityVersion(v float64) *NanoMDMInfoUpsert {
-	u.Set(nanomdminfo.FieldAvailableDeviceCapacityVersion, v)
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsert) SetAvailableDeviceCapacity(v float64) *NanoMDMInfoUpsert {
+	u.Set(nanomdminfo.FieldAvailableDeviceCapacity, v)
 	return u
 }
 
-// UpdateAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field to the value that was provided on create.
-func (u *NanoMDMInfoUpsert) UpdateAvailableDeviceCapacityVersion() *NanoMDMInfoUpsert {
-	u.SetExcluded(nanomdminfo.FieldAvailableDeviceCapacityVersion)
+// UpdateAvailableDeviceCapacity sets the "available_device_capacity" field to the value that was provided on create.
+func (u *NanoMDMInfoUpsert) UpdateAvailableDeviceCapacity() *NanoMDMInfoUpsert {
+	u.SetExcluded(nanomdminfo.FieldAvailableDeviceCapacity)
 	return u
 }
 
-// AddAvailableDeviceCapacityVersion adds v to the "available_device_capacity_version" field.
-func (u *NanoMDMInfoUpsert) AddAvailableDeviceCapacityVersion(v float64) *NanoMDMInfoUpsert {
-	u.Add(nanomdminfo.FieldAvailableDeviceCapacityVersion, v)
+// AddAvailableDeviceCapacity adds v to the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsert) AddAvailableDeviceCapacity(v float64) *NanoMDMInfoUpsert {
+	u.Add(nanomdminfo.FieldAvailableDeviceCapacity, v)
 	return u
 }
 
@@ -1709,24 +1709,24 @@ func (u *NanoMDMInfoUpsertOne) Update(set func(*NanoMDMInfoUpsert)) *NanoMDMInfo
 	return u
 }
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (u *NanoMDMInfoUpsertOne) SetAvailableDeviceCapacityVersion(v float64) *NanoMDMInfoUpsertOne {
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsertOne) SetAvailableDeviceCapacity(v float64) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
-		s.SetAvailableDeviceCapacityVersion(v)
+		s.SetAvailableDeviceCapacity(v)
 	})
 }
 
-// AddAvailableDeviceCapacityVersion adds v to the "available_device_capacity_version" field.
-func (u *NanoMDMInfoUpsertOne) AddAvailableDeviceCapacityVersion(v float64) *NanoMDMInfoUpsertOne {
+// AddAvailableDeviceCapacity adds v to the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsertOne) AddAvailableDeviceCapacity(v float64) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
-		s.AddAvailableDeviceCapacityVersion(v)
+		s.AddAvailableDeviceCapacity(v)
 	})
 }
 
-// UpdateAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field to the value that was provided on create.
-func (u *NanoMDMInfoUpsertOne) UpdateAvailableDeviceCapacityVersion() *NanoMDMInfoUpsertOne {
+// UpdateAvailableDeviceCapacity sets the "available_device_capacity" field to the value that was provided on create.
+func (u *NanoMDMInfoUpsertOne) UpdateAvailableDeviceCapacity() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
-		s.UpdateAvailableDeviceCapacityVersion()
+		s.UpdateAvailableDeviceCapacity()
 	})
 }
 
@@ -2432,7 +2432,7 @@ func (nmicb *NanoMDMInfoCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.NanoMDMInfoUpsert) {
-//			SetAvailableDeviceCapacityVersion(v+v).
+//			SetAvailableDeviceCapacity(v+v).
 //		}).
 //		Exec(ctx)
 func (nmicb *NanoMDMInfoCreateBulk) OnConflict(opts ...sql.ConflictOption) *NanoMDMInfoUpsertBulk {
@@ -2501,24 +2501,24 @@ func (u *NanoMDMInfoUpsertBulk) Update(set func(*NanoMDMInfoUpsert)) *NanoMDMInf
 	return u
 }
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (u *NanoMDMInfoUpsertBulk) SetAvailableDeviceCapacityVersion(v float64) *NanoMDMInfoUpsertBulk {
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsertBulk) SetAvailableDeviceCapacity(v float64) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
-		s.SetAvailableDeviceCapacityVersion(v)
+		s.SetAvailableDeviceCapacity(v)
 	})
 }
 
-// AddAvailableDeviceCapacityVersion adds v to the "available_device_capacity_version" field.
-func (u *NanoMDMInfoUpsertBulk) AddAvailableDeviceCapacityVersion(v float64) *NanoMDMInfoUpsertBulk {
+// AddAvailableDeviceCapacity adds v to the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsertBulk) AddAvailableDeviceCapacity(v float64) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
-		s.AddAvailableDeviceCapacityVersion(v)
+		s.AddAvailableDeviceCapacity(v)
 	})
 }
 
-// UpdateAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field to the value that was provided on create.
-func (u *NanoMDMInfoUpsertBulk) UpdateAvailableDeviceCapacityVersion() *NanoMDMInfoUpsertBulk {
+// UpdateAvailableDeviceCapacity sets the "available_device_capacity" field to the value that was provided on create.
+func (u *NanoMDMInfoUpsertBulk) UpdateAvailableDeviceCapacity() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
-		s.UpdateAvailableDeviceCapacityVersion()
+		s.UpdateAvailableDeviceCapacity()
 	})
 }
 

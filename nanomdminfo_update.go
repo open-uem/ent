@@ -30,24 +30,24 @@ func (nmiu *NanoMDMInfoUpdate) Where(ps ...predicate.NanoMDMInfo) *NanoMDMInfoUp
 	return nmiu
 }
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (nmiu *NanoMDMInfoUpdate) SetAvailableDeviceCapacityVersion(f float64) *NanoMDMInfoUpdate {
-	nmiu.mutation.ResetAvailableDeviceCapacityVersion()
-	nmiu.mutation.SetAvailableDeviceCapacityVersion(f)
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (nmiu *NanoMDMInfoUpdate) SetAvailableDeviceCapacity(f float64) *NanoMDMInfoUpdate {
+	nmiu.mutation.ResetAvailableDeviceCapacity()
+	nmiu.mutation.SetAvailableDeviceCapacity(f)
 	return nmiu
 }
 
-// SetNillableAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field if the given value is not nil.
-func (nmiu *NanoMDMInfoUpdate) SetNillableAvailableDeviceCapacityVersion(f *float64) *NanoMDMInfoUpdate {
+// SetNillableAvailableDeviceCapacity sets the "available_device_capacity" field if the given value is not nil.
+func (nmiu *NanoMDMInfoUpdate) SetNillableAvailableDeviceCapacity(f *float64) *NanoMDMInfoUpdate {
 	if f != nil {
-		nmiu.SetAvailableDeviceCapacityVersion(*f)
+		nmiu.SetAvailableDeviceCapacity(*f)
 	}
 	return nmiu
 }
 
-// AddAvailableDeviceCapacityVersion adds f to the "available_device_capacity_version" field.
-func (nmiu *NanoMDMInfoUpdate) AddAvailableDeviceCapacityVersion(f float64) *NanoMDMInfoUpdate {
-	nmiu.mutation.AddAvailableDeviceCapacityVersion(f)
+// AddAvailableDeviceCapacity adds f to the "available_device_capacity" field.
+func (nmiu *NanoMDMInfoUpdate) AddAvailableDeviceCapacity(f float64) *NanoMDMInfoUpdate {
+	nmiu.mutation.AddAvailableDeviceCapacity(f)
 	return nmiu
 }
 
@@ -690,11 +690,11 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := nmiu.mutation.AvailableDeviceCapacityVersion(); ok {
-		_spec.SetField(nanomdminfo.FieldAvailableDeviceCapacityVersion, field.TypeFloat64, value)
+	if value, ok := nmiu.mutation.AvailableDeviceCapacity(); ok {
+		_spec.SetField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
 	}
-	if value, ok := nmiu.mutation.AddedAvailableDeviceCapacityVersion(); ok {
-		_spec.AddField(nanomdminfo.FieldAvailableDeviceCapacityVersion, field.TypeFloat64, value)
+	if value, ok := nmiu.mutation.AddedAvailableDeviceCapacity(); ok {
+		_spec.AddField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
 	}
 	if value, ok := nmiu.mutation.AwaitingConfiguration(); ok {
 		_spec.SetField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool, value)
@@ -873,24 +873,24 @@ type NanoMDMInfoUpdateOne struct {
 	modifiers []func(*sql.UpdateBuilder)
 }
 
-// SetAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field.
-func (nmiuo *NanoMDMInfoUpdateOne) SetAvailableDeviceCapacityVersion(f float64) *NanoMDMInfoUpdateOne {
-	nmiuo.mutation.ResetAvailableDeviceCapacityVersion()
-	nmiuo.mutation.SetAvailableDeviceCapacityVersion(f)
+// SetAvailableDeviceCapacity sets the "available_device_capacity" field.
+func (nmiuo *NanoMDMInfoUpdateOne) SetAvailableDeviceCapacity(f float64) *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ResetAvailableDeviceCapacity()
+	nmiuo.mutation.SetAvailableDeviceCapacity(f)
 	return nmiuo
 }
 
-// SetNillableAvailableDeviceCapacityVersion sets the "available_device_capacity_version" field if the given value is not nil.
-func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAvailableDeviceCapacityVersion(f *float64) *NanoMDMInfoUpdateOne {
+// SetNillableAvailableDeviceCapacity sets the "available_device_capacity" field if the given value is not nil.
+func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAvailableDeviceCapacity(f *float64) *NanoMDMInfoUpdateOne {
 	if f != nil {
-		nmiuo.SetAvailableDeviceCapacityVersion(*f)
+		nmiuo.SetAvailableDeviceCapacity(*f)
 	}
 	return nmiuo
 }
 
-// AddAvailableDeviceCapacityVersion adds f to the "available_device_capacity_version" field.
-func (nmiuo *NanoMDMInfoUpdateOne) AddAvailableDeviceCapacityVersion(f float64) *NanoMDMInfoUpdateOne {
-	nmiuo.mutation.AddAvailableDeviceCapacityVersion(f)
+// AddAvailableDeviceCapacity adds f to the "available_device_capacity" field.
+func (nmiuo *NanoMDMInfoUpdateOne) AddAvailableDeviceCapacity(f float64) *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.AddAvailableDeviceCapacity(f)
 	return nmiuo
 }
 
@@ -1563,11 +1563,11 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 			}
 		}
 	}
-	if value, ok := nmiuo.mutation.AvailableDeviceCapacityVersion(); ok {
-		_spec.SetField(nanomdminfo.FieldAvailableDeviceCapacityVersion, field.TypeFloat64, value)
+	if value, ok := nmiuo.mutation.AvailableDeviceCapacity(); ok {
+		_spec.SetField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
 	}
-	if value, ok := nmiuo.mutation.AddedAvailableDeviceCapacityVersion(); ok {
-		_spec.AddField(nanomdminfo.FieldAvailableDeviceCapacityVersion, field.TypeFloat64, value)
+	if value, ok := nmiuo.mutation.AddedAvailableDeviceCapacity(); ok {
+		_spec.AddField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
 	}
 	if value, ok := nmiuo.mutation.AwaitingConfiguration(); ok {
 		_spec.SetField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool, value)
