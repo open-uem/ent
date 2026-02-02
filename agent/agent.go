@@ -117,6 +117,8 @@ const (
 	EdgePhysicaldisks = "physicaldisks"
 	// EdgeNetbird holds the string denoting the netbird edge name in mutations.
 	EdgeNetbird = "netbird"
+	// EdgeMdmcommands holds the string denoting the mdmcommands edge name in mutations.
+	EdgeMdmcommands = "mdmcommands"
 	// ComputerFieldID holds the string denoting the ID field of the Computer.
 	ComputerFieldID = "id"
 	// OperatingSystemFieldID holds the string denoting the ID field of the OperatingSystem.
@@ -159,6 +161,8 @@ const (
 	PhysicalDiskFieldID = "id"
 	// NetbirdFieldID holds the string denoting the ID field of the Netbird.
 	NetbirdFieldID = "id"
+	// MDMCommandFieldID holds the string denoting the ID field of the MDMCommand.
+	MDMCommandFieldID = "uuid"
 	// Table holds the table name of the agent in the database.
 	Table = "agents"
 	// ComputerTable is the table that holds the computer relation/edge.
@@ -304,6 +308,13 @@ const (
 	NetbirdInverseTable = "netbirds"
 	// NetbirdColumn is the table column denoting the netbird relation/edge.
 	NetbirdColumn = "agent_netbird"
+	// MdmcommandsTable is the table that holds the mdmcommands relation/edge.
+	MdmcommandsTable = "mdm_commands"
+	// MdmcommandsInverseTable is the table name for the MDMCommand entity.
+	// It exists in this package in order to avoid circular dependency with the "mdmcommand" package.
+	MdmcommandsInverseTable = "mdm_commands"
+	// MdmcommandsColumn is the table column denoting the mdmcommands relation/edge.
+	MdmcommandsColumn = "agent_mdmcommands"
 )
 
 // Columns holds all SQL columns for agent fields.
@@ -892,6 +903,20 @@ func ByNetbirdField(field string, opts ...sql.OrderTermOption) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newNetbirdStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByMdmcommandsCount orders the results by mdmcommands count.
+func ByMdmcommandsCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newMdmcommandsStep(), opts...)
+	}
+}
+
+// ByMdmcommands orders the results by mdmcommands terms.
+func ByMdmcommands(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newMdmcommandsStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newComputerStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -1037,5 +1062,12 @@ func newNetbirdStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NetbirdInverseTable, NetbirdFieldID),
 		sqlgraph.Edge(sqlgraph.O2O, false, NetbirdTable, NetbirdColumn),
+	)
+}
+func newMdmcommandsStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(MdmcommandsInverseTable, MDMCommandFieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, MdmcommandsTable, MdmcommandsColumn),
 	)
 }

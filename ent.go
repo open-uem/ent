@@ -20,6 +20,7 @@ import (
 	"github.com/open-uem/ent/computer"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
+	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
@@ -116,6 +117,7 @@ func checkColumn(table, column string) error {
 			computer.Table:              computer.ValidColumn,
 			deployment.Table:            deployment.ValidColumn,
 			logicaldisk.Table:           logicaldisk.ValidColumn,
+			mdmcommand.Table:            mdmcommand.ValidColumn,
 			memoryslot.Table:            memoryslot.ValidColumn,
 			metadata.Table:              metadata.ValidColumn,
 			monitor.Table:               monitor.ValidColumn,

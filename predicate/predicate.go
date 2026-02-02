@@ -30,6 +30,9 @@ type Deployment func(*sql.Selector)
 // LogicalDisk is the predicate function for logicaldisk builders.
 type LogicalDisk func(*sql.Selector)
 
+// MDMCommand is the predicate function for mdmcommand builders.
+type MDMCommand func(*sql.Selector)
+
 // MemorySlot is the predicate function for memoryslot builders.
 type MemorySlot func(*sql.Selector)
 

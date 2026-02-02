@@ -9,6 +9,7 @@ import (
 	"github.com/open-uem/ent/authentication"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
+	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -211,6 +212,12 @@ func init() {
 	logicaldiskDescUsage := logicaldiskFields[2].Descriptor()
 	// logicaldisk.DefaultUsage holds the default value on creation for the usage field.
 	logicaldisk.DefaultUsage = logicaldiskDescUsage.Default.(int8)
+	mdmcommandFields := schema.MDMCommand{}.Fields()
+	_ = mdmcommandFields
+	// mdmcommandDescID is the schema descriptor for id field.
+	mdmcommandDescID := mdmcommandFields[0].Descriptor()
+	// mdmcommand.IDValidator is a validator for the "id" field. It is called by the builders before save.
+	mdmcommand.IDValidator = mdmcommandDescID.Validators[0].(func(string) error)
 	netbirdFields := schema.Netbird{}.Fields()
 	_ = netbirdFields
 	// netbirdDescVersion is the schema descriptor for version field.

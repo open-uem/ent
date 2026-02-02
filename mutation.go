@@ -19,6 +19,7 @@ import (
 	"github.com/open-uem/ent/computer"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
+	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
@@ -67,6 +68,7 @@ const (
 	TypeComputer              = "Computer"
 	TypeDeployment            = "Deployment"
 	TypeLogicalDisk           = "LogicalDisk"
+	TypeMDMCommand            = "MDMCommand"
 	TypeMemorySlot            = "MemorySlot"
 	TypeMetadata              = "Metadata"
 	TypeMonitor               = "Monitor"
@@ -191,6 +193,9 @@ type AgentMutation struct {
 	clearedphysicaldisks       bool
 	netbird                    *int
 	clearednetbird             bool
+	mdmcommands                map[string]struct{}
+	removedmdmcommands         map[string]struct{}
+	clearedmdmcommands         bool
 	done                       bool
 	oldValue                   func(context.Context) (*Agent, error)
 	predicates                 []predicate.Agent
@@ -2749,6 +2754,60 @@ func (m *AgentMutation) ResetNetbird() {
 	m.clearednetbird = false
 }
 
+// AddMdmcommandIDs adds the "mdmcommands" edge to the MDMCommand entity by ids.
+func (m *AgentMutation) AddMdmcommandIDs(ids ...string) {
+	if m.mdmcommands == nil {
+		m.mdmcommands = make(map[string]struct{})
+	}
+	for i := range ids {
+		m.mdmcommands[ids[i]] = struct{}{}
+	}
+}
+
+// ClearMdmcommands clears the "mdmcommands" edge to the MDMCommand entity.
+func (m *AgentMutation) ClearMdmcommands() {
+	m.clearedmdmcommands = true
+}
+
+// MdmcommandsCleared reports if the "mdmcommands" edge to the MDMCommand entity was cleared.
+func (m *AgentMutation) MdmcommandsCleared() bool {
+	return m.clearedmdmcommands
+}
+
+// RemoveMdmcommandIDs removes the "mdmcommands" edge to the MDMCommand entity by IDs.
+func (m *AgentMutation) RemoveMdmcommandIDs(ids ...string) {
+	if m.removedmdmcommands == nil {
+		m.removedmdmcommands = make(map[string]struct{})
+	}
+	for i := range ids {
+		delete(m.mdmcommands, ids[i])
+		m.removedmdmcommands[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedMdmcommands returns the removed IDs of the "mdmcommands" edge to the MDMCommand entity.
+func (m *AgentMutation) RemovedMdmcommandsIDs() (ids []string) {
+	for id := range m.removedmdmcommands {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// MdmcommandsIDs returns the "mdmcommands" edge IDs in the mutation.
+func (m *AgentMutation) MdmcommandsIDs() (ids []string) {
+	for id := range m.mdmcommands {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetMdmcommands resets all changes to the "mdmcommands" edge.
+func (m *AgentMutation) ResetMdmcommands() {
+	m.mdmcommands = nil
+	m.clearedmdmcommands = false
+	m.removedmdmcommands = nil
+}
+
 // Where appends a list predicates to the AgentMutation builder.
 func (m *AgentMutation) Where(ps ...predicate.Agent) {
 	m.predicates = append(m.predicates, ps...)
@@ -3528,7 +3587,7 @@ func (m *AgentMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *AgentMutation) AddedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.computer != nil {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3591,6 +3650,9 @@ func (m *AgentMutation) AddedEdges() []string {
 	}
 	if m.netbird != nil {
 		edges = append(edges, agent.EdgeNetbird)
+	}
+	if m.mdmcommands != nil {
+		edges = append(edges, agent.EdgeMdmcommands)
 	}
 	return edges
 }
@@ -3713,13 +3775,19 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 		if id := m.netbird; id != nil {
 			return []ent.Value{*id}
 		}
+	case agent.EdgeMdmcommands:
+		ids := make([]ent.Value, 0, len(m.mdmcommands))
+		for id := range m.mdmcommands {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *AgentMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.removedlogicaldisks != nil {
 		edges = append(edges, agent.EdgeLogicaldisks)
 	}
@@ -3764,6 +3832,9 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedphysicaldisks != nil {
 		edges = append(edges, agent.EdgePhysicaldisks)
+	}
+	if m.removedmdmcommands != nil {
+		edges = append(edges, agent.EdgeMdmcommands)
 	}
 	return edges
 }
@@ -3862,13 +3933,19 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgeMdmcommands:
+		ids := make([]ent.Value, 0, len(m.removedmdmcommands))
+		for id := range m.removedmdmcommands {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *AgentMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.clearedcomputer {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3932,6 +4009,9 @@ func (m *AgentMutation) ClearedEdges() []string {
 	if m.clearednetbird {
 		edges = append(edges, agent.EdgeNetbird)
 	}
+	if m.clearedmdmcommands {
+		edges = append(edges, agent.EdgeMdmcommands)
+	}
 	return edges
 }
 
@@ -3981,6 +4061,8 @@ func (m *AgentMutation) EdgeCleared(name string) bool {
 		return m.clearedphysicaldisks
 	case agent.EdgeNetbird:
 		return m.clearednetbird
+	case agent.EdgeMdmcommands:
+		return m.clearedmdmcommands
 	}
 	return false
 }
@@ -4077,6 +4159,9 @@ func (m *AgentMutation) ResetEdge(name string) error {
 		return nil
 	case agent.EdgeNetbird:
 		m.ResetNetbird()
+		return nil
+	case agent.EdgeMdmcommands:
+		m.ResetMdmcommands()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent edge %s", name)
@@ -9472,6 +9557,500 @@ func (m *LogicalDiskMutation) ResetEdge(name string) error {
 		return nil
 	}
 	return fmt.Errorf("unknown LogicalDisk edge %s", name)
+}
+
+// MDMCommandMutation represents an operation that mutates the MDMCommand nodes in the graph.
+type MDMCommandMutation struct {
+	config
+	op            Op
+	typ           string
+	id            *string
+	when          *time.Time
+	agent_status  *mdmcommand.AgentStatus
+	clearedFields map[string]struct{}
+	agents        *string
+	clearedagents bool
+	done          bool
+	oldValue      func(context.Context) (*MDMCommand, error)
+	predicates    []predicate.MDMCommand
+}
+
+var _ ent.Mutation = (*MDMCommandMutation)(nil)
+
+// mdmcommandOption allows management of the mutation configuration using functional options.
+type mdmcommandOption func(*MDMCommandMutation)
+
+// newMDMCommandMutation creates new mutation for the MDMCommand entity.
+func newMDMCommandMutation(c config, op Op, opts ...mdmcommandOption) *MDMCommandMutation {
+	m := &MDMCommandMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeMDMCommand,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withMDMCommandID sets the ID field of the mutation.
+func withMDMCommandID(id string) mdmcommandOption {
+	return func(m *MDMCommandMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *MDMCommand
+		)
+		m.oldValue = func(ctx context.Context) (*MDMCommand, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().MDMCommand.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withMDMCommand sets the old MDMCommand of the mutation.
+func withMDMCommand(node *MDMCommand) mdmcommandOption {
+	return func(m *MDMCommandMutation) {
+		m.oldValue = func(context.Context) (*MDMCommand, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m MDMCommandMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m MDMCommandMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// SetID sets the value of the id field. Note that this
+// operation is only accepted on creation of MDMCommand entities.
+func (m *MDMCommandMutation) SetID(id string) {
+	m.id = &id
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *MDMCommandMutation) ID() (id string, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *MDMCommandMutation) IDs(ctx context.Context) ([]string, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []string{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().MDMCommand.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetWhen sets the "when" field.
+func (m *MDMCommandMutation) SetWhen(t time.Time) {
+	m.when = &t
+}
+
+// When returns the value of the "when" field in the mutation.
+func (m *MDMCommandMutation) When() (r time.Time, exists bool) {
+	v := m.when
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldWhen returns the old "when" field's value of the MDMCommand entity.
+// If the MDMCommand object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *MDMCommandMutation) OldWhen(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldWhen is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldWhen requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldWhen: %w", err)
+	}
+	return oldValue.When, nil
+}
+
+// ClearWhen clears the value of the "when" field.
+func (m *MDMCommandMutation) ClearWhen() {
+	m.when = nil
+	m.clearedFields[mdmcommand.FieldWhen] = struct{}{}
+}
+
+// WhenCleared returns if the "when" field was cleared in this mutation.
+func (m *MDMCommandMutation) WhenCleared() bool {
+	_, ok := m.clearedFields[mdmcommand.FieldWhen]
+	return ok
+}
+
+// ResetWhen resets all changes to the "when" field.
+func (m *MDMCommandMutation) ResetWhen() {
+	m.when = nil
+	delete(m.clearedFields, mdmcommand.FieldWhen)
+}
+
+// SetAgentStatus sets the "agent_status" field.
+func (m *MDMCommandMutation) SetAgentStatus(ms mdmcommand.AgentStatus) {
+	m.agent_status = &ms
+}
+
+// AgentStatus returns the value of the "agent_status" field in the mutation.
+func (m *MDMCommandMutation) AgentStatus() (r mdmcommand.AgentStatus, exists bool) {
+	v := m.agent_status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldAgentStatus returns the old "agent_status" field's value of the MDMCommand entity.
+// If the MDMCommand object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *MDMCommandMutation) OldAgentStatus(ctx context.Context) (v mdmcommand.AgentStatus, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAgentStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAgentStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAgentStatus: %w", err)
+	}
+	return oldValue.AgentStatus, nil
+}
+
+// ClearAgentStatus clears the value of the "agent_status" field.
+func (m *MDMCommandMutation) ClearAgentStatus() {
+	m.agent_status = nil
+	m.clearedFields[mdmcommand.FieldAgentStatus] = struct{}{}
+}
+
+// AgentStatusCleared returns if the "agent_status" field was cleared in this mutation.
+func (m *MDMCommandMutation) AgentStatusCleared() bool {
+	_, ok := m.clearedFields[mdmcommand.FieldAgentStatus]
+	return ok
+}
+
+// ResetAgentStatus resets all changes to the "agent_status" field.
+func (m *MDMCommandMutation) ResetAgentStatus() {
+	m.agent_status = nil
+	delete(m.clearedFields, mdmcommand.FieldAgentStatus)
+}
+
+// SetAgentsID sets the "agents" edge to the Agent entity by id.
+func (m *MDMCommandMutation) SetAgentsID(id string) {
+	m.agents = &id
+}
+
+// ClearAgents clears the "agents" edge to the Agent entity.
+func (m *MDMCommandMutation) ClearAgents() {
+	m.clearedagents = true
+}
+
+// AgentsCleared reports if the "agents" edge to the Agent entity was cleared.
+func (m *MDMCommandMutation) AgentsCleared() bool {
+	return m.clearedagents
+}
+
+// AgentsID returns the "agents" edge ID in the mutation.
+func (m *MDMCommandMutation) AgentsID() (id string, exists bool) {
+	if m.agents != nil {
+		return *m.agents, true
+	}
+	return
+}
+
+// AgentsIDs returns the "agents" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// AgentsID instead. It exists only for internal usage by the builders.
+func (m *MDMCommandMutation) AgentsIDs() (ids []string) {
+	if id := m.agents; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetAgents resets all changes to the "agents" edge.
+func (m *MDMCommandMutation) ResetAgents() {
+	m.agents = nil
+	m.clearedagents = false
+}
+
+// Where appends a list predicates to the MDMCommandMutation builder.
+func (m *MDMCommandMutation) Where(ps ...predicate.MDMCommand) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the MDMCommandMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *MDMCommandMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.MDMCommand, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *MDMCommandMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *MDMCommandMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (MDMCommand).
+func (m *MDMCommandMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *MDMCommandMutation) Fields() []string {
+	fields := make([]string, 0, 2)
+	if m.when != nil {
+		fields = append(fields, mdmcommand.FieldWhen)
+	}
+	if m.agent_status != nil {
+		fields = append(fields, mdmcommand.FieldAgentStatus)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *MDMCommandMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case mdmcommand.FieldWhen:
+		return m.When()
+	case mdmcommand.FieldAgentStatus:
+		return m.AgentStatus()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *MDMCommandMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case mdmcommand.FieldWhen:
+		return m.OldWhen(ctx)
+	case mdmcommand.FieldAgentStatus:
+		return m.OldAgentStatus(ctx)
+	}
+	return nil, fmt.Errorf("unknown MDMCommand field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *MDMCommandMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case mdmcommand.FieldWhen:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetWhen(v)
+		return nil
+	case mdmcommand.FieldAgentStatus:
+		v, ok := value.(mdmcommand.AgentStatus)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAgentStatus(v)
+		return nil
+	}
+	return fmt.Errorf("unknown MDMCommand field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *MDMCommandMutation) AddedFields() []string {
+	return nil
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *MDMCommandMutation) AddedField(name string) (ent.Value, bool) {
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *MDMCommandMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	}
+	return fmt.Errorf("unknown MDMCommand numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *MDMCommandMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(mdmcommand.FieldWhen) {
+		fields = append(fields, mdmcommand.FieldWhen)
+	}
+	if m.FieldCleared(mdmcommand.FieldAgentStatus) {
+		fields = append(fields, mdmcommand.FieldAgentStatus)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *MDMCommandMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *MDMCommandMutation) ClearField(name string) error {
+	switch name {
+	case mdmcommand.FieldWhen:
+		m.ClearWhen()
+		return nil
+	case mdmcommand.FieldAgentStatus:
+		m.ClearAgentStatus()
+		return nil
+	}
+	return fmt.Errorf("unknown MDMCommand nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *MDMCommandMutation) ResetField(name string) error {
+	switch name {
+	case mdmcommand.FieldWhen:
+		m.ResetWhen()
+		return nil
+	case mdmcommand.FieldAgentStatus:
+		m.ResetAgentStatus()
+		return nil
+	}
+	return fmt.Errorf("unknown MDMCommand field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *MDMCommandMutation) AddedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.agents != nil {
+		edges = append(edges, mdmcommand.EdgeAgents)
+	}
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *MDMCommandMutation) AddedIDs(name string) []ent.Value {
+	switch name {
+	case mdmcommand.EdgeAgents:
+		if id := m.agents; id != nil {
+			return []ent.Value{*id}
+		}
+	}
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *MDMCommandMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 1)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *MDMCommandMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *MDMCommandMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.clearedagents {
+		edges = append(edges, mdmcommand.EdgeAgents)
+	}
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *MDMCommandMutation) EdgeCleared(name string) bool {
+	switch name {
+	case mdmcommand.EdgeAgents:
+		return m.clearedagents
+	}
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *MDMCommandMutation) ClearEdge(name string) error {
+	switch name {
+	case mdmcommand.EdgeAgents:
+		m.ClearAgents()
+		return nil
+	}
+	return fmt.Errorf("unknown MDMCommand unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *MDMCommandMutation) ResetEdge(name string) error {
+	switch name {
+	case mdmcommand.EdgeAgents:
+		m.ResetAgents()
+		return nil
+	}
+	return fmt.Errorf("unknown MDMCommand edge %s", name)
 }
 
 // MemorySlotMutation represents an operation that mutates the MemorySlot nodes in the graph.

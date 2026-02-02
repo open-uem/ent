@@ -28,6 +28,8 @@ type Tx struct {
 	Deployment *DeploymentClient
 	// LogicalDisk is the client for interacting with the LogicalDisk builders.
 	LogicalDisk *LogicalDiskClient
+	// MDMCommand is the client for interacting with the MDMCommand builders.
+	MDMCommand *MDMCommandClient
 	// MemorySlot is the client for interacting with the MemorySlot builders.
 	MemorySlot *MemorySlotClient
 	// Metadata is the client for interacting with the Metadata builders.
@@ -223,6 +225,7 @@ func (tx *Tx) init() {
 	tx.Computer = NewComputerClient(tx.config)
 	tx.Deployment = NewDeploymentClient(tx.config)
 	tx.LogicalDisk = NewLogicalDiskClient(tx.config)
+	tx.MDMCommand = NewMDMCommandClient(tx.config)
 	tx.MemorySlot = NewMemorySlotClient(tx.config)
 	tx.Metadata = NewMetadataClient(tx.config)
 	tx.Monitor = NewMonitorClient(tx.config)

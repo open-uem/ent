@@ -223,6 +223,27 @@ var (
 			},
 		},
 	}
+	// MdmCommandsColumns holds the columns for the "mdm_commands" table.
+	MdmCommandsColumns = []*schema.Column{
+		{Name: "uuid", Type: field.TypeString, Unique: true},
+		{Name: "when", Type: field.TypeTime, Nullable: true},
+		{Name: "agent_status", Type: field.TypeEnum, Nullable: true, Enums: []string{"DeviceInformation", "UsersList", "InstalledApllicationsList"}, Default: "DeviceInformation"},
+		{Name: "agent_mdmcommands", Type: field.TypeString, Nullable: true},
+	}
+	// MdmCommandsTable holds the schema information for the "mdm_commands" table.
+	MdmCommandsTable = &schema.Table{
+		Name:       "mdm_commands",
+		Columns:    MdmCommandsColumns,
+		PrimaryKey: []*schema.Column{MdmCommandsColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "mdm_commands_agents_mdmcommands",
+				Columns:    []*schema.Column{MdmCommandsColumns[3]},
+				RefColumns: []*schema.Column{AgentsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
 	// MemorySlotsColumns holds the columns for the "memory_slots" table.
 	MemorySlotsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -1163,6 +1184,7 @@ var (
 		ComputersTable,
 		DeploymentsTable,
 		LogicalDisksTable,
+		MdmCommandsTable,
 		MemorySlotsTable,
 		MetadataTable,
 		MonitorsTable,
@@ -1205,6 +1227,7 @@ func init() {
 	ComputersTable.ForeignKeys[0].RefTable = AgentsTable
 	DeploymentsTable.ForeignKeys[0].RefTable = AgentsTable
 	LogicalDisksTable.ForeignKeys[0].RefTable = AgentsTable
+	MdmCommandsTable.ForeignKeys[0].RefTable = AgentsTable
 	MemorySlotsTable.ForeignKeys[0].RefTable = AgentsTable
 	MetadataTable.ForeignKeys[0].RefTable = AgentsTable
 	MetadataTable.ForeignKeys[1].RefTable = OrgMetadataTable

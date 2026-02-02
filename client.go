@@ -23,6 +23,7 @@ import (
 	"github.com/open-uem/ent/computer"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
+	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
@@ -74,6 +75,8 @@ type Client struct {
 	Deployment *DeploymentClient
 	// LogicalDisk is the client for interacting with the LogicalDisk builders.
 	LogicalDisk *LogicalDiskClient
+	// MDMCommand is the client for interacting with the MDMCommand builders.
+	MDMCommand *MDMCommandClient
 	// MemorySlot is the client for interacting with the MemorySlot builders.
 	MemorySlot *MemorySlotClient
 	// Metadata is the client for interacting with the Metadata builders.
@@ -149,6 +152,7 @@ func (c *Client) init() {
 	c.Computer = NewComputerClient(c.config)
 	c.Deployment = NewDeploymentClient(c.config)
 	c.LogicalDisk = NewLogicalDiskClient(c.config)
+	c.MDMCommand = NewMDMCommandClient(c.config)
 	c.MemorySlot = NewMemorySlotClient(c.config)
 	c.Metadata = NewMetadataClient(c.config)
 	c.Monitor = NewMonitorClient(c.config)
@@ -277,6 +281,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		Computer:              NewComputerClient(cfg),
 		Deployment:            NewDeploymentClient(cfg),
 		LogicalDisk:           NewLogicalDiskClient(cfg),
+		MDMCommand:            NewMDMCommandClient(cfg),
 		MemorySlot:            NewMemorySlotClient(cfg),
 		Metadata:              NewMetadataClient(cfg),
 		Monitor:               NewMonitorClient(cfg),
@@ -332,6 +337,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		Computer:              NewComputerClient(cfg),
 		Deployment:            NewDeploymentClient(cfg),
 		LogicalDisk:           NewLogicalDiskClient(cfg),
+		MDMCommand:            NewMDMCommandClient(cfg),
 		MemorySlot:            NewMemorySlotClient(cfg),
 		Metadata:              NewMetadataClient(cfg),
 		Monitor:               NewMonitorClient(cfg),
@@ -390,12 +396,12 @@ func (c *Client) Close() error {
 func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
 		c.Agent, c.Antivirus, c.App, c.Authentication, c.Certificate, c.Computer,
-		c.Deployment, c.LogicalDisk, c.MemorySlot, c.Metadata, c.Monitor, c.Netbird,
-		c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem, c.OrgMetadata,
-		c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue, c.RecoveryCode,
-		c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions, c.Settings, c.Share,
-		c.Site, c.SystemUpdate, c.Tag, c.Task, c.Tenant, c.Update, c.User,
-		c.WingetConfigExclusion,
+		c.Deployment, c.LogicalDisk, c.MDMCommand, c.MemorySlot, c.Metadata, c.Monitor,
+		c.Netbird, c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem,
+		c.OrgMetadata, c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue,
+		c.RecoveryCode, c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions,
+		c.Settings, c.Share, c.Site, c.SystemUpdate, c.Tag, c.Task, c.Tenant, c.Update,
+		c.User, c.WingetConfigExclusion,
 	} {
 		n.Use(hooks...)
 	}
@@ -406,12 +412,12 @@ func (c *Client) Use(hooks ...Hook) {
 func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
 		c.Agent, c.Antivirus, c.App, c.Authentication, c.Certificate, c.Computer,
-		c.Deployment, c.LogicalDisk, c.MemorySlot, c.Metadata, c.Monitor, c.Netbird,
-		c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem, c.OrgMetadata,
-		c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue, c.RecoveryCode,
-		c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions, c.Settings, c.Share,
-		c.Site, c.SystemUpdate, c.Tag, c.Task, c.Tenant, c.Update, c.User,
-		c.WingetConfigExclusion,
+		c.Deployment, c.LogicalDisk, c.MDMCommand, c.MemorySlot, c.Metadata, c.Monitor,
+		c.Netbird, c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem,
+		c.OrgMetadata, c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue,
+		c.RecoveryCode, c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions,
+		c.Settings, c.Share, c.Site, c.SystemUpdate, c.Tag, c.Task, c.Tenant, c.Update,
+		c.User, c.WingetConfigExclusion,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -436,6 +442,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.Deployment.mutate(ctx, m)
 	case *LogicalDiskMutation:
 		return c.LogicalDisk.mutate(ctx, m)
+	case *MDMCommandMutation:
+		return c.MDMCommand.mutate(ctx, m)
 	case *MemorySlotMutation:
 		return c.MemorySlot.mutate(ctx, m)
 	case *MetadataMutation:
@@ -934,6 +942,22 @@ func (c *AgentClient) QueryNetbird(a *Agent) *NetbirdQuery {
 			sqlgraph.From(agent.Table, agent.FieldID, id),
 			sqlgraph.To(netbird.Table, netbird.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.NetbirdTable, agent.NetbirdColumn),
+		)
+		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryMdmcommands queries the mdmcommands edge of a Agent.
+func (c *AgentClient) QueryMdmcommands(a *Agent) *MDMCommandQuery {
+	query := (&MDMCommandClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := a.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, id),
+			sqlgraph.To(mdmcommand.Table, mdmcommand.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, agent.MdmcommandsTable, agent.MdmcommandsColumn),
 		)
 		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
 		return fromV, nil
@@ -1974,6 +1998,155 @@ func (c *LogicalDiskClient) mutate(ctx context.Context, m *LogicalDiskMutation) 
 		return (&LogicalDiskDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown LogicalDisk mutation op: %q", m.Op())
+	}
+}
+
+// MDMCommandClient is a client for the MDMCommand schema.
+type MDMCommandClient struct {
+	config
+}
+
+// NewMDMCommandClient returns a client for the MDMCommand from the given config.
+func NewMDMCommandClient(c config) *MDMCommandClient {
+	return &MDMCommandClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `mdmcommand.Hooks(f(g(h())))`.
+func (c *MDMCommandClient) Use(hooks ...Hook) {
+	c.hooks.MDMCommand = append(c.hooks.MDMCommand, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `mdmcommand.Intercept(f(g(h())))`.
+func (c *MDMCommandClient) Intercept(interceptors ...Interceptor) {
+	c.inters.MDMCommand = append(c.inters.MDMCommand, interceptors...)
+}
+
+// Create returns a builder for creating a MDMCommand entity.
+func (c *MDMCommandClient) Create() *MDMCommandCreate {
+	mutation := newMDMCommandMutation(c.config, OpCreate)
+	return &MDMCommandCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of MDMCommand entities.
+func (c *MDMCommandClient) CreateBulk(builders ...*MDMCommandCreate) *MDMCommandCreateBulk {
+	return &MDMCommandCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *MDMCommandClient) MapCreateBulk(slice any, setFunc func(*MDMCommandCreate, int)) *MDMCommandCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &MDMCommandCreateBulk{err: fmt.Errorf("calling to MDMCommandClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*MDMCommandCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &MDMCommandCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for MDMCommand.
+func (c *MDMCommandClient) Update() *MDMCommandUpdate {
+	mutation := newMDMCommandMutation(c.config, OpUpdate)
+	return &MDMCommandUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *MDMCommandClient) UpdateOne(mc *MDMCommand) *MDMCommandUpdateOne {
+	mutation := newMDMCommandMutation(c.config, OpUpdateOne, withMDMCommand(mc))
+	return &MDMCommandUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *MDMCommandClient) UpdateOneID(id string) *MDMCommandUpdateOne {
+	mutation := newMDMCommandMutation(c.config, OpUpdateOne, withMDMCommandID(id))
+	return &MDMCommandUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for MDMCommand.
+func (c *MDMCommandClient) Delete() *MDMCommandDelete {
+	mutation := newMDMCommandMutation(c.config, OpDelete)
+	return &MDMCommandDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *MDMCommandClient) DeleteOne(mc *MDMCommand) *MDMCommandDeleteOne {
+	return c.DeleteOneID(mc.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *MDMCommandClient) DeleteOneID(id string) *MDMCommandDeleteOne {
+	builder := c.Delete().Where(mdmcommand.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &MDMCommandDeleteOne{builder}
+}
+
+// Query returns a query builder for MDMCommand.
+func (c *MDMCommandClient) Query() *MDMCommandQuery {
+	return &MDMCommandQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeMDMCommand},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a MDMCommand entity by its id.
+func (c *MDMCommandClient) Get(ctx context.Context, id string) (*MDMCommand, error) {
+	return c.Query().Where(mdmcommand.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *MDMCommandClient) GetX(ctx context.Context, id string) *MDMCommand {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// QueryAgents queries the agents edge of a MDMCommand.
+func (c *MDMCommandClient) QueryAgents(mc *MDMCommand) *AgentQuery {
+	query := (&AgentClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := mc.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(mdmcommand.Table, mdmcommand.FieldID, id),
+			sqlgraph.To(agent.Table, agent.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, mdmcommand.AgentsTable, mdmcommand.AgentsColumn),
+		)
+		fromV = sqlgraph.Neighbors(mc.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// Hooks returns the client hooks.
+func (c *MDMCommandClient) Hooks() []Hook {
+	return c.hooks.MDMCommand
+}
+
+// Interceptors returns the client interceptors.
+func (c *MDMCommandClient) Interceptors() []Interceptor {
+	return c.inters.MDMCommand
+}
+
+func (c *MDMCommandClient) mutate(ctx context.Context, m *MDMCommandMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&MDMCommandCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&MDMCommandUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&MDMCommandUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&MDMCommandDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown MDMCommand mutation op: %q", m.Op())
 	}
 }
 
@@ -6441,18 +6614,18 @@ func (c *WingetConfigExclusionClient) mutate(ctx context.Context, m *WingetConfi
 type (
 	hooks struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
-		LogicalDisk, MemorySlot, Metadata, Monitor, Netbird, NetbirdSettings,
-		NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk, Printer, Profile,
-		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, Server, Sessions,
-		Settings, Share, Site, SystemUpdate, Tag, Task, Tenant, Update, User,
-		WingetConfigExclusion []ent.Hook
+		LogicalDisk, MDMCommand, MemorySlot, Metadata, Monitor, Netbird,
+		NetbirdSettings, NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk,
+		Printer, Profile, ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk,
+		Server, Sessions, Settings, Share, Site, SystemUpdate, Tag, Task, Tenant,
+		Update, User, WingetConfigExclusion []ent.Hook
 	}
 	inters struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
-		LogicalDisk, MemorySlot, Metadata, Monitor, Netbird, NetbirdSettings,
-		NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk, Printer, Profile,
-		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, Server, Sessions,
-		Settings, Share, Site, SystemUpdate, Tag, Task, Tenant, Update, User,
-		WingetConfigExclusion []ent.Interceptor
+		LogicalDisk, MDMCommand, MemorySlot, Metadata, Monitor, Netbird,
+		NetbirdSettings, NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk,
+		Printer, Profile, ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk,
+		Server, Sessions, Settings, Share, Site, SystemUpdate, Tag, Task, Tenant,
+		Update, User, WingetConfigExclusion []ent.Interceptor
 	}
 )

@@ -134,9 +134,11 @@ type AgentEdges struct {
 	Physicaldisks []*PhysicalDisk `json:"physicaldisks,omitempty"`
 	// Netbird holds the value of the netbird edge.
 	Netbird *Netbird `json:"netbird,omitempty"`
+	// Mdmcommands holds the value of the mdmcommands edge.
+	Mdmcommands []*MDMCommand `json:"mdmcommands,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [21]bool
+	loadedTypes [22]bool
 }
 
 // ComputerOrErr returns the Computer value or an error if the edge
@@ -338,6 +340,15 @@ func (e AgentEdges) NetbirdOrErr() (*Netbird, error) {
 		return nil, &NotFoundError{label: netbird.Label}
 	}
 	return nil, &NotLoadedError{edge: "netbird"}
+}
+
+// MdmcommandsOrErr returns the Mdmcommands value or an error if the edge
+// was not loaded in eager-loading.
+func (e AgentEdges) MdmcommandsOrErr() ([]*MDMCommand, error) {
+	if e.loadedTypes[21] {
+		return e.Mdmcommands, nil
+	}
+	return nil, &NotLoadedError{edge: "mdmcommands"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -677,6 +688,11 @@ func (a *Agent) QueryPhysicaldisks() *PhysicalDiskQuery {
 // QueryNetbird queries the "netbird" edge of the Agent entity.
 func (a *Agent) QueryNetbird() *NetbirdQuery {
 	return NewAgentClient(a.config).QueryNetbird(a)
+}
+
+// QueryMdmcommands queries the "mdmcommands" edge of the Agent entity.
+func (a *Agent) QueryMdmcommands() *MDMCommandQuery {
+	return NewAgentClient(a.config).QueryMdmcommands(a)
 }
 
 // Update returns a builder for updating this Agent.
