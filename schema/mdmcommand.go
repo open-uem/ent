@@ -14,6 +14,7 @@ type MDMCommand struct {
 // Fields of the MDMCommand.
 func (MDMCommand) Fields() []ent.Field {
 	return []ent.Field{
+		field.String("id").NotEmpty().Unique().StorageKey("uuid"),
 		field.Time("when").Optional(),
 		field.Enum("type").Values("DeviceInformation", "UsersList", "InstalledApllicationsList").Optional().Default("DeviceInformation"),
 	}
