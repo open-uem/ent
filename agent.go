@@ -139,9 +139,11 @@ type AgentEdges struct {
 	Mdmcommands []*MDMCommand `json:"mdmcommands,omitempty"`
 	// Nanomdminfo holds the value of the nanomdminfo edge.
 	Nanomdminfo *NanoMDMInfo `json:"nanomdminfo,omitempty"`
+	// Nanomdmusers holds the value of the nanomdmusers edge.
+	Nanomdmusers []*NanoMDMUser `json:"nanomdmusers,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [23]bool
+	loadedTypes [24]bool
 }
 
 // ComputerOrErr returns the Computer value or an error if the edge
@@ -363,6 +365,15 @@ func (e AgentEdges) NanomdminfoOrErr() (*NanoMDMInfo, error) {
 		return nil, &NotFoundError{label: nanomdminfo.Label}
 	}
 	return nil, &NotLoadedError{edge: "nanomdminfo"}
+}
+
+// NanomdmusersOrErr returns the Nanomdmusers value or an error if the edge
+// was not loaded in eager-loading.
+func (e AgentEdges) NanomdmusersOrErr() ([]*NanoMDMUser, error) {
+	if e.loadedTypes[23] {
+		return e.Nanomdmusers, nil
+	}
+	return nil, &NotLoadedError{edge: "nanomdmusers"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -712,6 +723,11 @@ func (a *Agent) QueryMdmcommands() *MDMCommandQuery {
 // QueryNanomdminfo queries the "nanomdminfo" edge of the Agent entity.
 func (a *Agent) QueryNanomdminfo() *NanoMDMInfoQuery {
 	return NewAgentClient(a.config).QueryNanomdminfo(a)
+}
+
+// QueryNanomdmusers queries the "nanomdmusers" edge of the Agent entity.
+func (a *Agent) QueryNanomdmusers() *NanoMDMUserQuery {
+	return NewAgentClient(a.config).QueryNanomdmusers(a)
 }
 
 // Update returns a builder for updating this Agent.

@@ -51,6 +51,12 @@ func (nmiu *NanoMDMInfoUpdate) AddAvailableDeviceCapacity(f float64) *NanoMDMInf
 	return nmiu
 }
 
+// ClearAvailableDeviceCapacity clears the value of the "available_device_capacity" field.
+func (nmiu *NanoMDMInfoUpdate) ClearAvailableDeviceCapacity() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearAvailableDeviceCapacity()
+	return nmiu
+}
+
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
 func (nmiu *NanoMDMInfoUpdate) SetAwaitingConfiguration(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetAwaitingConfiguration(b)
@@ -62,6 +68,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableAwaitingConfiguration(b *bool) *NanoMD
 	if b != nil {
 		nmiu.SetAwaitingConfiguration(*b)
 	}
+	return nmiu
+}
+
+// ClearAwaitingConfiguration clears the value of the "awaiting_configuration" field.
+func (nmiu *NanoMDMInfoUpdate) ClearAwaitingConfiguration() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearAwaitingConfiguration()
 	return nmiu
 }
 
@@ -86,6 +98,12 @@ func (nmiu *NanoMDMInfoUpdate) AddBatteryLevel(f float64) *NanoMDMInfoUpdate {
 	return nmiu
 }
 
+// ClearBatteryLevel clears the value of the "battery_level" field.
+func (nmiu *NanoMDMInfoUpdate) ClearBatteryLevel() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearBatteryLevel()
+	return nmiu
+}
+
 // SetBluetoothMAC sets the "bluetooth_mac" field.
 func (nmiu *NanoMDMInfoUpdate) SetBluetoothMAC(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetBluetoothMAC(s)
@@ -97,6 +115,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableBluetoothMAC(s *string) *NanoMDMInfoUp
 	if s != nil {
 		nmiu.SetBluetoothMAC(*s)
 	}
+	return nmiu
+}
+
+// ClearBluetoothMAC clears the value of the "bluetooth_mac" field.
+func (nmiu *NanoMDMInfoUpdate) ClearBluetoothMAC() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearBluetoothMAC()
 	return nmiu
 }
 
@@ -114,6 +138,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableBuildVersion(s *string) *NanoMDMInfoUp
 	return nmiu
 }
 
+// ClearBuildVersion clears the value of the "build_version" field.
+func (nmiu *NanoMDMInfoUpdate) ClearBuildVersion() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearBuildVersion()
+	return nmiu
+}
+
 // SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
 func (nmiu *NanoMDMInfoUpdate) SetCurrentConsoleManagedUser(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetCurrentConsoleManagedUser(s)
@@ -125,6 +155,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableCurrentConsoleManagedUser(s *string) *
 	if s != nil {
 		nmiu.SetCurrentConsoleManagedUser(*s)
 	}
+	return nmiu
+}
+
+// ClearCurrentConsoleManagedUser clears the value of the "current_console_managed_user" field.
+func (nmiu *NanoMDMInfoUpdate) ClearCurrentConsoleManagedUser() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearCurrentConsoleManagedUser()
 	return nmiu
 }
 
@@ -149,6 +185,12 @@ func (nmiu *NanoMDMInfoUpdate) AddDeviceCapacity(f float64) *NanoMDMInfoUpdate {
 	return nmiu
 }
 
+// ClearDeviceCapacity clears the value of the "device_capacity" field.
+func (nmiu *NanoMDMInfoUpdate) ClearDeviceCapacity() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearDeviceCapacity()
+	return nmiu
+}
+
 // SetDeviceName sets the "device_name" field.
 func (nmiu *NanoMDMInfoUpdate) SetDeviceName(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetDeviceName(s)
@@ -160,6 +202,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableDeviceName(s *string) *NanoMDMInfoUpda
 	if s != nil {
 		nmiu.SetDeviceName(*s)
 	}
+	return nmiu
+}
+
+// ClearDeviceName clears the value of the "device_name" field.
+func (nmiu *NanoMDMInfoUpdate) ClearDeviceName() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearDeviceName()
 	return nmiu
 }
 
@@ -177,6 +225,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableEacsPreflight(s *string) *NanoMDMInfoU
 	return nmiu
 }
 
+// ClearEacsPreflight clears the value of the "eacs_preflight" field.
+func (nmiu *NanoMDMInfoUpdate) ClearEacsPreflight() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearEacsPreflight()
+	return nmiu
+}
+
 // SetEthernetMAC sets the "ethernet_mac" field.
 func (nmiu *NanoMDMInfoUpdate) SetEthernetMAC(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetEthernetMAC(s)
@@ -188,6 +242,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableEthernetMAC(s *string) *NanoMDMInfoUpd
 	if s != nil {
 		nmiu.SetEthernetMAC(*s)
 	}
+	return nmiu
+}
+
+// ClearEthernetMAC clears the value of the "ethernet_mac" field.
+func (nmiu *NanoMDMInfoUpdate) ClearEthernetMAC() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearEthernetMAC()
 	return nmiu
 }
 
@@ -205,6 +265,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableHasBattery(b *bool) *NanoMDMInfoUpdate
 	return nmiu
 }
 
+// ClearHasBattery clears the value of the "has_battery" field.
+func (nmiu *NanoMDMInfoUpdate) ClearHasBattery() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearHasBattery()
+	return nmiu
+}
+
 // SetHostname sets the "hostname" field.
 func (nmiu *NanoMDMInfoUpdate) SetHostname(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetHostname(s)
@@ -216,6 +282,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableHostname(s *string) *NanoMDMInfoUpdate
 	if s != nil {
 		nmiu.SetHostname(*s)
 	}
+	return nmiu
+}
+
+// ClearHostname clears the value of the "hostname" field.
+func (nmiu *NanoMDMInfoUpdate) ClearHostname() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearHostname()
 	return nmiu
 }
 
@@ -233,6 +305,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableIsActivationLockEnabled(b *bool) *Nano
 	return nmiu
 }
 
+// ClearIsActivationLockEnabled clears the value of the "is_activation_lock_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearIsActivationLockEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearIsActivationLockEnabled()
+	return nmiu
+}
+
 // SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
 func (nmiu *NanoMDMInfoUpdate) SetIsActivationLockSupported(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetIsActivationLockSupported(b)
@@ -244,6 +322,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableIsActivationLockSupported(b *bool) *Na
 	if b != nil {
 		nmiu.SetIsActivationLockSupported(*b)
 	}
+	return nmiu
+}
+
+// ClearIsActivationLockSupported clears the value of the "is_activation_lock_supported" field.
+func (nmiu *NanoMDMInfoUpdate) ClearIsActivationLockSupported() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearIsActivationLockSupported()
 	return nmiu
 }
 
@@ -261,6 +345,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableIsAppleSilicon(b *bool) *NanoMDMInfoUp
 	return nmiu
 }
 
+// ClearIsAppleSilicon clears the value of the "is_apple_silicon" field.
+func (nmiu *NanoMDMInfoUpdate) ClearIsAppleSilicon() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearIsAppleSilicon()
+	return nmiu
+}
+
 // SetIsSupervised sets the "is_supervised" field.
 func (nmiu *NanoMDMInfoUpdate) SetIsSupervised(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetIsSupervised(b)
@@ -272,6 +362,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableIsSupervised(b *bool) *NanoMDMInfoUpda
 	if b != nil {
 		nmiu.SetIsSupervised(*b)
 	}
+	return nmiu
+}
+
+// ClearIsSupervised clears the value of the "is_supervised" field.
+func (nmiu *NanoMDMInfoUpdate) ClearIsSupervised() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearIsSupervised()
 	return nmiu
 }
 
@@ -289,6 +385,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableLocalhostname(s *string) *NanoMDMInfoU
 	return nmiu
 }
 
+// ClearLocalhostname clears the value of the "localhostname" field.
+func (nmiu *NanoMDMInfoUpdate) ClearLocalhostname() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearLocalhostname()
+	return nmiu
+}
+
 // SetModel sets the "model" field.
 func (nmiu *NanoMDMInfoUpdate) SetModel(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetModel(s)
@@ -300,6 +402,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableModel(s *string) *NanoMDMInfoUpdate {
 	if s != nil {
 		nmiu.SetModel(*s)
 	}
+	return nmiu
+}
+
+// ClearModel clears the value of the "model" field.
+func (nmiu *NanoMDMInfoUpdate) ClearModel() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearModel()
 	return nmiu
 }
 
@@ -317,6 +425,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableModelName(s *string) *NanoMDMInfoUpdat
 	return nmiu
 }
 
+// ClearModelName clears the value of the "model_name" field.
+func (nmiu *NanoMDMInfoUpdate) ClearModelName() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearModelName()
+	return nmiu
+}
+
 // SetAutoCheckEnabled sets the "auto_check_enabled" field.
 func (nmiu *NanoMDMInfoUpdate) SetAutoCheckEnabled(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetAutoCheckEnabled(b)
@@ -328,6 +442,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableAutoCheckEnabled(b *bool) *NanoMDMInfo
 	if b != nil {
 		nmiu.SetAutoCheckEnabled(*b)
 	}
+	return nmiu
+}
+
+// ClearAutoCheckEnabled clears the value of the "auto_check_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearAutoCheckEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearAutoCheckEnabled()
 	return nmiu
 }
 
@@ -345,6 +465,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableAutomaticAppInstallationEnabled(b *boo
 	return nmiu
 }
 
+// ClearAutomaticAppInstallationEnabled clears the value of the "automatic_app_installation_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearAutomaticAppInstallationEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearAutomaticAppInstallationEnabled()
+	return nmiu
+}
+
 // SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
 func (nmiu *NanoMDMInfoUpdate) SetAutomaticOsInstallationEnabled(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetAutomaticOsInstallationEnabled(b)
@@ -356,6 +482,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableAutomaticOsInstallationEnabled(b *bool
 	if b != nil {
 		nmiu.SetAutomaticOsInstallationEnabled(*b)
 	}
+	return nmiu
+}
+
+// ClearAutomaticOsInstallationEnabled clears the value of the "automatic_os_installation_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearAutomaticOsInstallationEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearAutomaticOsInstallationEnabled()
 	return nmiu
 }
 
@@ -373,6 +505,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableAutomaticSecurityUpdatesEnabled(b *boo
 	return nmiu
 }
 
+// ClearAutomaticSecurityUpdatesEnabled clears the value of the "automatic_security_updates_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearAutomaticSecurityUpdatesEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearAutomaticSecurityUpdatesEnabled()
+	return nmiu
+}
+
 // SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
 func (nmiu *NanoMDMInfoUpdate) SetBackgroundDownloadEnabled(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetBackgroundDownloadEnabled(b)
@@ -384,6 +522,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableBackgroundDownloadEnabled(b *bool) *Na
 	if b != nil {
 		nmiu.SetBackgroundDownloadEnabled(*b)
 	}
+	return nmiu
+}
+
+// ClearBackgroundDownloadEnabled clears the value of the "background_download_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearBackgroundDownloadEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearBackgroundDownloadEnabled()
 	return nmiu
 }
 
@@ -401,6 +545,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableCatalogURL(s *string) *NanoMDMInfoUpda
 	return nmiu
 }
 
+// ClearCatalogURL clears the value of the "catalog_url" field.
+func (nmiu *NanoMDMInfoUpdate) ClearCatalogURL() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearCatalogURL()
+	return nmiu
+}
+
 // SetIsDefaultCatalog sets the "is_default_catalog" field.
 func (nmiu *NanoMDMInfoUpdate) SetIsDefaultCatalog(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetIsDefaultCatalog(b)
@@ -415,6 +565,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableIsDefaultCatalog(b *bool) *NanoMDMInfo
 	return nmiu
 }
 
+// ClearIsDefaultCatalog clears the value of the "is_default_catalog" field.
+func (nmiu *NanoMDMInfoUpdate) ClearIsDefaultCatalog() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearIsDefaultCatalog()
+	return nmiu
+}
+
 // SetPreviousScanDate sets the "previous_scan_date" field.
 func (nmiu *NanoMDMInfoUpdate) SetPreviousScanDate(t time.Time) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetPreviousScanDate(t)
@@ -426,6 +582,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillablePreviousScanDate(t *time.Time) *NanoMD
 	if t != nil {
 		nmiu.SetPreviousScanDate(*t)
 	}
+	return nmiu
+}
+
+// ClearPreviousScanDate clears the value of the "previous_scan_date" field.
+func (nmiu *NanoMDMInfoUpdate) ClearPreviousScanDate() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearPreviousScanDate()
 	return nmiu
 }
 
@@ -450,6 +612,12 @@ func (nmiu *NanoMDMInfoUpdate) AddPreviousScanResult(i int) *NanoMDMInfoUpdate {
 	return nmiu
 }
 
+// ClearPreviousScanResult clears the value of the "previous_scan_result" field.
+func (nmiu *NanoMDMInfoUpdate) ClearPreviousScanResult() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearPreviousScanResult()
+	return nmiu
+}
+
 // SetOsVersion sets the "os_version" field.
 func (nmiu *NanoMDMInfoUpdate) SetOsVersion(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetOsVersion(s)
@@ -461,6 +629,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableOsVersion(s *string) *NanoMDMInfoUpdat
 	if s != nil {
 		nmiu.SetOsVersion(*s)
 	}
+	return nmiu
+}
+
+// ClearOsVersion clears the value of the "os_version" field.
+func (nmiu *NanoMDMInfoUpdate) ClearOsVersion() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearOsVersion()
 	return nmiu
 }
 
@@ -478,6 +652,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillablePinRequiredForDeviceLock(b *bool) *Nan
 	return nmiu
 }
 
+// ClearPinRequiredForDeviceLock clears the value of the "pin_required_for_device_lock" field.
+func (nmiu *NanoMDMInfoUpdate) ClearPinRequiredForDeviceLock() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearPinRequiredForDeviceLock()
+	return nmiu
+}
+
 // SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
 func (nmiu *NanoMDMInfoUpdate) SetPinRequiredForEraseDevice(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetPinRequiredForEraseDevice(b)
@@ -489,6 +669,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillablePinRequiredForEraseDevice(b *bool) *Na
 	if b != nil {
 		nmiu.SetPinRequiredForEraseDevice(*b)
 	}
+	return nmiu
+}
+
+// ClearPinRequiredForEraseDevice clears the value of the "pin_required_for_erase_device" field.
+func (nmiu *NanoMDMInfoUpdate) ClearPinRequiredForEraseDevice() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearPinRequiredForEraseDevice()
 	return nmiu
 }
 
@@ -506,6 +692,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableProductName(s *string) *NanoMDMInfoUpd
 	return nmiu
 }
 
+// ClearProductName clears the value of the "product_name" field.
+func (nmiu *NanoMDMInfoUpdate) ClearProductName() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearProductName()
+	return nmiu
+}
+
 // SetProvisioningUdid sets the "provisioning_udid" field.
 func (nmiu *NanoMDMInfoUpdate) SetProvisioningUdid(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetProvisioningUdid(s)
@@ -517,6 +709,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableProvisioningUdid(s *string) *NanoMDMIn
 	if s != nil {
 		nmiu.SetProvisioningUdid(*s)
 	}
+	return nmiu
+}
+
+// ClearProvisioningUdid clears the value of the "provisioning_udid" field.
+func (nmiu *NanoMDMInfoUpdate) ClearProvisioningUdid() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearProvisioningUdid()
 	return nmiu
 }
 
@@ -534,6 +732,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableSerialNumber(s *string) *NanoMDMInfoUp
 	return nmiu
 }
 
+// ClearSerialNumber clears the value of the "serial_number" field.
+func (nmiu *NanoMDMInfoUpdate) ClearSerialNumber() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearSerialNumber()
+	return nmiu
+}
+
 // SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
 func (nmiu *NanoMDMInfoUpdate) SetSoftwareUpdateDeviceID(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetSoftwareUpdateDeviceID(s)
@@ -545,6 +749,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableSoftwareUpdateDeviceID(s *string) *Nan
 	if s != nil {
 		nmiu.SetSoftwareUpdateDeviceID(*s)
 	}
+	return nmiu
+}
+
+// ClearSoftwareUpdateDeviceID clears the value of the "software_update_device_id" field.
+func (nmiu *NanoMDMInfoUpdate) ClearSoftwareUpdateDeviceID() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearSoftwareUpdateDeviceID()
 	return nmiu
 }
 
@@ -562,6 +772,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableSupplementalBuildVersion(s *string) *N
 	return nmiu
 }
 
+// ClearSupplementalBuildVersion clears the value of the "supplemental_build_version" field.
+func (nmiu *NanoMDMInfoUpdate) ClearSupplementalBuildVersion() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearSupplementalBuildVersion()
+	return nmiu
+}
+
 // SetSupportsLomDevice sets the "supports_lom_device" field.
 func (nmiu *NanoMDMInfoUpdate) SetSupportsLomDevice(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetSupportsLomDevice(b)
@@ -573,6 +789,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableSupportsLomDevice(b *bool) *NanoMDMInf
 	if b != nil {
 		nmiu.SetSupportsLomDevice(*b)
 	}
+	return nmiu
+}
+
+// ClearSupportsLomDevice clears the value of the "supports_lom_device" field.
+func (nmiu *NanoMDMInfoUpdate) ClearSupportsLomDevice() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearSupportsLomDevice()
 	return nmiu
 }
 
@@ -590,6 +812,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableSupportsIosAppInstalls(b *bool) *NanoM
 	return nmiu
 }
 
+// ClearSupportsIosAppInstalls clears the value of the "supports_ios_app_installs" field.
+func (nmiu *NanoMDMInfoUpdate) ClearSupportsIosAppInstalls() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearSupportsIosAppInstalls()
+	return nmiu
+}
+
 // SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
 func (nmiu *NanoMDMInfoUpdate) SetSystemIntegrityProtectionEnabled(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetSystemIntegrityProtectionEnabled(b)
@@ -604,6 +832,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableSystemIntegrityProtectionEnabled(b *bo
 	return nmiu
 }
 
+// ClearSystemIntegrityProtectionEnabled clears the value of the "system_integrity_protection_enabled" field.
+func (nmiu *NanoMDMInfoUpdate) ClearSystemIntegrityProtectionEnabled() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearSystemIntegrityProtectionEnabled()
+	return nmiu
+}
+
 // SetUdid sets the "udid" field.
 func (nmiu *NanoMDMInfoUpdate) SetUdid(s string) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetUdid(s)
@@ -615,6 +849,12 @@ func (nmiu *NanoMDMInfoUpdate) SetNillableUdid(s *string) *NanoMDMInfoUpdate {
 	if s != nil {
 		nmiu.SetUdid(*s)
 	}
+	return nmiu
+}
+
+// ClearUdid clears the value of the "udid" field.
+func (nmiu *NanoMDMInfoUpdate) ClearUdid() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearUdid()
 	return nmiu
 }
 
@@ -696,8 +936,14 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nmiu.mutation.AddedAvailableDeviceCapacity(); ok {
 		_spec.AddField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
 	}
+	if nmiu.mutation.AvailableDeviceCapacityCleared() {
+		_spec.ClearField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64)
+	}
 	if value, ok := nmiu.mutation.AwaitingConfiguration(); ok {
 		_spec.SetField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool, value)
+	}
+	if nmiu.mutation.AwaitingConfigurationCleared() {
+		_spec.ClearField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.BatteryLevel(); ok {
 		_spec.SetField(nanomdminfo.FieldBatteryLevel, field.TypeFloat64, value)
@@ -705,14 +951,26 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nmiu.mutation.AddedBatteryLevel(); ok {
 		_spec.AddField(nanomdminfo.FieldBatteryLevel, field.TypeFloat64, value)
 	}
+	if nmiu.mutation.BatteryLevelCleared() {
+		_spec.ClearField(nanomdminfo.FieldBatteryLevel, field.TypeFloat64)
+	}
 	if value, ok := nmiu.mutation.BluetoothMAC(); ok {
 		_spec.SetField(nanomdminfo.FieldBluetoothMAC, field.TypeString, value)
+	}
+	if nmiu.mutation.BluetoothMACCleared() {
+		_spec.ClearField(nanomdminfo.FieldBluetoothMAC, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.BuildVersion(); ok {
 		_spec.SetField(nanomdminfo.FieldBuildVersion, field.TypeString, value)
 	}
+	if nmiu.mutation.BuildVersionCleared() {
+		_spec.ClearField(nanomdminfo.FieldBuildVersion, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.CurrentConsoleManagedUser(); ok {
 		_spec.SetField(nanomdminfo.FieldCurrentConsoleManagedUser, field.TypeString, value)
+	}
+	if nmiu.mutation.CurrentConsoleManagedUserCleared() {
+		_spec.ClearField(nanomdminfo.FieldCurrentConsoleManagedUser, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.DeviceCapacity(); ok {
 		_spec.SetField(nanomdminfo.FieldDeviceCapacity, field.TypeFloat64, value)
@@ -720,65 +978,128 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nmiu.mutation.AddedDeviceCapacity(); ok {
 		_spec.AddField(nanomdminfo.FieldDeviceCapacity, field.TypeFloat64, value)
 	}
+	if nmiu.mutation.DeviceCapacityCleared() {
+		_spec.ClearField(nanomdminfo.FieldDeviceCapacity, field.TypeFloat64)
+	}
 	if value, ok := nmiu.mutation.DeviceName(); ok {
 		_spec.SetField(nanomdminfo.FieldDeviceName, field.TypeString, value)
+	}
+	if nmiu.mutation.DeviceNameCleared() {
+		_spec.ClearField(nanomdminfo.FieldDeviceName, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.EacsPreflight(); ok {
 		_spec.SetField(nanomdminfo.FieldEacsPreflight, field.TypeString, value)
 	}
+	if nmiu.mutation.EacsPreflightCleared() {
+		_spec.ClearField(nanomdminfo.FieldEacsPreflight, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.EthernetMAC(); ok {
 		_spec.SetField(nanomdminfo.FieldEthernetMAC, field.TypeString, value)
+	}
+	if nmiu.mutation.EthernetMACCleared() {
+		_spec.ClearField(nanomdminfo.FieldEthernetMAC, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.HasBattery(); ok {
 		_spec.SetField(nanomdminfo.FieldHasBattery, field.TypeBool, value)
 	}
+	if nmiu.mutation.HasBatteryCleared() {
+		_spec.ClearField(nanomdminfo.FieldHasBattery, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.Hostname(); ok {
 		_spec.SetField(nanomdminfo.FieldHostname, field.TypeString, value)
+	}
+	if nmiu.mutation.HostnameCleared() {
+		_spec.ClearField(nanomdminfo.FieldHostname, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.IsActivationLockEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldIsActivationLockEnabled, field.TypeBool, value)
 	}
+	if nmiu.mutation.IsActivationLockEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsActivationLockEnabled, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.IsActivationLockSupported(); ok {
 		_spec.SetField(nanomdminfo.FieldIsActivationLockSupported, field.TypeBool, value)
+	}
+	if nmiu.mutation.IsActivationLockSupportedCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsActivationLockSupported, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.IsAppleSilicon(); ok {
 		_spec.SetField(nanomdminfo.FieldIsAppleSilicon, field.TypeBool, value)
 	}
+	if nmiu.mutation.IsAppleSiliconCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsAppleSilicon, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.IsSupervised(); ok {
 		_spec.SetField(nanomdminfo.FieldIsSupervised, field.TypeBool, value)
+	}
+	if nmiu.mutation.IsSupervisedCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsSupervised, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.Localhostname(); ok {
 		_spec.SetField(nanomdminfo.FieldLocalhostname, field.TypeString, value)
 	}
+	if nmiu.mutation.LocalhostnameCleared() {
+		_spec.ClearField(nanomdminfo.FieldLocalhostname, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.Model(); ok {
 		_spec.SetField(nanomdminfo.FieldModel, field.TypeString, value)
+	}
+	if nmiu.mutation.ModelCleared() {
+		_spec.ClearField(nanomdminfo.FieldModel, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.ModelName(); ok {
 		_spec.SetField(nanomdminfo.FieldModelName, field.TypeString, value)
 	}
+	if nmiu.mutation.ModelNameCleared() {
+		_spec.ClearField(nanomdminfo.FieldModelName, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.AutoCheckEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutoCheckEnabled, field.TypeBool, value)
+	}
+	if nmiu.mutation.AutoCheckEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutoCheckEnabled, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.AutomaticAppInstallationEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutomaticAppInstallationEnabled, field.TypeBool, value)
 	}
+	if nmiu.mutation.AutomaticAppInstallationEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutomaticAppInstallationEnabled, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.AutomaticOsInstallationEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutomaticOsInstallationEnabled, field.TypeBool, value)
+	}
+	if nmiu.mutation.AutomaticOsInstallationEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutomaticOsInstallationEnabled, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.AutomaticSecurityUpdatesEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutomaticSecurityUpdatesEnabled, field.TypeBool, value)
 	}
+	if nmiu.mutation.AutomaticSecurityUpdatesEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutomaticSecurityUpdatesEnabled, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.BackgroundDownloadEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldBackgroundDownloadEnabled, field.TypeBool, value)
+	}
+	if nmiu.mutation.BackgroundDownloadEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldBackgroundDownloadEnabled, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.CatalogURL(); ok {
 		_spec.SetField(nanomdminfo.FieldCatalogURL, field.TypeString, value)
 	}
+	if nmiu.mutation.CatalogURLCleared() {
+		_spec.ClearField(nanomdminfo.FieldCatalogURL, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.IsDefaultCatalog(); ok {
 		_spec.SetField(nanomdminfo.FieldIsDefaultCatalog, field.TypeBool, value)
 	}
+	if nmiu.mutation.IsDefaultCatalogCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsDefaultCatalog, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.PreviousScanDate(); ok {
 		_spec.SetField(nanomdminfo.FieldPreviousScanDate, field.TypeTime, value)
+	}
+	if nmiu.mutation.PreviousScanDateCleared() {
+		_spec.ClearField(nanomdminfo.FieldPreviousScanDate, field.TypeTime)
 	}
 	if value, ok := nmiu.mutation.PreviousScanResult(); ok {
 		_spec.SetField(nanomdminfo.FieldPreviousScanResult, field.TypeInt, value)
@@ -786,41 +1107,80 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nmiu.mutation.AddedPreviousScanResult(); ok {
 		_spec.AddField(nanomdminfo.FieldPreviousScanResult, field.TypeInt, value)
 	}
+	if nmiu.mutation.PreviousScanResultCleared() {
+		_spec.ClearField(nanomdminfo.FieldPreviousScanResult, field.TypeInt)
+	}
 	if value, ok := nmiu.mutation.OsVersion(); ok {
 		_spec.SetField(nanomdminfo.FieldOsVersion, field.TypeString, value)
+	}
+	if nmiu.mutation.OsVersionCleared() {
+		_spec.ClearField(nanomdminfo.FieldOsVersion, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.PinRequiredForDeviceLock(); ok {
 		_spec.SetField(nanomdminfo.FieldPinRequiredForDeviceLock, field.TypeBool, value)
 	}
+	if nmiu.mutation.PinRequiredForDeviceLockCleared() {
+		_spec.ClearField(nanomdminfo.FieldPinRequiredForDeviceLock, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.PinRequiredForEraseDevice(); ok {
 		_spec.SetField(nanomdminfo.FieldPinRequiredForEraseDevice, field.TypeBool, value)
+	}
+	if nmiu.mutation.PinRequiredForEraseDeviceCleared() {
+		_spec.ClearField(nanomdminfo.FieldPinRequiredForEraseDevice, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.ProductName(); ok {
 		_spec.SetField(nanomdminfo.FieldProductName, field.TypeString, value)
 	}
+	if nmiu.mutation.ProductNameCleared() {
+		_spec.ClearField(nanomdminfo.FieldProductName, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.ProvisioningUdid(); ok {
 		_spec.SetField(nanomdminfo.FieldProvisioningUdid, field.TypeString, value)
+	}
+	if nmiu.mutation.ProvisioningUdidCleared() {
+		_spec.ClearField(nanomdminfo.FieldProvisioningUdid, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.SerialNumber(); ok {
 		_spec.SetField(nanomdminfo.FieldSerialNumber, field.TypeString, value)
 	}
+	if nmiu.mutation.SerialNumberCleared() {
+		_spec.ClearField(nanomdminfo.FieldSerialNumber, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.SoftwareUpdateDeviceID(); ok {
 		_spec.SetField(nanomdminfo.FieldSoftwareUpdateDeviceID, field.TypeString, value)
+	}
+	if nmiu.mutation.SoftwareUpdateDeviceIDCleared() {
+		_spec.ClearField(nanomdminfo.FieldSoftwareUpdateDeviceID, field.TypeString)
 	}
 	if value, ok := nmiu.mutation.SupplementalBuildVersion(); ok {
 		_spec.SetField(nanomdminfo.FieldSupplementalBuildVersion, field.TypeString, value)
 	}
+	if nmiu.mutation.SupplementalBuildVersionCleared() {
+		_spec.ClearField(nanomdminfo.FieldSupplementalBuildVersion, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.SupportsLomDevice(); ok {
 		_spec.SetField(nanomdminfo.FieldSupportsLomDevice, field.TypeBool, value)
+	}
+	if nmiu.mutation.SupportsLomDeviceCleared() {
+		_spec.ClearField(nanomdminfo.FieldSupportsLomDevice, field.TypeBool)
 	}
 	if value, ok := nmiu.mutation.SupportsIosAppInstalls(); ok {
 		_spec.SetField(nanomdminfo.FieldSupportsIosAppInstalls, field.TypeBool, value)
 	}
+	if nmiu.mutation.SupportsIosAppInstallsCleared() {
+		_spec.ClearField(nanomdminfo.FieldSupportsIosAppInstalls, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.SystemIntegrityProtectionEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldSystemIntegrityProtectionEnabled, field.TypeBool, value)
 	}
+	if nmiu.mutation.SystemIntegrityProtectionEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldSystemIntegrityProtectionEnabled, field.TypeBool)
+	}
 	if value, ok := nmiu.mutation.Udid(); ok {
 		_spec.SetField(nanomdminfo.FieldUdid, field.TypeString, value)
+	}
+	if nmiu.mutation.UdidCleared() {
+		_spec.ClearField(nanomdminfo.FieldUdid, field.TypeString)
 	}
 	if nmiu.mutation.AgentCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -894,6 +1254,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) AddAvailableDeviceCapacity(f float64) *NanoMD
 	return nmiuo
 }
 
+// ClearAvailableDeviceCapacity clears the value of the "available_device_capacity" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearAvailableDeviceCapacity() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearAvailableDeviceCapacity()
+	return nmiuo
+}
+
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetAwaitingConfiguration(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetAwaitingConfiguration(b)
@@ -905,6 +1271,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAwaitingConfiguration(b *bool) *Na
 	if b != nil {
 		nmiuo.SetAwaitingConfiguration(*b)
 	}
+	return nmiuo
+}
+
+// ClearAwaitingConfiguration clears the value of the "awaiting_configuration" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearAwaitingConfiguration() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearAwaitingConfiguration()
 	return nmiuo
 }
 
@@ -929,6 +1301,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) AddBatteryLevel(f float64) *NanoMDMInfoUpdate
 	return nmiuo
 }
 
+// ClearBatteryLevel clears the value of the "battery_level" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearBatteryLevel() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearBatteryLevel()
+	return nmiuo
+}
+
 // SetBluetoothMAC sets the "bluetooth_mac" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetBluetoothMAC(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetBluetoothMAC(s)
@@ -940,6 +1318,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableBluetoothMAC(s *string) *NanoMDMIn
 	if s != nil {
 		nmiuo.SetBluetoothMAC(*s)
 	}
+	return nmiuo
+}
+
+// ClearBluetoothMAC clears the value of the "bluetooth_mac" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearBluetoothMAC() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearBluetoothMAC()
 	return nmiuo
 }
 
@@ -957,6 +1341,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableBuildVersion(s *string) *NanoMDMIn
 	return nmiuo
 }
 
+// ClearBuildVersion clears the value of the "build_version" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearBuildVersion() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearBuildVersion()
+	return nmiuo
+}
+
 // SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetCurrentConsoleManagedUser(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetCurrentConsoleManagedUser(s)
@@ -968,6 +1358,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableCurrentConsoleManagedUser(s *strin
 	if s != nil {
 		nmiuo.SetCurrentConsoleManagedUser(*s)
 	}
+	return nmiuo
+}
+
+// ClearCurrentConsoleManagedUser clears the value of the "current_console_managed_user" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearCurrentConsoleManagedUser() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearCurrentConsoleManagedUser()
 	return nmiuo
 }
 
@@ -992,6 +1388,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) AddDeviceCapacity(f float64) *NanoMDMInfoUpda
 	return nmiuo
 }
 
+// ClearDeviceCapacity clears the value of the "device_capacity" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearDeviceCapacity() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearDeviceCapacity()
+	return nmiuo
+}
+
 // SetDeviceName sets the "device_name" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetDeviceName(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetDeviceName(s)
@@ -1003,6 +1405,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableDeviceName(s *string) *NanoMDMInfo
 	if s != nil {
 		nmiuo.SetDeviceName(*s)
 	}
+	return nmiuo
+}
+
+// ClearDeviceName clears the value of the "device_name" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearDeviceName() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearDeviceName()
 	return nmiuo
 }
 
@@ -1020,6 +1428,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableEacsPreflight(s *string) *NanoMDMI
 	return nmiuo
 }
 
+// ClearEacsPreflight clears the value of the "eacs_preflight" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearEacsPreflight() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearEacsPreflight()
+	return nmiuo
+}
+
 // SetEthernetMAC sets the "ethernet_mac" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetEthernetMAC(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetEthernetMAC(s)
@@ -1031,6 +1445,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableEthernetMAC(s *string) *NanoMDMInf
 	if s != nil {
 		nmiuo.SetEthernetMAC(*s)
 	}
+	return nmiuo
+}
+
+// ClearEthernetMAC clears the value of the "ethernet_mac" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearEthernetMAC() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearEthernetMAC()
 	return nmiuo
 }
 
@@ -1048,6 +1468,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableHasBattery(b *bool) *NanoMDMInfoUp
 	return nmiuo
 }
 
+// ClearHasBattery clears the value of the "has_battery" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearHasBattery() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearHasBattery()
+	return nmiuo
+}
+
 // SetHostname sets the "hostname" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetHostname(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetHostname(s)
@@ -1059,6 +1485,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableHostname(s *string) *NanoMDMInfoUp
 	if s != nil {
 		nmiuo.SetHostname(*s)
 	}
+	return nmiuo
+}
+
+// ClearHostname clears the value of the "hostname" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearHostname() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearHostname()
 	return nmiuo
 }
 
@@ -1076,6 +1508,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableIsActivationLockEnabled(b *bool) *
 	return nmiuo
 }
 
+// ClearIsActivationLockEnabled clears the value of the "is_activation_lock_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearIsActivationLockEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearIsActivationLockEnabled()
+	return nmiuo
+}
+
 // SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetIsActivationLockSupported(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetIsActivationLockSupported(b)
@@ -1087,6 +1525,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableIsActivationLockSupported(b *bool)
 	if b != nil {
 		nmiuo.SetIsActivationLockSupported(*b)
 	}
+	return nmiuo
+}
+
+// ClearIsActivationLockSupported clears the value of the "is_activation_lock_supported" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearIsActivationLockSupported() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearIsActivationLockSupported()
 	return nmiuo
 }
 
@@ -1104,6 +1548,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableIsAppleSilicon(b *bool) *NanoMDMIn
 	return nmiuo
 }
 
+// ClearIsAppleSilicon clears the value of the "is_apple_silicon" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearIsAppleSilicon() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearIsAppleSilicon()
+	return nmiuo
+}
+
 // SetIsSupervised sets the "is_supervised" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetIsSupervised(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetIsSupervised(b)
@@ -1115,6 +1565,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableIsSupervised(b *bool) *NanoMDMInfo
 	if b != nil {
 		nmiuo.SetIsSupervised(*b)
 	}
+	return nmiuo
+}
+
+// ClearIsSupervised clears the value of the "is_supervised" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearIsSupervised() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearIsSupervised()
 	return nmiuo
 }
 
@@ -1132,6 +1588,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableLocalhostname(s *string) *NanoMDMI
 	return nmiuo
 }
 
+// ClearLocalhostname clears the value of the "localhostname" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearLocalhostname() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearLocalhostname()
+	return nmiuo
+}
+
 // SetModel sets the "model" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetModel(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetModel(s)
@@ -1143,6 +1605,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableModel(s *string) *NanoMDMInfoUpdat
 	if s != nil {
 		nmiuo.SetModel(*s)
 	}
+	return nmiuo
+}
+
+// ClearModel clears the value of the "model" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearModel() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearModel()
 	return nmiuo
 }
 
@@ -1160,6 +1628,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableModelName(s *string) *NanoMDMInfoU
 	return nmiuo
 }
 
+// ClearModelName clears the value of the "model_name" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearModelName() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearModelName()
+	return nmiuo
+}
+
 // SetAutoCheckEnabled sets the "auto_check_enabled" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetAutoCheckEnabled(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetAutoCheckEnabled(b)
@@ -1171,6 +1645,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAutoCheckEnabled(b *bool) *NanoMDM
 	if b != nil {
 		nmiuo.SetAutoCheckEnabled(*b)
 	}
+	return nmiuo
+}
+
+// ClearAutoCheckEnabled clears the value of the "auto_check_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearAutoCheckEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearAutoCheckEnabled()
 	return nmiuo
 }
 
@@ -1188,6 +1668,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAutomaticAppInstallationEnabled(b 
 	return nmiuo
 }
 
+// ClearAutomaticAppInstallationEnabled clears the value of the "automatic_app_installation_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearAutomaticAppInstallationEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearAutomaticAppInstallationEnabled()
+	return nmiuo
+}
+
 // SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetAutomaticOsInstallationEnabled(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetAutomaticOsInstallationEnabled(b)
@@ -1199,6 +1685,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAutomaticOsInstallationEnabled(b *
 	if b != nil {
 		nmiuo.SetAutomaticOsInstallationEnabled(*b)
 	}
+	return nmiuo
+}
+
+// ClearAutomaticOsInstallationEnabled clears the value of the "automatic_os_installation_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearAutomaticOsInstallationEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearAutomaticOsInstallationEnabled()
 	return nmiuo
 }
 
@@ -1216,6 +1708,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableAutomaticSecurityUpdatesEnabled(b 
 	return nmiuo
 }
 
+// ClearAutomaticSecurityUpdatesEnabled clears the value of the "automatic_security_updates_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearAutomaticSecurityUpdatesEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearAutomaticSecurityUpdatesEnabled()
+	return nmiuo
+}
+
 // SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetBackgroundDownloadEnabled(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetBackgroundDownloadEnabled(b)
@@ -1227,6 +1725,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableBackgroundDownloadEnabled(b *bool)
 	if b != nil {
 		nmiuo.SetBackgroundDownloadEnabled(*b)
 	}
+	return nmiuo
+}
+
+// ClearBackgroundDownloadEnabled clears the value of the "background_download_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearBackgroundDownloadEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearBackgroundDownloadEnabled()
 	return nmiuo
 }
 
@@ -1244,6 +1748,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableCatalogURL(s *string) *NanoMDMInfo
 	return nmiuo
 }
 
+// ClearCatalogURL clears the value of the "catalog_url" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearCatalogURL() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearCatalogURL()
+	return nmiuo
+}
+
 // SetIsDefaultCatalog sets the "is_default_catalog" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetIsDefaultCatalog(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetIsDefaultCatalog(b)
@@ -1258,6 +1768,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableIsDefaultCatalog(b *bool) *NanoMDM
 	return nmiuo
 }
 
+// ClearIsDefaultCatalog clears the value of the "is_default_catalog" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearIsDefaultCatalog() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearIsDefaultCatalog()
+	return nmiuo
+}
+
 // SetPreviousScanDate sets the "previous_scan_date" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetPreviousScanDate(t time.Time) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetPreviousScanDate(t)
@@ -1269,6 +1785,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillablePreviousScanDate(t *time.Time) *Na
 	if t != nil {
 		nmiuo.SetPreviousScanDate(*t)
 	}
+	return nmiuo
+}
+
+// ClearPreviousScanDate clears the value of the "previous_scan_date" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearPreviousScanDate() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearPreviousScanDate()
 	return nmiuo
 }
 
@@ -1293,6 +1815,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) AddPreviousScanResult(i int) *NanoMDMInfoUpda
 	return nmiuo
 }
 
+// ClearPreviousScanResult clears the value of the "previous_scan_result" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearPreviousScanResult() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearPreviousScanResult()
+	return nmiuo
+}
+
 // SetOsVersion sets the "os_version" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetOsVersion(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetOsVersion(s)
@@ -1304,6 +1832,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableOsVersion(s *string) *NanoMDMInfoU
 	if s != nil {
 		nmiuo.SetOsVersion(*s)
 	}
+	return nmiuo
+}
+
+// ClearOsVersion clears the value of the "os_version" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearOsVersion() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearOsVersion()
 	return nmiuo
 }
 
@@ -1321,6 +1855,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillablePinRequiredForDeviceLock(b *bool) 
 	return nmiuo
 }
 
+// ClearPinRequiredForDeviceLock clears the value of the "pin_required_for_device_lock" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearPinRequiredForDeviceLock() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearPinRequiredForDeviceLock()
+	return nmiuo
+}
+
 // SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetPinRequiredForEraseDevice(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetPinRequiredForEraseDevice(b)
@@ -1332,6 +1872,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillablePinRequiredForEraseDevice(b *bool)
 	if b != nil {
 		nmiuo.SetPinRequiredForEraseDevice(*b)
 	}
+	return nmiuo
+}
+
+// ClearPinRequiredForEraseDevice clears the value of the "pin_required_for_erase_device" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearPinRequiredForEraseDevice() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearPinRequiredForEraseDevice()
 	return nmiuo
 }
 
@@ -1349,6 +1895,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableProductName(s *string) *NanoMDMInf
 	return nmiuo
 }
 
+// ClearProductName clears the value of the "product_name" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearProductName() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearProductName()
+	return nmiuo
+}
+
 // SetProvisioningUdid sets the "provisioning_udid" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetProvisioningUdid(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetProvisioningUdid(s)
@@ -1360,6 +1912,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableProvisioningUdid(s *string) *NanoM
 	if s != nil {
 		nmiuo.SetProvisioningUdid(*s)
 	}
+	return nmiuo
+}
+
+// ClearProvisioningUdid clears the value of the "provisioning_udid" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearProvisioningUdid() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearProvisioningUdid()
 	return nmiuo
 }
 
@@ -1377,6 +1935,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableSerialNumber(s *string) *NanoMDMIn
 	return nmiuo
 }
 
+// ClearSerialNumber clears the value of the "serial_number" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearSerialNumber() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearSerialNumber()
+	return nmiuo
+}
+
 // SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetSoftwareUpdateDeviceID(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetSoftwareUpdateDeviceID(s)
@@ -1388,6 +1952,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableSoftwareUpdateDeviceID(s *string) 
 	if s != nil {
 		nmiuo.SetSoftwareUpdateDeviceID(*s)
 	}
+	return nmiuo
+}
+
+// ClearSoftwareUpdateDeviceID clears the value of the "software_update_device_id" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearSoftwareUpdateDeviceID() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearSoftwareUpdateDeviceID()
 	return nmiuo
 }
 
@@ -1405,6 +1975,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableSupplementalBuildVersion(s *string
 	return nmiuo
 }
 
+// ClearSupplementalBuildVersion clears the value of the "supplemental_build_version" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearSupplementalBuildVersion() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearSupplementalBuildVersion()
+	return nmiuo
+}
+
 // SetSupportsLomDevice sets the "supports_lom_device" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetSupportsLomDevice(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetSupportsLomDevice(b)
@@ -1416,6 +1992,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableSupportsLomDevice(b *bool) *NanoMD
 	if b != nil {
 		nmiuo.SetSupportsLomDevice(*b)
 	}
+	return nmiuo
+}
+
+// ClearSupportsLomDevice clears the value of the "supports_lom_device" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearSupportsLomDevice() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearSupportsLomDevice()
 	return nmiuo
 }
 
@@ -1433,6 +2015,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableSupportsIosAppInstalls(b *bool) *N
 	return nmiuo
 }
 
+// ClearSupportsIosAppInstalls clears the value of the "supports_ios_app_installs" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearSupportsIosAppInstalls() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearSupportsIosAppInstalls()
+	return nmiuo
+}
+
 // SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetSystemIntegrityProtectionEnabled(b bool) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetSystemIntegrityProtectionEnabled(b)
@@ -1447,6 +2035,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableSystemIntegrityProtectionEnabled(b
 	return nmiuo
 }
 
+// ClearSystemIntegrityProtectionEnabled clears the value of the "system_integrity_protection_enabled" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearSystemIntegrityProtectionEnabled() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearSystemIntegrityProtectionEnabled()
+	return nmiuo
+}
+
 // SetUdid sets the "udid" field.
 func (nmiuo *NanoMDMInfoUpdateOne) SetUdid(s string) *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.SetUdid(s)
@@ -1458,6 +2052,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableUdid(s *string) *NanoMDMInfoUpdate
 	if s != nil {
 		nmiuo.SetUdid(*s)
 	}
+	return nmiuo
+}
+
+// ClearUdid clears the value of the "udid" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearUdid() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearUdid()
 	return nmiuo
 }
 
@@ -1569,8 +2169,14 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	if value, ok := nmiuo.mutation.AddedAvailableDeviceCapacity(); ok {
 		_spec.AddField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64, value)
 	}
+	if nmiuo.mutation.AvailableDeviceCapacityCleared() {
+		_spec.ClearField(nanomdminfo.FieldAvailableDeviceCapacity, field.TypeFloat64)
+	}
 	if value, ok := nmiuo.mutation.AwaitingConfiguration(); ok {
 		_spec.SetField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool, value)
+	}
+	if nmiuo.mutation.AwaitingConfigurationCleared() {
+		_spec.ClearField(nanomdminfo.FieldAwaitingConfiguration, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.BatteryLevel(); ok {
 		_spec.SetField(nanomdminfo.FieldBatteryLevel, field.TypeFloat64, value)
@@ -1578,14 +2184,26 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	if value, ok := nmiuo.mutation.AddedBatteryLevel(); ok {
 		_spec.AddField(nanomdminfo.FieldBatteryLevel, field.TypeFloat64, value)
 	}
+	if nmiuo.mutation.BatteryLevelCleared() {
+		_spec.ClearField(nanomdminfo.FieldBatteryLevel, field.TypeFloat64)
+	}
 	if value, ok := nmiuo.mutation.BluetoothMAC(); ok {
 		_spec.SetField(nanomdminfo.FieldBluetoothMAC, field.TypeString, value)
+	}
+	if nmiuo.mutation.BluetoothMACCleared() {
+		_spec.ClearField(nanomdminfo.FieldBluetoothMAC, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.BuildVersion(); ok {
 		_spec.SetField(nanomdminfo.FieldBuildVersion, field.TypeString, value)
 	}
+	if nmiuo.mutation.BuildVersionCleared() {
+		_spec.ClearField(nanomdminfo.FieldBuildVersion, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.CurrentConsoleManagedUser(); ok {
 		_spec.SetField(nanomdminfo.FieldCurrentConsoleManagedUser, field.TypeString, value)
+	}
+	if nmiuo.mutation.CurrentConsoleManagedUserCleared() {
+		_spec.ClearField(nanomdminfo.FieldCurrentConsoleManagedUser, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.DeviceCapacity(); ok {
 		_spec.SetField(nanomdminfo.FieldDeviceCapacity, field.TypeFloat64, value)
@@ -1593,65 +2211,128 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	if value, ok := nmiuo.mutation.AddedDeviceCapacity(); ok {
 		_spec.AddField(nanomdminfo.FieldDeviceCapacity, field.TypeFloat64, value)
 	}
+	if nmiuo.mutation.DeviceCapacityCleared() {
+		_spec.ClearField(nanomdminfo.FieldDeviceCapacity, field.TypeFloat64)
+	}
 	if value, ok := nmiuo.mutation.DeviceName(); ok {
 		_spec.SetField(nanomdminfo.FieldDeviceName, field.TypeString, value)
+	}
+	if nmiuo.mutation.DeviceNameCleared() {
+		_spec.ClearField(nanomdminfo.FieldDeviceName, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.EacsPreflight(); ok {
 		_spec.SetField(nanomdminfo.FieldEacsPreflight, field.TypeString, value)
 	}
+	if nmiuo.mutation.EacsPreflightCleared() {
+		_spec.ClearField(nanomdminfo.FieldEacsPreflight, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.EthernetMAC(); ok {
 		_spec.SetField(nanomdminfo.FieldEthernetMAC, field.TypeString, value)
+	}
+	if nmiuo.mutation.EthernetMACCleared() {
+		_spec.ClearField(nanomdminfo.FieldEthernetMAC, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.HasBattery(); ok {
 		_spec.SetField(nanomdminfo.FieldHasBattery, field.TypeBool, value)
 	}
+	if nmiuo.mutation.HasBatteryCleared() {
+		_spec.ClearField(nanomdminfo.FieldHasBattery, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.Hostname(); ok {
 		_spec.SetField(nanomdminfo.FieldHostname, field.TypeString, value)
+	}
+	if nmiuo.mutation.HostnameCleared() {
+		_spec.ClearField(nanomdminfo.FieldHostname, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.IsActivationLockEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldIsActivationLockEnabled, field.TypeBool, value)
 	}
+	if nmiuo.mutation.IsActivationLockEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsActivationLockEnabled, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.IsActivationLockSupported(); ok {
 		_spec.SetField(nanomdminfo.FieldIsActivationLockSupported, field.TypeBool, value)
+	}
+	if nmiuo.mutation.IsActivationLockSupportedCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsActivationLockSupported, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.IsAppleSilicon(); ok {
 		_spec.SetField(nanomdminfo.FieldIsAppleSilicon, field.TypeBool, value)
 	}
+	if nmiuo.mutation.IsAppleSiliconCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsAppleSilicon, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.IsSupervised(); ok {
 		_spec.SetField(nanomdminfo.FieldIsSupervised, field.TypeBool, value)
+	}
+	if nmiuo.mutation.IsSupervisedCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsSupervised, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.Localhostname(); ok {
 		_spec.SetField(nanomdminfo.FieldLocalhostname, field.TypeString, value)
 	}
+	if nmiuo.mutation.LocalhostnameCleared() {
+		_spec.ClearField(nanomdminfo.FieldLocalhostname, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.Model(); ok {
 		_spec.SetField(nanomdminfo.FieldModel, field.TypeString, value)
+	}
+	if nmiuo.mutation.ModelCleared() {
+		_spec.ClearField(nanomdminfo.FieldModel, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.ModelName(); ok {
 		_spec.SetField(nanomdminfo.FieldModelName, field.TypeString, value)
 	}
+	if nmiuo.mutation.ModelNameCleared() {
+		_spec.ClearField(nanomdminfo.FieldModelName, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.AutoCheckEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutoCheckEnabled, field.TypeBool, value)
+	}
+	if nmiuo.mutation.AutoCheckEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutoCheckEnabled, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.AutomaticAppInstallationEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutomaticAppInstallationEnabled, field.TypeBool, value)
 	}
+	if nmiuo.mutation.AutomaticAppInstallationEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutomaticAppInstallationEnabled, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.AutomaticOsInstallationEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutomaticOsInstallationEnabled, field.TypeBool, value)
+	}
+	if nmiuo.mutation.AutomaticOsInstallationEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutomaticOsInstallationEnabled, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.AutomaticSecurityUpdatesEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldAutomaticSecurityUpdatesEnabled, field.TypeBool, value)
 	}
+	if nmiuo.mutation.AutomaticSecurityUpdatesEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldAutomaticSecurityUpdatesEnabled, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.BackgroundDownloadEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldBackgroundDownloadEnabled, field.TypeBool, value)
+	}
+	if nmiuo.mutation.BackgroundDownloadEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldBackgroundDownloadEnabled, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.CatalogURL(); ok {
 		_spec.SetField(nanomdminfo.FieldCatalogURL, field.TypeString, value)
 	}
+	if nmiuo.mutation.CatalogURLCleared() {
+		_spec.ClearField(nanomdminfo.FieldCatalogURL, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.IsDefaultCatalog(); ok {
 		_spec.SetField(nanomdminfo.FieldIsDefaultCatalog, field.TypeBool, value)
 	}
+	if nmiuo.mutation.IsDefaultCatalogCleared() {
+		_spec.ClearField(nanomdminfo.FieldIsDefaultCatalog, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.PreviousScanDate(); ok {
 		_spec.SetField(nanomdminfo.FieldPreviousScanDate, field.TypeTime, value)
+	}
+	if nmiuo.mutation.PreviousScanDateCleared() {
+		_spec.ClearField(nanomdminfo.FieldPreviousScanDate, field.TypeTime)
 	}
 	if value, ok := nmiuo.mutation.PreviousScanResult(); ok {
 		_spec.SetField(nanomdminfo.FieldPreviousScanResult, field.TypeInt, value)
@@ -1659,41 +2340,80 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	if value, ok := nmiuo.mutation.AddedPreviousScanResult(); ok {
 		_spec.AddField(nanomdminfo.FieldPreviousScanResult, field.TypeInt, value)
 	}
+	if nmiuo.mutation.PreviousScanResultCleared() {
+		_spec.ClearField(nanomdminfo.FieldPreviousScanResult, field.TypeInt)
+	}
 	if value, ok := nmiuo.mutation.OsVersion(); ok {
 		_spec.SetField(nanomdminfo.FieldOsVersion, field.TypeString, value)
+	}
+	if nmiuo.mutation.OsVersionCleared() {
+		_spec.ClearField(nanomdminfo.FieldOsVersion, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.PinRequiredForDeviceLock(); ok {
 		_spec.SetField(nanomdminfo.FieldPinRequiredForDeviceLock, field.TypeBool, value)
 	}
+	if nmiuo.mutation.PinRequiredForDeviceLockCleared() {
+		_spec.ClearField(nanomdminfo.FieldPinRequiredForDeviceLock, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.PinRequiredForEraseDevice(); ok {
 		_spec.SetField(nanomdminfo.FieldPinRequiredForEraseDevice, field.TypeBool, value)
+	}
+	if nmiuo.mutation.PinRequiredForEraseDeviceCleared() {
+		_spec.ClearField(nanomdminfo.FieldPinRequiredForEraseDevice, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.ProductName(); ok {
 		_spec.SetField(nanomdminfo.FieldProductName, field.TypeString, value)
 	}
+	if nmiuo.mutation.ProductNameCleared() {
+		_spec.ClearField(nanomdminfo.FieldProductName, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.ProvisioningUdid(); ok {
 		_spec.SetField(nanomdminfo.FieldProvisioningUdid, field.TypeString, value)
+	}
+	if nmiuo.mutation.ProvisioningUdidCleared() {
+		_spec.ClearField(nanomdminfo.FieldProvisioningUdid, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.SerialNumber(); ok {
 		_spec.SetField(nanomdminfo.FieldSerialNumber, field.TypeString, value)
 	}
+	if nmiuo.mutation.SerialNumberCleared() {
+		_spec.ClearField(nanomdminfo.FieldSerialNumber, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.SoftwareUpdateDeviceID(); ok {
 		_spec.SetField(nanomdminfo.FieldSoftwareUpdateDeviceID, field.TypeString, value)
+	}
+	if nmiuo.mutation.SoftwareUpdateDeviceIDCleared() {
+		_spec.ClearField(nanomdminfo.FieldSoftwareUpdateDeviceID, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.SupplementalBuildVersion(); ok {
 		_spec.SetField(nanomdminfo.FieldSupplementalBuildVersion, field.TypeString, value)
 	}
+	if nmiuo.mutation.SupplementalBuildVersionCleared() {
+		_spec.ClearField(nanomdminfo.FieldSupplementalBuildVersion, field.TypeString)
+	}
 	if value, ok := nmiuo.mutation.SupportsLomDevice(); ok {
 		_spec.SetField(nanomdminfo.FieldSupportsLomDevice, field.TypeBool, value)
+	}
+	if nmiuo.mutation.SupportsLomDeviceCleared() {
+		_spec.ClearField(nanomdminfo.FieldSupportsLomDevice, field.TypeBool)
 	}
 	if value, ok := nmiuo.mutation.SupportsIosAppInstalls(); ok {
 		_spec.SetField(nanomdminfo.FieldSupportsIosAppInstalls, field.TypeBool, value)
 	}
+	if nmiuo.mutation.SupportsIosAppInstallsCleared() {
+		_spec.ClearField(nanomdminfo.FieldSupportsIosAppInstalls, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.SystemIntegrityProtectionEnabled(); ok {
 		_spec.SetField(nanomdminfo.FieldSystemIntegrityProtectionEnabled, field.TypeBool, value)
 	}
+	if nmiuo.mutation.SystemIntegrityProtectionEnabledCleared() {
+		_spec.ClearField(nanomdminfo.FieldSystemIntegrityProtectionEnabled, field.TypeBool)
+	}
 	if value, ok := nmiuo.mutation.Udid(); ok {
 		_spec.SetField(nanomdminfo.FieldUdid, field.TypeString, value)
+	}
+	if nmiuo.mutation.UdidCleared() {
+		_spec.ClearField(nanomdminfo.FieldUdid, field.TypeString)
 	}
 	if nmiuo.mutation.AgentCleared() {
 		edge := &sqlgraph.EdgeSpec{

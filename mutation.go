@@ -24,6 +24,7 @@ import (
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
 	"github.com/open-uem/ent/nanomdminfo"
+	"github.com/open-uem/ent/nanomdmuser"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -74,6 +75,7 @@ const (
 	TypeMetadata              = "Metadata"
 	TypeMonitor               = "Monitor"
 	TypeNanoMDMInfo           = "NanoMDMInfo"
+	TypeNanoMDMUser           = "NanoMDMUser"
 	TypeNetbird               = "Netbird"
 	TypeNetbirdSettings       = "NetbirdSettings"
 	TypeNetworkAdapter        = "NetworkAdapter"
@@ -200,6 +202,9 @@ type AgentMutation struct {
 	clearedmdmcommands         bool
 	nanomdminfo                *int
 	clearednanomdminfo         bool
+	nanomdmusers               map[int]struct{}
+	removednanomdmusers        map[int]struct{}
+	clearednanomdmusers        bool
 	done                       bool
 	oldValue                   func(context.Context) (*Agent, error)
 	predicates                 []predicate.Agent
@@ -2851,6 +2856,60 @@ func (m *AgentMutation) ResetNanomdminfo() {
 	m.clearednanomdminfo = false
 }
 
+// AddNanomdmuserIDs adds the "nanomdmusers" edge to the NanoMDMUser entity by ids.
+func (m *AgentMutation) AddNanomdmuserIDs(ids ...int) {
+	if m.nanomdmusers == nil {
+		m.nanomdmusers = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.nanomdmusers[ids[i]] = struct{}{}
+	}
+}
+
+// ClearNanomdmusers clears the "nanomdmusers" edge to the NanoMDMUser entity.
+func (m *AgentMutation) ClearNanomdmusers() {
+	m.clearednanomdmusers = true
+}
+
+// NanomdmusersCleared reports if the "nanomdmusers" edge to the NanoMDMUser entity was cleared.
+func (m *AgentMutation) NanomdmusersCleared() bool {
+	return m.clearednanomdmusers
+}
+
+// RemoveNanomdmuserIDs removes the "nanomdmusers" edge to the NanoMDMUser entity by IDs.
+func (m *AgentMutation) RemoveNanomdmuserIDs(ids ...int) {
+	if m.removednanomdmusers == nil {
+		m.removednanomdmusers = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.nanomdmusers, ids[i])
+		m.removednanomdmusers[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedNanomdmusers returns the removed IDs of the "nanomdmusers" edge to the NanoMDMUser entity.
+func (m *AgentMutation) RemovedNanomdmusersIDs() (ids []int) {
+	for id := range m.removednanomdmusers {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// NanomdmusersIDs returns the "nanomdmusers" edge IDs in the mutation.
+func (m *AgentMutation) NanomdmusersIDs() (ids []int) {
+	for id := range m.nanomdmusers {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetNanomdmusers resets all changes to the "nanomdmusers" edge.
+func (m *AgentMutation) ResetNanomdmusers() {
+	m.nanomdmusers = nil
+	m.clearednanomdmusers = false
+	m.removednanomdmusers = nil
+}
+
 // Where appends a list predicates to the AgentMutation builder.
 func (m *AgentMutation) Where(ps ...predicate.Agent) {
 	m.predicates = append(m.predicates, ps...)
@@ -3630,7 +3689,7 @@ func (m *AgentMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *AgentMutation) AddedEdges() []string {
-	edges := make([]string, 0, 23)
+	edges := make([]string, 0, 24)
 	if m.computer != nil {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3699,6 +3758,9 @@ func (m *AgentMutation) AddedEdges() []string {
 	}
 	if m.nanomdminfo != nil {
 		edges = append(edges, agent.EdgeNanomdminfo)
+	}
+	if m.nanomdmusers != nil {
+		edges = append(edges, agent.EdgeNanomdmusers)
 	}
 	return edges
 }
@@ -3831,13 +3893,19 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 		if id := m.nanomdminfo; id != nil {
 			return []ent.Value{*id}
 		}
+	case agent.EdgeNanomdmusers:
+		ids := make([]ent.Value, 0, len(m.nanomdmusers))
+		for id := range m.nanomdmusers {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *AgentMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 23)
+	edges := make([]string, 0, 24)
 	if m.removedlogicaldisks != nil {
 		edges = append(edges, agent.EdgeLogicaldisks)
 	}
@@ -3885,6 +3953,9 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedmdmcommands != nil {
 		edges = append(edges, agent.EdgeMdmcommands)
+	}
+	if m.removednanomdmusers != nil {
+		edges = append(edges, agent.EdgeNanomdmusers)
 	}
 	return edges
 }
@@ -3989,13 +4060,19 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgeNanomdmusers:
+		ids := make([]ent.Value, 0, len(m.removednanomdmusers))
+		for id := range m.removednanomdmusers {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *AgentMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 23)
+	edges := make([]string, 0, 24)
 	if m.clearedcomputer {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -4065,6 +4142,9 @@ func (m *AgentMutation) ClearedEdges() []string {
 	if m.clearednanomdminfo {
 		edges = append(edges, agent.EdgeNanomdminfo)
 	}
+	if m.clearednanomdmusers {
+		edges = append(edges, agent.EdgeNanomdmusers)
+	}
 	return edges
 }
 
@@ -4118,6 +4198,8 @@ func (m *AgentMutation) EdgeCleared(name string) bool {
 		return m.clearedmdmcommands
 	case agent.EdgeNanomdminfo:
 		return m.clearednanomdminfo
+	case agent.EdgeNanomdmusers:
+		return m.clearednanomdmusers
 	}
 	return false
 }
@@ -4223,6 +4305,9 @@ func (m *AgentMutation) ResetEdge(name string) error {
 		return nil
 	case agent.EdgeNanomdminfo:
 		m.ResetNanomdminfo()
+		return nil
+	case agent.EdgeNanomdmusers:
+		m.ResetNanomdmusers()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent edge %s", name)
@@ -12332,10 +12417,24 @@ func (m *NanoMDMInfoMutation) AddedAvailableDeviceCapacity() (r float64, exists 
 	return *v, true
 }
 
+// ClearAvailableDeviceCapacity clears the value of the "available_device_capacity" field.
+func (m *NanoMDMInfoMutation) ClearAvailableDeviceCapacity() {
+	m.available_device_capacity = nil
+	m.addavailable_device_capacity = nil
+	m.clearedFields[nanomdminfo.FieldAvailableDeviceCapacity] = struct{}{}
+}
+
+// AvailableDeviceCapacityCleared returns if the "available_device_capacity" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) AvailableDeviceCapacityCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldAvailableDeviceCapacity]
+	return ok
+}
+
 // ResetAvailableDeviceCapacity resets all changes to the "available_device_capacity" field.
 func (m *NanoMDMInfoMutation) ResetAvailableDeviceCapacity() {
 	m.available_device_capacity = nil
 	m.addavailable_device_capacity = nil
+	delete(m.clearedFields, nanomdminfo.FieldAvailableDeviceCapacity)
 }
 
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
@@ -12369,9 +12468,22 @@ func (m *NanoMDMInfoMutation) OldAwaitingConfiguration(ctx context.Context) (v b
 	return oldValue.AwaitingConfiguration, nil
 }
 
+// ClearAwaitingConfiguration clears the value of the "awaiting_configuration" field.
+func (m *NanoMDMInfoMutation) ClearAwaitingConfiguration() {
+	m.awaiting_configuration = nil
+	m.clearedFields[nanomdminfo.FieldAwaitingConfiguration] = struct{}{}
+}
+
+// AwaitingConfigurationCleared returns if the "awaiting_configuration" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) AwaitingConfigurationCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldAwaitingConfiguration]
+	return ok
+}
+
 // ResetAwaitingConfiguration resets all changes to the "awaiting_configuration" field.
 func (m *NanoMDMInfoMutation) ResetAwaitingConfiguration() {
 	m.awaiting_configuration = nil
+	delete(m.clearedFields, nanomdminfo.FieldAwaitingConfiguration)
 }
 
 // SetBatteryLevel sets the "battery_level" field.
@@ -12424,10 +12536,24 @@ func (m *NanoMDMInfoMutation) AddedBatteryLevel() (r float64, exists bool) {
 	return *v, true
 }
 
+// ClearBatteryLevel clears the value of the "battery_level" field.
+func (m *NanoMDMInfoMutation) ClearBatteryLevel() {
+	m.battery_level = nil
+	m.addbattery_level = nil
+	m.clearedFields[nanomdminfo.FieldBatteryLevel] = struct{}{}
+}
+
+// BatteryLevelCleared returns if the "battery_level" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) BatteryLevelCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldBatteryLevel]
+	return ok
+}
+
 // ResetBatteryLevel resets all changes to the "battery_level" field.
 func (m *NanoMDMInfoMutation) ResetBatteryLevel() {
 	m.battery_level = nil
 	m.addbattery_level = nil
+	delete(m.clearedFields, nanomdminfo.FieldBatteryLevel)
 }
 
 // SetBluetoothMAC sets the "bluetooth_mac" field.
@@ -12461,9 +12587,22 @@ func (m *NanoMDMInfoMutation) OldBluetoothMAC(ctx context.Context) (v string, er
 	return oldValue.BluetoothMAC, nil
 }
 
+// ClearBluetoothMAC clears the value of the "bluetooth_mac" field.
+func (m *NanoMDMInfoMutation) ClearBluetoothMAC() {
+	m.bluetooth_mac = nil
+	m.clearedFields[nanomdminfo.FieldBluetoothMAC] = struct{}{}
+}
+
+// BluetoothMACCleared returns if the "bluetooth_mac" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) BluetoothMACCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldBluetoothMAC]
+	return ok
+}
+
 // ResetBluetoothMAC resets all changes to the "bluetooth_mac" field.
 func (m *NanoMDMInfoMutation) ResetBluetoothMAC() {
 	m.bluetooth_mac = nil
+	delete(m.clearedFields, nanomdminfo.FieldBluetoothMAC)
 }
 
 // SetBuildVersion sets the "build_version" field.
@@ -12497,9 +12636,22 @@ func (m *NanoMDMInfoMutation) OldBuildVersion(ctx context.Context) (v string, er
 	return oldValue.BuildVersion, nil
 }
 
+// ClearBuildVersion clears the value of the "build_version" field.
+func (m *NanoMDMInfoMutation) ClearBuildVersion() {
+	m.build_version = nil
+	m.clearedFields[nanomdminfo.FieldBuildVersion] = struct{}{}
+}
+
+// BuildVersionCleared returns if the "build_version" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) BuildVersionCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldBuildVersion]
+	return ok
+}
+
 // ResetBuildVersion resets all changes to the "build_version" field.
 func (m *NanoMDMInfoMutation) ResetBuildVersion() {
 	m.build_version = nil
+	delete(m.clearedFields, nanomdminfo.FieldBuildVersion)
 }
 
 // SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
@@ -12533,9 +12685,22 @@ func (m *NanoMDMInfoMutation) OldCurrentConsoleManagedUser(ctx context.Context) 
 	return oldValue.CurrentConsoleManagedUser, nil
 }
 
+// ClearCurrentConsoleManagedUser clears the value of the "current_console_managed_user" field.
+func (m *NanoMDMInfoMutation) ClearCurrentConsoleManagedUser() {
+	m.current_console_managed_user = nil
+	m.clearedFields[nanomdminfo.FieldCurrentConsoleManagedUser] = struct{}{}
+}
+
+// CurrentConsoleManagedUserCleared returns if the "current_console_managed_user" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) CurrentConsoleManagedUserCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldCurrentConsoleManagedUser]
+	return ok
+}
+
 // ResetCurrentConsoleManagedUser resets all changes to the "current_console_managed_user" field.
 func (m *NanoMDMInfoMutation) ResetCurrentConsoleManagedUser() {
 	m.current_console_managed_user = nil
+	delete(m.clearedFields, nanomdminfo.FieldCurrentConsoleManagedUser)
 }
 
 // SetDeviceCapacity sets the "device_capacity" field.
@@ -12588,10 +12753,24 @@ func (m *NanoMDMInfoMutation) AddedDeviceCapacity() (r float64, exists bool) {
 	return *v, true
 }
 
+// ClearDeviceCapacity clears the value of the "device_capacity" field.
+func (m *NanoMDMInfoMutation) ClearDeviceCapacity() {
+	m.device_capacity = nil
+	m.adddevice_capacity = nil
+	m.clearedFields[nanomdminfo.FieldDeviceCapacity] = struct{}{}
+}
+
+// DeviceCapacityCleared returns if the "device_capacity" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) DeviceCapacityCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldDeviceCapacity]
+	return ok
+}
+
 // ResetDeviceCapacity resets all changes to the "device_capacity" field.
 func (m *NanoMDMInfoMutation) ResetDeviceCapacity() {
 	m.device_capacity = nil
 	m.adddevice_capacity = nil
+	delete(m.clearedFields, nanomdminfo.FieldDeviceCapacity)
 }
 
 // SetDeviceName sets the "device_name" field.
@@ -12625,9 +12804,22 @@ func (m *NanoMDMInfoMutation) OldDeviceName(ctx context.Context) (v string, err 
 	return oldValue.DeviceName, nil
 }
 
+// ClearDeviceName clears the value of the "device_name" field.
+func (m *NanoMDMInfoMutation) ClearDeviceName() {
+	m.device_name = nil
+	m.clearedFields[nanomdminfo.FieldDeviceName] = struct{}{}
+}
+
+// DeviceNameCleared returns if the "device_name" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) DeviceNameCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldDeviceName]
+	return ok
+}
+
 // ResetDeviceName resets all changes to the "device_name" field.
 func (m *NanoMDMInfoMutation) ResetDeviceName() {
 	m.device_name = nil
+	delete(m.clearedFields, nanomdminfo.FieldDeviceName)
 }
 
 // SetEacsPreflight sets the "eacs_preflight" field.
@@ -12661,9 +12853,22 @@ func (m *NanoMDMInfoMutation) OldEacsPreflight(ctx context.Context) (v string, e
 	return oldValue.EacsPreflight, nil
 }
 
+// ClearEacsPreflight clears the value of the "eacs_preflight" field.
+func (m *NanoMDMInfoMutation) ClearEacsPreflight() {
+	m.eacs_preflight = nil
+	m.clearedFields[nanomdminfo.FieldEacsPreflight] = struct{}{}
+}
+
+// EacsPreflightCleared returns if the "eacs_preflight" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) EacsPreflightCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldEacsPreflight]
+	return ok
+}
+
 // ResetEacsPreflight resets all changes to the "eacs_preflight" field.
 func (m *NanoMDMInfoMutation) ResetEacsPreflight() {
 	m.eacs_preflight = nil
+	delete(m.clearedFields, nanomdminfo.FieldEacsPreflight)
 }
 
 // SetEthernetMAC sets the "ethernet_mac" field.
@@ -12697,9 +12902,22 @@ func (m *NanoMDMInfoMutation) OldEthernetMAC(ctx context.Context) (v string, err
 	return oldValue.EthernetMAC, nil
 }
 
+// ClearEthernetMAC clears the value of the "ethernet_mac" field.
+func (m *NanoMDMInfoMutation) ClearEthernetMAC() {
+	m.ethernet_mac = nil
+	m.clearedFields[nanomdminfo.FieldEthernetMAC] = struct{}{}
+}
+
+// EthernetMACCleared returns if the "ethernet_mac" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) EthernetMACCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldEthernetMAC]
+	return ok
+}
+
 // ResetEthernetMAC resets all changes to the "ethernet_mac" field.
 func (m *NanoMDMInfoMutation) ResetEthernetMAC() {
 	m.ethernet_mac = nil
+	delete(m.clearedFields, nanomdminfo.FieldEthernetMAC)
 }
 
 // SetHasBattery sets the "has_battery" field.
@@ -12733,9 +12951,22 @@ func (m *NanoMDMInfoMutation) OldHasBattery(ctx context.Context) (v bool, err er
 	return oldValue.HasBattery, nil
 }
 
+// ClearHasBattery clears the value of the "has_battery" field.
+func (m *NanoMDMInfoMutation) ClearHasBattery() {
+	m.has_battery = nil
+	m.clearedFields[nanomdminfo.FieldHasBattery] = struct{}{}
+}
+
+// HasBatteryCleared returns if the "has_battery" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) HasBatteryCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldHasBattery]
+	return ok
+}
+
 // ResetHasBattery resets all changes to the "has_battery" field.
 func (m *NanoMDMInfoMutation) ResetHasBattery() {
 	m.has_battery = nil
+	delete(m.clearedFields, nanomdminfo.FieldHasBattery)
 }
 
 // SetHostname sets the "hostname" field.
@@ -12769,9 +13000,22 @@ func (m *NanoMDMInfoMutation) OldHostname(ctx context.Context) (v string, err er
 	return oldValue.Hostname, nil
 }
 
+// ClearHostname clears the value of the "hostname" field.
+func (m *NanoMDMInfoMutation) ClearHostname() {
+	m.hostname = nil
+	m.clearedFields[nanomdminfo.FieldHostname] = struct{}{}
+}
+
+// HostnameCleared returns if the "hostname" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) HostnameCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldHostname]
+	return ok
+}
+
 // ResetHostname resets all changes to the "hostname" field.
 func (m *NanoMDMInfoMutation) ResetHostname() {
 	m.hostname = nil
+	delete(m.clearedFields, nanomdminfo.FieldHostname)
 }
 
 // SetIsActivationLockEnabled sets the "is_activation_lock_enabled" field.
@@ -12805,9 +13049,22 @@ func (m *NanoMDMInfoMutation) OldIsActivationLockEnabled(ctx context.Context) (v
 	return oldValue.IsActivationLockEnabled, nil
 }
 
+// ClearIsActivationLockEnabled clears the value of the "is_activation_lock_enabled" field.
+func (m *NanoMDMInfoMutation) ClearIsActivationLockEnabled() {
+	m.is_activation_lock_enabled = nil
+	m.clearedFields[nanomdminfo.FieldIsActivationLockEnabled] = struct{}{}
+}
+
+// IsActivationLockEnabledCleared returns if the "is_activation_lock_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) IsActivationLockEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldIsActivationLockEnabled]
+	return ok
+}
+
 // ResetIsActivationLockEnabled resets all changes to the "is_activation_lock_enabled" field.
 func (m *NanoMDMInfoMutation) ResetIsActivationLockEnabled() {
 	m.is_activation_lock_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldIsActivationLockEnabled)
 }
 
 // SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
@@ -12841,9 +13098,22 @@ func (m *NanoMDMInfoMutation) OldIsActivationLockSupported(ctx context.Context) 
 	return oldValue.IsActivationLockSupported, nil
 }
 
+// ClearIsActivationLockSupported clears the value of the "is_activation_lock_supported" field.
+func (m *NanoMDMInfoMutation) ClearIsActivationLockSupported() {
+	m.is_activation_lock_supported = nil
+	m.clearedFields[nanomdminfo.FieldIsActivationLockSupported] = struct{}{}
+}
+
+// IsActivationLockSupportedCleared returns if the "is_activation_lock_supported" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) IsActivationLockSupportedCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldIsActivationLockSupported]
+	return ok
+}
+
 // ResetIsActivationLockSupported resets all changes to the "is_activation_lock_supported" field.
 func (m *NanoMDMInfoMutation) ResetIsActivationLockSupported() {
 	m.is_activation_lock_supported = nil
+	delete(m.clearedFields, nanomdminfo.FieldIsActivationLockSupported)
 }
 
 // SetIsAppleSilicon sets the "is_apple_silicon" field.
@@ -12877,9 +13147,22 @@ func (m *NanoMDMInfoMutation) OldIsAppleSilicon(ctx context.Context) (v bool, er
 	return oldValue.IsAppleSilicon, nil
 }
 
+// ClearIsAppleSilicon clears the value of the "is_apple_silicon" field.
+func (m *NanoMDMInfoMutation) ClearIsAppleSilicon() {
+	m.is_apple_silicon = nil
+	m.clearedFields[nanomdminfo.FieldIsAppleSilicon] = struct{}{}
+}
+
+// IsAppleSiliconCleared returns if the "is_apple_silicon" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) IsAppleSiliconCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldIsAppleSilicon]
+	return ok
+}
+
 // ResetIsAppleSilicon resets all changes to the "is_apple_silicon" field.
 func (m *NanoMDMInfoMutation) ResetIsAppleSilicon() {
 	m.is_apple_silicon = nil
+	delete(m.clearedFields, nanomdminfo.FieldIsAppleSilicon)
 }
 
 // SetIsSupervised sets the "is_supervised" field.
@@ -12913,9 +13196,22 @@ func (m *NanoMDMInfoMutation) OldIsSupervised(ctx context.Context) (v bool, err 
 	return oldValue.IsSupervised, nil
 }
 
+// ClearIsSupervised clears the value of the "is_supervised" field.
+func (m *NanoMDMInfoMutation) ClearIsSupervised() {
+	m.is_supervised = nil
+	m.clearedFields[nanomdminfo.FieldIsSupervised] = struct{}{}
+}
+
+// IsSupervisedCleared returns if the "is_supervised" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) IsSupervisedCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldIsSupervised]
+	return ok
+}
+
 // ResetIsSupervised resets all changes to the "is_supervised" field.
 func (m *NanoMDMInfoMutation) ResetIsSupervised() {
 	m.is_supervised = nil
+	delete(m.clearedFields, nanomdminfo.FieldIsSupervised)
 }
 
 // SetLocalhostname sets the "localhostname" field.
@@ -12949,9 +13245,22 @@ func (m *NanoMDMInfoMutation) OldLocalhostname(ctx context.Context) (v string, e
 	return oldValue.Localhostname, nil
 }
 
+// ClearLocalhostname clears the value of the "localhostname" field.
+func (m *NanoMDMInfoMutation) ClearLocalhostname() {
+	m.localhostname = nil
+	m.clearedFields[nanomdminfo.FieldLocalhostname] = struct{}{}
+}
+
+// LocalhostnameCleared returns if the "localhostname" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) LocalhostnameCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldLocalhostname]
+	return ok
+}
+
 // ResetLocalhostname resets all changes to the "localhostname" field.
 func (m *NanoMDMInfoMutation) ResetLocalhostname() {
 	m.localhostname = nil
+	delete(m.clearedFields, nanomdminfo.FieldLocalhostname)
 }
 
 // SetModel sets the "model" field.
@@ -12985,9 +13294,22 @@ func (m *NanoMDMInfoMutation) OldModel(ctx context.Context) (v string, err error
 	return oldValue.Model, nil
 }
 
+// ClearModel clears the value of the "model" field.
+func (m *NanoMDMInfoMutation) ClearModel() {
+	m.model = nil
+	m.clearedFields[nanomdminfo.FieldModel] = struct{}{}
+}
+
+// ModelCleared returns if the "model" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) ModelCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldModel]
+	return ok
+}
+
 // ResetModel resets all changes to the "model" field.
 func (m *NanoMDMInfoMutation) ResetModel() {
 	m.model = nil
+	delete(m.clearedFields, nanomdminfo.FieldModel)
 }
 
 // SetModelName sets the "model_name" field.
@@ -13021,9 +13343,22 @@ func (m *NanoMDMInfoMutation) OldModelName(ctx context.Context) (v string, err e
 	return oldValue.ModelName, nil
 }
 
+// ClearModelName clears the value of the "model_name" field.
+func (m *NanoMDMInfoMutation) ClearModelName() {
+	m.model_name = nil
+	m.clearedFields[nanomdminfo.FieldModelName] = struct{}{}
+}
+
+// ModelNameCleared returns if the "model_name" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) ModelNameCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldModelName]
+	return ok
+}
+
 // ResetModelName resets all changes to the "model_name" field.
 func (m *NanoMDMInfoMutation) ResetModelName() {
 	m.model_name = nil
+	delete(m.clearedFields, nanomdminfo.FieldModelName)
 }
 
 // SetAutoCheckEnabled sets the "auto_check_enabled" field.
@@ -13057,9 +13392,22 @@ func (m *NanoMDMInfoMutation) OldAutoCheckEnabled(ctx context.Context) (v bool, 
 	return oldValue.AutoCheckEnabled, nil
 }
 
+// ClearAutoCheckEnabled clears the value of the "auto_check_enabled" field.
+func (m *NanoMDMInfoMutation) ClearAutoCheckEnabled() {
+	m.auto_check_enabled = nil
+	m.clearedFields[nanomdminfo.FieldAutoCheckEnabled] = struct{}{}
+}
+
+// AutoCheckEnabledCleared returns if the "auto_check_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) AutoCheckEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldAutoCheckEnabled]
+	return ok
+}
+
 // ResetAutoCheckEnabled resets all changes to the "auto_check_enabled" field.
 func (m *NanoMDMInfoMutation) ResetAutoCheckEnabled() {
 	m.auto_check_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldAutoCheckEnabled)
 }
 
 // SetAutomaticAppInstallationEnabled sets the "automatic_app_installation_enabled" field.
@@ -13093,9 +13441,22 @@ func (m *NanoMDMInfoMutation) OldAutomaticAppInstallationEnabled(ctx context.Con
 	return oldValue.AutomaticAppInstallationEnabled, nil
 }
 
+// ClearAutomaticAppInstallationEnabled clears the value of the "automatic_app_installation_enabled" field.
+func (m *NanoMDMInfoMutation) ClearAutomaticAppInstallationEnabled() {
+	m.automatic_app_installation_enabled = nil
+	m.clearedFields[nanomdminfo.FieldAutomaticAppInstallationEnabled] = struct{}{}
+}
+
+// AutomaticAppInstallationEnabledCleared returns if the "automatic_app_installation_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) AutomaticAppInstallationEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldAutomaticAppInstallationEnabled]
+	return ok
+}
+
 // ResetAutomaticAppInstallationEnabled resets all changes to the "automatic_app_installation_enabled" field.
 func (m *NanoMDMInfoMutation) ResetAutomaticAppInstallationEnabled() {
 	m.automatic_app_installation_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldAutomaticAppInstallationEnabled)
 }
 
 // SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
@@ -13129,9 +13490,22 @@ func (m *NanoMDMInfoMutation) OldAutomaticOsInstallationEnabled(ctx context.Cont
 	return oldValue.AutomaticOsInstallationEnabled, nil
 }
 
+// ClearAutomaticOsInstallationEnabled clears the value of the "automatic_os_installation_enabled" field.
+func (m *NanoMDMInfoMutation) ClearAutomaticOsInstallationEnabled() {
+	m.automatic_os_installation_enabled = nil
+	m.clearedFields[nanomdminfo.FieldAutomaticOsInstallationEnabled] = struct{}{}
+}
+
+// AutomaticOsInstallationEnabledCleared returns if the "automatic_os_installation_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) AutomaticOsInstallationEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldAutomaticOsInstallationEnabled]
+	return ok
+}
+
 // ResetAutomaticOsInstallationEnabled resets all changes to the "automatic_os_installation_enabled" field.
 func (m *NanoMDMInfoMutation) ResetAutomaticOsInstallationEnabled() {
 	m.automatic_os_installation_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldAutomaticOsInstallationEnabled)
 }
 
 // SetAutomaticSecurityUpdatesEnabled sets the "automatic_security_updates_enabled" field.
@@ -13165,9 +13539,22 @@ func (m *NanoMDMInfoMutation) OldAutomaticSecurityUpdatesEnabled(ctx context.Con
 	return oldValue.AutomaticSecurityUpdatesEnabled, nil
 }
 
+// ClearAutomaticSecurityUpdatesEnabled clears the value of the "automatic_security_updates_enabled" field.
+func (m *NanoMDMInfoMutation) ClearAutomaticSecurityUpdatesEnabled() {
+	m.automatic_security_updates_enabled = nil
+	m.clearedFields[nanomdminfo.FieldAutomaticSecurityUpdatesEnabled] = struct{}{}
+}
+
+// AutomaticSecurityUpdatesEnabledCleared returns if the "automatic_security_updates_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) AutomaticSecurityUpdatesEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldAutomaticSecurityUpdatesEnabled]
+	return ok
+}
+
 // ResetAutomaticSecurityUpdatesEnabled resets all changes to the "automatic_security_updates_enabled" field.
 func (m *NanoMDMInfoMutation) ResetAutomaticSecurityUpdatesEnabled() {
 	m.automatic_security_updates_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldAutomaticSecurityUpdatesEnabled)
 }
 
 // SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
@@ -13201,9 +13588,22 @@ func (m *NanoMDMInfoMutation) OldBackgroundDownloadEnabled(ctx context.Context) 
 	return oldValue.BackgroundDownloadEnabled, nil
 }
 
+// ClearBackgroundDownloadEnabled clears the value of the "background_download_enabled" field.
+func (m *NanoMDMInfoMutation) ClearBackgroundDownloadEnabled() {
+	m.background_download_enabled = nil
+	m.clearedFields[nanomdminfo.FieldBackgroundDownloadEnabled] = struct{}{}
+}
+
+// BackgroundDownloadEnabledCleared returns if the "background_download_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) BackgroundDownloadEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldBackgroundDownloadEnabled]
+	return ok
+}
+
 // ResetBackgroundDownloadEnabled resets all changes to the "background_download_enabled" field.
 func (m *NanoMDMInfoMutation) ResetBackgroundDownloadEnabled() {
 	m.background_download_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldBackgroundDownloadEnabled)
 }
 
 // SetCatalogURL sets the "catalog_url" field.
@@ -13237,9 +13637,22 @@ func (m *NanoMDMInfoMutation) OldCatalogURL(ctx context.Context) (v string, err 
 	return oldValue.CatalogURL, nil
 }
 
+// ClearCatalogURL clears the value of the "catalog_url" field.
+func (m *NanoMDMInfoMutation) ClearCatalogURL() {
+	m.catalog_url = nil
+	m.clearedFields[nanomdminfo.FieldCatalogURL] = struct{}{}
+}
+
+// CatalogURLCleared returns if the "catalog_url" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) CatalogURLCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldCatalogURL]
+	return ok
+}
+
 // ResetCatalogURL resets all changes to the "catalog_url" field.
 func (m *NanoMDMInfoMutation) ResetCatalogURL() {
 	m.catalog_url = nil
+	delete(m.clearedFields, nanomdminfo.FieldCatalogURL)
 }
 
 // SetIsDefaultCatalog sets the "is_default_catalog" field.
@@ -13273,9 +13686,22 @@ func (m *NanoMDMInfoMutation) OldIsDefaultCatalog(ctx context.Context) (v bool, 
 	return oldValue.IsDefaultCatalog, nil
 }
 
+// ClearIsDefaultCatalog clears the value of the "is_default_catalog" field.
+func (m *NanoMDMInfoMutation) ClearIsDefaultCatalog() {
+	m.is_default_catalog = nil
+	m.clearedFields[nanomdminfo.FieldIsDefaultCatalog] = struct{}{}
+}
+
+// IsDefaultCatalogCleared returns if the "is_default_catalog" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) IsDefaultCatalogCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldIsDefaultCatalog]
+	return ok
+}
+
 // ResetIsDefaultCatalog resets all changes to the "is_default_catalog" field.
 func (m *NanoMDMInfoMutation) ResetIsDefaultCatalog() {
 	m.is_default_catalog = nil
+	delete(m.clearedFields, nanomdminfo.FieldIsDefaultCatalog)
 }
 
 // SetPreviousScanDate sets the "previous_scan_date" field.
@@ -13309,9 +13735,22 @@ func (m *NanoMDMInfoMutation) OldPreviousScanDate(ctx context.Context) (v time.T
 	return oldValue.PreviousScanDate, nil
 }
 
+// ClearPreviousScanDate clears the value of the "previous_scan_date" field.
+func (m *NanoMDMInfoMutation) ClearPreviousScanDate() {
+	m.previous_scan_date = nil
+	m.clearedFields[nanomdminfo.FieldPreviousScanDate] = struct{}{}
+}
+
+// PreviousScanDateCleared returns if the "previous_scan_date" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) PreviousScanDateCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldPreviousScanDate]
+	return ok
+}
+
 // ResetPreviousScanDate resets all changes to the "previous_scan_date" field.
 func (m *NanoMDMInfoMutation) ResetPreviousScanDate() {
 	m.previous_scan_date = nil
+	delete(m.clearedFields, nanomdminfo.FieldPreviousScanDate)
 }
 
 // SetPreviousScanResult sets the "previous_scan_result" field.
@@ -13364,10 +13803,24 @@ func (m *NanoMDMInfoMutation) AddedPreviousScanResult() (r int, exists bool) {
 	return *v, true
 }
 
+// ClearPreviousScanResult clears the value of the "previous_scan_result" field.
+func (m *NanoMDMInfoMutation) ClearPreviousScanResult() {
+	m.previous_scan_result = nil
+	m.addprevious_scan_result = nil
+	m.clearedFields[nanomdminfo.FieldPreviousScanResult] = struct{}{}
+}
+
+// PreviousScanResultCleared returns if the "previous_scan_result" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) PreviousScanResultCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldPreviousScanResult]
+	return ok
+}
+
 // ResetPreviousScanResult resets all changes to the "previous_scan_result" field.
 func (m *NanoMDMInfoMutation) ResetPreviousScanResult() {
 	m.previous_scan_result = nil
 	m.addprevious_scan_result = nil
+	delete(m.clearedFields, nanomdminfo.FieldPreviousScanResult)
 }
 
 // SetOsVersion sets the "os_version" field.
@@ -13401,9 +13854,22 @@ func (m *NanoMDMInfoMutation) OldOsVersion(ctx context.Context) (v string, err e
 	return oldValue.OsVersion, nil
 }
 
+// ClearOsVersion clears the value of the "os_version" field.
+func (m *NanoMDMInfoMutation) ClearOsVersion() {
+	m.os_version = nil
+	m.clearedFields[nanomdminfo.FieldOsVersion] = struct{}{}
+}
+
+// OsVersionCleared returns if the "os_version" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) OsVersionCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldOsVersion]
+	return ok
+}
+
 // ResetOsVersion resets all changes to the "os_version" field.
 func (m *NanoMDMInfoMutation) ResetOsVersion() {
 	m.os_version = nil
+	delete(m.clearedFields, nanomdminfo.FieldOsVersion)
 }
 
 // SetPinRequiredForDeviceLock sets the "pin_required_for_device_lock" field.
@@ -13437,9 +13903,22 @@ func (m *NanoMDMInfoMutation) OldPinRequiredForDeviceLock(ctx context.Context) (
 	return oldValue.PinRequiredForDeviceLock, nil
 }
 
+// ClearPinRequiredForDeviceLock clears the value of the "pin_required_for_device_lock" field.
+func (m *NanoMDMInfoMutation) ClearPinRequiredForDeviceLock() {
+	m.pin_required_for_device_lock = nil
+	m.clearedFields[nanomdminfo.FieldPinRequiredForDeviceLock] = struct{}{}
+}
+
+// PinRequiredForDeviceLockCleared returns if the "pin_required_for_device_lock" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) PinRequiredForDeviceLockCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldPinRequiredForDeviceLock]
+	return ok
+}
+
 // ResetPinRequiredForDeviceLock resets all changes to the "pin_required_for_device_lock" field.
 func (m *NanoMDMInfoMutation) ResetPinRequiredForDeviceLock() {
 	m.pin_required_for_device_lock = nil
+	delete(m.clearedFields, nanomdminfo.FieldPinRequiredForDeviceLock)
 }
 
 // SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
@@ -13473,9 +13952,22 @@ func (m *NanoMDMInfoMutation) OldPinRequiredForEraseDevice(ctx context.Context) 
 	return oldValue.PinRequiredForEraseDevice, nil
 }
 
+// ClearPinRequiredForEraseDevice clears the value of the "pin_required_for_erase_device" field.
+func (m *NanoMDMInfoMutation) ClearPinRequiredForEraseDevice() {
+	m.pin_required_for_erase_device = nil
+	m.clearedFields[nanomdminfo.FieldPinRequiredForEraseDevice] = struct{}{}
+}
+
+// PinRequiredForEraseDeviceCleared returns if the "pin_required_for_erase_device" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) PinRequiredForEraseDeviceCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldPinRequiredForEraseDevice]
+	return ok
+}
+
 // ResetPinRequiredForEraseDevice resets all changes to the "pin_required_for_erase_device" field.
 func (m *NanoMDMInfoMutation) ResetPinRequiredForEraseDevice() {
 	m.pin_required_for_erase_device = nil
+	delete(m.clearedFields, nanomdminfo.FieldPinRequiredForEraseDevice)
 }
 
 // SetProductName sets the "product_name" field.
@@ -13509,9 +14001,22 @@ func (m *NanoMDMInfoMutation) OldProductName(ctx context.Context) (v string, err
 	return oldValue.ProductName, nil
 }
 
+// ClearProductName clears the value of the "product_name" field.
+func (m *NanoMDMInfoMutation) ClearProductName() {
+	m.product_name = nil
+	m.clearedFields[nanomdminfo.FieldProductName] = struct{}{}
+}
+
+// ProductNameCleared returns if the "product_name" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) ProductNameCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldProductName]
+	return ok
+}
+
 // ResetProductName resets all changes to the "product_name" field.
 func (m *NanoMDMInfoMutation) ResetProductName() {
 	m.product_name = nil
+	delete(m.clearedFields, nanomdminfo.FieldProductName)
 }
 
 // SetProvisioningUdid sets the "provisioning_udid" field.
@@ -13545,9 +14050,22 @@ func (m *NanoMDMInfoMutation) OldProvisioningUdid(ctx context.Context) (v string
 	return oldValue.ProvisioningUdid, nil
 }
 
+// ClearProvisioningUdid clears the value of the "provisioning_udid" field.
+func (m *NanoMDMInfoMutation) ClearProvisioningUdid() {
+	m.provisioning_udid = nil
+	m.clearedFields[nanomdminfo.FieldProvisioningUdid] = struct{}{}
+}
+
+// ProvisioningUdidCleared returns if the "provisioning_udid" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) ProvisioningUdidCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldProvisioningUdid]
+	return ok
+}
+
 // ResetProvisioningUdid resets all changes to the "provisioning_udid" field.
 func (m *NanoMDMInfoMutation) ResetProvisioningUdid() {
 	m.provisioning_udid = nil
+	delete(m.clearedFields, nanomdminfo.FieldProvisioningUdid)
 }
 
 // SetSerialNumber sets the "serial_number" field.
@@ -13581,9 +14099,22 @@ func (m *NanoMDMInfoMutation) OldSerialNumber(ctx context.Context) (v string, er
 	return oldValue.SerialNumber, nil
 }
 
+// ClearSerialNumber clears the value of the "serial_number" field.
+func (m *NanoMDMInfoMutation) ClearSerialNumber() {
+	m.serial_number = nil
+	m.clearedFields[nanomdminfo.FieldSerialNumber] = struct{}{}
+}
+
+// SerialNumberCleared returns if the "serial_number" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) SerialNumberCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldSerialNumber]
+	return ok
+}
+
 // ResetSerialNumber resets all changes to the "serial_number" field.
 func (m *NanoMDMInfoMutation) ResetSerialNumber() {
 	m.serial_number = nil
+	delete(m.clearedFields, nanomdminfo.FieldSerialNumber)
 }
 
 // SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
@@ -13617,9 +14148,22 @@ func (m *NanoMDMInfoMutation) OldSoftwareUpdateDeviceID(ctx context.Context) (v 
 	return oldValue.SoftwareUpdateDeviceID, nil
 }
 
+// ClearSoftwareUpdateDeviceID clears the value of the "software_update_device_id" field.
+func (m *NanoMDMInfoMutation) ClearSoftwareUpdateDeviceID() {
+	m.software_update_device_id = nil
+	m.clearedFields[nanomdminfo.FieldSoftwareUpdateDeviceID] = struct{}{}
+}
+
+// SoftwareUpdateDeviceIDCleared returns if the "software_update_device_id" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) SoftwareUpdateDeviceIDCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldSoftwareUpdateDeviceID]
+	return ok
+}
+
 // ResetSoftwareUpdateDeviceID resets all changes to the "software_update_device_id" field.
 func (m *NanoMDMInfoMutation) ResetSoftwareUpdateDeviceID() {
 	m.software_update_device_id = nil
+	delete(m.clearedFields, nanomdminfo.FieldSoftwareUpdateDeviceID)
 }
 
 // SetSupplementalBuildVersion sets the "supplemental_build_version" field.
@@ -13653,9 +14197,22 @@ func (m *NanoMDMInfoMutation) OldSupplementalBuildVersion(ctx context.Context) (
 	return oldValue.SupplementalBuildVersion, nil
 }
 
+// ClearSupplementalBuildVersion clears the value of the "supplemental_build_version" field.
+func (m *NanoMDMInfoMutation) ClearSupplementalBuildVersion() {
+	m.supplemental_build_version = nil
+	m.clearedFields[nanomdminfo.FieldSupplementalBuildVersion] = struct{}{}
+}
+
+// SupplementalBuildVersionCleared returns if the "supplemental_build_version" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) SupplementalBuildVersionCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldSupplementalBuildVersion]
+	return ok
+}
+
 // ResetSupplementalBuildVersion resets all changes to the "supplemental_build_version" field.
 func (m *NanoMDMInfoMutation) ResetSupplementalBuildVersion() {
 	m.supplemental_build_version = nil
+	delete(m.clearedFields, nanomdminfo.FieldSupplementalBuildVersion)
 }
 
 // SetSupportsLomDevice sets the "supports_lom_device" field.
@@ -13689,9 +14246,22 @@ func (m *NanoMDMInfoMutation) OldSupportsLomDevice(ctx context.Context) (v bool,
 	return oldValue.SupportsLomDevice, nil
 }
 
+// ClearSupportsLomDevice clears the value of the "supports_lom_device" field.
+func (m *NanoMDMInfoMutation) ClearSupportsLomDevice() {
+	m.supports_lom_device = nil
+	m.clearedFields[nanomdminfo.FieldSupportsLomDevice] = struct{}{}
+}
+
+// SupportsLomDeviceCleared returns if the "supports_lom_device" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) SupportsLomDeviceCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldSupportsLomDevice]
+	return ok
+}
+
 // ResetSupportsLomDevice resets all changes to the "supports_lom_device" field.
 func (m *NanoMDMInfoMutation) ResetSupportsLomDevice() {
 	m.supports_lom_device = nil
+	delete(m.clearedFields, nanomdminfo.FieldSupportsLomDevice)
 }
 
 // SetSupportsIosAppInstalls sets the "supports_ios_app_installs" field.
@@ -13725,9 +14295,22 @@ func (m *NanoMDMInfoMutation) OldSupportsIosAppInstalls(ctx context.Context) (v 
 	return oldValue.SupportsIosAppInstalls, nil
 }
 
+// ClearSupportsIosAppInstalls clears the value of the "supports_ios_app_installs" field.
+func (m *NanoMDMInfoMutation) ClearSupportsIosAppInstalls() {
+	m.supports_ios_app_installs = nil
+	m.clearedFields[nanomdminfo.FieldSupportsIosAppInstalls] = struct{}{}
+}
+
+// SupportsIosAppInstallsCleared returns if the "supports_ios_app_installs" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) SupportsIosAppInstallsCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldSupportsIosAppInstalls]
+	return ok
+}
+
 // ResetSupportsIosAppInstalls resets all changes to the "supports_ios_app_installs" field.
 func (m *NanoMDMInfoMutation) ResetSupportsIosAppInstalls() {
 	m.supports_ios_app_installs = nil
+	delete(m.clearedFields, nanomdminfo.FieldSupportsIosAppInstalls)
 }
 
 // SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
@@ -13761,9 +14344,22 @@ func (m *NanoMDMInfoMutation) OldSystemIntegrityProtectionEnabled(ctx context.Co
 	return oldValue.SystemIntegrityProtectionEnabled, nil
 }
 
+// ClearSystemIntegrityProtectionEnabled clears the value of the "system_integrity_protection_enabled" field.
+func (m *NanoMDMInfoMutation) ClearSystemIntegrityProtectionEnabled() {
+	m.system_integrity_protection_enabled = nil
+	m.clearedFields[nanomdminfo.FieldSystemIntegrityProtectionEnabled] = struct{}{}
+}
+
+// SystemIntegrityProtectionEnabledCleared returns if the "system_integrity_protection_enabled" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) SystemIntegrityProtectionEnabledCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldSystemIntegrityProtectionEnabled]
+	return ok
+}
+
 // ResetSystemIntegrityProtectionEnabled resets all changes to the "system_integrity_protection_enabled" field.
 func (m *NanoMDMInfoMutation) ResetSystemIntegrityProtectionEnabled() {
 	m.system_integrity_protection_enabled = nil
+	delete(m.clearedFields, nanomdminfo.FieldSystemIntegrityProtectionEnabled)
 }
 
 // SetUdid sets the "udid" field.
@@ -13797,9 +14393,22 @@ func (m *NanoMDMInfoMutation) OldUdid(ctx context.Context) (v string, err error)
 	return oldValue.Udid, nil
 }
 
+// ClearUdid clears the value of the "udid" field.
+func (m *NanoMDMInfoMutation) ClearUdid() {
+	m.udid = nil
+	m.clearedFields[nanomdminfo.FieldUdid] = struct{}{}
+}
+
+// UdidCleared returns if the "udid" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) UdidCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldUdid]
+	return ok
+}
+
 // ResetUdid resets all changes to the "udid" field.
 func (m *NanoMDMInfoMutation) ResetUdid() {
 	m.udid = nil
+	delete(m.clearedFields, nanomdminfo.FieldUdid)
 }
 
 // SetAgentID sets the "agent" edge to the Agent entity by id.
@@ -14542,7 +15151,128 @@ func (m *NanoMDMInfoMutation) AddField(name string, value ent.Value) error {
 // ClearedFields returns all nullable fields that were cleared during this
 // mutation.
 func (m *NanoMDMInfoMutation) ClearedFields() []string {
-	return nil
+	var fields []string
+	if m.FieldCleared(nanomdminfo.FieldAvailableDeviceCapacity) {
+		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacity)
+	}
+	if m.FieldCleared(nanomdminfo.FieldAwaitingConfiguration) {
+		fields = append(fields, nanomdminfo.FieldAwaitingConfiguration)
+	}
+	if m.FieldCleared(nanomdminfo.FieldBatteryLevel) {
+		fields = append(fields, nanomdminfo.FieldBatteryLevel)
+	}
+	if m.FieldCleared(nanomdminfo.FieldBluetoothMAC) {
+		fields = append(fields, nanomdminfo.FieldBluetoothMAC)
+	}
+	if m.FieldCleared(nanomdminfo.FieldBuildVersion) {
+		fields = append(fields, nanomdminfo.FieldBuildVersion)
+	}
+	if m.FieldCleared(nanomdminfo.FieldCurrentConsoleManagedUser) {
+		fields = append(fields, nanomdminfo.FieldCurrentConsoleManagedUser)
+	}
+	if m.FieldCleared(nanomdminfo.FieldDeviceCapacity) {
+		fields = append(fields, nanomdminfo.FieldDeviceCapacity)
+	}
+	if m.FieldCleared(nanomdminfo.FieldDeviceName) {
+		fields = append(fields, nanomdminfo.FieldDeviceName)
+	}
+	if m.FieldCleared(nanomdminfo.FieldEacsPreflight) {
+		fields = append(fields, nanomdminfo.FieldEacsPreflight)
+	}
+	if m.FieldCleared(nanomdminfo.FieldEthernetMAC) {
+		fields = append(fields, nanomdminfo.FieldEthernetMAC)
+	}
+	if m.FieldCleared(nanomdminfo.FieldHasBattery) {
+		fields = append(fields, nanomdminfo.FieldHasBattery)
+	}
+	if m.FieldCleared(nanomdminfo.FieldHostname) {
+		fields = append(fields, nanomdminfo.FieldHostname)
+	}
+	if m.FieldCleared(nanomdminfo.FieldIsActivationLockEnabled) {
+		fields = append(fields, nanomdminfo.FieldIsActivationLockEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldIsActivationLockSupported) {
+		fields = append(fields, nanomdminfo.FieldIsActivationLockSupported)
+	}
+	if m.FieldCleared(nanomdminfo.FieldIsAppleSilicon) {
+		fields = append(fields, nanomdminfo.FieldIsAppleSilicon)
+	}
+	if m.FieldCleared(nanomdminfo.FieldIsSupervised) {
+		fields = append(fields, nanomdminfo.FieldIsSupervised)
+	}
+	if m.FieldCleared(nanomdminfo.FieldLocalhostname) {
+		fields = append(fields, nanomdminfo.FieldLocalhostname)
+	}
+	if m.FieldCleared(nanomdminfo.FieldModel) {
+		fields = append(fields, nanomdminfo.FieldModel)
+	}
+	if m.FieldCleared(nanomdminfo.FieldModelName) {
+		fields = append(fields, nanomdminfo.FieldModelName)
+	}
+	if m.FieldCleared(nanomdminfo.FieldAutoCheckEnabled) {
+		fields = append(fields, nanomdminfo.FieldAutoCheckEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldAutomaticAppInstallationEnabled) {
+		fields = append(fields, nanomdminfo.FieldAutomaticAppInstallationEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldAutomaticOsInstallationEnabled) {
+		fields = append(fields, nanomdminfo.FieldAutomaticOsInstallationEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldAutomaticSecurityUpdatesEnabled) {
+		fields = append(fields, nanomdminfo.FieldAutomaticSecurityUpdatesEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldBackgroundDownloadEnabled) {
+		fields = append(fields, nanomdminfo.FieldBackgroundDownloadEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldCatalogURL) {
+		fields = append(fields, nanomdminfo.FieldCatalogURL)
+	}
+	if m.FieldCleared(nanomdminfo.FieldIsDefaultCatalog) {
+		fields = append(fields, nanomdminfo.FieldIsDefaultCatalog)
+	}
+	if m.FieldCleared(nanomdminfo.FieldPreviousScanDate) {
+		fields = append(fields, nanomdminfo.FieldPreviousScanDate)
+	}
+	if m.FieldCleared(nanomdminfo.FieldPreviousScanResult) {
+		fields = append(fields, nanomdminfo.FieldPreviousScanResult)
+	}
+	if m.FieldCleared(nanomdminfo.FieldOsVersion) {
+		fields = append(fields, nanomdminfo.FieldOsVersion)
+	}
+	if m.FieldCleared(nanomdminfo.FieldPinRequiredForDeviceLock) {
+		fields = append(fields, nanomdminfo.FieldPinRequiredForDeviceLock)
+	}
+	if m.FieldCleared(nanomdminfo.FieldPinRequiredForEraseDevice) {
+		fields = append(fields, nanomdminfo.FieldPinRequiredForEraseDevice)
+	}
+	if m.FieldCleared(nanomdminfo.FieldProductName) {
+		fields = append(fields, nanomdminfo.FieldProductName)
+	}
+	if m.FieldCleared(nanomdminfo.FieldProvisioningUdid) {
+		fields = append(fields, nanomdminfo.FieldProvisioningUdid)
+	}
+	if m.FieldCleared(nanomdminfo.FieldSerialNumber) {
+		fields = append(fields, nanomdminfo.FieldSerialNumber)
+	}
+	if m.FieldCleared(nanomdminfo.FieldSoftwareUpdateDeviceID) {
+		fields = append(fields, nanomdminfo.FieldSoftwareUpdateDeviceID)
+	}
+	if m.FieldCleared(nanomdminfo.FieldSupplementalBuildVersion) {
+		fields = append(fields, nanomdminfo.FieldSupplementalBuildVersion)
+	}
+	if m.FieldCleared(nanomdminfo.FieldSupportsLomDevice) {
+		fields = append(fields, nanomdminfo.FieldSupportsLomDevice)
+	}
+	if m.FieldCleared(nanomdminfo.FieldSupportsIosAppInstalls) {
+		fields = append(fields, nanomdminfo.FieldSupportsIosAppInstalls)
+	}
+	if m.FieldCleared(nanomdminfo.FieldSystemIntegrityProtectionEnabled) {
+		fields = append(fields, nanomdminfo.FieldSystemIntegrityProtectionEnabled)
+	}
+	if m.FieldCleared(nanomdminfo.FieldUdid) {
+		fields = append(fields, nanomdminfo.FieldUdid)
+	}
+	return fields
 }
 
 // FieldCleared returns a boolean indicating if a field with the given name was
@@ -14555,6 +15285,128 @@ func (m *NanoMDMInfoMutation) FieldCleared(name string) bool {
 // ClearField clears the value of the field with the given name. It returns an
 // error if the field is not defined in the schema.
 func (m *NanoMDMInfoMutation) ClearField(name string) error {
+	switch name {
+	case nanomdminfo.FieldAvailableDeviceCapacity:
+		m.ClearAvailableDeviceCapacity()
+		return nil
+	case nanomdminfo.FieldAwaitingConfiguration:
+		m.ClearAwaitingConfiguration()
+		return nil
+	case nanomdminfo.FieldBatteryLevel:
+		m.ClearBatteryLevel()
+		return nil
+	case nanomdminfo.FieldBluetoothMAC:
+		m.ClearBluetoothMAC()
+		return nil
+	case nanomdminfo.FieldBuildVersion:
+		m.ClearBuildVersion()
+		return nil
+	case nanomdminfo.FieldCurrentConsoleManagedUser:
+		m.ClearCurrentConsoleManagedUser()
+		return nil
+	case nanomdminfo.FieldDeviceCapacity:
+		m.ClearDeviceCapacity()
+		return nil
+	case nanomdminfo.FieldDeviceName:
+		m.ClearDeviceName()
+		return nil
+	case nanomdminfo.FieldEacsPreflight:
+		m.ClearEacsPreflight()
+		return nil
+	case nanomdminfo.FieldEthernetMAC:
+		m.ClearEthernetMAC()
+		return nil
+	case nanomdminfo.FieldHasBattery:
+		m.ClearHasBattery()
+		return nil
+	case nanomdminfo.FieldHostname:
+		m.ClearHostname()
+		return nil
+	case nanomdminfo.FieldIsActivationLockEnabled:
+		m.ClearIsActivationLockEnabled()
+		return nil
+	case nanomdminfo.FieldIsActivationLockSupported:
+		m.ClearIsActivationLockSupported()
+		return nil
+	case nanomdminfo.FieldIsAppleSilicon:
+		m.ClearIsAppleSilicon()
+		return nil
+	case nanomdminfo.FieldIsSupervised:
+		m.ClearIsSupervised()
+		return nil
+	case nanomdminfo.FieldLocalhostname:
+		m.ClearLocalhostname()
+		return nil
+	case nanomdminfo.FieldModel:
+		m.ClearModel()
+		return nil
+	case nanomdminfo.FieldModelName:
+		m.ClearModelName()
+		return nil
+	case nanomdminfo.FieldAutoCheckEnabled:
+		m.ClearAutoCheckEnabled()
+		return nil
+	case nanomdminfo.FieldAutomaticAppInstallationEnabled:
+		m.ClearAutomaticAppInstallationEnabled()
+		return nil
+	case nanomdminfo.FieldAutomaticOsInstallationEnabled:
+		m.ClearAutomaticOsInstallationEnabled()
+		return nil
+	case nanomdminfo.FieldAutomaticSecurityUpdatesEnabled:
+		m.ClearAutomaticSecurityUpdatesEnabled()
+		return nil
+	case nanomdminfo.FieldBackgroundDownloadEnabled:
+		m.ClearBackgroundDownloadEnabled()
+		return nil
+	case nanomdminfo.FieldCatalogURL:
+		m.ClearCatalogURL()
+		return nil
+	case nanomdminfo.FieldIsDefaultCatalog:
+		m.ClearIsDefaultCatalog()
+		return nil
+	case nanomdminfo.FieldPreviousScanDate:
+		m.ClearPreviousScanDate()
+		return nil
+	case nanomdminfo.FieldPreviousScanResult:
+		m.ClearPreviousScanResult()
+		return nil
+	case nanomdminfo.FieldOsVersion:
+		m.ClearOsVersion()
+		return nil
+	case nanomdminfo.FieldPinRequiredForDeviceLock:
+		m.ClearPinRequiredForDeviceLock()
+		return nil
+	case nanomdminfo.FieldPinRequiredForEraseDevice:
+		m.ClearPinRequiredForEraseDevice()
+		return nil
+	case nanomdminfo.FieldProductName:
+		m.ClearProductName()
+		return nil
+	case nanomdminfo.FieldProvisioningUdid:
+		m.ClearProvisioningUdid()
+		return nil
+	case nanomdminfo.FieldSerialNumber:
+		m.ClearSerialNumber()
+		return nil
+	case nanomdminfo.FieldSoftwareUpdateDeviceID:
+		m.ClearSoftwareUpdateDeviceID()
+		return nil
+	case nanomdminfo.FieldSupplementalBuildVersion:
+		m.ClearSupplementalBuildVersion()
+		return nil
+	case nanomdminfo.FieldSupportsLomDevice:
+		m.ClearSupportsLomDevice()
+		return nil
+	case nanomdminfo.FieldSupportsIosAppInstalls:
+		m.ClearSupportsIosAppInstalls()
+		return nil
+	case nanomdminfo.FieldSystemIntegrityProtectionEnabled:
+		m.ClearSystemIntegrityProtectionEnabled()
+		return nil
+	case nanomdminfo.FieldUdid:
+		m.ClearUdid()
+		return nil
+	}
 	return fmt.Errorf("unknown NanoMDMInfo nullable field %s", name)
 }
 
@@ -14758,6 +15610,1217 @@ func (m *NanoMDMInfoMutation) ResetEdge(name string) error {
 		return nil
 	}
 	return fmt.Errorf("unknown NanoMDMInfo edge %s", name)
+}
+
+// NanoMDMUserMutation represents an operation that mutates the NanoMDMUser nodes in the graph.
+type NanoMDMUserMutation struct {
+	config
+	op               Op
+	typ              string
+	id               *int
+	data_quota       *int
+	adddata_quota    *int
+	data_used        *int
+	adddata_used     *int
+	has_data_to_sync *bool
+	has_secure_token *bool
+	is_logged_in     *bool
+	username         *string
+	fullname         *string
+	mobile_account   *bool
+	uid              *int
+	adduid           *int
+	user_guid        *int
+	adduser_guid     *int
+	clearedFields    map[string]struct{}
+	agent            *string
+	clearedagent     bool
+	done             bool
+	oldValue         func(context.Context) (*NanoMDMUser, error)
+	predicates       []predicate.NanoMDMUser
+}
+
+var _ ent.Mutation = (*NanoMDMUserMutation)(nil)
+
+// nanomdmuserOption allows management of the mutation configuration using functional options.
+type nanomdmuserOption func(*NanoMDMUserMutation)
+
+// newNanoMDMUserMutation creates new mutation for the NanoMDMUser entity.
+func newNanoMDMUserMutation(c config, op Op, opts ...nanomdmuserOption) *NanoMDMUserMutation {
+	m := &NanoMDMUserMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeNanoMDMUser,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withNanoMDMUserID sets the ID field of the mutation.
+func withNanoMDMUserID(id int) nanomdmuserOption {
+	return func(m *NanoMDMUserMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *NanoMDMUser
+		)
+		m.oldValue = func(ctx context.Context) (*NanoMDMUser, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().NanoMDMUser.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withNanoMDMUser sets the old NanoMDMUser of the mutation.
+func withNanoMDMUser(node *NanoMDMUser) nanomdmuserOption {
+	return func(m *NanoMDMUserMutation) {
+		m.oldValue = func(context.Context) (*NanoMDMUser, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m NanoMDMUserMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m NanoMDMUserMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *NanoMDMUserMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *NanoMDMUserMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().NanoMDMUser.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetDataQuota sets the "data_quota" field.
+func (m *NanoMDMUserMutation) SetDataQuota(i int) {
+	m.data_quota = &i
+	m.adddata_quota = nil
+}
+
+// DataQuota returns the value of the "data_quota" field in the mutation.
+func (m *NanoMDMUserMutation) DataQuota() (r int, exists bool) {
+	v := m.data_quota
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDataQuota returns the old "data_quota" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldDataQuota(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDataQuota is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDataQuota requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDataQuota: %w", err)
+	}
+	return oldValue.DataQuota, nil
+}
+
+// AddDataQuota adds i to the "data_quota" field.
+func (m *NanoMDMUserMutation) AddDataQuota(i int) {
+	if m.adddata_quota != nil {
+		*m.adddata_quota += i
+	} else {
+		m.adddata_quota = &i
+	}
+}
+
+// AddedDataQuota returns the value that was added to the "data_quota" field in this mutation.
+func (m *NanoMDMUserMutation) AddedDataQuota() (r int, exists bool) {
+	v := m.adddata_quota
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearDataQuota clears the value of the "data_quota" field.
+func (m *NanoMDMUserMutation) ClearDataQuota() {
+	m.data_quota = nil
+	m.adddata_quota = nil
+	m.clearedFields[nanomdmuser.FieldDataQuota] = struct{}{}
+}
+
+// DataQuotaCleared returns if the "data_quota" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) DataQuotaCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldDataQuota]
+	return ok
+}
+
+// ResetDataQuota resets all changes to the "data_quota" field.
+func (m *NanoMDMUserMutation) ResetDataQuota() {
+	m.data_quota = nil
+	m.adddata_quota = nil
+	delete(m.clearedFields, nanomdmuser.FieldDataQuota)
+}
+
+// SetDataUsed sets the "data_used" field.
+func (m *NanoMDMUserMutation) SetDataUsed(i int) {
+	m.data_used = &i
+	m.adddata_used = nil
+}
+
+// DataUsed returns the value of the "data_used" field in the mutation.
+func (m *NanoMDMUserMutation) DataUsed() (r int, exists bool) {
+	v := m.data_used
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDataUsed returns the old "data_used" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldDataUsed(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDataUsed is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDataUsed requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDataUsed: %w", err)
+	}
+	return oldValue.DataUsed, nil
+}
+
+// AddDataUsed adds i to the "data_used" field.
+func (m *NanoMDMUserMutation) AddDataUsed(i int) {
+	if m.adddata_used != nil {
+		*m.adddata_used += i
+	} else {
+		m.adddata_used = &i
+	}
+}
+
+// AddedDataUsed returns the value that was added to the "data_used" field in this mutation.
+func (m *NanoMDMUserMutation) AddedDataUsed() (r int, exists bool) {
+	v := m.adddata_used
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearDataUsed clears the value of the "data_used" field.
+func (m *NanoMDMUserMutation) ClearDataUsed() {
+	m.data_used = nil
+	m.adddata_used = nil
+	m.clearedFields[nanomdmuser.FieldDataUsed] = struct{}{}
+}
+
+// DataUsedCleared returns if the "data_used" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) DataUsedCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldDataUsed]
+	return ok
+}
+
+// ResetDataUsed resets all changes to the "data_used" field.
+func (m *NanoMDMUserMutation) ResetDataUsed() {
+	m.data_used = nil
+	m.adddata_used = nil
+	delete(m.clearedFields, nanomdmuser.FieldDataUsed)
+}
+
+// SetHasDataToSync sets the "has_data_to_sync" field.
+func (m *NanoMDMUserMutation) SetHasDataToSync(b bool) {
+	m.has_data_to_sync = &b
+}
+
+// HasDataToSync returns the value of the "has_data_to_sync" field in the mutation.
+func (m *NanoMDMUserMutation) HasDataToSync() (r bool, exists bool) {
+	v := m.has_data_to_sync
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldHasDataToSync returns the old "has_data_to_sync" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldHasDataToSync(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldHasDataToSync is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldHasDataToSync requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldHasDataToSync: %w", err)
+	}
+	return oldValue.HasDataToSync, nil
+}
+
+// ClearHasDataToSync clears the value of the "has_data_to_sync" field.
+func (m *NanoMDMUserMutation) ClearHasDataToSync() {
+	m.has_data_to_sync = nil
+	m.clearedFields[nanomdmuser.FieldHasDataToSync] = struct{}{}
+}
+
+// HasDataToSyncCleared returns if the "has_data_to_sync" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) HasDataToSyncCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldHasDataToSync]
+	return ok
+}
+
+// ResetHasDataToSync resets all changes to the "has_data_to_sync" field.
+func (m *NanoMDMUserMutation) ResetHasDataToSync() {
+	m.has_data_to_sync = nil
+	delete(m.clearedFields, nanomdmuser.FieldHasDataToSync)
+}
+
+// SetHasSecureToken sets the "has_secure_token" field.
+func (m *NanoMDMUserMutation) SetHasSecureToken(b bool) {
+	m.has_secure_token = &b
+}
+
+// HasSecureToken returns the value of the "has_secure_token" field in the mutation.
+func (m *NanoMDMUserMutation) HasSecureToken() (r bool, exists bool) {
+	v := m.has_secure_token
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldHasSecureToken returns the old "has_secure_token" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldHasSecureToken(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldHasSecureToken is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldHasSecureToken requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldHasSecureToken: %w", err)
+	}
+	return oldValue.HasSecureToken, nil
+}
+
+// ClearHasSecureToken clears the value of the "has_secure_token" field.
+func (m *NanoMDMUserMutation) ClearHasSecureToken() {
+	m.has_secure_token = nil
+	m.clearedFields[nanomdmuser.FieldHasSecureToken] = struct{}{}
+}
+
+// HasSecureTokenCleared returns if the "has_secure_token" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) HasSecureTokenCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldHasSecureToken]
+	return ok
+}
+
+// ResetHasSecureToken resets all changes to the "has_secure_token" field.
+func (m *NanoMDMUserMutation) ResetHasSecureToken() {
+	m.has_secure_token = nil
+	delete(m.clearedFields, nanomdmuser.FieldHasSecureToken)
+}
+
+// SetIsLoggedIn sets the "is_logged_in" field.
+func (m *NanoMDMUserMutation) SetIsLoggedIn(b bool) {
+	m.is_logged_in = &b
+}
+
+// IsLoggedIn returns the value of the "is_logged_in" field in the mutation.
+func (m *NanoMDMUserMutation) IsLoggedIn() (r bool, exists bool) {
+	v := m.is_logged_in
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsLoggedIn returns the old "is_logged_in" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldIsLoggedIn(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsLoggedIn is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsLoggedIn requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsLoggedIn: %w", err)
+	}
+	return oldValue.IsLoggedIn, nil
+}
+
+// ClearIsLoggedIn clears the value of the "is_logged_in" field.
+func (m *NanoMDMUserMutation) ClearIsLoggedIn() {
+	m.is_logged_in = nil
+	m.clearedFields[nanomdmuser.FieldIsLoggedIn] = struct{}{}
+}
+
+// IsLoggedInCleared returns if the "is_logged_in" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) IsLoggedInCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldIsLoggedIn]
+	return ok
+}
+
+// ResetIsLoggedIn resets all changes to the "is_logged_in" field.
+func (m *NanoMDMUserMutation) ResetIsLoggedIn() {
+	m.is_logged_in = nil
+	delete(m.clearedFields, nanomdmuser.FieldIsLoggedIn)
+}
+
+// SetUsername sets the "username" field.
+func (m *NanoMDMUserMutation) SetUsername(s string) {
+	m.username = &s
+}
+
+// Username returns the value of the "username" field in the mutation.
+func (m *NanoMDMUserMutation) Username() (r string, exists bool) {
+	v := m.username
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUsername returns the old "username" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldUsername(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUsername is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUsername requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUsername: %w", err)
+	}
+	return oldValue.Username, nil
+}
+
+// ClearUsername clears the value of the "username" field.
+func (m *NanoMDMUserMutation) ClearUsername() {
+	m.username = nil
+	m.clearedFields[nanomdmuser.FieldUsername] = struct{}{}
+}
+
+// UsernameCleared returns if the "username" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) UsernameCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldUsername]
+	return ok
+}
+
+// ResetUsername resets all changes to the "username" field.
+func (m *NanoMDMUserMutation) ResetUsername() {
+	m.username = nil
+	delete(m.clearedFields, nanomdmuser.FieldUsername)
+}
+
+// SetFullname sets the "fullname" field.
+func (m *NanoMDMUserMutation) SetFullname(s string) {
+	m.fullname = &s
+}
+
+// Fullname returns the value of the "fullname" field in the mutation.
+func (m *NanoMDMUserMutation) Fullname() (r string, exists bool) {
+	v := m.fullname
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldFullname returns the old "fullname" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldFullname(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldFullname is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldFullname requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldFullname: %w", err)
+	}
+	return oldValue.Fullname, nil
+}
+
+// ClearFullname clears the value of the "fullname" field.
+func (m *NanoMDMUserMutation) ClearFullname() {
+	m.fullname = nil
+	m.clearedFields[nanomdmuser.FieldFullname] = struct{}{}
+}
+
+// FullnameCleared returns if the "fullname" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) FullnameCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldFullname]
+	return ok
+}
+
+// ResetFullname resets all changes to the "fullname" field.
+func (m *NanoMDMUserMutation) ResetFullname() {
+	m.fullname = nil
+	delete(m.clearedFields, nanomdmuser.FieldFullname)
+}
+
+// SetMobileAccount sets the "mobile_account" field.
+func (m *NanoMDMUserMutation) SetMobileAccount(b bool) {
+	m.mobile_account = &b
+}
+
+// MobileAccount returns the value of the "mobile_account" field in the mutation.
+func (m *NanoMDMUserMutation) MobileAccount() (r bool, exists bool) {
+	v := m.mobile_account
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldMobileAccount returns the old "mobile_account" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldMobileAccount(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldMobileAccount is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldMobileAccount requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldMobileAccount: %w", err)
+	}
+	return oldValue.MobileAccount, nil
+}
+
+// ClearMobileAccount clears the value of the "mobile_account" field.
+func (m *NanoMDMUserMutation) ClearMobileAccount() {
+	m.mobile_account = nil
+	m.clearedFields[nanomdmuser.FieldMobileAccount] = struct{}{}
+}
+
+// MobileAccountCleared returns if the "mobile_account" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) MobileAccountCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldMobileAccount]
+	return ok
+}
+
+// ResetMobileAccount resets all changes to the "mobile_account" field.
+func (m *NanoMDMUserMutation) ResetMobileAccount() {
+	m.mobile_account = nil
+	delete(m.clearedFields, nanomdmuser.FieldMobileAccount)
+}
+
+// SetUID sets the "uid" field.
+func (m *NanoMDMUserMutation) SetUID(i int) {
+	m.uid = &i
+	m.adduid = nil
+}
+
+// UID returns the value of the "uid" field in the mutation.
+func (m *NanoMDMUserMutation) UID() (r int, exists bool) {
+	v := m.uid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUID returns the old "uid" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldUID(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUID: %w", err)
+	}
+	return oldValue.UID, nil
+}
+
+// AddUID adds i to the "uid" field.
+func (m *NanoMDMUserMutation) AddUID(i int) {
+	if m.adduid != nil {
+		*m.adduid += i
+	} else {
+		m.adduid = &i
+	}
+}
+
+// AddedUID returns the value that was added to the "uid" field in this mutation.
+func (m *NanoMDMUserMutation) AddedUID() (r int, exists bool) {
+	v := m.adduid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearUID clears the value of the "uid" field.
+func (m *NanoMDMUserMutation) ClearUID() {
+	m.uid = nil
+	m.adduid = nil
+	m.clearedFields[nanomdmuser.FieldUID] = struct{}{}
+}
+
+// UIDCleared returns if the "uid" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) UIDCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldUID]
+	return ok
+}
+
+// ResetUID resets all changes to the "uid" field.
+func (m *NanoMDMUserMutation) ResetUID() {
+	m.uid = nil
+	m.adduid = nil
+	delete(m.clearedFields, nanomdmuser.FieldUID)
+}
+
+// SetUserGUID sets the "user_guid" field.
+func (m *NanoMDMUserMutation) SetUserGUID(i int) {
+	m.user_guid = &i
+	m.adduser_guid = nil
+}
+
+// UserGUID returns the value of the "user_guid" field in the mutation.
+func (m *NanoMDMUserMutation) UserGUID() (r int, exists bool) {
+	v := m.user_guid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldUserGUID returns the old "user_guid" field's value of the NanoMDMUser entity.
+// If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMUserMutation) OldUserGUID(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldUserGUID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldUserGUID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldUserGUID: %w", err)
+	}
+	return oldValue.UserGUID, nil
+}
+
+// AddUserGUID adds i to the "user_guid" field.
+func (m *NanoMDMUserMutation) AddUserGUID(i int) {
+	if m.adduser_guid != nil {
+		*m.adduser_guid += i
+	} else {
+		m.adduser_guid = &i
+	}
+}
+
+// AddedUserGUID returns the value that was added to the "user_guid" field in this mutation.
+func (m *NanoMDMUserMutation) AddedUserGUID() (r int, exists bool) {
+	v := m.adduser_guid
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearUserGUID clears the value of the "user_guid" field.
+func (m *NanoMDMUserMutation) ClearUserGUID() {
+	m.user_guid = nil
+	m.adduser_guid = nil
+	m.clearedFields[nanomdmuser.FieldUserGUID] = struct{}{}
+}
+
+// UserGUIDCleared returns if the "user_guid" field was cleared in this mutation.
+func (m *NanoMDMUserMutation) UserGUIDCleared() bool {
+	_, ok := m.clearedFields[nanomdmuser.FieldUserGUID]
+	return ok
+}
+
+// ResetUserGUID resets all changes to the "user_guid" field.
+func (m *NanoMDMUserMutation) ResetUserGUID() {
+	m.user_guid = nil
+	m.adduser_guid = nil
+	delete(m.clearedFields, nanomdmuser.FieldUserGUID)
+}
+
+// SetAgentID sets the "agent" edge to the Agent entity by id.
+func (m *NanoMDMUserMutation) SetAgentID(id string) {
+	m.agent = &id
+}
+
+// ClearAgent clears the "agent" edge to the Agent entity.
+func (m *NanoMDMUserMutation) ClearAgent() {
+	m.clearedagent = true
+}
+
+// AgentCleared reports if the "agent" edge to the Agent entity was cleared.
+func (m *NanoMDMUserMutation) AgentCleared() bool {
+	return m.clearedagent
+}
+
+// AgentID returns the "agent" edge ID in the mutation.
+func (m *NanoMDMUserMutation) AgentID() (id string, exists bool) {
+	if m.agent != nil {
+		return *m.agent, true
+	}
+	return
+}
+
+// AgentIDs returns the "agent" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// AgentID instead. It exists only for internal usage by the builders.
+func (m *NanoMDMUserMutation) AgentIDs() (ids []string) {
+	if id := m.agent; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetAgent resets all changes to the "agent" edge.
+func (m *NanoMDMUserMutation) ResetAgent() {
+	m.agent = nil
+	m.clearedagent = false
+}
+
+// Where appends a list predicates to the NanoMDMUserMutation builder.
+func (m *NanoMDMUserMutation) Where(ps ...predicate.NanoMDMUser) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the NanoMDMUserMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *NanoMDMUserMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.NanoMDMUser, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *NanoMDMUserMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *NanoMDMUserMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (NanoMDMUser).
+func (m *NanoMDMUserMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *NanoMDMUserMutation) Fields() []string {
+	fields := make([]string, 0, 10)
+	if m.data_quota != nil {
+		fields = append(fields, nanomdmuser.FieldDataQuota)
+	}
+	if m.data_used != nil {
+		fields = append(fields, nanomdmuser.FieldDataUsed)
+	}
+	if m.has_data_to_sync != nil {
+		fields = append(fields, nanomdmuser.FieldHasDataToSync)
+	}
+	if m.has_secure_token != nil {
+		fields = append(fields, nanomdmuser.FieldHasSecureToken)
+	}
+	if m.is_logged_in != nil {
+		fields = append(fields, nanomdmuser.FieldIsLoggedIn)
+	}
+	if m.username != nil {
+		fields = append(fields, nanomdmuser.FieldUsername)
+	}
+	if m.fullname != nil {
+		fields = append(fields, nanomdmuser.FieldFullname)
+	}
+	if m.mobile_account != nil {
+		fields = append(fields, nanomdmuser.FieldMobileAccount)
+	}
+	if m.uid != nil {
+		fields = append(fields, nanomdmuser.FieldUID)
+	}
+	if m.user_guid != nil {
+		fields = append(fields, nanomdmuser.FieldUserGUID)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *NanoMDMUserMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		return m.DataQuota()
+	case nanomdmuser.FieldDataUsed:
+		return m.DataUsed()
+	case nanomdmuser.FieldHasDataToSync:
+		return m.HasDataToSync()
+	case nanomdmuser.FieldHasSecureToken:
+		return m.HasSecureToken()
+	case nanomdmuser.FieldIsLoggedIn:
+		return m.IsLoggedIn()
+	case nanomdmuser.FieldUsername:
+		return m.Username()
+	case nanomdmuser.FieldFullname:
+		return m.Fullname()
+	case nanomdmuser.FieldMobileAccount:
+		return m.MobileAccount()
+	case nanomdmuser.FieldUID:
+		return m.UID()
+	case nanomdmuser.FieldUserGUID:
+		return m.UserGUID()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *NanoMDMUserMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		return m.OldDataQuota(ctx)
+	case nanomdmuser.FieldDataUsed:
+		return m.OldDataUsed(ctx)
+	case nanomdmuser.FieldHasDataToSync:
+		return m.OldHasDataToSync(ctx)
+	case nanomdmuser.FieldHasSecureToken:
+		return m.OldHasSecureToken(ctx)
+	case nanomdmuser.FieldIsLoggedIn:
+		return m.OldIsLoggedIn(ctx)
+	case nanomdmuser.FieldUsername:
+		return m.OldUsername(ctx)
+	case nanomdmuser.FieldFullname:
+		return m.OldFullname(ctx)
+	case nanomdmuser.FieldMobileAccount:
+		return m.OldMobileAccount(ctx)
+	case nanomdmuser.FieldUID:
+		return m.OldUID(ctx)
+	case nanomdmuser.FieldUserGUID:
+		return m.OldUserGUID(ctx)
+	}
+	return nil, fmt.Errorf("unknown NanoMDMUser field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *NanoMDMUserMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDataQuota(v)
+		return nil
+	case nanomdmuser.FieldDataUsed:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDataUsed(v)
+		return nil
+	case nanomdmuser.FieldHasDataToSync:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetHasDataToSync(v)
+		return nil
+	case nanomdmuser.FieldHasSecureToken:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetHasSecureToken(v)
+		return nil
+	case nanomdmuser.FieldIsLoggedIn:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsLoggedIn(v)
+		return nil
+	case nanomdmuser.FieldUsername:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUsername(v)
+		return nil
+	case nanomdmuser.FieldFullname:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetFullname(v)
+		return nil
+	case nanomdmuser.FieldMobileAccount:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetMobileAccount(v)
+		return nil
+	case nanomdmuser.FieldUID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUID(v)
+		return nil
+	case nanomdmuser.FieldUserGUID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetUserGUID(v)
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMUser field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *NanoMDMUserMutation) AddedFields() []string {
+	var fields []string
+	if m.adddata_quota != nil {
+		fields = append(fields, nanomdmuser.FieldDataQuota)
+	}
+	if m.adddata_used != nil {
+		fields = append(fields, nanomdmuser.FieldDataUsed)
+	}
+	if m.adduid != nil {
+		fields = append(fields, nanomdmuser.FieldUID)
+	}
+	if m.adduser_guid != nil {
+		fields = append(fields, nanomdmuser.FieldUserGUID)
+	}
+	return fields
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *NanoMDMUserMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		return m.AddedDataQuota()
+	case nanomdmuser.FieldDataUsed:
+		return m.AddedDataUsed()
+	case nanomdmuser.FieldUID:
+		return m.AddedUID()
+	case nanomdmuser.FieldUserGUID:
+		return m.AddedUserGUID()
+	}
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *NanoMDMUserMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddDataQuota(v)
+		return nil
+	case nanomdmuser.FieldDataUsed:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddDataUsed(v)
+		return nil
+	case nanomdmuser.FieldUID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddUID(v)
+		return nil
+	case nanomdmuser.FieldUserGUID:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddUserGUID(v)
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMUser numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *NanoMDMUserMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(nanomdmuser.FieldDataQuota) {
+		fields = append(fields, nanomdmuser.FieldDataQuota)
+	}
+	if m.FieldCleared(nanomdmuser.FieldDataUsed) {
+		fields = append(fields, nanomdmuser.FieldDataUsed)
+	}
+	if m.FieldCleared(nanomdmuser.FieldHasDataToSync) {
+		fields = append(fields, nanomdmuser.FieldHasDataToSync)
+	}
+	if m.FieldCleared(nanomdmuser.FieldHasSecureToken) {
+		fields = append(fields, nanomdmuser.FieldHasSecureToken)
+	}
+	if m.FieldCleared(nanomdmuser.FieldIsLoggedIn) {
+		fields = append(fields, nanomdmuser.FieldIsLoggedIn)
+	}
+	if m.FieldCleared(nanomdmuser.FieldUsername) {
+		fields = append(fields, nanomdmuser.FieldUsername)
+	}
+	if m.FieldCleared(nanomdmuser.FieldFullname) {
+		fields = append(fields, nanomdmuser.FieldFullname)
+	}
+	if m.FieldCleared(nanomdmuser.FieldMobileAccount) {
+		fields = append(fields, nanomdmuser.FieldMobileAccount)
+	}
+	if m.FieldCleared(nanomdmuser.FieldUID) {
+		fields = append(fields, nanomdmuser.FieldUID)
+	}
+	if m.FieldCleared(nanomdmuser.FieldUserGUID) {
+		fields = append(fields, nanomdmuser.FieldUserGUID)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *NanoMDMUserMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *NanoMDMUserMutation) ClearField(name string) error {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		m.ClearDataQuota()
+		return nil
+	case nanomdmuser.FieldDataUsed:
+		m.ClearDataUsed()
+		return nil
+	case nanomdmuser.FieldHasDataToSync:
+		m.ClearHasDataToSync()
+		return nil
+	case nanomdmuser.FieldHasSecureToken:
+		m.ClearHasSecureToken()
+		return nil
+	case nanomdmuser.FieldIsLoggedIn:
+		m.ClearIsLoggedIn()
+		return nil
+	case nanomdmuser.FieldUsername:
+		m.ClearUsername()
+		return nil
+	case nanomdmuser.FieldFullname:
+		m.ClearFullname()
+		return nil
+	case nanomdmuser.FieldMobileAccount:
+		m.ClearMobileAccount()
+		return nil
+	case nanomdmuser.FieldUID:
+		m.ClearUID()
+		return nil
+	case nanomdmuser.FieldUserGUID:
+		m.ClearUserGUID()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMUser nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *NanoMDMUserMutation) ResetField(name string) error {
+	switch name {
+	case nanomdmuser.FieldDataQuota:
+		m.ResetDataQuota()
+		return nil
+	case nanomdmuser.FieldDataUsed:
+		m.ResetDataUsed()
+		return nil
+	case nanomdmuser.FieldHasDataToSync:
+		m.ResetHasDataToSync()
+		return nil
+	case nanomdmuser.FieldHasSecureToken:
+		m.ResetHasSecureToken()
+		return nil
+	case nanomdmuser.FieldIsLoggedIn:
+		m.ResetIsLoggedIn()
+		return nil
+	case nanomdmuser.FieldUsername:
+		m.ResetUsername()
+		return nil
+	case nanomdmuser.FieldFullname:
+		m.ResetFullname()
+		return nil
+	case nanomdmuser.FieldMobileAccount:
+		m.ResetMobileAccount()
+		return nil
+	case nanomdmuser.FieldUID:
+		m.ResetUID()
+		return nil
+	case nanomdmuser.FieldUserGUID:
+		m.ResetUserGUID()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMUser field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *NanoMDMUserMutation) AddedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.agent != nil {
+		edges = append(edges, nanomdmuser.EdgeAgent)
+	}
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *NanoMDMUserMutation) AddedIDs(name string) []ent.Value {
+	switch name {
+	case nanomdmuser.EdgeAgent:
+		if id := m.agent; id != nil {
+			return []ent.Value{*id}
+		}
+	}
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *NanoMDMUserMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 1)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *NanoMDMUserMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *NanoMDMUserMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.clearedagent {
+		edges = append(edges, nanomdmuser.EdgeAgent)
+	}
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *NanoMDMUserMutation) EdgeCleared(name string) bool {
+	switch name {
+	case nanomdmuser.EdgeAgent:
+		return m.clearedagent
+	}
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *NanoMDMUserMutation) ClearEdge(name string) error {
+	switch name {
+	case nanomdmuser.EdgeAgent:
+		m.ClearAgent()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMUser unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *NanoMDMUserMutation) ResetEdge(name string) error {
+	switch name {
+	case nanomdmuser.EdgeAgent:
+		m.ResetAgent()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMUser edge %s", name)
 }
 
 // NetbirdMutation represents an operation that mutates the Netbird nodes in the graph.

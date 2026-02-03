@@ -295,6 +295,16 @@ func AvailableDeviceCapacityLTE(v float64) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldLTE(FieldAvailableDeviceCapacity, v))
 }
 
+// AvailableDeviceCapacityIsNil applies the IsNil predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldAvailableDeviceCapacity))
+}
+
+// AvailableDeviceCapacityNotNil applies the NotNil predicate on the "available_device_capacity" field.
+func AvailableDeviceCapacityNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldAvailableDeviceCapacity))
+}
+
 // AwaitingConfigurationEQ applies the EQ predicate on the "awaiting_configuration" field.
 func AwaitingConfigurationEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAwaitingConfiguration, v))
@@ -303,6 +313,16 @@ func AwaitingConfigurationEQ(v bool) predicate.NanoMDMInfo {
 // AwaitingConfigurationNEQ applies the NEQ predicate on the "awaiting_configuration" field.
 func AwaitingConfigurationNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAwaitingConfiguration, v))
+}
+
+// AwaitingConfigurationIsNil applies the IsNil predicate on the "awaiting_configuration" field.
+func AwaitingConfigurationIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldAwaitingConfiguration))
+}
+
+// AwaitingConfigurationNotNil applies the NotNil predicate on the "awaiting_configuration" field.
+func AwaitingConfigurationNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldAwaitingConfiguration))
 }
 
 // BatteryLevelEQ applies the EQ predicate on the "battery_level" field.
@@ -343,6 +363,16 @@ func BatteryLevelLT(v float64) predicate.NanoMDMInfo {
 // BatteryLevelLTE applies the LTE predicate on the "battery_level" field.
 func BatteryLevelLTE(v float64) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldLTE(FieldBatteryLevel, v))
+}
+
+// BatteryLevelIsNil applies the IsNil predicate on the "battery_level" field.
+func BatteryLevelIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldBatteryLevel))
+}
+
+// BatteryLevelNotNil applies the NotNil predicate on the "battery_level" field.
+func BatteryLevelNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldBatteryLevel))
 }
 
 // BluetoothMACEQ applies the EQ predicate on the "bluetooth_mac" field.
@@ -398,6 +428,16 @@ func BluetoothMACHasPrefix(v string) predicate.NanoMDMInfo {
 // BluetoothMACHasSuffix applies the HasSuffix predicate on the "bluetooth_mac" field.
 func BluetoothMACHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldBluetoothMAC, v))
+}
+
+// BluetoothMACIsNil applies the IsNil predicate on the "bluetooth_mac" field.
+func BluetoothMACIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldBluetoothMAC))
+}
+
+// BluetoothMACNotNil applies the NotNil predicate on the "bluetooth_mac" field.
+func BluetoothMACNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldBluetoothMAC))
 }
 
 // BluetoothMACEqualFold applies the EqualFold predicate on the "bluetooth_mac" field.
@@ -465,6 +505,16 @@ func BuildVersionHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldBuildVersion, v))
 }
 
+// BuildVersionIsNil applies the IsNil predicate on the "build_version" field.
+func BuildVersionIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldBuildVersion))
+}
+
+// BuildVersionNotNil applies the NotNil predicate on the "build_version" field.
+func BuildVersionNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldBuildVersion))
+}
+
 // BuildVersionEqualFold applies the EqualFold predicate on the "build_version" field.
 func BuildVersionEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldBuildVersion, v))
@@ -530,6 +580,16 @@ func CurrentConsoleManagedUserHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldCurrentConsoleManagedUser, v))
 }
 
+// CurrentConsoleManagedUserIsNil applies the IsNil predicate on the "current_console_managed_user" field.
+func CurrentConsoleManagedUserIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldCurrentConsoleManagedUser))
+}
+
+// CurrentConsoleManagedUserNotNil applies the NotNil predicate on the "current_console_managed_user" field.
+func CurrentConsoleManagedUserNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldCurrentConsoleManagedUser))
+}
+
 // CurrentConsoleManagedUserEqualFold applies the EqualFold predicate on the "current_console_managed_user" field.
 func CurrentConsoleManagedUserEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldCurrentConsoleManagedUser, v))
@@ -578,6 +638,16 @@ func DeviceCapacityLT(v float64) predicate.NanoMDMInfo {
 // DeviceCapacityLTE applies the LTE predicate on the "device_capacity" field.
 func DeviceCapacityLTE(v float64) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldLTE(FieldDeviceCapacity, v))
+}
+
+// DeviceCapacityIsNil applies the IsNil predicate on the "device_capacity" field.
+func DeviceCapacityIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldDeviceCapacity))
+}
+
+// DeviceCapacityNotNil applies the NotNil predicate on the "device_capacity" field.
+func DeviceCapacityNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldDeviceCapacity))
 }
 
 // DeviceNameEQ applies the EQ predicate on the "device_name" field.
@@ -633,6 +703,16 @@ func DeviceNameHasPrefix(v string) predicate.NanoMDMInfo {
 // DeviceNameHasSuffix applies the HasSuffix predicate on the "device_name" field.
 func DeviceNameHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldDeviceName, v))
+}
+
+// DeviceNameIsNil applies the IsNil predicate on the "device_name" field.
+func DeviceNameIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldDeviceName))
+}
+
+// DeviceNameNotNil applies the NotNil predicate on the "device_name" field.
+func DeviceNameNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldDeviceName))
 }
 
 // DeviceNameEqualFold applies the EqualFold predicate on the "device_name" field.
@@ -700,6 +780,16 @@ func EacsPreflightHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldEacsPreflight, v))
 }
 
+// EacsPreflightIsNil applies the IsNil predicate on the "eacs_preflight" field.
+func EacsPreflightIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldEacsPreflight))
+}
+
+// EacsPreflightNotNil applies the NotNil predicate on the "eacs_preflight" field.
+func EacsPreflightNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldEacsPreflight))
+}
+
 // EacsPreflightEqualFold applies the EqualFold predicate on the "eacs_preflight" field.
 func EacsPreflightEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldEacsPreflight, v))
@@ -765,6 +855,16 @@ func EthernetMACHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldEthernetMAC, v))
 }
 
+// EthernetMACIsNil applies the IsNil predicate on the "ethernet_mac" field.
+func EthernetMACIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldEthernetMAC))
+}
+
+// EthernetMACNotNil applies the NotNil predicate on the "ethernet_mac" field.
+func EthernetMACNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldEthernetMAC))
+}
+
 // EthernetMACEqualFold applies the EqualFold predicate on the "ethernet_mac" field.
 func EthernetMACEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldEthernetMAC, v))
@@ -783,6 +883,16 @@ func HasBatteryEQ(v bool) predicate.NanoMDMInfo {
 // HasBatteryNEQ applies the NEQ predicate on the "has_battery" field.
 func HasBatteryNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldHasBattery, v))
+}
+
+// HasBatteryIsNil applies the IsNil predicate on the "has_battery" field.
+func HasBatteryIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldHasBattery))
+}
+
+// HasBatteryNotNil applies the NotNil predicate on the "has_battery" field.
+func HasBatteryNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldHasBattery))
 }
 
 // HostnameEQ applies the EQ predicate on the "hostname" field.
@@ -840,6 +950,16 @@ func HostnameHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldHostname, v))
 }
 
+// HostnameIsNil applies the IsNil predicate on the "hostname" field.
+func HostnameIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldHostname))
+}
+
+// HostnameNotNil applies the NotNil predicate on the "hostname" field.
+func HostnameNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldHostname))
+}
+
 // HostnameEqualFold applies the EqualFold predicate on the "hostname" field.
 func HostnameEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldHostname, v))
@@ -860,6 +980,16 @@ func IsActivationLockEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldIsActivationLockEnabled, v))
 }
 
+// IsActivationLockEnabledIsNil applies the IsNil predicate on the "is_activation_lock_enabled" field.
+func IsActivationLockEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldIsActivationLockEnabled))
+}
+
+// IsActivationLockEnabledNotNil applies the NotNil predicate on the "is_activation_lock_enabled" field.
+func IsActivationLockEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldIsActivationLockEnabled))
+}
+
 // IsActivationLockSupportedEQ applies the EQ predicate on the "is_activation_lock_supported" field.
 func IsActivationLockSupportedEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldIsActivationLockSupported, v))
@@ -868,6 +998,16 @@ func IsActivationLockSupportedEQ(v bool) predicate.NanoMDMInfo {
 // IsActivationLockSupportedNEQ applies the NEQ predicate on the "is_activation_lock_supported" field.
 func IsActivationLockSupportedNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldIsActivationLockSupported, v))
+}
+
+// IsActivationLockSupportedIsNil applies the IsNil predicate on the "is_activation_lock_supported" field.
+func IsActivationLockSupportedIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldIsActivationLockSupported))
+}
+
+// IsActivationLockSupportedNotNil applies the NotNil predicate on the "is_activation_lock_supported" field.
+func IsActivationLockSupportedNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldIsActivationLockSupported))
 }
 
 // IsAppleSiliconEQ applies the EQ predicate on the "is_apple_silicon" field.
@@ -880,6 +1020,16 @@ func IsAppleSiliconNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldIsAppleSilicon, v))
 }
 
+// IsAppleSiliconIsNil applies the IsNil predicate on the "is_apple_silicon" field.
+func IsAppleSiliconIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldIsAppleSilicon))
+}
+
+// IsAppleSiliconNotNil applies the NotNil predicate on the "is_apple_silicon" field.
+func IsAppleSiliconNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldIsAppleSilicon))
+}
+
 // IsSupervisedEQ applies the EQ predicate on the "is_supervised" field.
 func IsSupervisedEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldIsSupervised, v))
@@ -888,6 +1038,16 @@ func IsSupervisedEQ(v bool) predicate.NanoMDMInfo {
 // IsSupervisedNEQ applies the NEQ predicate on the "is_supervised" field.
 func IsSupervisedNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldIsSupervised, v))
+}
+
+// IsSupervisedIsNil applies the IsNil predicate on the "is_supervised" field.
+func IsSupervisedIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldIsSupervised))
+}
+
+// IsSupervisedNotNil applies the NotNil predicate on the "is_supervised" field.
+func IsSupervisedNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldIsSupervised))
 }
 
 // LocalhostnameEQ applies the EQ predicate on the "localhostname" field.
@@ -943,6 +1103,16 @@ func LocalhostnameHasPrefix(v string) predicate.NanoMDMInfo {
 // LocalhostnameHasSuffix applies the HasSuffix predicate on the "localhostname" field.
 func LocalhostnameHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldLocalhostname, v))
+}
+
+// LocalhostnameIsNil applies the IsNil predicate on the "localhostname" field.
+func LocalhostnameIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldLocalhostname))
+}
+
+// LocalhostnameNotNil applies the NotNil predicate on the "localhostname" field.
+func LocalhostnameNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldLocalhostname))
 }
 
 // LocalhostnameEqualFold applies the EqualFold predicate on the "localhostname" field.
@@ -1010,6 +1180,16 @@ func ModelHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldModel, v))
 }
 
+// ModelIsNil applies the IsNil predicate on the "model" field.
+func ModelIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldModel))
+}
+
+// ModelNotNil applies the NotNil predicate on the "model" field.
+func ModelNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldModel))
+}
+
 // ModelEqualFold applies the EqualFold predicate on the "model" field.
 func ModelEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldModel, v))
@@ -1075,6 +1255,16 @@ func ModelNameHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldModelName, v))
 }
 
+// ModelNameIsNil applies the IsNil predicate on the "model_name" field.
+func ModelNameIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldModelName))
+}
+
+// ModelNameNotNil applies the NotNil predicate on the "model_name" field.
+func ModelNameNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldModelName))
+}
+
 // ModelNameEqualFold applies the EqualFold predicate on the "model_name" field.
 func ModelNameEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldModelName, v))
@@ -1095,6 +1285,16 @@ func AutoCheckEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAutoCheckEnabled, v))
 }
 
+// AutoCheckEnabledIsNil applies the IsNil predicate on the "auto_check_enabled" field.
+func AutoCheckEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldAutoCheckEnabled))
+}
+
+// AutoCheckEnabledNotNil applies the NotNil predicate on the "auto_check_enabled" field.
+func AutoCheckEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldAutoCheckEnabled))
+}
+
 // AutomaticAppInstallationEnabledEQ applies the EQ predicate on the "automatic_app_installation_enabled" field.
 func AutomaticAppInstallationEnabledEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAutomaticAppInstallationEnabled, v))
@@ -1103,6 +1303,16 @@ func AutomaticAppInstallationEnabledEQ(v bool) predicate.NanoMDMInfo {
 // AutomaticAppInstallationEnabledNEQ applies the NEQ predicate on the "automatic_app_installation_enabled" field.
 func AutomaticAppInstallationEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAutomaticAppInstallationEnabled, v))
+}
+
+// AutomaticAppInstallationEnabledIsNil applies the IsNil predicate on the "automatic_app_installation_enabled" field.
+func AutomaticAppInstallationEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldAutomaticAppInstallationEnabled))
+}
+
+// AutomaticAppInstallationEnabledNotNil applies the NotNil predicate on the "automatic_app_installation_enabled" field.
+func AutomaticAppInstallationEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldAutomaticAppInstallationEnabled))
 }
 
 // AutomaticOsInstallationEnabledEQ applies the EQ predicate on the "automatic_os_installation_enabled" field.
@@ -1115,6 +1325,16 @@ func AutomaticOsInstallationEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAutomaticOsInstallationEnabled, v))
 }
 
+// AutomaticOsInstallationEnabledIsNil applies the IsNil predicate on the "automatic_os_installation_enabled" field.
+func AutomaticOsInstallationEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldAutomaticOsInstallationEnabled))
+}
+
+// AutomaticOsInstallationEnabledNotNil applies the NotNil predicate on the "automatic_os_installation_enabled" field.
+func AutomaticOsInstallationEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldAutomaticOsInstallationEnabled))
+}
+
 // AutomaticSecurityUpdatesEnabledEQ applies the EQ predicate on the "automatic_security_updates_enabled" field.
 func AutomaticSecurityUpdatesEnabledEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldAutomaticSecurityUpdatesEnabled, v))
@@ -1125,6 +1345,16 @@ func AutomaticSecurityUpdatesEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldAutomaticSecurityUpdatesEnabled, v))
 }
 
+// AutomaticSecurityUpdatesEnabledIsNil applies the IsNil predicate on the "automatic_security_updates_enabled" field.
+func AutomaticSecurityUpdatesEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldAutomaticSecurityUpdatesEnabled))
+}
+
+// AutomaticSecurityUpdatesEnabledNotNil applies the NotNil predicate on the "automatic_security_updates_enabled" field.
+func AutomaticSecurityUpdatesEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldAutomaticSecurityUpdatesEnabled))
+}
+
 // BackgroundDownloadEnabledEQ applies the EQ predicate on the "background_download_enabled" field.
 func BackgroundDownloadEnabledEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldBackgroundDownloadEnabled, v))
@@ -1133,6 +1363,16 @@ func BackgroundDownloadEnabledEQ(v bool) predicate.NanoMDMInfo {
 // BackgroundDownloadEnabledNEQ applies the NEQ predicate on the "background_download_enabled" field.
 func BackgroundDownloadEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldBackgroundDownloadEnabled, v))
+}
+
+// BackgroundDownloadEnabledIsNil applies the IsNil predicate on the "background_download_enabled" field.
+func BackgroundDownloadEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldBackgroundDownloadEnabled))
+}
+
+// BackgroundDownloadEnabledNotNil applies the NotNil predicate on the "background_download_enabled" field.
+func BackgroundDownloadEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldBackgroundDownloadEnabled))
 }
 
 // CatalogURLEQ applies the EQ predicate on the "catalog_url" field.
@@ -1190,6 +1430,16 @@ func CatalogURLHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldCatalogURL, v))
 }
 
+// CatalogURLIsNil applies the IsNil predicate on the "catalog_url" field.
+func CatalogURLIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldCatalogURL))
+}
+
+// CatalogURLNotNil applies the NotNil predicate on the "catalog_url" field.
+func CatalogURLNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldCatalogURL))
+}
+
 // CatalogURLEqualFold applies the EqualFold predicate on the "catalog_url" field.
 func CatalogURLEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldCatalogURL, v))
@@ -1208,6 +1458,16 @@ func IsDefaultCatalogEQ(v bool) predicate.NanoMDMInfo {
 // IsDefaultCatalogNEQ applies the NEQ predicate on the "is_default_catalog" field.
 func IsDefaultCatalogNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldIsDefaultCatalog, v))
+}
+
+// IsDefaultCatalogIsNil applies the IsNil predicate on the "is_default_catalog" field.
+func IsDefaultCatalogIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldIsDefaultCatalog))
+}
+
+// IsDefaultCatalogNotNil applies the NotNil predicate on the "is_default_catalog" field.
+func IsDefaultCatalogNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldIsDefaultCatalog))
 }
 
 // PreviousScanDateEQ applies the EQ predicate on the "previous_scan_date" field.
@@ -1250,6 +1510,16 @@ func PreviousScanDateLTE(v time.Time) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldLTE(FieldPreviousScanDate, v))
 }
 
+// PreviousScanDateIsNil applies the IsNil predicate on the "previous_scan_date" field.
+func PreviousScanDateIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldPreviousScanDate))
+}
+
+// PreviousScanDateNotNil applies the NotNil predicate on the "previous_scan_date" field.
+func PreviousScanDateNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldPreviousScanDate))
+}
+
 // PreviousScanResultEQ applies the EQ predicate on the "previous_scan_result" field.
 func PreviousScanResultEQ(v int) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldPreviousScanResult, v))
@@ -1288,6 +1558,16 @@ func PreviousScanResultLT(v int) predicate.NanoMDMInfo {
 // PreviousScanResultLTE applies the LTE predicate on the "previous_scan_result" field.
 func PreviousScanResultLTE(v int) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldLTE(FieldPreviousScanResult, v))
+}
+
+// PreviousScanResultIsNil applies the IsNil predicate on the "previous_scan_result" field.
+func PreviousScanResultIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldPreviousScanResult))
+}
+
+// PreviousScanResultNotNil applies the NotNil predicate on the "previous_scan_result" field.
+func PreviousScanResultNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldPreviousScanResult))
 }
 
 // OsVersionEQ applies the EQ predicate on the "os_version" field.
@@ -1345,6 +1625,16 @@ func OsVersionHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldOsVersion, v))
 }
 
+// OsVersionIsNil applies the IsNil predicate on the "os_version" field.
+func OsVersionIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldOsVersion))
+}
+
+// OsVersionNotNil applies the NotNil predicate on the "os_version" field.
+func OsVersionNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldOsVersion))
+}
+
 // OsVersionEqualFold applies the EqualFold predicate on the "os_version" field.
 func OsVersionEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldOsVersion, v))
@@ -1365,6 +1655,16 @@ func PinRequiredForDeviceLockNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldPinRequiredForDeviceLock, v))
 }
 
+// PinRequiredForDeviceLockIsNil applies the IsNil predicate on the "pin_required_for_device_lock" field.
+func PinRequiredForDeviceLockIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldPinRequiredForDeviceLock))
+}
+
+// PinRequiredForDeviceLockNotNil applies the NotNil predicate on the "pin_required_for_device_lock" field.
+func PinRequiredForDeviceLockNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldPinRequiredForDeviceLock))
+}
+
 // PinRequiredForEraseDeviceEQ applies the EQ predicate on the "pin_required_for_erase_device" field.
 func PinRequiredForEraseDeviceEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldPinRequiredForEraseDevice, v))
@@ -1373,6 +1673,16 @@ func PinRequiredForEraseDeviceEQ(v bool) predicate.NanoMDMInfo {
 // PinRequiredForEraseDeviceNEQ applies the NEQ predicate on the "pin_required_for_erase_device" field.
 func PinRequiredForEraseDeviceNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldPinRequiredForEraseDevice, v))
+}
+
+// PinRequiredForEraseDeviceIsNil applies the IsNil predicate on the "pin_required_for_erase_device" field.
+func PinRequiredForEraseDeviceIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldPinRequiredForEraseDevice))
+}
+
+// PinRequiredForEraseDeviceNotNil applies the NotNil predicate on the "pin_required_for_erase_device" field.
+func PinRequiredForEraseDeviceNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldPinRequiredForEraseDevice))
 }
 
 // ProductNameEQ applies the EQ predicate on the "product_name" field.
@@ -1428,6 +1738,16 @@ func ProductNameHasPrefix(v string) predicate.NanoMDMInfo {
 // ProductNameHasSuffix applies the HasSuffix predicate on the "product_name" field.
 func ProductNameHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldProductName, v))
+}
+
+// ProductNameIsNil applies the IsNil predicate on the "product_name" field.
+func ProductNameIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldProductName))
+}
+
+// ProductNameNotNil applies the NotNil predicate on the "product_name" field.
+func ProductNameNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldProductName))
 }
 
 // ProductNameEqualFold applies the EqualFold predicate on the "product_name" field.
@@ -1495,6 +1815,16 @@ func ProvisioningUdidHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldProvisioningUdid, v))
 }
 
+// ProvisioningUdidIsNil applies the IsNil predicate on the "provisioning_udid" field.
+func ProvisioningUdidIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldProvisioningUdid))
+}
+
+// ProvisioningUdidNotNil applies the NotNil predicate on the "provisioning_udid" field.
+func ProvisioningUdidNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldProvisioningUdid))
+}
+
 // ProvisioningUdidEqualFold applies the EqualFold predicate on the "provisioning_udid" field.
 func ProvisioningUdidEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldProvisioningUdid, v))
@@ -1558,6 +1888,16 @@ func SerialNumberHasPrefix(v string) predicate.NanoMDMInfo {
 // SerialNumberHasSuffix applies the HasSuffix predicate on the "serial_number" field.
 func SerialNumberHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldSerialNumber, v))
+}
+
+// SerialNumberIsNil applies the IsNil predicate on the "serial_number" field.
+func SerialNumberIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldSerialNumber))
+}
+
+// SerialNumberNotNil applies the NotNil predicate on the "serial_number" field.
+func SerialNumberNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldSerialNumber))
 }
 
 // SerialNumberEqualFold applies the EqualFold predicate on the "serial_number" field.
@@ -1625,6 +1965,16 @@ func SoftwareUpdateDeviceIDHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldSoftwareUpdateDeviceID, v))
 }
 
+// SoftwareUpdateDeviceIDIsNil applies the IsNil predicate on the "software_update_device_id" field.
+func SoftwareUpdateDeviceIDIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldSoftwareUpdateDeviceID))
+}
+
+// SoftwareUpdateDeviceIDNotNil applies the NotNil predicate on the "software_update_device_id" field.
+func SoftwareUpdateDeviceIDNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldSoftwareUpdateDeviceID))
+}
+
 // SoftwareUpdateDeviceIDEqualFold applies the EqualFold predicate on the "software_update_device_id" field.
 func SoftwareUpdateDeviceIDEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldSoftwareUpdateDeviceID, v))
@@ -1690,6 +2040,16 @@ func SupplementalBuildVersionHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldSupplementalBuildVersion, v))
 }
 
+// SupplementalBuildVersionIsNil applies the IsNil predicate on the "supplemental_build_version" field.
+func SupplementalBuildVersionIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldSupplementalBuildVersion))
+}
+
+// SupplementalBuildVersionNotNil applies the NotNil predicate on the "supplemental_build_version" field.
+func SupplementalBuildVersionNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldSupplementalBuildVersion))
+}
+
 // SupplementalBuildVersionEqualFold applies the EqualFold predicate on the "supplemental_build_version" field.
 func SupplementalBuildVersionEqualFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldSupplementalBuildVersion, v))
@@ -1710,6 +2070,16 @@ func SupportsLomDeviceNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldSupportsLomDevice, v))
 }
 
+// SupportsLomDeviceIsNil applies the IsNil predicate on the "supports_lom_device" field.
+func SupportsLomDeviceIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldSupportsLomDevice))
+}
+
+// SupportsLomDeviceNotNil applies the NotNil predicate on the "supports_lom_device" field.
+func SupportsLomDeviceNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldSupportsLomDevice))
+}
+
 // SupportsIosAppInstallsEQ applies the EQ predicate on the "supports_ios_app_installs" field.
 func SupportsIosAppInstallsEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldSupportsIosAppInstalls, v))
@@ -1720,6 +2090,16 @@ func SupportsIosAppInstallsNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldSupportsIosAppInstalls, v))
 }
 
+// SupportsIosAppInstallsIsNil applies the IsNil predicate on the "supports_ios_app_installs" field.
+func SupportsIosAppInstallsIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldSupportsIosAppInstalls))
+}
+
+// SupportsIosAppInstallsNotNil applies the NotNil predicate on the "supports_ios_app_installs" field.
+func SupportsIosAppInstallsNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldSupportsIosAppInstalls))
+}
+
 // SystemIntegrityProtectionEnabledEQ applies the EQ predicate on the "system_integrity_protection_enabled" field.
 func SystemIntegrityProtectionEnabledEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldSystemIntegrityProtectionEnabled, v))
@@ -1728,6 +2108,16 @@ func SystemIntegrityProtectionEnabledEQ(v bool) predicate.NanoMDMInfo {
 // SystemIntegrityProtectionEnabledNEQ applies the NEQ predicate on the "system_integrity_protection_enabled" field.
 func SystemIntegrityProtectionEnabledNEQ(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldSystemIntegrityProtectionEnabled, v))
+}
+
+// SystemIntegrityProtectionEnabledIsNil applies the IsNil predicate on the "system_integrity_protection_enabled" field.
+func SystemIntegrityProtectionEnabledIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldSystemIntegrityProtectionEnabled))
+}
+
+// SystemIntegrityProtectionEnabledNotNil applies the NotNil predicate on the "system_integrity_protection_enabled" field.
+func SystemIntegrityProtectionEnabledNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldSystemIntegrityProtectionEnabled))
 }
 
 // UdidEQ applies the EQ predicate on the "udid" field.
@@ -1783,6 +2173,16 @@ func UdidHasPrefix(v string) predicate.NanoMDMInfo {
 // UdidHasSuffix applies the HasSuffix predicate on the "udid" field.
 func UdidHasSuffix(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldUdid, v))
+}
+
+// UdidIsNil applies the IsNil predicate on the "udid" field.
+func UdidIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldUdid))
+}
+
+// UdidNotNil applies the NotNil predicate on the "udid" field.
+func UdidNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldUdid))
 }
 
 // UdidEqualFold applies the EqualFold predicate on the "udid" field.

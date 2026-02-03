@@ -121,6 +121,8 @@ const (
 	EdgeMdmcommands = "mdmcommands"
 	// EdgeNanomdminfo holds the string denoting the nanomdminfo edge name in mutations.
 	EdgeNanomdminfo = "nanomdminfo"
+	// EdgeNanomdmusers holds the string denoting the nanomdmusers edge name in mutations.
+	EdgeNanomdmusers = "nanomdmusers"
 	// ComputerFieldID holds the string denoting the ID field of the Computer.
 	ComputerFieldID = "id"
 	// OperatingSystemFieldID holds the string denoting the ID field of the OperatingSystem.
@@ -167,6 +169,8 @@ const (
 	MDMCommandFieldID = "uuid"
 	// NanoMDMInfoFieldID holds the string denoting the ID field of the NanoMDMInfo.
 	NanoMDMInfoFieldID = "id"
+	// NanoMDMUserFieldID holds the string denoting the ID field of the NanoMDMUser.
+	NanoMDMUserFieldID = "id"
 	// Table holds the table name of the agent in the database.
 	Table = "agents"
 	// ComputerTable is the table that holds the computer relation/edge.
@@ -326,6 +330,13 @@ const (
 	NanomdminfoInverseTable = "nano_mdm_infos"
 	// NanomdminfoColumn is the table column denoting the nanomdminfo relation/edge.
 	NanomdminfoColumn = "agent_nanomdminfo"
+	// NanomdmusersTable is the table that holds the nanomdmusers relation/edge.
+	NanomdmusersTable = "nano_mdm_users"
+	// NanomdmusersInverseTable is the table name for the NanoMDMUser entity.
+	// It exists in this package in order to avoid circular dependency with the "nanomdmuser" package.
+	NanomdmusersInverseTable = "nano_mdm_users"
+	// NanomdmusersColumn is the table column denoting the nanomdmusers relation/edge.
+	NanomdmusersColumn = "agent_nanomdmusers"
 )
 
 // Columns holds all SQL columns for agent fields.
@@ -935,6 +946,20 @@ func ByNanomdminfoField(field string, opts ...sql.OrderTermOption) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newNanomdminfoStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByNanomdmusersCount orders the results by nanomdmusers count.
+func ByNanomdmusersCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newNanomdmusersStep(), opts...)
+	}
+}
+
+// ByNanomdmusers orders the results by nanomdmusers terms.
+func ByNanomdmusers(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newNanomdmusersStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newComputerStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -1094,5 +1119,12 @@ func newNanomdminfoStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NanomdminfoInverseTable, NanoMDMInfoFieldID),
 		sqlgraph.Edge(sqlgraph.O2O, false, NanomdminfoTable, NanomdminfoColumn),
+	)
+}
+func newNanomdmusersStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(NanomdmusersInverseTable, NanoMDMUserFieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, NanomdmusersTable, NanomdmusersColumn),
 	)
 }

@@ -23,6 +23,7 @@ import (
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
 	"github.com/open-uem/ent/nanomdminfo"
+	"github.com/open-uem/ent/nanomdmuser"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
@@ -829,6 +830,21 @@ func (ac *AgentCreate) SetNanomdminfo(n *NanoMDMInfo) *AgentCreate {
 	return ac.SetNanomdminfoID(n.ID)
 }
 
+// AddNanomdmuserIDs adds the "nanomdmusers" edge to the NanoMDMUser entity by IDs.
+func (ac *AgentCreate) AddNanomdmuserIDs(ids ...int) *AgentCreate {
+	ac.mutation.AddNanomdmuserIDs(ids...)
+	return ac
+}
+
+// AddNanomdmusers adds the "nanomdmusers" edges to the NanoMDMUser entity.
+func (ac *AgentCreate) AddNanomdmusers(n ...*NanoMDMUser) *AgentCreate {
+	ids := make([]int, len(n))
+	for i := range n {
+		ids[i] = n[i].ID
+	}
+	return ac.AddNanomdmuserIDs(ids...)
+}
+
 // Mutation returns the AgentMutation object of the builder.
 func (ac *AgentCreate) Mutation() *AgentMutation {
 	return ac.mutation
@@ -1522,6 +1538,22 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(nanomdminfo.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := ac.mutation.NanomdmusersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.NanomdmusersTable,
+			Columns: []string{agent.NanomdmusersColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdmuser.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

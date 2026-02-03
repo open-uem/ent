@@ -2249,6 +2249,29 @@ func HasNanomdminfoWith(preds ...predicate.NanoMDMInfo) predicate.Agent {
 	})
 }
 
+// HasNanomdmusers applies the HasEdge predicate on the "nanomdmusers" edge.
+func HasNanomdmusers() predicate.Agent {
+	return predicate.Agent(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, NanomdmusersTable, NanomdmusersColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasNanomdmusersWith applies the HasEdge predicate on the "nanomdmusers" edge with a given conditions (other predicates).
+func HasNanomdmusersWith(preds ...predicate.NanoMDMUser) predicate.Agent {
+	return predicate.Agent(func(s *sql.Selector) {
+		step := newNanomdmusersStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.Agent) predicate.Agent {
 	return predicate.Agent(sql.AndPredicates(predicates...))

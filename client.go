@@ -28,6 +28,7 @@ import (
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
 	"github.com/open-uem/ent/nanomdminfo"
+	"github.com/open-uem/ent/nanomdmuser"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -86,6 +87,8 @@ type Client struct {
 	Monitor *MonitorClient
 	// NanoMDMInfo is the client for interacting with the NanoMDMInfo builders.
 	NanoMDMInfo *NanoMDMInfoClient
+	// NanoMDMUser is the client for interacting with the NanoMDMUser builders.
+	NanoMDMUser *NanoMDMUserClient
 	// Netbird is the client for interacting with the Netbird builders.
 	Netbird *NetbirdClient
 	// NetbirdSettings is the client for interacting with the NetbirdSettings builders.
@@ -160,6 +163,7 @@ func (c *Client) init() {
 	c.Metadata = NewMetadataClient(c.config)
 	c.Monitor = NewMonitorClient(c.config)
 	c.NanoMDMInfo = NewNanoMDMInfoClient(c.config)
+	c.NanoMDMUser = NewNanoMDMUserClient(c.config)
 	c.Netbird = NewNetbirdClient(c.config)
 	c.NetbirdSettings = NewNetbirdSettingsClient(c.config)
 	c.NetworkAdapter = NewNetworkAdapterClient(c.config)
@@ -290,6 +294,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		Metadata:              NewMetadataClient(cfg),
 		Monitor:               NewMonitorClient(cfg),
 		NanoMDMInfo:           NewNanoMDMInfoClient(cfg),
+		NanoMDMUser:           NewNanoMDMUserClient(cfg),
 		Netbird:               NewNetbirdClient(cfg),
 		NetbirdSettings:       NewNetbirdSettingsClient(cfg),
 		NetworkAdapter:        NewNetworkAdapterClient(cfg),
@@ -347,6 +352,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		Metadata:              NewMetadataClient(cfg),
 		Monitor:               NewMonitorClient(cfg),
 		NanoMDMInfo:           NewNanoMDMInfoClient(cfg),
+		NanoMDMUser:           NewNanoMDMUserClient(cfg),
 		Netbird:               NewNetbirdClient(cfg),
 		NetbirdSettings:       NewNetbirdSettingsClient(cfg),
 		NetworkAdapter:        NewNetworkAdapterClient(cfg),
@@ -403,7 +409,7 @@ func (c *Client) Use(hooks ...Hook) {
 	for _, n := range []interface{ Use(...Hook) }{
 		c.Agent, c.Antivirus, c.App, c.Authentication, c.Certificate, c.Computer,
 		c.Deployment, c.LogicalDisk, c.MDMCommand, c.MemorySlot, c.Metadata, c.Monitor,
-		c.NanoMDMInfo, c.Netbird, c.NetbirdSettings, c.NetworkAdapter,
+		c.NanoMDMInfo, c.NanoMDMUser, c.Netbird, c.NetbirdSettings, c.NetworkAdapter,
 		c.OperatingSystem, c.OrgMetadata, c.PhysicalDisk, c.Printer, c.Profile,
 		c.ProfileIssue, c.RecoveryCode, c.Release, c.Revocation, c.Rustdesk, c.Server,
 		c.Sessions, c.Settings, c.Share, c.Site, c.SystemUpdate, c.Tag, c.Task,
@@ -419,7 +425,7 @@ func (c *Client) Intercept(interceptors ...Interceptor) {
 	for _, n := range []interface{ Intercept(...Interceptor) }{
 		c.Agent, c.Antivirus, c.App, c.Authentication, c.Certificate, c.Computer,
 		c.Deployment, c.LogicalDisk, c.MDMCommand, c.MemorySlot, c.Metadata, c.Monitor,
-		c.NanoMDMInfo, c.Netbird, c.NetbirdSettings, c.NetworkAdapter,
+		c.NanoMDMInfo, c.NanoMDMUser, c.Netbird, c.NetbirdSettings, c.NetworkAdapter,
 		c.OperatingSystem, c.OrgMetadata, c.PhysicalDisk, c.Printer, c.Profile,
 		c.ProfileIssue, c.RecoveryCode, c.Release, c.Revocation, c.Rustdesk, c.Server,
 		c.Sessions, c.Settings, c.Share, c.Site, c.SystemUpdate, c.Tag, c.Task,
@@ -458,6 +464,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.Monitor.mutate(ctx, m)
 	case *NanoMDMInfoMutation:
 		return c.NanoMDMInfo.mutate(ctx, m)
+	case *NanoMDMUserMutation:
+		return c.NanoMDMUser.mutate(ctx, m)
 	case *NetbirdMutation:
 		return c.Netbird.mutate(ctx, m)
 	case *NetbirdSettingsMutation:
@@ -982,6 +990,22 @@ func (c *AgentClient) QueryNanomdminfo(a *Agent) *NanoMDMInfoQuery {
 			sqlgraph.From(agent.Table, agent.FieldID, id),
 			sqlgraph.To(nanomdminfo.Table, nanomdminfo.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.NanomdminfoTable, agent.NanomdminfoColumn),
+		)
+		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryNanomdmusers queries the nanomdmusers edge of a Agent.
+func (c *AgentClient) QueryNanomdmusers(a *Agent) *NanoMDMUserQuery {
+	query := (&NanoMDMUserClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := a.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, id),
+			sqlgraph.To(nanomdmuser.Table, nanomdmuser.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, agent.NanomdmusersTable, agent.NanomdmusersColumn),
 		)
 		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
 		return fromV, nil
@@ -2783,6 +2807,155 @@ func (c *NanoMDMInfoClient) mutate(ctx context.Context, m *NanoMDMInfoMutation) 
 		return (&NanoMDMInfoDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown NanoMDMInfo mutation op: %q", m.Op())
+	}
+}
+
+// NanoMDMUserClient is a client for the NanoMDMUser schema.
+type NanoMDMUserClient struct {
+	config
+}
+
+// NewNanoMDMUserClient returns a client for the NanoMDMUser from the given config.
+func NewNanoMDMUserClient(c config) *NanoMDMUserClient {
+	return &NanoMDMUserClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `nanomdmuser.Hooks(f(g(h())))`.
+func (c *NanoMDMUserClient) Use(hooks ...Hook) {
+	c.hooks.NanoMDMUser = append(c.hooks.NanoMDMUser, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `nanomdmuser.Intercept(f(g(h())))`.
+func (c *NanoMDMUserClient) Intercept(interceptors ...Interceptor) {
+	c.inters.NanoMDMUser = append(c.inters.NanoMDMUser, interceptors...)
+}
+
+// Create returns a builder for creating a NanoMDMUser entity.
+func (c *NanoMDMUserClient) Create() *NanoMDMUserCreate {
+	mutation := newNanoMDMUserMutation(c.config, OpCreate)
+	return &NanoMDMUserCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of NanoMDMUser entities.
+func (c *NanoMDMUserClient) CreateBulk(builders ...*NanoMDMUserCreate) *NanoMDMUserCreateBulk {
+	return &NanoMDMUserCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *NanoMDMUserClient) MapCreateBulk(slice any, setFunc func(*NanoMDMUserCreate, int)) *NanoMDMUserCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &NanoMDMUserCreateBulk{err: fmt.Errorf("calling to NanoMDMUserClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*NanoMDMUserCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &NanoMDMUserCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for NanoMDMUser.
+func (c *NanoMDMUserClient) Update() *NanoMDMUserUpdate {
+	mutation := newNanoMDMUserMutation(c.config, OpUpdate)
+	return &NanoMDMUserUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *NanoMDMUserClient) UpdateOne(nmu *NanoMDMUser) *NanoMDMUserUpdateOne {
+	mutation := newNanoMDMUserMutation(c.config, OpUpdateOne, withNanoMDMUser(nmu))
+	return &NanoMDMUserUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *NanoMDMUserClient) UpdateOneID(id int) *NanoMDMUserUpdateOne {
+	mutation := newNanoMDMUserMutation(c.config, OpUpdateOne, withNanoMDMUserID(id))
+	return &NanoMDMUserUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for NanoMDMUser.
+func (c *NanoMDMUserClient) Delete() *NanoMDMUserDelete {
+	mutation := newNanoMDMUserMutation(c.config, OpDelete)
+	return &NanoMDMUserDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *NanoMDMUserClient) DeleteOne(nmu *NanoMDMUser) *NanoMDMUserDeleteOne {
+	return c.DeleteOneID(nmu.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *NanoMDMUserClient) DeleteOneID(id int) *NanoMDMUserDeleteOne {
+	builder := c.Delete().Where(nanomdmuser.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &NanoMDMUserDeleteOne{builder}
+}
+
+// Query returns a query builder for NanoMDMUser.
+func (c *NanoMDMUserClient) Query() *NanoMDMUserQuery {
+	return &NanoMDMUserQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeNanoMDMUser},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a NanoMDMUser entity by its id.
+func (c *NanoMDMUserClient) Get(ctx context.Context, id int) (*NanoMDMUser, error) {
+	return c.Query().Where(nanomdmuser.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *NanoMDMUserClient) GetX(ctx context.Context, id int) *NanoMDMUser {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// QueryAgent queries the agent edge of a NanoMDMUser.
+func (c *NanoMDMUserClient) QueryAgent(nmu *NanoMDMUser) *AgentQuery {
+	query := (&AgentClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := nmu.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(nanomdmuser.Table, nanomdmuser.FieldID, id),
+			sqlgraph.To(agent.Table, agent.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, nanomdmuser.AgentTable, nanomdmuser.AgentColumn),
+		)
+		fromV = sqlgraph.Neighbors(nmu.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// Hooks returns the client hooks.
+func (c *NanoMDMUserClient) Hooks() []Hook {
+	return c.hooks.NanoMDMUser
+}
+
+// Interceptors returns the client interceptors.
+func (c *NanoMDMUserClient) Interceptors() []Interceptor {
+	return c.inters.NanoMDMUser
+}
+
+func (c *NanoMDMUserClient) mutate(ctx context.Context, m *NanoMDMUserMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&NanoMDMUserCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&NanoMDMUserUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&NanoMDMUserUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&NanoMDMUserDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown NanoMDMUser mutation op: %q", m.Op())
 	}
 }
 
@@ -6787,18 +6960,19 @@ func (c *WingetConfigExclusionClient) mutate(ctx context.Context, m *WingetConfi
 type (
 	hooks struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
-		LogicalDisk, MDMCommand, MemorySlot, Metadata, Monitor, NanoMDMInfo, Netbird,
-		NetbirdSettings, NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk,
-		Printer, Profile, ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk,
-		Server, Sessions, Settings, Share, Site, SystemUpdate, Tag, Task, Tenant,
-		Update, User, WingetConfigExclusion []ent.Hook
+		LogicalDisk, MDMCommand, MemorySlot, Metadata, Monitor, NanoMDMInfo,
+		NanoMDMUser, Netbird, NetbirdSettings, NetworkAdapter, OperatingSystem,
+		OrgMetadata, PhysicalDisk, Printer, Profile, ProfileIssue, RecoveryCode,
+		Release, Revocation, Rustdesk, Server, Sessions, Settings, Share, Site,
+		SystemUpdate, Tag, Task, Tenant, Update, User, WingetConfigExclusion []ent.Hook
 	}
 	inters struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
-		LogicalDisk, MDMCommand, MemorySlot, Metadata, Monitor, NanoMDMInfo, Netbird,
-		NetbirdSettings, NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk,
-		Printer, Profile, ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk,
-		Server, Sessions, Settings, Share, Site, SystemUpdate, Tag, Task, Tenant,
-		Update, User, WingetConfigExclusion []ent.Interceptor
+		LogicalDisk, MDMCommand, MemorySlot, Metadata, Monitor, NanoMDMInfo,
+		NanoMDMUser, Netbird, NetbirdSettings, NetworkAdapter, OperatingSystem,
+		OrgMetadata, PhysicalDisk, Printer, Profile, ProfileIssue, RecoveryCode,
+		Release, Revocation, Rustdesk, Server, Sessions, Settings, Share, Site,
+		SystemUpdate, Tag, Task, Tenant, Update, User,
+		WingetConfigExclusion []ent.Interceptor
 	}
 )

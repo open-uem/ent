@@ -38,6 +38,8 @@ type Tx struct {
 	Monitor *MonitorClient
 	// NanoMDMInfo is the client for interacting with the NanoMDMInfo builders.
 	NanoMDMInfo *NanoMDMInfoClient
+	// NanoMDMUser is the client for interacting with the NanoMDMUser builders.
+	NanoMDMUser *NanoMDMUserClient
 	// Netbird is the client for interacting with the Netbird builders.
 	Netbird *NetbirdClient
 	// NetbirdSettings is the client for interacting with the NetbirdSettings builders.
@@ -232,6 +234,7 @@ func (tx *Tx) init() {
 	tx.Metadata = NewMetadataClient(tx.config)
 	tx.Monitor = NewMonitorClient(tx.config)
 	tx.NanoMDMInfo = NewNanoMDMInfoClient(tx.config)
+	tx.NanoMDMUser = NewNanoMDMUserClient(tx.config)
 	tx.Netbird = NewNetbirdClient(tx.config)
 	tx.NetbirdSettings = NewNetbirdSettingsClient(tx.config)
 	tx.NetworkAdapter = NewNetworkAdapterClient(tx.config)

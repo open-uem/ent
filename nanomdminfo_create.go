@@ -393,6 +393,14 @@ func (nmic *NanoMDMInfoCreate) SetPreviousScanDate(t time.Time) *NanoMDMInfoCrea
 	return nmic
 }
 
+// SetNillablePreviousScanDate sets the "previous_scan_date" field if the given value is not nil.
+func (nmic *NanoMDMInfoCreate) SetNillablePreviousScanDate(t *time.Time) *NanoMDMInfoCreate {
+	if t != nil {
+		nmic.SetPreviousScanDate(*t)
+	}
+	return nmic
+}
+
 // SetPreviousScanResult sets the "previous_scan_result" field.
 func (nmic *NanoMDMInfoCreate) SetPreviousScanResult(i int) *NanoMDMInfoCreate {
 	nmic.mutation.SetPreviousScanResult(i)
@@ -789,126 +797,6 @@ func (nmic *NanoMDMInfoCreate) defaults() {
 
 // check runs all checks and user-defined validators on the builder.
 func (nmic *NanoMDMInfoCreate) check() error {
-	if _, ok := nmic.mutation.AvailableDeviceCapacity(); !ok {
-		return &ValidationError{Name: "available_device_capacity", err: errors.New(`ent: missing required field "NanoMDMInfo.available_device_capacity"`)}
-	}
-	if _, ok := nmic.mutation.AwaitingConfiguration(); !ok {
-		return &ValidationError{Name: "awaiting_configuration", err: errors.New(`ent: missing required field "NanoMDMInfo.awaiting_configuration"`)}
-	}
-	if _, ok := nmic.mutation.BatteryLevel(); !ok {
-		return &ValidationError{Name: "battery_level", err: errors.New(`ent: missing required field "NanoMDMInfo.battery_level"`)}
-	}
-	if _, ok := nmic.mutation.BluetoothMAC(); !ok {
-		return &ValidationError{Name: "bluetooth_mac", err: errors.New(`ent: missing required field "NanoMDMInfo.bluetooth_mac"`)}
-	}
-	if _, ok := nmic.mutation.BuildVersion(); !ok {
-		return &ValidationError{Name: "build_version", err: errors.New(`ent: missing required field "NanoMDMInfo.build_version"`)}
-	}
-	if _, ok := nmic.mutation.CurrentConsoleManagedUser(); !ok {
-		return &ValidationError{Name: "current_console_managed_user", err: errors.New(`ent: missing required field "NanoMDMInfo.current_console_managed_user"`)}
-	}
-	if _, ok := nmic.mutation.DeviceCapacity(); !ok {
-		return &ValidationError{Name: "device_capacity", err: errors.New(`ent: missing required field "NanoMDMInfo.device_capacity"`)}
-	}
-	if _, ok := nmic.mutation.DeviceName(); !ok {
-		return &ValidationError{Name: "device_name", err: errors.New(`ent: missing required field "NanoMDMInfo.device_name"`)}
-	}
-	if _, ok := nmic.mutation.EacsPreflight(); !ok {
-		return &ValidationError{Name: "eacs_preflight", err: errors.New(`ent: missing required field "NanoMDMInfo.eacs_preflight"`)}
-	}
-	if _, ok := nmic.mutation.EthernetMAC(); !ok {
-		return &ValidationError{Name: "ethernet_mac", err: errors.New(`ent: missing required field "NanoMDMInfo.ethernet_mac"`)}
-	}
-	if _, ok := nmic.mutation.HasBattery(); !ok {
-		return &ValidationError{Name: "has_battery", err: errors.New(`ent: missing required field "NanoMDMInfo.has_battery"`)}
-	}
-	if _, ok := nmic.mutation.Hostname(); !ok {
-		return &ValidationError{Name: "hostname", err: errors.New(`ent: missing required field "NanoMDMInfo.hostname"`)}
-	}
-	if _, ok := nmic.mutation.IsActivationLockEnabled(); !ok {
-		return &ValidationError{Name: "is_activation_lock_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.is_activation_lock_enabled"`)}
-	}
-	if _, ok := nmic.mutation.IsActivationLockSupported(); !ok {
-		return &ValidationError{Name: "is_activation_lock_supported", err: errors.New(`ent: missing required field "NanoMDMInfo.is_activation_lock_supported"`)}
-	}
-	if _, ok := nmic.mutation.IsAppleSilicon(); !ok {
-		return &ValidationError{Name: "is_apple_silicon", err: errors.New(`ent: missing required field "NanoMDMInfo.is_apple_silicon"`)}
-	}
-	if _, ok := nmic.mutation.IsSupervised(); !ok {
-		return &ValidationError{Name: "is_supervised", err: errors.New(`ent: missing required field "NanoMDMInfo.is_supervised"`)}
-	}
-	if _, ok := nmic.mutation.Localhostname(); !ok {
-		return &ValidationError{Name: "localhostname", err: errors.New(`ent: missing required field "NanoMDMInfo.localhostname"`)}
-	}
-	if _, ok := nmic.mutation.Model(); !ok {
-		return &ValidationError{Name: "model", err: errors.New(`ent: missing required field "NanoMDMInfo.model"`)}
-	}
-	if _, ok := nmic.mutation.ModelName(); !ok {
-		return &ValidationError{Name: "model_name", err: errors.New(`ent: missing required field "NanoMDMInfo.model_name"`)}
-	}
-	if _, ok := nmic.mutation.AutoCheckEnabled(); !ok {
-		return &ValidationError{Name: "auto_check_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.auto_check_enabled"`)}
-	}
-	if _, ok := nmic.mutation.AutomaticAppInstallationEnabled(); !ok {
-		return &ValidationError{Name: "automatic_app_installation_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.automatic_app_installation_enabled"`)}
-	}
-	if _, ok := nmic.mutation.AutomaticOsInstallationEnabled(); !ok {
-		return &ValidationError{Name: "automatic_os_installation_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.automatic_os_installation_enabled"`)}
-	}
-	if _, ok := nmic.mutation.AutomaticSecurityUpdatesEnabled(); !ok {
-		return &ValidationError{Name: "automatic_security_updates_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.automatic_security_updates_enabled"`)}
-	}
-	if _, ok := nmic.mutation.BackgroundDownloadEnabled(); !ok {
-		return &ValidationError{Name: "background_download_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.background_download_enabled"`)}
-	}
-	if _, ok := nmic.mutation.CatalogURL(); !ok {
-		return &ValidationError{Name: "catalog_url", err: errors.New(`ent: missing required field "NanoMDMInfo.catalog_url"`)}
-	}
-	if _, ok := nmic.mutation.IsDefaultCatalog(); !ok {
-		return &ValidationError{Name: "is_default_catalog", err: errors.New(`ent: missing required field "NanoMDMInfo.is_default_catalog"`)}
-	}
-	if _, ok := nmic.mutation.PreviousScanDate(); !ok {
-		return &ValidationError{Name: "previous_scan_date", err: errors.New(`ent: missing required field "NanoMDMInfo.previous_scan_date"`)}
-	}
-	if _, ok := nmic.mutation.PreviousScanResult(); !ok {
-		return &ValidationError{Name: "previous_scan_result", err: errors.New(`ent: missing required field "NanoMDMInfo.previous_scan_result"`)}
-	}
-	if _, ok := nmic.mutation.OsVersion(); !ok {
-		return &ValidationError{Name: "os_version", err: errors.New(`ent: missing required field "NanoMDMInfo.os_version"`)}
-	}
-	if _, ok := nmic.mutation.PinRequiredForDeviceLock(); !ok {
-		return &ValidationError{Name: "pin_required_for_device_lock", err: errors.New(`ent: missing required field "NanoMDMInfo.pin_required_for_device_lock"`)}
-	}
-	if _, ok := nmic.mutation.PinRequiredForEraseDevice(); !ok {
-		return &ValidationError{Name: "pin_required_for_erase_device", err: errors.New(`ent: missing required field "NanoMDMInfo.pin_required_for_erase_device"`)}
-	}
-	if _, ok := nmic.mutation.ProductName(); !ok {
-		return &ValidationError{Name: "product_name", err: errors.New(`ent: missing required field "NanoMDMInfo.product_name"`)}
-	}
-	if _, ok := nmic.mutation.ProvisioningUdid(); !ok {
-		return &ValidationError{Name: "provisioning_udid", err: errors.New(`ent: missing required field "NanoMDMInfo.provisioning_udid"`)}
-	}
-	if _, ok := nmic.mutation.SerialNumber(); !ok {
-		return &ValidationError{Name: "serial_number", err: errors.New(`ent: missing required field "NanoMDMInfo.serial_number"`)}
-	}
-	if _, ok := nmic.mutation.SoftwareUpdateDeviceID(); !ok {
-		return &ValidationError{Name: "software_update_device_id", err: errors.New(`ent: missing required field "NanoMDMInfo.software_update_device_id"`)}
-	}
-	if _, ok := nmic.mutation.SupplementalBuildVersion(); !ok {
-		return &ValidationError{Name: "supplemental_build_version", err: errors.New(`ent: missing required field "NanoMDMInfo.supplemental_build_version"`)}
-	}
-	if _, ok := nmic.mutation.SupportsLomDevice(); !ok {
-		return &ValidationError{Name: "supports_lom_device", err: errors.New(`ent: missing required field "NanoMDMInfo.supports_lom_device"`)}
-	}
-	if _, ok := nmic.mutation.SupportsIosAppInstalls(); !ok {
-		return &ValidationError{Name: "supports_ios_app_installs", err: errors.New(`ent: missing required field "NanoMDMInfo.supports_ios_app_installs"`)}
-	}
-	if _, ok := nmic.mutation.SystemIntegrityProtectionEnabled(); !ok {
-		return &ValidationError{Name: "system_integrity_protection_enabled", err: errors.New(`ent: missing required field "NanoMDMInfo.system_integrity_protection_enabled"`)}
-	}
-	if _, ok := nmic.mutation.Udid(); !ok {
-		return &ValidationError{Name: "udid", err: errors.New(`ent: missing required field "NanoMDMInfo.udid"`)}
-	}
 	return nil
 }
 
@@ -1183,6 +1071,12 @@ func (u *NanoMDMInfoUpsert) AddAvailableDeviceCapacity(v float64) *NanoMDMInfoUp
 	return u
 }
 
+// ClearAvailableDeviceCapacity clears the value of the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsert) ClearAvailableDeviceCapacity() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldAvailableDeviceCapacity)
+	return u
+}
+
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
 func (u *NanoMDMInfoUpsert) SetAwaitingConfiguration(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldAwaitingConfiguration, v)
@@ -1192,6 +1086,12 @@ func (u *NanoMDMInfoUpsert) SetAwaitingConfiguration(v bool) *NanoMDMInfoUpsert 
 // UpdateAwaitingConfiguration sets the "awaiting_configuration" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateAwaitingConfiguration() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldAwaitingConfiguration)
+	return u
+}
+
+// ClearAwaitingConfiguration clears the value of the "awaiting_configuration" field.
+func (u *NanoMDMInfoUpsert) ClearAwaitingConfiguration() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldAwaitingConfiguration)
 	return u
 }
 
@@ -1213,6 +1113,12 @@ func (u *NanoMDMInfoUpsert) AddBatteryLevel(v float64) *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearBatteryLevel clears the value of the "battery_level" field.
+func (u *NanoMDMInfoUpsert) ClearBatteryLevel() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldBatteryLevel)
+	return u
+}
+
 // SetBluetoothMAC sets the "bluetooth_mac" field.
 func (u *NanoMDMInfoUpsert) SetBluetoothMAC(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldBluetoothMAC, v)
@@ -1222,6 +1128,12 @@ func (u *NanoMDMInfoUpsert) SetBluetoothMAC(v string) *NanoMDMInfoUpsert {
 // UpdateBluetoothMAC sets the "bluetooth_mac" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateBluetoothMAC() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldBluetoothMAC)
+	return u
+}
+
+// ClearBluetoothMAC clears the value of the "bluetooth_mac" field.
+func (u *NanoMDMInfoUpsert) ClearBluetoothMAC() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldBluetoothMAC)
 	return u
 }
 
@@ -1237,6 +1149,12 @@ func (u *NanoMDMInfoUpsert) UpdateBuildVersion() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearBuildVersion clears the value of the "build_version" field.
+func (u *NanoMDMInfoUpsert) ClearBuildVersion() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldBuildVersion)
+	return u
+}
+
 // SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
 func (u *NanoMDMInfoUpsert) SetCurrentConsoleManagedUser(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldCurrentConsoleManagedUser, v)
@@ -1246,6 +1164,12 @@ func (u *NanoMDMInfoUpsert) SetCurrentConsoleManagedUser(v string) *NanoMDMInfoU
 // UpdateCurrentConsoleManagedUser sets the "current_console_managed_user" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateCurrentConsoleManagedUser() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldCurrentConsoleManagedUser)
+	return u
+}
+
+// ClearCurrentConsoleManagedUser clears the value of the "current_console_managed_user" field.
+func (u *NanoMDMInfoUpsert) ClearCurrentConsoleManagedUser() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldCurrentConsoleManagedUser)
 	return u
 }
 
@@ -1267,6 +1191,12 @@ func (u *NanoMDMInfoUpsert) AddDeviceCapacity(v float64) *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearDeviceCapacity clears the value of the "device_capacity" field.
+func (u *NanoMDMInfoUpsert) ClearDeviceCapacity() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldDeviceCapacity)
+	return u
+}
+
 // SetDeviceName sets the "device_name" field.
 func (u *NanoMDMInfoUpsert) SetDeviceName(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldDeviceName, v)
@@ -1276,6 +1206,12 @@ func (u *NanoMDMInfoUpsert) SetDeviceName(v string) *NanoMDMInfoUpsert {
 // UpdateDeviceName sets the "device_name" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateDeviceName() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldDeviceName)
+	return u
+}
+
+// ClearDeviceName clears the value of the "device_name" field.
+func (u *NanoMDMInfoUpsert) ClearDeviceName() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldDeviceName)
 	return u
 }
 
@@ -1291,6 +1227,12 @@ func (u *NanoMDMInfoUpsert) UpdateEacsPreflight() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearEacsPreflight clears the value of the "eacs_preflight" field.
+func (u *NanoMDMInfoUpsert) ClearEacsPreflight() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldEacsPreflight)
+	return u
+}
+
 // SetEthernetMAC sets the "ethernet_mac" field.
 func (u *NanoMDMInfoUpsert) SetEthernetMAC(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldEthernetMAC, v)
@@ -1300,6 +1242,12 @@ func (u *NanoMDMInfoUpsert) SetEthernetMAC(v string) *NanoMDMInfoUpsert {
 // UpdateEthernetMAC sets the "ethernet_mac" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateEthernetMAC() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldEthernetMAC)
+	return u
+}
+
+// ClearEthernetMAC clears the value of the "ethernet_mac" field.
+func (u *NanoMDMInfoUpsert) ClearEthernetMAC() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldEthernetMAC)
 	return u
 }
 
@@ -1315,6 +1263,12 @@ func (u *NanoMDMInfoUpsert) UpdateHasBattery() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearHasBattery clears the value of the "has_battery" field.
+func (u *NanoMDMInfoUpsert) ClearHasBattery() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldHasBattery)
+	return u
+}
+
 // SetHostname sets the "hostname" field.
 func (u *NanoMDMInfoUpsert) SetHostname(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldHostname, v)
@@ -1324,6 +1278,12 @@ func (u *NanoMDMInfoUpsert) SetHostname(v string) *NanoMDMInfoUpsert {
 // UpdateHostname sets the "hostname" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateHostname() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldHostname)
+	return u
+}
+
+// ClearHostname clears the value of the "hostname" field.
+func (u *NanoMDMInfoUpsert) ClearHostname() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldHostname)
 	return u
 }
 
@@ -1339,6 +1299,12 @@ func (u *NanoMDMInfoUpsert) UpdateIsActivationLockEnabled() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearIsActivationLockEnabled clears the value of the "is_activation_lock_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearIsActivationLockEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldIsActivationLockEnabled)
+	return u
+}
+
 // SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
 func (u *NanoMDMInfoUpsert) SetIsActivationLockSupported(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldIsActivationLockSupported, v)
@@ -1348,6 +1314,12 @@ func (u *NanoMDMInfoUpsert) SetIsActivationLockSupported(v bool) *NanoMDMInfoUps
 // UpdateIsActivationLockSupported sets the "is_activation_lock_supported" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateIsActivationLockSupported() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldIsActivationLockSupported)
+	return u
+}
+
+// ClearIsActivationLockSupported clears the value of the "is_activation_lock_supported" field.
+func (u *NanoMDMInfoUpsert) ClearIsActivationLockSupported() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldIsActivationLockSupported)
 	return u
 }
 
@@ -1363,6 +1335,12 @@ func (u *NanoMDMInfoUpsert) UpdateIsAppleSilicon() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearIsAppleSilicon clears the value of the "is_apple_silicon" field.
+func (u *NanoMDMInfoUpsert) ClearIsAppleSilicon() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldIsAppleSilicon)
+	return u
+}
+
 // SetIsSupervised sets the "is_supervised" field.
 func (u *NanoMDMInfoUpsert) SetIsSupervised(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldIsSupervised, v)
@@ -1372,6 +1350,12 @@ func (u *NanoMDMInfoUpsert) SetIsSupervised(v bool) *NanoMDMInfoUpsert {
 // UpdateIsSupervised sets the "is_supervised" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateIsSupervised() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldIsSupervised)
+	return u
+}
+
+// ClearIsSupervised clears the value of the "is_supervised" field.
+func (u *NanoMDMInfoUpsert) ClearIsSupervised() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldIsSupervised)
 	return u
 }
 
@@ -1387,6 +1371,12 @@ func (u *NanoMDMInfoUpsert) UpdateLocalhostname() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearLocalhostname clears the value of the "localhostname" field.
+func (u *NanoMDMInfoUpsert) ClearLocalhostname() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldLocalhostname)
+	return u
+}
+
 // SetModel sets the "model" field.
 func (u *NanoMDMInfoUpsert) SetModel(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldModel, v)
@@ -1396,6 +1386,12 @@ func (u *NanoMDMInfoUpsert) SetModel(v string) *NanoMDMInfoUpsert {
 // UpdateModel sets the "model" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateModel() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldModel)
+	return u
+}
+
+// ClearModel clears the value of the "model" field.
+func (u *NanoMDMInfoUpsert) ClearModel() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldModel)
 	return u
 }
 
@@ -1411,6 +1407,12 @@ func (u *NanoMDMInfoUpsert) UpdateModelName() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearModelName clears the value of the "model_name" field.
+func (u *NanoMDMInfoUpsert) ClearModelName() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldModelName)
+	return u
+}
+
 // SetAutoCheckEnabled sets the "auto_check_enabled" field.
 func (u *NanoMDMInfoUpsert) SetAutoCheckEnabled(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldAutoCheckEnabled, v)
@@ -1420,6 +1422,12 @@ func (u *NanoMDMInfoUpsert) SetAutoCheckEnabled(v bool) *NanoMDMInfoUpsert {
 // UpdateAutoCheckEnabled sets the "auto_check_enabled" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateAutoCheckEnabled() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldAutoCheckEnabled)
+	return u
+}
+
+// ClearAutoCheckEnabled clears the value of the "auto_check_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearAutoCheckEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldAutoCheckEnabled)
 	return u
 }
 
@@ -1435,6 +1443,12 @@ func (u *NanoMDMInfoUpsert) UpdateAutomaticAppInstallationEnabled() *NanoMDMInfo
 	return u
 }
 
+// ClearAutomaticAppInstallationEnabled clears the value of the "automatic_app_installation_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearAutomaticAppInstallationEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldAutomaticAppInstallationEnabled)
+	return u
+}
+
 // SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
 func (u *NanoMDMInfoUpsert) SetAutomaticOsInstallationEnabled(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldAutomaticOsInstallationEnabled, v)
@@ -1444,6 +1458,12 @@ func (u *NanoMDMInfoUpsert) SetAutomaticOsInstallationEnabled(v bool) *NanoMDMIn
 // UpdateAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateAutomaticOsInstallationEnabled() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldAutomaticOsInstallationEnabled)
+	return u
+}
+
+// ClearAutomaticOsInstallationEnabled clears the value of the "automatic_os_installation_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearAutomaticOsInstallationEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldAutomaticOsInstallationEnabled)
 	return u
 }
 
@@ -1459,6 +1479,12 @@ func (u *NanoMDMInfoUpsert) UpdateAutomaticSecurityUpdatesEnabled() *NanoMDMInfo
 	return u
 }
 
+// ClearAutomaticSecurityUpdatesEnabled clears the value of the "automatic_security_updates_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearAutomaticSecurityUpdatesEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldAutomaticSecurityUpdatesEnabled)
+	return u
+}
+
 // SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
 func (u *NanoMDMInfoUpsert) SetBackgroundDownloadEnabled(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldBackgroundDownloadEnabled, v)
@@ -1468,6 +1494,12 @@ func (u *NanoMDMInfoUpsert) SetBackgroundDownloadEnabled(v bool) *NanoMDMInfoUps
 // UpdateBackgroundDownloadEnabled sets the "background_download_enabled" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateBackgroundDownloadEnabled() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldBackgroundDownloadEnabled)
+	return u
+}
+
+// ClearBackgroundDownloadEnabled clears the value of the "background_download_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearBackgroundDownloadEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldBackgroundDownloadEnabled)
 	return u
 }
 
@@ -1483,6 +1515,12 @@ func (u *NanoMDMInfoUpsert) UpdateCatalogURL() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearCatalogURL clears the value of the "catalog_url" field.
+func (u *NanoMDMInfoUpsert) ClearCatalogURL() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldCatalogURL)
+	return u
+}
+
 // SetIsDefaultCatalog sets the "is_default_catalog" field.
 func (u *NanoMDMInfoUpsert) SetIsDefaultCatalog(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldIsDefaultCatalog, v)
@@ -1495,6 +1533,12 @@ func (u *NanoMDMInfoUpsert) UpdateIsDefaultCatalog() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearIsDefaultCatalog clears the value of the "is_default_catalog" field.
+func (u *NanoMDMInfoUpsert) ClearIsDefaultCatalog() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldIsDefaultCatalog)
+	return u
+}
+
 // SetPreviousScanDate sets the "previous_scan_date" field.
 func (u *NanoMDMInfoUpsert) SetPreviousScanDate(v time.Time) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldPreviousScanDate, v)
@@ -1504,6 +1548,12 @@ func (u *NanoMDMInfoUpsert) SetPreviousScanDate(v time.Time) *NanoMDMInfoUpsert 
 // UpdatePreviousScanDate sets the "previous_scan_date" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdatePreviousScanDate() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldPreviousScanDate)
+	return u
+}
+
+// ClearPreviousScanDate clears the value of the "previous_scan_date" field.
+func (u *NanoMDMInfoUpsert) ClearPreviousScanDate() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldPreviousScanDate)
 	return u
 }
 
@@ -1525,6 +1575,12 @@ func (u *NanoMDMInfoUpsert) AddPreviousScanResult(v int) *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearPreviousScanResult clears the value of the "previous_scan_result" field.
+func (u *NanoMDMInfoUpsert) ClearPreviousScanResult() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldPreviousScanResult)
+	return u
+}
+
 // SetOsVersion sets the "os_version" field.
 func (u *NanoMDMInfoUpsert) SetOsVersion(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldOsVersion, v)
@@ -1534,6 +1590,12 @@ func (u *NanoMDMInfoUpsert) SetOsVersion(v string) *NanoMDMInfoUpsert {
 // UpdateOsVersion sets the "os_version" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateOsVersion() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldOsVersion)
+	return u
+}
+
+// ClearOsVersion clears the value of the "os_version" field.
+func (u *NanoMDMInfoUpsert) ClearOsVersion() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldOsVersion)
 	return u
 }
 
@@ -1549,6 +1611,12 @@ func (u *NanoMDMInfoUpsert) UpdatePinRequiredForDeviceLock() *NanoMDMInfoUpsert 
 	return u
 }
 
+// ClearPinRequiredForDeviceLock clears the value of the "pin_required_for_device_lock" field.
+func (u *NanoMDMInfoUpsert) ClearPinRequiredForDeviceLock() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldPinRequiredForDeviceLock)
+	return u
+}
+
 // SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
 func (u *NanoMDMInfoUpsert) SetPinRequiredForEraseDevice(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldPinRequiredForEraseDevice, v)
@@ -1558,6 +1626,12 @@ func (u *NanoMDMInfoUpsert) SetPinRequiredForEraseDevice(v bool) *NanoMDMInfoUps
 // UpdatePinRequiredForEraseDevice sets the "pin_required_for_erase_device" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdatePinRequiredForEraseDevice() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldPinRequiredForEraseDevice)
+	return u
+}
+
+// ClearPinRequiredForEraseDevice clears the value of the "pin_required_for_erase_device" field.
+func (u *NanoMDMInfoUpsert) ClearPinRequiredForEraseDevice() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldPinRequiredForEraseDevice)
 	return u
 }
 
@@ -1573,6 +1647,12 @@ func (u *NanoMDMInfoUpsert) UpdateProductName() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearProductName clears the value of the "product_name" field.
+func (u *NanoMDMInfoUpsert) ClearProductName() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldProductName)
+	return u
+}
+
 // SetProvisioningUdid sets the "provisioning_udid" field.
 func (u *NanoMDMInfoUpsert) SetProvisioningUdid(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldProvisioningUdid, v)
@@ -1582,6 +1662,12 @@ func (u *NanoMDMInfoUpsert) SetProvisioningUdid(v string) *NanoMDMInfoUpsert {
 // UpdateProvisioningUdid sets the "provisioning_udid" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateProvisioningUdid() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldProvisioningUdid)
+	return u
+}
+
+// ClearProvisioningUdid clears the value of the "provisioning_udid" field.
+func (u *NanoMDMInfoUpsert) ClearProvisioningUdid() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldProvisioningUdid)
 	return u
 }
 
@@ -1597,6 +1683,12 @@ func (u *NanoMDMInfoUpsert) UpdateSerialNumber() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearSerialNumber clears the value of the "serial_number" field.
+func (u *NanoMDMInfoUpsert) ClearSerialNumber() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldSerialNumber)
+	return u
+}
+
 // SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
 func (u *NanoMDMInfoUpsert) SetSoftwareUpdateDeviceID(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldSoftwareUpdateDeviceID, v)
@@ -1606,6 +1698,12 @@ func (u *NanoMDMInfoUpsert) SetSoftwareUpdateDeviceID(v string) *NanoMDMInfoUpse
 // UpdateSoftwareUpdateDeviceID sets the "software_update_device_id" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateSoftwareUpdateDeviceID() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldSoftwareUpdateDeviceID)
+	return u
+}
+
+// ClearSoftwareUpdateDeviceID clears the value of the "software_update_device_id" field.
+func (u *NanoMDMInfoUpsert) ClearSoftwareUpdateDeviceID() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldSoftwareUpdateDeviceID)
 	return u
 }
 
@@ -1621,6 +1719,12 @@ func (u *NanoMDMInfoUpsert) UpdateSupplementalBuildVersion() *NanoMDMInfoUpsert 
 	return u
 }
 
+// ClearSupplementalBuildVersion clears the value of the "supplemental_build_version" field.
+func (u *NanoMDMInfoUpsert) ClearSupplementalBuildVersion() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldSupplementalBuildVersion)
+	return u
+}
+
 // SetSupportsLomDevice sets the "supports_lom_device" field.
 func (u *NanoMDMInfoUpsert) SetSupportsLomDevice(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldSupportsLomDevice, v)
@@ -1630,6 +1734,12 @@ func (u *NanoMDMInfoUpsert) SetSupportsLomDevice(v bool) *NanoMDMInfoUpsert {
 // UpdateSupportsLomDevice sets the "supports_lom_device" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateSupportsLomDevice() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldSupportsLomDevice)
+	return u
+}
+
+// ClearSupportsLomDevice clears the value of the "supports_lom_device" field.
+func (u *NanoMDMInfoUpsert) ClearSupportsLomDevice() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldSupportsLomDevice)
 	return u
 }
 
@@ -1645,6 +1755,12 @@ func (u *NanoMDMInfoUpsert) UpdateSupportsIosAppInstalls() *NanoMDMInfoUpsert {
 	return u
 }
 
+// ClearSupportsIosAppInstalls clears the value of the "supports_ios_app_installs" field.
+func (u *NanoMDMInfoUpsert) ClearSupportsIosAppInstalls() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldSupportsIosAppInstalls)
+	return u
+}
+
 // SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
 func (u *NanoMDMInfoUpsert) SetSystemIntegrityProtectionEnabled(v bool) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldSystemIntegrityProtectionEnabled, v)
@@ -1657,6 +1773,12 @@ func (u *NanoMDMInfoUpsert) UpdateSystemIntegrityProtectionEnabled() *NanoMDMInf
 	return u
 }
 
+// ClearSystemIntegrityProtectionEnabled clears the value of the "system_integrity_protection_enabled" field.
+func (u *NanoMDMInfoUpsert) ClearSystemIntegrityProtectionEnabled() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldSystemIntegrityProtectionEnabled)
+	return u
+}
+
 // SetUdid sets the "udid" field.
 func (u *NanoMDMInfoUpsert) SetUdid(v string) *NanoMDMInfoUpsert {
 	u.Set(nanomdminfo.FieldUdid, v)
@@ -1666,6 +1788,12 @@ func (u *NanoMDMInfoUpsert) SetUdid(v string) *NanoMDMInfoUpsert {
 // UpdateUdid sets the "udid" field to the value that was provided on create.
 func (u *NanoMDMInfoUpsert) UpdateUdid() *NanoMDMInfoUpsert {
 	u.SetExcluded(nanomdminfo.FieldUdid)
+	return u
+}
+
+// ClearUdid clears the value of the "udid" field.
+func (u *NanoMDMInfoUpsert) ClearUdid() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldUdid)
 	return u
 }
 
@@ -1730,6 +1858,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateAvailableDeviceCapacity() *NanoMDMInfoUpser
 	})
 }
 
+// ClearAvailableDeviceCapacity clears the value of the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsertOne) ClearAvailableDeviceCapacity() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAvailableDeviceCapacity()
+	})
+}
+
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
 func (u *NanoMDMInfoUpsertOne) SetAwaitingConfiguration(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1741,6 +1876,13 @@ func (u *NanoMDMInfoUpsertOne) SetAwaitingConfiguration(v bool) *NanoMDMInfoUpse
 func (u *NanoMDMInfoUpsertOne) UpdateAwaitingConfiguration() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateAwaitingConfiguration()
+	})
+}
+
+// ClearAwaitingConfiguration clears the value of the "awaiting_configuration" field.
+func (u *NanoMDMInfoUpsertOne) ClearAwaitingConfiguration() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAwaitingConfiguration()
 	})
 }
 
@@ -1765,6 +1907,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateBatteryLevel() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearBatteryLevel clears the value of the "battery_level" field.
+func (u *NanoMDMInfoUpsertOne) ClearBatteryLevel() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBatteryLevel()
+	})
+}
+
 // SetBluetoothMAC sets the "bluetooth_mac" field.
 func (u *NanoMDMInfoUpsertOne) SetBluetoothMAC(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1776,6 +1925,13 @@ func (u *NanoMDMInfoUpsertOne) SetBluetoothMAC(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateBluetoothMAC() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateBluetoothMAC()
+	})
+}
+
+// ClearBluetoothMAC clears the value of the "bluetooth_mac" field.
+func (u *NanoMDMInfoUpsertOne) ClearBluetoothMAC() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBluetoothMAC()
 	})
 }
 
@@ -1793,6 +1949,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateBuildVersion() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearBuildVersion clears the value of the "build_version" field.
+func (u *NanoMDMInfoUpsertOne) ClearBuildVersion() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBuildVersion()
+	})
+}
+
 // SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
 func (u *NanoMDMInfoUpsertOne) SetCurrentConsoleManagedUser(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1804,6 +1967,13 @@ func (u *NanoMDMInfoUpsertOne) SetCurrentConsoleManagedUser(v string) *NanoMDMIn
 func (u *NanoMDMInfoUpsertOne) UpdateCurrentConsoleManagedUser() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateCurrentConsoleManagedUser()
+	})
+}
+
+// ClearCurrentConsoleManagedUser clears the value of the "current_console_managed_user" field.
+func (u *NanoMDMInfoUpsertOne) ClearCurrentConsoleManagedUser() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearCurrentConsoleManagedUser()
 	})
 }
 
@@ -1828,6 +1998,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateDeviceCapacity() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearDeviceCapacity clears the value of the "device_capacity" field.
+func (u *NanoMDMInfoUpsertOne) ClearDeviceCapacity() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearDeviceCapacity()
+	})
+}
+
 // SetDeviceName sets the "device_name" field.
 func (u *NanoMDMInfoUpsertOne) SetDeviceName(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1839,6 +2016,13 @@ func (u *NanoMDMInfoUpsertOne) SetDeviceName(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateDeviceName() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateDeviceName()
+	})
+}
+
+// ClearDeviceName clears the value of the "device_name" field.
+func (u *NanoMDMInfoUpsertOne) ClearDeviceName() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearDeviceName()
 	})
 }
 
@@ -1856,6 +2040,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateEacsPreflight() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearEacsPreflight clears the value of the "eacs_preflight" field.
+func (u *NanoMDMInfoUpsertOne) ClearEacsPreflight() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearEacsPreflight()
+	})
+}
+
 // SetEthernetMAC sets the "ethernet_mac" field.
 func (u *NanoMDMInfoUpsertOne) SetEthernetMAC(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1867,6 +2058,13 @@ func (u *NanoMDMInfoUpsertOne) SetEthernetMAC(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateEthernetMAC() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateEthernetMAC()
+	})
+}
+
+// ClearEthernetMAC clears the value of the "ethernet_mac" field.
+func (u *NanoMDMInfoUpsertOne) ClearEthernetMAC() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearEthernetMAC()
 	})
 }
 
@@ -1884,6 +2082,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateHasBattery() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearHasBattery clears the value of the "has_battery" field.
+func (u *NanoMDMInfoUpsertOne) ClearHasBattery() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearHasBattery()
+	})
+}
+
 // SetHostname sets the "hostname" field.
 func (u *NanoMDMInfoUpsertOne) SetHostname(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1895,6 +2100,13 @@ func (u *NanoMDMInfoUpsertOne) SetHostname(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateHostname() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateHostname()
+	})
+}
+
+// ClearHostname clears the value of the "hostname" field.
+func (u *NanoMDMInfoUpsertOne) ClearHostname() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearHostname()
 	})
 }
 
@@ -1912,6 +2124,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateIsActivationLockEnabled() *NanoMDMInfoUpser
 	})
 }
 
+// ClearIsActivationLockEnabled clears the value of the "is_activation_lock_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearIsActivationLockEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsActivationLockEnabled()
+	})
+}
+
 // SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
 func (u *NanoMDMInfoUpsertOne) SetIsActivationLockSupported(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1923,6 +2142,13 @@ func (u *NanoMDMInfoUpsertOne) SetIsActivationLockSupported(v bool) *NanoMDMInfo
 func (u *NanoMDMInfoUpsertOne) UpdateIsActivationLockSupported() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateIsActivationLockSupported()
+	})
+}
+
+// ClearIsActivationLockSupported clears the value of the "is_activation_lock_supported" field.
+func (u *NanoMDMInfoUpsertOne) ClearIsActivationLockSupported() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsActivationLockSupported()
 	})
 }
 
@@ -1940,6 +2166,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateIsAppleSilicon() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearIsAppleSilicon clears the value of the "is_apple_silicon" field.
+func (u *NanoMDMInfoUpsertOne) ClearIsAppleSilicon() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsAppleSilicon()
+	})
+}
+
 // SetIsSupervised sets the "is_supervised" field.
 func (u *NanoMDMInfoUpsertOne) SetIsSupervised(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1951,6 +2184,13 @@ func (u *NanoMDMInfoUpsertOne) SetIsSupervised(v bool) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateIsSupervised() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateIsSupervised()
+	})
+}
+
+// ClearIsSupervised clears the value of the "is_supervised" field.
+func (u *NanoMDMInfoUpsertOne) ClearIsSupervised() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsSupervised()
 	})
 }
 
@@ -1968,6 +2208,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateLocalhostname() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearLocalhostname clears the value of the "localhostname" field.
+func (u *NanoMDMInfoUpsertOne) ClearLocalhostname() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearLocalhostname()
+	})
+}
+
 // SetModel sets the "model" field.
 func (u *NanoMDMInfoUpsertOne) SetModel(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -1979,6 +2226,13 @@ func (u *NanoMDMInfoUpsertOne) SetModel(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateModel() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateModel()
+	})
+}
+
+// ClearModel clears the value of the "model" field.
+func (u *NanoMDMInfoUpsertOne) ClearModel() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearModel()
 	})
 }
 
@@ -1996,6 +2250,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateModelName() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearModelName clears the value of the "model_name" field.
+func (u *NanoMDMInfoUpsertOne) ClearModelName() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearModelName()
+	})
+}
+
 // SetAutoCheckEnabled sets the "auto_check_enabled" field.
 func (u *NanoMDMInfoUpsertOne) SetAutoCheckEnabled(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2007,6 +2268,13 @@ func (u *NanoMDMInfoUpsertOne) SetAutoCheckEnabled(v bool) *NanoMDMInfoUpsertOne
 func (u *NanoMDMInfoUpsertOne) UpdateAutoCheckEnabled() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateAutoCheckEnabled()
+	})
+}
+
+// ClearAutoCheckEnabled clears the value of the "auto_check_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearAutoCheckEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutoCheckEnabled()
 	})
 }
 
@@ -2024,6 +2292,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateAutomaticAppInstallationEnabled() *NanoMDMI
 	})
 }
 
+// ClearAutomaticAppInstallationEnabled clears the value of the "automatic_app_installation_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearAutomaticAppInstallationEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutomaticAppInstallationEnabled()
+	})
+}
+
 // SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
 func (u *NanoMDMInfoUpsertOne) SetAutomaticOsInstallationEnabled(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2035,6 +2310,13 @@ func (u *NanoMDMInfoUpsertOne) SetAutomaticOsInstallationEnabled(v bool) *NanoMD
 func (u *NanoMDMInfoUpsertOne) UpdateAutomaticOsInstallationEnabled() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateAutomaticOsInstallationEnabled()
+	})
+}
+
+// ClearAutomaticOsInstallationEnabled clears the value of the "automatic_os_installation_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearAutomaticOsInstallationEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutomaticOsInstallationEnabled()
 	})
 }
 
@@ -2052,6 +2334,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateAutomaticSecurityUpdatesEnabled() *NanoMDMI
 	})
 }
 
+// ClearAutomaticSecurityUpdatesEnabled clears the value of the "automatic_security_updates_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearAutomaticSecurityUpdatesEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutomaticSecurityUpdatesEnabled()
+	})
+}
+
 // SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
 func (u *NanoMDMInfoUpsertOne) SetBackgroundDownloadEnabled(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2063,6 +2352,13 @@ func (u *NanoMDMInfoUpsertOne) SetBackgroundDownloadEnabled(v bool) *NanoMDMInfo
 func (u *NanoMDMInfoUpsertOne) UpdateBackgroundDownloadEnabled() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateBackgroundDownloadEnabled()
+	})
+}
+
+// ClearBackgroundDownloadEnabled clears the value of the "background_download_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearBackgroundDownloadEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBackgroundDownloadEnabled()
 	})
 }
 
@@ -2080,6 +2376,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateCatalogURL() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearCatalogURL clears the value of the "catalog_url" field.
+func (u *NanoMDMInfoUpsertOne) ClearCatalogURL() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearCatalogURL()
+	})
+}
+
 // SetIsDefaultCatalog sets the "is_default_catalog" field.
 func (u *NanoMDMInfoUpsertOne) SetIsDefaultCatalog(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2094,6 +2397,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateIsDefaultCatalog() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearIsDefaultCatalog clears the value of the "is_default_catalog" field.
+func (u *NanoMDMInfoUpsertOne) ClearIsDefaultCatalog() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsDefaultCatalog()
+	})
+}
+
 // SetPreviousScanDate sets the "previous_scan_date" field.
 func (u *NanoMDMInfoUpsertOne) SetPreviousScanDate(v time.Time) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2105,6 +2415,13 @@ func (u *NanoMDMInfoUpsertOne) SetPreviousScanDate(v time.Time) *NanoMDMInfoUpse
 func (u *NanoMDMInfoUpsertOne) UpdatePreviousScanDate() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdatePreviousScanDate()
+	})
+}
+
+// ClearPreviousScanDate clears the value of the "previous_scan_date" field.
+func (u *NanoMDMInfoUpsertOne) ClearPreviousScanDate() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPreviousScanDate()
 	})
 }
 
@@ -2129,6 +2446,13 @@ func (u *NanoMDMInfoUpsertOne) UpdatePreviousScanResult() *NanoMDMInfoUpsertOne 
 	})
 }
 
+// ClearPreviousScanResult clears the value of the "previous_scan_result" field.
+func (u *NanoMDMInfoUpsertOne) ClearPreviousScanResult() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPreviousScanResult()
+	})
+}
+
 // SetOsVersion sets the "os_version" field.
 func (u *NanoMDMInfoUpsertOne) SetOsVersion(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2140,6 +2464,13 @@ func (u *NanoMDMInfoUpsertOne) SetOsVersion(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateOsVersion() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateOsVersion()
+	})
+}
+
+// ClearOsVersion clears the value of the "os_version" field.
+func (u *NanoMDMInfoUpsertOne) ClearOsVersion() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearOsVersion()
 	})
 }
 
@@ -2157,6 +2488,13 @@ func (u *NanoMDMInfoUpsertOne) UpdatePinRequiredForDeviceLock() *NanoMDMInfoUpse
 	})
 }
 
+// ClearPinRequiredForDeviceLock clears the value of the "pin_required_for_device_lock" field.
+func (u *NanoMDMInfoUpsertOne) ClearPinRequiredForDeviceLock() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPinRequiredForDeviceLock()
+	})
+}
+
 // SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
 func (u *NanoMDMInfoUpsertOne) SetPinRequiredForEraseDevice(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2168,6 +2506,13 @@ func (u *NanoMDMInfoUpsertOne) SetPinRequiredForEraseDevice(v bool) *NanoMDMInfo
 func (u *NanoMDMInfoUpsertOne) UpdatePinRequiredForEraseDevice() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdatePinRequiredForEraseDevice()
+	})
+}
+
+// ClearPinRequiredForEraseDevice clears the value of the "pin_required_for_erase_device" field.
+func (u *NanoMDMInfoUpsertOne) ClearPinRequiredForEraseDevice() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPinRequiredForEraseDevice()
 	})
 }
 
@@ -2185,6 +2530,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateProductName() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearProductName clears the value of the "product_name" field.
+func (u *NanoMDMInfoUpsertOne) ClearProductName() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearProductName()
+	})
+}
+
 // SetProvisioningUdid sets the "provisioning_udid" field.
 func (u *NanoMDMInfoUpsertOne) SetProvisioningUdid(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2196,6 +2548,13 @@ func (u *NanoMDMInfoUpsertOne) SetProvisioningUdid(v string) *NanoMDMInfoUpsertO
 func (u *NanoMDMInfoUpsertOne) UpdateProvisioningUdid() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateProvisioningUdid()
+	})
+}
+
+// ClearProvisioningUdid clears the value of the "provisioning_udid" field.
+func (u *NanoMDMInfoUpsertOne) ClearProvisioningUdid() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearProvisioningUdid()
 	})
 }
 
@@ -2213,6 +2572,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateSerialNumber() *NanoMDMInfoUpsertOne {
 	})
 }
 
+// ClearSerialNumber clears the value of the "serial_number" field.
+func (u *NanoMDMInfoUpsertOne) ClearSerialNumber() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSerialNumber()
+	})
+}
+
 // SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
 func (u *NanoMDMInfoUpsertOne) SetSoftwareUpdateDeviceID(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2224,6 +2590,13 @@ func (u *NanoMDMInfoUpsertOne) SetSoftwareUpdateDeviceID(v string) *NanoMDMInfoU
 func (u *NanoMDMInfoUpsertOne) UpdateSoftwareUpdateDeviceID() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateSoftwareUpdateDeviceID()
+	})
+}
+
+// ClearSoftwareUpdateDeviceID clears the value of the "software_update_device_id" field.
+func (u *NanoMDMInfoUpsertOne) ClearSoftwareUpdateDeviceID() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSoftwareUpdateDeviceID()
 	})
 }
 
@@ -2241,6 +2614,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateSupplementalBuildVersion() *NanoMDMInfoUpse
 	})
 }
 
+// ClearSupplementalBuildVersion clears the value of the "supplemental_build_version" field.
+func (u *NanoMDMInfoUpsertOne) ClearSupplementalBuildVersion() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSupplementalBuildVersion()
+	})
+}
+
 // SetSupportsLomDevice sets the "supports_lom_device" field.
 func (u *NanoMDMInfoUpsertOne) SetSupportsLomDevice(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2252,6 +2632,13 @@ func (u *NanoMDMInfoUpsertOne) SetSupportsLomDevice(v bool) *NanoMDMInfoUpsertOn
 func (u *NanoMDMInfoUpsertOne) UpdateSupportsLomDevice() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateSupportsLomDevice()
+	})
+}
+
+// ClearSupportsLomDevice clears the value of the "supports_lom_device" field.
+func (u *NanoMDMInfoUpsertOne) ClearSupportsLomDevice() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSupportsLomDevice()
 	})
 }
 
@@ -2269,6 +2656,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateSupportsIosAppInstalls() *NanoMDMInfoUpsert
 	})
 }
 
+// ClearSupportsIosAppInstalls clears the value of the "supports_ios_app_installs" field.
+func (u *NanoMDMInfoUpsertOne) ClearSupportsIosAppInstalls() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSupportsIosAppInstalls()
+	})
+}
+
 // SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
 func (u *NanoMDMInfoUpsertOne) SetSystemIntegrityProtectionEnabled(v bool) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2283,6 +2677,13 @@ func (u *NanoMDMInfoUpsertOne) UpdateSystemIntegrityProtectionEnabled() *NanoMDM
 	})
 }
 
+// ClearSystemIntegrityProtectionEnabled clears the value of the "system_integrity_protection_enabled" field.
+func (u *NanoMDMInfoUpsertOne) ClearSystemIntegrityProtectionEnabled() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSystemIntegrityProtectionEnabled()
+	})
+}
+
 // SetUdid sets the "udid" field.
 func (u *NanoMDMInfoUpsertOne) SetUdid(v string) *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2294,6 +2695,13 @@ func (u *NanoMDMInfoUpsertOne) SetUdid(v string) *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) UpdateUdid() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateUdid()
+	})
+}
+
+// ClearUdid clears the value of the "udid" field.
+func (u *NanoMDMInfoUpsertOne) ClearUdid() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearUdid()
 	})
 }
 
@@ -2522,6 +2930,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateAvailableDeviceCapacity() *NanoMDMInfoUpse
 	})
 }
 
+// ClearAvailableDeviceCapacity clears the value of the "available_device_capacity" field.
+func (u *NanoMDMInfoUpsertBulk) ClearAvailableDeviceCapacity() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAvailableDeviceCapacity()
+	})
+}
+
 // SetAwaitingConfiguration sets the "awaiting_configuration" field.
 func (u *NanoMDMInfoUpsertBulk) SetAwaitingConfiguration(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2533,6 +2948,13 @@ func (u *NanoMDMInfoUpsertBulk) SetAwaitingConfiguration(v bool) *NanoMDMInfoUps
 func (u *NanoMDMInfoUpsertBulk) UpdateAwaitingConfiguration() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateAwaitingConfiguration()
+	})
+}
+
+// ClearAwaitingConfiguration clears the value of the "awaiting_configuration" field.
+func (u *NanoMDMInfoUpsertBulk) ClearAwaitingConfiguration() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAwaitingConfiguration()
 	})
 }
 
@@ -2557,6 +2979,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateBatteryLevel() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearBatteryLevel clears the value of the "battery_level" field.
+func (u *NanoMDMInfoUpsertBulk) ClearBatteryLevel() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBatteryLevel()
+	})
+}
+
 // SetBluetoothMAC sets the "bluetooth_mac" field.
 func (u *NanoMDMInfoUpsertBulk) SetBluetoothMAC(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2568,6 +2997,13 @@ func (u *NanoMDMInfoUpsertBulk) SetBluetoothMAC(v string) *NanoMDMInfoUpsertBulk
 func (u *NanoMDMInfoUpsertBulk) UpdateBluetoothMAC() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateBluetoothMAC()
+	})
+}
+
+// ClearBluetoothMAC clears the value of the "bluetooth_mac" field.
+func (u *NanoMDMInfoUpsertBulk) ClearBluetoothMAC() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBluetoothMAC()
 	})
 }
 
@@ -2585,6 +3021,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateBuildVersion() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearBuildVersion clears the value of the "build_version" field.
+func (u *NanoMDMInfoUpsertBulk) ClearBuildVersion() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBuildVersion()
+	})
+}
+
 // SetCurrentConsoleManagedUser sets the "current_console_managed_user" field.
 func (u *NanoMDMInfoUpsertBulk) SetCurrentConsoleManagedUser(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2596,6 +3039,13 @@ func (u *NanoMDMInfoUpsertBulk) SetCurrentConsoleManagedUser(v string) *NanoMDMI
 func (u *NanoMDMInfoUpsertBulk) UpdateCurrentConsoleManagedUser() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateCurrentConsoleManagedUser()
+	})
+}
+
+// ClearCurrentConsoleManagedUser clears the value of the "current_console_managed_user" field.
+func (u *NanoMDMInfoUpsertBulk) ClearCurrentConsoleManagedUser() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearCurrentConsoleManagedUser()
 	})
 }
 
@@ -2620,6 +3070,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateDeviceCapacity() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearDeviceCapacity clears the value of the "device_capacity" field.
+func (u *NanoMDMInfoUpsertBulk) ClearDeviceCapacity() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearDeviceCapacity()
+	})
+}
+
 // SetDeviceName sets the "device_name" field.
 func (u *NanoMDMInfoUpsertBulk) SetDeviceName(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2631,6 +3088,13 @@ func (u *NanoMDMInfoUpsertBulk) SetDeviceName(v string) *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) UpdateDeviceName() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateDeviceName()
+	})
+}
+
+// ClearDeviceName clears the value of the "device_name" field.
+func (u *NanoMDMInfoUpsertBulk) ClearDeviceName() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearDeviceName()
 	})
 }
 
@@ -2648,6 +3112,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateEacsPreflight() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearEacsPreflight clears the value of the "eacs_preflight" field.
+func (u *NanoMDMInfoUpsertBulk) ClearEacsPreflight() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearEacsPreflight()
+	})
+}
+
 // SetEthernetMAC sets the "ethernet_mac" field.
 func (u *NanoMDMInfoUpsertBulk) SetEthernetMAC(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2659,6 +3130,13 @@ func (u *NanoMDMInfoUpsertBulk) SetEthernetMAC(v string) *NanoMDMInfoUpsertBulk 
 func (u *NanoMDMInfoUpsertBulk) UpdateEthernetMAC() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateEthernetMAC()
+	})
+}
+
+// ClearEthernetMAC clears the value of the "ethernet_mac" field.
+func (u *NanoMDMInfoUpsertBulk) ClearEthernetMAC() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearEthernetMAC()
 	})
 }
 
@@ -2676,6 +3154,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateHasBattery() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearHasBattery clears the value of the "has_battery" field.
+func (u *NanoMDMInfoUpsertBulk) ClearHasBattery() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearHasBattery()
+	})
+}
+
 // SetHostname sets the "hostname" field.
 func (u *NanoMDMInfoUpsertBulk) SetHostname(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2687,6 +3172,13 @@ func (u *NanoMDMInfoUpsertBulk) SetHostname(v string) *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) UpdateHostname() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateHostname()
+	})
+}
+
+// ClearHostname clears the value of the "hostname" field.
+func (u *NanoMDMInfoUpsertBulk) ClearHostname() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearHostname()
 	})
 }
 
@@ -2704,6 +3196,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateIsActivationLockEnabled() *NanoMDMInfoUpse
 	})
 }
 
+// ClearIsActivationLockEnabled clears the value of the "is_activation_lock_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearIsActivationLockEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsActivationLockEnabled()
+	})
+}
+
 // SetIsActivationLockSupported sets the "is_activation_lock_supported" field.
 func (u *NanoMDMInfoUpsertBulk) SetIsActivationLockSupported(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2715,6 +3214,13 @@ func (u *NanoMDMInfoUpsertBulk) SetIsActivationLockSupported(v bool) *NanoMDMInf
 func (u *NanoMDMInfoUpsertBulk) UpdateIsActivationLockSupported() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateIsActivationLockSupported()
+	})
+}
+
+// ClearIsActivationLockSupported clears the value of the "is_activation_lock_supported" field.
+func (u *NanoMDMInfoUpsertBulk) ClearIsActivationLockSupported() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsActivationLockSupported()
 	})
 }
 
@@ -2732,6 +3238,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateIsAppleSilicon() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearIsAppleSilicon clears the value of the "is_apple_silicon" field.
+func (u *NanoMDMInfoUpsertBulk) ClearIsAppleSilicon() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsAppleSilicon()
+	})
+}
+
 // SetIsSupervised sets the "is_supervised" field.
 func (u *NanoMDMInfoUpsertBulk) SetIsSupervised(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2743,6 +3256,13 @@ func (u *NanoMDMInfoUpsertBulk) SetIsSupervised(v bool) *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) UpdateIsSupervised() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateIsSupervised()
+	})
+}
+
+// ClearIsSupervised clears the value of the "is_supervised" field.
+func (u *NanoMDMInfoUpsertBulk) ClearIsSupervised() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsSupervised()
 	})
 }
 
@@ -2760,6 +3280,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateLocalhostname() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearLocalhostname clears the value of the "localhostname" field.
+func (u *NanoMDMInfoUpsertBulk) ClearLocalhostname() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearLocalhostname()
+	})
+}
+
 // SetModel sets the "model" field.
 func (u *NanoMDMInfoUpsertBulk) SetModel(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2771,6 +3298,13 @@ func (u *NanoMDMInfoUpsertBulk) SetModel(v string) *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) UpdateModel() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateModel()
+	})
+}
+
+// ClearModel clears the value of the "model" field.
+func (u *NanoMDMInfoUpsertBulk) ClearModel() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearModel()
 	})
 }
 
@@ -2788,6 +3322,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateModelName() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearModelName clears the value of the "model_name" field.
+func (u *NanoMDMInfoUpsertBulk) ClearModelName() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearModelName()
+	})
+}
+
 // SetAutoCheckEnabled sets the "auto_check_enabled" field.
 func (u *NanoMDMInfoUpsertBulk) SetAutoCheckEnabled(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2799,6 +3340,13 @@ func (u *NanoMDMInfoUpsertBulk) SetAutoCheckEnabled(v bool) *NanoMDMInfoUpsertBu
 func (u *NanoMDMInfoUpsertBulk) UpdateAutoCheckEnabled() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateAutoCheckEnabled()
+	})
+}
+
+// ClearAutoCheckEnabled clears the value of the "auto_check_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearAutoCheckEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutoCheckEnabled()
 	})
 }
 
@@ -2816,6 +3364,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateAutomaticAppInstallationEnabled() *NanoMDM
 	})
 }
 
+// ClearAutomaticAppInstallationEnabled clears the value of the "automatic_app_installation_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearAutomaticAppInstallationEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutomaticAppInstallationEnabled()
+	})
+}
+
 // SetAutomaticOsInstallationEnabled sets the "automatic_os_installation_enabled" field.
 func (u *NanoMDMInfoUpsertBulk) SetAutomaticOsInstallationEnabled(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2827,6 +3382,13 @@ func (u *NanoMDMInfoUpsertBulk) SetAutomaticOsInstallationEnabled(v bool) *NanoM
 func (u *NanoMDMInfoUpsertBulk) UpdateAutomaticOsInstallationEnabled() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateAutomaticOsInstallationEnabled()
+	})
+}
+
+// ClearAutomaticOsInstallationEnabled clears the value of the "automatic_os_installation_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearAutomaticOsInstallationEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutomaticOsInstallationEnabled()
 	})
 }
 
@@ -2844,6 +3406,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateAutomaticSecurityUpdatesEnabled() *NanoMDM
 	})
 }
 
+// ClearAutomaticSecurityUpdatesEnabled clears the value of the "automatic_security_updates_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearAutomaticSecurityUpdatesEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearAutomaticSecurityUpdatesEnabled()
+	})
+}
+
 // SetBackgroundDownloadEnabled sets the "background_download_enabled" field.
 func (u *NanoMDMInfoUpsertBulk) SetBackgroundDownloadEnabled(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2855,6 +3424,13 @@ func (u *NanoMDMInfoUpsertBulk) SetBackgroundDownloadEnabled(v bool) *NanoMDMInf
 func (u *NanoMDMInfoUpsertBulk) UpdateBackgroundDownloadEnabled() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateBackgroundDownloadEnabled()
+	})
+}
+
+// ClearBackgroundDownloadEnabled clears the value of the "background_download_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearBackgroundDownloadEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearBackgroundDownloadEnabled()
 	})
 }
 
@@ -2872,6 +3448,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateCatalogURL() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearCatalogURL clears the value of the "catalog_url" field.
+func (u *NanoMDMInfoUpsertBulk) ClearCatalogURL() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearCatalogURL()
+	})
+}
+
 // SetIsDefaultCatalog sets the "is_default_catalog" field.
 func (u *NanoMDMInfoUpsertBulk) SetIsDefaultCatalog(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2886,6 +3469,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateIsDefaultCatalog() *NanoMDMInfoUpsertBulk 
 	})
 }
 
+// ClearIsDefaultCatalog clears the value of the "is_default_catalog" field.
+func (u *NanoMDMInfoUpsertBulk) ClearIsDefaultCatalog() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearIsDefaultCatalog()
+	})
+}
+
 // SetPreviousScanDate sets the "previous_scan_date" field.
 func (u *NanoMDMInfoUpsertBulk) SetPreviousScanDate(v time.Time) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2897,6 +3487,13 @@ func (u *NanoMDMInfoUpsertBulk) SetPreviousScanDate(v time.Time) *NanoMDMInfoUps
 func (u *NanoMDMInfoUpsertBulk) UpdatePreviousScanDate() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdatePreviousScanDate()
+	})
+}
+
+// ClearPreviousScanDate clears the value of the "previous_scan_date" field.
+func (u *NanoMDMInfoUpsertBulk) ClearPreviousScanDate() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPreviousScanDate()
 	})
 }
 
@@ -2921,6 +3518,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdatePreviousScanResult() *NanoMDMInfoUpsertBul
 	})
 }
 
+// ClearPreviousScanResult clears the value of the "previous_scan_result" field.
+func (u *NanoMDMInfoUpsertBulk) ClearPreviousScanResult() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPreviousScanResult()
+	})
+}
+
 // SetOsVersion sets the "os_version" field.
 func (u *NanoMDMInfoUpsertBulk) SetOsVersion(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2932,6 +3536,13 @@ func (u *NanoMDMInfoUpsertBulk) SetOsVersion(v string) *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) UpdateOsVersion() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateOsVersion()
+	})
+}
+
+// ClearOsVersion clears the value of the "os_version" field.
+func (u *NanoMDMInfoUpsertBulk) ClearOsVersion() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearOsVersion()
 	})
 }
 
@@ -2949,6 +3560,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdatePinRequiredForDeviceLock() *NanoMDMInfoUps
 	})
 }
 
+// ClearPinRequiredForDeviceLock clears the value of the "pin_required_for_device_lock" field.
+func (u *NanoMDMInfoUpsertBulk) ClearPinRequiredForDeviceLock() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPinRequiredForDeviceLock()
+	})
+}
+
 // SetPinRequiredForEraseDevice sets the "pin_required_for_erase_device" field.
 func (u *NanoMDMInfoUpsertBulk) SetPinRequiredForEraseDevice(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2960,6 +3578,13 @@ func (u *NanoMDMInfoUpsertBulk) SetPinRequiredForEraseDevice(v bool) *NanoMDMInf
 func (u *NanoMDMInfoUpsertBulk) UpdatePinRequiredForEraseDevice() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdatePinRequiredForEraseDevice()
+	})
+}
+
+// ClearPinRequiredForEraseDevice clears the value of the "pin_required_for_erase_device" field.
+func (u *NanoMDMInfoUpsertBulk) ClearPinRequiredForEraseDevice() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearPinRequiredForEraseDevice()
 	})
 }
 
@@ -2977,6 +3602,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateProductName() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearProductName clears the value of the "product_name" field.
+func (u *NanoMDMInfoUpsertBulk) ClearProductName() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearProductName()
+	})
+}
+
 // SetProvisioningUdid sets the "provisioning_udid" field.
 func (u *NanoMDMInfoUpsertBulk) SetProvisioningUdid(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -2988,6 +3620,13 @@ func (u *NanoMDMInfoUpsertBulk) SetProvisioningUdid(v string) *NanoMDMInfoUpsert
 func (u *NanoMDMInfoUpsertBulk) UpdateProvisioningUdid() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateProvisioningUdid()
+	})
+}
+
+// ClearProvisioningUdid clears the value of the "provisioning_udid" field.
+func (u *NanoMDMInfoUpsertBulk) ClearProvisioningUdid() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearProvisioningUdid()
 	})
 }
 
@@ -3005,6 +3644,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateSerialNumber() *NanoMDMInfoUpsertBulk {
 	})
 }
 
+// ClearSerialNumber clears the value of the "serial_number" field.
+func (u *NanoMDMInfoUpsertBulk) ClearSerialNumber() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSerialNumber()
+	})
+}
+
 // SetSoftwareUpdateDeviceID sets the "software_update_device_id" field.
 func (u *NanoMDMInfoUpsertBulk) SetSoftwareUpdateDeviceID(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -3016,6 +3662,13 @@ func (u *NanoMDMInfoUpsertBulk) SetSoftwareUpdateDeviceID(v string) *NanoMDMInfo
 func (u *NanoMDMInfoUpsertBulk) UpdateSoftwareUpdateDeviceID() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateSoftwareUpdateDeviceID()
+	})
+}
+
+// ClearSoftwareUpdateDeviceID clears the value of the "software_update_device_id" field.
+func (u *NanoMDMInfoUpsertBulk) ClearSoftwareUpdateDeviceID() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSoftwareUpdateDeviceID()
 	})
 }
 
@@ -3033,6 +3686,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateSupplementalBuildVersion() *NanoMDMInfoUps
 	})
 }
 
+// ClearSupplementalBuildVersion clears the value of the "supplemental_build_version" field.
+func (u *NanoMDMInfoUpsertBulk) ClearSupplementalBuildVersion() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSupplementalBuildVersion()
+	})
+}
+
 // SetSupportsLomDevice sets the "supports_lom_device" field.
 func (u *NanoMDMInfoUpsertBulk) SetSupportsLomDevice(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -3044,6 +3704,13 @@ func (u *NanoMDMInfoUpsertBulk) SetSupportsLomDevice(v bool) *NanoMDMInfoUpsertB
 func (u *NanoMDMInfoUpsertBulk) UpdateSupportsLomDevice() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateSupportsLomDevice()
+	})
+}
+
+// ClearSupportsLomDevice clears the value of the "supports_lom_device" field.
+func (u *NanoMDMInfoUpsertBulk) ClearSupportsLomDevice() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSupportsLomDevice()
 	})
 }
 
@@ -3061,6 +3728,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateSupportsIosAppInstalls() *NanoMDMInfoUpser
 	})
 }
 
+// ClearSupportsIosAppInstalls clears the value of the "supports_ios_app_installs" field.
+func (u *NanoMDMInfoUpsertBulk) ClearSupportsIosAppInstalls() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSupportsIosAppInstalls()
+	})
+}
+
 // SetSystemIntegrityProtectionEnabled sets the "system_integrity_protection_enabled" field.
 func (u *NanoMDMInfoUpsertBulk) SetSystemIntegrityProtectionEnabled(v bool) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -3075,6 +3749,13 @@ func (u *NanoMDMInfoUpsertBulk) UpdateSystemIntegrityProtectionEnabled() *NanoMD
 	})
 }
 
+// ClearSystemIntegrityProtectionEnabled clears the value of the "system_integrity_protection_enabled" field.
+func (u *NanoMDMInfoUpsertBulk) ClearSystemIntegrityProtectionEnabled() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearSystemIntegrityProtectionEnabled()
+	})
+}
+
 // SetUdid sets the "udid" field.
 func (u *NanoMDMInfoUpsertBulk) SetUdid(v string) *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
@@ -3086,6 +3767,13 @@ func (u *NanoMDMInfoUpsertBulk) SetUdid(v string) *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) UpdateUdid() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.UpdateUdid()
+	})
+}
+
+// ClearUdid clears the value of the "udid" field.
+func (u *NanoMDMInfoUpsertBulk) ClearUdid() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearUdid()
 	})
 }
 
