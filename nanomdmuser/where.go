@@ -99,7 +99,7 @@ func UID(v int) predicate.NanoMDMUser {
 }
 
 // UserGUID applies equality check predicate on the "user_guid" field. It's identical to UserGUIDEQ.
-func UserGUID(v int) predicate.NanoMDMUser {
+func UserGUID(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldEQ(FieldUserGUID, v))
 }
 
@@ -484,43 +484,58 @@ func UIDNotNil() predicate.NanoMDMUser {
 }
 
 // UserGUIDEQ applies the EQ predicate on the "user_guid" field.
-func UserGUIDEQ(v int) predicate.NanoMDMUser {
+func UserGUIDEQ(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldEQ(FieldUserGUID, v))
 }
 
 // UserGUIDNEQ applies the NEQ predicate on the "user_guid" field.
-func UserGUIDNEQ(v int) predicate.NanoMDMUser {
+func UserGUIDNEQ(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldNEQ(FieldUserGUID, v))
 }
 
 // UserGUIDIn applies the In predicate on the "user_guid" field.
-func UserGUIDIn(vs ...int) predicate.NanoMDMUser {
+func UserGUIDIn(vs ...string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldIn(FieldUserGUID, vs...))
 }
 
 // UserGUIDNotIn applies the NotIn predicate on the "user_guid" field.
-func UserGUIDNotIn(vs ...int) predicate.NanoMDMUser {
+func UserGUIDNotIn(vs ...string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldNotIn(FieldUserGUID, vs...))
 }
 
 // UserGUIDGT applies the GT predicate on the "user_guid" field.
-func UserGUIDGT(v int) predicate.NanoMDMUser {
+func UserGUIDGT(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldGT(FieldUserGUID, v))
 }
 
 // UserGUIDGTE applies the GTE predicate on the "user_guid" field.
-func UserGUIDGTE(v int) predicate.NanoMDMUser {
+func UserGUIDGTE(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldGTE(FieldUserGUID, v))
 }
 
 // UserGUIDLT applies the LT predicate on the "user_guid" field.
-func UserGUIDLT(v int) predicate.NanoMDMUser {
+func UserGUIDLT(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldLT(FieldUserGUID, v))
 }
 
 // UserGUIDLTE applies the LTE predicate on the "user_guid" field.
-func UserGUIDLTE(v int) predicate.NanoMDMUser {
+func UserGUIDLTE(v string) predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldLTE(FieldUserGUID, v))
+}
+
+// UserGUIDContains applies the Contains predicate on the "user_guid" field.
+func UserGUIDContains(v string) predicate.NanoMDMUser {
+	return predicate.NanoMDMUser(sql.FieldContains(FieldUserGUID, v))
+}
+
+// UserGUIDHasPrefix applies the HasPrefix predicate on the "user_guid" field.
+func UserGUIDHasPrefix(v string) predicate.NanoMDMUser {
+	return predicate.NanoMDMUser(sql.FieldHasPrefix(FieldUserGUID, v))
+}
+
+// UserGUIDHasSuffix applies the HasSuffix predicate on the "user_guid" field.
+func UserGUIDHasSuffix(v string) predicate.NanoMDMUser {
+	return predicate.NanoMDMUser(sql.FieldHasSuffix(FieldUserGUID, v))
 }
 
 // UserGUIDIsNil applies the IsNil predicate on the "user_guid" field.
@@ -531,6 +546,16 @@ func UserGUIDIsNil() predicate.NanoMDMUser {
 // UserGUIDNotNil applies the NotNil predicate on the "user_guid" field.
 func UserGUIDNotNil() predicate.NanoMDMUser {
 	return predicate.NanoMDMUser(sql.FieldNotNull(FieldUserGUID))
+}
+
+// UserGUIDEqualFold applies the EqualFold predicate on the "user_guid" field.
+func UserGUIDEqualFold(v string) predicate.NanoMDMUser {
+	return predicate.NanoMDMUser(sql.FieldEqualFold(FieldUserGUID, v))
+}
+
+// UserGUIDContainsFold applies the ContainsFold predicate on the "user_guid" field.
+func UserGUIDContainsFold(v string) predicate.NanoMDMUser {
+	return predicate.NanoMDMUser(sql.FieldContainsFold(FieldUserGUID, v))
 }
 
 // HasAgent applies the HasEdge predicate on the "agent" edge.

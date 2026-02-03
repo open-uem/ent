@@ -231,23 +231,16 @@ func (nmuu *NanoMDMUserUpdate) ClearUID() *NanoMDMUserUpdate {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (nmuu *NanoMDMUserUpdate) SetUserGUID(i int) *NanoMDMUserUpdate {
-	nmuu.mutation.ResetUserGUID()
-	nmuu.mutation.SetUserGUID(i)
+func (nmuu *NanoMDMUserUpdate) SetUserGUID(s string) *NanoMDMUserUpdate {
+	nmuu.mutation.SetUserGUID(s)
 	return nmuu
 }
 
 // SetNillableUserGUID sets the "user_guid" field if the given value is not nil.
-func (nmuu *NanoMDMUserUpdate) SetNillableUserGUID(i *int) *NanoMDMUserUpdate {
-	if i != nil {
-		nmuu.SetUserGUID(*i)
+func (nmuu *NanoMDMUserUpdate) SetNillableUserGUID(s *string) *NanoMDMUserUpdate {
+	if s != nil {
+		nmuu.SetUserGUID(*s)
 	}
-	return nmuu
-}
-
-// AddUserGUID adds i to the "user_guid" field.
-func (nmuu *NanoMDMUserUpdate) AddUserGUID(i int) *NanoMDMUserUpdate {
-	nmuu.mutation.AddUserGUID(i)
 	return nmuu
 }
 
@@ -393,13 +386,10 @@ func (nmuu *NanoMDMUserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		_spec.ClearField(nanomdmuser.FieldUID, field.TypeInt)
 	}
 	if value, ok := nmuu.mutation.UserGUID(); ok {
-		_spec.SetField(nanomdmuser.FieldUserGUID, field.TypeInt, value)
-	}
-	if value, ok := nmuu.mutation.AddedUserGUID(); ok {
-		_spec.AddField(nanomdmuser.FieldUserGUID, field.TypeInt, value)
+		_spec.SetField(nanomdmuser.FieldUserGUID, field.TypeString, value)
 	}
 	if nmuu.mutation.UserGUIDCleared() {
-		_spec.ClearField(nanomdmuser.FieldUserGUID, field.TypeInt)
+		_spec.ClearField(nanomdmuser.FieldUserGUID, field.TypeString)
 	}
 	if nmuu.mutation.AgentCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -654,23 +644,16 @@ func (nmuuo *NanoMDMUserUpdateOne) ClearUID() *NanoMDMUserUpdateOne {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (nmuuo *NanoMDMUserUpdateOne) SetUserGUID(i int) *NanoMDMUserUpdateOne {
-	nmuuo.mutation.ResetUserGUID()
-	nmuuo.mutation.SetUserGUID(i)
+func (nmuuo *NanoMDMUserUpdateOne) SetUserGUID(s string) *NanoMDMUserUpdateOne {
+	nmuuo.mutation.SetUserGUID(s)
 	return nmuuo
 }
 
 // SetNillableUserGUID sets the "user_guid" field if the given value is not nil.
-func (nmuuo *NanoMDMUserUpdateOne) SetNillableUserGUID(i *int) *NanoMDMUserUpdateOne {
-	if i != nil {
-		nmuuo.SetUserGUID(*i)
+func (nmuuo *NanoMDMUserUpdateOne) SetNillableUserGUID(s *string) *NanoMDMUserUpdateOne {
+	if s != nil {
+		nmuuo.SetUserGUID(*s)
 	}
-	return nmuuo
-}
-
-// AddUserGUID adds i to the "user_guid" field.
-func (nmuuo *NanoMDMUserUpdateOne) AddUserGUID(i int) *NanoMDMUserUpdateOne {
-	nmuuo.mutation.AddUserGUID(i)
 	return nmuuo
 }
 
@@ -846,13 +829,10 @@ func (nmuuo *NanoMDMUserUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMU
 		_spec.ClearField(nanomdmuser.FieldUID, field.TypeInt)
 	}
 	if value, ok := nmuuo.mutation.UserGUID(); ok {
-		_spec.SetField(nanomdmuser.FieldUserGUID, field.TypeInt, value)
-	}
-	if value, ok := nmuuo.mutation.AddedUserGUID(); ok {
-		_spec.AddField(nanomdmuser.FieldUserGUID, field.TypeInt, value)
+		_spec.SetField(nanomdmuser.FieldUserGUID, field.TypeString, value)
 	}
 	if nmuuo.mutation.UserGUIDCleared() {
-		_spec.ClearField(nanomdmuser.FieldUserGUID, field.TypeInt)
+		_spec.ClearField(nanomdmuser.FieldUserGUID, field.TypeString)
 	}
 	if nmuuo.mutation.AgentCleared() {
 		edge := &sqlgraph.EdgeSpec{

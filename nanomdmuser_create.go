@@ -149,15 +149,15 @@ func (nmuc *NanoMDMUserCreate) SetNillableUID(i *int) *NanoMDMUserCreate {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (nmuc *NanoMDMUserCreate) SetUserGUID(i int) *NanoMDMUserCreate {
-	nmuc.mutation.SetUserGUID(i)
+func (nmuc *NanoMDMUserCreate) SetUserGUID(s string) *NanoMDMUserCreate {
+	nmuc.mutation.SetUserGUID(s)
 	return nmuc
 }
 
 // SetNillableUserGUID sets the "user_guid" field if the given value is not nil.
-func (nmuc *NanoMDMUserCreate) SetNillableUserGUID(i *int) *NanoMDMUserCreate {
-	if i != nil {
-		nmuc.SetUserGUID(*i)
+func (nmuc *NanoMDMUserCreate) SetNillableUserGUID(s *string) *NanoMDMUserCreate {
+	if s != nil {
+		nmuc.SetUserGUID(*s)
 	}
 	return nmuc
 }
@@ -279,7 +279,7 @@ func (nmuc *NanoMDMUserCreate) createSpec() (*NanoMDMUser, *sqlgraph.CreateSpec)
 		_node.UID = value
 	}
 	if value, ok := nmuc.mutation.UserGUID(); ok {
-		_spec.SetField(nanomdmuser.FieldUserGUID, field.TypeInt, value)
+		_spec.SetField(nanomdmuser.FieldUserGUID, field.TypeString, value)
 		_node.UserGUID = value
 	}
 	if nodes := nmuc.mutation.AgentIDs(); len(nodes) > 0 {
@@ -532,7 +532,7 @@ func (u *NanoMDMUserUpsert) ClearUID() *NanoMDMUserUpsert {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (u *NanoMDMUserUpsert) SetUserGUID(v int) *NanoMDMUserUpsert {
+func (u *NanoMDMUserUpsert) SetUserGUID(v string) *NanoMDMUserUpsert {
 	u.Set(nanomdmuser.FieldUserGUID, v)
 	return u
 }
@@ -540,12 +540,6 @@ func (u *NanoMDMUserUpsert) SetUserGUID(v int) *NanoMDMUserUpsert {
 // UpdateUserGUID sets the "user_guid" field to the value that was provided on create.
 func (u *NanoMDMUserUpsert) UpdateUserGUID() *NanoMDMUserUpsert {
 	u.SetExcluded(nanomdmuser.FieldUserGUID)
-	return u
-}
-
-// AddUserGUID adds v to the "user_guid" field.
-func (u *NanoMDMUserUpsert) AddUserGUID(v int) *NanoMDMUserUpsert {
-	u.Add(nanomdmuser.FieldUserGUID, v)
 	return u
 }
 
@@ -806,16 +800,9 @@ func (u *NanoMDMUserUpsertOne) ClearUID() *NanoMDMUserUpsertOne {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (u *NanoMDMUserUpsertOne) SetUserGUID(v int) *NanoMDMUserUpsertOne {
+func (u *NanoMDMUserUpsertOne) SetUserGUID(v string) *NanoMDMUserUpsertOne {
 	return u.Update(func(s *NanoMDMUserUpsert) {
 		s.SetUserGUID(v)
-	})
-}
-
-// AddUserGUID adds v to the "user_guid" field.
-func (u *NanoMDMUserUpsertOne) AddUserGUID(v int) *NanoMDMUserUpsertOne {
-	return u.Update(func(s *NanoMDMUserUpsert) {
-		s.AddUserGUID(v)
 	})
 }
 
@@ -1247,16 +1234,9 @@ func (u *NanoMDMUserUpsertBulk) ClearUID() *NanoMDMUserUpsertBulk {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (u *NanoMDMUserUpsertBulk) SetUserGUID(v int) *NanoMDMUserUpsertBulk {
+func (u *NanoMDMUserUpsertBulk) SetUserGUID(v string) *NanoMDMUserUpsertBulk {
 	return u.Update(func(s *NanoMDMUserUpsert) {
 		s.SetUserGUID(v)
-	})
-}
-
-// AddUserGUID adds v to the "user_guid" field.
-func (u *NanoMDMUserUpsertBulk) AddUserGUID(v int) *NanoMDMUserUpsertBulk {
-	return u.Update(func(s *NanoMDMUserUpsert) {
-		s.AddUserGUID(v)
 	})
 }
 

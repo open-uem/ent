@@ -399,7 +399,7 @@ var (
 		{Name: "fullname", Type: field.TypeString, Nullable: true},
 		{Name: "mobile_account", Type: field.TypeBool, Nullable: true},
 		{Name: "uid", Type: field.TypeInt, Nullable: true},
-		{Name: "user_guid", Type: field.TypeInt, Nullable: true},
+		{Name: "user_guid", Type: field.TypeString, Nullable: true},
 		{Name: "agent_nanomdmusers", Type: field.TypeString, Nullable: true},
 	}
 	// NanoMdmUsersTable holds the schema information for the "nano_mdm_users" table.

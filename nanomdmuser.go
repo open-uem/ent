@@ -36,7 +36,7 @@ type NanoMDMUser struct {
 	// UID holds the value of the "uid" field.
 	UID int `json:"uid,omitempty"`
 	// UserGUID holds the value of the "user_guid" field.
-	UserGUID int `json:"user_guid,omitempty"`
+	UserGUID string `json:"user_guid,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the NanoMDMUserQuery when eager-loading is set.
 	Edges              NanoMDMUserEdges `json:"edges"`
@@ -71,9 +71,9 @@ func (*NanoMDMUser) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case nanomdmuser.FieldHasDataToSync, nanomdmuser.FieldHasSecureToken, nanomdmuser.FieldIsLoggedIn, nanomdmuser.FieldMobileAccount:
 			values[i] = new(sql.NullBool)
-		case nanomdmuser.FieldID, nanomdmuser.FieldDataQuota, nanomdmuser.FieldDataUsed, nanomdmuser.FieldUID, nanomdmuser.FieldUserGUID:
+		case nanomdmuser.FieldID, nanomdmuser.FieldDataQuota, nanomdmuser.FieldDataUsed, nanomdmuser.FieldUID:
 			values[i] = new(sql.NullInt64)
-		case nanomdmuser.FieldUsername, nanomdmuser.FieldFullname:
+		case nanomdmuser.FieldUsername, nanomdmuser.FieldFullname, nanomdmuser.FieldUserGUID:
 			values[i] = new(sql.NullString)
 		case nanomdmuser.ForeignKeys[0]: // agent_nanomdmusers
 			values[i] = new(sql.NullString)
@@ -153,10 +153,10 @@ func (nmu *NanoMDMUser) assignValues(columns []string, values []any) error {
 				nmu.UID = int(value.Int64)
 			}
 		case nanomdmuser.FieldUserGUID:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
+			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field user_guid", values[i])
 			} else if value.Valid {
-				nmu.UserGUID = int(value.Int64)
+				nmu.UserGUID = value.String
 			}
 		case nanomdmuser.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -234,7 +234,7 @@ func (nmu *NanoMDMUser) String() string {
 	builder.WriteString(fmt.Sprintf("%v", nmu.UID))
 	builder.WriteString(", ")
 	builder.WriteString("user_guid=")
-	builder.WriteString(fmt.Sprintf("%v", nmu.UserGUID))
+	builder.WriteString(nmu.UserGUID)
 	builder.WriteByte(')')
 	return builder.String()
 }

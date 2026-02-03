@@ -15630,8 +15630,7 @@ type NanoMDMUserMutation struct {
 	mobile_account   *bool
 	uid              *int
 	adduid           *int
-	user_guid        *int
-	adduser_guid     *int
+	user_guid        *string
 	clearedFields    map[string]struct{}
 	agent            *string
 	clearedagent     bool
@@ -16243,13 +16242,12 @@ func (m *NanoMDMUserMutation) ResetUID() {
 }
 
 // SetUserGUID sets the "user_guid" field.
-func (m *NanoMDMUserMutation) SetUserGUID(i int) {
-	m.user_guid = &i
-	m.adduser_guid = nil
+func (m *NanoMDMUserMutation) SetUserGUID(s string) {
+	m.user_guid = &s
 }
 
 // UserGUID returns the value of the "user_guid" field in the mutation.
-func (m *NanoMDMUserMutation) UserGUID() (r int, exists bool) {
+func (m *NanoMDMUserMutation) UserGUID() (r string, exists bool) {
 	v := m.user_guid
 	if v == nil {
 		return
@@ -16260,7 +16258,7 @@ func (m *NanoMDMUserMutation) UserGUID() (r int, exists bool) {
 // OldUserGUID returns the old "user_guid" field's value of the NanoMDMUser entity.
 // If the NanoMDMUser object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *NanoMDMUserMutation) OldUserGUID(ctx context.Context) (v int, err error) {
+func (m *NanoMDMUserMutation) OldUserGUID(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldUserGUID is only allowed on UpdateOne operations")
 	}
@@ -16274,28 +16272,9 @@ func (m *NanoMDMUserMutation) OldUserGUID(ctx context.Context) (v int, err error
 	return oldValue.UserGUID, nil
 }
 
-// AddUserGUID adds i to the "user_guid" field.
-func (m *NanoMDMUserMutation) AddUserGUID(i int) {
-	if m.adduser_guid != nil {
-		*m.adduser_guid += i
-	} else {
-		m.adduser_guid = &i
-	}
-}
-
-// AddedUserGUID returns the value that was added to the "user_guid" field in this mutation.
-func (m *NanoMDMUserMutation) AddedUserGUID() (r int, exists bool) {
-	v := m.adduser_guid
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
 // ClearUserGUID clears the value of the "user_guid" field.
 func (m *NanoMDMUserMutation) ClearUserGUID() {
 	m.user_guid = nil
-	m.adduser_guid = nil
 	m.clearedFields[nanomdmuser.FieldUserGUID] = struct{}{}
 }
 
@@ -16308,7 +16287,6 @@ func (m *NanoMDMUserMutation) UserGUIDCleared() bool {
 // ResetUserGUID resets all changes to the "user_guid" field.
 func (m *NanoMDMUserMutation) ResetUserGUID() {
 	m.user_guid = nil
-	m.adduser_guid = nil
 	delete(m.clearedFields, nanomdmuser.FieldUserGUID)
 }
 
@@ -16546,7 +16524,7 @@ func (m *NanoMDMUserMutation) SetField(name string, value ent.Value) error {
 		m.SetUID(v)
 		return nil
 	case nanomdmuser.FieldUserGUID:
-		v, ok := value.(int)
+		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
@@ -16569,9 +16547,6 @@ func (m *NanoMDMUserMutation) AddedFields() []string {
 	if m.adduid != nil {
 		fields = append(fields, nanomdmuser.FieldUID)
 	}
-	if m.adduser_guid != nil {
-		fields = append(fields, nanomdmuser.FieldUserGUID)
-	}
 	return fields
 }
 
@@ -16586,8 +16561,6 @@ func (m *NanoMDMUserMutation) AddedField(name string) (ent.Value, bool) {
 		return m.AddedDataUsed()
 	case nanomdmuser.FieldUID:
 		return m.AddedUID()
-	case nanomdmuser.FieldUserGUID:
-		return m.AddedUserGUID()
 	}
 	return nil, false
 }
@@ -16617,13 +16590,6 @@ func (m *NanoMDMUserMutation) AddField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.AddUID(v)
-		return nil
-	case nanomdmuser.FieldUserGUID:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddUserGUID(v)
 		return nil
 	}
 	return fmt.Errorf("unknown NanoMDMUser numeric field %s", name)

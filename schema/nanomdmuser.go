@@ -23,7 +23,7 @@ func (NanoMDMUser) Fields() []ent.Field {
 		field.String("fullname").Optional(),
 		field.Bool("mobile_account").Optional(),
 		field.Int("uid").Optional(),
-		field.Int("user_guid").Optional(),
+		field.String("user_guid").Optional(),
 	}
 }
 
