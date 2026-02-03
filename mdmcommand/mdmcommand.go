@@ -76,7 +76,7 @@ const DefaultType = TypeDeviceInformation
 const (
 	TypeDeviceInformation         Type = "DeviceInformation"
 	TypeUsersList                 Type = "UsersList"
-	TypeInstalledApllicationsList Type = "InstalledApllicationsList"
+	TypeInstalledApplicationsList Type = "InstalledApplicationsList"
 )
 
 func (_type Type) String() string {
@@ -86,7 +86,7 @@ func (_type Type) String() string {
 // TypeValidator is a validator for the "type" field enum values. It is called by the builders before save.
 func TypeValidator(_type Type) error {
 	switch _type {
-	case TypeDeviceInformation, TypeUsersList, TypeInstalledApllicationsList:
+	case TypeDeviceInformation, TypeUsersList, TypeInstalledApplicationsList:
 		return nil
 	default:
 		return fmt.Errorf("mdmcommand: invalid enum value for type field: %q", _type)
