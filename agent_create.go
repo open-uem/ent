@@ -810,19 +810,23 @@ func (ac *AgentCreate) AddMdmcommands(m ...*MDMCommand) *AgentCreate {
 	return ac.AddMdmcommandIDs(ids...)
 }
 
-// AddNanomdminfoIDs adds the "nanomdminfo" edge to the NanoMDMInfo entity by IDs.
-func (ac *AgentCreate) AddNanomdminfoIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddNanomdminfoIDs(ids...)
+// SetNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by ID.
+func (ac *AgentCreate) SetNanomdminfoID(id int) *AgentCreate {
+	ac.mutation.SetNanomdminfoID(id)
 	return ac
 }
 
-// AddNanomdminfo adds the "nanomdminfo" edges to the NanoMDMInfo entity.
-func (ac *AgentCreate) AddNanomdminfo(n ...*NanoMDMInfo) *AgentCreate {
-	ids := make([]int, len(n))
-	for i := range n {
-		ids[i] = n[i].ID
+// SetNillableNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by ID if the given value is not nil.
+func (ac *AgentCreate) SetNillableNanomdminfoID(id *int) *AgentCreate {
+	if id != nil {
+		ac = ac.SetNanomdminfoID(*id)
 	}
-	return ac.AddNanomdminfoIDs(ids...)
+	return ac
+}
+
+// SetNanomdminfo sets the "nanomdminfo" edge to the NanoMDMInfo entity.
+func (ac *AgentCreate) SetNanomdminfo(n *NanoMDMInfo) *AgentCreate {
+	return ac.SetNanomdminfoID(n.ID)
 }
 
 // Mutation returns the AgentMutation object of the builder.
@@ -1511,7 +1515,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 	}
 	if nodes := ac.mutation.NanomdminfoIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
+			Rel:     sqlgraph.O2O,
 			Inverse: false,
 			Table:   agent.NanomdminfoTable,
 			Columns: []string{agent.NanomdminfoColumn},

@@ -824,7 +824,7 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if nmiu.mutation.AgentCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
 			Table:   nanomdminfo.AgentTable,
 			Columns: []string{nanomdminfo.AgentColumn},
@@ -837,7 +837,7 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if nodes := nmiu.mutation.AgentIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
 			Table:   nanomdminfo.AgentTable,
 			Columns: []string{nanomdminfo.AgentColumn},
@@ -1697,7 +1697,7 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	}
 	if nmiuo.mutation.AgentCleared() {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
 			Table:   nanomdminfo.AgentTable,
 			Columns: []string{nanomdminfo.AgentColumn},
@@ -1710,7 +1710,7 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	}
 	if nodes := nmiuo.mutation.AgentIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
 			Table:   nanomdminfo.AgentTable,
 			Columns: []string{nanomdminfo.AgentColumn},

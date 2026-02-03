@@ -1098,7 +1098,7 @@ func (nmic *NanoMDMInfoCreate) createSpec() (*NanoMDMInfo, *sqlgraph.CreateSpec)
 	}
 	if nodes := nmic.mutation.AgentIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
+			Rel:     sqlgraph.O2O,
 			Inverse: true,
 			Table:   nanomdminfo.AgentTable,
 			Columns: []string{nanomdminfo.AgentColumn},

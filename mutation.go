@@ -198,8 +198,7 @@ type AgentMutation struct {
 	mdmcommands                map[string]struct{}
 	removedmdmcommands         map[string]struct{}
 	clearedmdmcommands         bool
-	nanomdminfo                map[int]struct{}
-	removednanomdminfo         map[int]struct{}
+	nanomdminfo                *int
 	clearednanomdminfo         bool
 	done                       bool
 	oldValue                   func(context.Context) (*Agent, error)
@@ -2813,14 +2812,9 @@ func (m *AgentMutation) ResetMdmcommands() {
 	m.removedmdmcommands = nil
 }
 
-// AddNanomdminfoIDs adds the "nanomdminfo" edge to the NanoMDMInfo entity by ids.
-func (m *AgentMutation) AddNanomdminfoIDs(ids ...int) {
-	if m.nanomdminfo == nil {
-		m.nanomdminfo = make(map[int]struct{})
-	}
-	for i := range ids {
-		m.nanomdminfo[ids[i]] = struct{}{}
-	}
+// SetNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by id.
+func (m *AgentMutation) SetNanomdminfoID(id int) {
+	m.nanomdminfo = &id
 }
 
 // ClearNanomdminfo clears the "nanomdminfo" edge to the NanoMDMInfo entity.
@@ -2833,29 +2827,20 @@ func (m *AgentMutation) NanomdminfoCleared() bool {
 	return m.clearednanomdminfo
 }
 
-// RemoveNanomdminfoIDs removes the "nanomdminfo" edge to the NanoMDMInfo entity by IDs.
-func (m *AgentMutation) RemoveNanomdminfoIDs(ids ...int) {
-	if m.removednanomdminfo == nil {
-		m.removednanomdminfo = make(map[int]struct{})
-	}
-	for i := range ids {
-		delete(m.nanomdminfo, ids[i])
-		m.removednanomdminfo[ids[i]] = struct{}{}
-	}
-}
-
-// RemovedNanomdminfo returns the removed IDs of the "nanomdminfo" edge to the NanoMDMInfo entity.
-func (m *AgentMutation) RemovedNanomdminfoIDs() (ids []int) {
-	for id := range m.removednanomdminfo {
-		ids = append(ids, id)
+// NanomdminfoID returns the "nanomdminfo" edge ID in the mutation.
+func (m *AgentMutation) NanomdminfoID() (id int, exists bool) {
+	if m.nanomdminfo != nil {
+		return *m.nanomdminfo, true
 	}
 	return
 }
 
 // NanomdminfoIDs returns the "nanomdminfo" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// NanomdminfoID instead. It exists only for internal usage by the builders.
 func (m *AgentMutation) NanomdminfoIDs() (ids []int) {
-	for id := range m.nanomdminfo {
-		ids = append(ids, id)
+	if id := m.nanomdminfo; id != nil {
+		ids = append(ids, *id)
 	}
 	return
 }
@@ -2864,7 +2849,6 @@ func (m *AgentMutation) NanomdminfoIDs() (ids []int) {
 func (m *AgentMutation) ResetNanomdminfo() {
 	m.nanomdminfo = nil
 	m.clearednanomdminfo = false
-	m.removednanomdminfo = nil
 }
 
 // Where appends a list predicates to the AgentMutation builder.
@@ -3844,11 +3828,9 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 		}
 		return ids
 	case agent.EdgeNanomdminfo:
-		ids := make([]ent.Value, 0, len(m.nanomdminfo))
-		for id := range m.nanomdminfo {
-			ids = append(ids, id)
+		if id := m.nanomdminfo; id != nil {
+			return []ent.Value{*id}
 		}
-		return ids
 	}
 	return nil
 }
@@ -3903,9 +3885,6 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedmdmcommands != nil {
 		edges = append(edges, agent.EdgeMdmcommands)
-	}
-	if m.removednanomdminfo != nil {
-		edges = append(edges, agent.EdgeNanomdminfo)
 	}
 	return edges
 }
@@ -4007,12 +3986,6 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 	case agent.EdgeMdmcommands:
 		ids := make([]ent.Value, 0, len(m.removedmdmcommands))
 		for id := range m.removedmdmcommands {
-			ids = append(ids, id)
-		}
-		return ids
-	case agent.EdgeNanomdminfo:
-		ids := make([]ent.Value, 0, len(m.removednanomdminfo))
-		for id := range m.removednanomdminfo {
 			ids = append(ids, id)
 		}
 		return ids
@@ -4170,6 +4143,9 @@ func (m *AgentMutation) ClearEdge(name string) error {
 		return nil
 	case agent.EdgeNetbird:
 		m.ClearNetbird()
+		return nil
+	case agent.EdgeNanomdminfo:
+		m.ClearNanomdminfo()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent unique edge %s", name)

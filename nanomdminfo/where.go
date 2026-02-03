@@ -1800,7 +1800,7 @@ func HasAgent() predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, AgentTable, AgentColumn),
+			sqlgraph.Edge(sqlgraph.O2O, true, AgentTable, AgentColumn),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})

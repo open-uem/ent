@@ -12,6 +12,7 @@ import (
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/antivirus"
 	"github.com/open-uem/ent/computer"
+	"github.com/open-uem/ent/nanomdminfo"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/operatingsystem"
 	"github.com/open-uem/ent/release"
@@ -137,7 +138,7 @@ type AgentEdges struct {
 	// Mdmcommands holds the value of the mdmcommands edge.
 	Mdmcommands []*MDMCommand `json:"mdmcommands,omitempty"`
 	// Nanomdminfo holds the value of the nanomdminfo edge.
-	Nanomdminfo []*NanoMDMInfo `json:"nanomdminfo,omitempty"`
+	Nanomdminfo *NanoMDMInfo `json:"nanomdminfo,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
 	loadedTypes [23]bool
@@ -354,10 +355,12 @@ func (e AgentEdges) MdmcommandsOrErr() ([]*MDMCommand, error) {
 }
 
 // NanomdminfoOrErr returns the Nanomdminfo value or an error if the edge
-// was not loaded in eager-loading.
-func (e AgentEdges) NanomdminfoOrErr() ([]*NanoMDMInfo, error) {
-	if e.loadedTypes[22] {
+// was not loaded in eager-loading, or loaded but was not found.
+func (e AgentEdges) NanomdminfoOrErr() (*NanoMDMInfo, error) {
+	if e.Nanomdminfo != nil {
 		return e.Nanomdminfo, nil
+	} else if e.loadedTypes[22] {
+		return nil, &NotFoundError{label: nanomdminfo.Label}
 	}
 	return nil, &NotLoadedError{edge: "nanomdminfo"}
 }

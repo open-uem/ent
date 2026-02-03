@@ -2231,7 +2231,7 @@ func HasNanomdminfo() predicate.Agent {
 	return predicate.Agent(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, NanomdminfoTable, NanomdminfoColumn),
+			sqlgraph.Edge(sqlgraph.O2O, false, NanomdminfoTable, NanomdminfoColumn),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})

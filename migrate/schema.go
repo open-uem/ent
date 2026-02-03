@@ -371,7 +371,7 @@ var (
 		{Name: "supports_ios_app_installs", Type: field.TypeBool, Default: false},
 		{Name: "system_integrity_protection_enabled", Type: field.TypeBool, Default: false},
 		{Name: "udid", Type: field.TypeString, Default: ""},
-		{Name: "agent_nanomdminfo", Type: field.TypeString, Nullable: true},
+		{Name: "agent_nanomdminfo", Type: field.TypeString, Unique: true, Nullable: true},
 	}
 	// NanoMdmInfosTable holds the schema information for the "nano_mdm_infos" table.
 	NanoMdmInfosTable = &schema.Table{

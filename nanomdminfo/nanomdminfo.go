@@ -472,6 +472,6 @@ func newAgentStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(AgentInverseTable, AgentFieldID),
-		sqlgraph.Edge(sqlgraph.M2O, true, AgentTable, AgentColumn),
+		sqlgraph.Edge(sqlgraph.O2O, true, AgentTable, AgentColumn),
 	)
 }

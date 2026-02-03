@@ -929,17 +929,10 @@ func ByMdmcommands(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 	}
 }
 
-// ByNanomdminfoCount orders the results by nanomdminfo count.
-func ByNanomdminfoCount(opts ...sql.OrderTermOption) OrderOption {
+// ByNanomdminfoField orders the results by nanomdminfo field.
+func ByNanomdminfoField(field string, opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborsCount(s, newNanomdminfoStep(), opts...)
-	}
-}
-
-// ByNanomdminfo orders the results by nanomdminfo terms.
-func ByNanomdminfo(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newNanomdminfoStep(), append([]sql.OrderTerm{term}, terms...)...)
+		sqlgraph.OrderByNeighborTerms(s, newNanomdminfoStep(), sql.OrderByField(field, opts...))
 	}
 }
 func newComputerStep() *sqlgraph.Step {
@@ -1100,6 +1093,6 @@ func newNanomdminfoStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NanomdminfoInverseTable, NanoMDMInfoFieldID),
-		sqlgraph.Edge(sqlgraph.O2M, false, NanomdminfoTable, NanomdminfoColumn),
+		sqlgraph.Edge(sqlgraph.O2O, false, NanomdminfoTable, NanomdminfoColumn),
 	)
 }

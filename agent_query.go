@@ -605,7 +605,7 @@ func (aq *AgentQuery) QueryNanomdminfo() *NanoMDMInfoQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(agent.Table, agent.FieldID, selector),
 			sqlgraph.To(nanomdminfo.Table, nanomdminfo.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, agent.NanomdminfoTable, agent.NanomdminfoColumn),
+			sqlgraph.Edge(sqlgraph.O2O, false, agent.NanomdminfoTable, agent.NanomdminfoColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
 		return fromU, nil
@@ -1371,9 +1371,8 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		}
 	}
 	if query := aq.withNanomdminfo; query != nil {
-		if err := aq.loadNanomdminfo(ctx, query, nodes,
-			func(n *Agent) { n.Edges.Nanomdminfo = []*NanoMDMInfo{} },
-			func(n *Agent, e *NanoMDMInfo) { n.Edges.Nanomdminfo = append(n.Edges.Nanomdminfo, e) }); err != nil {
+		if err := aq.loadNanomdminfo(ctx, query, nodes, nil,
+			func(n *Agent, e *NanoMDMInfo) { n.Edges.Nanomdminfo = e }); err != nil {
 			return nil, err
 		}
 	}
@@ -2114,9 +2113,6 @@ func (aq *AgentQuery) loadNanomdminfo(ctx context.Context, query *NanoMDMInfoQue
 	for i := range nodes {
 		fks = append(fks, nodes[i].ID)
 		nodeids[nodes[i].ID] = nodes[i]
-		if init != nil {
-			init(nodes[i])
-		}
 	}
 	query.withFKs = true
 	query.Where(predicate.NanoMDMInfo(func(s *sql.Selector) {

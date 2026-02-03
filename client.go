@@ -981,7 +981,7 @@ func (c *AgentClient) QueryNanomdminfo(a *Agent) *NanoMDMInfoQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(agent.Table, agent.FieldID, id),
 			sqlgraph.To(nanomdminfo.Table, nanomdminfo.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, agent.NanomdminfoTable, agent.NanomdminfoColumn),
+			sqlgraph.Edge(sqlgraph.O2O, false, agent.NanomdminfoTable, agent.NanomdminfoColumn),
 		)
 		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
 		return fromV, nil
@@ -2753,7 +2753,7 @@ func (c *NanoMDMInfoClient) QueryAgent(nmi *NanoMDMInfo) *AgentQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(nanomdminfo.Table, nanomdminfo.FieldID, id),
 			sqlgraph.To(agent.Table, agent.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, nanomdminfo.AgentTable, nanomdminfo.AgentColumn),
+			sqlgraph.Edge(sqlgraph.O2O, true, nanomdminfo.AgentTable, nanomdminfo.AgentColumn),
 		)
 		fromV = sqlgraph.Neighbors(nmi.driver.Dialect(), step)
 		return fromV, nil

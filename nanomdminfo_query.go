@@ -76,7 +76,7 @@ func (nmiq *NanoMDMInfoQuery) QueryAgent() *AgentQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(nanomdminfo.Table, nanomdminfo.FieldID, selector),
 			sqlgraph.To(agent.Table, agent.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, nanomdminfo.AgentTable, nanomdminfo.AgentColumn),
+			sqlgraph.Edge(sqlgraph.O2O, true, nanomdminfo.AgentTable, nanomdminfo.AgentColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(nmiq.driver.Dialect(), step)
 		return fromU, nil
