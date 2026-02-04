@@ -251,6 +251,26 @@ func (nmiu *NanoMDMInfoUpdate) ClearEthernetMAC() *NanoMDMInfoUpdate {
 	return nmiu
 }
 
+// SetWifiMAC sets the "wifi_mac" field.
+func (nmiu *NanoMDMInfoUpdate) SetWifiMAC(s string) *NanoMDMInfoUpdate {
+	nmiu.mutation.SetWifiMAC(s)
+	return nmiu
+}
+
+// SetNillableWifiMAC sets the "wifi_mac" field if the given value is not nil.
+func (nmiu *NanoMDMInfoUpdate) SetNillableWifiMAC(s *string) *NanoMDMInfoUpdate {
+	if s != nil {
+		nmiu.SetWifiMAC(*s)
+	}
+	return nmiu
+}
+
+// ClearWifiMAC clears the value of the "wifi_mac" field.
+func (nmiu *NanoMDMInfoUpdate) ClearWifiMAC() *NanoMDMInfoUpdate {
+	nmiu.mutation.ClearWifiMAC()
+	return nmiu
+}
+
 // SetHasBattery sets the "has_battery" field.
 func (nmiu *NanoMDMInfoUpdate) SetHasBattery(b bool) *NanoMDMInfoUpdate {
 	nmiu.mutation.SetHasBattery(b)
@@ -999,6 +1019,12 @@ func (nmiu *NanoMDMInfoUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if nmiu.mutation.EthernetMACCleared() {
 		_spec.ClearField(nanomdminfo.FieldEthernetMAC, field.TypeString)
 	}
+	if value, ok := nmiu.mutation.WifiMAC(); ok {
+		_spec.SetField(nanomdminfo.FieldWifiMAC, field.TypeString, value)
+	}
+	if nmiu.mutation.WifiMACCleared() {
+		_spec.ClearField(nanomdminfo.FieldWifiMAC, field.TypeString)
+	}
 	if value, ok := nmiu.mutation.HasBattery(); ok {
 		_spec.SetField(nanomdminfo.FieldHasBattery, field.TypeBool, value)
 	}
@@ -1451,6 +1477,26 @@ func (nmiuo *NanoMDMInfoUpdateOne) SetNillableEthernetMAC(s *string) *NanoMDMInf
 // ClearEthernetMAC clears the value of the "ethernet_mac" field.
 func (nmiuo *NanoMDMInfoUpdateOne) ClearEthernetMAC() *NanoMDMInfoUpdateOne {
 	nmiuo.mutation.ClearEthernetMAC()
+	return nmiuo
+}
+
+// SetWifiMAC sets the "wifi_mac" field.
+func (nmiuo *NanoMDMInfoUpdateOne) SetWifiMAC(s string) *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.SetWifiMAC(s)
+	return nmiuo
+}
+
+// SetNillableWifiMAC sets the "wifi_mac" field if the given value is not nil.
+func (nmiuo *NanoMDMInfoUpdateOne) SetNillableWifiMAC(s *string) *NanoMDMInfoUpdateOne {
+	if s != nil {
+		nmiuo.SetWifiMAC(*s)
+	}
+	return nmiuo
+}
+
+// ClearWifiMAC clears the value of the "wifi_mac" field.
+func (nmiuo *NanoMDMInfoUpdateOne) ClearWifiMAC() *NanoMDMInfoUpdateOne {
+	nmiuo.mutation.ClearWifiMAC()
 	return nmiuo
 }
 
@@ -2231,6 +2277,12 @@ func (nmiuo *NanoMDMInfoUpdateOne) sqlSave(ctx context.Context) (_node *NanoMDMI
 	}
 	if nmiuo.mutation.EthernetMACCleared() {
 		_spec.ClearField(nanomdminfo.FieldEthernetMAC, field.TypeString)
+	}
+	if value, ok := nmiuo.mutation.WifiMAC(); ok {
+		_spec.SetField(nanomdminfo.FieldWifiMAC, field.TypeString, value)
+	}
+	if nmiuo.mutation.WifiMACCleared() {
+		_spec.ClearField(nanomdminfo.FieldWifiMAC, field.TypeString)
 	}
 	if value, ok := nmiuo.mutation.HasBattery(); ok {
 		_spec.SetField(nanomdminfo.FieldHasBattery, field.TypeBool, value)

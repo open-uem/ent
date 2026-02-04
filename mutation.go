@@ -12230,6 +12230,7 @@ type NanoMDMInfoMutation struct {
 	device_name                         *string
 	eacs_preflight                      *string
 	ethernet_mac                        *string
+	wifi_mac                            *string
 	has_battery                         *bool
 	hostname                            *string
 	is_activation_lock_enabled          *bool
@@ -12918,6 +12919,55 @@ func (m *NanoMDMInfoMutation) EthernetMACCleared() bool {
 func (m *NanoMDMInfoMutation) ResetEthernetMAC() {
 	m.ethernet_mac = nil
 	delete(m.clearedFields, nanomdminfo.FieldEthernetMAC)
+}
+
+// SetWifiMAC sets the "wifi_mac" field.
+func (m *NanoMDMInfoMutation) SetWifiMAC(s string) {
+	m.wifi_mac = &s
+}
+
+// WifiMAC returns the value of the "wifi_mac" field in the mutation.
+func (m *NanoMDMInfoMutation) WifiMAC() (r string, exists bool) {
+	v := m.wifi_mac
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldWifiMAC returns the old "wifi_mac" field's value of the NanoMDMInfo entity.
+// If the NanoMDMInfo object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMInfoMutation) OldWifiMAC(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldWifiMAC is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldWifiMAC requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldWifiMAC: %w", err)
+	}
+	return oldValue.WifiMAC, nil
+}
+
+// ClearWifiMAC clears the value of the "wifi_mac" field.
+func (m *NanoMDMInfoMutation) ClearWifiMAC() {
+	m.wifi_mac = nil
+	m.clearedFields[nanomdminfo.FieldWifiMAC] = struct{}{}
+}
+
+// WifiMACCleared returns if the "wifi_mac" field was cleared in this mutation.
+func (m *NanoMDMInfoMutation) WifiMACCleared() bool {
+	_, ok := m.clearedFields[nanomdminfo.FieldWifiMAC]
+	return ok
+}
+
+// ResetWifiMAC resets all changes to the "wifi_mac" field.
+func (m *NanoMDMInfoMutation) ResetWifiMAC() {
+	m.wifi_mac = nil
+	delete(m.clearedFields, nanomdminfo.FieldWifiMAC)
 }
 
 // SetHasBattery sets the "has_battery" field.
@@ -14484,7 +14534,7 @@ func (m *NanoMDMInfoMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *NanoMDMInfoMutation) Fields() []string {
-	fields := make([]string, 0, 40)
+	fields := make([]string, 0, 41)
 	if m.available_device_capacity != nil {
 		fields = append(fields, nanomdminfo.FieldAvailableDeviceCapacity)
 	}
@@ -14514,6 +14564,9 @@ func (m *NanoMDMInfoMutation) Fields() []string {
 	}
 	if m.ethernet_mac != nil {
 		fields = append(fields, nanomdminfo.FieldEthernetMAC)
+	}
+	if m.wifi_mac != nil {
+		fields = append(fields, nanomdminfo.FieldWifiMAC)
 	}
 	if m.has_battery != nil {
 		fields = append(fields, nanomdminfo.FieldHasBattery)
@@ -14633,6 +14686,8 @@ func (m *NanoMDMInfoMutation) Field(name string) (ent.Value, bool) {
 		return m.EacsPreflight()
 	case nanomdminfo.FieldEthernetMAC:
 		return m.EthernetMAC()
+	case nanomdminfo.FieldWifiMAC:
+		return m.WifiMAC()
 	case nanomdminfo.FieldHasBattery:
 		return m.HasBattery()
 	case nanomdminfo.FieldHostname:
@@ -14722,6 +14777,8 @@ func (m *NanoMDMInfoMutation) OldField(ctx context.Context, name string) (ent.Va
 		return m.OldEacsPreflight(ctx)
 	case nanomdminfo.FieldEthernetMAC:
 		return m.OldEthernetMAC(ctx)
+	case nanomdminfo.FieldWifiMAC:
+		return m.OldWifiMAC(ctx)
 	case nanomdminfo.FieldHasBattery:
 		return m.OldHasBattery(ctx)
 	case nanomdminfo.FieldHostname:
@@ -14860,6 +14917,13 @@ func (m *NanoMDMInfoMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetEthernetMAC(v)
+		return nil
+	case nanomdminfo.FieldWifiMAC:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetWifiMAC(v)
 		return nil
 	case nanomdminfo.FieldHasBattery:
 		v, ok := value.(bool)
@@ -15182,6 +15246,9 @@ func (m *NanoMDMInfoMutation) ClearedFields() []string {
 	if m.FieldCleared(nanomdminfo.FieldEthernetMAC) {
 		fields = append(fields, nanomdminfo.FieldEthernetMAC)
 	}
+	if m.FieldCleared(nanomdminfo.FieldWifiMAC) {
+		fields = append(fields, nanomdminfo.FieldWifiMAC)
+	}
 	if m.FieldCleared(nanomdminfo.FieldHasBattery) {
 		fields = append(fields, nanomdminfo.FieldHasBattery)
 	}
@@ -15316,6 +15383,9 @@ func (m *NanoMDMInfoMutation) ClearField(name string) error {
 	case nanomdminfo.FieldEthernetMAC:
 		m.ClearEthernetMAC()
 		return nil
+	case nanomdminfo.FieldWifiMAC:
+		m.ClearWifiMAC()
+		return nil
 	case nanomdminfo.FieldHasBattery:
 		m.ClearHasBattery()
 		return nil
@@ -15443,6 +15513,9 @@ func (m *NanoMDMInfoMutation) ResetField(name string) error {
 		return nil
 	case nanomdminfo.FieldEthernetMAC:
 		m.ResetEthernetMAC()
+		return nil
+	case nanomdminfo.FieldWifiMAC:
+		m.ResetWifiMAC()
 		return nil
 	case nanomdminfo.FieldHasBattery:
 		m.ResetHasBattery()

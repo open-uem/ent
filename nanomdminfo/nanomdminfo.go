@@ -32,6 +32,8 @@ const (
 	FieldEacsPreflight = "eacs_preflight"
 	// FieldEthernetMAC holds the string denoting the ethernet_mac field in the database.
 	FieldEthernetMAC = "ethernet_mac"
+	// FieldWifiMAC holds the string denoting the wifi_mac field in the database.
+	FieldWifiMAC = "wifi_mac"
 	// FieldHasBattery holds the string denoting the has_battery field in the database.
 	FieldHasBattery = "has_battery"
 	// FieldHostname holds the string denoting the hostname field in the database.
@@ -120,6 +122,7 @@ var Columns = []string{
 	FieldDeviceName,
 	FieldEacsPreflight,
 	FieldEthernetMAC,
+	FieldWifiMAC,
 	FieldHasBattery,
 	FieldHostname,
 	FieldIsActivationLockEnabled,
@@ -194,6 +197,8 @@ var (
 	DefaultEacsPreflight string
 	// DefaultEthernetMAC holds the default value on creation for the "ethernet_mac" field.
 	DefaultEthernetMAC string
+	// DefaultWifiMAC holds the default value on creation for the "wifi_mac" field.
+	DefaultWifiMAC string
 	// DefaultHasBattery holds the default value on creation for the "has_battery" field.
 	DefaultHasBattery bool
 	// DefaultHostname holds the default value on creation for the "hostname" field.
@@ -310,6 +315,11 @@ func ByEacsPreflight(opts ...sql.OrderTermOption) OrderOption {
 // ByEthernetMAC orders the results by the ethernet_mac field.
 func ByEthernetMAC(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldEthernetMAC, opts...).ToFunc()
+}
+
+// ByWifiMAC orders the results by the wifi_mac field.
+func ByWifiMAC(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldWifiMAC, opts...).ToFunc()
 }
 
 // ByHasBattery orders the results by the has_battery field.

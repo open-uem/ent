@@ -38,6 +38,8 @@ type NanoMDMInfo struct {
 	EacsPreflight string `json:"eacs_preflight,omitempty"`
 	// EthernetMAC holds the value of the "ethernet_mac" field.
 	EthernetMAC string `json:"ethernet_mac,omitempty"`
+	// WifiMAC holds the value of the "wifi_mac" field.
+	WifiMAC string `json:"wifi_mac,omitempty"`
 	// HasBattery holds the value of the "has_battery" field.
 	HasBattery bool `json:"has_battery,omitempty"`
 	// Hostname holds the value of the "hostname" field.
@@ -136,7 +138,7 @@ func (*NanoMDMInfo) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullFloat64)
 		case nanomdminfo.FieldID, nanomdminfo.FieldPreviousScanResult:
 			values[i] = new(sql.NullInt64)
-		case nanomdminfo.FieldBluetoothMAC, nanomdminfo.FieldBuildVersion, nanomdminfo.FieldCurrentConsoleManagedUser, nanomdminfo.FieldDeviceName, nanomdminfo.FieldEacsPreflight, nanomdminfo.FieldEthernetMAC, nanomdminfo.FieldHostname, nanomdminfo.FieldLocalhostname, nanomdminfo.FieldModel, nanomdminfo.FieldModelName, nanomdminfo.FieldCatalogURL, nanomdminfo.FieldOsVersion, nanomdminfo.FieldProductName, nanomdminfo.FieldProvisioningUdid, nanomdminfo.FieldSerialNumber, nanomdminfo.FieldSoftwareUpdateDeviceID, nanomdminfo.FieldSupplementalBuildVersion, nanomdminfo.FieldUdid:
+		case nanomdminfo.FieldBluetoothMAC, nanomdminfo.FieldBuildVersion, nanomdminfo.FieldCurrentConsoleManagedUser, nanomdminfo.FieldDeviceName, nanomdminfo.FieldEacsPreflight, nanomdminfo.FieldEthernetMAC, nanomdminfo.FieldWifiMAC, nanomdminfo.FieldHostname, nanomdminfo.FieldLocalhostname, nanomdminfo.FieldModel, nanomdminfo.FieldModelName, nanomdminfo.FieldCatalogURL, nanomdminfo.FieldOsVersion, nanomdminfo.FieldProductName, nanomdminfo.FieldProvisioningUdid, nanomdminfo.FieldSerialNumber, nanomdminfo.FieldSoftwareUpdateDeviceID, nanomdminfo.FieldSupplementalBuildVersion, nanomdminfo.FieldUdid:
 			values[i] = new(sql.NullString)
 		case nanomdminfo.FieldPreviousScanDate:
 			values[i] = new(sql.NullTime)
@@ -222,6 +224,12 @@ func (nmi *NanoMDMInfo) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field ethernet_mac", values[i])
 			} else if value.Valid {
 				nmi.EthernetMAC = value.String
+			}
+		case nanomdminfo.FieldWifiMAC:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field wifi_mac", values[i])
+			} else if value.Valid {
+				nmi.WifiMAC = value.String
 			}
 		case nanomdminfo.FieldHasBattery:
 			if value, ok := values[i].(*sql.NullBool); !ok {
@@ -480,6 +488,9 @@ func (nmi *NanoMDMInfo) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("ethernet_mac=")
 	builder.WriteString(nmi.EthernetMAC)
+	builder.WriteString(", ")
+	builder.WriteString("wifi_mac=")
+	builder.WriteString(nmi.WifiMAC)
 	builder.WriteString(", ")
 	builder.WriteString("has_battery=")
 	builder.WriteString(fmt.Sprintf("%v", nmi.HasBattery))

@@ -24,6 +24,7 @@ func (NanoMDMInfo) Fields() []ent.Field {
 		field.String("device_name").Optional().Default(""),
 		field.String("eacs_preflight").Optional().Default(""),
 		field.String("ethernet_mac").Optional().Default(""),
+		field.String("wifi_mac").Optional().Default(""),
 		field.Bool("has_battery").Optional().Default(false),
 		field.String("hostname").Optional().Default(""),
 		field.Bool("is_activation_lock_enabled").Optional().Default(false),

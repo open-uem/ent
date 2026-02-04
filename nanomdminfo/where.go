@@ -105,6 +105,11 @@ func EthernetMAC(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldEthernetMAC, v))
 }
 
+// WifiMAC applies equality check predicate on the "wifi_mac" field. It's identical to WifiMACEQ.
+func WifiMAC(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldEQ(FieldWifiMAC, v))
+}
+
 // HasBattery applies equality check predicate on the "has_battery" field. It's identical to HasBatteryEQ.
 func HasBattery(v bool) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldEQ(FieldHasBattery, v))
@@ -873,6 +878,81 @@ func EthernetMACEqualFold(v string) predicate.NanoMDMInfo {
 // EthernetMACContainsFold applies the ContainsFold predicate on the "ethernet_mac" field.
 func EthernetMACContainsFold(v string) predicate.NanoMDMInfo {
 	return predicate.NanoMDMInfo(sql.FieldContainsFold(FieldEthernetMAC, v))
+}
+
+// WifiMACEQ applies the EQ predicate on the "wifi_mac" field.
+func WifiMACEQ(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldEQ(FieldWifiMAC, v))
+}
+
+// WifiMACNEQ applies the NEQ predicate on the "wifi_mac" field.
+func WifiMACNEQ(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNEQ(FieldWifiMAC, v))
+}
+
+// WifiMACIn applies the In predicate on the "wifi_mac" field.
+func WifiMACIn(vs ...string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIn(FieldWifiMAC, vs...))
+}
+
+// WifiMACNotIn applies the NotIn predicate on the "wifi_mac" field.
+func WifiMACNotIn(vs ...string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotIn(FieldWifiMAC, vs...))
+}
+
+// WifiMACGT applies the GT predicate on the "wifi_mac" field.
+func WifiMACGT(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldGT(FieldWifiMAC, v))
+}
+
+// WifiMACGTE applies the GTE predicate on the "wifi_mac" field.
+func WifiMACGTE(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldGTE(FieldWifiMAC, v))
+}
+
+// WifiMACLT applies the LT predicate on the "wifi_mac" field.
+func WifiMACLT(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldLT(FieldWifiMAC, v))
+}
+
+// WifiMACLTE applies the LTE predicate on the "wifi_mac" field.
+func WifiMACLTE(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldLTE(FieldWifiMAC, v))
+}
+
+// WifiMACContains applies the Contains predicate on the "wifi_mac" field.
+func WifiMACContains(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldContains(FieldWifiMAC, v))
+}
+
+// WifiMACHasPrefix applies the HasPrefix predicate on the "wifi_mac" field.
+func WifiMACHasPrefix(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldHasPrefix(FieldWifiMAC, v))
+}
+
+// WifiMACHasSuffix applies the HasSuffix predicate on the "wifi_mac" field.
+func WifiMACHasSuffix(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldHasSuffix(FieldWifiMAC, v))
+}
+
+// WifiMACIsNil applies the IsNil predicate on the "wifi_mac" field.
+func WifiMACIsNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldIsNull(FieldWifiMAC))
+}
+
+// WifiMACNotNil applies the NotNil predicate on the "wifi_mac" field.
+func WifiMACNotNil() predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldNotNull(FieldWifiMAC))
+}
+
+// WifiMACEqualFold applies the EqualFold predicate on the "wifi_mac" field.
+func WifiMACEqualFold(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldEqualFold(FieldWifiMAC, v))
+}
+
+// WifiMACContainsFold applies the ContainsFold predicate on the "wifi_mac" field.
+func WifiMACContainsFold(v string) predicate.NanoMDMInfo {
+	return predicate.NanoMDMInfo(sql.FieldContainsFold(FieldWifiMAC, v))
 }
 
 // HasBatteryEQ applies the EQ predicate on the "has_battery" field.

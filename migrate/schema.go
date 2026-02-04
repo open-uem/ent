@@ -341,6 +341,7 @@ var (
 		{Name: "device_name", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "eacs_preflight", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "ethernet_mac", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "wifi_mac", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "has_battery", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "hostname", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "is_activation_lock_enabled", Type: field.TypeBool, Nullable: true, Default: false},
@@ -381,7 +382,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "nano_mdm_infos_agents_nanomdminfo",
-				Columns:    []*schema.Column{NanoMdmInfosColumns[41]},
+				Columns:    []*schema.Column{NanoMdmInfosColumns[42]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

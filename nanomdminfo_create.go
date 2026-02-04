@@ -163,6 +163,20 @@ func (nmic *NanoMDMInfoCreate) SetNillableEthernetMAC(s *string) *NanoMDMInfoCre
 	return nmic
 }
 
+// SetWifiMAC sets the "wifi_mac" field.
+func (nmic *NanoMDMInfoCreate) SetWifiMAC(s string) *NanoMDMInfoCreate {
+	nmic.mutation.SetWifiMAC(s)
+	return nmic
+}
+
+// SetNillableWifiMAC sets the "wifi_mac" field if the given value is not nil.
+func (nmic *NanoMDMInfoCreate) SetNillableWifiMAC(s *string) *NanoMDMInfoCreate {
+	if s != nil {
+		nmic.SetWifiMAC(*s)
+	}
+	return nmic
+}
+
 // SetHasBattery sets the "has_battery" field.
 func (nmic *NanoMDMInfoCreate) SetHasBattery(b bool) *NanoMDMInfoCreate {
 	nmic.mutation.SetHasBattery(b)
@@ -677,6 +691,10 @@ func (nmic *NanoMDMInfoCreate) defaults() {
 		v := nanomdminfo.DefaultEthernetMAC
 		nmic.mutation.SetEthernetMAC(v)
 	}
+	if _, ok := nmic.mutation.WifiMAC(); !ok {
+		v := nanomdminfo.DefaultWifiMAC
+		nmic.mutation.SetWifiMAC(v)
+	}
 	if _, ok := nmic.mutation.HasBattery(); !ok {
 		v := nanomdminfo.DefaultHasBattery
 		nmic.mutation.SetHasBattery(v)
@@ -863,6 +881,10 @@ func (nmic *NanoMDMInfoCreate) createSpec() (*NanoMDMInfo, *sqlgraph.CreateSpec)
 	if value, ok := nmic.mutation.EthernetMAC(); ok {
 		_spec.SetField(nanomdminfo.FieldEthernetMAC, field.TypeString, value)
 		_node.EthernetMAC = value
+	}
+	if value, ok := nmic.mutation.WifiMAC(); ok {
+		_spec.SetField(nanomdminfo.FieldWifiMAC, field.TypeString, value)
+		_node.WifiMAC = value
 	}
 	if value, ok := nmic.mutation.HasBattery(); ok {
 		_spec.SetField(nanomdminfo.FieldHasBattery, field.TypeBool, value)
@@ -1248,6 +1270,24 @@ func (u *NanoMDMInfoUpsert) UpdateEthernetMAC() *NanoMDMInfoUpsert {
 // ClearEthernetMAC clears the value of the "ethernet_mac" field.
 func (u *NanoMDMInfoUpsert) ClearEthernetMAC() *NanoMDMInfoUpsert {
 	u.SetNull(nanomdminfo.FieldEthernetMAC)
+	return u
+}
+
+// SetWifiMAC sets the "wifi_mac" field.
+func (u *NanoMDMInfoUpsert) SetWifiMAC(v string) *NanoMDMInfoUpsert {
+	u.Set(nanomdminfo.FieldWifiMAC, v)
+	return u
+}
+
+// UpdateWifiMAC sets the "wifi_mac" field to the value that was provided on create.
+func (u *NanoMDMInfoUpsert) UpdateWifiMAC() *NanoMDMInfoUpsert {
+	u.SetExcluded(nanomdminfo.FieldWifiMAC)
+	return u
+}
+
+// ClearWifiMAC clears the value of the "wifi_mac" field.
+func (u *NanoMDMInfoUpsert) ClearWifiMAC() *NanoMDMInfoUpsert {
+	u.SetNull(nanomdminfo.FieldWifiMAC)
 	return u
 }
 
@@ -2065,6 +2105,27 @@ func (u *NanoMDMInfoUpsertOne) UpdateEthernetMAC() *NanoMDMInfoUpsertOne {
 func (u *NanoMDMInfoUpsertOne) ClearEthernetMAC() *NanoMDMInfoUpsertOne {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.ClearEthernetMAC()
+	})
+}
+
+// SetWifiMAC sets the "wifi_mac" field.
+func (u *NanoMDMInfoUpsertOne) SetWifiMAC(v string) *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.SetWifiMAC(v)
+	})
+}
+
+// UpdateWifiMAC sets the "wifi_mac" field to the value that was provided on create.
+func (u *NanoMDMInfoUpsertOne) UpdateWifiMAC() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.UpdateWifiMAC()
+	})
+}
+
+// ClearWifiMAC clears the value of the "wifi_mac" field.
+func (u *NanoMDMInfoUpsertOne) ClearWifiMAC() *NanoMDMInfoUpsertOne {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearWifiMAC()
 	})
 }
 
@@ -3137,6 +3198,27 @@ func (u *NanoMDMInfoUpsertBulk) UpdateEthernetMAC() *NanoMDMInfoUpsertBulk {
 func (u *NanoMDMInfoUpsertBulk) ClearEthernetMAC() *NanoMDMInfoUpsertBulk {
 	return u.Update(func(s *NanoMDMInfoUpsert) {
 		s.ClearEthernetMAC()
+	})
+}
+
+// SetWifiMAC sets the "wifi_mac" field.
+func (u *NanoMDMInfoUpsertBulk) SetWifiMAC(v string) *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.SetWifiMAC(v)
+	})
+}
+
+// UpdateWifiMAC sets the "wifi_mac" field to the value that was provided on create.
+func (u *NanoMDMInfoUpsertBulk) UpdateWifiMAC() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.UpdateWifiMAC()
+	})
+}
+
+// ClearWifiMAC clears the value of the "wifi_mac" field.
+func (u *NanoMDMInfoUpsertBulk) ClearWifiMAC() *NanoMDMInfoUpsertBulk {
+	return u.Update(func(s *NanoMDMInfoUpsert) {
+		s.ClearWifiMAC()
 	})
 }
 
