@@ -12,6 +12,10 @@ const (
 	Label = "nano_mdm_settings"
 	// FieldID holds the string denoting the id field in the database.
 	FieldID = "id"
+	// FieldUsername holds the string denoting the username field in the database.
+	FieldUsername = "username"
+	// FieldPassword holds the string denoting the password field in the database.
+	FieldPassword = "password"
 	// FieldServerURL holds the string denoting the server_url field in the database.
 	FieldServerURL = "server_url"
 	// FieldCaCerFile holds the string denoting the ca_cer_file field in the database.
@@ -32,6 +36,8 @@ const (
 // Columns holds all SQL columns for nanomdmsettings fields.
 var Columns = []string{
 	FieldID,
+	FieldUsername,
+	FieldPassword,
 	FieldServerURL,
 	FieldCaCerFile,
 }
@@ -47,6 +53,10 @@ func ValidColumn(column string) bool {
 }
 
 var (
+	// DefaultUsername holds the default value on creation for the "username" field.
+	DefaultUsername string
+	// DefaultPassword holds the default value on creation for the "password" field.
+	DefaultPassword string
 	// DefaultServerURL holds the default value on creation for the "server_url" field.
 	DefaultServerURL string
 	// DefaultCaCerFile holds the default value on creation for the "ca_cer_file" field.
@@ -59,6 +69,16 @@ type OrderOption func(*sql.Selector)
 // ByID orders the results by the id field.
 func ByID(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldID, opts...).ToFunc()
+}
+
+// ByUsername orders the results by the username field.
+func ByUsername(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldUsername, opts...).ToFunc()
+}
+
+// ByPassword orders the results by the password field.
+func ByPassword(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldPassword, opts...).ToFunc()
 }
 
 // ByServerURL orders the results by the server_url field.

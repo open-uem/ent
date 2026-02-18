@@ -22,6 +22,34 @@ type NanoMDMSettingsCreate struct {
 	conflict []sql.ConflictOption
 }
 
+// SetUsername sets the "username" field.
+func (nmsc *NanoMDMSettingsCreate) SetUsername(s string) *NanoMDMSettingsCreate {
+	nmsc.mutation.SetUsername(s)
+	return nmsc
+}
+
+// SetNillableUsername sets the "username" field if the given value is not nil.
+func (nmsc *NanoMDMSettingsCreate) SetNillableUsername(s *string) *NanoMDMSettingsCreate {
+	if s != nil {
+		nmsc.SetUsername(*s)
+	}
+	return nmsc
+}
+
+// SetPassword sets the "password" field.
+func (nmsc *NanoMDMSettingsCreate) SetPassword(s string) *NanoMDMSettingsCreate {
+	nmsc.mutation.SetPassword(s)
+	return nmsc
+}
+
+// SetNillablePassword sets the "password" field if the given value is not nil.
+func (nmsc *NanoMDMSettingsCreate) SetNillablePassword(s *string) *NanoMDMSettingsCreate {
+	if s != nil {
+		nmsc.SetPassword(*s)
+	}
+	return nmsc
+}
+
 // SetServerURL sets the "server_url" field.
 func (nmsc *NanoMDMSettingsCreate) SetServerURL(s string) *NanoMDMSettingsCreate {
 	nmsc.mutation.SetServerURL(s)
@@ -100,6 +128,14 @@ func (nmsc *NanoMDMSettingsCreate) ExecX(ctx context.Context) {
 
 // defaults sets the default values of the builder before save.
 func (nmsc *NanoMDMSettingsCreate) defaults() {
+	if _, ok := nmsc.mutation.Username(); !ok {
+		v := nanomdmsettings.DefaultUsername
+		nmsc.mutation.SetUsername(v)
+	}
+	if _, ok := nmsc.mutation.Password(); !ok {
+		v := nanomdmsettings.DefaultPassword
+		nmsc.mutation.SetPassword(v)
+	}
 	if _, ok := nmsc.mutation.ServerURL(); !ok {
 		v := nanomdmsettings.DefaultServerURL
 		nmsc.mutation.SetServerURL(v)
@@ -139,6 +175,14 @@ func (nmsc *NanoMDMSettingsCreate) createSpec() (*NanoMDMSettings, *sqlgraph.Cre
 		_spec = sqlgraph.NewCreateSpec(nanomdmsettings.Table, sqlgraph.NewFieldSpec(nanomdmsettings.FieldID, field.TypeInt))
 	)
 	_spec.OnConflict = nmsc.conflict
+	if value, ok := nmsc.mutation.Username(); ok {
+		_spec.SetField(nanomdmsettings.FieldUsername, field.TypeString, value)
+		_node.Username = value
+	}
+	if value, ok := nmsc.mutation.Password(); ok {
+		_spec.SetField(nanomdmsettings.FieldPassword, field.TypeString, value)
+		_node.Password = value
+	}
 	if value, ok := nmsc.mutation.ServerURL(); ok {
 		_spec.SetField(nanomdmsettings.FieldServerURL, field.TypeString, value)
 		_node.ServerURL = value
@@ -170,7 +214,7 @@ func (nmsc *NanoMDMSettingsCreate) createSpec() (*NanoMDMSettings, *sqlgraph.Cre
 // of the `INSERT` statement. For example:
 //
 //	client.NanoMDMSettings.Create().
-//		SetServerURL(v).
+//		SetUsername(v).
 //		OnConflict(
 //			// Update the row with the new values
 //			// the was proposed for insertion.
@@ -179,7 +223,7 @@ func (nmsc *NanoMDMSettingsCreate) createSpec() (*NanoMDMSettings, *sqlgraph.Cre
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.NanoMDMSettingsUpsert) {
-//			SetServerURL(v+v).
+//			SetUsername(v+v).
 //		}).
 //		Exec(ctx)
 func (nmsc *NanoMDMSettingsCreate) OnConflict(opts ...sql.ConflictOption) *NanoMDMSettingsUpsertOne {
@@ -214,6 +258,42 @@ type (
 		*sql.UpdateSet
 	}
 )
+
+// SetUsername sets the "username" field.
+func (u *NanoMDMSettingsUpsert) SetUsername(v string) *NanoMDMSettingsUpsert {
+	u.Set(nanomdmsettings.FieldUsername, v)
+	return u
+}
+
+// UpdateUsername sets the "username" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsert) UpdateUsername() *NanoMDMSettingsUpsert {
+	u.SetExcluded(nanomdmsettings.FieldUsername)
+	return u
+}
+
+// ClearUsername clears the value of the "username" field.
+func (u *NanoMDMSettingsUpsert) ClearUsername() *NanoMDMSettingsUpsert {
+	u.SetNull(nanomdmsettings.FieldUsername)
+	return u
+}
+
+// SetPassword sets the "password" field.
+func (u *NanoMDMSettingsUpsert) SetPassword(v string) *NanoMDMSettingsUpsert {
+	u.Set(nanomdmsettings.FieldPassword, v)
+	return u
+}
+
+// UpdatePassword sets the "password" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsert) UpdatePassword() *NanoMDMSettingsUpsert {
+	u.SetExcluded(nanomdmsettings.FieldPassword)
+	return u
+}
+
+// ClearPassword clears the value of the "password" field.
+func (u *NanoMDMSettingsUpsert) ClearPassword() *NanoMDMSettingsUpsert {
+	u.SetNull(nanomdmsettings.FieldPassword)
+	return u
+}
 
 // SetServerURL sets the "server_url" field.
 func (u *NanoMDMSettingsUpsert) SetServerURL(v string) *NanoMDMSettingsUpsert {
@@ -289,6 +369,48 @@ func (u *NanoMDMSettingsUpsertOne) Update(set func(*NanoMDMSettingsUpsert)) *Nan
 		set(&NanoMDMSettingsUpsert{UpdateSet: update})
 	}))
 	return u
+}
+
+// SetUsername sets the "username" field.
+func (u *NanoMDMSettingsUpsertOne) SetUsername(v string) *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.SetUsername(v)
+	})
+}
+
+// UpdateUsername sets the "username" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsertOne) UpdateUsername() *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.UpdateUsername()
+	})
+}
+
+// ClearUsername clears the value of the "username" field.
+func (u *NanoMDMSettingsUpsertOne) ClearUsername() *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.ClearUsername()
+	})
+}
+
+// SetPassword sets the "password" field.
+func (u *NanoMDMSettingsUpsertOne) SetPassword(v string) *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.SetPassword(v)
+	})
+}
+
+// UpdatePassword sets the "password" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsertOne) UpdatePassword() *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.UpdatePassword()
+	})
+}
+
+// ClearPassword clears the value of the "password" field.
+func (u *NanoMDMSettingsUpsertOne) ClearPassword() *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.ClearPassword()
+	})
 }
 
 // SetServerURL sets the "server_url" field.
@@ -468,7 +590,7 @@ func (nmscb *NanoMDMSettingsCreateBulk) ExecX(ctx context.Context) {
 //		// Override some of the fields with custom
 //		// update values.
 //		Update(func(u *ent.NanoMDMSettingsUpsert) {
-//			SetServerURL(v+v).
+//			SetUsername(v+v).
 //		}).
 //		Exec(ctx)
 func (nmscb *NanoMDMSettingsCreateBulk) OnConflict(opts ...sql.ConflictOption) *NanoMDMSettingsUpsertBulk {
@@ -535,6 +657,48 @@ func (u *NanoMDMSettingsUpsertBulk) Update(set func(*NanoMDMSettingsUpsert)) *Na
 		set(&NanoMDMSettingsUpsert{UpdateSet: update})
 	}))
 	return u
+}
+
+// SetUsername sets the "username" field.
+func (u *NanoMDMSettingsUpsertBulk) SetUsername(v string) *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.SetUsername(v)
+	})
+}
+
+// UpdateUsername sets the "username" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsertBulk) UpdateUsername() *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.UpdateUsername()
+	})
+}
+
+// ClearUsername clears the value of the "username" field.
+func (u *NanoMDMSettingsUpsertBulk) ClearUsername() *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.ClearUsername()
+	})
+}
+
+// SetPassword sets the "password" field.
+func (u *NanoMDMSettingsUpsertBulk) SetPassword(v string) *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.SetPassword(v)
+	})
+}
+
+// UpdatePassword sets the "password" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsertBulk) UpdatePassword() *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.UpdatePassword()
+	})
+}
+
+// ClearPassword clears the value of the "password" field.
+func (u *NanoMDMSettingsUpsertBulk) ClearPassword() *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.ClearPassword()
+	})
 }
 
 // SetServerURL sets the "server_url" field.

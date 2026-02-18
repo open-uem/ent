@@ -301,12 +301,12 @@ func (nmsq *NanoMDMSettingsQuery) WithTenant(opts ...func(*TenantQuery)) *NanoMD
 // Example:
 //
 //	var v []struct {
-//		ServerURL string `json:"server_url,omitempty"`
+//		Username string `json:"username,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.NanoMDMSettings.Query().
-//		GroupBy(nanomdmsettings.FieldServerURL).
+//		GroupBy(nanomdmsettings.FieldUsername).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (nmsq *NanoMDMSettingsQuery) GroupBy(field string, fields ...string) *NanoMDMSettingsGroupBy {
@@ -324,11 +324,11 @@ func (nmsq *NanoMDMSettingsQuery) GroupBy(field string, fields ...string) *NanoM
 // Example:
 //
 //	var v []struct {
-//		ServerURL string `json:"server_url,omitempty"`
+//		Username string `json:"username,omitempty"`
 //	}
 //
 //	client.NanoMDMSettings.Query().
-//		Select(nanomdmsettings.FieldServerURL).
+//		Select(nanomdmsettings.FieldUsername).
 //		Scan(ctx, &v)
 func (nmsq *NanoMDMSettingsQuery) Select(fields ...string) *NanoMDMSettingsSelect {
 	nmsq.ctx.Fields = append(nmsq.ctx.Fields, fields...)

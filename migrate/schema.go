@@ -391,6 +391,8 @@ var (
 	// NanoMdmSettingsColumns holds the columns for the "nano_mdm_settings" table.
 	NanoMdmSettingsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "username", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "password", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "server_url", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "ca_cer_file", Type: field.TypeString, Nullable: true, Default: ""},
 	}

@@ -29,6 +29,46 @@ func (nmsu *NanoMDMSettingsUpdate) Where(ps ...predicate.NanoMDMSettings) *NanoM
 	return nmsu
 }
 
+// SetUsername sets the "username" field.
+func (nmsu *NanoMDMSettingsUpdate) SetUsername(s string) *NanoMDMSettingsUpdate {
+	nmsu.mutation.SetUsername(s)
+	return nmsu
+}
+
+// SetNillableUsername sets the "username" field if the given value is not nil.
+func (nmsu *NanoMDMSettingsUpdate) SetNillableUsername(s *string) *NanoMDMSettingsUpdate {
+	if s != nil {
+		nmsu.SetUsername(*s)
+	}
+	return nmsu
+}
+
+// ClearUsername clears the value of the "username" field.
+func (nmsu *NanoMDMSettingsUpdate) ClearUsername() *NanoMDMSettingsUpdate {
+	nmsu.mutation.ClearUsername()
+	return nmsu
+}
+
+// SetPassword sets the "password" field.
+func (nmsu *NanoMDMSettingsUpdate) SetPassword(s string) *NanoMDMSettingsUpdate {
+	nmsu.mutation.SetPassword(s)
+	return nmsu
+}
+
+// SetNillablePassword sets the "password" field if the given value is not nil.
+func (nmsu *NanoMDMSettingsUpdate) SetNillablePassword(s *string) *NanoMDMSettingsUpdate {
+	if s != nil {
+		nmsu.SetPassword(*s)
+	}
+	return nmsu
+}
+
+// ClearPassword clears the value of the "password" field.
+func (nmsu *NanoMDMSettingsUpdate) ClearPassword() *NanoMDMSettingsUpdate {
+	nmsu.mutation.ClearPassword()
+	return nmsu
+}
+
 // SetServerURL sets the "server_url" field.
 func (nmsu *NanoMDMSettingsUpdate) SetServerURL(s string) *NanoMDMSettingsUpdate {
 	nmsu.mutation.SetServerURL(s)
@@ -152,6 +192,18 @@ func (nmsu *NanoMDMSettingsUpdate) sqlSave(ctx context.Context) (n int, err erro
 			}
 		}
 	}
+	if value, ok := nmsu.mutation.Username(); ok {
+		_spec.SetField(nanomdmsettings.FieldUsername, field.TypeString, value)
+	}
+	if nmsu.mutation.UsernameCleared() {
+		_spec.ClearField(nanomdmsettings.FieldUsername, field.TypeString)
+	}
+	if value, ok := nmsu.mutation.Password(); ok {
+		_spec.SetField(nanomdmsettings.FieldPassword, field.TypeString, value)
+	}
+	if nmsu.mutation.PasswordCleared() {
+		_spec.ClearField(nanomdmsettings.FieldPassword, field.TypeString)
+	}
 	if value, ok := nmsu.mutation.ServerURL(); ok {
 		_spec.SetField(nanomdmsettings.FieldServerURL, field.TypeString, value)
 	}
@@ -229,6 +281,46 @@ type NanoMDMSettingsUpdateOne struct {
 	hooks     []Hook
 	mutation  *NanoMDMSettingsMutation
 	modifiers []func(*sql.UpdateBuilder)
+}
+
+// SetUsername sets the "username" field.
+func (nmsuo *NanoMDMSettingsUpdateOne) SetUsername(s string) *NanoMDMSettingsUpdateOne {
+	nmsuo.mutation.SetUsername(s)
+	return nmsuo
+}
+
+// SetNillableUsername sets the "username" field if the given value is not nil.
+func (nmsuo *NanoMDMSettingsUpdateOne) SetNillableUsername(s *string) *NanoMDMSettingsUpdateOne {
+	if s != nil {
+		nmsuo.SetUsername(*s)
+	}
+	return nmsuo
+}
+
+// ClearUsername clears the value of the "username" field.
+func (nmsuo *NanoMDMSettingsUpdateOne) ClearUsername() *NanoMDMSettingsUpdateOne {
+	nmsuo.mutation.ClearUsername()
+	return nmsuo
+}
+
+// SetPassword sets the "password" field.
+func (nmsuo *NanoMDMSettingsUpdateOne) SetPassword(s string) *NanoMDMSettingsUpdateOne {
+	nmsuo.mutation.SetPassword(s)
+	return nmsuo
+}
+
+// SetNillablePassword sets the "password" field if the given value is not nil.
+func (nmsuo *NanoMDMSettingsUpdateOne) SetNillablePassword(s *string) *NanoMDMSettingsUpdateOne {
+	if s != nil {
+		nmsuo.SetPassword(*s)
+	}
+	return nmsuo
+}
+
+// ClearPassword clears the value of the "password" field.
+func (nmsuo *NanoMDMSettingsUpdateOne) ClearPassword() *NanoMDMSettingsUpdateOne {
+	nmsuo.mutation.ClearPassword()
+	return nmsuo
 }
 
 // SetServerURL sets the "server_url" field.
@@ -383,6 +475,18 @@ func (nmsuo *NanoMDMSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Nano
 				ps[i](selector)
 			}
 		}
+	}
+	if value, ok := nmsuo.mutation.Username(); ok {
+		_spec.SetField(nanomdmsettings.FieldUsername, field.TypeString, value)
+	}
+	if nmsuo.mutation.UsernameCleared() {
+		_spec.ClearField(nanomdmsettings.FieldUsername, field.TypeString)
+	}
+	if value, ok := nmsuo.mutation.Password(); ok {
+		_spec.SetField(nanomdmsettings.FieldPassword, field.TypeString, value)
+	}
+	if nmsuo.mutation.PasswordCleared() {
+		_spec.ClearField(nanomdmsettings.FieldPassword, field.TypeString)
 	}
 	if value, ok := nmsuo.mutation.ServerURL(); ok {
 		_spec.SetField(nanomdmsettings.FieldServerURL, field.TypeString, value)

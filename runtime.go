@@ -384,12 +384,20 @@ func init() {
 	nanomdminfo.DefaultUdid = nanomdminfoDescUdid.Default.(string)
 	nanomdmsettingsFields := schema.NanoMDMSettings{}.Fields()
 	_ = nanomdmsettingsFields
+	// nanomdmsettingsDescUsername is the schema descriptor for username field.
+	nanomdmsettingsDescUsername := nanomdmsettingsFields[0].Descriptor()
+	// nanomdmsettings.DefaultUsername holds the default value on creation for the username field.
+	nanomdmsettings.DefaultUsername = nanomdmsettingsDescUsername.Default.(string)
+	// nanomdmsettingsDescPassword is the schema descriptor for password field.
+	nanomdmsettingsDescPassword := nanomdmsettingsFields[1].Descriptor()
+	// nanomdmsettings.DefaultPassword holds the default value on creation for the password field.
+	nanomdmsettings.DefaultPassword = nanomdmsettingsDescPassword.Default.(string)
 	// nanomdmsettingsDescServerURL is the schema descriptor for server_url field.
-	nanomdmsettingsDescServerURL := nanomdmsettingsFields[0].Descriptor()
+	nanomdmsettingsDescServerURL := nanomdmsettingsFields[2].Descriptor()
 	// nanomdmsettings.DefaultServerURL holds the default value on creation for the server_url field.
 	nanomdmsettings.DefaultServerURL = nanomdmsettingsDescServerURL.Default.(string)
 	// nanomdmsettingsDescCaCerFile is the schema descriptor for ca_cer_file field.
-	nanomdmsettingsDescCaCerFile := nanomdmsettingsFields[1].Descriptor()
+	nanomdmsettingsDescCaCerFile := nanomdmsettingsFields[3].Descriptor()
 	// nanomdmsettings.DefaultCaCerFile holds the default value on creation for the ca_cer_file field.
 	nanomdmsettings.DefaultCaCerFile = nanomdmsettingsDescCaCerFile.Default.(string)
 	netbirdFields := schema.Netbird{}.Fields()

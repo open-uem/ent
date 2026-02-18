@@ -53,6 +53,16 @@ func IDLTE(id int) predicate.NanoMDMSettings {
 	return predicate.NanoMDMSettings(sql.FieldLTE(FieldID, id))
 }
 
+// Username applies equality check predicate on the "username" field. It's identical to UsernameEQ.
+func Username(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEQ(FieldUsername, v))
+}
+
+// Password applies equality check predicate on the "password" field. It's identical to PasswordEQ.
+func Password(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEQ(FieldPassword, v))
+}
+
 // ServerURL applies equality check predicate on the "server_url" field. It's identical to ServerURLEQ.
 func ServerURL(v string) predicate.NanoMDMSettings {
 	return predicate.NanoMDMSettings(sql.FieldEQ(FieldServerURL, v))
@@ -61,6 +71,156 @@ func ServerURL(v string) predicate.NanoMDMSettings {
 // CaCerFile applies equality check predicate on the "ca_cer_file" field. It's identical to CaCerFileEQ.
 func CaCerFile(v string) predicate.NanoMDMSettings {
 	return predicate.NanoMDMSettings(sql.FieldEQ(FieldCaCerFile, v))
+}
+
+// UsernameEQ applies the EQ predicate on the "username" field.
+func UsernameEQ(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEQ(FieldUsername, v))
+}
+
+// UsernameNEQ applies the NEQ predicate on the "username" field.
+func UsernameNEQ(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNEQ(FieldUsername, v))
+}
+
+// UsernameIn applies the In predicate on the "username" field.
+func UsernameIn(vs ...string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldIn(FieldUsername, vs...))
+}
+
+// UsernameNotIn applies the NotIn predicate on the "username" field.
+func UsernameNotIn(vs ...string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNotIn(FieldUsername, vs...))
+}
+
+// UsernameGT applies the GT predicate on the "username" field.
+func UsernameGT(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldGT(FieldUsername, v))
+}
+
+// UsernameGTE applies the GTE predicate on the "username" field.
+func UsernameGTE(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldGTE(FieldUsername, v))
+}
+
+// UsernameLT applies the LT predicate on the "username" field.
+func UsernameLT(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldLT(FieldUsername, v))
+}
+
+// UsernameLTE applies the LTE predicate on the "username" field.
+func UsernameLTE(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldLTE(FieldUsername, v))
+}
+
+// UsernameContains applies the Contains predicate on the "username" field.
+func UsernameContains(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldContains(FieldUsername, v))
+}
+
+// UsernameHasPrefix applies the HasPrefix predicate on the "username" field.
+func UsernameHasPrefix(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldHasPrefix(FieldUsername, v))
+}
+
+// UsernameHasSuffix applies the HasSuffix predicate on the "username" field.
+func UsernameHasSuffix(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldHasSuffix(FieldUsername, v))
+}
+
+// UsernameIsNil applies the IsNil predicate on the "username" field.
+func UsernameIsNil() predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldIsNull(FieldUsername))
+}
+
+// UsernameNotNil applies the NotNil predicate on the "username" field.
+func UsernameNotNil() predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNotNull(FieldUsername))
+}
+
+// UsernameEqualFold applies the EqualFold predicate on the "username" field.
+func UsernameEqualFold(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEqualFold(FieldUsername, v))
+}
+
+// UsernameContainsFold applies the ContainsFold predicate on the "username" field.
+func UsernameContainsFold(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldContainsFold(FieldUsername, v))
+}
+
+// PasswordEQ applies the EQ predicate on the "password" field.
+func PasswordEQ(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEQ(FieldPassword, v))
+}
+
+// PasswordNEQ applies the NEQ predicate on the "password" field.
+func PasswordNEQ(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNEQ(FieldPassword, v))
+}
+
+// PasswordIn applies the In predicate on the "password" field.
+func PasswordIn(vs ...string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldIn(FieldPassword, vs...))
+}
+
+// PasswordNotIn applies the NotIn predicate on the "password" field.
+func PasswordNotIn(vs ...string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNotIn(FieldPassword, vs...))
+}
+
+// PasswordGT applies the GT predicate on the "password" field.
+func PasswordGT(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldGT(FieldPassword, v))
+}
+
+// PasswordGTE applies the GTE predicate on the "password" field.
+func PasswordGTE(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldGTE(FieldPassword, v))
+}
+
+// PasswordLT applies the LT predicate on the "password" field.
+func PasswordLT(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldLT(FieldPassword, v))
+}
+
+// PasswordLTE applies the LTE predicate on the "password" field.
+func PasswordLTE(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldLTE(FieldPassword, v))
+}
+
+// PasswordContains applies the Contains predicate on the "password" field.
+func PasswordContains(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldContains(FieldPassword, v))
+}
+
+// PasswordHasPrefix applies the HasPrefix predicate on the "password" field.
+func PasswordHasPrefix(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldHasPrefix(FieldPassword, v))
+}
+
+// PasswordHasSuffix applies the HasSuffix predicate on the "password" field.
+func PasswordHasSuffix(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldHasSuffix(FieldPassword, v))
+}
+
+// PasswordIsNil applies the IsNil predicate on the "password" field.
+func PasswordIsNil() predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldIsNull(FieldPassword))
+}
+
+// PasswordNotNil applies the NotNil predicate on the "password" field.
+func PasswordNotNil() predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNotNull(FieldPassword))
+}
+
+// PasswordEqualFold applies the EqualFold predicate on the "password" field.
+func PasswordEqualFold(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEqualFold(FieldPassword, v))
+}
+
+// PasswordContainsFold applies the ContainsFold predicate on the "password" field.
+func PasswordContainsFold(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldContainsFold(FieldPassword, v))
 }
 
 // ServerURLEQ applies the EQ predicate on the "server_url" field.

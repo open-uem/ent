@@ -14,6 +14,8 @@ type NanoMDMSettings struct {
 // Fields of the NanoMDMSettings.
 func (NanoMDMSettings) Fields() []ent.Field {
 	return []ent.Field{
+		field.String("username").Optional().Default(""),
+		field.String("password").Optional().Default(""),
 		field.String("server_url").Optional().Default(""),
 		field.String("ca_cer_file").Optional().Default(""),
 	}

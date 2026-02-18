@@ -16,6 +16,10 @@ type NanoMDMSettings struct {
 	config `json:"-"`
 	// ID of the ent.
 	ID int `json:"id,omitempty"`
+	// Username holds the value of the "username" field.
+	Username string `json:"username,omitempty"`
+	// Password holds the value of the "password" field.
+	Password string `json:"password,omitempty"`
 	// ServerURL holds the value of the "server_url" field.
 	ServerURL string `json:"server_url,omitempty"`
 	// CaCerFile holds the value of the "ca_cer_file" field.
@@ -51,7 +55,7 @@ func (*NanoMDMSettings) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case nanomdmsettings.FieldID:
 			values[i] = new(sql.NullInt64)
-		case nanomdmsettings.FieldServerURL, nanomdmsettings.FieldCaCerFile:
+		case nanomdmsettings.FieldUsername, nanomdmsettings.FieldPassword, nanomdmsettings.FieldServerURL, nanomdmsettings.FieldCaCerFile:
 			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -74,6 +78,18 @@ func (nms *NanoMDMSettings) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
 			nms.ID = int(value.Int64)
+		case nanomdmsettings.FieldUsername:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field username", values[i])
+			} else if value.Valid {
+				nms.Username = value.String
+			}
+		case nanomdmsettings.FieldPassword:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field password", values[i])
+			} else if value.Valid {
+				nms.Password = value.String
+			}
 		case nanomdmsettings.FieldServerURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field server_url", values[i])
@@ -127,6 +143,12 @@ func (nms *NanoMDMSettings) String() string {
 	var builder strings.Builder
 	builder.WriteString("NanoMDMSettings(")
 	builder.WriteString(fmt.Sprintf("id=%v, ", nms.ID))
+	builder.WriteString("username=")
+	builder.WriteString(nms.Username)
+	builder.WriteString(", ")
+	builder.WriteString("password=")
+	builder.WriteString(nms.Password)
+	builder.WriteString(", ")
 	builder.WriteString("server_url=")
 	builder.WriteString(nms.ServerURL)
 	builder.WriteString(", ")
