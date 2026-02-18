@@ -408,6 +408,29 @@ func HasNetbirdWith(preds ...predicate.NetbirdSettings) predicate.Tenant {
 	})
 }
 
+// HasNanomdm applies the HasEdge predicate on the "nanomdm" edge.
+func HasNanomdm() predicate.Tenant {
+	return predicate.Tenant(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, false, NanomdmTable, NanomdmColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasNanomdmWith applies the HasEdge predicate on the "nanomdm" edge with a given conditions (other predicates).
+func HasNanomdmWith(preds ...predicate.NanoMDMSettings) predicate.Tenant {
+	return predicate.Tenant(func(s *sql.Selector) {
+		step := newNanomdmStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.Tenant) predicate.Tenant {
 	return predicate.Tenant(sql.AndPredicates(predicates...))

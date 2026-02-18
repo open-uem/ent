@@ -24,6 +24,7 @@ import (
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
 	"github.com/open-uem/ent/nanomdminfo"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/nanomdmuser"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
@@ -75,6 +76,7 @@ const (
 	TypeMetadata              = "Metadata"
 	TypeMonitor               = "Monitor"
 	TypeNanoMDMInfo           = "NanoMDMInfo"
+	TypeNanoMDMSettings       = "NanoMDMSettings"
 	TypeNanoMDMUser           = "NanoMDMUser"
 	TypeNetbird               = "Netbird"
 	TypeNetbirdSettings       = "NetbirdSettings"
@@ -15683,6 +15685,520 @@ func (m *NanoMDMInfoMutation) ResetEdge(name string) error {
 		return nil
 	}
 	return fmt.Errorf("unknown NanoMDMInfo edge %s", name)
+}
+
+// NanoMDMSettingsMutation represents an operation that mutates the NanoMDMSettings nodes in the graph.
+type NanoMDMSettingsMutation struct {
+	config
+	op            Op
+	typ           string
+	id            *int
+	server_url    *string
+	ca_cer_file   *string
+	clearedFields map[string]struct{}
+	tenant        map[int]struct{}
+	removedtenant map[int]struct{}
+	clearedtenant bool
+	done          bool
+	oldValue      func(context.Context) (*NanoMDMSettings, error)
+	predicates    []predicate.NanoMDMSettings
+}
+
+var _ ent.Mutation = (*NanoMDMSettingsMutation)(nil)
+
+// nanomdmsettingsOption allows management of the mutation configuration using functional options.
+type nanomdmsettingsOption func(*NanoMDMSettingsMutation)
+
+// newNanoMDMSettingsMutation creates new mutation for the NanoMDMSettings entity.
+func newNanoMDMSettingsMutation(c config, op Op, opts ...nanomdmsettingsOption) *NanoMDMSettingsMutation {
+	m := &NanoMDMSettingsMutation{
+		config:        c,
+		op:            op,
+		typ:           TypeNanoMDMSettings,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withNanoMDMSettingsID sets the ID field of the mutation.
+func withNanoMDMSettingsID(id int) nanomdmsettingsOption {
+	return func(m *NanoMDMSettingsMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *NanoMDMSettings
+		)
+		m.oldValue = func(ctx context.Context) (*NanoMDMSettings, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().NanoMDMSettings.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withNanoMDMSettings sets the old NanoMDMSettings of the mutation.
+func withNanoMDMSettings(node *NanoMDMSettings) nanomdmsettingsOption {
+	return func(m *NanoMDMSettingsMutation) {
+		m.oldValue = func(context.Context) (*NanoMDMSettings, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m NanoMDMSettingsMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m NanoMDMSettingsMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *NanoMDMSettingsMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *NanoMDMSettingsMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().NanoMDMSettings.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetServerURL sets the "server_url" field.
+func (m *NanoMDMSettingsMutation) SetServerURL(s string) {
+	m.server_url = &s
+}
+
+// ServerURL returns the value of the "server_url" field in the mutation.
+func (m *NanoMDMSettingsMutation) ServerURL() (r string, exists bool) {
+	v := m.server_url
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldServerURL returns the old "server_url" field's value of the NanoMDMSettings entity.
+// If the NanoMDMSettings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMSettingsMutation) OldServerURL(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldServerURL is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldServerURL requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldServerURL: %w", err)
+	}
+	return oldValue.ServerURL, nil
+}
+
+// ClearServerURL clears the value of the "server_url" field.
+func (m *NanoMDMSettingsMutation) ClearServerURL() {
+	m.server_url = nil
+	m.clearedFields[nanomdmsettings.FieldServerURL] = struct{}{}
+}
+
+// ServerURLCleared returns if the "server_url" field was cleared in this mutation.
+func (m *NanoMDMSettingsMutation) ServerURLCleared() bool {
+	_, ok := m.clearedFields[nanomdmsettings.FieldServerURL]
+	return ok
+}
+
+// ResetServerURL resets all changes to the "server_url" field.
+func (m *NanoMDMSettingsMutation) ResetServerURL() {
+	m.server_url = nil
+	delete(m.clearedFields, nanomdmsettings.FieldServerURL)
+}
+
+// SetCaCerFile sets the "ca_cer_file" field.
+func (m *NanoMDMSettingsMutation) SetCaCerFile(s string) {
+	m.ca_cer_file = &s
+}
+
+// CaCerFile returns the value of the "ca_cer_file" field in the mutation.
+func (m *NanoMDMSettingsMutation) CaCerFile() (r string, exists bool) {
+	v := m.ca_cer_file
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldCaCerFile returns the old "ca_cer_file" field's value of the NanoMDMSettings entity.
+// If the NanoMDMSettings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMSettingsMutation) OldCaCerFile(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldCaCerFile is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldCaCerFile requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldCaCerFile: %w", err)
+	}
+	return oldValue.CaCerFile, nil
+}
+
+// ClearCaCerFile clears the value of the "ca_cer_file" field.
+func (m *NanoMDMSettingsMutation) ClearCaCerFile() {
+	m.ca_cer_file = nil
+	m.clearedFields[nanomdmsettings.FieldCaCerFile] = struct{}{}
+}
+
+// CaCerFileCleared returns if the "ca_cer_file" field was cleared in this mutation.
+func (m *NanoMDMSettingsMutation) CaCerFileCleared() bool {
+	_, ok := m.clearedFields[nanomdmsettings.FieldCaCerFile]
+	return ok
+}
+
+// ResetCaCerFile resets all changes to the "ca_cer_file" field.
+func (m *NanoMDMSettingsMutation) ResetCaCerFile() {
+	m.ca_cer_file = nil
+	delete(m.clearedFields, nanomdmsettings.FieldCaCerFile)
+}
+
+// AddTenantIDs adds the "tenant" edge to the Tenant entity by ids.
+func (m *NanoMDMSettingsMutation) AddTenantIDs(ids ...int) {
+	if m.tenant == nil {
+		m.tenant = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.tenant[ids[i]] = struct{}{}
+	}
+}
+
+// ClearTenant clears the "tenant" edge to the Tenant entity.
+func (m *NanoMDMSettingsMutation) ClearTenant() {
+	m.clearedtenant = true
+}
+
+// TenantCleared reports if the "tenant" edge to the Tenant entity was cleared.
+func (m *NanoMDMSettingsMutation) TenantCleared() bool {
+	return m.clearedtenant
+}
+
+// RemoveTenantIDs removes the "tenant" edge to the Tenant entity by IDs.
+func (m *NanoMDMSettingsMutation) RemoveTenantIDs(ids ...int) {
+	if m.removedtenant == nil {
+		m.removedtenant = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.tenant, ids[i])
+		m.removedtenant[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedTenant returns the removed IDs of the "tenant" edge to the Tenant entity.
+func (m *NanoMDMSettingsMutation) RemovedTenantIDs() (ids []int) {
+	for id := range m.removedtenant {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// TenantIDs returns the "tenant" edge IDs in the mutation.
+func (m *NanoMDMSettingsMutation) TenantIDs() (ids []int) {
+	for id := range m.tenant {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetTenant resets all changes to the "tenant" edge.
+func (m *NanoMDMSettingsMutation) ResetTenant() {
+	m.tenant = nil
+	m.clearedtenant = false
+	m.removedtenant = nil
+}
+
+// Where appends a list predicates to the NanoMDMSettingsMutation builder.
+func (m *NanoMDMSettingsMutation) Where(ps ...predicate.NanoMDMSettings) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the NanoMDMSettingsMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *NanoMDMSettingsMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.NanoMDMSettings, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *NanoMDMSettingsMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *NanoMDMSettingsMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (NanoMDMSettings).
+func (m *NanoMDMSettingsMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *NanoMDMSettingsMutation) Fields() []string {
+	fields := make([]string, 0, 2)
+	if m.server_url != nil {
+		fields = append(fields, nanomdmsettings.FieldServerURL)
+	}
+	if m.ca_cer_file != nil {
+		fields = append(fields, nanomdmsettings.FieldCaCerFile)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *NanoMDMSettingsMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case nanomdmsettings.FieldServerURL:
+		return m.ServerURL()
+	case nanomdmsettings.FieldCaCerFile:
+		return m.CaCerFile()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *NanoMDMSettingsMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case nanomdmsettings.FieldServerURL:
+		return m.OldServerURL(ctx)
+	case nanomdmsettings.FieldCaCerFile:
+		return m.OldCaCerFile(ctx)
+	}
+	return nil, fmt.Errorf("unknown NanoMDMSettings field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *NanoMDMSettingsMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case nanomdmsettings.FieldServerURL:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetServerURL(v)
+		return nil
+	case nanomdmsettings.FieldCaCerFile:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetCaCerFile(v)
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMSettings field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *NanoMDMSettingsMutation) AddedFields() []string {
+	return nil
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *NanoMDMSettingsMutation) AddedField(name string) (ent.Value, bool) {
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *NanoMDMSettingsMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	}
+	return fmt.Errorf("unknown NanoMDMSettings numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *NanoMDMSettingsMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(nanomdmsettings.FieldServerURL) {
+		fields = append(fields, nanomdmsettings.FieldServerURL)
+	}
+	if m.FieldCleared(nanomdmsettings.FieldCaCerFile) {
+		fields = append(fields, nanomdmsettings.FieldCaCerFile)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *NanoMDMSettingsMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *NanoMDMSettingsMutation) ClearField(name string) error {
+	switch name {
+	case nanomdmsettings.FieldServerURL:
+		m.ClearServerURL()
+		return nil
+	case nanomdmsettings.FieldCaCerFile:
+		m.ClearCaCerFile()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMSettings nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *NanoMDMSettingsMutation) ResetField(name string) error {
+	switch name {
+	case nanomdmsettings.FieldServerURL:
+		m.ResetServerURL()
+		return nil
+	case nanomdmsettings.FieldCaCerFile:
+		m.ResetCaCerFile()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMSettings field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *NanoMDMSettingsMutation) AddedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.tenant != nil {
+		edges = append(edges, nanomdmsettings.EdgeTenant)
+	}
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *NanoMDMSettingsMutation) AddedIDs(name string) []ent.Value {
+	switch name {
+	case nanomdmsettings.EdgeTenant:
+		ids := make([]ent.Value, 0, len(m.tenant))
+		for id := range m.tenant {
+			ids = append(ids, id)
+		}
+		return ids
+	}
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *NanoMDMSettingsMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.removedtenant != nil {
+		edges = append(edges, nanomdmsettings.EdgeTenant)
+	}
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *NanoMDMSettingsMutation) RemovedIDs(name string) []ent.Value {
+	switch name {
+	case nanomdmsettings.EdgeTenant:
+		ids := make([]ent.Value, 0, len(m.removedtenant))
+		for id := range m.removedtenant {
+			ids = append(ids, id)
+		}
+		return ids
+	}
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *NanoMDMSettingsMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.clearedtenant {
+		edges = append(edges, nanomdmsettings.EdgeTenant)
+	}
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *NanoMDMSettingsMutation) EdgeCleared(name string) bool {
+	switch name {
+	case nanomdmsettings.EdgeTenant:
+		return m.clearedtenant
+	}
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *NanoMDMSettingsMutation) ClearEdge(name string) error {
+	switch name {
+	}
+	return fmt.Errorf("unknown NanoMDMSettings unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *NanoMDMSettingsMutation) ResetEdge(name string) error {
+	switch name {
+	case nanomdmsettings.EdgeTenant:
+		m.ResetTenant()
+		return nil
+	}
+	return fmt.Errorf("unknown NanoMDMSettings edge %s", name)
 }
 
 // NanoMDMUserMutation represents an operation that mutates the NanoMDMUser nodes in the graph.
@@ -42013,6 +42529,8 @@ type TenantMutation struct {
 	clearedrustdesk bool
 	netbird         *int
 	clearednetbird  bool
+	nanomdm         *int
+	clearednanomdm  bool
 	done            bool
 	oldValue        func(context.Context) (*Tenant, error)
 	predicates      []predicate.Tenant
@@ -42606,6 +43124,45 @@ func (m *TenantMutation) ResetNetbird() {
 	m.clearednetbird = false
 }
 
+// SetNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by id.
+func (m *TenantMutation) SetNanomdmID(id int) {
+	m.nanomdm = &id
+}
+
+// ClearNanomdm clears the "nanomdm" edge to the NanoMDMSettings entity.
+func (m *TenantMutation) ClearNanomdm() {
+	m.clearednanomdm = true
+}
+
+// NanomdmCleared reports if the "nanomdm" edge to the NanoMDMSettings entity was cleared.
+func (m *TenantMutation) NanomdmCleared() bool {
+	return m.clearednanomdm
+}
+
+// NanomdmID returns the "nanomdm" edge ID in the mutation.
+func (m *TenantMutation) NanomdmID() (id int, exists bool) {
+	if m.nanomdm != nil {
+		return *m.nanomdm, true
+	}
+	return
+}
+
+// NanomdmIDs returns the "nanomdm" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// NanomdmID instead. It exists only for internal usage by the builders.
+func (m *TenantMutation) NanomdmIDs() (ids []int) {
+	if id := m.nanomdm; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetNanomdm resets all changes to the "nanomdm" edge.
+func (m *TenantMutation) ResetNanomdm() {
+	m.nanomdm = nil
+	m.clearednanomdm = false
+}
+
 // Where appends a list predicates to the TenantMutation builder.
 func (m *TenantMutation) Where(ps ...predicate.Tenant) {
 	m.predicates = append(m.predicates, ps...)
@@ -42817,7 +43374,7 @@ func (m *TenantMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *TenantMutation) AddedEdges() []string {
-	edges := make([]string, 0, 6)
+	edges := make([]string, 0, 7)
 	if m.sites != nil {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -42835,6 +43392,9 @@ func (m *TenantMutation) AddedEdges() []string {
 	}
 	if m.netbird != nil {
 		edges = append(edges, tenant.EdgeNetbird)
+	}
+	if m.nanomdm != nil {
+		edges = append(edges, tenant.EdgeNanomdm)
 	}
 	return edges
 }
@@ -42875,13 +43435,17 @@ func (m *TenantMutation) AddedIDs(name string) []ent.Value {
 		if id := m.netbird; id != nil {
 			return []ent.Value{*id}
 		}
+	case tenant.EdgeNanomdm:
+		if id := m.nanomdm; id != nil {
+			return []ent.Value{*id}
+		}
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *TenantMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 6)
+	edges := make([]string, 0, 7)
 	if m.removedsites != nil {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -42931,7 +43495,7 @@ func (m *TenantMutation) RemovedIDs(name string) []ent.Value {
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *TenantMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 6)
+	edges := make([]string, 0, 7)
 	if m.clearedsites {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -42949,6 +43513,9 @@ func (m *TenantMutation) ClearedEdges() []string {
 	}
 	if m.clearednetbird {
 		edges = append(edges, tenant.EdgeNetbird)
+	}
+	if m.clearednanomdm {
+		edges = append(edges, tenant.EdgeNanomdm)
 	}
 	return edges
 }
@@ -42969,6 +43536,8 @@ func (m *TenantMutation) EdgeCleared(name string) bool {
 		return m.clearedrustdesk
 	case tenant.EdgeNetbird:
 		return m.clearednetbird
+	case tenant.EdgeNanomdm:
+		return m.clearednanomdm
 	}
 	return false
 }
@@ -42982,6 +43551,9 @@ func (m *TenantMutation) ClearEdge(name string) error {
 		return nil
 	case tenant.EdgeNetbird:
 		m.ClearNetbird()
+		return nil
+	case tenant.EdgeNanomdm:
+		m.ClearNanomdm()
 		return nil
 	}
 	return fmt.Errorf("unknown Tenant unique edge %s", name)
@@ -43008,6 +43580,9 @@ func (m *TenantMutation) ResetEdge(name string) error {
 		return nil
 	case tenant.EdgeNetbird:
 		m.ResetNetbird()
+		return nil
+	case tenant.EdgeNanomdm:
+		m.ResetNanomdm()
 		return nil
 	}
 	return fmt.Errorf("unknown Tenant edge %s", name)

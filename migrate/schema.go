@@ -388,6 +388,18 @@ var (
 			},
 		},
 	}
+	// NanoMdmSettingsColumns holds the columns for the "nano_mdm_settings" table.
+	NanoMdmSettingsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "server_url", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "ca_cer_file", Type: field.TypeString, Nullable: true, Default: ""},
+	}
+	// NanoMdmSettingsTable holds the schema information for the "nano_mdm_settings" table.
+	NanoMdmSettingsTable = &schema.Table{
+		Name:       "nano_mdm_settings",
+		Columns:    NanoMdmSettingsColumns,
+		PrimaryKey: []*schema.Column{NanoMdmSettingsColumns[0]},
+	}
 	// NanoMdmUsersColumns holds the columns for the "nano_mdm_users" table.
 	NanoMdmUsersColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -1064,6 +1076,7 @@ var (
 		{Name: "created", Type: field.TypeTime, Nullable: true},
 		{Name: "modified", Type: field.TypeTime, Nullable: true},
 		{Name: "tenant_netbird", Type: field.TypeInt, Nullable: true},
+		{Name: "tenant_nanomdm", Type: field.TypeInt, Nullable: true},
 	}
 	// TenantsTable holds the schema information for the "tenants" table.
 	TenantsTable = &schema.Table{
@@ -1075,6 +1088,12 @@ var (
 				Symbol:     "tenants_netbird_settings_netbird",
 				Columns:    []*schema.Column{TenantsColumns[5]},
 				RefColumns: []*schema.Column{NetbirdSettingsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "tenants_nano_mdm_settings_nanomdm",
+				Columns:    []*schema.Column{TenantsColumns[6]},
+				RefColumns: []*schema.Column{NanoMdmSettingsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
 		},
@@ -1278,6 +1297,7 @@ var (
 		MetadataTable,
 		MonitorsTable,
 		NanoMdmInfosTable,
+		NanoMdmSettingsTable,
 		NanoMdmUsersTable,
 		NetbirdsTable,
 		NetbirdSettingsTable,
@@ -1346,6 +1366,7 @@ func init() {
 	TagsTable.ForeignKeys[2].RefTable = TenantsTable
 	TasksTable.ForeignKeys[0].RefTable = ProfilesTable
 	TenantsTable.ForeignKeys[0].RefTable = NetbirdSettingsTable
+	TenantsTable.ForeignKeys[1].RefTable = NanoMdmSettingsTable
 	UpdatesTable.ForeignKeys[0].RefTable = AgentsTable
 	WingetConfigExclusionsTable.ForeignKeys[0].RefTable = AgentsTable
 	AgentTagsTable.ForeignKeys[0].RefTable = AgentsTable

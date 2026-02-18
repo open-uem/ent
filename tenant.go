@@ -9,6 +9,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/tenant"
@@ -31,6 +32,7 @@ type Tenant struct {
 	// The values are being populated by the TenantQuery when eager-loading is set.
 	Edges          TenantEdges `json:"edges"`
 	tenant_netbird *int
+	tenant_nanomdm *int
 	selectValues   sql.SelectValues
 }
 
@@ -48,9 +50,11 @@ type TenantEdges struct {
 	Rustdesk []*Rustdesk `json:"rustdesk,omitempty"`
 	// Netbird holds the value of the netbird edge.
 	Netbird *NetbirdSettings `json:"netbird,omitempty"`
+	// Nanomdm holds the value of the nanomdm edge.
+	Nanomdm *NanoMDMSettings `json:"nanomdm,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [6]bool
+	loadedTypes [7]bool
 }
 
 // SitesOrErr returns the Sites value or an error if the edge
@@ -111,6 +115,17 @@ func (e TenantEdges) NetbirdOrErr() (*NetbirdSettings, error) {
 	return nil, &NotLoadedError{edge: "netbird"}
 }
 
+// NanomdmOrErr returns the Nanomdm value or an error if the edge
+// was not loaded in eager-loading, or loaded but was not found.
+func (e TenantEdges) NanomdmOrErr() (*NanoMDMSettings, error) {
+	if e.Nanomdm != nil {
+		return e.Nanomdm, nil
+	} else if e.loadedTypes[6] {
+		return nil, &NotFoundError{label: nanomdmsettings.Label}
+	}
+	return nil, &NotLoadedError{edge: "nanomdm"}
+}
+
 // scanValues returns the types for scanning values from sql.Rows.
 func (*Tenant) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
@@ -125,6 +140,8 @@ func (*Tenant) scanValues(columns []string) ([]any, error) {
 		case tenant.FieldCreated, tenant.FieldModified:
 			values[i] = new(sql.NullTime)
 		case tenant.ForeignKeys[0]: // tenant_netbird
+			values[i] = new(sql.NullInt64)
+		case tenant.ForeignKeys[1]: // tenant_nanomdm
 			values[i] = new(sql.NullInt64)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -178,6 +195,13 @@ func (t *Tenant) assignValues(columns []string, values []any) error {
 				t.tenant_netbird = new(int)
 				*t.tenant_netbird = int(value.Int64)
 			}
+		case tenant.ForeignKeys[1]:
+			if value, ok := values[i].(*sql.NullInt64); !ok {
+				return fmt.Errorf("unexpected type %T for edge-field tenant_nanomdm", value)
+			} else if value.Valid {
+				t.tenant_nanomdm = new(int)
+				*t.tenant_nanomdm = int(value.Int64)
+			}
 		default:
 			t.selectValues.Set(columns[i], values[i])
 		}
@@ -219,6 +243,11 @@ func (t *Tenant) QueryRustdesk() *RustdeskQuery {
 // QueryNetbird queries the "netbird" edge of the Tenant entity.
 func (t *Tenant) QueryNetbird() *NetbirdSettingsQuery {
 	return NewTenantClient(t.config).QueryNetbird(t)
+}
+
+// QueryNanomdm queries the "nanomdm" edge of the Tenant entity.
+func (t *Tenant) QueryNanomdm() *NanoMDMSettingsQuery {
+	return NewTenantClient(t.config).QueryNanomdm(t)
 }
 
 // Update returns a builder for updating this Tenant.

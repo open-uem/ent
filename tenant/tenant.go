@@ -34,6 +34,8 @@ const (
 	EdgeRustdesk = "rustdesk"
 	// EdgeNetbird holds the string denoting the netbird edge name in mutations.
 	EdgeNetbird = "netbird"
+	// EdgeNanomdm holds the string denoting the nanomdm edge name in mutations.
+	EdgeNanomdm = "nanomdm"
 	// Table holds the table name of the tenant in the database.
 	Table = "tenants"
 	// SitesTable is the table that holds the sites relation/edge.
@@ -76,6 +78,13 @@ const (
 	NetbirdInverseTable = "netbird_settings"
 	// NetbirdColumn is the table column denoting the netbird relation/edge.
 	NetbirdColumn = "tenant_netbird"
+	// NanomdmTable is the table that holds the nanomdm relation/edge.
+	NanomdmTable = "tenants"
+	// NanomdmInverseTable is the table name for the NanoMDMSettings entity.
+	// It exists in this package in order to avoid circular dependency with the "nanomdmsettings" package.
+	NanomdmInverseTable = "nano_mdm_settings"
+	// NanomdmColumn is the table column denoting the nanomdm relation/edge.
+	NanomdmColumn = "tenant_nanomdm"
 )
 
 // Columns holds all SQL columns for tenant fields.
@@ -91,6 +100,7 @@ var Columns = []string{
 // table and are not defined as standalone fields in the schema.
 var ForeignKeys = []string{
 	"tenant_netbird",
+	"tenant_nanomdm",
 }
 
 var (
@@ -220,6 +230,13 @@ func ByNetbirdField(field string, opts ...sql.OrderTermOption) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newNetbirdStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByNanomdmField orders the results by nanomdm field.
+func ByNanomdmField(field string, opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newNanomdmStep(), sql.OrderByField(field, opts...))
+	}
+}
 func newSitesStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -260,5 +277,12 @@ func newNetbirdStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NetbirdInverseTable, FieldID),
 		sqlgraph.Edge(sqlgraph.M2O, false, NetbirdTable, NetbirdColumn),
+	)
+}
+func newNanomdmStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(NanomdmInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2O, false, NanomdmTable, NanomdmColumn),
 	)
 }

@@ -12,6 +12,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/predicate"
@@ -35,6 +36,7 @@ type TenantQuery struct {
 	withMetadata *OrgMetadataQuery
 	withRustdesk *RustdeskQuery
 	withNetbird  *NetbirdSettingsQuery
+	withNanomdm  *NanoMDMSettingsQuery
 	withFKs      bool
 	modifiers    []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
@@ -198,6 +200,28 @@ func (tq *TenantQuery) QueryNetbird() *NetbirdSettingsQuery {
 			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
 			sqlgraph.To(netbirdsettings.Table, netbirdsettings.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, false, tenant.NetbirdTable, tenant.NetbirdColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryNanomdm chains the current query on the "nanomdm" edge.
+func (tq *TenantQuery) QueryNanomdm() *NanoMDMSettingsQuery {
+	query := (&NanoMDMSettingsClient{config: tq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := tq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := tq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
+			sqlgraph.To(nanomdmsettings.Table, nanomdmsettings.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, false, tenant.NanomdmTable, tenant.NanomdmColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
 		return fromU, nil
@@ -403,6 +427,7 @@ func (tq *TenantQuery) Clone() *TenantQuery {
 		withMetadata: tq.withMetadata.Clone(),
 		withRustdesk: tq.withRustdesk.Clone(),
 		withNetbird:  tq.withNetbird.Clone(),
+		withNanomdm:  tq.withNanomdm.Clone(),
 		// clone intermediate query.
 		sql:       tq.sql.Clone(),
 		path:      tq.path,
@@ -473,6 +498,17 @@ func (tq *TenantQuery) WithNetbird(opts ...func(*NetbirdSettingsQuery)) *TenantQ
 		opt(query)
 	}
 	tq.withNetbird = query
+	return tq
+}
+
+// WithNanomdm tells the query-builder to eager-load the nodes that are connected to
+// the "nanomdm" edge. The optional arguments are used to configure the query builder of the edge.
+func (tq *TenantQuery) WithNanomdm(opts ...func(*NanoMDMSettingsQuery)) *TenantQuery {
+	query := (&NanoMDMSettingsClient{config: tq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	tq.withNanomdm = query
 	return tq
 }
 
@@ -555,16 +591,17 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 		nodes       = []*Tenant{}
 		withFKs     = tq.withFKs
 		_spec       = tq.querySpec()
-		loadedTypes = [6]bool{
+		loadedTypes = [7]bool{
 			tq.withSites != nil,
 			tq.withSettings != nil,
 			tq.withTags != nil,
 			tq.withMetadata != nil,
 			tq.withRustdesk != nil,
 			tq.withNetbird != nil,
+			tq.withNanomdm != nil,
 		}
 	)
-	if tq.withNetbird != nil {
+	if tq.withNetbird != nil || tq.withNanomdm != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -628,6 +665,12 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 	if query := tq.withNetbird; query != nil {
 		if err := tq.loadNetbird(ctx, query, nodes, nil,
 			func(n *Tenant, e *NetbirdSettings) { n.Edges.Netbird = e }); err != nil {
+			return nil, err
+		}
+	}
+	if query := tq.withNanomdm; query != nil {
+		if err := tq.loadNanomdm(ctx, query, nodes, nil,
+			func(n *Tenant, e *NanoMDMSettings) { n.Edges.Nanomdm = e }); err != nil {
 			return nil, err
 		}
 	}
@@ -841,6 +884,38 @@ func (tq *TenantQuery) loadNetbird(ctx context.Context, query *NetbirdSettingsQu
 		nodes, ok := nodeids[n.ID]
 		if !ok {
 			return fmt.Errorf(`unexpected foreign-key "tenant_netbird" returned %v`, n.ID)
+		}
+		for i := range nodes {
+			assign(nodes[i], n)
+		}
+	}
+	return nil
+}
+func (tq *TenantQuery) loadNanomdm(ctx context.Context, query *NanoMDMSettingsQuery, nodes []*Tenant, init func(*Tenant), assign func(*Tenant, *NanoMDMSettings)) error {
+	ids := make([]int, 0, len(nodes))
+	nodeids := make(map[int][]*Tenant)
+	for i := range nodes {
+		if nodes[i].tenant_nanomdm == nil {
+			continue
+		}
+		fk := *nodes[i].tenant_nanomdm
+		if _, ok := nodeids[fk]; !ok {
+			ids = append(ids, fk)
+		}
+		nodeids[fk] = append(nodeids[fk], nodes[i])
+	}
+	if len(ids) == 0 {
+		return nil
+	}
+	query.Where(nanomdmsettings.IDIn(ids...))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nodeids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected foreign-key "tenant_nanomdm" returned %v`, n.ID)
 		}
 		for i := range nodes {
 			assign(nodes[i], n)

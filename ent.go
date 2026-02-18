@@ -25,6 +25,7 @@ import (
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
 	"github.com/open-uem/ent/nanomdminfo"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/nanomdmuser"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
@@ -124,6 +125,7 @@ func checkColumn(table, column string) error {
 			metadata.Table:              metadata.ValidColumn,
 			monitor.Table:               monitor.ValidColumn,
 			nanomdminfo.Table:           nanomdminfo.ValidColumn,
+			nanomdmsettings.Table:       nanomdmsettings.ValidColumn,
 			nanomdmuser.Table:           nanomdmuser.ValidColumn,
 			netbird.Table:               netbird.ValidColumn,
 			netbirdsettings.Table:       netbirdsettings.ValidColumn,

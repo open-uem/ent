@@ -11,6 +11,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/predicate"
@@ -205,6 +206,25 @@ func (tu *TenantUpdate) SetNetbird(n *NetbirdSettings) *TenantUpdate {
 	return tu.SetNetbirdID(n.ID)
 }
 
+// SetNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by ID.
+func (tu *TenantUpdate) SetNanomdmID(id int) *TenantUpdate {
+	tu.mutation.SetNanomdmID(id)
+	return tu
+}
+
+// SetNillableNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by ID if the given value is not nil.
+func (tu *TenantUpdate) SetNillableNanomdmID(id *int) *TenantUpdate {
+	if id != nil {
+		tu = tu.SetNanomdmID(*id)
+	}
+	return tu
+}
+
+// SetNanomdm sets the "nanomdm" edge to the NanoMDMSettings entity.
+func (tu *TenantUpdate) SetNanomdm(n *NanoMDMSettings) *TenantUpdate {
+	return tu.SetNanomdmID(n.ID)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tu *TenantUpdate) Mutation() *TenantMutation {
 	return tu.mutation
@@ -303,6 +323,12 @@ func (tu *TenantUpdate) RemoveRustdesk(r ...*Rustdesk) *TenantUpdate {
 // ClearNetbird clears the "netbird" edge to the NetbirdSettings entity.
 func (tu *TenantUpdate) ClearNetbird() *TenantUpdate {
 	tu.mutation.ClearNetbird()
+	return tu
+}
+
+// ClearNanomdm clears the "nanomdm" edge to the NanoMDMSettings entity.
+func (tu *TenantUpdate) ClearNanomdm() *TenantUpdate {
+	tu.mutation.ClearNanomdm()
 	return tu
 }
 
@@ -619,6 +645,35 @@ func (tu *TenantUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if tu.mutation.NanomdmCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: false,
+			Table:   tenant.NanomdmTable,
+			Columns: []string{tenant.NanomdmColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdmsettings.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.NanomdmIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: false,
+			Table:   tenant.NanomdmTable,
+			Columns: []string{tenant.NanomdmColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdmsettings.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(tu.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -811,6 +866,25 @@ func (tuo *TenantUpdateOne) SetNetbird(n *NetbirdSettings) *TenantUpdateOne {
 	return tuo.SetNetbirdID(n.ID)
 }
 
+// SetNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by ID.
+func (tuo *TenantUpdateOne) SetNanomdmID(id int) *TenantUpdateOne {
+	tuo.mutation.SetNanomdmID(id)
+	return tuo
+}
+
+// SetNillableNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by ID if the given value is not nil.
+func (tuo *TenantUpdateOne) SetNillableNanomdmID(id *int) *TenantUpdateOne {
+	if id != nil {
+		tuo = tuo.SetNanomdmID(*id)
+	}
+	return tuo
+}
+
+// SetNanomdm sets the "nanomdm" edge to the NanoMDMSettings entity.
+func (tuo *TenantUpdateOne) SetNanomdm(n *NanoMDMSettings) *TenantUpdateOne {
+	return tuo.SetNanomdmID(n.ID)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tuo *TenantUpdateOne) Mutation() *TenantMutation {
 	return tuo.mutation
@@ -909,6 +983,12 @@ func (tuo *TenantUpdateOne) RemoveRustdesk(r ...*Rustdesk) *TenantUpdateOne {
 // ClearNetbird clears the "netbird" edge to the NetbirdSettings entity.
 func (tuo *TenantUpdateOne) ClearNetbird() *TenantUpdateOne {
 	tuo.mutation.ClearNetbird()
+	return tuo
+}
+
+// ClearNanomdm clears the "nanomdm" edge to the NanoMDMSettings entity.
+func (tuo *TenantUpdateOne) ClearNanomdm() *TenantUpdateOne {
+	tuo.mutation.ClearNanomdm()
 	return tuo
 }
 
@@ -1248,6 +1328,35 @@ func (tuo *TenantUpdateOne) sqlSave(ctx context.Context) (_node *Tenant, err err
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbirdsettings.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if tuo.mutation.NanomdmCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: false,
+			Table:   tenant.NanomdmTable,
+			Columns: []string{tenant.NanomdmColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdmsettings.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.NanomdmIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: false,
+			Table:   tenant.NanomdmTable,
+			Columns: []string{tenant.NanomdmColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdmsettings.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

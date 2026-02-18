@@ -11,6 +11,7 @@ import (
 	"github.com/open-uem/ent/logicaldisk"
 	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/nanomdminfo"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
@@ -381,6 +382,16 @@ func init() {
 	nanomdminfoDescUdid := nanomdminfoFields[40].Descriptor()
 	// nanomdminfo.DefaultUdid holds the default value on creation for the udid field.
 	nanomdminfo.DefaultUdid = nanomdminfoDescUdid.Default.(string)
+	nanomdmsettingsFields := schema.NanoMDMSettings{}.Fields()
+	_ = nanomdmsettingsFields
+	// nanomdmsettingsDescServerURL is the schema descriptor for server_url field.
+	nanomdmsettingsDescServerURL := nanomdmsettingsFields[0].Descriptor()
+	// nanomdmsettings.DefaultServerURL holds the default value on creation for the server_url field.
+	nanomdmsettings.DefaultServerURL = nanomdmsettingsDescServerURL.Default.(string)
+	// nanomdmsettingsDescCaCerFile is the schema descriptor for ca_cer_file field.
+	nanomdmsettingsDescCaCerFile := nanomdmsettingsFields[1].Descriptor()
+	// nanomdmsettings.DefaultCaCerFile holds the default value on creation for the ca_cer_file field.
+	nanomdmsettings.DefaultCaCerFile = nanomdmsettingsDescCaCerFile.Default.(string)
 	netbirdFields := schema.Netbird{}.Fields()
 	_ = netbirdFields
 	// netbirdDescVersion is the schema descriptor for version field.

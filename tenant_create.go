@@ -11,6 +11,7 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/nanomdmsettings"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/rustdesk"
@@ -180,6 +181,25 @@ func (tc *TenantCreate) SetNillableNetbirdID(id *int) *TenantCreate {
 // SetNetbird sets the "netbird" edge to the NetbirdSettings entity.
 func (tc *TenantCreate) SetNetbird(n *NetbirdSettings) *TenantCreate {
 	return tc.SetNetbirdID(n.ID)
+}
+
+// SetNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by ID.
+func (tc *TenantCreate) SetNanomdmID(id int) *TenantCreate {
+	tc.mutation.SetNanomdmID(id)
+	return tc
+}
+
+// SetNillableNanomdmID sets the "nanomdm" edge to the NanoMDMSettings entity by ID if the given value is not nil.
+func (tc *TenantCreate) SetNillableNanomdmID(id *int) *TenantCreate {
+	if id != nil {
+		tc = tc.SetNanomdmID(*id)
+	}
+	return tc
+}
+
+// SetNanomdm sets the "nanomdm" edge to the NanoMDMSettings entity.
+func (tc *TenantCreate) SetNanomdm(n *NanoMDMSettings) *TenantCreate {
+	return tc.SetNanomdmID(n.ID)
 }
 
 // Mutation returns the TenantMutation object of the builder.
@@ -367,6 +387,23 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
 		_node.tenant_netbird = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := tc.mutation.NanomdmIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2O,
+			Inverse: false,
+			Table:   tenant.NanomdmTable,
+			Columns: []string{tenant.NanomdmColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(nanomdmsettings.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_node.tenant_nanomdm = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec
