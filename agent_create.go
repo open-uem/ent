@@ -451,6 +451,20 @@ func (ac *AgentCreate) SetNillableWan(s *string) *AgentCreate {
 	return ac
 }
 
+// SetDeleteAction sets the "delete_action" field.
+func (ac *AgentCreate) SetDeleteAction(aa agent.DeleteAction) *AgentCreate {
+	ac.mutation.SetDeleteAction(aa)
+	return ac
+}
+
+// SetNillableDeleteAction sets the "delete_action" field if the given value is not nil.
+func (ac *AgentCreate) SetNillableDeleteAction(aa *agent.DeleteAction) *AgentCreate {
+	if aa != nil {
+		ac.SetDeleteAction(*aa)
+	}
+	return ac
+}
+
 // SetID sets the "id" field.
 func (ac *AgentCreate) SetID(s string) *AgentCreate {
 	ac.mutation.SetID(s)
@@ -976,6 +990,10 @@ func (ac *AgentCreate) defaults() {
 		v := agent.DefaultWan
 		ac.mutation.SetWan(v)
 	}
+	if _, ok := ac.mutation.DeleteAction(); !ok {
+		v := agent.DefaultDeleteAction
+		ac.mutation.SetDeleteAction(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -1014,6 +1032,11 @@ func (ac *AgentCreate) check() error {
 	}
 	if _, ok := ac.mutation.Wan(); !ok {
 		return &ValidationError{Name: "wan", err: errors.New(`ent: missing required field "Agent.wan"`)}
+	}
+	if v, ok := ac.mutation.DeleteAction(); ok {
+		if err := agent.DeleteActionValidator(v); err != nil {
+			return &ValidationError{Name: "delete_action", err: fmt.Errorf(`ent: validator failed for field "Agent.delete_action": %w`, err)}
+		}
 	}
 	if v, ok := ac.mutation.ID(); ok {
 		if err := agent.IDValidator(v); err != nil {
@@ -1175,6 +1198,10 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 	if value, ok := ac.mutation.Wan(); ok {
 		_spec.SetField(agent.FieldWan, field.TypeString, value)
 		_node.Wan = value
+	}
+	if value, ok := ac.mutation.DeleteAction(); ok {
+		_spec.SetField(agent.FieldDeleteAction, field.TypeEnum, value)
+		_node.DeleteAction = value
 	}
 	if nodes := ac.mutation.ComputerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -2123,6 +2150,24 @@ func (u *AgentUpsert) UpdateWan() *AgentUpsert {
 	return u
 }
 
+// SetDeleteAction sets the "delete_action" field.
+func (u *AgentUpsert) SetDeleteAction(v agent.DeleteAction) *AgentUpsert {
+	u.Set(agent.FieldDeleteAction, v)
+	return u
+}
+
+// UpdateDeleteAction sets the "delete_action" field to the value that was provided on create.
+func (u *AgentUpsert) UpdateDeleteAction() *AgentUpsert {
+	u.SetExcluded(agent.FieldDeleteAction)
+	return u
+}
+
+// ClearDeleteAction clears the value of the "delete_action" field.
+func (u *AgentUpsert) ClearDeleteAction() *AgentUpsert {
+	u.SetNull(agent.FieldDeleteAction)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create except the ID field.
 // Using this option is equivalent to using:
 //
@@ -2763,6 +2808,27 @@ func (u *AgentUpsertOne) SetWan(v string) *AgentUpsertOne {
 func (u *AgentUpsertOne) UpdateWan() *AgentUpsertOne {
 	return u.Update(func(s *AgentUpsert) {
 		s.UpdateWan()
+	})
+}
+
+// SetDeleteAction sets the "delete_action" field.
+func (u *AgentUpsertOne) SetDeleteAction(v agent.DeleteAction) *AgentUpsertOne {
+	return u.Update(func(s *AgentUpsert) {
+		s.SetDeleteAction(v)
+	})
+}
+
+// UpdateDeleteAction sets the "delete_action" field to the value that was provided on create.
+func (u *AgentUpsertOne) UpdateDeleteAction() *AgentUpsertOne {
+	return u.Update(func(s *AgentUpsert) {
+		s.UpdateDeleteAction()
+	})
+}
+
+// ClearDeleteAction clears the value of the "delete_action" field.
+func (u *AgentUpsertOne) ClearDeleteAction() *AgentUpsertOne {
+	return u.Update(func(s *AgentUpsert) {
+		s.ClearDeleteAction()
 	})
 }
 
@@ -3573,6 +3639,27 @@ func (u *AgentUpsertBulk) SetWan(v string) *AgentUpsertBulk {
 func (u *AgentUpsertBulk) UpdateWan() *AgentUpsertBulk {
 	return u.Update(func(s *AgentUpsert) {
 		s.UpdateWan()
+	})
+}
+
+// SetDeleteAction sets the "delete_action" field.
+func (u *AgentUpsertBulk) SetDeleteAction(v agent.DeleteAction) *AgentUpsertBulk {
+	return u.Update(func(s *AgentUpsert) {
+		s.SetDeleteAction(v)
+	})
+}
+
+// UpdateDeleteAction sets the "delete_action" field to the value that was provided on create.
+func (u *AgentUpsertBulk) UpdateDeleteAction() *AgentUpsertBulk {
+	return u.Update(func(s *AgentUpsert) {
+		s.UpdateDeleteAction()
+	})
+}
+
+// ClearDeleteAction clears the value of the "delete_action" field.
+func (u *AgentUpsertBulk) ClearDeleteAction() *AgentUpsertBulk {
+	return u.Update(func(s *AgentUpsert) {
+		s.ClearDeleteAction()
 	})
 }
 

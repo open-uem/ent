@@ -49,6 +49,7 @@ func (Agent) Fields() []ent.Field {
 		field.Bool("is_wayland").Optional().Default(false),
 		field.Bool("is_flatpak_rustdesk").Optional().Default(false),
 		field.String("wan").Default(""),
+		field.Enum("delete_action").Values("None", "DeleteAndUninstall", "KeepAndUninstall", "DeleteAndKeep").Optional().Default("None"),
 	}
 }
 

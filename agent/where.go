@@ -1720,6 +1720,36 @@ func WanContainsFold(v string) predicate.Agent {
 	return predicate.Agent(sql.FieldContainsFold(FieldWan, v))
 }
 
+// DeleteActionEQ applies the EQ predicate on the "delete_action" field.
+func DeleteActionEQ(v DeleteAction) predicate.Agent {
+	return predicate.Agent(sql.FieldEQ(FieldDeleteAction, v))
+}
+
+// DeleteActionNEQ applies the NEQ predicate on the "delete_action" field.
+func DeleteActionNEQ(v DeleteAction) predicate.Agent {
+	return predicate.Agent(sql.FieldNEQ(FieldDeleteAction, v))
+}
+
+// DeleteActionIn applies the In predicate on the "delete_action" field.
+func DeleteActionIn(vs ...DeleteAction) predicate.Agent {
+	return predicate.Agent(sql.FieldIn(FieldDeleteAction, vs...))
+}
+
+// DeleteActionNotIn applies the NotIn predicate on the "delete_action" field.
+func DeleteActionNotIn(vs ...DeleteAction) predicate.Agent {
+	return predicate.Agent(sql.FieldNotIn(FieldDeleteAction, vs...))
+}
+
+// DeleteActionIsNil applies the IsNil predicate on the "delete_action" field.
+func DeleteActionIsNil() predicate.Agent {
+	return predicate.Agent(sql.FieldIsNull(FieldDeleteAction))
+}
+
+// DeleteActionNotNil applies the NotNil predicate on the "delete_action" field.
+func DeleteActionNotNil() predicate.Agent {
+	return predicate.Agent(sql.FieldNotNull(FieldDeleteAction))
+}
+
 // HasComputer applies the HasEdge predicate on the "computer" edge.
 func HasComputer() predicate.Agent {
 	return predicate.Agent(func(s *sql.Selector) {

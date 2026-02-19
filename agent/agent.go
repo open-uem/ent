@@ -75,6 +75,8 @@ const (
 	FieldIsFlatpakRustdesk = "is_flatpak_rustdesk"
 	// FieldWan holds the string denoting the wan field in the database.
 	FieldWan = "wan"
+	// FieldDeleteAction holds the string denoting the delete_action field in the database.
+	FieldDeleteAction = "delete_action"
 	// EdgeComputer holds the string denoting the computer edge name in mutations.
 	EdgeComputer = "computer"
 	// EdgeOperatingsystem holds the string denoting the operatingsystem edge name in mutations.
@@ -372,6 +374,7 @@ var Columns = []string{
 	FieldIsWayland,
 	FieldIsFlatpakRustdesk,
 	FieldWan,
+	FieldDeleteAction,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "agents"
@@ -513,6 +516,34 @@ func EndpointTypeValidator(et EndpointType) error {
 		return nil
 	default:
 		return fmt.Errorf("agent: invalid enum value for endpoint_type field: %q", et)
+	}
+}
+
+// DeleteAction defines the type for the "delete_action" enum field.
+type DeleteAction string
+
+// DeleteActionNone is the default value of the DeleteAction enum.
+const DefaultDeleteAction = DeleteActionNone
+
+// DeleteAction values.
+const (
+	DeleteActionNone               DeleteAction = "None"
+	DeleteActionDeleteAndUninstall DeleteAction = "DeleteAndUninstall"
+	DeleteActionKeepAndUninstall   DeleteAction = "KeepAndUninstall"
+	DeleteActionDeleteAndKeep      DeleteAction = "DeleteAndKeep"
+)
+
+func (da DeleteAction) String() string {
+	return string(da)
+}
+
+// DeleteActionValidator is a validator for the "delete_action" field enum values. It is called by the builders before save.
+func DeleteActionValidator(da DeleteAction) error {
+	switch da {
+	case DeleteActionNone, DeleteActionDeleteAndUninstall, DeleteActionKeepAndUninstall, DeleteActionDeleteAndKeep:
+		return nil
+	default:
+		return fmt.Errorf("agent: invalid enum value for delete_action field: %q", da)
 	}
 }
 
@@ -672,6 +703,11 @@ func ByIsFlatpakRustdesk(opts ...sql.OrderTermOption) OrderOption {
 // ByWan orders the results by the wan field.
 func ByWan(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldWan, opts...).ToFunc()
+}
+
+// ByDeleteAction orders the results by the delete_action field.
+func ByDeleteAction(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldDeleteAction, opts...).ToFunc()
 }
 
 // ByComputerField orders the results by computer field.

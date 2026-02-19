@@ -623,6 +623,26 @@ func (au *AgentUpdate) SetNillableWan(s *string) *AgentUpdate {
 	return au
 }
 
+// SetDeleteAction sets the "delete_action" field.
+func (au *AgentUpdate) SetDeleteAction(aa agent.DeleteAction) *AgentUpdate {
+	au.mutation.SetDeleteAction(aa)
+	return au
+}
+
+// SetNillableDeleteAction sets the "delete_action" field if the given value is not nil.
+func (au *AgentUpdate) SetNillableDeleteAction(aa *agent.DeleteAction) *AgentUpdate {
+	if aa != nil {
+		au.SetDeleteAction(*aa)
+	}
+	return au
+}
+
+// ClearDeleteAction clears the value of the "delete_action" field.
+func (au *AgentUpdate) ClearDeleteAction() *AgentUpdate {
+	au.mutation.ClearDeleteAction()
+	return au
+}
+
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
 func (au *AgentUpdate) SetComputerID(id int) *AgentUpdate {
 	au.mutation.SetComputerID(id)
@@ -1464,6 +1484,11 @@ func (au *AgentUpdate) check() error {
 			return &ValidationError{Name: "endpoint_type", err: fmt.Errorf(`ent: validator failed for field "Agent.endpoint_type": %w`, err)}
 		}
 	}
+	if v, ok := au.mutation.DeleteAction(); ok {
+		if err := agent.DeleteActionValidator(v); err != nil {
+			return &ValidationError{Name: "delete_action", err: fmt.Errorf(`ent: validator failed for field "Agent.delete_action": %w`, err)}
+		}
+	}
 	return nil
 }
 
@@ -1649,6 +1674,12 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if value, ok := au.mutation.Wan(); ok {
 		_spec.SetField(agent.FieldWan, field.TypeString, value)
+	}
+	if value, ok := au.mutation.DeleteAction(); ok {
+		_spec.SetField(agent.FieldDeleteAction, field.TypeEnum, value)
+	}
+	if au.mutation.DeleteActionCleared() {
+		_spec.ClearField(agent.FieldDeleteAction, field.TypeEnum)
 	}
 	if au.mutation.ComputerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -3210,6 +3241,26 @@ func (auo *AgentUpdateOne) SetNillableWan(s *string) *AgentUpdateOne {
 	return auo
 }
 
+// SetDeleteAction sets the "delete_action" field.
+func (auo *AgentUpdateOne) SetDeleteAction(aa agent.DeleteAction) *AgentUpdateOne {
+	auo.mutation.SetDeleteAction(aa)
+	return auo
+}
+
+// SetNillableDeleteAction sets the "delete_action" field if the given value is not nil.
+func (auo *AgentUpdateOne) SetNillableDeleteAction(aa *agent.DeleteAction) *AgentUpdateOne {
+	if aa != nil {
+		auo.SetDeleteAction(*aa)
+	}
+	return auo
+}
+
+// ClearDeleteAction clears the value of the "delete_action" field.
+func (auo *AgentUpdateOne) ClearDeleteAction() *AgentUpdateOne {
+	auo.mutation.ClearDeleteAction()
+	return auo
+}
+
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
 func (auo *AgentUpdateOne) SetComputerID(id int) *AgentUpdateOne {
 	auo.mutation.SetComputerID(id)
@@ -4064,6 +4115,11 @@ func (auo *AgentUpdateOne) check() error {
 			return &ValidationError{Name: "endpoint_type", err: fmt.Errorf(`ent: validator failed for field "Agent.endpoint_type": %w`, err)}
 		}
 	}
+	if v, ok := auo.mutation.DeleteAction(); ok {
+		if err := agent.DeleteActionValidator(v); err != nil {
+			return &ValidationError{Name: "delete_action", err: fmt.Errorf(`ent: validator failed for field "Agent.delete_action": %w`, err)}
+		}
+	}
 	return nil
 }
 
@@ -4266,6 +4322,12 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 	}
 	if value, ok := auo.mutation.Wan(); ok {
 		_spec.SetField(agent.FieldWan, field.TypeString, value)
+	}
+	if value, ok := auo.mutation.DeleteAction(); ok {
+		_spec.SetField(agent.FieldDeleteAction, field.TypeEnum, value)
+	}
+	if auo.mutation.DeleteActionCleared() {
+		_spec.ClearField(agent.FieldDeleteAction, field.TypeEnum)
 	}
 	if auo.mutation.ComputerCleared() {
 		edge := &sqlgraph.EdgeSpec{

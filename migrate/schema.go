@@ -41,6 +41,7 @@ var (
 		{Name: "is_wayland", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "is_flatpak_rustdesk", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "wan", Type: field.TypeString, Default: ""},
+		{Name: "delete_action", Type: field.TypeEnum, Nullable: true, Enums: []string{"None", "DeleteAndUninstall", "KeepAndUninstall", "DeleteAndKeep"}, Default: "None"},
 		{Name: "release_agents", Type: field.TypeInt, Nullable: true},
 	}
 	// AgentsTable holds the schema information for the "agents" table.
@@ -51,7 +52,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "agents_releases_agents",
-				Columns:    []*schema.Column{AgentsColumns[31]},
+				Columns:    []*schema.Column{AgentsColumns[32]},
 				RefColumns: []*schema.Column{ReleasesColumns[0]},
 				OnDelete:   schema.SetNull,
 			},

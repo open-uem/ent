@@ -141,6 +141,7 @@ type AgentMutation struct {
 	is_wayland                 *bool
 	is_flatpak_rustdesk        *bool
 	wan                        *string
+	delete_action              *agent.DeleteAction
 	clearedFields              map[string]struct{}
 	computer                   *int
 	clearedcomputer            bool
@@ -1721,6 +1722,55 @@ func (m *AgentMutation) ResetWan() {
 	m.wan = nil
 }
 
+// SetDeleteAction sets the "delete_action" field.
+func (m *AgentMutation) SetDeleteAction(aa agent.DeleteAction) {
+	m.delete_action = &aa
+}
+
+// DeleteAction returns the value of the "delete_action" field in the mutation.
+func (m *AgentMutation) DeleteAction() (r agent.DeleteAction, exists bool) {
+	v := m.delete_action
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldDeleteAction returns the old "delete_action" field's value of the Agent entity.
+// If the Agent object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *AgentMutation) OldDeleteAction(ctx context.Context) (v agent.DeleteAction, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldDeleteAction is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldDeleteAction requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldDeleteAction: %w", err)
+	}
+	return oldValue.DeleteAction, nil
+}
+
+// ClearDeleteAction clears the value of the "delete_action" field.
+func (m *AgentMutation) ClearDeleteAction() {
+	m.delete_action = nil
+	m.clearedFields[agent.FieldDeleteAction] = struct{}{}
+}
+
+// DeleteActionCleared returns if the "delete_action" field was cleared in this mutation.
+func (m *AgentMutation) DeleteActionCleared() bool {
+	_, ok := m.clearedFields[agent.FieldDeleteAction]
+	return ok
+}
+
+// ResetDeleteAction resets all changes to the "delete_action" field.
+func (m *AgentMutation) ResetDeleteAction() {
+	m.delete_action = nil
+	delete(m.clearedFields, agent.FieldDeleteAction)
+}
+
 // SetComputerID sets the "computer" edge to the Computer entity by id.
 func (m *AgentMutation) SetComputerID(id int) {
 	m.computer = &id
@@ -2946,7 +2996,7 @@ func (m *AgentMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *AgentMutation) Fields() []string {
-	fields := make([]string, 0, 30)
+	fields := make([]string, 0, 31)
 	if m.os != nil {
 		fields = append(fields, agent.FieldOs)
 	}
@@ -3037,6 +3087,9 @@ func (m *AgentMutation) Fields() []string {
 	if m.wan != nil {
 		fields = append(fields, agent.FieldWan)
 	}
+	if m.delete_action != nil {
+		fields = append(fields, agent.FieldDeleteAction)
+	}
 	return fields
 }
 
@@ -3105,6 +3158,8 @@ func (m *AgentMutation) Field(name string) (ent.Value, bool) {
 		return m.IsFlatpakRustdesk()
 	case agent.FieldWan:
 		return m.Wan()
+	case agent.FieldDeleteAction:
+		return m.DeleteAction()
 	}
 	return nil, false
 }
@@ -3174,6 +3229,8 @@ func (m *AgentMutation) OldField(ctx context.Context, name string) (ent.Value, e
 		return m.OldIsFlatpakRustdesk(ctx)
 	case agent.FieldWan:
 		return m.OldWan(ctx)
+	case agent.FieldDeleteAction:
+		return m.OldDeleteAction(ctx)
 	}
 	return nil, fmt.Errorf("unknown Agent field %s", name)
 }
@@ -3393,6 +3450,13 @@ func (m *AgentMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetWan(v)
 		return nil
+	case agent.FieldDeleteAction:
+		v, ok := value.(agent.DeleteAction)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetDeleteAction(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Agent field %s", name)
 }
@@ -3498,6 +3562,9 @@ func (m *AgentMutation) ClearedFields() []string {
 	if m.FieldCleared(agent.FieldIsFlatpakRustdesk) {
 		fields = append(fields, agent.FieldIsFlatpakRustdesk)
 	}
+	if m.FieldCleared(agent.FieldDeleteAction) {
+		fields = append(fields, agent.FieldDeleteAction)
+	}
 	return fields
 }
 
@@ -3586,6 +3653,9 @@ func (m *AgentMutation) ClearField(name string) error {
 		return nil
 	case agent.FieldIsFlatpakRustdesk:
 		m.ClearIsFlatpakRustdesk()
+		return nil
+	case agent.FieldDeleteAction:
+		m.ClearDeleteAction()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent nullable field %s", name)
@@ -3684,6 +3754,9 @@ func (m *AgentMutation) ResetField(name string) error {
 		return nil
 	case agent.FieldWan:
 		m.ResetWan()
+		return nil
+	case agent.FieldDeleteAction:
+		m.ResetDeleteAction()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent field %s", name)

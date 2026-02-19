@@ -84,6 +84,8 @@ type Agent struct {
 	IsFlatpakRustdesk bool `json:"is_flatpak_rustdesk,omitempty"`
 	// Wan holds the value of the "wan" field.
 	Wan string `json:"wan,omitempty"`
+	// DeleteAction holds the value of the "delete_action" field.
+	DeleteAction agent.DeleteAction `json:"delete_action,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the AgentQuery when eager-loading is set.
 	Edges          AgentEdges `json:"edges"`
@@ -383,7 +385,7 @@ func (*Agent) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case agent.FieldCertificateReady, agent.FieldRestartRequired, agent.FieldIsRemote, agent.FieldDebugMode, agent.FieldSftpService, agent.FieldRemoteAssistance, agent.FieldHasRustdesk, agent.FieldIsWayland, agent.FieldIsFlatpakRustdesk:
 			values[i] = new(sql.NullBool)
-		case agent.FieldID, agent.FieldOs, agent.FieldHostname, agent.FieldIP, agent.FieldMAC, agent.FieldVnc, agent.FieldNotes, agent.FieldUpdateTaskStatus, agent.FieldUpdateTaskDescription, agent.FieldUpdateTaskResult, agent.FieldUpdateTaskVersion, agent.FieldVncProxyPort, agent.FieldSftpPort, agent.FieldAgentStatus, agent.FieldDescription, agent.FieldNickname, agent.FieldEndpointType, agent.FieldWan:
+		case agent.FieldID, agent.FieldOs, agent.FieldHostname, agent.FieldIP, agent.FieldMAC, agent.FieldVnc, agent.FieldNotes, agent.FieldUpdateTaskStatus, agent.FieldUpdateTaskDescription, agent.FieldUpdateTaskResult, agent.FieldUpdateTaskVersion, agent.FieldVncProxyPort, agent.FieldSftpPort, agent.FieldAgentStatus, agent.FieldDescription, agent.FieldNickname, agent.FieldEndpointType, agent.FieldWan, agent.FieldDeleteAction:
 			values[i] = new(sql.NullString)
 		case agent.FieldFirstContact, agent.FieldLastContact, agent.FieldUpdateTaskExecution, agent.FieldSettingsModified:
 			values[i] = new(sql.NullTime)
@@ -589,6 +591,12 @@ func (a *Agent) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field wan", values[i])
 			} else if value.Valid {
 				a.Wan = value.String
+			}
+		case agent.FieldDeleteAction:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field delete_action", values[i])
+			} else if value.Valid {
+				a.DeleteAction = agent.DeleteAction(value.String)
 			}
 		case agent.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
@@ -842,6 +850,9 @@ func (a *Agent) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("wan=")
 	builder.WriteString(a.Wan)
+	builder.WriteString(", ")
+	builder.WriteString("delete_action=")
+	builder.WriteString(fmt.Sprintf("%v", a.DeleteAction))
 	builder.WriteByte(')')
 	return builder.String()
 }
