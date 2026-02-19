@@ -109,6 +109,26 @@ func (nmsu *NanoMDMSettingsUpdate) ClearCaCerFile() *NanoMDMSettingsUpdate {
 	return nmsu
 }
 
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (nmsu *NanoMDMSettingsUpdate) SetProfilePayloadID(s string) *NanoMDMSettingsUpdate {
+	nmsu.mutation.SetProfilePayloadID(s)
+	return nmsu
+}
+
+// SetNillableProfilePayloadID sets the "profile_payload_id" field if the given value is not nil.
+func (nmsu *NanoMDMSettingsUpdate) SetNillableProfilePayloadID(s *string) *NanoMDMSettingsUpdate {
+	if s != nil {
+		nmsu.SetProfilePayloadID(*s)
+	}
+	return nmsu
+}
+
+// ClearProfilePayloadID clears the value of the "profile_payload_id" field.
+func (nmsu *NanoMDMSettingsUpdate) ClearProfilePayloadID() *NanoMDMSettingsUpdate {
+	nmsu.mutation.ClearProfilePayloadID()
+	return nmsu
+}
+
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
 func (nmsu *NanoMDMSettingsUpdate) AddTenantIDs(ids ...int) *NanoMDMSettingsUpdate {
 	nmsu.mutation.AddTenantIDs(ids...)
@@ -215,6 +235,12 @@ func (nmsu *NanoMDMSettingsUpdate) sqlSave(ctx context.Context) (n int, err erro
 	}
 	if nmsu.mutation.CaCerFileCleared() {
 		_spec.ClearField(nanomdmsettings.FieldCaCerFile, field.TypeString)
+	}
+	if value, ok := nmsu.mutation.ProfilePayloadID(); ok {
+		_spec.SetField(nanomdmsettings.FieldProfilePayloadID, field.TypeString, value)
+	}
+	if nmsu.mutation.ProfilePayloadIDCleared() {
+		_spec.ClearField(nanomdmsettings.FieldProfilePayloadID, field.TypeString)
 	}
 	if nmsu.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -363,6 +389,26 @@ func (nmsuo *NanoMDMSettingsUpdateOne) ClearCaCerFile() *NanoMDMSettingsUpdateOn
 	return nmsuo
 }
 
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (nmsuo *NanoMDMSettingsUpdateOne) SetProfilePayloadID(s string) *NanoMDMSettingsUpdateOne {
+	nmsuo.mutation.SetProfilePayloadID(s)
+	return nmsuo
+}
+
+// SetNillableProfilePayloadID sets the "profile_payload_id" field if the given value is not nil.
+func (nmsuo *NanoMDMSettingsUpdateOne) SetNillableProfilePayloadID(s *string) *NanoMDMSettingsUpdateOne {
+	if s != nil {
+		nmsuo.SetProfilePayloadID(*s)
+	}
+	return nmsuo
+}
+
+// ClearProfilePayloadID clears the value of the "profile_payload_id" field.
+func (nmsuo *NanoMDMSettingsUpdateOne) ClearProfilePayloadID() *NanoMDMSettingsUpdateOne {
+	nmsuo.mutation.ClearProfilePayloadID()
+	return nmsuo
+}
+
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
 func (nmsuo *NanoMDMSettingsUpdateOne) AddTenantIDs(ids ...int) *NanoMDMSettingsUpdateOne {
 	nmsuo.mutation.AddTenantIDs(ids...)
@@ -499,6 +545,12 @@ func (nmsuo *NanoMDMSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Nano
 	}
 	if nmsuo.mutation.CaCerFileCleared() {
 		_spec.ClearField(nanomdmsettings.FieldCaCerFile, field.TypeString)
+	}
+	if value, ok := nmsuo.mutation.ProfilePayloadID(); ok {
+		_spec.SetField(nanomdmsettings.FieldProfilePayloadID, field.TypeString, value)
+	}
+	if nmsuo.mutation.ProfilePayloadIDCleared() {
+		_spec.ClearField(nanomdmsettings.FieldProfilePayloadID, field.TypeString)
 	}
 	if nmsuo.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{

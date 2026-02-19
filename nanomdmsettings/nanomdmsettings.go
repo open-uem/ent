@@ -20,6 +20,8 @@ const (
 	FieldServerURL = "server_url"
 	// FieldCaCerFile holds the string denoting the ca_cer_file field in the database.
 	FieldCaCerFile = "ca_cer_file"
+	// FieldProfilePayloadID holds the string denoting the profile_payload_id field in the database.
+	FieldProfilePayloadID = "profile_payload_id"
 	// EdgeTenant holds the string denoting the tenant edge name in mutations.
 	EdgeTenant = "tenant"
 	// Table holds the table name of the nanomdmsettings in the database.
@@ -40,6 +42,7 @@ var Columns = []string{
 	FieldPassword,
 	FieldServerURL,
 	FieldCaCerFile,
+	FieldProfilePayloadID,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -61,6 +64,8 @@ var (
 	DefaultServerURL string
 	// DefaultCaCerFile holds the default value on creation for the "ca_cer_file" field.
 	DefaultCaCerFile string
+	// DefaultProfilePayloadID holds the default value on creation for the "profile_payload_id" field.
+	DefaultProfilePayloadID string
 )
 
 // OrderOption defines the ordering options for the NanoMDMSettings queries.
@@ -89,6 +94,11 @@ func ByServerURL(opts ...sql.OrderTermOption) OrderOption {
 // ByCaCerFile orders the results by the ca_cer_file field.
 func ByCaCerFile(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldCaCerFile, opts...).ToFunc()
+}
+
+// ByProfilePayloadID orders the results by the profile_payload_id field.
+func ByProfilePayloadID(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldProfilePayloadID, opts...).ToFunc()
 }
 
 // ByTenantCount orders the results by tenant count.

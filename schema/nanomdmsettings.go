@@ -18,6 +18,7 @@ func (NanoMDMSettings) Fields() []ent.Field {
 		field.String("password").Optional().Default(""),
 		field.String("server_url").Optional().Default(""),
 		field.String("ca_cer_file").Optional().Default(""),
+		field.String("profile_payload_id").Optional().Default(""),
 	}
 }
 

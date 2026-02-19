@@ -78,6 +78,20 @@ func (nmsc *NanoMDMSettingsCreate) SetNillableCaCerFile(s *string) *NanoMDMSetti
 	return nmsc
 }
 
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (nmsc *NanoMDMSettingsCreate) SetProfilePayloadID(s string) *NanoMDMSettingsCreate {
+	nmsc.mutation.SetProfilePayloadID(s)
+	return nmsc
+}
+
+// SetNillableProfilePayloadID sets the "profile_payload_id" field if the given value is not nil.
+func (nmsc *NanoMDMSettingsCreate) SetNillableProfilePayloadID(s *string) *NanoMDMSettingsCreate {
+	if s != nil {
+		nmsc.SetProfilePayloadID(*s)
+	}
+	return nmsc
+}
+
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
 func (nmsc *NanoMDMSettingsCreate) AddTenantIDs(ids ...int) *NanoMDMSettingsCreate {
 	nmsc.mutation.AddTenantIDs(ids...)
@@ -144,6 +158,10 @@ func (nmsc *NanoMDMSettingsCreate) defaults() {
 		v := nanomdmsettings.DefaultCaCerFile
 		nmsc.mutation.SetCaCerFile(v)
 	}
+	if _, ok := nmsc.mutation.ProfilePayloadID(); !ok {
+		v := nanomdmsettings.DefaultProfilePayloadID
+		nmsc.mutation.SetProfilePayloadID(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -190,6 +208,10 @@ func (nmsc *NanoMDMSettingsCreate) createSpec() (*NanoMDMSettings, *sqlgraph.Cre
 	if value, ok := nmsc.mutation.CaCerFile(); ok {
 		_spec.SetField(nanomdmsettings.FieldCaCerFile, field.TypeString, value)
 		_node.CaCerFile = value
+	}
+	if value, ok := nmsc.mutation.ProfilePayloadID(); ok {
+		_spec.SetField(nanomdmsettings.FieldProfilePayloadID, field.TypeString, value)
+		_node.ProfilePayloadID = value
 	}
 	if nodes := nmsc.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -331,6 +353,24 @@ func (u *NanoMDMSettingsUpsert) ClearCaCerFile() *NanoMDMSettingsUpsert {
 	return u
 }
 
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (u *NanoMDMSettingsUpsert) SetProfilePayloadID(v string) *NanoMDMSettingsUpsert {
+	u.Set(nanomdmsettings.FieldProfilePayloadID, v)
+	return u
+}
+
+// UpdateProfilePayloadID sets the "profile_payload_id" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsert) UpdateProfilePayloadID() *NanoMDMSettingsUpsert {
+	u.SetExcluded(nanomdmsettings.FieldProfilePayloadID)
+	return u
+}
+
+// ClearProfilePayloadID clears the value of the "profile_payload_id" field.
+func (u *NanoMDMSettingsUpsert) ClearProfilePayloadID() *NanoMDMSettingsUpsert {
+	u.SetNull(nanomdmsettings.FieldProfilePayloadID)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create.
 // Using this option is equivalent to using:
 //
@@ -452,6 +492,27 @@ func (u *NanoMDMSettingsUpsertOne) UpdateCaCerFile() *NanoMDMSettingsUpsertOne {
 func (u *NanoMDMSettingsUpsertOne) ClearCaCerFile() *NanoMDMSettingsUpsertOne {
 	return u.Update(func(s *NanoMDMSettingsUpsert) {
 		s.ClearCaCerFile()
+	})
+}
+
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (u *NanoMDMSettingsUpsertOne) SetProfilePayloadID(v string) *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.SetProfilePayloadID(v)
+	})
+}
+
+// UpdateProfilePayloadID sets the "profile_payload_id" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsertOne) UpdateProfilePayloadID() *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.UpdateProfilePayloadID()
+	})
+}
+
+// ClearProfilePayloadID clears the value of the "profile_payload_id" field.
+func (u *NanoMDMSettingsUpsertOne) ClearProfilePayloadID() *NanoMDMSettingsUpsertOne {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.ClearProfilePayloadID()
 	})
 }
 
@@ -740,6 +801,27 @@ func (u *NanoMDMSettingsUpsertBulk) UpdateCaCerFile() *NanoMDMSettingsUpsertBulk
 func (u *NanoMDMSettingsUpsertBulk) ClearCaCerFile() *NanoMDMSettingsUpsertBulk {
 	return u.Update(func(s *NanoMDMSettingsUpsert) {
 		s.ClearCaCerFile()
+	})
+}
+
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (u *NanoMDMSettingsUpsertBulk) SetProfilePayloadID(v string) *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.SetProfilePayloadID(v)
+	})
+}
+
+// UpdateProfilePayloadID sets the "profile_payload_id" field to the value that was provided on create.
+func (u *NanoMDMSettingsUpsertBulk) UpdateProfilePayloadID() *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.UpdateProfilePayloadID()
+	})
+}
+
+// ClearProfilePayloadID clears the value of the "profile_payload_id" field.
+func (u *NanoMDMSettingsUpsertBulk) ClearProfilePayloadID() *NanoMDMSettingsUpsertBulk {
+	return u.Update(func(s *NanoMDMSettingsUpsert) {
+		s.ClearProfilePayloadID()
 	})
 }
 

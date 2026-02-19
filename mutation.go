@@ -15690,20 +15690,21 @@ func (m *NanoMDMInfoMutation) ResetEdge(name string) error {
 // NanoMDMSettingsMutation represents an operation that mutates the NanoMDMSettings nodes in the graph.
 type NanoMDMSettingsMutation struct {
 	config
-	op            Op
-	typ           string
-	id            *int
-	username      *string
-	password      *string
-	server_url    *string
-	ca_cer_file   *string
-	clearedFields map[string]struct{}
-	tenant        map[int]struct{}
-	removedtenant map[int]struct{}
-	clearedtenant bool
-	done          bool
-	oldValue      func(context.Context) (*NanoMDMSettings, error)
-	predicates    []predicate.NanoMDMSettings
+	op                 Op
+	typ                string
+	id                 *int
+	username           *string
+	password           *string
+	server_url         *string
+	ca_cer_file        *string
+	profile_payload_id *string
+	clearedFields      map[string]struct{}
+	tenant             map[int]struct{}
+	removedtenant      map[int]struct{}
+	clearedtenant      bool
+	done               bool
+	oldValue           func(context.Context) (*NanoMDMSettings, error)
+	predicates         []predicate.NanoMDMSettings
 }
 
 var _ ent.Mutation = (*NanoMDMSettingsMutation)(nil)
@@ -16000,6 +16001,55 @@ func (m *NanoMDMSettingsMutation) ResetCaCerFile() {
 	delete(m.clearedFields, nanomdmsettings.FieldCaCerFile)
 }
 
+// SetProfilePayloadID sets the "profile_payload_id" field.
+func (m *NanoMDMSettingsMutation) SetProfilePayloadID(s string) {
+	m.profile_payload_id = &s
+}
+
+// ProfilePayloadID returns the value of the "profile_payload_id" field in the mutation.
+func (m *NanoMDMSettingsMutation) ProfilePayloadID() (r string, exists bool) {
+	v := m.profile_payload_id
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldProfilePayloadID returns the old "profile_payload_id" field's value of the NanoMDMSettings entity.
+// If the NanoMDMSettings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *NanoMDMSettingsMutation) OldProfilePayloadID(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldProfilePayloadID is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldProfilePayloadID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldProfilePayloadID: %w", err)
+	}
+	return oldValue.ProfilePayloadID, nil
+}
+
+// ClearProfilePayloadID clears the value of the "profile_payload_id" field.
+func (m *NanoMDMSettingsMutation) ClearProfilePayloadID() {
+	m.profile_payload_id = nil
+	m.clearedFields[nanomdmsettings.FieldProfilePayloadID] = struct{}{}
+}
+
+// ProfilePayloadIDCleared returns if the "profile_payload_id" field was cleared in this mutation.
+func (m *NanoMDMSettingsMutation) ProfilePayloadIDCleared() bool {
+	_, ok := m.clearedFields[nanomdmsettings.FieldProfilePayloadID]
+	return ok
+}
+
+// ResetProfilePayloadID resets all changes to the "profile_payload_id" field.
+func (m *NanoMDMSettingsMutation) ResetProfilePayloadID() {
+	m.profile_payload_id = nil
+	delete(m.clearedFields, nanomdmsettings.FieldProfilePayloadID)
+}
+
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by ids.
 func (m *NanoMDMSettingsMutation) AddTenantIDs(ids ...int) {
 	if m.tenant == nil {
@@ -16088,7 +16138,7 @@ func (m *NanoMDMSettingsMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *NanoMDMSettingsMutation) Fields() []string {
-	fields := make([]string, 0, 4)
+	fields := make([]string, 0, 5)
 	if m.username != nil {
 		fields = append(fields, nanomdmsettings.FieldUsername)
 	}
@@ -16100,6 +16150,9 @@ func (m *NanoMDMSettingsMutation) Fields() []string {
 	}
 	if m.ca_cer_file != nil {
 		fields = append(fields, nanomdmsettings.FieldCaCerFile)
+	}
+	if m.profile_payload_id != nil {
+		fields = append(fields, nanomdmsettings.FieldProfilePayloadID)
 	}
 	return fields
 }
@@ -16117,6 +16170,8 @@ func (m *NanoMDMSettingsMutation) Field(name string) (ent.Value, bool) {
 		return m.ServerURL()
 	case nanomdmsettings.FieldCaCerFile:
 		return m.CaCerFile()
+	case nanomdmsettings.FieldProfilePayloadID:
+		return m.ProfilePayloadID()
 	}
 	return nil, false
 }
@@ -16134,6 +16189,8 @@ func (m *NanoMDMSettingsMutation) OldField(ctx context.Context, name string) (en
 		return m.OldServerURL(ctx)
 	case nanomdmsettings.FieldCaCerFile:
 		return m.OldCaCerFile(ctx)
+	case nanomdmsettings.FieldProfilePayloadID:
+		return m.OldProfilePayloadID(ctx)
 	}
 	return nil, fmt.Errorf("unknown NanoMDMSettings field %s", name)
 }
@@ -16170,6 +16227,13 @@ func (m *NanoMDMSettingsMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetCaCerFile(v)
+		return nil
+	case nanomdmsettings.FieldProfilePayloadID:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetProfilePayloadID(v)
 		return nil
 	}
 	return fmt.Errorf("unknown NanoMDMSettings field %s", name)
@@ -16213,6 +16277,9 @@ func (m *NanoMDMSettingsMutation) ClearedFields() []string {
 	if m.FieldCleared(nanomdmsettings.FieldCaCerFile) {
 		fields = append(fields, nanomdmsettings.FieldCaCerFile)
 	}
+	if m.FieldCleared(nanomdmsettings.FieldProfilePayloadID) {
+		fields = append(fields, nanomdmsettings.FieldProfilePayloadID)
+	}
 	return fields
 }
 
@@ -16239,6 +16306,9 @@ func (m *NanoMDMSettingsMutation) ClearField(name string) error {
 	case nanomdmsettings.FieldCaCerFile:
 		m.ClearCaCerFile()
 		return nil
+	case nanomdmsettings.FieldProfilePayloadID:
+		m.ClearProfilePayloadID()
+		return nil
 	}
 	return fmt.Errorf("unknown NanoMDMSettings nullable field %s", name)
 }
@@ -16258,6 +16328,9 @@ func (m *NanoMDMSettingsMutation) ResetField(name string) error {
 		return nil
 	case nanomdmsettings.FieldCaCerFile:
 		m.ResetCaCerFile()
+		return nil
+	case nanomdmsettings.FieldProfilePayloadID:
+		m.ResetProfilePayloadID()
 		return nil
 	}
 	return fmt.Errorf("unknown NanoMDMSettings field %s", name)

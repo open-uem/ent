@@ -73,6 +73,11 @@ func CaCerFile(v string) predicate.NanoMDMSettings {
 	return predicate.NanoMDMSettings(sql.FieldEQ(FieldCaCerFile, v))
 }
 
+// ProfilePayloadID applies equality check predicate on the "profile_payload_id" field. It's identical to ProfilePayloadIDEQ.
+func ProfilePayloadID(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEQ(FieldProfilePayloadID, v))
+}
+
 // UsernameEQ applies the EQ predicate on the "username" field.
 func UsernameEQ(v string) predicate.NanoMDMSettings {
 	return predicate.NanoMDMSettings(sql.FieldEQ(FieldUsername, v))
@@ -371,6 +376,81 @@ func CaCerFileEqualFold(v string) predicate.NanoMDMSettings {
 // CaCerFileContainsFold applies the ContainsFold predicate on the "ca_cer_file" field.
 func CaCerFileContainsFold(v string) predicate.NanoMDMSettings {
 	return predicate.NanoMDMSettings(sql.FieldContainsFold(FieldCaCerFile, v))
+}
+
+// ProfilePayloadIDEQ applies the EQ predicate on the "profile_payload_id" field.
+func ProfilePayloadIDEQ(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEQ(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDNEQ applies the NEQ predicate on the "profile_payload_id" field.
+func ProfilePayloadIDNEQ(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNEQ(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDIn applies the In predicate on the "profile_payload_id" field.
+func ProfilePayloadIDIn(vs ...string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldIn(FieldProfilePayloadID, vs...))
+}
+
+// ProfilePayloadIDNotIn applies the NotIn predicate on the "profile_payload_id" field.
+func ProfilePayloadIDNotIn(vs ...string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNotIn(FieldProfilePayloadID, vs...))
+}
+
+// ProfilePayloadIDGT applies the GT predicate on the "profile_payload_id" field.
+func ProfilePayloadIDGT(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldGT(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDGTE applies the GTE predicate on the "profile_payload_id" field.
+func ProfilePayloadIDGTE(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldGTE(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDLT applies the LT predicate on the "profile_payload_id" field.
+func ProfilePayloadIDLT(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldLT(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDLTE applies the LTE predicate on the "profile_payload_id" field.
+func ProfilePayloadIDLTE(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldLTE(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDContains applies the Contains predicate on the "profile_payload_id" field.
+func ProfilePayloadIDContains(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldContains(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDHasPrefix applies the HasPrefix predicate on the "profile_payload_id" field.
+func ProfilePayloadIDHasPrefix(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldHasPrefix(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDHasSuffix applies the HasSuffix predicate on the "profile_payload_id" field.
+func ProfilePayloadIDHasSuffix(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldHasSuffix(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDIsNil applies the IsNil predicate on the "profile_payload_id" field.
+func ProfilePayloadIDIsNil() predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldIsNull(FieldProfilePayloadID))
+}
+
+// ProfilePayloadIDNotNil applies the NotNil predicate on the "profile_payload_id" field.
+func ProfilePayloadIDNotNil() predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldNotNull(FieldProfilePayloadID))
+}
+
+// ProfilePayloadIDEqualFold applies the EqualFold predicate on the "profile_payload_id" field.
+func ProfilePayloadIDEqualFold(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldEqualFold(FieldProfilePayloadID, v))
+}
+
+// ProfilePayloadIDContainsFold applies the ContainsFold predicate on the "profile_payload_id" field.
+func ProfilePayloadIDContainsFold(v string) predicate.NanoMDMSettings {
+	return predicate.NanoMDMSettings(sql.FieldContainsFold(FieldProfilePayloadID, v))
 }
 
 // HasTenant applies the HasEdge predicate on the "tenant" edge.

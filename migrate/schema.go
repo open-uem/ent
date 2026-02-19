@@ -395,6 +395,7 @@ var (
 		{Name: "password", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "server_url", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "ca_cer_file", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "profile_payload_id", Type: field.TypeString, Nullable: true, Default: ""},
 	}
 	// NanoMdmSettingsTable holds the schema information for the "nano_mdm_settings" table.
 	NanoMdmSettingsTable = &schema.Table{

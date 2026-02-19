@@ -400,6 +400,10 @@ func init() {
 	nanomdmsettingsDescCaCerFile := nanomdmsettingsFields[3].Descriptor()
 	// nanomdmsettings.DefaultCaCerFile holds the default value on creation for the ca_cer_file field.
 	nanomdmsettings.DefaultCaCerFile = nanomdmsettingsDescCaCerFile.Default.(string)
+	// nanomdmsettingsDescProfilePayloadID is the schema descriptor for profile_payload_id field.
+	nanomdmsettingsDescProfilePayloadID := nanomdmsettingsFields[4].Descriptor()
+	// nanomdmsettings.DefaultProfilePayloadID holds the default value on creation for the profile_payload_id field.
+	nanomdmsettings.DefaultProfilePayloadID = nanomdmsettingsDescProfilePayloadID.Default.(string)
 	netbirdFields := schema.Netbird{}.Fields()
 	_ = netbirdFields
 	// netbirdDescVersion is the schema descriptor for version field.

@@ -24,6 +24,8 @@ type NanoMDMSettings struct {
 	ServerURL string `json:"server_url,omitempty"`
 	// CaCerFile holds the value of the "ca_cer_file" field.
 	CaCerFile string `json:"ca_cer_file,omitempty"`
+	// ProfilePayloadID holds the value of the "profile_payload_id" field.
+	ProfilePayloadID string `json:"profile_payload_id,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the NanoMDMSettingsQuery when eager-loading is set.
 	Edges        NanoMDMSettingsEdges `json:"edges"`
@@ -55,7 +57,7 @@ func (*NanoMDMSettings) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case nanomdmsettings.FieldID:
 			values[i] = new(sql.NullInt64)
-		case nanomdmsettings.FieldUsername, nanomdmsettings.FieldPassword, nanomdmsettings.FieldServerURL, nanomdmsettings.FieldCaCerFile:
+		case nanomdmsettings.FieldUsername, nanomdmsettings.FieldPassword, nanomdmsettings.FieldServerURL, nanomdmsettings.FieldCaCerFile, nanomdmsettings.FieldProfilePayloadID:
 			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -101,6 +103,12 @@ func (nms *NanoMDMSettings) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field ca_cer_file", values[i])
 			} else if value.Valid {
 				nms.CaCerFile = value.String
+			}
+		case nanomdmsettings.FieldProfilePayloadID:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field profile_payload_id", values[i])
+			} else if value.Valid {
+				nms.ProfilePayloadID = value.String
 			}
 		default:
 			nms.selectValues.Set(columns[i], values[i])
@@ -154,6 +162,9 @@ func (nms *NanoMDMSettings) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("ca_cer_file=")
 	builder.WriteString(nms.CaCerFile)
+	builder.WriteString(", ")
+	builder.WriteString("profile_payload_id=")
+	builder.WriteString(nms.ProfilePayloadID)
 	builder.WriteByte(')')
 	return builder.String()
 }
