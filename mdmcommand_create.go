@@ -12,7 +12,6 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/mdmcommand"
 )
 
@@ -52,29 +51,16 @@ func (mcc *MDMCommandCreate) SetNillableType(m *mdmcommand.Type) *MDMCommandCrea
 	return mcc
 }
 
+// SetAgentID sets the "agentID" field.
+func (mcc *MDMCommandCreate) SetAgentID(s string) *MDMCommandCreate {
+	mcc.mutation.SetAgentID(s)
+	return mcc
+}
+
 // SetID sets the "id" field.
 func (mcc *MDMCommandCreate) SetID(s string) *MDMCommandCreate {
 	mcc.mutation.SetID(s)
 	return mcc
-}
-
-// SetAgentsID sets the "agents" edge to the Agent entity by ID.
-func (mcc *MDMCommandCreate) SetAgentsID(id string) *MDMCommandCreate {
-	mcc.mutation.SetAgentsID(id)
-	return mcc
-}
-
-// SetNillableAgentsID sets the "agents" edge to the Agent entity by ID if the given value is not nil.
-func (mcc *MDMCommandCreate) SetNillableAgentsID(id *string) *MDMCommandCreate {
-	if id != nil {
-		mcc = mcc.SetAgentsID(*id)
-	}
-	return mcc
-}
-
-// SetAgents sets the "agents" edge to the Agent entity.
-func (mcc *MDMCommandCreate) SetAgents(a *Agent) *MDMCommandCreate {
-	return mcc.SetAgentsID(a.ID)
 }
 
 // Mutation returns the MDMCommandMutation object of the builder.
@@ -125,6 +111,9 @@ func (mcc *MDMCommandCreate) check() error {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.type": %w`, err)}
 		}
 	}
+	if _, ok := mcc.mutation.AgentID(); !ok {
+		return &ValidationError{Name: "agentID", err: errors.New(`ent: missing required field "MDMCommand.agentID"`)}
+	}
 	if v, ok := mcc.mutation.ID(); ok {
 		if err := mdmcommand.IDValidator(v); err != nil {
 			return &ValidationError{Name: "id", err: fmt.Errorf(`ent: validator failed for field "MDMCommand.id": %w`, err)}
@@ -174,22 +163,9 @@ func (mcc *MDMCommandCreate) createSpec() (*MDMCommand, *sqlgraph.CreateSpec) {
 		_spec.SetField(mdmcommand.FieldType, field.TypeEnum, value)
 		_node.Type = value
 	}
-	if nodes := mcc.mutation.AgentsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   mdmcommand.AgentsTable,
-			Columns: []string{mdmcommand.AgentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_node.agent_mdmcommands = &nodes[0]
-		_spec.Edges = append(_spec.Edges, edge)
+	if value, ok := mcc.mutation.AgentID(); ok {
+		_spec.SetField(mdmcommand.FieldAgentID, field.TypeString, value)
+		_node.AgentID = value
 	}
 	return _node, _spec
 }
@@ -276,6 +252,18 @@ func (u *MDMCommandUpsert) UpdateType() *MDMCommandUpsert {
 // ClearType clears the value of the "type" field.
 func (u *MDMCommandUpsert) ClearType() *MDMCommandUpsert {
 	u.SetNull(mdmcommand.FieldType)
+	return u
+}
+
+// SetAgentID sets the "agentID" field.
+func (u *MDMCommandUpsert) SetAgentID(v string) *MDMCommandUpsert {
+	u.Set(mdmcommand.FieldAgentID, v)
+	return u
+}
+
+// UpdateAgentID sets the "agentID" field to the value that was provided on create.
+func (u *MDMCommandUpsert) UpdateAgentID() *MDMCommandUpsert {
+	u.SetExcluded(mdmcommand.FieldAgentID)
 	return u
 }
 
@@ -366,6 +354,20 @@ func (u *MDMCommandUpsertOne) UpdateType() *MDMCommandUpsertOne {
 func (u *MDMCommandUpsertOne) ClearType() *MDMCommandUpsertOne {
 	return u.Update(func(s *MDMCommandUpsert) {
 		s.ClearType()
+	})
+}
+
+// SetAgentID sets the "agentID" field.
+func (u *MDMCommandUpsertOne) SetAgentID(v string) *MDMCommandUpsertOne {
+	return u.Update(func(s *MDMCommandUpsert) {
+		s.SetAgentID(v)
+	})
+}
+
+// UpdateAgentID sets the "agentID" field to the value that was provided on create.
+func (u *MDMCommandUpsertOne) UpdateAgentID() *MDMCommandUpsertOne {
+	return u.Update(func(s *MDMCommandUpsert) {
+		s.UpdateAgentID()
 	})
 }
 
@@ -623,6 +625,20 @@ func (u *MDMCommandUpsertBulk) UpdateType() *MDMCommandUpsertBulk {
 func (u *MDMCommandUpsertBulk) ClearType() *MDMCommandUpsertBulk {
 	return u.Update(func(s *MDMCommandUpsert) {
 		s.ClearType()
+	})
+}
+
+// SetAgentID sets the "agentID" field.
+func (u *MDMCommandUpsertBulk) SetAgentID(v string) *MDMCommandUpsertBulk {
+	return u.Update(func(s *MDMCommandUpsert) {
+		s.SetAgentID(v)
+	})
+}
+
+// UpdateAgentID sets the "agentID" field to the value that was provided on create.
+func (u *MDMCommandUpsertBulk) UpdateAgentID() *MDMCommandUpsertBulk {
+	return u.Update(func(s *MDMCommandUpsert) {
+		s.UpdateAgentID()
 	})
 }
 

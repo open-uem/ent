@@ -137,15 +137,13 @@ type AgentEdges struct {
 	Physicaldisks []*PhysicalDisk `json:"physicaldisks,omitempty"`
 	// Netbird holds the value of the netbird edge.
 	Netbird *Netbird `json:"netbird,omitempty"`
-	// Mdmcommands holds the value of the mdmcommands edge.
-	Mdmcommands []*MDMCommand `json:"mdmcommands,omitempty"`
 	// Nanomdminfo holds the value of the nanomdminfo edge.
 	Nanomdminfo *NanoMDMInfo `json:"nanomdminfo,omitempty"`
 	// Nanomdmusers holds the value of the nanomdmusers edge.
 	Nanomdmusers []*NanoMDMUser `json:"nanomdmusers,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [24]bool
+	loadedTypes [23]bool
 }
 
 // ComputerOrErr returns the Computer value or an error if the edge
@@ -349,21 +347,12 @@ func (e AgentEdges) NetbirdOrErr() (*Netbird, error) {
 	return nil, &NotLoadedError{edge: "netbird"}
 }
 
-// MdmcommandsOrErr returns the Mdmcommands value or an error if the edge
-// was not loaded in eager-loading.
-func (e AgentEdges) MdmcommandsOrErr() ([]*MDMCommand, error) {
-	if e.loadedTypes[21] {
-		return e.Mdmcommands, nil
-	}
-	return nil, &NotLoadedError{edge: "mdmcommands"}
-}
-
 // NanomdminfoOrErr returns the Nanomdminfo value or an error if the edge
 // was not loaded in eager-loading, or loaded but was not found.
 func (e AgentEdges) NanomdminfoOrErr() (*NanoMDMInfo, error) {
 	if e.Nanomdminfo != nil {
 		return e.Nanomdminfo, nil
-	} else if e.loadedTypes[22] {
+	} else if e.loadedTypes[21] {
 		return nil, &NotFoundError{label: nanomdminfo.Label}
 	}
 	return nil, &NotLoadedError{edge: "nanomdminfo"}
@@ -372,7 +361,7 @@ func (e AgentEdges) NanomdminfoOrErr() (*NanoMDMInfo, error) {
 // NanomdmusersOrErr returns the Nanomdmusers value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) NanomdmusersOrErr() ([]*NanoMDMUser, error) {
-	if e.loadedTypes[23] {
+	if e.loadedTypes[22] {
 		return e.Nanomdmusers, nil
 	}
 	return nil, &NotLoadedError{edge: "nanomdmusers"}
@@ -721,11 +710,6 @@ func (a *Agent) QueryPhysicaldisks() *PhysicalDiskQuery {
 // QueryNetbird queries the "netbird" edge of the Agent entity.
 func (a *Agent) QueryNetbird() *NetbirdQuery {
 	return NewAgentClient(a.config).QueryNetbird(a)
-}
-
-// QueryMdmcommands queries the "mdmcommands" edge of the Agent entity.
-func (a *Agent) QueryMdmcommands() *MDMCommandQuery {
-	return NewAgentClient(a.config).QueryMdmcommands(a)
 }
 
 // QueryNanomdminfo queries the "nanomdminfo" edge of the Agent entity.

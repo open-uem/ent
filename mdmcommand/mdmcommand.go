@@ -6,7 +6,6 @@ import (
 	"fmt"
 
 	"entgo.io/ent/dialect/sql"
-	"entgo.io/ent/dialect/sql/sqlgraph"
 )
 
 const (
@@ -18,19 +17,10 @@ const (
 	FieldWhen = "when"
 	// FieldType holds the string denoting the type field in the database.
 	FieldType = "type"
-	// EdgeAgents holds the string denoting the agents edge name in mutations.
-	EdgeAgents = "agents"
-	// AgentFieldID holds the string denoting the ID field of the Agent.
-	AgentFieldID = "oid"
+	// FieldAgentID holds the string denoting the agentid field in the database.
+	FieldAgentID = "agent_id"
 	// Table holds the table name of the mdmcommand in the database.
 	Table = "mdm_commands"
-	// AgentsTable is the table that holds the agents relation/edge.
-	AgentsTable = "mdm_commands"
-	// AgentsInverseTable is the table name for the Agent entity.
-	// It exists in this package in order to avoid circular dependency with the "agent" package.
-	AgentsInverseTable = "agents"
-	// AgentsColumn is the table column denoting the agents relation/edge.
-	AgentsColumn = "agent_mdmcommands"
 )
 
 // Columns holds all SQL columns for mdmcommand fields.
@@ -38,23 +28,13 @@ var Columns = []string{
 	FieldID,
 	FieldWhen,
 	FieldType,
-}
-
-// ForeignKeys holds the SQL foreign-keys that are owned by the "mdm_commands"
-// table and are not defined as standalone fields in the schema.
-var ForeignKeys = []string{
-	"agent_mdmcommands",
+	FieldAgentID,
 }
 
 // ValidColumn reports if the column name is valid (part of the table columns).
 func ValidColumn(column string) bool {
 	for i := range Columns {
 		if column == Columns[i] {
-			return true
-		}
-	}
-	for i := range ForeignKeys {
-		if column == ForeignKeys[i] {
 			return true
 		}
 	}
@@ -112,16 +92,7 @@ func ByType(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldType, opts...).ToFunc()
 }
 
-// ByAgentsField orders the results by agents field.
-func ByAgentsField(field string, opts ...sql.OrderTermOption) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newAgentsStep(), sql.OrderByField(field, opts...))
-	}
-}
-func newAgentsStep() *sqlgraph.Step {
-	return sqlgraph.NewStep(
-		sqlgraph.From(Table, FieldID),
-		sqlgraph.To(AgentsInverseTable, AgentFieldID),
-		sqlgraph.Edge(sqlgraph.M2O, true, AgentsTable, AgentsColumn),
-	)
+// ByAgentID orders the results by the agentID field.
+func ByAgentID(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldAgentID, opts...).ToFunc()
 }

@@ -17,7 +17,6 @@ import (
 	"github.com/open-uem/ent/computer"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
-	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
@@ -982,21 +981,6 @@ func (au *AgentUpdate) SetNetbird(n *Netbird) *AgentUpdate {
 	return au.SetNetbirdID(n.ID)
 }
 
-// AddMdmcommandIDs adds the "mdmcommands" edge to the MDMCommand entity by IDs.
-func (au *AgentUpdate) AddMdmcommandIDs(ids ...string) *AgentUpdate {
-	au.mutation.AddMdmcommandIDs(ids...)
-	return au
-}
-
-// AddMdmcommands adds the "mdmcommands" edges to the MDMCommand entity.
-func (au *AgentUpdate) AddMdmcommands(m ...*MDMCommand) *AgentUpdate {
-	ids := make([]string, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
-	}
-	return au.AddMdmcommandIDs(ids...)
-}
-
 // SetNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by ID.
 func (au *AgentUpdate) SetNanomdminfoID(id int) *AgentUpdate {
 	au.mutation.SetNanomdminfoID(id)
@@ -1385,27 +1369,6 @@ func (au *AgentUpdate) RemovePhysicaldisks(p ...*PhysicalDisk) *AgentUpdate {
 func (au *AgentUpdate) ClearNetbird() *AgentUpdate {
 	au.mutation.ClearNetbird()
 	return au
-}
-
-// ClearMdmcommands clears all "mdmcommands" edges to the MDMCommand entity.
-func (au *AgentUpdate) ClearMdmcommands() *AgentUpdate {
-	au.mutation.ClearMdmcommands()
-	return au
-}
-
-// RemoveMdmcommandIDs removes the "mdmcommands" edge to MDMCommand entities by IDs.
-func (au *AgentUpdate) RemoveMdmcommandIDs(ids ...string) *AgentUpdate {
-	au.mutation.RemoveMdmcommandIDs(ids...)
-	return au
-}
-
-// RemoveMdmcommands removes "mdmcommands" edges to MDMCommand entities.
-func (au *AgentUpdate) RemoveMdmcommands(m ...*MDMCommand) *AgentUpdate {
-	ids := make([]string, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
-	}
-	return au.RemoveMdmcommandIDs(ids...)
 }
 
 // ClearNanomdminfo clears the "nanomdminfo" edge to the NanoMDMInfo entity.
@@ -2530,51 +2493,6 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.MdmcommandsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.RemovedMdmcommandsIDs(); len(nodes) > 0 && !au.mutation.MdmcommandsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.MdmcommandsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
-	}
 	if au.mutation.NanomdminfoCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
@@ -3600,21 +3518,6 @@ func (auo *AgentUpdateOne) SetNetbird(n *Netbird) *AgentUpdateOne {
 	return auo.SetNetbirdID(n.ID)
 }
 
-// AddMdmcommandIDs adds the "mdmcommands" edge to the MDMCommand entity by IDs.
-func (auo *AgentUpdateOne) AddMdmcommandIDs(ids ...string) *AgentUpdateOne {
-	auo.mutation.AddMdmcommandIDs(ids...)
-	return auo
-}
-
-// AddMdmcommands adds the "mdmcommands" edges to the MDMCommand entity.
-func (auo *AgentUpdateOne) AddMdmcommands(m ...*MDMCommand) *AgentUpdateOne {
-	ids := make([]string, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
-	}
-	return auo.AddMdmcommandIDs(ids...)
-}
-
 // SetNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by ID.
 func (auo *AgentUpdateOne) SetNanomdminfoID(id int) *AgentUpdateOne {
 	auo.mutation.SetNanomdminfoID(id)
@@ -4003,27 +3906,6 @@ func (auo *AgentUpdateOne) RemovePhysicaldisks(p ...*PhysicalDisk) *AgentUpdateO
 func (auo *AgentUpdateOne) ClearNetbird() *AgentUpdateOne {
 	auo.mutation.ClearNetbird()
 	return auo
-}
-
-// ClearMdmcommands clears all "mdmcommands" edges to the MDMCommand entity.
-func (auo *AgentUpdateOne) ClearMdmcommands() *AgentUpdateOne {
-	auo.mutation.ClearMdmcommands()
-	return auo
-}
-
-// RemoveMdmcommandIDs removes the "mdmcommands" edge to MDMCommand entities by IDs.
-func (auo *AgentUpdateOne) RemoveMdmcommandIDs(ids ...string) *AgentUpdateOne {
-	auo.mutation.RemoveMdmcommandIDs(ids...)
-	return auo
-}
-
-// RemoveMdmcommands removes "mdmcommands" edges to MDMCommand entities.
-func (auo *AgentUpdateOne) RemoveMdmcommands(m ...*MDMCommand) *AgentUpdateOne {
-	ids := make([]string, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
-	}
-	return auo.RemoveMdmcommandIDs(ids...)
 }
 
 // ClearNanomdminfo clears the "nanomdminfo" edge to the NanoMDMInfo entity.
@@ -5171,51 +5053,6 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
-	}
-	if auo.mutation.MdmcommandsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.RemovedMdmcommandsIDs(); len(nodes) > 0 && !auo.mutation.MdmcommandsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.MdmcommandsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

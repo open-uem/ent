@@ -18,7 +18,6 @@ import (
 	"github.com/open-uem/ent/computer"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
-	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
@@ -810,21 +809,6 @@ func (ac *AgentCreate) SetNetbird(n *Netbird) *AgentCreate {
 	return ac.SetNetbirdID(n.ID)
 }
 
-// AddMdmcommandIDs adds the "mdmcommands" edge to the MDMCommand entity by IDs.
-func (ac *AgentCreate) AddMdmcommandIDs(ids ...string) *AgentCreate {
-	ac.mutation.AddMdmcommandIDs(ids...)
-	return ac
-}
-
-// AddMdmcommands adds the "mdmcommands" edges to the MDMCommand entity.
-func (ac *AgentCreate) AddMdmcommands(m ...*MDMCommand) *AgentCreate {
-	ids := make([]string, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
-	}
-	return ac.AddMdmcommandIDs(ids...)
-}
-
 // SetNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by ID.
 func (ac *AgentCreate) SetNanomdminfoID(id int) *AgentCreate {
 	ac.mutation.SetNanomdminfoID(id)
@@ -1533,22 +1517,6 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges = append(_spec.Edges, edge)
-	}
-	if nodes := ac.mutation.MdmcommandsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MdmcommandsTable,
-			Columns: []string{agent.MdmcommandsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(mdmcommand.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

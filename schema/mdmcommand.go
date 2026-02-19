@@ -2,7 +2,6 @@ package schema
 
 import (
 	"entgo.io/ent"
-	"entgo.io/ent/schema/edge"
 	"entgo.io/ent/schema/field"
 )
 
@@ -17,12 +16,6 @@ func (MDMCommand) Fields() []ent.Field {
 		field.String("id").NotEmpty().Unique().StorageKey("uuid"),
 		field.Time("when").Optional(),
 		field.Enum("type").Values("DeviceInformation", "UsersList", "InstalledApplicationsList", "RemoveProfile").Optional().Default("DeviceInformation"),
-	}
-}
-
-// Edges of the MDMCommand.
-func (MDMCommand) Edges() []ent.Edge {
-	return []ent.Edge{
-		edge.From("agents", Agent.Type).Ref("mdmcommands").Unique(),
+		field.String("agentID"),
 	}
 }

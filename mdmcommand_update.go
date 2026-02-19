@@ -11,7 +11,6 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/predicate"
 )
@@ -70,34 +69,23 @@ func (mcu *MDMCommandUpdate) ClearType() *MDMCommandUpdate {
 	return mcu
 }
 
-// SetAgentsID sets the "agents" edge to the Agent entity by ID.
-func (mcu *MDMCommandUpdate) SetAgentsID(id string) *MDMCommandUpdate {
-	mcu.mutation.SetAgentsID(id)
+// SetAgentID sets the "agentID" field.
+func (mcu *MDMCommandUpdate) SetAgentID(s string) *MDMCommandUpdate {
+	mcu.mutation.SetAgentID(s)
 	return mcu
 }
 
-// SetNillableAgentsID sets the "agents" edge to the Agent entity by ID if the given value is not nil.
-func (mcu *MDMCommandUpdate) SetNillableAgentsID(id *string) *MDMCommandUpdate {
-	if id != nil {
-		mcu = mcu.SetAgentsID(*id)
+// SetNillableAgentID sets the "agentID" field if the given value is not nil.
+func (mcu *MDMCommandUpdate) SetNillableAgentID(s *string) *MDMCommandUpdate {
+	if s != nil {
+		mcu.SetAgentID(*s)
 	}
 	return mcu
-}
-
-// SetAgents sets the "agents" edge to the Agent entity.
-func (mcu *MDMCommandUpdate) SetAgents(a *Agent) *MDMCommandUpdate {
-	return mcu.SetAgentsID(a.ID)
 }
 
 // Mutation returns the MDMCommandMutation object of the builder.
 func (mcu *MDMCommandUpdate) Mutation() *MDMCommandMutation {
 	return mcu.mutation
-}
-
-// ClearAgents clears the "agents" edge to the Agent entity.
-func (mcu *MDMCommandUpdate) ClearAgents() *MDMCommandUpdate {
-	mcu.mutation.ClearAgents()
-	return mcu
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -167,34 +155,8 @@ func (mcu *MDMCommandUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if mcu.mutation.TypeCleared() {
 		_spec.ClearField(mdmcommand.FieldType, field.TypeEnum)
 	}
-	if mcu.mutation.AgentsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   mdmcommand.AgentsTable,
-			Columns: []string{mdmcommand.AgentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := mcu.mutation.AgentsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   mdmcommand.AgentsTable,
-			Columns: []string{mdmcommand.AgentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	if value, ok := mcu.mutation.AgentID(); ok {
+		_spec.SetField(mdmcommand.FieldAgentID, field.TypeString, value)
 	}
 	_spec.AddModifiers(mcu.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, mcu.driver, _spec); err != nil {
@@ -258,34 +220,23 @@ func (mcuo *MDMCommandUpdateOne) ClearType() *MDMCommandUpdateOne {
 	return mcuo
 }
 
-// SetAgentsID sets the "agents" edge to the Agent entity by ID.
-func (mcuo *MDMCommandUpdateOne) SetAgentsID(id string) *MDMCommandUpdateOne {
-	mcuo.mutation.SetAgentsID(id)
+// SetAgentID sets the "agentID" field.
+func (mcuo *MDMCommandUpdateOne) SetAgentID(s string) *MDMCommandUpdateOne {
+	mcuo.mutation.SetAgentID(s)
 	return mcuo
 }
 
-// SetNillableAgentsID sets the "agents" edge to the Agent entity by ID if the given value is not nil.
-func (mcuo *MDMCommandUpdateOne) SetNillableAgentsID(id *string) *MDMCommandUpdateOne {
-	if id != nil {
-		mcuo = mcuo.SetAgentsID(*id)
+// SetNillableAgentID sets the "agentID" field if the given value is not nil.
+func (mcuo *MDMCommandUpdateOne) SetNillableAgentID(s *string) *MDMCommandUpdateOne {
+	if s != nil {
+		mcuo.SetAgentID(*s)
 	}
 	return mcuo
-}
-
-// SetAgents sets the "agents" edge to the Agent entity.
-func (mcuo *MDMCommandUpdateOne) SetAgents(a *Agent) *MDMCommandUpdateOne {
-	return mcuo.SetAgentsID(a.ID)
 }
 
 // Mutation returns the MDMCommandMutation object of the builder.
 func (mcuo *MDMCommandUpdateOne) Mutation() *MDMCommandMutation {
 	return mcuo.mutation
-}
-
-// ClearAgents clears the "agents" edge to the Agent entity.
-func (mcuo *MDMCommandUpdateOne) ClearAgents() *MDMCommandUpdateOne {
-	mcuo.mutation.ClearAgents()
-	return mcuo
 }
 
 // Where appends a list predicates to the MDMCommandUpdate builder.
@@ -385,34 +336,8 @@ func (mcuo *MDMCommandUpdateOne) sqlSave(ctx context.Context) (_node *MDMCommand
 	if mcuo.mutation.TypeCleared() {
 		_spec.ClearField(mdmcommand.FieldType, field.TypeEnum)
 	}
-	if mcuo.mutation.AgentsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   mdmcommand.AgentsTable,
-			Columns: []string{mdmcommand.AgentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := mcuo.mutation.AgentsIDs(); len(nodes) > 0 {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2O,
-			Inverse: true,
-			Table:   mdmcommand.AgentsTable,
-			Columns: []string{mdmcommand.AgentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	if value, ok := mcuo.mutation.AgentID(); ok {
+		_spec.SetField(mdmcommand.FieldAgentID, field.TypeString, value)
 	}
 	_spec.AddModifiers(mcuo.modifiers...)
 	_node = &MDMCommand{config: mcuo.config}

@@ -9,7 +9,6 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/mdmcommand"
 )
 
@@ -22,31 +21,9 @@ type MDMCommand struct {
 	When time.Time `json:"when,omitempty"`
 	// Type holds the value of the "type" field.
 	Type mdmcommand.Type `json:"type,omitempty"`
-	// Edges holds the relations/edges for other nodes in the graph.
-	// The values are being populated by the MDMCommandQuery when eager-loading is set.
-	Edges             MDMCommandEdges `json:"edges"`
-	agent_mdmcommands *string
-	selectValues      sql.SelectValues
-}
-
-// MDMCommandEdges holds the relations/edges for other nodes in the graph.
-type MDMCommandEdges struct {
-	// Agents holds the value of the agents edge.
-	Agents *Agent `json:"agents,omitempty"`
-	// loadedTypes holds the information for reporting if a
-	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [1]bool
-}
-
-// AgentsOrErr returns the Agents value or an error if the edge
-// was not loaded in eager-loading, or loaded but was not found.
-func (e MDMCommandEdges) AgentsOrErr() (*Agent, error) {
-	if e.Agents != nil {
-		return e.Agents, nil
-	} else if e.loadedTypes[0] {
-		return nil, &NotFoundError{label: agent.Label}
-	}
-	return nil, &NotLoadedError{edge: "agents"}
+	// AgentID holds the value of the "agentID" field.
+	AgentID      string `json:"agentID,omitempty"`
+	selectValues sql.SelectValues
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -54,12 +31,10 @@ func (*MDMCommand) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case mdmcommand.FieldID, mdmcommand.FieldType:
+		case mdmcommand.FieldID, mdmcommand.FieldType, mdmcommand.FieldAgentID:
 			values[i] = new(sql.NullString)
 		case mdmcommand.FieldWhen:
 			values[i] = new(sql.NullTime)
-		case mdmcommand.ForeignKeys[0]: // agent_mdmcommands
-			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
 		}
@@ -93,12 +68,11 @@ func (mc *MDMCommand) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				mc.Type = mdmcommand.Type(value.String)
 			}
-		case mdmcommand.ForeignKeys[0]:
+		case mdmcommand.FieldAgentID:
 			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field agent_mdmcommands", values[i])
+				return fmt.Errorf("unexpected type %T for field agentID", values[i])
 			} else if value.Valid {
-				mc.agent_mdmcommands = new(string)
-				*mc.agent_mdmcommands = value.String
+				mc.AgentID = value.String
 			}
 		default:
 			mc.selectValues.Set(columns[i], values[i])
@@ -111,11 +85,6 @@ func (mc *MDMCommand) assignValues(columns []string, values []any) error {
 // This includes values selected through modifiers, order, etc.
 func (mc *MDMCommand) Value(name string) (ent.Value, error) {
 	return mc.selectValues.Get(name)
-}
-
-// QueryAgents queries the "agents" edge of the MDMCommand entity.
-func (mc *MDMCommand) QueryAgents() *AgentQuery {
-	return NewMDMCommandClient(mc.config).QueryAgents(mc)
 }
 
 // Update returns a builder for updating this MDMCommand.
@@ -146,6 +115,9 @@ func (mc *MDMCommand) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("type=")
 	builder.WriteString(fmt.Sprintf("%v", mc.Type))
+	builder.WriteString(", ")
+	builder.WriteString("agentID=")
+	builder.WriteString(mc.AgentID)
 	builder.WriteByte(')')
 	return builder.String()
 }

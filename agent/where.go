@@ -2233,29 +2233,6 @@ func HasNetbirdWith(preds ...predicate.Netbird) predicate.Agent {
 	})
 }
 
-// HasMdmcommands applies the HasEdge predicate on the "mdmcommands" edge.
-func HasMdmcommands() predicate.Agent {
-	return predicate.Agent(func(s *sql.Selector) {
-		step := sqlgraph.NewStep(
-			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, MdmcommandsTable, MdmcommandsColumn),
-		)
-		sqlgraph.HasNeighbors(s, step)
-	})
-}
-
-// HasMdmcommandsWith applies the HasEdge predicate on the "mdmcommands" edge with a given conditions (other predicates).
-func HasMdmcommandsWith(preds ...predicate.MDMCommand) predicate.Agent {
-	return predicate.Agent(func(s *sql.Selector) {
-		step := newMdmcommandsStep()
-		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
-			for _, p := range preds {
-				p(s)
-			}
-		})
-	})
-}
-
 // HasNanomdminfo applies the HasEdge predicate on the "nanomdminfo" edge.
 func HasNanomdminfo() predicate.Agent {
 	return predicate.Agent(func(s *sql.Selector) {

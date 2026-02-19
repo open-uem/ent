@@ -973,22 +973,6 @@ func (c *AgentClient) QueryNetbird(a *Agent) *NetbirdQuery {
 	return query
 }
 
-// QueryMdmcommands queries the mdmcommands edge of a Agent.
-func (c *AgentClient) QueryMdmcommands(a *Agent) *MDMCommandQuery {
-	query := (&MDMCommandClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := a.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(agent.Table, agent.FieldID, id),
-			sqlgraph.To(mdmcommand.Table, mdmcommand.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, agent.MdmcommandsTable, agent.MdmcommandsColumn),
-		)
-		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
-}
-
 // QueryNanomdminfo queries the nanomdminfo edge of a Agent.
 func (c *AgentClient) QueryNanomdminfo(a *Agent) *NanoMDMInfoQuery {
 	query := (&NanoMDMInfoClient{config: c.config}).Query()
@@ -2163,22 +2147,6 @@ func (c *MDMCommandClient) GetX(ctx context.Context, id string) *MDMCommand {
 		panic(err)
 	}
 	return obj
-}
-
-// QueryAgents queries the agents edge of a MDMCommand.
-func (c *MDMCommandClient) QueryAgents(mc *MDMCommand) *AgentQuery {
-	query := (&AgentClient{config: c.config}).Query()
-	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
-		id := mc.ID
-		step := sqlgraph.NewStep(
-			sqlgraph.From(mdmcommand.Table, mdmcommand.FieldID, id),
-			sqlgraph.To(agent.Table, agent.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, mdmcommand.AgentsTable, mdmcommand.AgentsColumn),
-		)
-		fromV = sqlgraph.Neighbors(mc.driver.Dialect(), step)
-		return fromV, nil
-	}
-	return query
 }
 
 // Hooks returns the client hooks.

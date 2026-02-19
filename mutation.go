@@ -200,9 +200,6 @@ type AgentMutation struct {
 	clearedphysicaldisks       bool
 	netbird                    *int
 	clearednetbird             bool
-	mdmcommands                map[string]struct{}
-	removedmdmcommands         map[string]struct{}
-	clearedmdmcommands         bool
 	nanomdminfo                *int
 	clearednanomdminfo         bool
 	nanomdmusers               map[int]struct{}
@@ -2815,60 +2812,6 @@ func (m *AgentMutation) ResetNetbird() {
 	m.clearednetbird = false
 }
 
-// AddMdmcommandIDs adds the "mdmcommands" edge to the MDMCommand entity by ids.
-func (m *AgentMutation) AddMdmcommandIDs(ids ...string) {
-	if m.mdmcommands == nil {
-		m.mdmcommands = make(map[string]struct{})
-	}
-	for i := range ids {
-		m.mdmcommands[ids[i]] = struct{}{}
-	}
-}
-
-// ClearMdmcommands clears the "mdmcommands" edge to the MDMCommand entity.
-func (m *AgentMutation) ClearMdmcommands() {
-	m.clearedmdmcommands = true
-}
-
-// MdmcommandsCleared reports if the "mdmcommands" edge to the MDMCommand entity was cleared.
-func (m *AgentMutation) MdmcommandsCleared() bool {
-	return m.clearedmdmcommands
-}
-
-// RemoveMdmcommandIDs removes the "mdmcommands" edge to the MDMCommand entity by IDs.
-func (m *AgentMutation) RemoveMdmcommandIDs(ids ...string) {
-	if m.removedmdmcommands == nil {
-		m.removedmdmcommands = make(map[string]struct{})
-	}
-	for i := range ids {
-		delete(m.mdmcommands, ids[i])
-		m.removedmdmcommands[ids[i]] = struct{}{}
-	}
-}
-
-// RemovedMdmcommands returns the removed IDs of the "mdmcommands" edge to the MDMCommand entity.
-func (m *AgentMutation) RemovedMdmcommandsIDs() (ids []string) {
-	for id := range m.removedmdmcommands {
-		ids = append(ids, id)
-	}
-	return
-}
-
-// MdmcommandsIDs returns the "mdmcommands" edge IDs in the mutation.
-func (m *AgentMutation) MdmcommandsIDs() (ids []string) {
-	for id := range m.mdmcommands {
-		ids = append(ids, id)
-	}
-	return
-}
-
-// ResetMdmcommands resets all changes to the "mdmcommands" edge.
-func (m *AgentMutation) ResetMdmcommands() {
-	m.mdmcommands = nil
-	m.clearedmdmcommands = false
-	m.removedmdmcommands = nil
-}
-
 // SetNanomdminfoID sets the "nanomdminfo" edge to the NanoMDMInfo entity by id.
 func (m *AgentMutation) SetNanomdminfoID(id int) {
 	m.nanomdminfo = &id
@@ -3764,7 +3707,7 @@ func (m *AgentMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *AgentMutation) AddedEdges() []string {
-	edges := make([]string, 0, 24)
+	edges := make([]string, 0, 23)
 	if m.computer != nil {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3827,9 +3770,6 @@ func (m *AgentMutation) AddedEdges() []string {
 	}
 	if m.netbird != nil {
 		edges = append(edges, agent.EdgeNetbird)
-	}
-	if m.mdmcommands != nil {
-		edges = append(edges, agent.EdgeMdmcommands)
 	}
 	if m.nanomdminfo != nil {
 		edges = append(edges, agent.EdgeNanomdminfo)
@@ -3958,12 +3898,6 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 		if id := m.netbird; id != nil {
 			return []ent.Value{*id}
 		}
-	case agent.EdgeMdmcommands:
-		ids := make([]ent.Value, 0, len(m.mdmcommands))
-		for id := range m.mdmcommands {
-			ids = append(ids, id)
-		}
-		return ids
 	case agent.EdgeNanomdminfo:
 		if id := m.nanomdminfo; id != nil {
 			return []ent.Value{*id}
@@ -3980,7 +3914,7 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *AgentMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 24)
+	edges := make([]string, 0, 23)
 	if m.removedlogicaldisks != nil {
 		edges = append(edges, agent.EdgeLogicaldisks)
 	}
@@ -4025,9 +3959,6 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedphysicaldisks != nil {
 		edges = append(edges, agent.EdgePhysicaldisks)
-	}
-	if m.removedmdmcommands != nil {
-		edges = append(edges, agent.EdgeMdmcommands)
 	}
 	if m.removednanomdmusers != nil {
 		edges = append(edges, agent.EdgeNanomdmusers)
@@ -4129,12 +4060,6 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
-	case agent.EdgeMdmcommands:
-		ids := make([]ent.Value, 0, len(m.removedmdmcommands))
-		for id := range m.removedmdmcommands {
-			ids = append(ids, id)
-		}
-		return ids
 	case agent.EdgeNanomdmusers:
 		ids := make([]ent.Value, 0, len(m.removednanomdmusers))
 		for id := range m.removednanomdmusers {
@@ -4147,7 +4072,7 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *AgentMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 24)
+	edges := make([]string, 0, 23)
 	if m.clearedcomputer {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -4211,9 +4136,6 @@ func (m *AgentMutation) ClearedEdges() []string {
 	if m.clearednetbird {
 		edges = append(edges, agent.EdgeNetbird)
 	}
-	if m.clearedmdmcommands {
-		edges = append(edges, agent.EdgeMdmcommands)
-	}
 	if m.clearednanomdminfo {
 		edges = append(edges, agent.EdgeNanomdminfo)
 	}
@@ -4269,8 +4191,6 @@ func (m *AgentMutation) EdgeCleared(name string) bool {
 		return m.clearedphysicaldisks
 	case agent.EdgeNetbird:
 		return m.clearednetbird
-	case agent.EdgeMdmcommands:
-		return m.clearedmdmcommands
 	case agent.EdgeNanomdminfo:
 		return m.clearednanomdminfo
 	case agent.EdgeNanomdmusers:
@@ -4374,9 +4294,6 @@ func (m *AgentMutation) ResetEdge(name string) error {
 		return nil
 	case agent.EdgeNetbird:
 		m.ResetNetbird()
-		return nil
-	case agent.EdgeMdmcommands:
-		m.ResetMdmcommands()
 		return nil
 	case agent.EdgeNanomdminfo:
 		m.ResetNanomdminfo()
@@ -9788,9 +9705,8 @@ type MDMCommandMutation struct {
 	id            *string
 	when          *time.Time
 	_type         *mdmcommand.Type
+	agentID       *string
 	clearedFields map[string]struct{}
-	agents        *string
-	clearedagents bool
 	done          bool
 	oldValue      func(context.Context) (*MDMCommand, error)
 	predicates    []predicate.MDMCommand
@@ -9998,43 +9914,40 @@ func (m *MDMCommandMutation) ResetType() {
 	delete(m.clearedFields, mdmcommand.FieldType)
 }
 
-// SetAgentsID sets the "agents" edge to the Agent entity by id.
-func (m *MDMCommandMutation) SetAgentsID(id string) {
-	m.agents = &id
+// SetAgentID sets the "agentID" field.
+func (m *MDMCommandMutation) SetAgentID(s string) {
+	m.agentID = &s
 }
 
-// ClearAgents clears the "agents" edge to the Agent entity.
-func (m *MDMCommandMutation) ClearAgents() {
-	m.clearedagents = true
-}
-
-// AgentsCleared reports if the "agents" edge to the Agent entity was cleared.
-func (m *MDMCommandMutation) AgentsCleared() bool {
-	return m.clearedagents
-}
-
-// AgentsID returns the "agents" edge ID in the mutation.
-func (m *MDMCommandMutation) AgentsID() (id string, exists bool) {
-	if m.agents != nil {
-		return *m.agents, true
+// AgentID returns the value of the "agentID" field in the mutation.
+func (m *MDMCommandMutation) AgentID() (r string, exists bool) {
+	v := m.agentID
+	if v == nil {
+		return
 	}
-	return
+	return *v, true
 }
 
-// AgentsIDs returns the "agents" edge IDs in the mutation.
-// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
-// AgentsID instead. It exists only for internal usage by the builders.
-func (m *MDMCommandMutation) AgentsIDs() (ids []string) {
-	if id := m.agents; id != nil {
-		ids = append(ids, *id)
+// OldAgentID returns the old "agentID" field's value of the MDMCommand entity.
+// If the MDMCommand object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *MDMCommandMutation) OldAgentID(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldAgentID is only allowed on UpdateOne operations")
 	}
-	return
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldAgentID requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldAgentID: %w", err)
+	}
+	return oldValue.AgentID, nil
 }
 
-// ResetAgents resets all changes to the "agents" edge.
-func (m *MDMCommandMutation) ResetAgents() {
-	m.agents = nil
-	m.clearedagents = false
+// ResetAgentID resets all changes to the "agentID" field.
+func (m *MDMCommandMutation) ResetAgentID() {
+	m.agentID = nil
 }
 
 // Where appends a list predicates to the MDMCommandMutation builder.
@@ -10071,12 +9984,15 @@ func (m *MDMCommandMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *MDMCommandMutation) Fields() []string {
-	fields := make([]string, 0, 2)
+	fields := make([]string, 0, 3)
 	if m.when != nil {
 		fields = append(fields, mdmcommand.FieldWhen)
 	}
 	if m._type != nil {
 		fields = append(fields, mdmcommand.FieldType)
+	}
+	if m.agentID != nil {
+		fields = append(fields, mdmcommand.FieldAgentID)
 	}
 	return fields
 }
@@ -10090,6 +10006,8 @@ func (m *MDMCommandMutation) Field(name string) (ent.Value, bool) {
 		return m.When()
 	case mdmcommand.FieldType:
 		return m.GetType()
+	case mdmcommand.FieldAgentID:
+		return m.AgentID()
 	}
 	return nil, false
 }
@@ -10103,6 +10021,8 @@ func (m *MDMCommandMutation) OldField(ctx context.Context, name string) (ent.Val
 		return m.OldWhen(ctx)
 	case mdmcommand.FieldType:
 		return m.OldType(ctx)
+	case mdmcommand.FieldAgentID:
+		return m.OldAgentID(ctx)
 	}
 	return nil, fmt.Errorf("unknown MDMCommand field %s", name)
 }
@@ -10125,6 +10045,13 @@ func (m *MDMCommandMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetType(v)
+		return nil
+	case mdmcommand.FieldAgentID:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetAgentID(v)
 		return nil
 	}
 	return fmt.Errorf("unknown MDMCommand field %s", name)
@@ -10196,34 +10123,28 @@ func (m *MDMCommandMutation) ResetField(name string) error {
 	case mdmcommand.FieldType:
 		m.ResetType()
 		return nil
+	case mdmcommand.FieldAgentID:
+		m.ResetAgentID()
+		return nil
 	}
 	return fmt.Errorf("unknown MDMCommand field %s", name)
 }
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *MDMCommandMutation) AddedEdges() []string {
-	edges := make([]string, 0, 1)
-	if m.agents != nil {
-		edges = append(edges, mdmcommand.EdgeAgents)
-	}
+	edges := make([]string, 0, 0)
 	return edges
 }
 
 // AddedIDs returns all IDs (to other nodes) that were added for the given edge
 // name in this mutation.
 func (m *MDMCommandMutation) AddedIDs(name string) []ent.Value {
-	switch name {
-	case mdmcommand.EdgeAgents:
-		if id := m.agents; id != nil {
-			return []ent.Value{*id}
-		}
-	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *MDMCommandMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 1)
+	edges := make([]string, 0, 0)
 	return edges
 }
 
@@ -10235,42 +10156,25 @@ func (m *MDMCommandMutation) RemovedIDs(name string) []ent.Value {
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *MDMCommandMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 1)
-	if m.clearedagents {
-		edges = append(edges, mdmcommand.EdgeAgents)
-	}
+	edges := make([]string, 0, 0)
 	return edges
 }
 
 // EdgeCleared returns a boolean which indicates if the edge with the given name
 // was cleared in this mutation.
 func (m *MDMCommandMutation) EdgeCleared(name string) bool {
-	switch name {
-	case mdmcommand.EdgeAgents:
-		return m.clearedagents
-	}
 	return false
 }
 
 // ClearEdge clears the value of the edge with the given name. It returns an error
 // if that edge is not defined in the schema.
 func (m *MDMCommandMutation) ClearEdge(name string) error {
-	switch name {
-	case mdmcommand.EdgeAgents:
-		m.ClearAgents()
-		return nil
-	}
 	return fmt.Errorf("unknown MDMCommand unique edge %s", name)
 }
 
 // ResetEdge resets all changes to the edge with the given name in this mutation.
 // It returns an error if the edge is not defined in the schema.
 func (m *MDMCommandMutation) ResetEdge(name string) error {
-	switch name {
-	case mdmcommand.EdgeAgents:
-		m.ResetAgents()
-		return nil
-	}
 	return fmt.Errorf("unknown MDMCommand edge %s", name)
 }
 

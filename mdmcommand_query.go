@@ -11,7 +11,6 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/predicate"
 )
@@ -23,8 +22,6 @@ type MDMCommandQuery struct {
 	order      []mdmcommand.OrderOption
 	inters     []Interceptor
 	predicates []predicate.MDMCommand
-	withAgents *AgentQuery
-	withFKs    bool
 	modifiers  []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
@@ -60,28 +57,6 @@ func (mcq *MDMCommandQuery) Unique(unique bool) *MDMCommandQuery {
 func (mcq *MDMCommandQuery) Order(o ...mdmcommand.OrderOption) *MDMCommandQuery {
 	mcq.order = append(mcq.order, o...)
 	return mcq
-}
-
-// QueryAgents chains the current query on the "agents" edge.
-func (mcq *MDMCommandQuery) QueryAgents() *AgentQuery {
-	query := (&AgentClient{config: mcq.config}).Query()
-	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := mcq.prepareQuery(ctx); err != nil {
-			return nil, err
-		}
-		selector := mcq.sqlQuery(ctx)
-		if err := selector.Err(); err != nil {
-			return nil, err
-		}
-		step := sqlgraph.NewStep(
-			sqlgraph.From(mdmcommand.Table, mdmcommand.FieldID, selector),
-			sqlgraph.To(agent.Table, agent.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, mdmcommand.AgentsTable, mdmcommand.AgentsColumn),
-		)
-		fromU = sqlgraph.SetNeighbors(mcq.driver.Dialect(), step)
-		return fromU, nil
-	}
-	return query
 }
 
 // First returns the first MDMCommand entity from the query.
@@ -276,23 +251,11 @@ func (mcq *MDMCommandQuery) Clone() *MDMCommandQuery {
 		order:      append([]mdmcommand.OrderOption{}, mcq.order...),
 		inters:     append([]Interceptor{}, mcq.inters...),
 		predicates: append([]predicate.MDMCommand{}, mcq.predicates...),
-		withAgents: mcq.withAgents.Clone(),
 		// clone intermediate query.
 		sql:       mcq.sql.Clone(),
 		path:      mcq.path,
 		modifiers: append([]func(*sql.Selector){}, mcq.modifiers...),
 	}
-}
-
-// WithAgents tells the query-builder to eager-load the nodes that are connected to
-// the "agents" edge. The optional arguments are used to configure the query builder of the edge.
-func (mcq *MDMCommandQuery) WithAgents(opts ...func(*AgentQuery)) *MDMCommandQuery {
-	query := (&AgentClient{config: mcq.config}).Query()
-	for _, opt := range opts {
-		opt(query)
-	}
-	mcq.withAgents = query
-	return mcq
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -371,26 +334,15 @@ func (mcq *MDMCommandQuery) prepareQuery(ctx context.Context) error {
 
 func (mcq *MDMCommandQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*MDMCommand, error) {
 	var (
-		nodes       = []*MDMCommand{}
-		withFKs     = mcq.withFKs
-		_spec       = mcq.querySpec()
-		loadedTypes = [1]bool{
-			mcq.withAgents != nil,
-		}
+		nodes = []*MDMCommand{}
+		_spec = mcq.querySpec()
 	)
-	if mcq.withAgents != nil {
-		withFKs = true
-	}
-	if withFKs {
-		_spec.Node.Columns = append(_spec.Node.Columns, mdmcommand.ForeignKeys...)
-	}
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*MDMCommand).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
 		node := &MDMCommand{config: mcq.config}
 		nodes = append(nodes, node)
-		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
 	if len(mcq.modifiers) > 0 {
@@ -405,46 +357,7 @@ func (mcq *MDMCommandQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := mcq.withAgents; query != nil {
-		if err := mcq.loadAgents(ctx, query, nodes, nil,
-			func(n *MDMCommand, e *Agent) { n.Edges.Agents = e }); err != nil {
-			return nil, err
-		}
-	}
 	return nodes, nil
-}
-
-func (mcq *MDMCommandQuery) loadAgents(ctx context.Context, query *AgentQuery, nodes []*MDMCommand, init func(*MDMCommand), assign func(*MDMCommand, *Agent)) error {
-	ids := make([]string, 0, len(nodes))
-	nodeids := make(map[string][]*MDMCommand)
-	for i := range nodes {
-		if nodes[i].agent_mdmcommands == nil {
-			continue
-		}
-		fk := *nodes[i].agent_mdmcommands
-		if _, ok := nodeids[fk]; !ok {
-			ids = append(ids, fk)
-		}
-		nodeids[fk] = append(nodeids[fk], nodes[i])
-	}
-	if len(ids) == 0 {
-		return nil
-	}
-	query.Where(agent.IDIn(ids...))
-	neighbors, err := query.All(ctx)
-	if err != nil {
-		return err
-	}
-	for _, n := range neighbors {
-		nodes, ok := nodeids[n.ID]
-		if !ok {
-			return fmt.Errorf(`unexpected foreign-key "agent_mdmcommands" returned %v`, n.ID)
-		}
-		for i := range nodes {
-			assign(nodes[i], n)
-		}
-	}
-	return nil
 }
 
 func (mcq *MDMCommandQuery) sqlCount(ctx context.Context) (int, error) {

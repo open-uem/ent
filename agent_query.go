@@ -18,7 +18,6 @@ import (
 	"github.com/open-uem/ent/computer"
 	"github.com/open-uem/ent/deployment"
 	"github.com/open-uem/ent/logicaldisk"
-	"github.com/open-uem/ent/mdmcommand"
 	"github.com/open-uem/ent/memoryslot"
 	"github.com/open-uem/ent/metadata"
 	"github.com/open-uem/ent/monitor"
@@ -68,7 +67,6 @@ type AgentQuery struct {
 	withSite                *SiteQuery
 	withPhysicaldisks       *PhysicalDiskQuery
 	withNetbird             *NetbirdQuery
-	withMdmcommands         *MDMCommandQuery
 	withNanomdminfo         *NanoMDMInfoQuery
 	withNanomdmusers        *NanoMDMUserQuery
 	withFKs                 bool
@@ -571,28 +569,6 @@ func (aq *AgentQuery) QueryNetbird() *NetbirdQuery {
 	return query
 }
 
-// QueryMdmcommands chains the current query on the "mdmcommands" edge.
-func (aq *AgentQuery) QueryMdmcommands() *MDMCommandQuery {
-	query := (&MDMCommandClient{config: aq.config}).Query()
-	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
-			return nil, err
-		}
-		selector := aq.sqlQuery(ctx)
-		if err := selector.Err(); err != nil {
-			return nil, err
-		}
-		step := sqlgraph.NewStep(
-			sqlgraph.From(agent.Table, agent.FieldID, selector),
-			sqlgraph.To(mdmcommand.Table, mdmcommand.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, agent.MdmcommandsTable, agent.MdmcommandsColumn),
-		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
-		return fromU, nil
-	}
-	return query
-}
-
 // QueryNanomdminfo chains the current query on the "nanomdminfo" edge.
 func (aq *AgentQuery) QueryNanomdminfo() *NanoMDMInfoQuery {
 	query := (&NanoMDMInfoClient{config: aq.config}).Query()
@@ -850,7 +826,6 @@ func (aq *AgentQuery) Clone() *AgentQuery {
 		withSite:                aq.withSite.Clone(),
 		withPhysicaldisks:       aq.withPhysicaldisks.Clone(),
 		withNetbird:             aq.withNetbird.Clone(),
-		withMdmcommands:         aq.withMdmcommands.Clone(),
 		withNanomdminfo:         aq.withNanomdminfo.Clone(),
 		withNanomdmusers:        aq.withNanomdmusers.Clone(),
 		// clone intermediate query.
@@ -1091,17 +1066,6 @@ func (aq *AgentQuery) WithNetbird(opts ...func(*NetbirdQuery)) *AgentQuery {
 	return aq
 }
 
-// WithMdmcommands tells the query-builder to eager-load the nodes that are connected to
-// the "mdmcommands" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithMdmcommands(opts ...func(*MDMCommandQuery)) *AgentQuery {
-	query := (&MDMCommandClient{config: aq.config}).Query()
-	for _, opt := range opts {
-		opt(query)
-	}
-	aq.withMdmcommands = query
-	return aq
-}
-
 // WithNanomdminfo tells the query-builder to eager-load the nodes that are connected to
 // the "nanomdminfo" edge. The optional arguments are used to configure the query builder of the edge.
 func (aq *AgentQuery) WithNanomdminfo(opts ...func(*NanoMDMInfoQuery)) *AgentQuery {
@@ -1203,7 +1167,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		nodes       = []*Agent{}
 		withFKs     = aq.withFKs
 		_spec       = aq.querySpec()
-		loadedTypes = [24]bool{
+		loadedTypes = [23]bool{
 			aq.withComputer != nil,
 			aq.withOperatingsystem != nil,
 			aq.withSystemupdate != nil,
@@ -1225,7 +1189,6 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 			aq.withSite != nil,
 			aq.withPhysicaldisks != nil,
 			aq.withNetbird != nil,
-			aq.withMdmcommands != nil,
 			aq.withNanomdminfo != nil,
 			aq.withNanomdmusers != nil,
 		}
@@ -1397,13 +1360,6 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 	if query := aq.withNetbird; query != nil {
 		if err := aq.loadNetbird(ctx, query, nodes, nil,
 			func(n *Agent, e *Netbird) { n.Edges.Netbird = e }); err != nil {
-			return nil, err
-		}
-	}
-	if query := aq.withMdmcommands; query != nil {
-		if err := aq.loadMdmcommands(ctx, query, nodes,
-			func(n *Agent) { n.Edges.Mdmcommands = []*MDMCommand{} },
-			func(n *Agent, e *MDMCommand) { n.Edges.Mdmcommands = append(n.Edges.Mdmcommands, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -2115,37 +2071,6 @@ func (aq *AgentQuery) loadNetbird(ctx context.Context, query *NetbirdQuery, node
 		node, ok := nodeids[*fk]
 		if !ok {
 			return fmt.Errorf(`unexpected referenced foreign-key "agent_netbird" returned %v for node %v`, *fk, n.ID)
-		}
-		assign(node, n)
-	}
-	return nil
-}
-func (aq *AgentQuery) loadMdmcommands(ctx context.Context, query *MDMCommandQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *MDMCommand)) error {
-	fks := make([]driver.Value, 0, len(nodes))
-	nodeids := make(map[string]*Agent)
-	for i := range nodes {
-		fks = append(fks, nodes[i].ID)
-		nodeids[nodes[i].ID] = nodes[i]
-		if init != nil {
-			init(nodes[i])
-		}
-	}
-	query.withFKs = true
-	query.Where(predicate.MDMCommand(func(s *sql.Selector) {
-		s.Where(sql.InValues(s.C(agent.MdmcommandsColumn), fks...))
-	}))
-	neighbors, err := query.All(ctx)
-	if err != nil {
-		return err
-	}
-	for _, n := range neighbors {
-		fk := n.agent_mdmcommands
-		if fk == nil {
-			return fmt.Errorf(`foreign-key "agent_mdmcommands" is nil for node %v`, n.ID)
-		}
-		node, ok := nodeids[*fk]
-		if !ok {
-			return fmt.Errorf(`unexpected referenced foreign-key "agent_mdmcommands" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
 	}

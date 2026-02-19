@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"entgo.io/ent/dialect/sql"
-	"entgo.io/ent/dialect/sql/sqlgraph"
 	"github.com/open-uem/ent/predicate"
 )
 
@@ -68,6 +67,11 @@ func IDContainsFold(id string) predicate.MDMCommand {
 // When applies equality check predicate on the "when" field. It's identical to WhenEQ.
 func When(v time.Time) predicate.MDMCommand {
 	return predicate.MDMCommand(sql.FieldEQ(FieldWhen, v))
+}
+
+// AgentID applies equality check predicate on the "agentID" field. It's identical to AgentIDEQ.
+func AgentID(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldEQ(FieldAgentID, v))
 }
 
 // WhenEQ applies the EQ predicate on the "when" field.
@@ -150,27 +154,69 @@ func TypeNotNil() predicate.MDMCommand {
 	return predicate.MDMCommand(sql.FieldNotNull(FieldType))
 }
 
-// HasAgents applies the HasEdge predicate on the "agents" edge.
-func HasAgents() predicate.MDMCommand {
-	return predicate.MDMCommand(func(s *sql.Selector) {
-		step := sqlgraph.NewStep(
-			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, AgentsTable, AgentsColumn),
-		)
-		sqlgraph.HasNeighbors(s, step)
-	})
+// AgentIDEQ applies the EQ predicate on the "agentID" field.
+func AgentIDEQ(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldEQ(FieldAgentID, v))
 }
 
-// HasAgentsWith applies the HasEdge predicate on the "agents" edge with a given conditions (other predicates).
-func HasAgentsWith(preds ...predicate.Agent) predicate.MDMCommand {
-	return predicate.MDMCommand(func(s *sql.Selector) {
-		step := newAgentsStep()
-		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
-			for _, p := range preds {
-				p(s)
-			}
-		})
-	})
+// AgentIDNEQ applies the NEQ predicate on the "agentID" field.
+func AgentIDNEQ(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldNEQ(FieldAgentID, v))
+}
+
+// AgentIDIn applies the In predicate on the "agentID" field.
+func AgentIDIn(vs ...string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldIn(FieldAgentID, vs...))
+}
+
+// AgentIDNotIn applies the NotIn predicate on the "agentID" field.
+func AgentIDNotIn(vs ...string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldNotIn(FieldAgentID, vs...))
+}
+
+// AgentIDGT applies the GT predicate on the "agentID" field.
+func AgentIDGT(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldGT(FieldAgentID, v))
+}
+
+// AgentIDGTE applies the GTE predicate on the "agentID" field.
+func AgentIDGTE(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldGTE(FieldAgentID, v))
+}
+
+// AgentIDLT applies the LT predicate on the "agentID" field.
+func AgentIDLT(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldLT(FieldAgentID, v))
+}
+
+// AgentIDLTE applies the LTE predicate on the "agentID" field.
+func AgentIDLTE(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldLTE(FieldAgentID, v))
+}
+
+// AgentIDContains applies the Contains predicate on the "agentID" field.
+func AgentIDContains(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldContains(FieldAgentID, v))
+}
+
+// AgentIDHasPrefix applies the HasPrefix predicate on the "agentID" field.
+func AgentIDHasPrefix(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldHasPrefix(FieldAgentID, v))
+}
+
+// AgentIDHasSuffix applies the HasSuffix predicate on the "agentID" field.
+func AgentIDHasSuffix(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldHasSuffix(FieldAgentID, v))
+}
+
+// AgentIDEqualFold applies the EqualFold predicate on the "agentID" field.
+func AgentIDEqualFold(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldEqualFold(FieldAgentID, v))
+}
+
+// AgentIDContainsFold applies the ContainsFold predicate on the "agentID" field.
+func AgentIDContainsFold(v string) predicate.MDMCommand {
+	return predicate.MDMCommand(sql.FieldContainsFold(FieldAgentID, v))
 }
 
 // And groups predicates with the AND operator between them.

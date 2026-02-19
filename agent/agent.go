@@ -119,8 +119,6 @@ const (
 	EdgePhysicaldisks = "physicaldisks"
 	// EdgeNetbird holds the string denoting the netbird edge name in mutations.
 	EdgeNetbird = "netbird"
-	// EdgeMdmcommands holds the string denoting the mdmcommands edge name in mutations.
-	EdgeMdmcommands = "mdmcommands"
 	// EdgeNanomdminfo holds the string denoting the nanomdminfo edge name in mutations.
 	EdgeNanomdminfo = "nanomdminfo"
 	// EdgeNanomdmusers holds the string denoting the nanomdmusers edge name in mutations.
@@ -167,8 +165,6 @@ const (
 	PhysicalDiskFieldID = "id"
 	// NetbirdFieldID holds the string denoting the ID field of the Netbird.
 	NetbirdFieldID = "id"
-	// MDMCommandFieldID holds the string denoting the ID field of the MDMCommand.
-	MDMCommandFieldID = "uuid"
 	// NanoMDMInfoFieldID holds the string denoting the ID field of the NanoMDMInfo.
 	NanoMDMInfoFieldID = "id"
 	// NanoMDMUserFieldID holds the string denoting the ID field of the NanoMDMUser.
@@ -318,13 +314,6 @@ const (
 	NetbirdInverseTable = "netbirds"
 	// NetbirdColumn is the table column denoting the netbird relation/edge.
 	NetbirdColumn = "agent_netbird"
-	// MdmcommandsTable is the table that holds the mdmcommands relation/edge.
-	MdmcommandsTable = "mdm_commands"
-	// MdmcommandsInverseTable is the table name for the MDMCommand entity.
-	// It exists in this package in order to avoid circular dependency with the "mdmcommand" package.
-	MdmcommandsInverseTable = "mdm_commands"
-	// MdmcommandsColumn is the table column denoting the mdmcommands relation/edge.
-	MdmcommandsColumn = "agent_mdmcommands"
 	// NanomdminfoTable is the table that holds the nanomdminfo relation/edge.
 	NanomdminfoTable = "nano_mdm_infos"
 	// NanomdminfoInverseTable is the table name for the NanoMDMInfo entity.
@@ -962,20 +951,6 @@ func ByNetbirdField(field string, opts ...sql.OrderTermOption) OrderOption {
 	}
 }
 
-// ByMdmcommandsCount orders the results by mdmcommands count.
-func ByMdmcommandsCount(opts ...sql.OrderTermOption) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborsCount(s, newMdmcommandsStep(), opts...)
-	}
-}
-
-// ByMdmcommands orders the results by mdmcommands terms.
-func ByMdmcommands(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
-	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newMdmcommandsStep(), append([]sql.OrderTerm{term}, terms...)...)
-	}
-}
-
 // ByNanomdminfoField orders the results by nanomdminfo field.
 func ByNanomdminfoField(field string, opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
@@ -1141,13 +1116,6 @@ func newNetbirdStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NetbirdInverseTable, NetbirdFieldID),
 		sqlgraph.Edge(sqlgraph.O2O, false, NetbirdTable, NetbirdColumn),
-	)
-}
-func newMdmcommandsStep() *sqlgraph.Step {
-	return sqlgraph.NewStep(
-		sqlgraph.From(Table, FieldID),
-		sqlgraph.To(MdmcommandsInverseTable, MDMCommandFieldID),
-		sqlgraph.Edge(sqlgraph.O2M, false, MdmcommandsTable, MdmcommandsColumn),
 	)
 }
 func newNanomdminfoStep() *sqlgraph.Step {
