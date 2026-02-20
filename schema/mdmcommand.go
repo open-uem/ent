@@ -16,6 +16,6 @@ func (MDMCommand) Fields() []ent.Field {
 		field.String("id").NotEmpty().Unique().StorageKey("uuid"),
 		field.Time("when").Optional(),
 		field.Enum("type").Values("DeviceInformation", "UsersList", "InstalledApplicationsList", "RemoveProfile").Optional().Default("DeviceInformation"),
-		field.String("agentID"),
+		field.String("agentID").Optional(),
 	}
 }
