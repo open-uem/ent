@@ -498,6 +498,7 @@ var (
 		{Name: "name", Type: field.TypeString},
 		{Name: "apply_to_all", Type: field.TypeBool, Default: false},
 		{Name: "type", Type: field.TypeEnum, Nullable: true, Enums: []string{"winget"}, Default: "winget"},
+		{Name: "disabled", Type: field.TypeBool, Default: false},
 		{Name: "site_profiles", Type: field.TypeInt, Nullable: true},
 	}
 	// ProfilesTable holds the schema information for the "profiles" table.
@@ -508,7 +509,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "profiles_sites_profiles",
-				Columns:    []*schema.Column{ProfilesColumns[4]},
+				Columns:    []*schema.Column{ProfilesColumns[5]},
 				RefColumns: []*schema.Column{SitesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
