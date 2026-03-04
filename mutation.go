@@ -7823,6 +7823,7 @@ type DeploymentMutation struct {
 	updated       *time.Time
 	failed        *bool
 	by_profile    *bool
+	more_info     *string
 	clearedFields map[string]struct{}
 	owner         *string
 	clearedowner  bool
@@ -8246,6 +8247,55 @@ func (m *DeploymentMutation) ResetByProfile() {
 	delete(m.clearedFields, deployment.FieldByProfile)
 }
 
+// SetMoreInfo sets the "more_info" field.
+func (m *DeploymentMutation) SetMoreInfo(s string) {
+	m.more_info = &s
+}
+
+// MoreInfo returns the value of the "more_info" field in the mutation.
+func (m *DeploymentMutation) MoreInfo() (r string, exists bool) {
+	v := m.more_info
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldMoreInfo returns the old "more_info" field's value of the Deployment entity.
+// If the Deployment object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *DeploymentMutation) OldMoreInfo(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldMoreInfo is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldMoreInfo requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldMoreInfo: %w", err)
+	}
+	return oldValue.MoreInfo, nil
+}
+
+// ClearMoreInfo clears the value of the "more_info" field.
+func (m *DeploymentMutation) ClearMoreInfo() {
+	m.more_info = nil
+	m.clearedFields[deployment.FieldMoreInfo] = struct{}{}
+}
+
+// MoreInfoCleared returns if the "more_info" field was cleared in this mutation.
+func (m *DeploymentMutation) MoreInfoCleared() bool {
+	_, ok := m.clearedFields[deployment.FieldMoreInfo]
+	return ok
+}
+
+// ResetMoreInfo resets all changes to the "more_info" field.
+func (m *DeploymentMutation) ResetMoreInfo() {
+	m.more_info = nil
+	delete(m.clearedFields, deployment.FieldMoreInfo)
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by id.
 func (m *DeploymentMutation) SetOwnerID(id string) {
 	m.owner = &id
@@ -8319,7 +8369,7 @@ func (m *DeploymentMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *DeploymentMutation) Fields() []string {
-	fields := make([]string, 0, 7)
+	fields := make([]string, 0, 8)
 	if m.package_id != nil {
 		fields = append(fields, deployment.FieldPackageID)
 	}
@@ -8340,6 +8390,9 @@ func (m *DeploymentMutation) Fields() []string {
 	}
 	if m.by_profile != nil {
 		fields = append(fields, deployment.FieldByProfile)
+	}
+	if m.more_info != nil {
+		fields = append(fields, deployment.FieldMoreInfo)
 	}
 	return fields
 }
@@ -8363,6 +8416,8 @@ func (m *DeploymentMutation) Field(name string) (ent.Value, bool) {
 		return m.Failed()
 	case deployment.FieldByProfile:
 		return m.ByProfile()
+	case deployment.FieldMoreInfo:
+		return m.MoreInfo()
 	}
 	return nil, false
 }
@@ -8386,6 +8441,8 @@ func (m *DeploymentMutation) OldField(ctx context.Context, name string) (ent.Val
 		return m.OldFailed(ctx)
 	case deployment.FieldByProfile:
 		return m.OldByProfile(ctx)
+	case deployment.FieldMoreInfo:
+		return m.OldMoreInfo(ctx)
 	}
 	return nil, fmt.Errorf("unknown Deployment field %s", name)
 }
@@ -8444,6 +8501,13 @@ func (m *DeploymentMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetByProfile(v)
 		return nil
+	case deployment.FieldMoreInfo:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetMoreInfo(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Deployment field %s", name)
 }
@@ -8489,6 +8553,9 @@ func (m *DeploymentMutation) ClearedFields() []string {
 	if m.FieldCleared(deployment.FieldByProfile) {
 		fields = append(fields, deployment.FieldByProfile)
 	}
+	if m.FieldCleared(deployment.FieldMoreInfo) {
+		fields = append(fields, deployment.FieldMoreInfo)
+	}
 	return fields
 }
 
@@ -8518,6 +8585,9 @@ func (m *DeploymentMutation) ClearField(name string) error {
 	case deployment.FieldByProfile:
 		m.ClearByProfile()
 		return nil
+	case deployment.FieldMoreInfo:
+		m.ClearMoreInfo()
+		return nil
 	}
 	return fmt.Errorf("unknown Deployment nullable field %s", name)
 }
@@ -8546,6 +8616,9 @@ func (m *DeploymentMutation) ResetField(name string) error {
 		return nil
 	case deployment.FieldByProfile:
 		m.ResetByProfile()
+		return nil
+	case deployment.FieldMoreInfo:
+		m.ResetMoreInfo()
 		return nil
 	}
 	return fmt.Errorf("unknown Deployment field %s", name)
