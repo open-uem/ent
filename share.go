@@ -70,7 +70,7 @@ func (*Share) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Share fields.
-func (s *Share) assignValues(columns []string, values []any) error {
+func (_m *Share) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -81,34 +81,34 @@ func (s *Share) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			s.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case share.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				s.Name = value.String
+				_m.Name = value.String
 			}
 		case share.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				s.Description = value.String
+				_m.Description = value.String
 			}
 		case share.FieldPath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field path", values[i])
 			} else if value.Valid {
-				s.Path = value.String
+				_m.Path = value.String
 			}
 		case share.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_shares", values[i])
 			} else if value.Valid {
-				s.agent_shares = new(string)
-				*s.agent_shares = value.String
+				_m.agent_shares = new(string)
+				*_m.agent_shares = value.String
 			}
 		default:
-			s.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -116,46 +116,46 @@ func (s *Share) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Share.
 // This includes values selected through modifiers, order, etc.
-func (s *Share) Value(name string) (ent.Value, error) {
-	return s.selectValues.Get(name)
+func (_m *Share) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Share entity.
-func (s *Share) QueryOwner() *AgentQuery {
-	return NewShareClient(s.config).QueryOwner(s)
+func (_m *Share) QueryOwner() *AgentQuery {
+	return NewShareClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Share.
 // Note that you need to call Share.Unwrap() before calling this method if this Share
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (s *Share) Update() *ShareUpdateOne {
-	return NewShareClient(s.config).UpdateOne(s)
+func (_m *Share) Update() *ShareUpdateOne {
+	return NewShareClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Share entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (s *Share) Unwrap() *Share {
-	_tx, ok := s.config.driver.(*txDriver)
+func (_m *Share) Unwrap() *Share {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Share is not a transactional entity")
 	}
-	s.config.driver = _tx.drv
-	return s
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (s *Share) String() string {
+func (_m *Share) String() string {
 	var builder strings.Builder
 	builder.WriteString("Share(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", s.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(s.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(s.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("path=")
-	builder.WriteString(s.Path)
+	builder.WriteString(_m.Path)
 	builder.WriteByte(')')
 	return builder.String()
 }

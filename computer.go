@@ -78,7 +78,7 @@ func (*Computer) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Computer fields.
-func (c *Computer) assignValues(columns []string, values []any) error {
+func (_m *Computer) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -89,58 +89,58 @@ func (c *Computer) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			c.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case computer.FieldManufacturer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field manufacturer", values[i])
 			} else if value.Valid {
-				c.Manufacturer = value.String
+				_m.Manufacturer = value.String
 			}
 		case computer.FieldModel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field model", values[i])
 			} else if value.Valid {
-				c.Model = value.String
+				_m.Model = value.String
 			}
 		case computer.FieldSerial:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field serial", values[i])
 			} else if value.Valid {
-				c.Serial = value.String
+				_m.Serial = value.String
 			}
 		case computer.FieldMemory:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field memory", values[i])
 			} else if value.Valid {
-				c.Memory = uint64(value.Int64)
+				_m.Memory = uint64(value.Int64)
 			}
 		case computer.FieldProcessor:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field processor", values[i])
 			} else if value.Valid {
-				c.Processor = value.String
+				_m.Processor = value.String
 			}
 		case computer.FieldProcessorCores:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field processor_cores", values[i])
 			} else if value.Valid {
-				c.ProcessorCores = value.Int64
+				_m.ProcessorCores = value.Int64
 			}
 		case computer.FieldProcessorArch:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field processor_arch", values[i])
 			} else if value.Valid {
-				c.ProcessorArch = value.String
+				_m.ProcessorArch = value.String
 			}
 		case computer.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_computer", values[i])
 			} else if value.Valid {
-				c.agent_computer = new(string)
-				*c.agent_computer = value.String
+				_m.agent_computer = new(string)
+				*_m.agent_computer = value.String
 			}
 		default:
-			c.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -148,58 +148,58 @@ func (c *Computer) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Computer.
 // This includes values selected through modifiers, order, etc.
-func (c *Computer) Value(name string) (ent.Value, error) {
-	return c.selectValues.Get(name)
+func (_m *Computer) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Computer entity.
-func (c *Computer) QueryOwner() *AgentQuery {
-	return NewComputerClient(c.config).QueryOwner(c)
+func (_m *Computer) QueryOwner() *AgentQuery {
+	return NewComputerClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Computer.
 // Note that you need to call Computer.Unwrap() before calling this method if this Computer
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (c *Computer) Update() *ComputerUpdateOne {
-	return NewComputerClient(c.config).UpdateOne(c)
+func (_m *Computer) Update() *ComputerUpdateOne {
+	return NewComputerClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Computer entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (c *Computer) Unwrap() *Computer {
-	_tx, ok := c.config.driver.(*txDriver)
+func (_m *Computer) Unwrap() *Computer {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Computer is not a transactional entity")
 	}
-	c.config.driver = _tx.drv
-	return c
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (c *Computer) String() string {
+func (_m *Computer) String() string {
 	var builder strings.Builder
 	builder.WriteString("Computer(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", c.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("manufacturer=")
-	builder.WriteString(c.Manufacturer)
+	builder.WriteString(_m.Manufacturer)
 	builder.WriteString(", ")
 	builder.WriteString("model=")
-	builder.WriteString(c.Model)
+	builder.WriteString(_m.Model)
 	builder.WriteString(", ")
 	builder.WriteString("serial=")
-	builder.WriteString(c.Serial)
+	builder.WriteString(_m.Serial)
 	builder.WriteString(", ")
 	builder.WriteString("memory=")
-	builder.WriteString(fmt.Sprintf("%v", c.Memory))
+	builder.WriteString(fmt.Sprintf("%v", _m.Memory))
 	builder.WriteString(", ")
 	builder.WriteString("processor=")
-	builder.WriteString(c.Processor)
+	builder.WriteString(_m.Processor)
 	builder.WriteString(", ")
 	builder.WriteString("processor_cores=")
-	builder.WriteString(fmt.Sprintf("%v", c.ProcessorCores))
+	builder.WriteString(fmt.Sprintf("%v", _m.ProcessorCores))
 	builder.WriteString(", ")
 	builder.WriteString("processor_arch=")
-	builder.WriteString(c.ProcessorArch)
+	builder.WriteString(_m.ProcessorArch)
 	builder.WriteByte(')')
 	return builder.String()
 }

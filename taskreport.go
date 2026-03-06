@@ -91,7 +91,7 @@ func (*TaskReport) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the TaskReport fields.
-func (tr *TaskReport) assignValues(columns []string, values []any) error {
+func (_m *TaskReport) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -102,47 +102,47 @@ func (tr *TaskReport) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			tr.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case taskreport.FieldStdOutput:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field std_output", values[i])
 			} else if value.Valid {
-				tr.StdOutput = value.String
+				_m.StdOutput = value.String
 			}
 		case taskreport.FieldStdError:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field std_error", values[i])
 			} else if value.Valid {
-				tr.StdError = value.String
+				_m.StdError = value.String
 			}
 		case taskreport.FieldFailed:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field failed", values[i])
 			} else if value.Valid {
-				tr.Failed = value.Bool
+				_m.Failed = value.Bool
 			}
 		case taskreport.FieldEnd:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field end", values[i])
 			} else if value.Valid {
-				tr.End = value.String
+				_m.End = value.String
 			}
 		case taskreport.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field profile_issue_tasksreports", value)
 			} else if value.Valid {
-				tr.profile_issue_tasksreports = new(int)
-				*tr.profile_issue_tasksreports = int(value.Int64)
+				_m.profile_issue_tasksreports = new(int)
+				*_m.profile_issue_tasksreports = int(value.Int64)
 			}
 		case taskreport.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field task_reports", value)
 			} else if value.Valid {
-				tr.task_reports = new(int)
-				*tr.task_reports = int(value.Int64)
+				_m.task_reports = new(int)
+				*_m.task_reports = int(value.Int64)
 			}
 		default:
-			tr.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -150,54 +150,54 @@ func (tr *TaskReport) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the TaskReport.
 // This includes values selected through modifiers, order, etc.
-func (tr *TaskReport) Value(name string) (ent.Value, error) {
-	return tr.selectValues.Get(name)
+func (_m *TaskReport) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryProfileissue queries the "profileissue" edge of the TaskReport entity.
-func (tr *TaskReport) QueryProfileissue() *ProfileIssueQuery {
-	return NewTaskReportClient(tr.config).QueryProfileissue(tr)
+func (_m *TaskReport) QueryProfileissue() *ProfileIssueQuery {
+	return NewTaskReportClient(_m.config).QueryProfileissue(_m)
 }
 
 // QueryTask queries the "task" edge of the TaskReport entity.
-func (tr *TaskReport) QueryTask() *TaskQuery {
-	return NewTaskReportClient(tr.config).QueryTask(tr)
+func (_m *TaskReport) QueryTask() *TaskQuery {
+	return NewTaskReportClient(_m.config).QueryTask(_m)
 }
 
 // Update returns a builder for updating this TaskReport.
 // Note that you need to call TaskReport.Unwrap() before calling this method if this TaskReport
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (tr *TaskReport) Update() *TaskReportUpdateOne {
-	return NewTaskReportClient(tr.config).UpdateOne(tr)
+func (_m *TaskReport) Update() *TaskReportUpdateOne {
+	return NewTaskReportClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the TaskReport entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (tr *TaskReport) Unwrap() *TaskReport {
-	_tx, ok := tr.config.driver.(*txDriver)
+func (_m *TaskReport) Unwrap() *TaskReport {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: TaskReport is not a transactional entity")
 	}
-	tr.config.driver = _tx.drv
-	return tr
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (tr *TaskReport) String() string {
+func (_m *TaskReport) String() string {
 	var builder strings.Builder
 	builder.WriteString("TaskReport(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", tr.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("std_output=")
-	builder.WriteString(tr.StdOutput)
+	builder.WriteString(_m.StdOutput)
 	builder.WriteString(", ")
 	builder.WriteString("std_error=")
-	builder.WriteString(tr.StdError)
+	builder.WriteString(_m.StdError)
 	builder.WriteString(", ")
 	builder.WriteString("failed=")
-	builder.WriteString(fmt.Sprintf("%v", tr.Failed))
+	builder.WriteString(fmt.Sprintf("%v", _m.Failed))
 	builder.WriteString(", ")
 	builder.WriteString("end=")
-	builder.WriteString(tr.End)
+	builder.WriteString(_m.End)
 	builder.WriteByte(')')
 	return builder.String()
 }

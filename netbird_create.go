@@ -23,226 +23,226 @@ type NetbirdCreate struct {
 }
 
 // SetVersion sets the "version" field.
-func (nc *NetbirdCreate) SetVersion(s string) *NetbirdCreate {
-	nc.mutation.SetVersion(s)
-	return nc
+func (_c *NetbirdCreate) SetVersion(v string) *NetbirdCreate {
+	_c.mutation.SetVersion(v)
+	return _c
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableVersion(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetVersion(*s)
+func (_c *NetbirdCreate) SetNillableVersion(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetVersion(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetInstalled sets the "installed" field.
-func (nc *NetbirdCreate) SetInstalled(b bool) *NetbirdCreate {
-	nc.mutation.SetInstalled(b)
-	return nc
+func (_c *NetbirdCreate) SetInstalled(v bool) *NetbirdCreate {
+	_c.mutation.SetInstalled(v)
+	return _c
 }
 
 // SetNillableInstalled sets the "installed" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableInstalled(b *bool) *NetbirdCreate {
-	if b != nil {
-		nc.SetInstalled(*b)
+func (_c *NetbirdCreate) SetNillableInstalled(v *bool) *NetbirdCreate {
+	if v != nil {
+		_c.SetInstalled(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetServiceStatus sets the "service_status" field.
-func (nc *NetbirdCreate) SetServiceStatus(s string) *NetbirdCreate {
-	nc.mutation.SetServiceStatus(s)
-	return nc
+func (_c *NetbirdCreate) SetServiceStatus(v string) *NetbirdCreate {
+	_c.mutation.SetServiceStatus(v)
+	return _c
 }
 
 // SetNillableServiceStatus sets the "service_status" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableServiceStatus(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetServiceStatus(*s)
+func (_c *NetbirdCreate) SetNillableServiceStatus(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetServiceStatus(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetIP sets the "ip" field.
-func (nc *NetbirdCreate) SetIP(s string) *NetbirdCreate {
-	nc.mutation.SetIP(s)
-	return nc
+func (_c *NetbirdCreate) SetIP(v string) *NetbirdCreate {
+	_c.mutation.SetIP(v)
+	return _c
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableIP(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetIP(*s)
+func (_c *NetbirdCreate) SetNillableIP(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetIP(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetProfile sets the "profile" field.
-func (nc *NetbirdCreate) SetProfile(s string) *NetbirdCreate {
-	nc.mutation.SetProfile(s)
-	return nc
+func (_c *NetbirdCreate) SetProfile(v string) *NetbirdCreate {
+	_c.mutation.SetProfile(v)
+	return _c
 }
 
 // SetNillableProfile sets the "profile" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableProfile(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetProfile(*s)
+func (_c *NetbirdCreate) SetNillableProfile(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetProfile(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetManagementURL sets the "management_url" field.
-func (nc *NetbirdCreate) SetManagementURL(s string) *NetbirdCreate {
-	nc.mutation.SetManagementURL(s)
-	return nc
+func (_c *NetbirdCreate) SetManagementURL(v string) *NetbirdCreate {
+	_c.mutation.SetManagementURL(v)
+	return _c
 }
 
 // SetNillableManagementURL sets the "management_url" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableManagementURL(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetManagementURL(*s)
+func (_c *NetbirdCreate) SetNillableManagementURL(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetManagementURL(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetManagementConnected sets the "management_connected" field.
-func (nc *NetbirdCreate) SetManagementConnected(b bool) *NetbirdCreate {
-	nc.mutation.SetManagementConnected(b)
-	return nc
+func (_c *NetbirdCreate) SetManagementConnected(v bool) *NetbirdCreate {
+	_c.mutation.SetManagementConnected(v)
+	return _c
 }
 
 // SetNillableManagementConnected sets the "management_connected" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableManagementConnected(b *bool) *NetbirdCreate {
-	if b != nil {
-		nc.SetManagementConnected(*b)
+func (_c *NetbirdCreate) SetNillableManagementConnected(v *bool) *NetbirdCreate {
+	if v != nil {
+		_c.SetManagementConnected(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetSignalURL sets the "signal_url" field.
-func (nc *NetbirdCreate) SetSignalURL(s string) *NetbirdCreate {
-	nc.mutation.SetSignalURL(s)
-	return nc
+func (_c *NetbirdCreate) SetSignalURL(v string) *NetbirdCreate {
+	_c.mutation.SetSignalURL(v)
+	return _c
 }
 
 // SetNillableSignalURL sets the "signal_url" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableSignalURL(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetSignalURL(*s)
+func (_c *NetbirdCreate) SetNillableSignalURL(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetSignalURL(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetSignalConnected sets the "signal_connected" field.
-func (nc *NetbirdCreate) SetSignalConnected(b bool) *NetbirdCreate {
-	nc.mutation.SetSignalConnected(b)
-	return nc
+func (_c *NetbirdCreate) SetSignalConnected(v bool) *NetbirdCreate {
+	_c.mutation.SetSignalConnected(v)
+	return _c
 }
 
 // SetNillableSignalConnected sets the "signal_connected" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableSignalConnected(b *bool) *NetbirdCreate {
-	if b != nil {
-		nc.SetSignalConnected(*b)
+func (_c *NetbirdCreate) SetNillableSignalConnected(v *bool) *NetbirdCreate {
+	if v != nil {
+		_c.SetSignalConnected(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetSSHEnabled sets the "ssh_enabled" field.
-func (nc *NetbirdCreate) SetSSHEnabled(b bool) *NetbirdCreate {
-	nc.mutation.SetSSHEnabled(b)
-	return nc
+func (_c *NetbirdCreate) SetSSHEnabled(v bool) *NetbirdCreate {
+	_c.mutation.SetSSHEnabled(v)
+	return _c
 }
 
 // SetNillableSSHEnabled sets the "ssh_enabled" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableSSHEnabled(b *bool) *NetbirdCreate {
-	if b != nil {
-		nc.SetSSHEnabled(*b)
+func (_c *NetbirdCreate) SetNillableSSHEnabled(v *bool) *NetbirdCreate {
+	if v != nil {
+		_c.SetSSHEnabled(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetPeersTotal sets the "peers_total" field.
-func (nc *NetbirdCreate) SetPeersTotal(i int) *NetbirdCreate {
-	nc.mutation.SetPeersTotal(i)
-	return nc
+func (_c *NetbirdCreate) SetPeersTotal(v int) *NetbirdCreate {
+	_c.mutation.SetPeersTotal(v)
+	return _c
 }
 
 // SetNillablePeersTotal sets the "peers_total" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillablePeersTotal(i *int) *NetbirdCreate {
-	if i != nil {
-		nc.SetPeersTotal(*i)
+func (_c *NetbirdCreate) SetNillablePeersTotal(v *int) *NetbirdCreate {
+	if v != nil {
+		_c.SetPeersTotal(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetPeersConnected sets the "peers_connected" field.
-func (nc *NetbirdCreate) SetPeersConnected(i int) *NetbirdCreate {
-	nc.mutation.SetPeersConnected(i)
-	return nc
+func (_c *NetbirdCreate) SetPeersConnected(v int) *NetbirdCreate {
+	_c.mutation.SetPeersConnected(v)
+	return _c
 }
 
 // SetNillablePeersConnected sets the "peers_connected" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillablePeersConnected(i *int) *NetbirdCreate {
-	if i != nil {
-		nc.SetPeersConnected(*i)
+func (_c *NetbirdCreate) SetNillablePeersConnected(v *int) *NetbirdCreate {
+	if v != nil {
+		_c.SetPeersConnected(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetProfilesAvailable sets the "profiles_available" field.
-func (nc *NetbirdCreate) SetProfilesAvailable(s string) *NetbirdCreate {
-	nc.mutation.SetProfilesAvailable(s)
-	return nc
+func (_c *NetbirdCreate) SetProfilesAvailable(v string) *NetbirdCreate {
+	_c.mutation.SetProfilesAvailable(v)
+	return _c
 }
 
 // SetNillableProfilesAvailable sets the "profiles_available" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableProfilesAvailable(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetProfilesAvailable(*s)
+func (_c *NetbirdCreate) SetNillableProfilesAvailable(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetProfilesAvailable(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetDNSServer sets the "dns_server" field.
-func (nc *NetbirdCreate) SetDNSServer(s string) *NetbirdCreate {
-	nc.mutation.SetDNSServer(s)
-	return nc
+func (_c *NetbirdCreate) SetDNSServer(v string) *NetbirdCreate {
+	_c.mutation.SetDNSServer(v)
+	return _c
 }
 
 // SetNillableDNSServer sets the "dns_server" field if the given value is not nil.
-func (nc *NetbirdCreate) SetNillableDNSServer(s *string) *NetbirdCreate {
-	if s != nil {
-		nc.SetDNSServer(*s)
+func (_c *NetbirdCreate) SetNillableDNSServer(v *string) *NetbirdCreate {
+	if v != nil {
+		_c.SetDNSServer(*v)
 	}
-	return nc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (nc *NetbirdCreate) SetOwnerID(id string) *NetbirdCreate {
-	nc.mutation.SetOwnerID(id)
-	return nc
+func (_c *NetbirdCreate) SetOwnerID(id string) *NetbirdCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (nc *NetbirdCreate) SetOwner(a *Agent) *NetbirdCreate {
-	return nc.SetOwnerID(a.ID)
+func (_c *NetbirdCreate) SetOwner(v *Agent) *NetbirdCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the NetbirdMutation object of the builder.
-func (nc *NetbirdCreate) Mutation() *NetbirdMutation {
-	return nc.mutation
+func (_c *NetbirdCreate) Mutation() *NetbirdMutation {
+	return _c.mutation
 }
 
 // Save creates the Netbird in the database.
-func (nc *NetbirdCreate) Save(ctx context.Context) (*Netbird, error) {
-	nc.defaults()
-	return withHooks(ctx, nc.sqlSave, nc.mutation, nc.hooks)
+func (_c *NetbirdCreate) Save(ctx context.Context) (*Netbird, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (nc *NetbirdCreate) SaveX(ctx context.Context) *Netbird {
-	v, err := nc.Save(ctx)
+func (_c *NetbirdCreate) SaveX(ctx context.Context) *Netbird {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -250,110 +250,110 @@ func (nc *NetbirdCreate) SaveX(ctx context.Context) *Netbird {
 }
 
 // Exec executes the query.
-func (nc *NetbirdCreate) Exec(ctx context.Context) error {
-	_, err := nc.Save(ctx)
+func (_c *NetbirdCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nc *NetbirdCreate) ExecX(ctx context.Context) {
-	if err := nc.Exec(ctx); err != nil {
+func (_c *NetbirdCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (nc *NetbirdCreate) defaults() {
-	if _, ok := nc.mutation.Version(); !ok {
+func (_c *NetbirdCreate) defaults() {
+	if _, ok := _c.mutation.Version(); !ok {
 		v := netbird.DefaultVersion
-		nc.mutation.SetVersion(v)
+		_c.mutation.SetVersion(v)
 	}
-	if _, ok := nc.mutation.Installed(); !ok {
+	if _, ok := _c.mutation.Installed(); !ok {
 		v := netbird.DefaultInstalled
-		nc.mutation.SetInstalled(v)
+		_c.mutation.SetInstalled(v)
 	}
-	if _, ok := nc.mutation.ServiceStatus(); !ok {
+	if _, ok := _c.mutation.ServiceStatus(); !ok {
 		v := netbird.DefaultServiceStatus
-		nc.mutation.SetServiceStatus(v)
+		_c.mutation.SetServiceStatus(v)
 	}
-	if _, ok := nc.mutation.IP(); !ok {
+	if _, ok := _c.mutation.IP(); !ok {
 		v := netbird.DefaultIP
-		nc.mutation.SetIP(v)
+		_c.mutation.SetIP(v)
 	}
-	if _, ok := nc.mutation.Profile(); !ok {
+	if _, ok := _c.mutation.Profile(); !ok {
 		v := netbird.DefaultProfile
-		nc.mutation.SetProfile(v)
+		_c.mutation.SetProfile(v)
 	}
-	if _, ok := nc.mutation.ManagementURL(); !ok {
+	if _, ok := _c.mutation.ManagementURL(); !ok {
 		v := netbird.DefaultManagementURL
-		nc.mutation.SetManagementURL(v)
+		_c.mutation.SetManagementURL(v)
 	}
-	if _, ok := nc.mutation.ManagementConnected(); !ok {
+	if _, ok := _c.mutation.ManagementConnected(); !ok {
 		v := netbird.DefaultManagementConnected
-		nc.mutation.SetManagementConnected(v)
+		_c.mutation.SetManagementConnected(v)
 	}
-	if _, ok := nc.mutation.SignalURL(); !ok {
+	if _, ok := _c.mutation.SignalURL(); !ok {
 		v := netbird.DefaultSignalURL
-		nc.mutation.SetSignalURL(v)
+		_c.mutation.SetSignalURL(v)
 	}
-	if _, ok := nc.mutation.SignalConnected(); !ok {
+	if _, ok := _c.mutation.SignalConnected(); !ok {
 		v := netbird.DefaultSignalConnected
-		nc.mutation.SetSignalConnected(v)
+		_c.mutation.SetSignalConnected(v)
 	}
-	if _, ok := nc.mutation.SSHEnabled(); !ok {
+	if _, ok := _c.mutation.SSHEnabled(); !ok {
 		v := netbird.DefaultSSHEnabled
-		nc.mutation.SetSSHEnabled(v)
+		_c.mutation.SetSSHEnabled(v)
 	}
-	if _, ok := nc.mutation.PeersTotal(); !ok {
+	if _, ok := _c.mutation.PeersTotal(); !ok {
 		v := netbird.DefaultPeersTotal
-		nc.mutation.SetPeersTotal(v)
+		_c.mutation.SetPeersTotal(v)
 	}
-	if _, ok := nc.mutation.PeersConnected(); !ok {
+	if _, ok := _c.mutation.PeersConnected(); !ok {
 		v := netbird.DefaultPeersConnected
-		nc.mutation.SetPeersConnected(v)
+		_c.mutation.SetPeersConnected(v)
 	}
-	if _, ok := nc.mutation.ProfilesAvailable(); !ok {
+	if _, ok := _c.mutation.ProfilesAvailable(); !ok {
 		v := netbird.DefaultProfilesAvailable
-		nc.mutation.SetProfilesAvailable(v)
+		_c.mutation.SetProfilesAvailable(v)
 	}
-	if _, ok := nc.mutation.DNSServer(); !ok {
+	if _, ok := _c.mutation.DNSServer(); !ok {
 		v := netbird.DefaultDNSServer
-		nc.mutation.SetDNSServer(v)
+		_c.mutation.SetDNSServer(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (nc *NetbirdCreate) check() error {
-	if _, ok := nc.mutation.Version(); !ok {
+func (_c *NetbirdCreate) check() error {
+	if _, ok := _c.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Netbird.version"`)}
 	}
-	if _, ok := nc.mutation.Installed(); !ok {
+	if _, ok := _c.mutation.Installed(); !ok {
 		return &ValidationError{Name: "installed", err: errors.New(`ent: missing required field "Netbird.installed"`)}
 	}
-	if _, ok := nc.mutation.ServiceStatus(); !ok {
+	if _, ok := _c.mutation.ServiceStatus(); !ok {
 		return &ValidationError{Name: "service_status", err: errors.New(`ent: missing required field "Netbird.service_status"`)}
 	}
-	if _, ok := nc.mutation.ManagementConnected(); !ok {
+	if _, ok := _c.mutation.ManagementConnected(); !ok {
 		return &ValidationError{Name: "management_connected", err: errors.New(`ent: missing required field "Netbird.management_connected"`)}
 	}
-	if _, ok := nc.mutation.SignalConnected(); !ok {
+	if _, ok := _c.mutation.SignalConnected(); !ok {
 		return &ValidationError{Name: "signal_connected", err: errors.New(`ent: missing required field "Netbird.signal_connected"`)}
 	}
-	if _, ok := nc.mutation.SSHEnabled(); !ok {
+	if _, ok := _c.mutation.SSHEnabled(); !ok {
 		return &ValidationError{Name: "ssh_enabled", err: errors.New(`ent: missing required field "Netbird.ssh_enabled"`)}
 	}
-	if len(nc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "Netbird.owner"`)}
 	}
 	return nil
 }
 
-func (nc *NetbirdCreate) sqlSave(ctx context.Context) (*Netbird, error) {
-	if err := nc.check(); err != nil {
+func (_c *NetbirdCreate) sqlSave(ctx context.Context) (*Netbird, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := nc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, nc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -361,74 +361,74 @@ func (nc *NetbirdCreate) sqlSave(ctx context.Context) (*Netbird, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	nc.mutation.id = &_node.ID
-	nc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (nc *NetbirdCreate) createSpec() (*Netbird, *sqlgraph.CreateSpec) {
+func (_c *NetbirdCreate) createSpec() (*Netbird, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Netbird{config: nc.config}
+		_node = &Netbird{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(netbird.Table, sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = nc.conflict
-	if value, ok := nc.mutation.Version(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Version(); ok {
 		_spec.SetField(netbird.FieldVersion, field.TypeString, value)
 		_node.Version = value
 	}
-	if value, ok := nc.mutation.Installed(); ok {
+	if value, ok := _c.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 		_node.Installed = value
 	}
-	if value, ok := nc.mutation.ServiceStatus(); ok {
+	if value, ok := _c.mutation.ServiceStatus(); ok {
 		_spec.SetField(netbird.FieldServiceStatus, field.TypeString, value)
 		_node.ServiceStatus = value
 	}
-	if value, ok := nc.mutation.IP(); ok {
+	if value, ok := _c.mutation.IP(); ok {
 		_spec.SetField(netbird.FieldIP, field.TypeString, value)
 		_node.IP = value
 	}
-	if value, ok := nc.mutation.Profile(); ok {
+	if value, ok := _c.mutation.Profile(); ok {
 		_spec.SetField(netbird.FieldProfile, field.TypeString, value)
 		_node.Profile = value
 	}
-	if value, ok := nc.mutation.ManagementURL(); ok {
+	if value, ok := _c.mutation.ManagementURL(); ok {
 		_spec.SetField(netbird.FieldManagementURL, field.TypeString, value)
 		_node.ManagementURL = value
 	}
-	if value, ok := nc.mutation.ManagementConnected(); ok {
+	if value, ok := _c.mutation.ManagementConnected(); ok {
 		_spec.SetField(netbird.FieldManagementConnected, field.TypeBool, value)
 		_node.ManagementConnected = value
 	}
-	if value, ok := nc.mutation.SignalURL(); ok {
+	if value, ok := _c.mutation.SignalURL(); ok {
 		_spec.SetField(netbird.FieldSignalURL, field.TypeString, value)
 		_node.SignalURL = value
 	}
-	if value, ok := nc.mutation.SignalConnected(); ok {
+	if value, ok := _c.mutation.SignalConnected(); ok {
 		_spec.SetField(netbird.FieldSignalConnected, field.TypeBool, value)
 		_node.SignalConnected = value
 	}
-	if value, ok := nc.mutation.SSHEnabled(); ok {
+	if value, ok := _c.mutation.SSHEnabled(); ok {
 		_spec.SetField(netbird.FieldSSHEnabled, field.TypeBool, value)
 		_node.SSHEnabled = value
 	}
-	if value, ok := nc.mutation.PeersTotal(); ok {
+	if value, ok := _c.mutation.PeersTotal(); ok {
 		_spec.SetField(netbird.FieldPeersTotal, field.TypeInt, value)
 		_node.PeersTotal = value
 	}
-	if value, ok := nc.mutation.PeersConnected(); ok {
+	if value, ok := _c.mutation.PeersConnected(); ok {
 		_spec.SetField(netbird.FieldPeersConnected, field.TypeInt, value)
 		_node.PeersConnected = value
 	}
-	if value, ok := nc.mutation.ProfilesAvailable(); ok {
+	if value, ok := _c.mutation.ProfilesAvailable(); ok {
 		_spec.SetField(netbird.FieldProfilesAvailable, field.TypeString, value)
 		_node.ProfilesAvailable = value
 	}
-	if value, ok := nc.mutation.DNSServer(); ok {
+	if value, ok := _c.mutation.DNSServer(); ok {
 		_spec.SetField(netbird.FieldDNSServer, field.TypeString, value)
 		_node.DNSServer = value
 	}
-	if nodes := nc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -464,10 +464,10 @@ func (nc *NetbirdCreate) createSpec() (*Netbird, *sqlgraph.CreateSpec) {
 //			SetVersion(v+v).
 //		}).
 //		Exec(ctx)
-func (nc *NetbirdCreate) OnConflict(opts ...sql.ConflictOption) *NetbirdUpsertOne {
-	nc.conflict = opts
+func (_c *NetbirdCreate) OnConflict(opts ...sql.ConflictOption) *NetbirdUpsertOne {
+	_c.conflict = opts
 	return &NetbirdUpsertOne{
-		create: nc,
+		create: _c,
 	}
 }
 
@@ -477,10 +477,10 @@ func (nc *NetbirdCreate) OnConflict(opts ...sql.ConflictOption) *NetbirdUpsertOn
 //	client.Netbird.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (nc *NetbirdCreate) OnConflictColumns(columns ...string) *NetbirdUpsertOne {
-	nc.conflict = append(nc.conflict, sql.ConflictColumns(columns...))
+func (_c *NetbirdCreate) OnConflictColumns(columns ...string) *NetbirdUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &NetbirdUpsertOne{
-		create: nc,
+		create: _c,
 	}
 }
 
@@ -1073,16 +1073,16 @@ type NetbirdCreateBulk struct {
 }
 
 // Save creates the Netbird entities in the database.
-func (ncb *NetbirdCreateBulk) Save(ctx context.Context) ([]*Netbird, error) {
-	if ncb.err != nil {
-		return nil, ncb.err
+func (_c *NetbirdCreateBulk) Save(ctx context.Context) ([]*Netbird, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(ncb.builders))
-	nodes := make([]*Netbird, len(ncb.builders))
-	mutators := make([]Mutator, len(ncb.builders))
-	for i := range ncb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Netbird, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := ncb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*NetbirdMutation)
@@ -1096,12 +1096,12 @@ func (ncb *NetbirdCreateBulk) Save(ctx context.Context) ([]*Netbird, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, ncb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = ncb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, ncb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1125,7 +1125,7 @@ func (ncb *NetbirdCreateBulk) Save(ctx context.Context) ([]*Netbird, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, ncb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1133,8 +1133,8 @@ func (ncb *NetbirdCreateBulk) Save(ctx context.Context) ([]*Netbird, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ncb *NetbirdCreateBulk) SaveX(ctx context.Context) []*Netbird {
-	v, err := ncb.Save(ctx)
+func (_c *NetbirdCreateBulk) SaveX(ctx context.Context) []*Netbird {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1142,14 +1142,14 @@ func (ncb *NetbirdCreateBulk) SaveX(ctx context.Context) []*Netbird {
 }
 
 // Exec executes the query.
-func (ncb *NetbirdCreateBulk) Exec(ctx context.Context) error {
-	_, err := ncb.Save(ctx)
+func (_c *NetbirdCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ncb *NetbirdCreateBulk) ExecX(ctx context.Context) {
-	if err := ncb.Exec(ctx); err != nil {
+func (_c *NetbirdCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1169,10 +1169,10 @@ func (ncb *NetbirdCreateBulk) ExecX(ctx context.Context) {
 //			SetVersion(v+v).
 //		}).
 //		Exec(ctx)
-func (ncb *NetbirdCreateBulk) OnConflict(opts ...sql.ConflictOption) *NetbirdUpsertBulk {
-	ncb.conflict = opts
+func (_c *NetbirdCreateBulk) OnConflict(opts ...sql.ConflictOption) *NetbirdUpsertBulk {
+	_c.conflict = opts
 	return &NetbirdUpsertBulk{
-		create: ncb,
+		create: _c,
 	}
 }
 
@@ -1182,10 +1182,10 @@ func (ncb *NetbirdCreateBulk) OnConflict(opts ...sql.ConflictOption) *NetbirdUps
 //	client.Netbird.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ncb *NetbirdCreateBulk) OnConflictColumns(columns ...string) *NetbirdUpsertBulk {
-	ncb.conflict = append(ncb.conflict, sql.ConflictColumns(columns...))
+func (_c *NetbirdCreateBulk) OnConflictColumns(columns ...string) *NetbirdUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &NetbirdUpsertBulk{
-		create: ncb,
+		create: _c,
 	}
 }
 

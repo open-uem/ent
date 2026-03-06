@@ -93,7 +93,7 @@ func (*NetworkAdapter) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the NetworkAdapter fields.
-func (na *NetworkAdapter) assignValues(columns []string, values []any) error {
+func (_m *NetworkAdapter) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -104,88 +104,88 @@ func (na *NetworkAdapter) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			na.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case networkadapter.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				na.Name = value.String
+				_m.Name = value.String
 			}
 		case networkadapter.FieldMACAddress:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field mac_address", values[i])
 			} else if value.Valid {
-				na.MACAddress = value.String
+				_m.MACAddress = value.String
 			}
 		case networkadapter.FieldAddresses:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field addresses", values[i])
 			} else if value.Valid {
-				na.Addresses = value.String
+				_m.Addresses = value.String
 			}
 		case networkadapter.FieldSubnet:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field subnet", values[i])
 			} else if value.Valid {
-				na.Subnet = value.String
+				_m.Subnet = value.String
 			}
 		case networkadapter.FieldDefaultGateway:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field default_gateway", values[i])
 			} else if value.Valid {
-				na.DefaultGateway = value.String
+				_m.DefaultGateway = value.String
 			}
 		case networkadapter.FieldDNSServers:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field dns_servers", values[i])
 			} else if value.Valid {
-				na.DNSServers = value.String
+				_m.DNSServers = value.String
 			}
 		case networkadapter.FieldDNSDomain:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field dns_domain", values[i])
 			} else if value.Valid {
-				na.DNSDomain = value.String
+				_m.DNSDomain = value.String
 			}
 		case networkadapter.FieldDhcpEnabled:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field dhcp_enabled", values[i])
 			} else if value.Valid {
-				na.DhcpEnabled = value.Bool
+				_m.DhcpEnabled = value.Bool
 			}
 		case networkadapter.FieldDhcpLeaseObtained:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field dhcp_lease_obtained", values[i])
 			} else if value.Valid {
-				na.DhcpLeaseObtained = value.Time
+				_m.DhcpLeaseObtained = value.Time
 			}
 		case networkadapter.FieldDhcpLeaseExpired:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field dhcp_lease_expired", values[i])
 			} else if value.Valid {
-				na.DhcpLeaseExpired = value.Time
+				_m.DhcpLeaseExpired = value.Time
 			}
 		case networkadapter.FieldSpeed:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field speed", values[i])
 			} else if value.Valid {
-				na.Speed = value.String
+				_m.Speed = value.String
 			}
 		case networkadapter.FieldVirtual:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field virtual", values[i])
 			} else if value.Valid {
-				na.Virtual = value.Bool
+				_m.Virtual = value.Bool
 			}
 		case networkadapter.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_networkadapters", values[i])
 			} else if value.Valid {
-				na.agent_networkadapters = new(string)
-				*na.agent_networkadapters = value.String
+				_m.agent_networkadapters = new(string)
+				*_m.agent_networkadapters = value.String
 			}
 		default:
-			na.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -193,73 +193,73 @@ func (na *NetworkAdapter) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the NetworkAdapter.
 // This includes values selected through modifiers, order, etc.
-func (na *NetworkAdapter) Value(name string) (ent.Value, error) {
-	return na.selectValues.Get(name)
+func (_m *NetworkAdapter) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the NetworkAdapter entity.
-func (na *NetworkAdapter) QueryOwner() *AgentQuery {
-	return NewNetworkAdapterClient(na.config).QueryOwner(na)
+func (_m *NetworkAdapter) QueryOwner() *AgentQuery {
+	return NewNetworkAdapterClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this NetworkAdapter.
 // Note that you need to call NetworkAdapter.Unwrap() before calling this method if this NetworkAdapter
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (na *NetworkAdapter) Update() *NetworkAdapterUpdateOne {
-	return NewNetworkAdapterClient(na.config).UpdateOne(na)
+func (_m *NetworkAdapter) Update() *NetworkAdapterUpdateOne {
+	return NewNetworkAdapterClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the NetworkAdapter entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (na *NetworkAdapter) Unwrap() *NetworkAdapter {
-	_tx, ok := na.config.driver.(*txDriver)
+func (_m *NetworkAdapter) Unwrap() *NetworkAdapter {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: NetworkAdapter is not a transactional entity")
 	}
-	na.config.driver = _tx.drv
-	return na
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (na *NetworkAdapter) String() string {
+func (_m *NetworkAdapter) String() string {
 	var builder strings.Builder
 	builder.WriteString("NetworkAdapter(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", na.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(na.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("mac_address=")
-	builder.WriteString(na.MACAddress)
+	builder.WriteString(_m.MACAddress)
 	builder.WriteString(", ")
 	builder.WriteString("addresses=")
-	builder.WriteString(na.Addresses)
+	builder.WriteString(_m.Addresses)
 	builder.WriteString(", ")
 	builder.WriteString("subnet=")
-	builder.WriteString(na.Subnet)
+	builder.WriteString(_m.Subnet)
 	builder.WriteString(", ")
 	builder.WriteString("default_gateway=")
-	builder.WriteString(na.DefaultGateway)
+	builder.WriteString(_m.DefaultGateway)
 	builder.WriteString(", ")
 	builder.WriteString("dns_servers=")
-	builder.WriteString(na.DNSServers)
+	builder.WriteString(_m.DNSServers)
 	builder.WriteString(", ")
 	builder.WriteString("dns_domain=")
-	builder.WriteString(na.DNSDomain)
+	builder.WriteString(_m.DNSDomain)
 	builder.WriteString(", ")
 	builder.WriteString("dhcp_enabled=")
-	builder.WriteString(fmt.Sprintf("%v", na.DhcpEnabled))
+	builder.WriteString(fmt.Sprintf("%v", _m.DhcpEnabled))
 	builder.WriteString(", ")
 	builder.WriteString("dhcp_lease_obtained=")
-	builder.WriteString(na.DhcpLeaseObtained.Format(time.ANSIC))
+	builder.WriteString(_m.DhcpLeaseObtained.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("dhcp_lease_expired=")
-	builder.WriteString(na.DhcpLeaseExpired.Format(time.ANSIC))
+	builder.WriteString(_m.DhcpLeaseExpired.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("speed=")
-	builder.WriteString(na.Speed)
+	builder.WriteString(_m.Speed)
 	builder.WriteString(", ")
 	builder.WriteString("virtual=")
-	builder.WriteString(fmt.Sprintf("%v", na.Virtual))
+	builder.WriteString(fmt.Sprintf("%v", _m.Virtual))
 	builder.WriteByte(')')
 	return builder.String()
 }

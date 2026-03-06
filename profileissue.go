@@ -99,7 +99,7 @@ func (*ProfileIssue) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the ProfileIssue fields.
-func (pi *ProfileIssue) assignValues(columns []string, values []any) error {
+func (_m *ProfileIssue) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -110,35 +110,35 @@ func (pi *ProfileIssue) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			pi.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case profileissue.FieldError:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field error", values[i])
 			} else if value.Valid {
-				pi.Error = value.String
+				_m.Error = value.String
 			}
 		case profileissue.FieldWhen:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field when", values[i])
 			} else if value.Valid {
-				pi.When = value.Time
+				_m.When = value.Time
 			}
 		case profileissue.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field profile_issues", value)
 			} else if value.Valid {
-				pi.profile_issues = new(int)
-				*pi.profile_issues = int(value.Int64)
+				_m.profile_issues = new(int)
+				*_m.profile_issues = int(value.Int64)
 			}
 		case profileissue.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field profile_issue_agents", values[i])
 			} else if value.Valid {
-				pi.profile_issue_agents = new(string)
-				*pi.profile_issue_agents = value.String
+				_m.profile_issue_agents = new(string)
+				*_m.profile_issue_agents = value.String
 			}
 		default:
-			pi.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -146,53 +146,53 @@ func (pi *ProfileIssue) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the ProfileIssue.
 // This includes values selected through modifiers, order, etc.
-func (pi *ProfileIssue) Value(name string) (ent.Value, error) {
-	return pi.selectValues.Get(name)
+func (_m *ProfileIssue) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryProfile queries the "profile" edge of the ProfileIssue entity.
-func (pi *ProfileIssue) QueryProfile() *ProfileQuery {
-	return NewProfileIssueClient(pi.config).QueryProfile(pi)
+func (_m *ProfileIssue) QueryProfile() *ProfileQuery {
+	return NewProfileIssueClient(_m.config).QueryProfile(_m)
 }
 
 // QueryAgents queries the "agents" edge of the ProfileIssue entity.
-func (pi *ProfileIssue) QueryAgents() *AgentQuery {
-	return NewProfileIssueClient(pi.config).QueryAgents(pi)
+func (_m *ProfileIssue) QueryAgents() *AgentQuery {
+	return NewProfileIssueClient(_m.config).QueryAgents(_m)
 }
 
 // QueryTasksreports queries the "tasksreports" edge of the ProfileIssue entity.
-func (pi *ProfileIssue) QueryTasksreports() *TaskReportQuery {
-	return NewProfileIssueClient(pi.config).QueryTasksreports(pi)
+func (_m *ProfileIssue) QueryTasksreports() *TaskReportQuery {
+	return NewProfileIssueClient(_m.config).QueryTasksreports(_m)
 }
 
 // Update returns a builder for updating this ProfileIssue.
 // Note that you need to call ProfileIssue.Unwrap() before calling this method if this ProfileIssue
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (pi *ProfileIssue) Update() *ProfileIssueUpdateOne {
-	return NewProfileIssueClient(pi.config).UpdateOne(pi)
+func (_m *ProfileIssue) Update() *ProfileIssueUpdateOne {
+	return NewProfileIssueClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the ProfileIssue entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (pi *ProfileIssue) Unwrap() *ProfileIssue {
-	_tx, ok := pi.config.driver.(*txDriver)
+func (_m *ProfileIssue) Unwrap() *ProfileIssue {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: ProfileIssue is not a transactional entity")
 	}
-	pi.config.driver = _tx.drv
-	return pi
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (pi *ProfileIssue) String() string {
+func (_m *ProfileIssue) String() string {
 	var builder strings.Builder
 	builder.WriteString("ProfileIssue(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", pi.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("error=")
-	builder.WriteString(pi.Error)
+	builder.WriteString(_m.Error)
 	builder.WriteString(", ")
 	builder.WriteString("when=")
-	builder.WriteString(pi.When.Format(time.ANSIC))
+	builder.WriteString(_m.When.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

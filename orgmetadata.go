@@ -79,7 +79,7 @@ func (*OrgMetadata) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the OrgMetadata fields.
-func (om *OrgMetadata) assignValues(columns []string, values []any) error {
+func (_m *OrgMetadata) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -90,28 +90,28 @@ func (om *OrgMetadata) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			om.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case orgmetadata.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				om.Name = value.String
+				_m.Name = value.String
 			}
 		case orgmetadata.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				om.Description = value.String
+				_m.Description = value.String
 			}
 		case orgmetadata.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field tenant_metadata", value)
 			} else if value.Valid {
-				om.tenant_metadata = new(int)
-				*om.tenant_metadata = int(value.Int64)
+				_m.tenant_metadata = new(int)
+				*_m.tenant_metadata = int(value.Int64)
 			}
 		default:
-			om.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -119,48 +119,48 @@ func (om *OrgMetadata) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the OrgMetadata.
 // This includes values selected through modifiers, order, etc.
-func (om *OrgMetadata) Value(name string) (ent.Value, error) {
-	return om.selectValues.Get(name)
+func (_m *OrgMetadata) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryMetadata queries the "metadata" edge of the OrgMetadata entity.
-func (om *OrgMetadata) QueryMetadata() *MetadataQuery {
-	return NewOrgMetadataClient(om.config).QueryMetadata(om)
+func (_m *OrgMetadata) QueryMetadata() *MetadataQuery {
+	return NewOrgMetadataClient(_m.config).QueryMetadata(_m)
 }
 
 // QueryTenant queries the "tenant" edge of the OrgMetadata entity.
-func (om *OrgMetadata) QueryTenant() *TenantQuery {
-	return NewOrgMetadataClient(om.config).QueryTenant(om)
+func (_m *OrgMetadata) QueryTenant() *TenantQuery {
+	return NewOrgMetadataClient(_m.config).QueryTenant(_m)
 }
 
 // Update returns a builder for updating this OrgMetadata.
 // Note that you need to call OrgMetadata.Unwrap() before calling this method if this OrgMetadata
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (om *OrgMetadata) Update() *OrgMetadataUpdateOne {
-	return NewOrgMetadataClient(om.config).UpdateOne(om)
+func (_m *OrgMetadata) Update() *OrgMetadataUpdateOne {
+	return NewOrgMetadataClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the OrgMetadata entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (om *OrgMetadata) Unwrap() *OrgMetadata {
-	_tx, ok := om.config.driver.(*txDriver)
+func (_m *OrgMetadata) Unwrap() *OrgMetadata {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: OrgMetadata is not a transactional entity")
 	}
-	om.config.driver = _tx.drv
-	return om
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (om *OrgMetadata) String() string {
+func (_m *OrgMetadata) String() string {
 	var builder strings.Builder
 	builder.WriteString("OrgMetadata(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", om.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(om.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(om.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteByte(')')
 	return builder.String()
 }

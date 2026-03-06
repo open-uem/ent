@@ -25,203 +25,203 @@ type OperatingSystemUpdate struct {
 }
 
 // Where appends a list predicates to the OperatingSystemUpdate builder.
-func (osu *OperatingSystemUpdate) Where(ps ...predicate.OperatingSystem) *OperatingSystemUpdate {
-	osu.mutation.Where(ps...)
-	return osu
+func (_u *OperatingSystemUpdate) Where(ps ...predicate.OperatingSystem) *OperatingSystemUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetType sets the "type" field.
-func (osu *OperatingSystemUpdate) SetType(s string) *OperatingSystemUpdate {
-	osu.mutation.SetType(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetType(v string) *OperatingSystemUpdate {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableType(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetType(*s)
+func (_u *OperatingSystemUpdate) SetNillableType(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return osu
+	return _u
 }
 
 // ClearType clears the value of the "type" field.
-func (osu *OperatingSystemUpdate) ClearType() *OperatingSystemUpdate {
-	osu.mutation.ClearType()
-	return osu
+func (_u *OperatingSystemUpdate) ClearType() *OperatingSystemUpdate {
+	_u.mutation.ClearType()
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (osu *OperatingSystemUpdate) SetVersion(s string) *OperatingSystemUpdate {
-	osu.mutation.SetVersion(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetVersion(v string) *OperatingSystemUpdate {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableVersion(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetVersion(*s)
+func (_u *OperatingSystemUpdate) SetNillableVersion(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return osu
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (osu *OperatingSystemUpdate) SetDescription(s string) *OperatingSystemUpdate {
-	osu.mutation.SetDescription(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetDescription(v string) *OperatingSystemUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableDescription(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetDescription(*s)
+func (_u *OperatingSystemUpdate) SetNillableDescription(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return osu
+	return _u
 }
 
 // SetEdition sets the "edition" field.
-func (osu *OperatingSystemUpdate) SetEdition(s string) *OperatingSystemUpdate {
-	osu.mutation.SetEdition(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetEdition(v string) *OperatingSystemUpdate {
+	_u.mutation.SetEdition(v)
+	return _u
 }
 
 // SetNillableEdition sets the "edition" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableEdition(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetEdition(*s)
+func (_u *OperatingSystemUpdate) SetNillableEdition(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetEdition(*v)
 	}
-	return osu
+	return _u
 }
 
 // ClearEdition clears the value of the "edition" field.
-func (osu *OperatingSystemUpdate) ClearEdition() *OperatingSystemUpdate {
-	osu.mutation.ClearEdition()
-	return osu
+func (_u *OperatingSystemUpdate) ClearEdition() *OperatingSystemUpdate {
+	_u.mutation.ClearEdition()
+	return _u
 }
 
 // SetInstallDate sets the "install_date" field.
-func (osu *OperatingSystemUpdate) SetInstallDate(t time.Time) *OperatingSystemUpdate {
-	osu.mutation.SetInstallDate(t)
-	return osu
+func (_u *OperatingSystemUpdate) SetInstallDate(v time.Time) *OperatingSystemUpdate {
+	_u.mutation.SetInstallDate(v)
+	return _u
 }
 
 // SetNillableInstallDate sets the "install_date" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableInstallDate(t *time.Time) *OperatingSystemUpdate {
-	if t != nil {
-		osu.SetInstallDate(*t)
+func (_u *OperatingSystemUpdate) SetNillableInstallDate(v *time.Time) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetInstallDate(*v)
 	}
-	return osu
+	return _u
 }
 
 // ClearInstallDate clears the value of the "install_date" field.
-func (osu *OperatingSystemUpdate) ClearInstallDate() *OperatingSystemUpdate {
-	osu.mutation.ClearInstallDate()
-	return osu
+func (_u *OperatingSystemUpdate) ClearInstallDate() *OperatingSystemUpdate {
+	_u.mutation.ClearInstallDate()
+	return _u
 }
 
 // SetArch sets the "arch" field.
-func (osu *OperatingSystemUpdate) SetArch(s string) *OperatingSystemUpdate {
-	osu.mutation.SetArch(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetArch(v string) *OperatingSystemUpdate {
+	_u.mutation.SetArch(v)
+	return _u
 }
 
 // SetNillableArch sets the "arch" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableArch(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetArch(*s)
+func (_u *OperatingSystemUpdate) SetNillableArch(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetArch(*v)
 	}
-	return osu
+	return _u
 }
 
 // ClearArch clears the value of the "arch" field.
-func (osu *OperatingSystemUpdate) ClearArch() *OperatingSystemUpdate {
-	osu.mutation.ClearArch()
-	return osu
+func (_u *OperatingSystemUpdate) ClearArch() *OperatingSystemUpdate {
+	_u.mutation.ClearArch()
+	return _u
 }
 
 // SetUsername sets the "username" field.
-func (osu *OperatingSystemUpdate) SetUsername(s string) *OperatingSystemUpdate {
-	osu.mutation.SetUsername(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetUsername(v string) *OperatingSystemUpdate {
+	_u.mutation.SetUsername(v)
+	return _u
 }
 
 // SetNillableUsername sets the "username" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableUsername(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetUsername(*s)
+func (_u *OperatingSystemUpdate) SetNillableUsername(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetUsername(*v)
 	}
-	return osu
+	return _u
 }
 
 // SetLastBootupTime sets the "last_bootup_time" field.
-func (osu *OperatingSystemUpdate) SetLastBootupTime(t time.Time) *OperatingSystemUpdate {
-	osu.mutation.SetLastBootupTime(t)
-	return osu
+func (_u *OperatingSystemUpdate) SetLastBootupTime(v time.Time) *OperatingSystemUpdate {
+	_u.mutation.SetLastBootupTime(v)
+	return _u
 }
 
 // SetNillableLastBootupTime sets the "last_bootup_time" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableLastBootupTime(t *time.Time) *OperatingSystemUpdate {
-	if t != nil {
-		osu.SetLastBootupTime(*t)
+func (_u *OperatingSystemUpdate) SetNillableLastBootupTime(v *time.Time) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetLastBootupTime(*v)
 	}
-	return osu
+	return _u
 }
 
 // ClearLastBootupTime clears the value of the "last_bootup_time" field.
-func (osu *OperatingSystemUpdate) ClearLastBootupTime() *OperatingSystemUpdate {
-	osu.mutation.ClearLastBootupTime()
-	return osu
+func (_u *OperatingSystemUpdate) ClearLastBootupTime() *OperatingSystemUpdate {
+	_u.mutation.ClearLastBootupTime()
+	return _u
 }
 
 // SetDomain sets the "domain" field.
-func (osu *OperatingSystemUpdate) SetDomain(s string) *OperatingSystemUpdate {
-	osu.mutation.SetDomain(s)
-	return osu
+func (_u *OperatingSystemUpdate) SetDomain(v string) *OperatingSystemUpdate {
+	_u.mutation.SetDomain(v)
+	return _u
 }
 
 // SetNillableDomain sets the "domain" field if the given value is not nil.
-func (osu *OperatingSystemUpdate) SetNillableDomain(s *string) *OperatingSystemUpdate {
-	if s != nil {
-		osu.SetDomain(*s)
+func (_u *OperatingSystemUpdate) SetNillableDomain(v *string) *OperatingSystemUpdate {
+	if v != nil {
+		_u.SetDomain(*v)
 	}
-	return osu
+	return _u
 }
 
 // ClearDomain clears the value of the "domain" field.
-func (osu *OperatingSystemUpdate) ClearDomain() *OperatingSystemUpdate {
-	osu.mutation.ClearDomain()
-	return osu
+func (_u *OperatingSystemUpdate) ClearDomain() *OperatingSystemUpdate {
+	_u.mutation.ClearDomain()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (osu *OperatingSystemUpdate) SetOwnerID(id string) *OperatingSystemUpdate {
-	osu.mutation.SetOwnerID(id)
-	return osu
+func (_u *OperatingSystemUpdate) SetOwnerID(id string) *OperatingSystemUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (osu *OperatingSystemUpdate) SetOwner(a *Agent) *OperatingSystemUpdate {
-	return osu.SetOwnerID(a.ID)
+func (_u *OperatingSystemUpdate) SetOwner(v *Agent) *OperatingSystemUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the OperatingSystemMutation object of the builder.
-func (osu *OperatingSystemUpdate) Mutation() *OperatingSystemMutation {
-	return osu.mutation
+func (_u *OperatingSystemUpdate) Mutation() *OperatingSystemMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (osu *OperatingSystemUpdate) ClearOwner() *OperatingSystemUpdate {
-	osu.mutation.ClearOwner()
-	return osu
+func (_u *OperatingSystemUpdate) ClearOwner() *OperatingSystemUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (osu *OperatingSystemUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, osu.sqlSave, osu.mutation, osu.hooks)
+func (_u *OperatingSystemUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (osu *OperatingSystemUpdate) SaveX(ctx context.Context) int {
-	affected, err := osu.Save(ctx)
+func (_u *OperatingSystemUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -229,90 +229,90 @@ func (osu *OperatingSystemUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (osu *OperatingSystemUpdate) Exec(ctx context.Context) error {
-	_, err := osu.Save(ctx)
+func (_u *OperatingSystemUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (osu *OperatingSystemUpdate) ExecX(ctx context.Context) {
-	if err := osu.Exec(ctx); err != nil {
+func (_u *OperatingSystemUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (osu *OperatingSystemUpdate) check() error {
-	if osu.mutation.OwnerCleared() && len(osu.mutation.OwnerIDs()) > 0 {
+func (_u *OperatingSystemUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "OperatingSystem.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (osu *OperatingSystemUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OperatingSystemUpdate {
-	osu.modifiers = append(osu.modifiers, modifiers...)
-	return osu
+func (_u *OperatingSystemUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OperatingSystemUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (osu *OperatingSystemUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := osu.check(); err != nil {
-		return n, err
+func (_u *OperatingSystemUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(operatingsystem.Table, operatingsystem.Columns, sqlgraph.NewFieldSpec(operatingsystem.FieldID, field.TypeInt))
-	if ps := osu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := osu.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(operatingsystem.FieldType, field.TypeString, value)
 	}
-	if osu.mutation.TypeCleared() {
+	if _u.mutation.TypeCleared() {
 		_spec.ClearField(operatingsystem.FieldType, field.TypeString)
 	}
-	if value, ok := osu.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(operatingsystem.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := osu.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(operatingsystem.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := osu.mutation.Edition(); ok {
+	if value, ok := _u.mutation.Edition(); ok {
 		_spec.SetField(operatingsystem.FieldEdition, field.TypeString, value)
 	}
-	if osu.mutation.EditionCleared() {
+	if _u.mutation.EditionCleared() {
 		_spec.ClearField(operatingsystem.FieldEdition, field.TypeString)
 	}
-	if value, ok := osu.mutation.InstallDate(); ok {
+	if value, ok := _u.mutation.InstallDate(); ok {
 		_spec.SetField(operatingsystem.FieldInstallDate, field.TypeTime, value)
 	}
-	if osu.mutation.InstallDateCleared() {
+	if _u.mutation.InstallDateCleared() {
 		_spec.ClearField(operatingsystem.FieldInstallDate, field.TypeTime)
 	}
-	if value, ok := osu.mutation.Arch(); ok {
+	if value, ok := _u.mutation.Arch(); ok {
 		_spec.SetField(operatingsystem.FieldArch, field.TypeString, value)
 	}
-	if osu.mutation.ArchCleared() {
+	if _u.mutation.ArchCleared() {
 		_spec.ClearField(operatingsystem.FieldArch, field.TypeString)
 	}
-	if value, ok := osu.mutation.Username(); ok {
+	if value, ok := _u.mutation.Username(); ok {
 		_spec.SetField(operatingsystem.FieldUsername, field.TypeString, value)
 	}
-	if value, ok := osu.mutation.LastBootupTime(); ok {
+	if value, ok := _u.mutation.LastBootupTime(); ok {
 		_spec.SetField(operatingsystem.FieldLastBootupTime, field.TypeTime, value)
 	}
-	if osu.mutation.LastBootupTimeCleared() {
+	if _u.mutation.LastBootupTimeCleared() {
 		_spec.ClearField(operatingsystem.FieldLastBootupTime, field.TypeTime)
 	}
-	if value, ok := osu.mutation.Domain(); ok {
+	if value, ok := _u.mutation.Domain(); ok {
 		_spec.SetField(operatingsystem.FieldDomain, field.TypeString, value)
 	}
-	if osu.mutation.DomainCleared() {
+	if _u.mutation.DomainCleared() {
 		_spec.ClearField(operatingsystem.FieldDomain, field.TypeString)
 	}
-	if osu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -325,7 +325,7 @@ func (osu *OperatingSystemUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := osu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -341,8 +341,8 @@ func (osu *OperatingSystemUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(osu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, osu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{operatingsystem.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -350,8 +350,8 @@ func (osu *OperatingSystemUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		return 0, err
 	}
-	osu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // OperatingSystemUpdateOne is the builder for updating a single OperatingSystem entity.
@@ -364,210 +364,210 @@ type OperatingSystemUpdateOne struct {
 }
 
 // SetType sets the "type" field.
-func (osuo *OperatingSystemUpdateOne) SetType(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetType(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetType(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableType(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetType(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableType(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return osuo
+	return _u
 }
 
 // ClearType clears the value of the "type" field.
-func (osuo *OperatingSystemUpdateOne) ClearType() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearType()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearType() *OperatingSystemUpdateOne {
+	_u.mutation.ClearType()
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (osuo *OperatingSystemUpdateOne) SetVersion(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetVersion(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetVersion(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableVersion(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetVersion(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableVersion(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return osuo
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (osuo *OperatingSystemUpdateOne) SetDescription(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetDescription(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetDescription(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableDescription(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetDescription(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableDescription(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return osuo
+	return _u
 }
 
 // SetEdition sets the "edition" field.
-func (osuo *OperatingSystemUpdateOne) SetEdition(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetEdition(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetEdition(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetEdition(v)
+	return _u
 }
 
 // SetNillableEdition sets the "edition" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableEdition(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetEdition(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableEdition(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetEdition(*v)
 	}
-	return osuo
+	return _u
 }
 
 // ClearEdition clears the value of the "edition" field.
-func (osuo *OperatingSystemUpdateOne) ClearEdition() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearEdition()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearEdition() *OperatingSystemUpdateOne {
+	_u.mutation.ClearEdition()
+	return _u
 }
 
 // SetInstallDate sets the "install_date" field.
-func (osuo *OperatingSystemUpdateOne) SetInstallDate(t time.Time) *OperatingSystemUpdateOne {
-	osuo.mutation.SetInstallDate(t)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetInstallDate(v time.Time) *OperatingSystemUpdateOne {
+	_u.mutation.SetInstallDate(v)
+	return _u
 }
 
 // SetNillableInstallDate sets the "install_date" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableInstallDate(t *time.Time) *OperatingSystemUpdateOne {
-	if t != nil {
-		osuo.SetInstallDate(*t)
+func (_u *OperatingSystemUpdateOne) SetNillableInstallDate(v *time.Time) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetInstallDate(*v)
 	}
-	return osuo
+	return _u
 }
 
 // ClearInstallDate clears the value of the "install_date" field.
-func (osuo *OperatingSystemUpdateOne) ClearInstallDate() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearInstallDate()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearInstallDate() *OperatingSystemUpdateOne {
+	_u.mutation.ClearInstallDate()
+	return _u
 }
 
 // SetArch sets the "arch" field.
-func (osuo *OperatingSystemUpdateOne) SetArch(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetArch(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetArch(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetArch(v)
+	return _u
 }
 
 // SetNillableArch sets the "arch" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableArch(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetArch(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableArch(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetArch(*v)
 	}
-	return osuo
+	return _u
 }
 
 // ClearArch clears the value of the "arch" field.
-func (osuo *OperatingSystemUpdateOne) ClearArch() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearArch()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearArch() *OperatingSystemUpdateOne {
+	_u.mutation.ClearArch()
+	return _u
 }
 
 // SetUsername sets the "username" field.
-func (osuo *OperatingSystemUpdateOne) SetUsername(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetUsername(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetUsername(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetUsername(v)
+	return _u
 }
 
 // SetNillableUsername sets the "username" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableUsername(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetUsername(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableUsername(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetUsername(*v)
 	}
-	return osuo
+	return _u
 }
 
 // SetLastBootupTime sets the "last_bootup_time" field.
-func (osuo *OperatingSystemUpdateOne) SetLastBootupTime(t time.Time) *OperatingSystemUpdateOne {
-	osuo.mutation.SetLastBootupTime(t)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetLastBootupTime(v time.Time) *OperatingSystemUpdateOne {
+	_u.mutation.SetLastBootupTime(v)
+	return _u
 }
 
 // SetNillableLastBootupTime sets the "last_bootup_time" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableLastBootupTime(t *time.Time) *OperatingSystemUpdateOne {
-	if t != nil {
-		osuo.SetLastBootupTime(*t)
+func (_u *OperatingSystemUpdateOne) SetNillableLastBootupTime(v *time.Time) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetLastBootupTime(*v)
 	}
-	return osuo
+	return _u
 }
 
 // ClearLastBootupTime clears the value of the "last_bootup_time" field.
-func (osuo *OperatingSystemUpdateOne) ClearLastBootupTime() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearLastBootupTime()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearLastBootupTime() *OperatingSystemUpdateOne {
+	_u.mutation.ClearLastBootupTime()
+	return _u
 }
 
 // SetDomain sets the "domain" field.
-func (osuo *OperatingSystemUpdateOne) SetDomain(s string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetDomain(s)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetDomain(v string) *OperatingSystemUpdateOne {
+	_u.mutation.SetDomain(v)
+	return _u
 }
 
 // SetNillableDomain sets the "domain" field if the given value is not nil.
-func (osuo *OperatingSystemUpdateOne) SetNillableDomain(s *string) *OperatingSystemUpdateOne {
-	if s != nil {
-		osuo.SetDomain(*s)
+func (_u *OperatingSystemUpdateOne) SetNillableDomain(v *string) *OperatingSystemUpdateOne {
+	if v != nil {
+		_u.SetDomain(*v)
 	}
-	return osuo
+	return _u
 }
 
 // ClearDomain clears the value of the "domain" field.
-func (osuo *OperatingSystemUpdateOne) ClearDomain() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearDomain()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearDomain() *OperatingSystemUpdateOne {
+	_u.mutation.ClearDomain()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (osuo *OperatingSystemUpdateOne) SetOwnerID(id string) *OperatingSystemUpdateOne {
-	osuo.mutation.SetOwnerID(id)
-	return osuo
+func (_u *OperatingSystemUpdateOne) SetOwnerID(id string) *OperatingSystemUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (osuo *OperatingSystemUpdateOne) SetOwner(a *Agent) *OperatingSystemUpdateOne {
-	return osuo.SetOwnerID(a.ID)
+func (_u *OperatingSystemUpdateOne) SetOwner(v *Agent) *OperatingSystemUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the OperatingSystemMutation object of the builder.
-func (osuo *OperatingSystemUpdateOne) Mutation() *OperatingSystemMutation {
-	return osuo.mutation
+func (_u *OperatingSystemUpdateOne) Mutation() *OperatingSystemMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (osuo *OperatingSystemUpdateOne) ClearOwner() *OperatingSystemUpdateOne {
-	osuo.mutation.ClearOwner()
-	return osuo
+func (_u *OperatingSystemUpdateOne) ClearOwner() *OperatingSystemUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the OperatingSystemUpdate builder.
-func (osuo *OperatingSystemUpdateOne) Where(ps ...predicate.OperatingSystem) *OperatingSystemUpdateOne {
-	osuo.mutation.Where(ps...)
-	return osuo
+func (_u *OperatingSystemUpdateOne) Where(ps ...predicate.OperatingSystem) *OperatingSystemUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (osuo *OperatingSystemUpdateOne) Select(field string, fields ...string) *OperatingSystemUpdateOne {
-	osuo.fields = append([]string{field}, fields...)
-	return osuo
+func (_u *OperatingSystemUpdateOne) Select(field string, fields ...string) *OperatingSystemUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated OperatingSystem entity.
-func (osuo *OperatingSystemUpdateOne) Save(ctx context.Context) (*OperatingSystem, error) {
-	return withHooks(ctx, osuo.sqlSave, osuo.mutation, osuo.hooks)
+func (_u *OperatingSystemUpdateOne) Save(ctx context.Context) (*OperatingSystem, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (osuo *OperatingSystemUpdateOne) SaveX(ctx context.Context) *OperatingSystem {
-	node, err := osuo.Save(ctx)
+func (_u *OperatingSystemUpdateOne) SaveX(ctx context.Context) *OperatingSystem {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -575,43 +575,43 @@ func (osuo *OperatingSystemUpdateOne) SaveX(ctx context.Context) *OperatingSyste
 }
 
 // Exec executes the query on the entity.
-func (osuo *OperatingSystemUpdateOne) Exec(ctx context.Context) error {
-	_, err := osuo.Save(ctx)
+func (_u *OperatingSystemUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (osuo *OperatingSystemUpdateOne) ExecX(ctx context.Context) {
-	if err := osuo.Exec(ctx); err != nil {
+func (_u *OperatingSystemUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (osuo *OperatingSystemUpdateOne) check() error {
-	if osuo.mutation.OwnerCleared() && len(osuo.mutation.OwnerIDs()) > 0 {
+func (_u *OperatingSystemUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "OperatingSystem.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (osuo *OperatingSystemUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OperatingSystemUpdateOne {
-	osuo.modifiers = append(osuo.modifiers, modifiers...)
-	return osuo
+func (_u *OperatingSystemUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OperatingSystemUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (osuo *OperatingSystemUpdateOne) sqlSave(ctx context.Context) (_node *OperatingSystem, err error) {
-	if err := osuo.check(); err != nil {
+func (_u *OperatingSystemUpdateOne) sqlSave(ctx context.Context) (_node *OperatingSystem, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(operatingsystem.Table, operatingsystem.Columns, sqlgraph.NewFieldSpec(operatingsystem.FieldID, field.TypeInt))
-	id, ok := osuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "OperatingSystem.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := osuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, operatingsystem.FieldID)
 		for _, f := range fields {
@@ -623,59 +623,59 @@ func (osuo *OperatingSystemUpdateOne) sqlSave(ctx context.Context) (_node *Opera
 			}
 		}
 	}
-	if ps := osuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := osuo.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(operatingsystem.FieldType, field.TypeString, value)
 	}
-	if osuo.mutation.TypeCleared() {
+	if _u.mutation.TypeCleared() {
 		_spec.ClearField(operatingsystem.FieldType, field.TypeString)
 	}
-	if value, ok := osuo.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(operatingsystem.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := osuo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(operatingsystem.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := osuo.mutation.Edition(); ok {
+	if value, ok := _u.mutation.Edition(); ok {
 		_spec.SetField(operatingsystem.FieldEdition, field.TypeString, value)
 	}
-	if osuo.mutation.EditionCleared() {
+	if _u.mutation.EditionCleared() {
 		_spec.ClearField(operatingsystem.FieldEdition, field.TypeString)
 	}
-	if value, ok := osuo.mutation.InstallDate(); ok {
+	if value, ok := _u.mutation.InstallDate(); ok {
 		_spec.SetField(operatingsystem.FieldInstallDate, field.TypeTime, value)
 	}
-	if osuo.mutation.InstallDateCleared() {
+	if _u.mutation.InstallDateCleared() {
 		_spec.ClearField(operatingsystem.FieldInstallDate, field.TypeTime)
 	}
-	if value, ok := osuo.mutation.Arch(); ok {
+	if value, ok := _u.mutation.Arch(); ok {
 		_spec.SetField(operatingsystem.FieldArch, field.TypeString, value)
 	}
-	if osuo.mutation.ArchCleared() {
+	if _u.mutation.ArchCleared() {
 		_spec.ClearField(operatingsystem.FieldArch, field.TypeString)
 	}
-	if value, ok := osuo.mutation.Username(); ok {
+	if value, ok := _u.mutation.Username(); ok {
 		_spec.SetField(operatingsystem.FieldUsername, field.TypeString, value)
 	}
-	if value, ok := osuo.mutation.LastBootupTime(); ok {
+	if value, ok := _u.mutation.LastBootupTime(); ok {
 		_spec.SetField(operatingsystem.FieldLastBootupTime, field.TypeTime, value)
 	}
-	if osuo.mutation.LastBootupTimeCleared() {
+	if _u.mutation.LastBootupTimeCleared() {
 		_spec.ClearField(operatingsystem.FieldLastBootupTime, field.TypeTime)
 	}
-	if value, ok := osuo.mutation.Domain(); ok {
+	if value, ok := _u.mutation.Domain(); ok {
 		_spec.SetField(operatingsystem.FieldDomain, field.TypeString, value)
 	}
-	if osuo.mutation.DomainCleared() {
+	if _u.mutation.DomainCleared() {
 		_spec.ClearField(operatingsystem.FieldDomain, field.TypeString)
 	}
-	if osuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -688,7 +688,7 @@ func (osuo *OperatingSystemUpdateOne) sqlSave(ctx context.Context) (_node *Opera
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := osuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -704,11 +704,11 @@ func (osuo *OperatingSystemUpdateOne) sqlSave(ctx context.Context) (_node *Opera
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(osuo.modifiers...)
-	_node = &OperatingSystem{config: osuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &OperatingSystem{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, osuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{operatingsystem.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -716,6 +716,6 @@ func (osuo *OperatingSystemUpdateOne) sqlSave(ctx context.Context) (_node *Opera
 		}
 		return nil, err
 	}
-	osuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

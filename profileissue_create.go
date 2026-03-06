@@ -26,100 +26,100 @@ type ProfileIssueCreate struct {
 }
 
 // SetError sets the "error" field.
-func (pic *ProfileIssueCreate) SetError(s string) *ProfileIssueCreate {
-	pic.mutation.SetError(s)
-	return pic
+func (_c *ProfileIssueCreate) SetError(v string) *ProfileIssueCreate {
+	_c.mutation.SetError(v)
+	return _c
 }
 
 // SetNillableError sets the "error" field if the given value is not nil.
-func (pic *ProfileIssueCreate) SetNillableError(s *string) *ProfileIssueCreate {
-	if s != nil {
-		pic.SetError(*s)
+func (_c *ProfileIssueCreate) SetNillableError(v *string) *ProfileIssueCreate {
+	if v != nil {
+		_c.SetError(*v)
 	}
-	return pic
+	return _c
 }
 
 // SetWhen sets the "when" field.
-func (pic *ProfileIssueCreate) SetWhen(t time.Time) *ProfileIssueCreate {
-	pic.mutation.SetWhen(t)
-	return pic
+func (_c *ProfileIssueCreate) SetWhen(v time.Time) *ProfileIssueCreate {
+	_c.mutation.SetWhen(v)
+	return _c
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (pic *ProfileIssueCreate) SetNillableWhen(t *time.Time) *ProfileIssueCreate {
-	if t != nil {
-		pic.SetWhen(*t)
+func (_c *ProfileIssueCreate) SetNillableWhen(v *time.Time) *ProfileIssueCreate {
+	if v != nil {
+		_c.SetWhen(*v)
 	}
-	return pic
+	return _c
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
-func (pic *ProfileIssueCreate) SetProfileID(id int) *ProfileIssueCreate {
-	pic.mutation.SetProfileID(id)
-	return pic
+func (_c *ProfileIssueCreate) SetProfileID(id int) *ProfileIssueCreate {
+	_c.mutation.SetProfileID(id)
+	return _c
 }
 
 // SetNillableProfileID sets the "profile" edge to the Profile entity by ID if the given value is not nil.
-func (pic *ProfileIssueCreate) SetNillableProfileID(id *int) *ProfileIssueCreate {
+func (_c *ProfileIssueCreate) SetNillableProfileID(id *int) *ProfileIssueCreate {
 	if id != nil {
-		pic = pic.SetProfileID(*id)
+		_c = _c.SetProfileID(*id)
 	}
-	return pic
+	return _c
 }
 
 // SetProfile sets the "profile" edge to the Profile entity.
-func (pic *ProfileIssueCreate) SetProfile(p *Profile) *ProfileIssueCreate {
-	return pic.SetProfileID(p.ID)
+func (_c *ProfileIssueCreate) SetProfile(v *Profile) *ProfileIssueCreate {
+	return _c.SetProfileID(v.ID)
 }
 
 // SetAgentsID sets the "agents" edge to the Agent entity by ID.
-func (pic *ProfileIssueCreate) SetAgentsID(id string) *ProfileIssueCreate {
-	pic.mutation.SetAgentsID(id)
-	return pic
+func (_c *ProfileIssueCreate) SetAgentsID(id string) *ProfileIssueCreate {
+	_c.mutation.SetAgentsID(id)
+	return _c
 }
 
 // SetNillableAgentsID sets the "agents" edge to the Agent entity by ID if the given value is not nil.
-func (pic *ProfileIssueCreate) SetNillableAgentsID(id *string) *ProfileIssueCreate {
+func (_c *ProfileIssueCreate) SetNillableAgentsID(id *string) *ProfileIssueCreate {
 	if id != nil {
-		pic = pic.SetAgentsID(*id)
+		_c = _c.SetAgentsID(*id)
 	}
-	return pic
+	return _c
 }
 
 // SetAgents sets the "agents" edge to the Agent entity.
-func (pic *ProfileIssueCreate) SetAgents(a *Agent) *ProfileIssueCreate {
-	return pic.SetAgentsID(a.ID)
+func (_c *ProfileIssueCreate) SetAgents(v *Agent) *ProfileIssueCreate {
+	return _c.SetAgentsID(v.ID)
 }
 
 // AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
-func (pic *ProfileIssueCreate) AddTasksreportIDs(ids ...int) *ProfileIssueCreate {
-	pic.mutation.AddTasksreportIDs(ids...)
-	return pic
+func (_c *ProfileIssueCreate) AddTasksreportIDs(ids ...int) *ProfileIssueCreate {
+	_c.mutation.AddTasksreportIDs(ids...)
+	return _c
 }
 
 // AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
-func (pic *ProfileIssueCreate) AddTasksreports(t ...*TaskReport) *ProfileIssueCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *ProfileIssueCreate) AddTasksreports(v ...*TaskReport) *ProfileIssueCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return pic.AddTasksreportIDs(ids...)
+	return _c.AddTasksreportIDs(ids...)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
-func (pic *ProfileIssueCreate) Mutation() *ProfileIssueMutation {
-	return pic.mutation
+func (_c *ProfileIssueCreate) Mutation() *ProfileIssueMutation {
+	return _c.mutation
 }
 
 // Save creates the ProfileIssue in the database.
-func (pic *ProfileIssueCreate) Save(ctx context.Context) (*ProfileIssue, error) {
-	pic.defaults()
-	return withHooks(ctx, pic.sqlSave, pic.mutation, pic.hooks)
+func (_c *ProfileIssueCreate) Save(ctx context.Context) (*ProfileIssue, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (pic *ProfileIssueCreate) SaveX(ctx context.Context) *ProfileIssue {
-	v, err := pic.Save(ctx)
+func (_c *ProfileIssueCreate) SaveX(ctx context.Context) *ProfileIssue {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -127,37 +127,37 @@ func (pic *ProfileIssueCreate) SaveX(ctx context.Context) *ProfileIssue {
 }
 
 // Exec executes the query.
-func (pic *ProfileIssueCreate) Exec(ctx context.Context) error {
-	_, err := pic.Save(ctx)
+func (_c *ProfileIssueCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pic *ProfileIssueCreate) ExecX(ctx context.Context) {
-	if err := pic.Exec(ctx); err != nil {
+func (_c *ProfileIssueCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (pic *ProfileIssueCreate) defaults() {
-	if _, ok := pic.mutation.When(); !ok {
+func (_c *ProfileIssueCreate) defaults() {
+	if _, ok := _c.mutation.When(); !ok {
 		v := profileissue.DefaultWhen()
-		pic.mutation.SetWhen(v)
+		_c.mutation.SetWhen(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (pic *ProfileIssueCreate) check() error {
+func (_c *ProfileIssueCreate) check() error {
 	return nil
 }
 
-func (pic *ProfileIssueCreate) sqlSave(ctx context.Context) (*ProfileIssue, error) {
-	if err := pic.check(); err != nil {
+func (_c *ProfileIssueCreate) sqlSave(ctx context.Context) (*ProfileIssue, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := pic.createSpec()
-	if err := sqlgraph.CreateNode(ctx, pic.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -165,26 +165,26 @@ func (pic *ProfileIssueCreate) sqlSave(ctx context.Context) (*ProfileIssue, erro
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	pic.mutation.id = &_node.ID
-	pic.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (pic *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec) {
+func (_c *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec) {
 	var (
-		_node = &ProfileIssue{config: pic.config}
+		_node = &ProfileIssue{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(profileissue.Table, sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = pic.conflict
-	if value, ok := pic.mutation.Error(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Error(); ok {
 		_spec.SetField(profileissue.FieldError, field.TypeString, value)
 		_node.Error = value
 	}
-	if value, ok := pic.mutation.When(); ok {
+	if value, ok := _c.mutation.When(); ok {
 		_spec.SetField(profileissue.FieldWhen, field.TypeTime, value)
 		_node.When = value
 	}
-	if nodes := pic.mutation.ProfileIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ProfileIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -201,7 +201,7 @@ func (pic *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec
 		_node.profile_issues = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := pic.mutation.AgentsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -218,7 +218,7 @@ func (pic *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec
 		_node.profile_issue_agents = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := pic.mutation.TasksreportsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TasksreportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -253,10 +253,10 @@ func (pic *ProfileIssueCreate) createSpec() (*ProfileIssue, *sqlgraph.CreateSpec
 //			SetError(v+v).
 //		}).
 //		Exec(ctx)
-func (pic *ProfileIssueCreate) OnConflict(opts ...sql.ConflictOption) *ProfileIssueUpsertOne {
-	pic.conflict = opts
+func (_c *ProfileIssueCreate) OnConflict(opts ...sql.ConflictOption) *ProfileIssueUpsertOne {
+	_c.conflict = opts
 	return &ProfileIssueUpsertOne{
-		create: pic,
+		create: _c,
 	}
 }
 
@@ -266,10 +266,10 @@ func (pic *ProfileIssueCreate) OnConflict(opts ...sql.ConflictOption) *ProfileIs
 //	client.ProfileIssue.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (pic *ProfileIssueCreate) OnConflictColumns(columns ...string) *ProfileIssueUpsertOne {
-	pic.conflict = append(pic.conflict, sql.ConflictColumns(columns...))
+func (_c *ProfileIssueCreate) OnConflictColumns(columns ...string) *ProfileIssueUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ProfileIssueUpsertOne{
-		create: pic,
+		create: _c,
 	}
 }
 
@@ -446,16 +446,16 @@ type ProfileIssueCreateBulk struct {
 }
 
 // Save creates the ProfileIssue entities in the database.
-func (picb *ProfileIssueCreateBulk) Save(ctx context.Context) ([]*ProfileIssue, error) {
-	if picb.err != nil {
-		return nil, picb.err
+func (_c *ProfileIssueCreateBulk) Save(ctx context.Context) ([]*ProfileIssue, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(picb.builders))
-	nodes := make([]*ProfileIssue, len(picb.builders))
-	mutators := make([]Mutator, len(picb.builders))
-	for i := range picb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*ProfileIssue, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := picb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ProfileIssueMutation)
@@ -469,12 +469,12 @@ func (picb *ProfileIssueCreateBulk) Save(ctx context.Context) ([]*ProfileIssue, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, picb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = picb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, picb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -498,7 +498,7 @@ func (picb *ProfileIssueCreateBulk) Save(ctx context.Context) ([]*ProfileIssue, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, picb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -506,8 +506,8 @@ func (picb *ProfileIssueCreateBulk) Save(ctx context.Context) ([]*ProfileIssue, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (picb *ProfileIssueCreateBulk) SaveX(ctx context.Context) []*ProfileIssue {
-	v, err := picb.Save(ctx)
+func (_c *ProfileIssueCreateBulk) SaveX(ctx context.Context) []*ProfileIssue {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -515,14 +515,14 @@ func (picb *ProfileIssueCreateBulk) SaveX(ctx context.Context) []*ProfileIssue {
 }
 
 // Exec executes the query.
-func (picb *ProfileIssueCreateBulk) Exec(ctx context.Context) error {
-	_, err := picb.Save(ctx)
+func (_c *ProfileIssueCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (picb *ProfileIssueCreateBulk) ExecX(ctx context.Context) {
-	if err := picb.Exec(ctx); err != nil {
+func (_c *ProfileIssueCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -542,10 +542,10 @@ func (picb *ProfileIssueCreateBulk) ExecX(ctx context.Context) {
 //			SetError(v+v).
 //		}).
 //		Exec(ctx)
-func (picb *ProfileIssueCreateBulk) OnConflict(opts ...sql.ConflictOption) *ProfileIssueUpsertBulk {
-	picb.conflict = opts
+func (_c *ProfileIssueCreateBulk) OnConflict(opts ...sql.ConflictOption) *ProfileIssueUpsertBulk {
+	_c.conflict = opts
 	return &ProfileIssueUpsertBulk{
-		create: picb,
+		create: _c,
 	}
 }
 
@@ -555,10 +555,10 @@ func (picb *ProfileIssueCreateBulk) OnConflict(opts ...sql.ConflictOption) *Prof
 //	client.ProfileIssue.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (picb *ProfileIssueCreateBulk) OnConflictColumns(columns ...string) *ProfileIssueUpsertBulk {
-	picb.conflict = append(picb.conflict, sql.ConflictColumns(columns...))
+func (_c *ProfileIssueCreateBulk) OnConflictColumns(columns ...string) *ProfileIssueUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ProfileIssueUpsertBulk{
-		create: picb,
+		create: _c,
 	}
 }
 

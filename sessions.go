@@ -71,7 +71,7 @@ func (*Sessions) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Sessions fields.
-func (s *Sessions) assignValues(columns []string, values []any) error {
+func (_m *Sessions) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -81,29 +81,29 @@ func (s *Sessions) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				s.ID = value.String
+				_m.ID = value.String
 			}
 		case sessions.FieldData:
 			if value, ok := values[i].(*[]byte); !ok {
 				return fmt.Errorf("unexpected type %T for field data", values[i])
 			} else if value != nil {
-				s.Data = *value
+				_m.Data = *value
 			}
 		case sessions.FieldExpiry:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field expiry", values[i])
 			} else if value.Valid {
-				s.Expiry = value.Time
+				_m.Expiry = value.Time
 			}
 		case sessions.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field user_sessions", values[i])
 			} else if value.Valid {
-				s.user_sessions = new(string)
-				*s.user_sessions = value.String
+				_m.user_sessions = new(string)
+				*_m.user_sessions = value.String
 			}
 		default:
-			s.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -111,43 +111,43 @@ func (s *Sessions) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Sessions.
 // This includes values selected through modifiers, order, etc.
-func (s *Sessions) Value(name string) (ent.Value, error) {
-	return s.selectValues.Get(name)
+func (_m *Sessions) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Sessions entity.
-func (s *Sessions) QueryOwner() *UserQuery {
-	return NewSessionsClient(s.config).QueryOwner(s)
+func (_m *Sessions) QueryOwner() *UserQuery {
+	return NewSessionsClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Sessions.
 // Note that you need to call Sessions.Unwrap() before calling this method if this Sessions
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (s *Sessions) Update() *SessionsUpdateOne {
-	return NewSessionsClient(s.config).UpdateOne(s)
+func (_m *Sessions) Update() *SessionsUpdateOne {
+	return NewSessionsClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Sessions entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (s *Sessions) Unwrap() *Sessions {
-	_tx, ok := s.config.driver.(*txDriver)
+func (_m *Sessions) Unwrap() *Sessions {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Sessions is not a transactional entity")
 	}
-	s.config.driver = _tx.drv
-	return s
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (s *Sessions) String() string {
+func (_m *Sessions) String() string {
 	var builder strings.Builder
 	builder.WriteString("Sessions(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", s.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("data=")
-	builder.WriteString(fmt.Sprintf("%v", s.Data))
+	builder.WriteString(fmt.Sprintf("%v", _m.Data))
 	builder.WriteString(", ")
 	builder.WriteString("expiry=")
-	builder.WriteString(s.Expiry.Format(time.ANSIC))
+	builder.WriteString(_m.Expiry.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

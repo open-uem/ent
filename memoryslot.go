@@ -78,7 +78,7 @@ func (*MemorySlot) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the MemorySlot fields.
-func (ms *MemorySlot) assignValues(columns []string, values []any) error {
+func (_m *MemorySlot) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -89,58 +89,58 @@ func (ms *MemorySlot) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			ms.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case memoryslot.FieldSlot:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field slot", values[i])
 			} else if value.Valid {
-				ms.Slot = value.String
+				_m.Slot = value.String
 			}
 		case memoryslot.FieldSize:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field size", values[i])
 			} else if value.Valid {
-				ms.Size = value.String
+				_m.Size = value.String
 			}
 		case memoryslot.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				ms.Type = value.String
+				_m.Type = value.String
 			}
 		case memoryslot.FieldSerialNumber:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field serial_number", values[i])
 			} else if value.Valid {
-				ms.SerialNumber = value.String
+				_m.SerialNumber = value.String
 			}
 		case memoryslot.FieldPartNumber:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field part_number", values[i])
 			} else if value.Valid {
-				ms.PartNumber = value.String
+				_m.PartNumber = value.String
 			}
 		case memoryslot.FieldSpeed:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field speed", values[i])
 			} else if value.Valid {
-				ms.Speed = value.String
+				_m.Speed = value.String
 			}
 		case memoryslot.FieldManufacturer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field manufacturer", values[i])
 			} else if value.Valid {
-				ms.Manufacturer = value.String
+				_m.Manufacturer = value.String
 			}
 		case memoryslot.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_memoryslots", values[i])
 			} else if value.Valid {
-				ms.agent_memoryslots = new(string)
-				*ms.agent_memoryslots = value.String
+				_m.agent_memoryslots = new(string)
+				*_m.agent_memoryslots = value.String
 			}
 		default:
-			ms.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -148,58 +148,58 @@ func (ms *MemorySlot) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the MemorySlot.
 // This includes values selected through modifiers, order, etc.
-func (ms *MemorySlot) Value(name string) (ent.Value, error) {
-	return ms.selectValues.Get(name)
+func (_m *MemorySlot) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the MemorySlot entity.
-func (ms *MemorySlot) QueryOwner() *AgentQuery {
-	return NewMemorySlotClient(ms.config).QueryOwner(ms)
+func (_m *MemorySlot) QueryOwner() *AgentQuery {
+	return NewMemorySlotClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this MemorySlot.
 // Note that you need to call MemorySlot.Unwrap() before calling this method if this MemorySlot
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (ms *MemorySlot) Update() *MemorySlotUpdateOne {
-	return NewMemorySlotClient(ms.config).UpdateOne(ms)
+func (_m *MemorySlot) Update() *MemorySlotUpdateOne {
+	return NewMemorySlotClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the MemorySlot entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (ms *MemorySlot) Unwrap() *MemorySlot {
-	_tx, ok := ms.config.driver.(*txDriver)
+func (_m *MemorySlot) Unwrap() *MemorySlot {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: MemorySlot is not a transactional entity")
 	}
-	ms.config.driver = _tx.drv
-	return ms
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (ms *MemorySlot) String() string {
+func (_m *MemorySlot) String() string {
 	var builder strings.Builder
 	builder.WriteString("MemorySlot(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", ms.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("slot=")
-	builder.WriteString(ms.Slot)
+	builder.WriteString(_m.Slot)
 	builder.WriteString(", ")
 	builder.WriteString("size=")
-	builder.WriteString(ms.Size)
+	builder.WriteString(_m.Size)
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(ms.Type)
+	builder.WriteString(_m.Type)
 	builder.WriteString(", ")
 	builder.WriteString("serial_number=")
-	builder.WriteString(ms.SerialNumber)
+	builder.WriteString(_m.SerialNumber)
 	builder.WriteString(", ")
 	builder.WriteString("part_number=")
-	builder.WriteString(ms.PartNumber)
+	builder.WriteString(_m.PartNumber)
 	builder.WriteString(", ")
 	builder.WriteString("speed=")
-	builder.WriteString(ms.Speed)
+	builder.WriteString(_m.Speed)
 	builder.WriteString(", ")
 	builder.WriteString("manufacturer=")
-	builder.WriteString(ms.Manufacturer)
+	builder.WriteString(_m.Manufacturer)
 	builder.WriteByte(')')
 	return builder.String()
 }

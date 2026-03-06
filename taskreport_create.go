@@ -24,113 +24,113 @@ type TaskReportCreate struct {
 }
 
 // SetStdOutput sets the "std_output" field.
-func (trc *TaskReportCreate) SetStdOutput(s string) *TaskReportCreate {
-	trc.mutation.SetStdOutput(s)
-	return trc
+func (_c *TaskReportCreate) SetStdOutput(v string) *TaskReportCreate {
+	_c.mutation.SetStdOutput(v)
+	return _c
 }
 
 // SetNillableStdOutput sets the "std_output" field if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableStdOutput(s *string) *TaskReportCreate {
-	if s != nil {
-		trc.SetStdOutput(*s)
+func (_c *TaskReportCreate) SetNillableStdOutput(v *string) *TaskReportCreate {
+	if v != nil {
+		_c.SetStdOutput(*v)
 	}
-	return trc
+	return _c
 }
 
 // SetStdError sets the "std_error" field.
-func (trc *TaskReportCreate) SetStdError(s string) *TaskReportCreate {
-	trc.mutation.SetStdError(s)
-	return trc
+func (_c *TaskReportCreate) SetStdError(v string) *TaskReportCreate {
+	_c.mutation.SetStdError(v)
+	return _c
 }
 
 // SetNillableStdError sets the "std_error" field if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableStdError(s *string) *TaskReportCreate {
-	if s != nil {
-		trc.SetStdError(*s)
+func (_c *TaskReportCreate) SetNillableStdError(v *string) *TaskReportCreate {
+	if v != nil {
+		_c.SetStdError(*v)
 	}
-	return trc
+	return _c
 }
 
 // SetFailed sets the "failed" field.
-func (trc *TaskReportCreate) SetFailed(b bool) *TaskReportCreate {
-	trc.mutation.SetFailed(b)
-	return trc
+func (_c *TaskReportCreate) SetFailed(v bool) *TaskReportCreate {
+	_c.mutation.SetFailed(v)
+	return _c
 }
 
 // SetNillableFailed sets the "failed" field if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableFailed(b *bool) *TaskReportCreate {
-	if b != nil {
-		trc.SetFailed(*b)
+func (_c *TaskReportCreate) SetNillableFailed(v *bool) *TaskReportCreate {
+	if v != nil {
+		_c.SetFailed(*v)
 	}
-	return trc
+	return _c
 }
 
 // SetEnd sets the "end" field.
-func (trc *TaskReportCreate) SetEnd(s string) *TaskReportCreate {
-	trc.mutation.SetEnd(s)
-	return trc
+func (_c *TaskReportCreate) SetEnd(v string) *TaskReportCreate {
+	_c.mutation.SetEnd(v)
+	return _c
 }
 
 // SetNillableEnd sets the "end" field if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableEnd(s *string) *TaskReportCreate {
-	if s != nil {
-		trc.SetEnd(*s)
+func (_c *TaskReportCreate) SetNillableEnd(v *string) *TaskReportCreate {
+	if v != nil {
+		_c.SetEnd(*v)
 	}
-	return trc
+	return _c
 }
 
 // SetProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID.
-func (trc *TaskReportCreate) SetProfileissueID(id int) *TaskReportCreate {
-	trc.mutation.SetProfileissueID(id)
-	return trc
+func (_c *TaskReportCreate) SetProfileissueID(id int) *TaskReportCreate {
+	_c.mutation.SetProfileissueID(id)
+	return _c
 }
 
 // SetNillableProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableProfileissueID(id *int) *TaskReportCreate {
+func (_c *TaskReportCreate) SetNillableProfileissueID(id *int) *TaskReportCreate {
 	if id != nil {
-		trc = trc.SetProfileissueID(*id)
+		_c = _c.SetProfileissueID(*id)
 	}
-	return trc
+	return _c
 }
 
 // SetProfileissue sets the "profileissue" edge to the ProfileIssue entity.
-func (trc *TaskReportCreate) SetProfileissue(p *ProfileIssue) *TaskReportCreate {
-	return trc.SetProfileissueID(p.ID)
+func (_c *TaskReportCreate) SetProfileissue(v *ProfileIssue) *TaskReportCreate {
+	return _c.SetProfileissueID(v.ID)
 }
 
 // SetTaskID sets the "task" edge to the Task entity by ID.
-func (trc *TaskReportCreate) SetTaskID(id int) *TaskReportCreate {
-	trc.mutation.SetTaskID(id)
-	return trc
+func (_c *TaskReportCreate) SetTaskID(id int) *TaskReportCreate {
+	_c.mutation.SetTaskID(id)
+	return _c
 }
 
 // SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
-func (trc *TaskReportCreate) SetNillableTaskID(id *int) *TaskReportCreate {
+func (_c *TaskReportCreate) SetNillableTaskID(id *int) *TaskReportCreate {
 	if id != nil {
-		trc = trc.SetTaskID(*id)
+		_c = _c.SetTaskID(*id)
 	}
-	return trc
+	return _c
 }
 
 // SetTask sets the "task" edge to the Task entity.
-func (trc *TaskReportCreate) SetTask(t *Task) *TaskReportCreate {
-	return trc.SetTaskID(t.ID)
+func (_c *TaskReportCreate) SetTask(v *Task) *TaskReportCreate {
+	return _c.SetTaskID(v.ID)
 }
 
 // Mutation returns the TaskReportMutation object of the builder.
-func (trc *TaskReportCreate) Mutation() *TaskReportMutation {
-	return trc.mutation
+func (_c *TaskReportCreate) Mutation() *TaskReportMutation {
+	return _c.mutation
 }
 
 // Save creates the TaskReport in the database.
-func (trc *TaskReportCreate) Save(ctx context.Context) (*TaskReport, error) {
-	trc.defaults()
-	return withHooks(ctx, trc.sqlSave, trc.mutation, trc.hooks)
+func (_c *TaskReportCreate) Save(ctx context.Context) (*TaskReport, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (trc *TaskReportCreate) SaveX(ctx context.Context) *TaskReport {
-	v, err := trc.Save(ctx)
+func (_c *TaskReportCreate) SaveX(ctx context.Context) *TaskReport {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -138,52 +138,52 @@ func (trc *TaskReportCreate) SaveX(ctx context.Context) *TaskReport {
 }
 
 // Exec executes the query.
-func (trc *TaskReportCreate) Exec(ctx context.Context) error {
-	_, err := trc.Save(ctx)
+func (_c *TaskReportCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (trc *TaskReportCreate) ExecX(ctx context.Context) {
-	if err := trc.Exec(ctx); err != nil {
+func (_c *TaskReportCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (trc *TaskReportCreate) defaults() {
-	if _, ok := trc.mutation.StdOutput(); !ok {
+func (_c *TaskReportCreate) defaults() {
+	if _, ok := _c.mutation.StdOutput(); !ok {
 		v := taskreport.DefaultStdOutput
-		trc.mutation.SetStdOutput(v)
+		_c.mutation.SetStdOutput(v)
 	}
-	if _, ok := trc.mutation.StdError(); !ok {
+	if _, ok := _c.mutation.StdError(); !ok {
 		v := taskreport.DefaultStdError
-		trc.mutation.SetStdError(v)
+		_c.mutation.SetStdError(v)
 	}
-	if _, ok := trc.mutation.Failed(); !ok {
+	if _, ok := _c.mutation.Failed(); !ok {
 		v := taskreport.DefaultFailed
-		trc.mutation.SetFailed(v)
+		_c.mutation.SetFailed(v)
 	}
-	if _, ok := trc.mutation.End(); !ok {
+	if _, ok := _c.mutation.End(); !ok {
 		v := taskreport.DefaultEnd
-		trc.mutation.SetEnd(v)
+		_c.mutation.SetEnd(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (trc *TaskReportCreate) check() error {
-	if _, ok := trc.mutation.Failed(); !ok {
+func (_c *TaskReportCreate) check() error {
+	if _, ok := _c.mutation.Failed(); !ok {
 		return &ValidationError{Name: "failed", err: errors.New(`ent: missing required field "TaskReport.failed"`)}
 	}
 	return nil
 }
 
-func (trc *TaskReportCreate) sqlSave(ctx context.Context) (*TaskReport, error) {
-	if err := trc.check(); err != nil {
+func (_c *TaskReportCreate) sqlSave(ctx context.Context) (*TaskReport, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := trc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, trc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -191,34 +191,34 @@ func (trc *TaskReportCreate) sqlSave(ctx context.Context) (*TaskReport, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	trc.mutation.id = &_node.ID
-	trc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (trc *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
+func (_c *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
 	var (
-		_node = &TaskReport{config: trc.config}
+		_node = &TaskReport{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(taskreport.Table, sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = trc.conflict
-	if value, ok := trc.mutation.StdOutput(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.StdOutput(); ok {
 		_spec.SetField(taskreport.FieldStdOutput, field.TypeString, value)
 		_node.StdOutput = value
 	}
-	if value, ok := trc.mutation.StdError(); ok {
+	if value, ok := _c.mutation.StdError(); ok {
 		_spec.SetField(taskreport.FieldStdError, field.TypeString, value)
 		_node.StdError = value
 	}
-	if value, ok := trc.mutation.Failed(); ok {
+	if value, ok := _c.mutation.Failed(); ok {
 		_spec.SetField(taskreport.FieldFailed, field.TypeBool, value)
 		_node.Failed = value
 	}
-	if value, ok := trc.mutation.End(); ok {
+	if value, ok := _c.mutation.End(); ok {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)
 		_node.End = value
 	}
-	if nodes := trc.mutation.ProfileissueIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -235,7 +235,7 @@ func (trc *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
 		_node.profile_issue_tasksreports = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := trc.mutation.TaskIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TaskIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -271,10 +271,10 @@ func (trc *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
 //			SetStdOutput(v+v).
 //		}).
 //		Exec(ctx)
-func (trc *TaskReportCreate) OnConflict(opts ...sql.ConflictOption) *TaskReportUpsertOne {
-	trc.conflict = opts
+func (_c *TaskReportCreate) OnConflict(opts ...sql.ConflictOption) *TaskReportUpsertOne {
+	_c.conflict = opts
 	return &TaskReportUpsertOne{
-		create: trc,
+		create: _c,
 	}
 }
 
@@ -284,10 +284,10 @@ func (trc *TaskReportCreate) OnConflict(opts ...sql.ConflictOption) *TaskReportU
 //	client.TaskReport.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (trc *TaskReportCreate) OnConflictColumns(columns ...string) *TaskReportUpsertOne {
-	trc.conflict = append(trc.conflict, sql.ConflictColumns(columns...))
+func (_c *TaskReportCreate) OnConflictColumns(columns ...string) *TaskReportUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TaskReportUpsertOne{
-		create: trc,
+		create: _c,
 	}
 }
 
@@ -529,16 +529,16 @@ type TaskReportCreateBulk struct {
 }
 
 // Save creates the TaskReport entities in the database.
-func (trcb *TaskReportCreateBulk) Save(ctx context.Context) ([]*TaskReport, error) {
-	if trcb.err != nil {
-		return nil, trcb.err
+func (_c *TaskReportCreateBulk) Save(ctx context.Context) ([]*TaskReport, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(trcb.builders))
-	nodes := make([]*TaskReport, len(trcb.builders))
-	mutators := make([]Mutator, len(trcb.builders))
-	for i := range trcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*TaskReport, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := trcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*TaskReportMutation)
@@ -552,12 +552,12 @@ func (trcb *TaskReportCreateBulk) Save(ctx context.Context) ([]*TaskReport, erro
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, trcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = trcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, trcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -581,7 +581,7 @@ func (trcb *TaskReportCreateBulk) Save(ctx context.Context) ([]*TaskReport, erro
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, trcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -589,8 +589,8 @@ func (trcb *TaskReportCreateBulk) Save(ctx context.Context) ([]*TaskReport, erro
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (trcb *TaskReportCreateBulk) SaveX(ctx context.Context) []*TaskReport {
-	v, err := trcb.Save(ctx)
+func (_c *TaskReportCreateBulk) SaveX(ctx context.Context) []*TaskReport {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -598,14 +598,14 @@ func (trcb *TaskReportCreateBulk) SaveX(ctx context.Context) []*TaskReport {
 }
 
 // Exec executes the query.
-func (trcb *TaskReportCreateBulk) Exec(ctx context.Context) error {
-	_, err := trcb.Save(ctx)
+func (_c *TaskReportCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (trcb *TaskReportCreateBulk) ExecX(ctx context.Context) {
-	if err := trcb.Exec(ctx); err != nil {
+func (_c *TaskReportCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -625,10 +625,10 @@ func (trcb *TaskReportCreateBulk) ExecX(ctx context.Context) {
 //			SetStdOutput(v+v).
 //		}).
 //		Exec(ctx)
-func (trcb *TaskReportCreateBulk) OnConflict(opts ...sql.ConflictOption) *TaskReportUpsertBulk {
-	trcb.conflict = opts
+func (_c *TaskReportCreateBulk) OnConflict(opts ...sql.ConflictOption) *TaskReportUpsertBulk {
+	_c.conflict = opts
 	return &TaskReportUpsertBulk{
-		create: trcb,
+		create: _c,
 	}
 }
 
@@ -638,10 +638,10 @@ func (trcb *TaskReportCreateBulk) OnConflict(opts ...sql.ConflictOption) *TaskRe
 //	client.TaskReport.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (trcb *TaskReportCreateBulk) OnConflictColumns(columns ...string) *TaskReportUpsertBulk {
-	trcb.conflict = append(trcb.conflict, sql.ConflictColumns(columns...))
+func (_c *TaskReportCreateBulk) OnConflictColumns(columns ...string) *TaskReportUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TaskReportUpsertBulk{
-		create: trcb,
+		create: _c,
 	}
 }
 

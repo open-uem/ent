@@ -74,7 +74,7 @@ func (*Monitor) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Monitor fields.
-func (m *Monitor) assignValues(columns []string, values []any) error {
+func (_m *Monitor) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -85,46 +85,46 @@ func (m *Monitor) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			m.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case monitor.FieldManufacturer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field manufacturer", values[i])
 			} else if value.Valid {
-				m.Manufacturer = value.String
+				_m.Manufacturer = value.String
 			}
 		case monitor.FieldModel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field model", values[i])
 			} else if value.Valid {
-				m.Model = value.String
+				_m.Model = value.String
 			}
 		case monitor.FieldSerial:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field serial", values[i])
 			} else if value.Valid {
-				m.Serial = value.String
+				_m.Serial = value.String
 			}
 		case monitor.FieldWeekOfManufacture:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field week_of_manufacture", values[i])
 			} else if value.Valid {
-				m.WeekOfManufacture = value.String
+				_m.WeekOfManufacture = value.String
 			}
 		case monitor.FieldYearOfManufacture:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field year_of_manufacture", values[i])
 			} else if value.Valid {
-				m.YearOfManufacture = value.String
+				_m.YearOfManufacture = value.String
 			}
 		case monitor.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_monitors", values[i])
 			} else if value.Valid {
-				m.agent_monitors = new(string)
-				*m.agent_monitors = value.String
+				_m.agent_monitors = new(string)
+				*_m.agent_monitors = value.String
 			}
 		default:
-			m.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -132,52 +132,52 @@ func (m *Monitor) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Monitor.
 // This includes values selected through modifiers, order, etc.
-func (m *Monitor) Value(name string) (ent.Value, error) {
-	return m.selectValues.Get(name)
+func (_m *Monitor) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Monitor entity.
-func (m *Monitor) QueryOwner() *AgentQuery {
-	return NewMonitorClient(m.config).QueryOwner(m)
+func (_m *Monitor) QueryOwner() *AgentQuery {
+	return NewMonitorClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Monitor.
 // Note that you need to call Monitor.Unwrap() before calling this method if this Monitor
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (m *Monitor) Update() *MonitorUpdateOne {
-	return NewMonitorClient(m.config).UpdateOne(m)
+func (_m *Monitor) Update() *MonitorUpdateOne {
+	return NewMonitorClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Monitor entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (m *Monitor) Unwrap() *Monitor {
-	_tx, ok := m.config.driver.(*txDriver)
+func (_m *Monitor) Unwrap() *Monitor {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Monitor is not a transactional entity")
 	}
-	m.config.driver = _tx.drv
-	return m
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (m *Monitor) String() string {
+func (_m *Monitor) String() string {
 	var builder strings.Builder
 	builder.WriteString("Monitor(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", m.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("manufacturer=")
-	builder.WriteString(m.Manufacturer)
+	builder.WriteString(_m.Manufacturer)
 	builder.WriteString(", ")
 	builder.WriteString("model=")
-	builder.WriteString(m.Model)
+	builder.WriteString(_m.Model)
 	builder.WriteString(", ")
 	builder.WriteString("serial=")
-	builder.WriteString(m.Serial)
+	builder.WriteString(_m.Serial)
 	builder.WriteString(", ")
 	builder.WriteString("week_of_manufacture=")
-	builder.WriteString(m.WeekOfManufacture)
+	builder.WriteString(_m.WeekOfManufacture)
 	builder.WriteString(", ")
 	builder.WriteString("year_of_manufacture=")
-	builder.WriteString(m.YearOfManufacture)
+	builder.WriteString(_m.YearOfManufacture)
 	builder.WriteByte(')')
 	return builder.String()
 }

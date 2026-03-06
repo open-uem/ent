@@ -45,768 +45,768 @@ type AgentCreate struct {
 }
 
 // SetOs sets the "os" field.
-func (ac *AgentCreate) SetOs(s string) *AgentCreate {
-	ac.mutation.SetOs(s)
-	return ac
+func (_c *AgentCreate) SetOs(v string) *AgentCreate {
+	_c.mutation.SetOs(v)
+	return _c
 }
 
 // SetHostname sets the "hostname" field.
-func (ac *AgentCreate) SetHostname(s string) *AgentCreate {
-	ac.mutation.SetHostname(s)
-	return ac
+func (_c *AgentCreate) SetHostname(v string) *AgentCreate {
+	_c.mutation.SetHostname(v)
+	return _c
 }
 
 // SetIP sets the "ip" field.
-func (ac *AgentCreate) SetIP(s string) *AgentCreate {
-	ac.mutation.SetIP(s)
-	return ac
+func (_c *AgentCreate) SetIP(v string) *AgentCreate {
+	_c.mutation.SetIP(v)
+	return _c
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableIP(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetIP(*s)
+func (_c *AgentCreate) SetNillableIP(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetIP(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetMAC sets the "mac" field.
-func (ac *AgentCreate) SetMAC(s string) *AgentCreate {
-	ac.mutation.SetMAC(s)
-	return ac
+func (_c *AgentCreate) SetMAC(v string) *AgentCreate {
+	_c.mutation.SetMAC(v)
+	return _c
 }
 
 // SetNillableMAC sets the "mac" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableMAC(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetMAC(*s)
+func (_c *AgentCreate) SetNillableMAC(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetMAC(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetFirstContact sets the "first_contact" field.
-func (ac *AgentCreate) SetFirstContact(t time.Time) *AgentCreate {
-	ac.mutation.SetFirstContact(t)
-	return ac
+func (_c *AgentCreate) SetFirstContact(v time.Time) *AgentCreate {
+	_c.mutation.SetFirstContact(v)
+	return _c
 }
 
 // SetNillableFirstContact sets the "first_contact" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableFirstContact(t *time.Time) *AgentCreate {
-	if t != nil {
-		ac.SetFirstContact(*t)
+func (_c *AgentCreate) SetNillableFirstContact(v *time.Time) *AgentCreate {
+	if v != nil {
+		_c.SetFirstContact(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetLastContact sets the "last_contact" field.
-func (ac *AgentCreate) SetLastContact(t time.Time) *AgentCreate {
-	ac.mutation.SetLastContact(t)
-	return ac
+func (_c *AgentCreate) SetLastContact(v time.Time) *AgentCreate {
+	_c.mutation.SetLastContact(v)
+	return _c
 }
 
 // SetNillableLastContact sets the "last_contact" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableLastContact(t *time.Time) *AgentCreate {
-	if t != nil {
-		ac.SetLastContact(*t)
+func (_c *AgentCreate) SetNillableLastContact(v *time.Time) *AgentCreate {
+	if v != nil {
+		_c.SetLastContact(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetVnc sets the "vnc" field.
-func (ac *AgentCreate) SetVnc(s string) *AgentCreate {
-	ac.mutation.SetVnc(s)
-	return ac
+func (_c *AgentCreate) SetVnc(v string) *AgentCreate {
+	_c.mutation.SetVnc(v)
+	return _c
 }
 
 // SetNillableVnc sets the "vnc" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableVnc(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetVnc(*s)
+func (_c *AgentCreate) SetNillableVnc(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetVnc(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetNotes sets the "notes" field.
-func (ac *AgentCreate) SetNotes(s string) *AgentCreate {
-	ac.mutation.SetNotes(s)
-	return ac
+func (_c *AgentCreate) SetNotes(v string) *AgentCreate {
+	_c.mutation.SetNotes(v)
+	return _c
 }
 
 // SetNillableNotes sets the "notes" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableNotes(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetNotes(*s)
+func (_c *AgentCreate) SetNillableNotes(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetNotes(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUpdateTaskStatus sets the "update_task_status" field.
-func (ac *AgentCreate) SetUpdateTaskStatus(s string) *AgentCreate {
-	ac.mutation.SetUpdateTaskStatus(s)
-	return ac
+func (_c *AgentCreate) SetUpdateTaskStatus(v string) *AgentCreate {
+	_c.mutation.SetUpdateTaskStatus(v)
+	return _c
 }
 
 // SetNillableUpdateTaskStatus sets the "update_task_status" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableUpdateTaskStatus(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetUpdateTaskStatus(*s)
+func (_c *AgentCreate) SetNillableUpdateTaskStatus(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetUpdateTaskStatus(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUpdateTaskDescription sets the "update_task_description" field.
-func (ac *AgentCreate) SetUpdateTaskDescription(s string) *AgentCreate {
-	ac.mutation.SetUpdateTaskDescription(s)
-	return ac
+func (_c *AgentCreate) SetUpdateTaskDescription(v string) *AgentCreate {
+	_c.mutation.SetUpdateTaskDescription(v)
+	return _c
 }
 
 // SetNillableUpdateTaskDescription sets the "update_task_description" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableUpdateTaskDescription(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetUpdateTaskDescription(*s)
+func (_c *AgentCreate) SetNillableUpdateTaskDescription(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetUpdateTaskDescription(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUpdateTaskResult sets the "update_task_result" field.
-func (ac *AgentCreate) SetUpdateTaskResult(s string) *AgentCreate {
-	ac.mutation.SetUpdateTaskResult(s)
-	return ac
+func (_c *AgentCreate) SetUpdateTaskResult(v string) *AgentCreate {
+	_c.mutation.SetUpdateTaskResult(v)
+	return _c
 }
 
 // SetNillableUpdateTaskResult sets the "update_task_result" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableUpdateTaskResult(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetUpdateTaskResult(*s)
+func (_c *AgentCreate) SetNillableUpdateTaskResult(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetUpdateTaskResult(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUpdateTaskExecution sets the "update_task_execution" field.
-func (ac *AgentCreate) SetUpdateTaskExecution(t time.Time) *AgentCreate {
-	ac.mutation.SetUpdateTaskExecution(t)
-	return ac
+func (_c *AgentCreate) SetUpdateTaskExecution(v time.Time) *AgentCreate {
+	_c.mutation.SetUpdateTaskExecution(v)
+	return _c
 }
 
 // SetNillableUpdateTaskExecution sets the "update_task_execution" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableUpdateTaskExecution(t *time.Time) *AgentCreate {
-	if t != nil {
-		ac.SetUpdateTaskExecution(*t)
+func (_c *AgentCreate) SetNillableUpdateTaskExecution(v *time.Time) *AgentCreate {
+	if v != nil {
+		_c.SetUpdateTaskExecution(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUpdateTaskVersion sets the "update_task_version" field.
-func (ac *AgentCreate) SetUpdateTaskVersion(s string) *AgentCreate {
-	ac.mutation.SetUpdateTaskVersion(s)
-	return ac
+func (_c *AgentCreate) SetUpdateTaskVersion(v string) *AgentCreate {
+	_c.mutation.SetUpdateTaskVersion(v)
+	return _c
 }
 
 // SetNillableUpdateTaskVersion sets the "update_task_version" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableUpdateTaskVersion(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetUpdateTaskVersion(*s)
+func (_c *AgentCreate) SetNillableUpdateTaskVersion(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetUpdateTaskVersion(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetVncProxyPort sets the "vnc_proxy_port" field.
-func (ac *AgentCreate) SetVncProxyPort(s string) *AgentCreate {
-	ac.mutation.SetVncProxyPort(s)
-	return ac
+func (_c *AgentCreate) SetVncProxyPort(v string) *AgentCreate {
+	_c.mutation.SetVncProxyPort(v)
+	return _c
 }
 
 // SetNillableVncProxyPort sets the "vnc_proxy_port" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableVncProxyPort(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetVncProxyPort(*s)
+func (_c *AgentCreate) SetNillableVncProxyPort(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetVncProxyPort(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetSftpPort sets the "sftp_port" field.
-func (ac *AgentCreate) SetSftpPort(s string) *AgentCreate {
-	ac.mutation.SetSftpPort(s)
-	return ac
+func (_c *AgentCreate) SetSftpPort(v string) *AgentCreate {
+	_c.mutation.SetSftpPort(v)
+	return _c
 }
 
 // SetNillableSftpPort sets the "sftp_port" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableSftpPort(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetSftpPort(*s)
+func (_c *AgentCreate) SetNillableSftpPort(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetSftpPort(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetAgentStatus sets the "agent_status" field.
-func (ac *AgentCreate) SetAgentStatus(as agent.AgentStatus) *AgentCreate {
-	ac.mutation.SetAgentStatus(as)
-	return ac
+func (_c *AgentCreate) SetAgentStatus(v agent.AgentStatus) *AgentCreate {
+	_c.mutation.SetAgentStatus(v)
+	return _c
 }
 
 // SetNillableAgentStatus sets the "agent_status" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableAgentStatus(as *agent.AgentStatus) *AgentCreate {
-	if as != nil {
-		ac.SetAgentStatus(*as)
+func (_c *AgentCreate) SetNillableAgentStatus(v *agent.AgentStatus) *AgentCreate {
+	if v != nil {
+		_c.SetAgentStatus(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetCertificateReady sets the "certificate_ready" field.
-func (ac *AgentCreate) SetCertificateReady(b bool) *AgentCreate {
-	ac.mutation.SetCertificateReady(b)
-	return ac
+func (_c *AgentCreate) SetCertificateReady(v bool) *AgentCreate {
+	_c.mutation.SetCertificateReady(v)
+	return _c
 }
 
 // SetNillableCertificateReady sets the "certificate_ready" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableCertificateReady(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetCertificateReady(*b)
+func (_c *AgentCreate) SetNillableCertificateReady(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetCertificateReady(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetRestartRequired sets the "restart_required" field.
-func (ac *AgentCreate) SetRestartRequired(b bool) *AgentCreate {
-	ac.mutation.SetRestartRequired(b)
-	return ac
+func (_c *AgentCreate) SetRestartRequired(v bool) *AgentCreate {
+	_c.mutation.SetRestartRequired(v)
+	return _c
 }
 
 // SetNillableRestartRequired sets the "restart_required" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableRestartRequired(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetRestartRequired(*b)
+func (_c *AgentCreate) SetNillableRestartRequired(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetRestartRequired(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetIsRemote sets the "is_remote" field.
-func (ac *AgentCreate) SetIsRemote(b bool) *AgentCreate {
-	ac.mutation.SetIsRemote(b)
-	return ac
+func (_c *AgentCreate) SetIsRemote(v bool) *AgentCreate {
+	_c.mutation.SetIsRemote(v)
+	return _c
 }
 
 // SetNillableIsRemote sets the "is_remote" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableIsRemote(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetIsRemote(*b)
+func (_c *AgentCreate) SetNillableIsRemote(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetIsRemote(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetDebugMode sets the "debug_mode" field.
-func (ac *AgentCreate) SetDebugMode(b bool) *AgentCreate {
-	ac.mutation.SetDebugMode(b)
-	return ac
+func (_c *AgentCreate) SetDebugMode(v bool) *AgentCreate {
+	_c.mutation.SetDebugMode(v)
+	return _c
 }
 
 // SetNillableDebugMode sets the "debug_mode" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableDebugMode(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetDebugMode(*b)
+func (_c *AgentCreate) SetNillableDebugMode(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetDebugMode(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetSftpService sets the "sftp_service" field.
-func (ac *AgentCreate) SetSftpService(b bool) *AgentCreate {
-	ac.mutation.SetSftpService(b)
-	return ac
+func (_c *AgentCreate) SetSftpService(v bool) *AgentCreate {
+	_c.mutation.SetSftpService(v)
+	return _c
 }
 
 // SetNillableSftpService sets the "sftp_service" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableSftpService(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetSftpService(*b)
+func (_c *AgentCreate) SetNillableSftpService(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetSftpService(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetRemoteAssistance sets the "remote_assistance" field.
-func (ac *AgentCreate) SetRemoteAssistance(b bool) *AgentCreate {
-	ac.mutation.SetRemoteAssistance(b)
-	return ac
+func (_c *AgentCreate) SetRemoteAssistance(v bool) *AgentCreate {
+	_c.mutation.SetRemoteAssistance(v)
+	return _c
 }
 
 // SetNillableRemoteAssistance sets the "remote_assistance" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableRemoteAssistance(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetRemoteAssistance(*b)
+func (_c *AgentCreate) SetNillableRemoteAssistance(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetRemoteAssistance(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetSettingsModified sets the "settings_modified" field.
-func (ac *AgentCreate) SetSettingsModified(t time.Time) *AgentCreate {
-	ac.mutation.SetSettingsModified(t)
-	return ac
+func (_c *AgentCreate) SetSettingsModified(v time.Time) *AgentCreate {
+	_c.mutation.SetSettingsModified(v)
+	return _c
 }
 
 // SetNillableSettingsModified sets the "settings_modified" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableSettingsModified(t *time.Time) *AgentCreate {
-	if t != nil {
-		ac.SetSettingsModified(*t)
+func (_c *AgentCreate) SetNillableSettingsModified(v *time.Time) *AgentCreate {
+	if v != nil {
+		_c.SetSettingsModified(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetDescription sets the "description" field.
-func (ac *AgentCreate) SetDescription(s string) *AgentCreate {
-	ac.mutation.SetDescription(s)
-	return ac
+func (_c *AgentCreate) SetDescription(v string) *AgentCreate {
+	_c.mutation.SetDescription(v)
+	return _c
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableDescription(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetDescription(*s)
+func (_c *AgentCreate) SetNillableDescription(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetDescription(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetNickname sets the "nickname" field.
-func (ac *AgentCreate) SetNickname(s string) *AgentCreate {
-	ac.mutation.SetNickname(s)
-	return ac
+func (_c *AgentCreate) SetNickname(v string) *AgentCreate {
+	_c.mutation.SetNickname(v)
+	return _c
 }
 
 // SetNillableNickname sets the "nickname" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableNickname(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetNickname(*s)
+func (_c *AgentCreate) SetNillableNickname(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetNickname(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetEndpointType sets the "endpoint_type" field.
-func (ac *AgentCreate) SetEndpointType(at agent.EndpointType) *AgentCreate {
-	ac.mutation.SetEndpointType(at)
-	return ac
+func (_c *AgentCreate) SetEndpointType(v agent.EndpointType) *AgentCreate {
+	_c.mutation.SetEndpointType(v)
+	return _c
 }
 
 // SetNillableEndpointType sets the "endpoint_type" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableEndpointType(at *agent.EndpointType) *AgentCreate {
-	if at != nil {
-		ac.SetEndpointType(*at)
+func (_c *AgentCreate) SetNillableEndpointType(v *agent.EndpointType) *AgentCreate {
+	if v != nil {
+		_c.SetEndpointType(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetHasRustdesk sets the "has_rustdesk" field.
-func (ac *AgentCreate) SetHasRustdesk(b bool) *AgentCreate {
-	ac.mutation.SetHasRustdesk(b)
-	return ac
+func (_c *AgentCreate) SetHasRustdesk(v bool) *AgentCreate {
+	_c.mutation.SetHasRustdesk(v)
+	return _c
 }
 
 // SetNillableHasRustdesk sets the "has_rustdesk" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableHasRustdesk(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetHasRustdesk(*b)
+func (_c *AgentCreate) SetNillableHasRustdesk(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetHasRustdesk(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetIsWayland sets the "is_wayland" field.
-func (ac *AgentCreate) SetIsWayland(b bool) *AgentCreate {
-	ac.mutation.SetIsWayland(b)
-	return ac
+func (_c *AgentCreate) SetIsWayland(v bool) *AgentCreate {
+	_c.mutation.SetIsWayland(v)
+	return _c
 }
 
 // SetNillableIsWayland sets the "is_wayland" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableIsWayland(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetIsWayland(*b)
+func (_c *AgentCreate) SetNillableIsWayland(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetIsWayland(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetIsFlatpakRustdesk sets the "is_flatpak_rustdesk" field.
-func (ac *AgentCreate) SetIsFlatpakRustdesk(b bool) *AgentCreate {
-	ac.mutation.SetIsFlatpakRustdesk(b)
-	return ac
+func (_c *AgentCreate) SetIsFlatpakRustdesk(v bool) *AgentCreate {
+	_c.mutation.SetIsFlatpakRustdesk(v)
+	return _c
 }
 
 // SetNillableIsFlatpakRustdesk sets the "is_flatpak_rustdesk" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableIsFlatpakRustdesk(b *bool) *AgentCreate {
-	if b != nil {
-		ac.SetIsFlatpakRustdesk(*b)
+func (_c *AgentCreate) SetNillableIsFlatpakRustdesk(v *bool) *AgentCreate {
+	if v != nil {
+		_c.SetIsFlatpakRustdesk(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetWan sets the "wan" field.
-func (ac *AgentCreate) SetWan(s string) *AgentCreate {
-	ac.mutation.SetWan(s)
-	return ac
+func (_c *AgentCreate) SetWan(v string) *AgentCreate {
+	_c.mutation.SetWan(v)
+	return _c
 }
 
 // SetNillableWan sets the "wan" field if the given value is not nil.
-func (ac *AgentCreate) SetNillableWan(s *string) *AgentCreate {
-	if s != nil {
-		ac.SetWan(*s)
+func (_c *AgentCreate) SetNillableWan(v *string) *AgentCreate {
+	if v != nil {
+		_c.SetWan(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetID sets the "id" field.
-func (ac *AgentCreate) SetID(s string) *AgentCreate {
-	ac.mutation.SetID(s)
-	return ac
+func (_c *AgentCreate) SetID(v string) *AgentCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
-func (ac *AgentCreate) SetComputerID(id int) *AgentCreate {
-	ac.mutation.SetComputerID(id)
-	return ac
+func (_c *AgentCreate) SetComputerID(id int) *AgentCreate {
+	_c.mutation.SetComputerID(id)
+	return _c
 }
 
 // SetNillableComputerID sets the "computer" edge to the Computer entity by ID if the given value is not nil.
-func (ac *AgentCreate) SetNillableComputerID(id *int) *AgentCreate {
+func (_c *AgentCreate) SetNillableComputerID(id *int) *AgentCreate {
 	if id != nil {
-		ac = ac.SetComputerID(*id)
+		_c = _c.SetComputerID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetComputer sets the "computer" edge to the Computer entity.
-func (ac *AgentCreate) SetComputer(c *Computer) *AgentCreate {
-	return ac.SetComputerID(c.ID)
+func (_c *AgentCreate) SetComputer(v *Computer) *AgentCreate {
+	return _c.SetComputerID(v.ID)
 }
 
 // SetOperatingsystemID sets the "operatingsystem" edge to the OperatingSystem entity by ID.
-func (ac *AgentCreate) SetOperatingsystemID(id int) *AgentCreate {
-	ac.mutation.SetOperatingsystemID(id)
-	return ac
+func (_c *AgentCreate) SetOperatingsystemID(id int) *AgentCreate {
+	_c.mutation.SetOperatingsystemID(id)
+	return _c
 }
 
 // SetNillableOperatingsystemID sets the "operatingsystem" edge to the OperatingSystem entity by ID if the given value is not nil.
-func (ac *AgentCreate) SetNillableOperatingsystemID(id *int) *AgentCreate {
+func (_c *AgentCreate) SetNillableOperatingsystemID(id *int) *AgentCreate {
 	if id != nil {
-		ac = ac.SetOperatingsystemID(*id)
+		_c = _c.SetOperatingsystemID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetOperatingsystem sets the "operatingsystem" edge to the OperatingSystem entity.
-func (ac *AgentCreate) SetOperatingsystem(o *OperatingSystem) *AgentCreate {
-	return ac.SetOperatingsystemID(o.ID)
+func (_c *AgentCreate) SetOperatingsystem(v *OperatingSystem) *AgentCreate {
+	return _c.SetOperatingsystemID(v.ID)
 }
 
 // SetSystemupdateID sets the "systemupdate" edge to the SystemUpdate entity by ID.
-func (ac *AgentCreate) SetSystemupdateID(id int) *AgentCreate {
-	ac.mutation.SetSystemupdateID(id)
-	return ac
+func (_c *AgentCreate) SetSystemupdateID(id int) *AgentCreate {
+	_c.mutation.SetSystemupdateID(id)
+	return _c
 }
 
 // SetNillableSystemupdateID sets the "systemupdate" edge to the SystemUpdate entity by ID if the given value is not nil.
-func (ac *AgentCreate) SetNillableSystemupdateID(id *int) *AgentCreate {
+func (_c *AgentCreate) SetNillableSystemupdateID(id *int) *AgentCreate {
 	if id != nil {
-		ac = ac.SetSystemupdateID(*id)
+		_c = _c.SetSystemupdateID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetSystemupdate sets the "systemupdate" edge to the SystemUpdate entity.
-func (ac *AgentCreate) SetSystemupdate(s *SystemUpdate) *AgentCreate {
-	return ac.SetSystemupdateID(s.ID)
+func (_c *AgentCreate) SetSystemupdate(v *SystemUpdate) *AgentCreate {
+	return _c.SetSystemupdateID(v.ID)
 }
 
 // SetAntivirusID sets the "antivirus" edge to the Antivirus entity by ID.
-func (ac *AgentCreate) SetAntivirusID(id int) *AgentCreate {
-	ac.mutation.SetAntivirusID(id)
-	return ac
+func (_c *AgentCreate) SetAntivirusID(id int) *AgentCreate {
+	_c.mutation.SetAntivirusID(id)
+	return _c
 }
 
 // SetNillableAntivirusID sets the "antivirus" edge to the Antivirus entity by ID if the given value is not nil.
-func (ac *AgentCreate) SetNillableAntivirusID(id *int) *AgentCreate {
+func (_c *AgentCreate) SetNillableAntivirusID(id *int) *AgentCreate {
 	if id != nil {
-		ac = ac.SetAntivirusID(*id)
+		_c = _c.SetAntivirusID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetAntivirus sets the "antivirus" edge to the Antivirus entity.
-func (ac *AgentCreate) SetAntivirus(a *Antivirus) *AgentCreate {
-	return ac.SetAntivirusID(a.ID)
+func (_c *AgentCreate) SetAntivirus(v *Antivirus) *AgentCreate {
+	return _c.SetAntivirusID(v.ID)
 }
 
 // AddLogicaldiskIDs adds the "logicaldisks" edge to the LogicalDisk entity by IDs.
-func (ac *AgentCreate) AddLogicaldiskIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddLogicaldiskIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddLogicaldiskIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddLogicaldiskIDs(ids...)
+	return _c
 }
 
 // AddLogicaldisks adds the "logicaldisks" edges to the LogicalDisk entity.
-func (ac *AgentCreate) AddLogicaldisks(l ...*LogicalDisk) *AgentCreate {
-	ids := make([]int, len(l))
-	for i := range l {
-		ids[i] = l[i].ID
+func (_c *AgentCreate) AddLogicaldisks(v ...*LogicalDisk) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddLogicaldiskIDs(ids...)
+	return _c.AddLogicaldiskIDs(ids...)
 }
 
 // AddAppIDs adds the "apps" edge to the App entity by IDs.
-func (ac *AgentCreate) AddAppIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddAppIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddAppIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddAppIDs(ids...)
+	return _c
 }
 
 // AddApps adds the "apps" edges to the App entity.
-func (ac *AgentCreate) AddApps(a ...*App) *AgentCreate {
-	ids := make([]int, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_c *AgentCreate) AddApps(v ...*App) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddAppIDs(ids...)
+	return _c.AddAppIDs(ids...)
 }
 
 // AddMonitorIDs adds the "monitors" edge to the Monitor entity by IDs.
-func (ac *AgentCreate) AddMonitorIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddMonitorIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddMonitorIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddMonitorIDs(ids...)
+	return _c
 }
 
 // AddMonitors adds the "monitors" edges to the Monitor entity.
-func (ac *AgentCreate) AddMonitors(m ...*Monitor) *AgentCreate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_c *AgentCreate) AddMonitors(v ...*Monitor) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddMonitorIDs(ids...)
+	return _c.AddMonitorIDs(ids...)
 }
 
 // AddShareIDs adds the "shares" edge to the Share entity by IDs.
-func (ac *AgentCreate) AddShareIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddShareIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddShareIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddShareIDs(ids...)
+	return _c
 }
 
 // AddShares adds the "shares" edges to the Share entity.
-func (ac *AgentCreate) AddShares(s ...*Share) *AgentCreate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_c *AgentCreate) AddShares(v ...*Share) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddShareIDs(ids...)
+	return _c.AddShareIDs(ids...)
 }
 
 // AddPrinterIDs adds the "printers" edge to the Printer entity by IDs.
-func (ac *AgentCreate) AddPrinterIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddPrinterIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddPrinterIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddPrinterIDs(ids...)
+	return _c
 }
 
 // AddPrinters adds the "printers" edges to the Printer entity.
-func (ac *AgentCreate) AddPrinters(p ...*Printer) *AgentCreate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_c *AgentCreate) AddPrinters(v ...*Printer) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddPrinterIDs(ids...)
+	return _c.AddPrinterIDs(ids...)
 }
 
 // AddNetworkadapterIDs adds the "networkadapters" edge to the NetworkAdapter entity by IDs.
-func (ac *AgentCreate) AddNetworkadapterIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddNetworkadapterIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddNetworkadapterIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddNetworkadapterIDs(ids...)
+	return _c
 }
 
 // AddNetworkadapters adds the "networkadapters" edges to the NetworkAdapter entity.
-func (ac *AgentCreate) AddNetworkadapters(n ...*NetworkAdapter) *AgentCreate {
-	ids := make([]int, len(n))
-	for i := range n {
-		ids[i] = n[i].ID
+func (_c *AgentCreate) AddNetworkadapters(v ...*NetworkAdapter) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddNetworkadapterIDs(ids...)
+	return _c.AddNetworkadapterIDs(ids...)
 }
 
 // AddDeploymentIDs adds the "deployments" edge to the Deployment entity by IDs.
-func (ac *AgentCreate) AddDeploymentIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddDeploymentIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddDeploymentIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddDeploymentIDs(ids...)
+	return _c
 }
 
 // AddDeployments adds the "deployments" edges to the Deployment entity.
-func (ac *AgentCreate) AddDeployments(d ...*Deployment) *AgentCreate {
-	ids := make([]int, len(d))
-	for i := range d {
-		ids[i] = d[i].ID
+func (_c *AgentCreate) AddDeployments(v ...*Deployment) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddDeploymentIDs(ids...)
+	return _c.AddDeploymentIDs(ids...)
 }
 
 // AddUpdateIDs adds the "updates" edge to the Update entity by IDs.
-func (ac *AgentCreate) AddUpdateIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddUpdateIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddUpdateIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddUpdateIDs(ids...)
+	return _c
 }
 
 // AddUpdates adds the "updates" edges to the Update entity.
-func (ac *AgentCreate) AddUpdates(u ...*Update) *AgentCreate {
-	ids := make([]int, len(u))
-	for i := range u {
-		ids[i] = u[i].ID
+func (_c *AgentCreate) AddUpdates(v ...*Update) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddUpdateIDs(ids...)
+	return _c.AddUpdateIDs(ids...)
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (ac *AgentCreate) AddTagIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddTagIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddTagIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddTagIDs(ids...)
+	return _c
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (ac *AgentCreate) AddTags(t ...*Tag) *AgentCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *AgentCreate) AddTags(v ...*Tag) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddTagIDs(ids...)
+	return _c.AddTagIDs(ids...)
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the Metadata entity by IDs.
-func (ac *AgentCreate) AddMetadatumIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddMetadatumIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddMetadatumIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddMetadatumIDs(ids...)
+	return _c
 }
 
 // AddMetadata adds the "metadata" edges to the Metadata entity.
-func (ac *AgentCreate) AddMetadata(m ...*Metadata) *AgentCreate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_c *AgentCreate) AddMetadata(v ...*Metadata) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddMetadatumIDs(ids...)
+	return _c.AddMetadatumIDs(ids...)
 }
 
 // AddWingetcfgexclusionIDs adds the "wingetcfgexclusions" edge to the WingetConfigExclusion entity by IDs.
-func (ac *AgentCreate) AddWingetcfgexclusionIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddWingetcfgexclusionIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddWingetcfgexclusionIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddWingetcfgexclusionIDs(ids...)
+	return _c
 }
 
 // AddWingetcfgexclusions adds the "wingetcfgexclusions" edges to the WingetConfigExclusion entity.
-func (ac *AgentCreate) AddWingetcfgexclusions(w ...*WingetConfigExclusion) *AgentCreate {
-	ids := make([]int, len(w))
-	for i := range w {
-		ids[i] = w[i].ID
+func (_c *AgentCreate) AddWingetcfgexclusions(v ...*WingetConfigExclusion) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddWingetcfgexclusionIDs(ids...)
+	return _c.AddWingetcfgexclusionIDs(ids...)
 }
 
 // AddMemoryslotIDs adds the "memoryslots" edge to the MemorySlot entity by IDs.
-func (ac *AgentCreate) AddMemoryslotIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddMemoryslotIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddMemoryslotIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddMemoryslotIDs(ids...)
+	return _c
 }
 
 // AddMemoryslots adds the "memoryslots" edges to the MemorySlot entity.
-func (ac *AgentCreate) AddMemoryslots(m ...*MemorySlot) *AgentCreate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_c *AgentCreate) AddMemoryslots(v ...*MemorySlot) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddMemoryslotIDs(ids...)
+	return _c.AddMemoryslotIDs(ids...)
 }
 
 // SetReleaseID sets the "release" edge to the Release entity by ID.
-func (ac *AgentCreate) SetReleaseID(id int) *AgentCreate {
-	ac.mutation.SetReleaseID(id)
-	return ac
+func (_c *AgentCreate) SetReleaseID(id int) *AgentCreate {
+	_c.mutation.SetReleaseID(id)
+	return _c
 }
 
 // SetNillableReleaseID sets the "release" edge to the Release entity by ID if the given value is not nil.
-func (ac *AgentCreate) SetNillableReleaseID(id *int) *AgentCreate {
+func (_c *AgentCreate) SetNillableReleaseID(id *int) *AgentCreate {
 	if id != nil {
-		ac = ac.SetReleaseID(*id)
+		_c = _c.SetReleaseID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetRelease sets the "release" edge to the Release entity.
-func (ac *AgentCreate) SetRelease(r *Release) *AgentCreate {
-	return ac.SetReleaseID(r.ID)
+func (_c *AgentCreate) SetRelease(v *Release) *AgentCreate {
+	return _c.SetReleaseID(v.ID)
 }
 
 // AddProfileissueIDs adds the "profileissue" edge to the ProfileIssue entity by IDs.
-func (ac *AgentCreate) AddProfileissueIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddProfileissueIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddProfileissueIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddProfileissueIDs(ids...)
+	return _c
 }
 
 // AddProfileissue adds the "profileissue" edges to the ProfileIssue entity.
-func (ac *AgentCreate) AddProfileissue(p ...*ProfileIssue) *AgentCreate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_c *AgentCreate) AddProfileissue(v ...*ProfileIssue) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddProfileissueIDs(ids...)
+	return _c.AddProfileissueIDs(ids...)
 }
 
 // AddSiteIDs adds the "site" edge to the Site entity by IDs.
-func (ac *AgentCreate) AddSiteIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddSiteIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddSiteIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddSiteIDs(ids...)
+	return _c
 }
 
 // AddSite adds the "site" edges to the Site entity.
-func (ac *AgentCreate) AddSite(s ...*Site) *AgentCreate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_c *AgentCreate) AddSite(v ...*Site) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddSiteIDs(ids...)
+	return _c.AddSiteIDs(ids...)
 }
 
 // AddPhysicaldiskIDs adds the "physicaldisks" edge to the PhysicalDisk entity by IDs.
-func (ac *AgentCreate) AddPhysicaldiskIDs(ids ...int) *AgentCreate {
-	ac.mutation.AddPhysicaldiskIDs(ids...)
-	return ac
+func (_c *AgentCreate) AddPhysicaldiskIDs(ids ...int) *AgentCreate {
+	_c.mutation.AddPhysicaldiskIDs(ids...)
+	return _c
 }
 
 // AddPhysicaldisks adds the "physicaldisks" edges to the PhysicalDisk entity.
-func (ac *AgentCreate) AddPhysicaldisks(p ...*PhysicalDisk) *AgentCreate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_c *AgentCreate) AddPhysicaldisks(v ...*PhysicalDisk) *AgentCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ac.AddPhysicaldiskIDs(ids...)
+	return _c.AddPhysicaldiskIDs(ids...)
 }
 
 // SetNetbirdID sets the "netbird" edge to the Netbird entity by ID.
-func (ac *AgentCreate) SetNetbirdID(id int) *AgentCreate {
-	ac.mutation.SetNetbirdID(id)
-	return ac
+func (_c *AgentCreate) SetNetbirdID(id int) *AgentCreate {
+	_c.mutation.SetNetbirdID(id)
+	return _c
 }
 
 // SetNillableNetbirdID sets the "netbird" edge to the Netbird entity by ID if the given value is not nil.
-func (ac *AgentCreate) SetNillableNetbirdID(id *int) *AgentCreate {
+func (_c *AgentCreate) SetNillableNetbirdID(id *int) *AgentCreate {
 	if id != nil {
-		ac = ac.SetNetbirdID(*id)
+		_c = _c.SetNetbirdID(*id)
 	}
-	return ac
+	return _c
 }
 
 // SetNetbird sets the "netbird" edge to the Netbird entity.
-func (ac *AgentCreate) SetNetbird(n *Netbird) *AgentCreate {
-	return ac.SetNetbirdID(n.ID)
+func (_c *AgentCreate) SetNetbird(v *Netbird) *AgentCreate {
+	return _c.SetNetbirdID(v.ID)
 }
 
 // Mutation returns the AgentMutation object of the builder.
-func (ac *AgentCreate) Mutation() *AgentMutation {
-	return ac.mutation
+func (_c *AgentCreate) Mutation() *AgentMutation {
+	return _c.mutation
 }
 
 // Save creates the Agent in the database.
-func (ac *AgentCreate) Save(ctx context.Context) (*Agent, error) {
-	ac.defaults()
-	return withHooks(ctx, ac.sqlSave, ac.mutation, ac.hooks)
+func (_c *AgentCreate) Save(ctx context.Context) (*Agent, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (ac *AgentCreate) SaveX(ctx context.Context) *Agent {
-	v, err := ac.Save(ctx)
+func (_c *AgentCreate) SaveX(ctx context.Context) *Agent {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -814,156 +814,156 @@ func (ac *AgentCreate) SaveX(ctx context.Context) *Agent {
 }
 
 // Exec executes the query.
-func (ac *AgentCreate) Exec(ctx context.Context) error {
-	_, err := ac.Save(ctx)
+func (_c *AgentCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ac *AgentCreate) ExecX(ctx context.Context) {
-	if err := ac.Exec(ctx); err != nil {
+func (_c *AgentCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (ac *AgentCreate) defaults() {
-	if _, ok := ac.mutation.IP(); !ok {
+func (_c *AgentCreate) defaults() {
+	if _, ok := _c.mutation.IP(); !ok {
 		v := agent.DefaultIP
-		ac.mutation.SetIP(v)
+		_c.mutation.SetIP(v)
 	}
-	if _, ok := ac.mutation.MAC(); !ok {
+	if _, ok := _c.mutation.MAC(); !ok {
 		v := agent.DefaultMAC
-		ac.mutation.SetMAC(v)
+		_c.mutation.SetMAC(v)
 	}
-	if _, ok := ac.mutation.Vnc(); !ok {
+	if _, ok := _c.mutation.Vnc(); !ok {
 		v := agent.DefaultVnc
-		ac.mutation.SetVnc(v)
+		_c.mutation.SetVnc(v)
 	}
-	if _, ok := ac.mutation.UpdateTaskStatus(); !ok {
+	if _, ok := _c.mutation.UpdateTaskStatus(); !ok {
 		v := agent.DefaultUpdateTaskStatus
-		ac.mutation.SetUpdateTaskStatus(v)
+		_c.mutation.SetUpdateTaskStatus(v)
 	}
-	if _, ok := ac.mutation.UpdateTaskDescription(); !ok {
+	if _, ok := _c.mutation.UpdateTaskDescription(); !ok {
 		v := agent.DefaultUpdateTaskDescription
-		ac.mutation.SetUpdateTaskDescription(v)
+		_c.mutation.SetUpdateTaskDescription(v)
 	}
-	if _, ok := ac.mutation.UpdateTaskResult(); !ok {
+	if _, ok := _c.mutation.UpdateTaskResult(); !ok {
 		v := agent.DefaultUpdateTaskResult
-		ac.mutation.SetUpdateTaskResult(v)
+		_c.mutation.SetUpdateTaskResult(v)
 	}
-	if _, ok := ac.mutation.UpdateTaskVersion(); !ok {
+	if _, ok := _c.mutation.UpdateTaskVersion(); !ok {
 		v := agent.DefaultUpdateTaskVersion
-		ac.mutation.SetUpdateTaskVersion(v)
+		_c.mutation.SetUpdateTaskVersion(v)
 	}
-	if _, ok := ac.mutation.VncProxyPort(); !ok {
+	if _, ok := _c.mutation.VncProxyPort(); !ok {
 		v := agent.DefaultVncProxyPort
-		ac.mutation.SetVncProxyPort(v)
+		_c.mutation.SetVncProxyPort(v)
 	}
-	if _, ok := ac.mutation.SftpPort(); !ok {
+	if _, ok := _c.mutation.SftpPort(); !ok {
 		v := agent.DefaultSftpPort
-		ac.mutation.SetSftpPort(v)
+		_c.mutation.SetSftpPort(v)
 	}
-	if _, ok := ac.mutation.AgentStatus(); !ok {
+	if _, ok := _c.mutation.AgentStatus(); !ok {
 		v := agent.DefaultAgentStatus
-		ac.mutation.SetAgentStatus(v)
+		_c.mutation.SetAgentStatus(v)
 	}
-	if _, ok := ac.mutation.CertificateReady(); !ok {
+	if _, ok := _c.mutation.CertificateReady(); !ok {
 		v := agent.DefaultCertificateReady
-		ac.mutation.SetCertificateReady(v)
+		_c.mutation.SetCertificateReady(v)
 	}
-	if _, ok := ac.mutation.RestartRequired(); !ok {
+	if _, ok := _c.mutation.RestartRequired(); !ok {
 		v := agent.DefaultRestartRequired
-		ac.mutation.SetRestartRequired(v)
+		_c.mutation.SetRestartRequired(v)
 	}
-	if _, ok := ac.mutation.IsRemote(); !ok {
+	if _, ok := _c.mutation.IsRemote(); !ok {
 		v := agent.DefaultIsRemote
-		ac.mutation.SetIsRemote(v)
+		_c.mutation.SetIsRemote(v)
 	}
-	if _, ok := ac.mutation.DebugMode(); !ok {
+	if _, ok := _c.mutation.DebugMode(); !ok {
 		v := agent.DefaultDebugMode
-		ac.mutation.SetDebugMode(v)
+		_c.mutation.SetDebugMode(v)
 	}
-	if _, ok := ac.mutation.SftpService(); !ok {
+	if _, ok := _c.mutation.SftpService(); !ok {
 		v := agent.DefaultSftpService
-		ac.mutation.SetSftpService(v)
+		_c.mutation.SetSftpService(v)
 	}
-	if _, ok := ac.mutation.RemoteAssistance(); !ok {
+	if _, ok := _c.mutation.RemoteAssistance(); !ok {
 		v := agent.DefaultRemoteAssistance
-		ac.mutation.SetRemoteAssistance(v)
+		_c.mutation.SetRemoteAssistance(v)
 	}
-	if _, ok := ac.mutation.SettingsModified(); !ok {
+	if _, ok := _c.mutation.SettingsModified(); !ok {
 		v := agent.DefaultSettingsModified()
-		ac.mutation.SetSettingsModified(v)
+		_c.mutation.SetSettingsModified(v)
 	}
-	if _, ok := ac.mutation.Description(); !ok {
+	if _, ok := _c.mutation.Description(); !ok {
 		v := agent.DefaultDescription
-		ac.mutation.SetDescription(v)
+		_c.mutation.SetDescription(v)
 	}
-	if _, ok := ac.mutation.Nickname(); !ok {
+	if _, ok := _c.mutation.Nickname(); !ok {
 		v := agent.DefaultNickname
-		ac.mutation.SetNickname(v)
+		_c.mutation.SetNickname(v)
 	}
-	if _, ok := ac.mutation.EndpointType(); !ok {
+	if _, ok := _c.mutation.EndpointType(); !ok {
 		v := agent.DefaultEndpointType
-		ac.mutation.SetEndpointType(v)
+		_c.mutation.SetEndpointType(v)
 	}
-	if _, ok := ac.mutation.HasRustdesk(); !ok {
+	if _, ok := _c.mutation.HasRustdesk(); !ok {
 		v := agent.DefaultHasRustdesk
-		ac.mutation.SetHasRustdesk(v)
+		_c.mutation.SetHasRustdesk(v)
 	}
-	if _, ok := ac.mutation.IsWayland(); !ok {
+	if _, ok := _c.mutation.IsWayland(); !ok {
 		v := agent.DefaultIsWayland
-		ac.mutation.SetIsWayland(v)
+		_c.mutation.SetIsWayland(v)
 	}
-	if _, ok := ac.mutation.IsFlatpakRustdesk(); !ok {
+	if _, ok := _c.mutation.IsFlatpakRustdesk(); !ok {
 		v := agent.DefaultIsFlatpakRustdesk
-		ac.mutation.SetIsFlatpakRustdesk(v)
+		_c.mutation.SetIsFlatpakRustdesk(v)
 	}
-	if _, ok := ac.mutation.Wan(); !ok {
+	if _, ok := _c.mutation.Wan(); !ok {
 		v := agent.DefaultWan
-		ac.mutation.SetWan(v)
+		_c.mutation.SetWan(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ac *AgentCreate) check() error {
-	if _, ok := ac.mutation.Os(); !ok {
+func (_c *AgentCreate) check() error {
+	if _, ok := _c.mutation.Os(); !ok {
 		return &ValidationError{Name: "os", err: errors.New(`ent: missing required field "Agent.os"`)}
 	}
-	if v, ok := ac.mutation.Os(); ok {
+	if v, ok := _c.mutation.Os(); ok {
 		if err := agent.OsValidator(v); err != nil {
 			return &ValidationError{Name: "os", err: fmt.Errorf(`ent: validator failed for field "Agent.os": %w`, err)}
 		}
 	}
-	if _, ok := ac.mutation.Hostname(); !ok {
+	if _, ok := _c.mutation.Hostname(); !ok {
 		return &ValidationError{Name: "hostname", err: errors.New(`ent: missing required field "Agent.hostname"`)}
 	}
-	if v, ok := ac.mutation.Hostname(); ok {
+	if v, ok := _c.mutation.Hostname(); ok {
 		if err := agent.HostnameValidator(v); err != nil {
 			return &ValidationError{Name: "hostname", err: fmt.Errorf(`ent: validator failed for field "Agent.hostname": %w`, err)}
 		}
 	}
-	if _, ok := ac.mutation.IP(); !ok {
+	if _, ok := _c.mutation.IP(); !ok {
 		return &ValidationError{Name: "ip", err: errors.New(`ent: missing required field "Agent.ip"`)}
 	}
-	if _, ok := ac.mutation.MAC(); !ok {
+	if _, ok := _c.mutation.MAC(); !ok {
 		return &ValidationError{Name: "mac", err: errors.New(`ent: missing required field "Agent.mac"`)}
 	}
-	if v, ok := ac.mutation.AgentStatus(); ok {
+	if v, ok := _c.mutation.AgentStatus(); ok {
 		if err := agent.AgentStatusValidator(v); err != nil {
 			return &ValidationError{Name: "agent_status", err: fmt.Errorf(`ent: validator failed for field "Agent.agent_status": %w`, err)}
 		}
 	}
-	if v, ok := ac.mutation.EndpointType(); ok {
+	if v, ok := _c.mutation.EndpointType(); ok {
 		if err := agent.EndpointTypeValidator(v); err != nil {
 			return &ValidationError{Name: "endpoint_type", err: fmt.Errorf(`ent: validator failed for field "Agent.endpoint_type": %w`, err)}
 		}
 	}
-	if _, ok := ac.mutation.Wan(); !ok {
+	if _, ok := _c.mutation.Wan(); !ok {
 		return &ValidationError{Name: "wan", err: errors.New(`ent: missing required field "Agent.wan"`)}
 	}
-	if v, ok := ac.mutation.ID(); ok {
+	if v, ok := _c.mutation.ID(); ok {
 		if err := agent.IDValidator(v); err != nil {
 			return &ValidationError{Name: "id", err: fmt.Errorf(`ent: validator failed for field "Agent.id": %w`, err)}
 		}
@@ -971,12 +971,12 @@ func (ac *AgentCreate) check() error {
 	return nil
 }
 
-func (ac *AgentCreate) sqlSave(ctx context.Context) (*Agent, error) {
-	if err := ac.check(); err != nil {
+func (_c *AgentCreate) sqlSave(ctx context.Context) (*Agent, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := ac.createSpec()
-	if err := sqlgraph.CreateNode(ctx, ac.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -989,142 +989,142 @@ func (ac *AgentCreate) sqlSave(ctx context.Context) (*Agent, error) {
 			return nil, fmt.Errorf("unexpected Agent.ID type: %T", _spec.ID.Value)
 		}
 	}
-	ac.mutation.id = &_node.ID
-	ac.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
+func (_c *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Agent{config: ac.config}
+		_node = &Agent{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(agent.Table, sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString))
 	)
-	_spec.OnConflict = ac.conflict
-	if id, ok := ac.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := ac.mutation.Os(); ok {
+	if value, ok := _c.mutation.Os(); ok {
 		_spec.SetField(agent.FieldOs, field.TypeString, value)
 		_node.Os = value
 	}
-	if value, ok := ac.mutation.Hostname(); ok {
+	if value, ok := _c.mutation.Hostname(); ok {
 		_spec.SetField(agent.FieldHostname, field.TypeString, value)
 		_node.Hostname = value
 	}
-	if value, ok := ac.mutation.IP(); ok {
+	if value, ok := _c.mutation.IP(); ok {
 		_spec.SetField(agent.FieldIP, field.TypeString, value)
 		_node.IP = value
 	}
-	if value, ok := ac.mutation.MAC(); ok {
+	if value, ok := _c.mutation.MAC(); ok {
 		_spec.SetField(agent.FieldMAC, field.TypeString, value)
 		_node.MAC = value
 	}
-	if value, ok := ac.mutation.FirstContact(); ok {
+	if value, ok := _c.mutation.FirstContact(); ok {
 		_spec.SetField(agent.FieldFirstContact, field.TypeTime, value)
 		_node.FirstContact = value
 	}
-	if value, ok := ac.mutation.LastContact(); ok {
+	if value, ok := _c.mutation.LastContact(); ok {
 		_spec.SetField(agent.FieldLastContact, field.TypeTime, value)
 		_node.LastContact = value
 	}
-	if value, ok := ac.mutation.Vnc(); ok {
+	if value, ok := _c.mutation.Vnc(); ok {
 		_spec.SetField(agent.FieldVnc, field.TypeString, value)
 		_node.Vnc = value
 	}
-	if value, ok := ac.mutation.Notes(); ok {
+	if value, ok := _c.mutation.Notes(); ok {
 		_spec.SetField(agent.FieldNotes, field.TypeString, value)
 		_node.Notes = value
 	}
-	if value, ok := ac.mutation.UpdateTaskStatus(); ok {
+	if value, ok := _c.mutation.UpdateTaskStatus(); ok {
 		_spec.SetField(agent.FieldUpdateTaskStatus, field.TypeString, value)
 		_node.UpdateTaskStatus = value
 	}
-	if value, ok := ac.mutation.UpdateTaskDescription(); ok {
+	if value, ok := _c.mutation.UpdateTaskDescription(); ok {
 		_spec.SetField(agent.FieldUpdateTaskDescription, field.TypeString, value)
 		_node.UpdateTaskDescription = value
 	}
-	if value, ok := ac.mutation.UpdateTaskResult(); ok {
+	if value, ok := _c.mutation.UpdateTaskResult(); ok {
 		_spec.SetField(agent.FieldUpdateTaskResult, field.TypeString, value)
 		_node.UpdateTaskResult = value
 	}
-	if value, ok := ac.mutation.UpdateTaskExecution(); ok {
+	if value, ok := _c.mutation.UpdateTaskExecution(); ok {
 		_spec.SetField(agent.FieldUpdateTaskExecution, field.TypeTime, value)
 		_node.UpdateTaskExecution = value
 	}
-	if value, ok := ac.mutation.UpdateTaskVersion(); ok {
+	if value, ok := _c.mutation.UpdateTaskVersion(); ok {
 		_spec.SetField(agent.FieldUpdateTaskVersion, field.TypeString, value)
 		_node.UpdateTaskVersion = value
 	}
-	if value, ok := ac.mutation.VncProxyPort(); ok {
+	if value, ok := _c.mutation.VncProxyPort(); ok {
 		_spec.SetField(agent.FieldVncProxyPort, field.TypeString, value)
 		_node.VncProxyPort = value
 	}
-	if value, ok := ac.mutation.SftpPort(); ok {
+	if value, ok := _c.mutation.SftpPort(); ok {
 		_spec.SetField(agent.FieldSftpPort, field.TypeString, value)
 		_node.SftpPort = value
 	}
-	if value, ok := ac.mutation.AgentStatus(); ok {
+	if value, ok := _c.mutation.AgentStatus(); ok {
 		_spec.SetField(agent.FieldAgentStatus, field.TypeEnum, value)
 		_node.AgentStatus = value
 	}
-	if value, ok := ac.mutation.CertificateReady(); ok {
+	if value, ok := _c.mutation.CertificateReady(); ok {
 		_spec.SetField(agent.FieldCertificateReady, field.TypeBool, value)
 		_node.CertificateReady = value
 	}
-	if value, ok := ac.mutation.RestartRequired(); ok {
+	if value, ok := _c.mutation.RestartRequired(); ok {
 		_spec.SetField(agent.FieldRestartRequired, field.TypeBool, value)
 		_node.RestartRequired = value
 	}
-	if value, ok := ac.mutation.IsRemote(); ok {
+	if value, ok := _c.mutation.IsRemote(); ok {
 		_spec.SetField(agent.FieldIsRemote, field.TypeBool, value)
 		_node.IsRemote = value
 	}
-	if value, ok := ac.mutation.DebugMode(); ok {
+	if value, ok := _c.mutation.DebugMode(); ok {
 		_spec.SetField(agent.FieldDebugMode, field.TypeBool, value)
 		_node.DebugMode = value
 	}
-	if value, ok := ac.mutation.SftpService(); ok {
+	if value, ok := _c.mutation.SftpService(); ok {
 		_spec.SetField(agent.FieldSftpService, field.TypeBool, value)
 		_node.SftpService = value
 	}
-	if value, ok := ac.mutation.RemoteAssistance(); ok {
+	if value, ok := _c.mutation.RemoteAssistance(); ok {
 		_spec.SetField(agent.FieldRemoteAssistance, field.TypeBool, value)
 		_node.RemoteAssistance = value
 	}
-	if value, ok := ac.mutation.SettingsModified(); ok {
+	if value, ok := _c.mutation.SettingsModified(); ok {
 		_spec.SetField(agent.FieldSettingsModified, field.TypeTime, value)
 		_node.SettingsModified = value
 	}
-	if value, ok := ac.mutation.Description(); ok {
+	if value, ok := _c.mutation.Description(); ok {
 		_spec.SetField(agent.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := ac.mutation.Nickname(); ok {
+	if value, ok := _c.mutation.Nickname(); ok {
 		_spec.SetField(agent.FieldNickname, field.TypeString, value)
 		_node.Nickname = value
 	}
-	if value, ok := ac.mutation.EndpointType(); ok {
+	if value, ok := _c.mutation.EndpointType(); ok {
 		_spec.SetField(agent.FieldEndpointType, field.TypeEnum, value)
 		_node.EndpointType = value
 	}
-	if value, ok := ac.mutation.HasRustdesk(); ok {
+	if value, ok := _c.mutation.HasRustdesk(); ok {
 		_spec.SetField(agent.FieldHasRustdesk, field.TypeBool, value)
 		_node.HasRustdesk = value
 	}
-	if value, ok := ac.mutation.IsWayland(); ok {
+	if value, ok := _c.mutation.IsWayland(); ok {
 		_spec.SetField(agent.FieldIsWayland, field.TypeBool, value)
 		_node.IsWayland = value
 	}
-	if value, ok := ac.mutation.IsFlatpakRustdesk(); ok {
+	if value, ok := _c.mutation.IsFlatpakRustdesk(); ok {
 		_spec.SetField(agent.FieldIsFlatpakRustdesk, field.TypeBool, value)
 		_node.IsFlatpakRustdesk = value
 	}
-	if value, ok := ac.mutation.Wan(); ok {
+	if value, ok := _c.mutation.Wan(); ok {
 		_spec.SetField(agent.FieldWan, field.TypeString, value)
 		_node.Wan = value
 	}
-	if nodes := ac.mutation.ComputerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ComputerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1140,7 +1140,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.OperatingsystemIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OperatingsystemIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1156,7 +1156,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.SystemupdateIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SystemupdateIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1172,7 +1172,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.AntivirusIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AntivirusIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1188,7 +1188,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.LogicaldisksIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.LogicaldisksIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1204,7 +1204,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.AppsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AppsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1220,7 +1220,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.MonitorsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.MonitorsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1236,7 +1236,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.SharesIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SharesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1252,7 +1252,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.PrintersIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.PrintersIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1268,7 +1268,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.NetworkadaptersIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.NetworkadaptersIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1284,7 +1284,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.DeploymentsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.DeploymentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1300,7 +1300,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.UpdatesIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.UpdatesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1316,7 +1316,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -1332,7 +1332,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1348,7 +1348,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.WingetcfgexclusionsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.WingetcfgexclusionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1364,7 +1364,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.MemoryslotsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.MemoryslotsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1380,7 +1380,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.ReleaseIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ReleaseIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -1397,7 +1397,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		_node.release_agents = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.ProfileissueIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -1413,7 +1413,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.SiteIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SiteIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -1429,7 +1429,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.PhysicaldisksIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.PhysicaldisksIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1445,7 +1445,7 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := ac.mutation.NetbirdIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.NetbirdIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1480,10 +1480,10 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 //			SetOs(v+v).
 //		}).
 //		Exec(ctx)
-func (ac *AgentCreate) OnConflict(opts ...sql.ConflictOption) *AgentUpsertOne {
-	ac.conflict = opts
+func (_c *AgentCreate) OnConflict(opts ...sql.ConflictOption) *AgentUpsertOne {
+	_c.conflict = opts
 	return &AgentUpsertOne{
-		create: ac,
+		create: _c,
 	}
 }
 
@@ -1493,10 +1493,10 @@ func (ac *AgentCreate) OnConflict(opts ...sql.ConflictOption) *AgentUpsertOne {
 //	client.Agent.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ac *AgentCreate) OnConflictColumns(columns ...string) *AgentUpsertOne {
-	ac.conflict = append(ac.conflict, sql.ConflictColumns(columns...))
+func (_c *AgentCreate) OnConflictColumns(columns ...string) *AgentUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &AgentUpsertOne{
-		create: ac,
+		create: _c,
 	}
 }
 
@@ -2713,16 +2713,16 @@ type AgentCreateBulk struct {
 }
 
 // Save creates the Agent entities in the database.
-func (acb *AgentCreateBulk) Save(ctx context.Context) ([]*Agent, error) {
-	if acb.err != nil {
-		return nil, acb.err
+func (_c *AgentCreateBulk) Save(ctx context.Context) ([]*Agent, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(acb.builders))
-	nodes := make([]*Agent, len(acb.builders))
-	mutators := make([]Mutator, len(acb.builders))
-	for i := range acb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Agent, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := acb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*AgentMutation)
@@ -2736,12 +2736,12 @@ func (acb *AgentCreateBulk) Save(ctx context.Context) ([]*Agent, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, acb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = acb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, acb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -2761,7 +2761,7 @@ func (acb *AgentCreateBulk) Save(ctx context.Context) ([]*Agent, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, acb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -2769,8 +2769,8 @@ func (acb *AgentCreateBulk) Save(ctx context.Context) ([]*Agent, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (acb *AgentCreateBulk) SaveX(ctx context.Context) []*Agent {
-	v, err := acb.Save(ctx)
+func (_c *AgentCreateBulk) SaveX(ctx context.Context) []*Agent {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -2778,14 +2778,14 @@ func (acb *AgentCreateBulk) SaveX(ctx context.Context) []*Agent {
 }
 
 // Exec executes the query.
-func (acb *AgentCreateBulk) Exec(ctx context.Context) error {
-	_, err := acb.Save(ctx)
+func (_c *AgentCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (acb *AgentCreateBulk) ExecX(ctx context.Context) {
-	if err := acb.Exec(ctx); err != nil {
+func (_c *AgentCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -2805,10 +2805,10 @@ func (acb *AgentCreateBulk) ExecX(ctx context.Context) {
 //			SetOs(v+v).
 //		}).
 //		Exec(ctx)
-func (acb *AgentCreateBulk) OnConflict(opts ...sql.ConflictOption) *AgentUpsertBulk {
-	acb.conflict = opts
+func (_c *AgentCreateBulk) OnConflict(opts ...sql.ConflictOption) *AgentUpsertBulk {
+	_c.conflict = opts
 	return &AgentUpsertBulk{
-		create: acb,
+		create: _c,
 	}
 }
 
@@ -2818,10 +2818,10 @@ func (acb *AgentCreateBulk) OnConflict(opts ...sql.ConflictOption) *AgentUpsertB
 //	client.Agent.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (acb *AgentCreateBulk) OnConflictColumns(columns ...string) *AgentUpsertBulk {
-	acb.conflict = append(acb.conflict, sql.ConflictColumns(columns...))
+func (_c *AgentCreateBulk) OnConflictColumns(columns ...string) *AgentUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &AgentUpsertBulk{
-		create: acb,
+		create: _c,
 	}
 }
 

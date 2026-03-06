@@ -25,257 +25,257 @@ type NetworkAdapterUpdate struct {
 }
 
 // Where appends a list predicates to the NetworkAdapterUpdate builder.
-func (nau *NetworkAdapterUpdate) Where(ps ...predicate.NetworkAdapter) *NetworkAdapterUpdate {
-	nau.mutation.Where(ps...)
-	return nau
+func (_u *NetworkAdapterUpdate) Where(ps ...predicate.NetworkAdapter) *NetworkAdapterUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (nau *NetworkAdapterUpdate) SetName(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetName(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetName(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableName(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetName(*s)
+func (_u *NetworkAdapterUpdate) SetNillableName(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return nau
+	return _u
 }
 
 // SetMACAddress sets the "mac_address" field.
-func (nau *NetworkAdapterUpdate) SetMACAddress(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetMACAddress(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetMACAddress(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetMACAddress(v)
+	return _u
 }
 
 // SetNillableMACAddress sets the "mac_address" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableMACAddress(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetMACAddress(*s)
+func (_u *NetworkAdapterUpdate) SetNillableMACAddress(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetMACAddress(*v)
 	}
-	return nau
+	return _u
 }
 
 // SetAddresses sets the "addresses" field.
-func (nau *NetworkAdapterUpdate) SetAddresses(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetAddresses(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetAddresses(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetAddresses(v)
+	return _u
 }
 
 // SetNillableAddresses sets the "addresses" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableAddresses(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetAddresses(*s)
+func (_u *NetworkAdapterUpdate) SetNillableAddresses(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetAddresses(*v)
 	}
-	return nau
+	return _u
 }
 
 // SetSubnet sets the "subnet" field.
-func (nau *NetworkAdapterUpdate) SetSubnet(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetSubnet(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetSubnet(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetSubnet(v)
+	return _u
 }
 
 // SetNillableSubnet sets the "subnet" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableSubnet(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetSubnet(*s)
+func (_u *NetworkAdapterUpdate) SetNillableSubnet(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetSubnet(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearSubnet clears the value of the "subnet" field.
-func (nau *NetworkAdapterUpdate) ClearSubnet() *NetworkAdapterUpdate {
-	nau.mutation.ClearSubnet()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearSubnet() *NetworkAdapterUpdate {
+	_u.mutation.ClearSubnet()
+	return _u
 }
 
 // SetDefaultGateway sets the "default_gateway" field.
-func (nau *NetworkAdapterUpdate) SetDefaultGateway(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetDefaultGateway(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetDefaultGateway(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetDefaultGateway(v)
+	return _u
 }
 
 // SetNillableDefaultGateway sets the "default_gateway" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableDefaultGateway(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetDefaultGateway(*s)
+func (_u *NetworkAdapterUpdate) SetNillableDefaultGateway(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetDefaultGateway(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearDefaultGateway clears the value of the "default_gateway" field.
-func (nau *NetworkAdapterUpdate) ClearDefaultGateway() *NetworkAdapterUpdate {
-	nau.mutation.ClearDefaultGateway()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearDefaultGateway() *NetworkAdapterUpdate {
+	_u.mutation.ClearDefaultGateway()
+	return _u
 }
 
 // SetDNSServers sets the "dns_servers" field.
-func (nau *NetworkAdapterUpdate) SetDNSServers(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetDNSServers(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetDNSServers(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetDNSServers(v)
+	return _u
 }
 
 // SetNillableDNSServers sets the "dns_servers" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableDNSServers(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetDNSServers(*s)
+func (_u *NetworkAdapterUpdate) SetNillableDNSServers(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetDNSServers(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearDNSServers clears the value of the "dns_servers" field.
-func (nau *NetworkAdapterUpdate) ClearDNSServers() *NetworkAdapterUpdate {
-	nau.mutation.ClearDNSServers()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearDNSServers() *NetworkAdapterUpdate {
+	_u.mutation.ClearDNSServers()
+	return _u
 }
 
 // SetDNSDomain sets the "dns_domain" field.
-func (nau *NetworkAdapterUpdate) SetDNSDomain(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetDNSDomain(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetDNSDomain(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetDNSDomain(v)
+	return _u
 }
 
 // SetNillableDNSDomain sets the "dns_domain" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableDNSDomain(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetDNSDomain(*s)
+func (_u *NetworkAdapterUpdate) SetNillableDNSDomain(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetDNSDomain(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearDNSDomain clears the value of the "dns_domain" field.
-func (nau *NetworkAdapterUpdate) ClearDNSDomain() *NetworkAdapterUpdate {
-	nau.mutation.ClearDNSDomain()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearDNSDomain() *NetworkAdapterUpdate {
+	_u.mutation.ClearDNSDomain()
+	return _u
 }
 
 // SetDhcpEnabled sets the "dhcp_enabled" field.
-func (nau *NetworkAdapterUpdate) SetDhcpEnabled(b bool) *NetworkAdapterUpdate {
-	nau.mutation.SetDhcpEnabled(b)
-	return nau
+func (_u *NetworkAdapterUpdate) SetDhcpEnabled(v bool) *NetworkAdapterUpdate {
+	_u.mutation.SetDhcpEnabled(v)
+	return _u
 }
 
 // SetNillableDhcpEnabled sets the "dhcp_enabled" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableDhcpEnabled(b *bool) *NetworkAdapterUpdate {
-	if b != nil {
-		nau.SetDhcpEnabled(*b)
+func (_u *NetworkAdapterUpdate) SetNillableDhcpEnabled(v *bool) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetDhcpEnabled(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearDhcpEnabled clears the value of the "dhcp_enabled" field.
-func (nau *NetworkAdapterUpdate) ClearDhcpEnabled() *NetworkAdapterUpdate {
-	nau.mutation.ClearDhcpEnabled()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearDhcpEnabled() *NetworkAdapterUpdate {
+	_u.mutation.ClearDhcpEnabled()
+	return _u
 }
 
 // SetDhcpLeaseObtained sets the "dhcp_lease_obtained" field.
-func (nau *NetworkAdapterUpdate) SetDhcpLeaseObtained(t time.Time) *NetworkAdapterUpdate {
-	nau.mutation.SetDhcpLeaseObtained(t)
-	return nau
+func (_u *NetworkAdapterUpdate) SetDhcpLeaseObtained(v time.Time) *NetworkAdapterUpdate {
+	_u.mutation.SetDhcpLeaseObtained(v)
+	return _u
 }
 
 // SetNillableDhcpLeaseObtained sets the "dhcp_lease_obtained" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableDhcpLeaseObtained(t *time.Time) *NetworkAdapterUpdate {
-	if t != nil {
-		nau.SetDhcpLeaseObtained(*t)
+func (_u *NetworkAdapterUpdate) SetNillableDhcpLeaseObtained(v *time.Time) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetDhcpLeaseObtained(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearDhcpLeaseObtained clears the value of the "dhcp_lease_obtained" field.
-func (nau *NetworkAdapterUpdate) ClearDhcpLeaseObtained() *NetworkAdapterUpdate {
-	nau.mutation.ClearDhcpLeaseObtained()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearDhcpLeaseObtained() *NetworkAdapterUpdate {
+	_u.mutation.ClearDhcpLeaseObtained()
+	return _u
 }
 
 // SetDhcpLeaseExpired sets the "dhcp_lease_expired" field.
-func (nau *NetworkAdapterUpdate) SetDhcpLeaseExpired(t time.Time) *NetworkAdapterUpdate {
-	nau.mutation.SetDhcpLeaseExpired(t)
-	return nau
+func (_u *NetworkAdapterUpdate) SetDhcpLeaseExpired(v time.Time) *NetworkAdapterUpdate {
+	_u.mutation.SetDhcpLeaseExpired(v)
+	return _u
 }
 
 // SetNillableDhcpLeaseExpired sets the "dhcp_lease_expired" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableDhcpLeaseExpired(t *time.Time) *NetworkAdapterUpdate {
-	if t != nil {
-		nau.SetDhcpLeaseExpired(*t)
+func (_u *NetworkAdapterUpdate) SetNillableDhcpLeaseExpired(v *time.Time) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetDhcpLeaseExpired(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearDhcpLeaseExpired clears the value of the "dhcp_lease_expired" field.
-func (nau *NetworkAdapterUpdate) ClearDhcpLeaseExpired() *NetworkAdapterUpdate {
-	nau.mutation.ClearDhcpLeaseExpired()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearDhcpLeaseExpired() *NetworkAdapterUpdate {
+	_u.mutation.ClearDhcpLeaseExpired()
+	return _u
 }
 
 // SetSpeed sets the "speed" field.
-func (nau *NetworkAdapterUpdate) SetSpeed(s string) *NetworkAdapterUpdate {
-	nau.mutation.SetSpeed(s)
-	return nau
+func (_u *NetworkAdapterUpdate) SetSpeed(v string) *NetworkAdapterUpdate {
+	_u.mutation.SetSpeed(v)
+	return _u
 }
 
 // SetNillableSpeed sets the "speed" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableSpeed(s *string) *NetworkAdapterUpdate {
-	if s != nil {
-		nau.SetSpeed(*s)
+func (_u *NetworkAdapterUpdate) SetNillableSpeed(v *string) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetSpeed(*v)
 	}
-	return nau
+	return _u
 }
 
 // SetVirtual sets the "virtual" field.
-func (nau *NetworkAdapterUpdate) SetVirtual(b bool) *NetworkAdapterUpdate {
-	nau.mutation.SetVirtual(b)
-	return nau
+func (_u *NetworkAdapterUpdate) SetVirtual(v bool) *NetworkAdapterUpdate {
+	_u.mutation.SetVirtual(v)
+	return _u
 }
 
 // SetNillableVirtual sets the "virtual" field if the given value is not nil.
-func (nau *NetworkAdapterUpdate) SetNillableVirtual(b *bool) *NetworkAdapterUpdate {
-	if b != nil {
-		nau.SetVirtual(*b)
+func (_u *NetworkAdapterUpdate) SetNillableVirtual(v *bool) *NetworkAdapterUpdate {
+	if v != nil {
+		_u.SetVirtual(*v)
 	}
-	return nau
+	return _u
 }
 
 // ClearVirtual clears the value of the "virtual" field.
-func (nau *NetworkAdapterUpdate) ClearVirtual() *NetworkAdapterUpdate {
-	nau.mutation.ClearVirtual()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearVirtual() *NetworkAdapterUpdate {
+	_u.mutation.ClearVirtual()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (nau *NetworkAdapterUpdate) SetOwnerID(id string) *NetworkAdapterUpdate {
-	nau.mutation.SetOwnerID(id)
-	return nau
+func (_u *NetworkAdapterUpdate) SetOwnerID(id string) *NetworkAdapterUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (nau *NetworkAdapterUpdate) SetOwner(a *Agent) *NetworkAdapterUpdate {
-	return nau.SetOwnerID(a.ID)
+func (_u *NetworkAdapterUpdate) SetOwner(v *Agent) *NetworkAdapterUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the NetworkAdapterMutation object of the builder.
-func (nau *NetworkAdapterUpdate) Mutation() *NetworkAdapterMutation {
-	return nau.mutation
+func (_u *NetworkAdapterUpdate) Mutation() *NetworkAdapterMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (nau *NetworkAdapterUpdate) ClearOwner() *NetworkAdapterUpdate {
-	nau.mutation.ClearOwner()
-	return nau
+func (_u *NetworkAdapterUpdate) ClearOwner() *NetworkAdapterUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (nau *NetworkAdapterUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, nau.sqlSave, nau.mutation, nau.hooks)
+func (_u *NetworkAdapterUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nau *NetworkAdapterUpdate) SaveX(ctx context.Context) int {
-	affected, err := nau.Save(ctx)
+func (_u *NetworkAdapterUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -283,105 +283,105 @@ func (nau *NetworkAdapterUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (nau *NetworkAdapterUpdate) Exec(ctx context.Context) error {
-	_, err := nau.Save(ctx)
+func (_u *NetworkAdapterUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nau *NetworkAdapterUpdate) ExecX(ctx context.Context) {
-	if err := nau.Exec(ctx); err != nil {
+func (_u *NetworkAdapterUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (nau *NetworkAdapterUpdate) check() error {
-	if nau.mutation.OwnerCleared() && len(nau.mutation.OwnerIDs()) > 0 {
+func (_u *NetworkAdapterUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "NetworkAdapter.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (nau *NetworkAdapterUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetworkAdapterUpdate {
-	nau.modifiers = append(nau.modifiers, modifiers...)
-	return nau
+func (_u *NetworkAdapterUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetworkAdapterUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (nau *NetworkAdapterUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := nau.check(); err != nil {
-		return n, err
+func (_u *NetworkAdapterUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(networkadapter.Table, networkadapter.Columns, sqlgraph.NewFieldSpec(networkadapter.FieldID, field.TypeInt))
-	if ps := nau.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := nau.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(networkadapter.FieldName, field.TypeString, value)
 	}
-	if value, ok := nau.mutation.MACAddress(); ok {
+	if value, ok := _u.mutation.MACAddress(); ok {
 		_spec.SetField(networkadapter.FieldMACAddress, field.TypeString, value)
 	}
-	if value, ok := nau.mutation.Addresses(); ok {
+	if value, ok := _u.mutation.Addresses(); ok {
 		_spec.SetField(networkadapter.FieldAddresses, field.TypeString, value)
 	}
-	if value, ok := nau.mutation.Subnet(); ok {
+	if value, ok := _u.mutation.Subnet(); ok {
 		_spec.SetField(networkadapter.FieldSubnet, field.TypeString, value)
 	}
-	if nau.mutation.SubnetCleared() {
+	if _u.mutation.SubnetCleared() {
 		_spec.ClearField(networkadapter.FieldSubnet, field.TypeString)
 	}
-	if value, ok := nau.mutation.DefaultGateway(); ok {
+	if value, ok := _u.mutation.DefaultGateway(); ok {
 		_spec.SetField(networkadapter.FieldDefaultGateway, field.TypeString, value)
 	}
-	if nau.mutation.DefaultGatewayCleared() {
+	if _u.mutation.DefaultGatewayCleared() {
 		_spec.ClearField(networkadapter.FieldDefaultGateway, field.TypeString)
 	}
-	if value, ok := nau.mutation.DNSServers(); ok {
+	if value, ok := _u.mutation.DNSServers(); ok {
 		_spec.SetField(networkadapter.FieldDNSServers, field.TypeString, value)
 	}
-	if nau.mutation.DNSServersCleared() {
+	if _u.mutation.DNSServersCleared() {
 		_spec.ClearField(networkadapter.FieldDNSServers, field.TypeString)
 	}
-	if value, ok := nau.mutation.DNSDomain(); ok {
+	if value, ok := _u.mutation.DNSDomain(); ok {
 		_spec.SetField(networkadapter.FieldDNSDomain, field.TypeString, value)
 	}
-	if nau.mutation.DNSDomainCleared() {
+	if _u.mutation.DNSDomainCleared() {
 		_spec.ClearField(networkadapter.FieldDNSDomain, field.TypeString)
 	}
-	if value, ok := nau.mutation.DhcpEnabled(); ok {
+	if value, ok := _u.mutation.DhcpEnabled(); ok {
 		_spec.SetField(networkadapter.FieldDhcpEnabled, field.TypeBool, value)
 	}
-	if nau.mutation.DhcpEnabledCleared() {
+	if _u.mutation.DhcpEnabledCleared() {
 		_spec.ClearField(networkadapter.FieldDhcpEnabled, field.TypeBool)
 	}
-	if value, ok := nau.mutation.DhcpLeaseObtained(); ok {
+	if value, ok := _u.mutation.DhcpLeaseObtained(); ok {
 		_spec.SetField(networkadapter.FieldDhcpLeaseObtained, field.TypeTime, value)
 	}
-	if nau.mutation.DhcpLeaseObtainedCleared() {
+	if _u.mutation.DhcpLeaseObtainedCleared() {
 		_spec.ClearField(networkadapter.FieldDhcpLeaseObtained, field.TypeTime)
 	}
-	if value, ok := nau.mutation.DhcpLeaseExpired(); ok {
+	if value, ok := _u.mutation.DhcpLeaseExpired(); ok {
 		_spec.SetField(networkadapter.FieldDhcpLeaseExpired, field.TypeTime, value)
 	}
-	if nau.mutation.DhcpLeaseExpiredCleared() {
+	if _u.mutation.DhcpLeaseExpiredCleared() {
 		_spec.ClearField(networkadapter.FieldDhcpLeaseExpired, field.TypeTime)
 	}
-	if value, ok := nau.mutation.Speed(); ok {
+	if value, ok := _u.mutation.Speed(); ok {
 		_spec.SetField(networkadapter.FieldSpeed, field.TypeString, value)
 	}
-	if value, ok := nau.mutation.Virtual(); ok {
+	if value, ok := _u.mutation.Virtual(); ok {
 		_spec.SetField(networkadapter.FieldVirtual, field.TypeBool, value)
 	}
-	if nau.mutation.VirtualCleared() {
+	if _u.mutation.VirtualCleared() {
 		_spec.ClearField(networkadapter.FieldVirtual, field.TypeBool)
 	}
-	if nau.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -394,7 +394,7 @@ func (nau *NetworkAdapterUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nau.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -410,8 +410,8 @@ func (nau *NetworkAdapterUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(nau.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, nau.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{networkadapter.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -419,8 +419,8 @@ func (nau *NetworkAdapterUpdate) sqlSave(ctx context.Context) (n int, err error)
 		}
 		return 0, err
 	}
-	nau.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // NetworkAdapterUpdateOne is the builder for updating a single NetworkAdapter entity.
@@ -433,264 +433,264 @@ type NetworkAdapterUpdateOne struct {
 }
 
 // SetName sets the "name" field.
-func (nauo *NetworkAdapterUpdateOne) SetName(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetName(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetName(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableName(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetName(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableName(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return nauo
+	return _u
 }
 
 // SetMACAddress sets the "mac_address" field.
-func (nauo *NetworkAdapterUpdateOne) SetMACAddress(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetMACAddress(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetMACAddress(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetMACAddress(v)
+	return _u
 }
 
 // SetNillableMACAddress sets the "mac_address" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableMACAddress(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetMACAddress(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableMACAddress(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetMACAddress(*v)
 	}
-	return nauo
+	return _u
 }
 
 // SetAddresses sets the "addresses" field.
-func (nauo *NetworkAdapterUpdateOne) SetAddresses(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetAddresses(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetAddresses(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetAddresses(v)
+	return _u
 }
 
 // SetNillableAddresses sets the "addresses" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableAddresses(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetAddresses(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableAddresses(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetAddresses(*v)
 	}
-	return nauo
+	return _u
 }
 
 // SetSubnet sets the "subnet" field.
-func (nauo *NetworkAdapterUpdateOne) SetSubnet(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetSubnet(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetSubnet(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetSubnet(v)
+	return _u
 }
 
 // SetNillableSubnet sets the "subnet" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableSubnet(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetSubnet(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableSubnet(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetSubnet(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearSubnet clears the value of the "subnet" field.
-func (nauo *NetworkAdapterUpdateOne) ClearSubnet() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearSubnet()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearSubnet() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearSubnet()
+	return _u
 }
 
 // SetDefaultGateway sets the "default_gateway" field.
-func (nauo *NetworkAdapterUpdateOne) SetDefaultGateway(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetDefaultGateway(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetDefaultGateway(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetDefaultGateway(v)
+	return _u
 }
 
 // SetNillableDefaultGateway sets the "default_gateway" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableDefaultGateway(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetDefaultGateway(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableDefaultGateway(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetDefaultGateway(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearDefaultGateway clears the value of the "default_gateway" field.
-func (nauo *NetworkAdapterUpdateOne) ClearDefaultGateway() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearDefaultGateway()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearDefaultGateway() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearDefaultGateway()
+	return _u
 }
 
 // SetDNSServers sets the "dns_servers" field.
-func (nauo *NetworkAdapterUpdateOne) SetDNSServers(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetDNSServers(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetDNSServers(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetDNSServers(v)
+	return _u
 }
 
 // SetNillableDNSServers sets the "dns_servers" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableDNSServers(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetDNSServers(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableDNSServers(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetDNSServers(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearDNSServers clears the value of the "dns_servers" field.
-func (nauo *NetworkAdapterUpdateOne) ClearDNSServers() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearDNSServers()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearDNSServers() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearDNSServers()
+	return _u
 }
 
 // SetDNSDomain sets the "dns_domain" field.
-func (nauo *NetworkAdapterUpdateOne) SetDNSDomain(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetDNSDomain(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetDNSDomain(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetDNSDomain(v)
+	return _u
 }
 
 // SetNillableDNSDomain sets the "dns_domain" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableDNSDomain(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetDNSDomain(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableDNSDomain(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetDNSDomain(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearDNSDomain clears the value of the "dns_domain" field.
-func (nauo *NetworkAdapterUpdateOne) ClearDNSDomain() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearDNSDomain()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearDNSDomain() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearDNSDomain()
+	return _u
 }
 
 // SetDhcpEnabled sets the "dhcp_enabled" field.
-func (nauo *NetworkAdapterUpdateOne) SetDhcpEnabled(b bool) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetDhcpEnabled(b)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetDhcpEnabled(v bool) *NetworkAdapterUpdateOne {
+	_u.mutation.SetDhcpEnabled(v)
+	return _u
 }
 
 // SetNillableDhcpEnabled sets the "dhcp_enabled" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableDhcpEnabled(b *bool) *NetworkAdapterUpdateOne {
-	if b != nil {
-		nauo.SetDhcpEnabled(*b)
+func (_u *NetworkAdapterUpdateOne) SetNillableDhcpEnabled(v *bool) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetDhcpEnabled(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearDhcpEnabled clears the value of the "dhcp_enabled" field.
-func (nauo *NetworkAdapterUpdateOne) ClearDhcpEnabled() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearDhcpEnabled()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearDhcpEnabled() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearDhcpEnabled()
+	return _u
 }
 
 // SetDhcpLeaseObtained sets the "dhcp_lease_obtained" field.
-func (nauo *NetworkAdapterUpdateOne) SetDhcpLeaseObtained(t time.Time) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetDhcpLeaseObtained(t)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetDhcpLeaseObtained(v time.Time) *NetworkAdapterUpdateOne {
+	_u.mutation.SetDhcpLeaseObtained(v)
+	return _u
 }
 
 // SetNillableDhcpLeaseObtained sets the "dhcp_lease_obtained" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableDhcpLeaseObtained(t *time.Time) *NetworkAdapterUpdateOne {
-	if t != nil {
-		nauo.SetDhcpLeaseObtained(*t)
+func (_u *NetworkAdapterUpdateOne) SetNillableDhcpLeaseObtained(v *time.Time) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetDhcpLeaseObtained(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearDhcpLeaseObtained clears the value of the "dhcp_lease_obtained" field.
-func (nauo *NetworkAdapterUpdateOne) ClearDhcpLeaseObtained() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearDhcpLeaseObtained()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearDhcpLeaseObtained() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearDhcpLeaseObtained()
+	return _u
 }
 
 // SetDhcpLeaseExpired sets the "dhcp_lease_expired" field.
-func (nauo *NetworkAdapterUpdateOne) SetDhcpLeaseExpired(t time.Time) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetDhcpLeaseExpired(t)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetDhcpLeaseExpired(v time.Time) *NetworkAdapterUpdateOne {
+	_u.mutation.SetDhcpLeaseExpired(v)
+	return _u
 }
 
 // SetNillableDhcpLeaseExpired sets the "dhcp_lease_expired" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableDhcpLeaseExpired(t *time.Time) *NetworkAdapterUpdateOne {
-	if t != nil {
-		nauo.SetDhcpLeaseExpired(*t)
+func (_u *NetworkAdapterUpdateOne) SetNillableDhcpLeaseExpired(v *time.Time) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetDhcpLeaseExpired(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearDhcpLeaseExpired clears the value of the "dhcp_lease_expired" field.
-func (nauo *NetworkAdapterUpdateOne) ClearDhcpLeaseExpired() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearDhcpLeaseExpired()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearDhcpLeaseExpired() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearDhcpLeaseExpired()
+	return _u
 }
 
 // SetSpeed sets the "speed" field.
-func (nauo *NetworkAdapterUpdateOne) SetSpeed(s string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetSpeed(s)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetSpeed(v string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetSpeed(v)
+	return _u
 }
 
 // SetNillableSpeed sets the "speed" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableSpeed(s *string) *NetworkAdapterUpdateOne {
-	if s != nil {
-		nauo.SetSpeed(*s)
+func (_u *NetworkAdapterUpdateOne) SetNillableSpeed(v *string) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetSpeed(*v)
 	}
-	return nauo
+	return _u
 }
 
 // SetVirtual sets the "virtual" field.
-func (nauo *NetworkAdapterUpdateOne) SetVirtual(b bool) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetVirtual(b)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetVirtual(v bool) *NetworkAdapterUpdateOne {
+	_u.mutation.SetVirtual(v)
+	return _u
 }
 
 // SetNillableVirtual sets the "virtual" field if the given value is not nil.
-func (nauo *NetworkAdapterUpdateOne) SetNillableVirtual(b *bool) *NetworkAdapterUpdateOne {
-	if b != nil {
-		nauo.SetVirtual(*b)
+func (_u *NetworkAdapterUpdateOne) SetNillableVirtual(v *bool) *NetworkAdapterUpdateOne {
+	if v != nil {
+		_u.SetVirtual(*v)
 	}
-	return nauo
+	return _u
 }
 
 // ClearVirtual clears the value of the "virtual" field.
-func (nauo *NetworkAdapterUpdateOne) ClearVirtual() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearVirtual()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearVirtual() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearVirtual()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (nauo *NetworkAdapterUpdateOne) SetOwnerID(id string) *NetworkAdapterUpdateOne {
-	nauo.mutation.SetOwnerID(id)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) SetOwnerID(id string) *NetworkAdapterUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (nauo *NetworkAdapterUpdateOne) SetOwner(a *Agent) *NetworkAdapterUpdateOne {
-	return nauo.SetOwnerID(a.ID)
+func (_u *NetworkAdapterUpdateOne) SetOwner(v *Agent) *NetworkAdapterUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the NetworkAdapterMutation object of the builder.
-func (nauo *NetworkAdapterUpdateOne) Mutation() *NetworkAdapterMutation {
-	return nauo.mutation
+func (_u *NetworkAdapterUpdateOne) Mutation() *NetworkAdapterMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (nauo *NetworkAdapterUpdateOne) ClearOwner() *NetworkAdapterUpdateOne {
-	nauo.mutation.ClearOwner()
-	return nauo
+func (_u *NetworkAdapterUpdateOne) ClearOwner() *NetworkAdapterUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the NetworkAdapterUpdate builder.
-func (nauo *NetworkAdapterUpdateOne) Where(ps ...predicate.NetworkAdapter) *NetworkAdapterUpdateOne {
-	nauo.mutation.Where(ps...)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) Where(ps ...predicate.NetworkAdapter) *NetworkAdapterUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (nauo *NetworkAdapterUpdateOne) Select(field string, fields ...string) *NetworkAdapterUpdateOne {
-	nauo.fields = append([]string{field}, fields...)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) Select(field string, fields ...string) *NetworkAdapterUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated NetworkAdapter entity.
-func (nauo *NetworkAdapterUpdateOne) Save(ctx context.Context) (*NetworkAdapter, error) {
-	return withHooks(ctx, nauo.sqlSave, nauo.mutation, nauo.hooks)
+func (_u *NetworkAdapterUpdateOne) Save(ctx context.Context) (*NetworkAdapter, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nauo *NetworkAdapterUpdateOne) SaveX(ctx context.Context) *NetworkAdapter {
-	node, err := nauo.Save(ctx)
+func (_u *NetworkAdapterUpdateOne) SaveX(ctx context.Context) *NetworkAdapter {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -698,43 +698,43 @@ func (nauo *NetworkAdapterUpdateOne) SaveX(ctx context.Context) *NetworkAdapter 
 }
 
 // Exec executes the query on the entity.
-func (nauo *NetworkAdapterUpdateOne) Exec(ctx context.Context) error {
-	_, err := nauo.Save(ctx)
+func (_u *NetworkAdapterUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nauo *NetworkAdapterUpdateOne) ExecX(ctx context.Context) {
-	if err := nauo.Exec(ctx); err != nil {
+func (_u *NetworkAdapterUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (nauo *NetworkAdapterUpdateOne) check() error {
-	if nauo.mutation.OwnerCleared() && len(nauo.mutation.OwnerIDs()) > 0 {
+func (_u *NetworkAdapterUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "NetworkAdapter.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (nauo *NetworkAdapterUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetworkAdapterUpdateOne {
-	nauo.modifiers = append(nauo.modifiers, modifiers...)
-	return nauo
+func (_u *NetworkAdapterUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetworkAdapterUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (nauo *NetworkAdapterUpdateOne) sqlSave(ctx context.Context) (_node *NetworkAdapter, err error) {
-	if err := nauo.check(); err != nil {
+func (_u *NetworkAdapterUpdateOne) sqlSave(ctx context.Context) (_node *NetworkAdapter, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(networkadapter.Table, networkadapter.Columns, sqlgraph.NewFieldSpec(networkadapter.FieldID, field.TypeInt))
-	id, ok := nauo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "NetworkAdapter.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := nauo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, networkadapter.FieldID)
 		for _, f := range fields {
@@ -746,74 +746,74 @@ func (nauo *NetworkAdapterUpdateOne) sqlSave(ctx context.Context) (_node *Networ
 			}
 		}
 	}
-	if ps := nauo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := nauo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(networkadapter.FieldName, field.TypeString, value)
 	}
-	if value, ok := nauo.mutation.MACAddress(); ok {
+	if value, ok := _u.mutation.MACAddress(); ok {
 		_spec.SetField(networkadapter.FieldMACAddress, field.TypeString, value)
 	}
-	if value, ok := nauo.mutation.Addresses(); ok {
+	if value, ok := _u.mutation.Addresses(); ok {
 		_spec.SetField(networkadapter.FieldAddresses, field.TypeString, value)
 	}
-	if value, ok := nauo.mutation.Subnet(); ok {
+	if value, ok := _u.mutation.Subnet(); ok {
 		_spec.SetField(networkadapter.FieldSubnet, field.TypeString, value)
 	}
-	if nauo.mutation.SubnetCleared() {
+	if _u.mutation.SubnetCleared() {
 		_spec.ClearField(networkadapter.FieldSubnet, field.TypeString)
 	}
-	if value, ok := nauo.mutation.DefaultGateway(); ok {
+	if value, ok := _u.mutation.DefaultGateway(); ok {
 		_spec.SetField(networkadapter.FieldDefaultGateway, field.TypeString, value)
 	}
-	if nauo.mutation.DefaultGatewayCleared() {
+	if _u.mutation.DefaultGatewayCleared() {
 		_spec.ClearField(networkadapter.FieldDefaultGateway, field.TypeString)
 	}
-	if value, ok := nauo.mutation.DNSServers(); ok {
+	if value, ok := _u.mutation.DNSServers(); ok {
 		_spec.SetField(networkadapter.FieldDNSServers, field.TypeString, value)
 	}
-	if nauo.mutation.DNSServersCleared() {
+	if _u.mutation.DNSServersCleared() {
 		_spec.ClearField(networkadapter.FieldDNSServers, field.TypeString)
 	}
-	if value, ok := nauo.mutation.DNSDomain(); ok {
+	if value, ok := _u.mutation.DNSDomain(); ok {
 		_spec.SetField(networkadapter.FieldDNSDomain, field.TypeString, value)
 	}
-	if nauo.mutation.DNSDomainCleared() {
+	if _u.mutation.DNSDomainCleared() {
 		_spec.ClearField(networkadapter.FieldDNSDomain, field.TypeString)
 	}
-	if value, ok := nauo.mutation.DhcpEnabled(); ok {
+	if value, ok := _u.mutation.DhcpEnabled(); ok {
 		_spec.SetField(networkadapter.FieldDhcpEnabled, field.TypeBool, value)
 	}
-	if nauo.mutation.DhcpEnabledCleared() {
+	if _u.mutation.DhcpEnabledCleared() {
 		_spec.ClearField(networkadapter.FieldDhcpEnabled, field.TypeBool)
 	}
-	if value, ok := nauo.mutation.DhcpLeaseObtained(); ok {
+	if value, ok := _u.mutation.DhcpLeaseObtained(); ok {
 		_spec.SetField(networkadapter.FieldDhcpLeaseObtained, field.TypeTime, value)
 	}
-	if nauo.mutation.DhcpLeaseObtainedCleared() {
+	if _u.mutation.DhcpLeaseObtainedCleared() {
 		_spec.ClearField(networkadapter.FieldDhcpLeaseObtained, field.TypeTime)
 	}
-	if value, ok := nauo.mutation.DhcpLeaseExpired(); ok {
+	if value, ok := _u.mutation.DhcpLeaseExpired(); ok {
 		_spec.SetField(networkadapter.FieldDhcpLeaseExpired, field.TypeTime, value)
 	}
-	if nauo.mutation.DhcpLeaseExpiredCleared() {
+	if _u.mutation.DhcpLeaseExpiredCleared() {
 		_spec.ClearField(networkadapter.FieldDhcpLeaseExpired, field.TypeTime)
 	}
-	if value, ok := nauo.mutation.Speed(); ok {
+	if value, ok := _u.mutation.Speed(); ok {
 		_spec.SetField(networkadapter.FieldSpeed, field.TypeString, value)
 	}
-	if value, ok := nauo.mutation.Virtual(); ok {
+	if value, ok := _u.mutation.Virtual(); ok {
 		_spec.SetField(networkadapter.FieldVirtual, field.TypeBool, value)
 	}
-	if nauo.mutation.VirtualCleared() {
+	if _u.mutation.VirtualCleared() {
 		_spec.ClearField(networkadapter.FieldVirtual, field.TypeBool)
 	}
-	if nauo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -826,7 +826,7 @@ func (nauo *NetworkAdapterUpdateOne) sqlSave(ctx context.Context) (_node *Networ
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nauo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -842,11 +842,11 @@ func (nauo *NetworkAdapterUpdateOne) sqlSave(ctx context.Context) (_node *Networ
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(nauo.modifiers...)
-	_node = &NetworkAdapter{config: nauo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &NetworkAdapter{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, nauo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{networkadapter.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -854,6 +854,6 @@ func (nauo *NetworkAdapterUpdateOne) sqlSave(ctx context.Context) (_node *Networ
 		}
 		return nil, err
 	}
-	nauo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

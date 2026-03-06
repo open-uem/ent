@@ -32,44 +32,44 @@ type NetbirdQuery struct {
 }
 
 // Where adds a new predicate for the NetbirdQuery builder.
-func (nq *NetbirdQuery) Where(ps ...predicate.Netbird) *NetbirdQuery {
-	nq.predicates = append(nq.predicates, ps...)
-	return nq
+func (_q *NetbirdQuery) Where(ps ...predicate.Netbird) *NetbirdQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (nq *NetbirdQuery) Limit(limit int) *NetbirdQuery {
-	nq.ctx.Limit = &limit
-	return nq
+func (_q *NetbirdQuery) Limit(limit int) *NetbirdQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (nq *NetbirdQuery) Offset(offset int) *NetbirdQuery {
-	nq.ctx.Offset = &offset
-	return nq
+func (_q *NetbirdQuery) Offset(offset int) *NetbirdQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (nq *NetbirdQuery) Unique(unique bool) *NetbirdQuery {
-	nq.ctx.Unique = &unique
-	return nq
+func (_q *NetbirdQuery) Unique(unique bool) *NetbirdQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (nq *NetbirdQuery) Order(o ...netbird.OrderOption) *NetbirdQuery {
-	nq.order = append(nq.order, o...)
-	return nq
+func (_q *NetbirdQuery) Order(o ...netbird.OrderOption) *NetbirdQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (nq *NetbirdQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: nq.config}).Query()
+func (_q *NetbirdQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := nq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := nq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (nq *NetbirdQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, true, netbird.OwnerTable, netbird.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(nq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (nq *NetbirdQuery) QueryOwner() *AgentQuery {
 
 // First returns the first Netbird entity from the query.
 // Returns a *NotFoundError when no Netbird was found.
-func (nq *NetbirdQuery) First(ctx context.Context) (*Netbird, error) {
-	nodes, err := nq.Limit(1).All(setContextOp(ctx, nq.ctx, ent.OpQueryFirst))
+func (_q *NetbirdQuery) First(ctx context.Context) (*Netbird, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (nq *NetbirdQuery) First(ctx context.Context) (*Netbird, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (nq *NetbirdQuery) FirstX(ctx context.Context) *Netbird {
-	node, err := nq.First(ctx)
+func (_q *NetbirdQuery) FirstX(ctx context.Context) *Netbird {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (nq *NetbirdQuery) FirstX(ctx context.Context) *Netbird {
 
 // FirstID returns the first Netbird ID from the query.
 // Returns a *NotFoundError when no Netbird ID was found.
-func (nq *NetbirdQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *NetbirdQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = nq.Limit(1).IDs(setContextOp(ctx, nq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (nq *NetbirdQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (nq *NetbirdQuery) FirstIDX(ctx context.Context) int {
-	id, err := nq.FirstID(ctx)
+func (_q *NetbirdQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (nq *NetbirdQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single Netbird entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Netbird entity is found.
 // Returns a *NotFoundError when no Netbird entities are found.
-func (nq *NetbirdQuery) Only(ctx context.Context) (*Netbird, error) {
-	nodes, err := nq.Limit(2).All(setContextOp(ctx, nq.ctx, ent.OpQueryOnly))
+func (_q *NetbirdQuery) Only(ctx context.Context) (*Netbird, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (nq *NetbirdQuery) Only(ctx context.Context) (*Netbird, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (nq *NetbirdQuery) OnlyX(ctx context.Context) *Netbird {
-	node, err := nq.Only(ctx)
+func (_q *NetbirdQuery) OnlyX(ctx context.Context) *Netbird {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (nq *NetbirdQuery) OnlyX(ctx context.Context) *Netbird {
 // OnlyID is like Only, but returns the only Netbird ID in the query.
 // Returns a *NotSingularError when more than one Netbird ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (nq *NetbirdQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *NetbirdQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = nq.Limit(2).IDs(setContextOp(ctx, nq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (nq *NetbirdQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (nq *NetbirdQuery) OnlyIDX(ctx context.Context) int {
-	id, err := nq.OnlyID(ctx)
+func (_q *NetbirdQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (nq *NetbirdQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of Netbirds.
-func (nq *NetbirdQuery) All(ctx context.Context) ([]*Netbird, error) {
-	ctx = setContextOp(ctx, nq.ctx, ent.OpQueryAll)
-	if err := nq.prepareQuery(ctx); err != nil {
+func (_q *NetbirdQuery) All(ctx context.Context) ([]*Netbird, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Netbird, *NetbirdQuery]()
-	return withInterceptors[[]*Netbird](ctx, nq, qr, nq.inters)
+	return withInterceptors[[]*Netbird](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (nq *NetbirdQuery) AllX(ctx context.Context) []*Netbird {
-	nodes, err := nq.All(ctx)
+func (_q *NetbirdQuery) AllX(ctx context.Context) []*Netbird {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (nq *NetbirdQuery) AllX(ctx context.Context) []*Netbird {
 }
 
 // IDs executes the query and returns a list of Netbird IDs.
-func (nq *NetbirdQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if nq.ctx.Unique == nil && nq.path != nil {
-		nq.Unique(true)
+func (_q *NetbirdQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, nq.ctx, ent.OpQueryIDs)
-	if err = nq.Select(netbird.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(netbird.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (nq *NetbirdQuery) IDsX(ctx context.Context) []int {
-	ids, err := nq.IDs(ctx)
+func (_q *NetbirdQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (nq *NetbirdQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (nq *NetbirdQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, nq.ctx, ent.OpQueryCount)
-	if err := nq.prepareQuery(ctx); err != nil {
+func (_q *NetbirdQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, nq, querierCount[*NetbirdQuery](), nq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*NetbirdQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (nq *NetbirdQuery) CountX(ctx context.Context) int {
-	count, err := nq.Count(ctx)
+func (_q *NetbirdQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (nq *NetbirdQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (nq *NetbirdQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, nq.ctx, ent.OpQueryExist)
-	switch _, err := nq.FirstID(ctx); {
+func (_q *NetbirdQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (nq *NetbirdQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (nq *NetbirdQuery) ExistX(ctx context.Context) bool {
-	exist, err := nq.Exist(ctx)
+func (_q *NetbirdQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (nq *NetbirdQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the NetbirdQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (nq *NetbirdQuery) Clone() *NetbirdQuery {
-	if nq == nil {
+func (_q *NetbirdQuery) Clone() *NetbirdQuery {
+	if _q == nil {
 		return nil
 	}
 	return &NetbirdQuery{
-		config:     nq.config,
-		ctx:        nq.ctx.Clone(),
-		order:      append([]netbird.OrderOption{}, nq.order...),
-		inters:     append([]Interceptor{}, nq.inters...),
-		predicates: append([]predicate.Netbird{}, nq.predicates...),
-		withOwner:  nq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]netbird.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.Netbird{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       nq.sql.Clone(),
-		path:      nq.path,
-		modifiers: append([]func(*sql.Selector){}, nq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (nq *NetbirdQuery) WithOwner(opts ...func(*AgentQuery)) *NetbirdQuery {
-	query := (&AgentClient{config: nq.config}).Query()
+func (_q *NetbirdQuery) WithOwner(opts ...func(*AgentQuery)) *NetbirdQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	nq.withOwner = query
-	return nq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (nq *NetbirdQuery) WithOwner(opts ...func(*AgentQuery)) *NetbirdQuery {
 //		GroupBy(netbird.FieldVersion).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (nq *NetbirdQuery) GroupBy(field string, fields ...string) *NetbirdGroupBy {
-	nq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &NetbirdGroupBy{build: nq}
-	grbuild.flds = &nq.ctx.Fields
+func (_q *NetbirdQuery) GroupBy(field string, fields ...string) *NetbirdGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &NetbirdGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = netbird.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (nq *NetbirdQuery) GroupBy(field string, fields ...string) *NetbirdGroupBy 
 //	client.Netbird.Query().
 //		Select(netbird.FieldVersion).
 //		Scan(ctx, &v)
-func (nq *NetbirdQuery) Select(fields ...string) *NetbirdSelect {
-	nq.ctx.Fields = append(nq.ctx.Fields, fields...)
-	sbuild := &NetbirdSelect{NetbirdQuery: nq}
+func (_q *NetbirdQuery) Select(fields ...string) *NetbirdSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &NetbirdSelect{NetbirdQuery: _q}
 	sbuild.label = netbird.Label
-	sbuild.flds, sbuild.scan = &nq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a NetbirdSelect configured with the given aggregations.
-func (nq *NetbirdQuery) Aggregate(fns ...AggregateFunc) *NetbirdSelect {
-	return nq.Select().Aggregate(fns...)
+func (_q *NetbirdQuery) Aggregate(fns ...AggregateFunc) *NetbirdSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (nq *NetbirdQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range nq.inters {
+func (_q *NetbirdQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, nq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range nq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !netbird.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if nq.path != nil {
-		prev, err := nq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		nq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (nq *NetbirdQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Netbird, error) {
+func (_q *NetbirdQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Netbird, error) {
 	var (
 		nodes       = []*Netbird{}
-		withFKs     = nq.withFKs
-		_spec       = nq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			nq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if nq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (nq *NetbirdQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Netb
 		return (*Netbird).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Netbird{config: nq.config}
+		node := &Netbird{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(nq.modifiers) > 0 {
-		_spec.Modifiers = nq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, nq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := nq.withOwner; query != nil {
-		if err := nq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *Netbird, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (nq *NetbirdQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Netb
 	return nodes, nil
 }
 
-func (nq *NetbirdQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*Netbird, init func(*Netbird), assign func(*Netbird, *Agent)) error {
+func (_q *NetbirdQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*Netbird, init func(*Netbird), assign func(*Netbird, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*Netbird)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (nq *NetbirdQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes 
 	return nil
 }
 
-func (nq *NetbirdQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := nq.querySpec()
-	if len(nq.modifiers) > 0 {
-		_spec.Modifiers = nq.modifiers
+func (_q *NetbirdQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = nq.ctx.Fields
-	if len(nq.ctx.Fields) > 0 {
-		_spec.Unique = nq.ctx.Unique != nil && *nq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, nq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (nq *NetbirdQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *NetbirdQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(netbird.Table, netbird.Columns, sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt))
-	_spec.From = nq.sql
-	if unique := nq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if nq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := nq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, netbird.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (nq *NetbirdQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := nq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := nq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := nq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := nq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (nq *NetbirdQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (nq *NetbirdQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(nq.driver.Dialect())
+func (_q *NetbirdQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(netbird.Table)
-	columns := nq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = netbird.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if nq.sql != nil {
-		selector = nq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if nq.ctx.Unique != nil && *nq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range nq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range nq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range nq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := nq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := nq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (nq *NetbirdQuery) Modify(modifiers ...func(s *sql.Selector)) *NetbirdSelect {
-	nq.modifiers = append(nq.modifiers, modifiers...)
-	return nq.Select()
+func (_q *NetbirdQuery) Modify(modifiers ...func(s *sql.Selector)) *NetbirdSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // NetbirdGroupBy is the group-by builder for Netbird entities.
@@ -547,41 +547,41 @@ type NetbirdGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (ngb *NetbirdGroupBy) Aggregate(fns ...AggregateFunc) *NetbirdGroupBy {
-	ngb.fns = append(ngb.fns, fns...)
-	return ngb
+func (_g *NetbirdGroupBy) Aggregate(fns ...AggregateFunc) *NetbirdGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ngb *NetbirdGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ngb.build.ctx, ent.OpQueryGroupBy)
-	if err := ngb.build.prepareQuery(ctx); err != nil {
+func (_g *NetbirdGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*NetbirdQuery, *NetbirdGroupBy](ctx, ngb.build, ngb, ngb.build.inters, v)
+	return scanWithInterceptors[*NetbirdQuery, *NetbirdGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (ngb *NetbirdGroupBy) sqlScan(ctx context.Context, root *NetbirdQuery, v any) error {
+func (_g *NetbirdGroupBy) sqlScan(ctx context.Context, root *NetbirdQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(ngb.fns))
-	for _, fn := range ngb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*ngb.flds)+len(ngb.fns))
-		for _, f := range *ngb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*ngb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ngb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type NetbirdSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (ns *NetbirdSelect) Aggregate(fns ...AggregateFunc) *NetbirdSelect {
-	ns.fns = append(ns.fns, fns...)
-	return ns
+func (_s *NetbirdSelect) Aggregate(fns ...AggregateFunc) *NetbirdSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ns *NetbirdSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ns.ctx, ent.OpQuerySelect)
-	if err := ns.prepareQuery(ctx); err != nil {
+func (_s *NetbirdSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*NetbirdQuery, *NetbirdSelect](ctx, ns.NetbirdQuery, ns, ns.inters, v)
+	return scanWithInterceptors[*NetbirdQuery, *NetbirdSelect](ctx, _s.NetbirdQuery, _s, _s.inters, v)
 }
 
-func (ns *NetbirdSelect) sqlScan(ctx context.Context, root *NetbirdQuery, v any) error {
+func (_s *NetbirdSelect) sqlScan(ctx context.Context, root *NetbirdQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(ns.fns))
-	for _, fn := range ns.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*ns.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (ns *NetbirdSelect) sqlScan(ctx context.Context, root *NetbirdQuery, v any)
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ns.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (ns *NetbirdSelect) sqlScan(ctx context.Context, root *NetbirdQuery, v any)
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (ns *NetbirdSelect) Modify(modifiers ...func(s *sql.Selector)) *NetbirdSelect {
-	ns.modifiers = append(ns.modifiers, modifiers...)
-	return ns
+func (_s *NetbirdSelect) Modify(modifiers ...func(s *sql.Selector)) *NetbirdSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

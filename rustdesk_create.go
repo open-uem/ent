@@ -23,160 +23,160 @@ type RustdeskCreate struct {
 }
 
 // SetCustomRendezvousServer sets the "custom_rendezvous_server" field.
-func (rc *RustdeskCreate) SetCustomRendezvousServer(s string) *RustdeskCreate {
-	rc.mutation.SetCustomRendezvousServer(s)
-	return rc
+func (_c *RustdeskCreate) SetCustomRendezvousServer(v string) *RustdeskCreate {
+	_c.mutation.SetCustomRendezvousServer(v)
+	return _c
 }
 
 // SetNillableCustomRendezvousServer sets the "custom_rendezvous_server" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableCustomRendezvousServer(s *string) *RustdeskCreate {
-	if s != nil {
-		rc.SetCustomRendezvousServer(*s)
+func (_c *RustdeskCreate) SetNillableCustomRendezvousServer(v *string) *RustdeskCreate {
+	if v != nil {
+		_c.SetCustomRendezvousServer(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetRelayServer sets the "relay_server" field.
-func (rc *RustdeskCreate) SetRelayServer(s string) *RustdeskCreate {
-	rc.mutation.SetRelayServer(s)
-	return rc
+func (_c *RustdeskCreate) SetRelayServer(v string) *RustdeskCreate {
+	_c.mutation.SetRelayServer(v)
+	return _c
 }
 
 // SetNillableRelayServer sets the "relay_server" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableRelayServer(s *string) *RustdeskCreate {
-	if s != nil {
-		rc.SetRelayServer(*s)
+func (_c *RustdeskCreate) SetNillableRelayServer(v *string) *RustdeskCreate {
+	if v != nil {
+		_c.SetRelayServer(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetAPIServer sets the "api_server" field.
-func (rc *RustdeskCreate) SetAPIServer(s string) *RustdeskCreate {
-	rc.mutation.SetAPIServer(s)
-	return rc
+func (_c *RustdeskCreate) SetAPIServer(v string) *RustdeskCreate {
+	_c.mutation.SetAPIServer(v)
+	return _c
 }
 
 // SetNillableAPIServer sets the "api_server" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableAPIServer(s *string) *RustdeskCreate {
-	if s != nil {
-		rc.SetAPIServer(*s)
+func (_c *RustdeskCreate) SetNillableAPIServer(v *string) *RustdeskCreate {
+	if v != nil {
+		_c.SetAPIServer(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetKey sets the "key" field.
-func (rc *RustdeskCreate) SetKey(s string) *RustdeskCreate {
-	rc.mutation.SetKey(s)
-	return rc
+func (_c *RustdeskCreate) SetKey(v string) *RustdeskCreate {
+	_c.mutation.SetKey(v)
+	return _c
 }
 
 // SetNillableKey sets the "key" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableKey(s *string) *RustdeskCreate {
-	if s != nil {
-		rc.SetKey(*s)
+func (_c *RustdeskCreate) SetNillableKey(v *string) *RustdeskCreate {
+	if v != nil {
+		_c.SetKey(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetUsePermanentPassword sets the "use_permanent_password" field.
-func (rc *RustdeskCreate) SetUsePermanentPassword(b bool) *RustdeskCreate {
-	rc.mutation.SetUsePermanentPassword(b)
-	return rc
+func (_c *RustdeskCreate) SetUsePermanentPassword(v bool) *RustdeskCreate {
+	_c.mutation.SetUsePermanentPassword(v)
+	return _c
 }
 
 // SetNillableUsePermanentPassword sets the "use_permanent_password" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableUsePermanentPassword(b *bool) *RustdeskCreate {
-	if b != nil {
-		rc.SetUsePermanentPassword(*b)
+func (_c *RustdeskCreate) SetNillableUsePermanentPassword(v *bool) *RustdeskCreate {
+	if v != nil {
+		_c.SetUsePermanentPassword(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetWhitelist sets the "whitelist" field.
-func (rc *RustdeskCreate) SetWhitelist(s string) *RustdeskCreate {
-	rc.mutation.SetWhitelist(s)
-	return rc
+func (_c *RustdeskCreate) SetWhitelist(v string) *RustdeskCreate {
+	_c.mutation.SetWhitelist(v)
+	return _c
 }
 
 // SetNillableWhitelist sets the "whitelist" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableWhitelist(s *string) *RustdeskCreate {
-	if s != nil {
-		rc.SetWhitelist(*s)
+func (_c *RustdeskCreate) SetNillableWhitelist(v *string) *RustdeskCreate {
+	if v != nil {
+		_c.SetWhitelist(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetDirectIPAccess sets the "direct_ip_access" field.
-func (rc *RustdeskCreate) SetDirectIPAccess(b bool) *RustdeskCreate {
-	rc.mutation.SetDirectIPAccess(b)
-	return rc
+func (_c *RustdeskCreate) SetDirectIPAccess(v bool) *RustdeskCreate {
+	_c.mutation.SetDirectIPAccess(v)
+	return _c
 }
 
 // SetNillableDirectIPAccess sets the "direct_ip_access" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableDirectIPAccess(b *bool) *RustdeskCreate {
-	if b != nil {
-		rc.SetDirectIPAccess(*b)
+func (_c *RustdeskCreate) SetNillableDirectIPAccess(v *bool) *RustdeskCreate {
+	if v != nil {
+		_c.SetDirectIPAccess(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetVerificationMethod sets the "verification_method" field.
-func (rc *RustdeskCreate) SetVerificationMethod(rm rustdesk.VerificationMethod) *RustdeskCreate {
-	rc.mutation.SetVerificationMethod(rm)
-	return rc
+func (_c *RustdeskCreate) SetVerificationMethod(v rustdesk.VerificationMethod) *RustdeskCreate {
+	_c.mutation.SetVerificationMethod(v)
+	return _c
 }
 
 // SetNillableVerificationMethod sets the "verification_method" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableVerificationMethod(rm *rustdesk.VerificationMethod) *RustdeskCreate {
-	if rm != nil {
-		rc.SetVerificationMethod(*rm)
+func (_c *RustdeskCreate) SetNillableVerificationMethod(v *rustdesk.VerificationMethod) *RustdeskCreate {
+	if v != nil {
+		_c.SetVerificationMethod(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetTemporaryPasswordLength sets the "temporary_password_length" field.
-func (rc *RustdeskCreate) SetTemporaryPasswordLength(i int) *RustdeskCreate {
-	rc.mutation.SetTemporaryPasswordLength(i)
-	return rc
+func (_c *RustdeskCreate) SetTemporaryPasswordLength(v int) *RustdeskCreate {
+	_c.mutation.SetTemporaryPasswordLength(v)
+	return _c
 }
 
 // SetNillableTemporaryPasswordLength sets the "temporary_password_length" field if the given value is not nil.
-func (rc *RustdeskCreate) SetNillableTemporaryPasswordLength(i *int) *RustdeskCreate {
-	if i != nil {
-		rc.SetTemporaryPasswordLength(*i)
+func (_c *RustdeskCreate) SetNillableTemporaryPasswordLength(v *int) *RustdeskCreate {
+	if v != nil {
+		_c.SetTemporaryPasswordLength(*v)
 	}
-	return rc
+	return _c
 }
 
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
-func (rc *RustdeskCreate) AddTenantIDs(ids ...int) *RustdeskCreate {
-	rc.mutation.AddTenantIDs(ids...)
-	return rc
+func (_c *RustdeskCreate) AddTenantIDs(ids ...int) *RustdeskCreate {
+	_c.mutation.AddTenantIDs(ids...)
+	return _c
 }
 
 // AddTenant adds the "tenant" edges to the Tenant entity.
-func (rc *RustdeskCreate) AddTenant(t ...*Tenant) *RustdeskCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *RustdeskCreate) AddTenant(v ...*Tenant) *RustdeskCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return rc.AddTenantIDs(ids...)
+	return _c.AddTenantIDs(ids...)
 }
 
 // Mutation returns the RustdeskMutation object of the builder.
-func (rc *RustdeskCreate) Mutation() *RustdeskMutation {
-	return rc.mutation
+func (_c *RustdeskCreate) Mutation() *RustdeskMutation {
+	return _c.mutation
 }
 
 // Save creates the Rustdesk in the database.
-func (rc *RustdeskCreate) Save(ctx context.Context) (*Rustdesk, error) {
-	rc.defaults()
-	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
+func (_c *RustdeskCreate) Save(ctx context.Context) (*Rustdesk, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (rc *RustdeskCreate) SaveX(ctx context.Context) *Rustdesk {
-	v, err := rc.Save(ctx)
+func (_c *RustdeskCreate) SaveX(ctx context.Context) *Rustdesk {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -184,61 +184,61 @@ func (rc *RustdeskCreate) SaveX(ctx context.Context) *Rustdesk {
 }
 
 // Exec executes the query.
-func (rc *RustdeskCreate) Exec(ctx context.Context) error {
-	_, err := rc.Save(ctx)
+func (_c *RustdeskCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rc *RustdeskCreate) ExecX(ctx context.Context) {
-	if err := rc.Exec(ctx); err != nil {
+func (_c *RustdeskCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (rc *RustdeskCreate) defaults() {
-	if _, ok := rc.mutation.CustomRendezvousServer(); !ok {
+func (_c *RustdeskCreate) defaults() {
+	if _, ok := _c.mutation.CustomRendezvousServer(); !ok {
 		v := rustdesk.DefaultCustomRendezvousServer
-		rc.mutation.SetCustomRendezvousServer(v)
+		_c.mutation.SetCustomRendezvousServer(v)
 	}
-	if _, ok := rc.mutation.RelayServer(); !ok {
+	if _, ok := _c.mutation.RelayServer(); !ok {
 		v := rustdesk.DefaultRelayServer
-		rc.mutation.SetRelayServer(v)
+		_c.mutation.SetRelayServer(v)
 	}
-	if _, ok := rc.mutation.APIServer(); !ok {
+	if _, ok := _c.mutation.APIServer(); !ok {
 		v := rustdesk.DefaultAPIServer
-		rc.mutation.SetAPIServer(v)
+		_c.mutation.SetAPIServer(v)
 	}
-	if _, ok := rc.mutation.Key(); !ok {
+	if _, ok := _c.mutation.Key(); !ok {
 		v := rustdesk.DefaultKey
-		rc.mutation.SetKey(v)
+		_c.mutation.SetKey(v)
 	}
-	if _, ok := rc.mutation.UsePermanentPassword(); !ok {
+	if _, ok := _c.mutation.UsePermanentPassword(); !ok {
 		v := rustdesk.DefaultUsePermanentPassword
-		rc.mutation.SetUsePermanentPassword(v)
+		_c.mutation.SetUsePermanentPassword(v)
 	}
-	if _, ok := rc.mutation.Whitelist(); !ok {
+	if _, ok := _c.mutation.Whitelist(); !ok {
 		v := rustdesk.DefaultWhitelist
-		rc.mutation.SetWhitelist(v)
+		_c.mutation.SetWhitelist(v)
 	}
-	if _, ok := rc.mutation.DirectIPAccess(); !ok {
+	if _, ok := _c.mutation.DirectIPAccess(); !ok {
 		v := rustdesk.DefaultDirectIPAccess
-		rc.mutation.SetDirectIPAccess(v)
+		_c.mutation.SetDirectIPAccess(v)
 	}
-	if _, ok := rc.mutation.VerificationMethod(); !ok {
+	if _, ok := _c.mutation.VerificationMethod(); !ok {
 		v := rustdesk.DefaultVerificationMethod
-		rc.mutation.SetVerificationMethod(v)
+		_c.mutation.SetVerificationMethod(v)
 	}
-	if _, ok := rc.mutation.TemporaryPasswordLength(); !ok {
+	if _, ok := _c.mutation.TemporaryPasswordLength(); !ok {
 		v := rustdesk.DefaultTemporaryPasswordLength
-		rc.mutation.SetTemporaryPasswordLength(v)
+		_c.mutation.SetTemporaryPasswordLength(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rc *RustdeskCreate) check() error {
-	if v, ok := rc.mutation.VerificationMethod(); ok {
+func (_c *RustdeskCreate) check() error {
+	if v, ok := _c.mutation.VerificationMethod(); ok {
 		if err := rustdesk.VerificationMethodValidator(v); err != nil {
 			return &ValidationError{Name: "verification_method", err: fmt.Errorf(`ent: validator failed for field "Rustdesk.verification_method": %w`, err)}
 		}
@@ -246,12 +246,12 @@ func (rc *RustdeskCreate) check() error {
 	return nil
 }
 
-func (rc *RustdeskCreate) sqlSave(ctx context.Context) (*Rustdesk, error) {
-	if err := rc.check(); err != nil {
+func (_c *RustdeskCreate) sqlSave(ctx context.Context) (*Rustdesk, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := rc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -259,54 +259,54 @@ func (rc *RustdeskCreate) sqlSave(ctx context.Context) (*Rustdesk, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	rc.mutation.id = &_node.ID
-	rc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (rc *RustdeskCreate) createSpec() (*Rustdesk, *sqlgraph.CreateSpec) {
+func (_c *RustdeskCreate) createSpec() (*Rustdesk, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Rustdesk{config: rc.config}
+		_node = &Rustdesk{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(rustdesk.Table, sqlgraph.NewFieldSpec(rustdesk.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = rc.conflict
-	if value, ok := rc.mutation.CustomRendezvousServer(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.CustomRendezvousServer(); ok {
 		_spec.SetField(rustdesk.FieldCustomRendezvousServer, field.TypeString, value)
 		_node.CustomRendezvousServer = value
 	}
-	if value, ok := rc.mutation.RelayServer(); ok {
+	if value, ok := _c.mutation.RelayServer(); ok {
 		_spec.SetField(rustdesk.FieldRelayServer, field.TypeString, value)
 		_node.RelayServer = value
 	}
-	if value, ok := rc.mutation.APIServer(); ok {
+	if value, ok := _c.mutation.APIServer(); ok {
 		_spec.SetField(rustdesk.FieldAPIServer, field.TypeString, value)
 		_node.APIServer = value
 	}
-	if value, ok := rc.mutation.Key(); ok {
+	if value, ok := _c.mutation.Key(); ok {
 		_spec.SetField(rustdesk.FieldKey, field.TypeString, value)
 		_node.Key = value
 	}
-	if value, ok := rc.mutation.UsePermanentPassword(); ok {
+	if value, ok := _c.mutation.UsePermanentPassword(); ok {
 		_spec.SetField(rustdesk.FieldUsePermanentPassword, field.TypeBool, value)
 		_node.UsePermanentPassword = value
 	}
-	if value, ok := rc.mutation.Whitelist(); ok {
+	if value, ok := _c.mutation.Whitelist(); ok {
 		_spec.SetField(rustdesk.FieldWhitelist, field.TypeString, value)
 		_node.Whitelist = value
 	}
-	if value, ok := rc.mutation.DirectIPAccess(); ok {
+	if value, ok := _c.mutation.DirectIPAccess(); ok {
 		_spec.SetField(rustdesk.FieldDirectIPAccess, field.TypeBool, value)
 		_node.DirectIPAccess = value
 	}
-	if value, ok := rc.mutation.VerificationMethod(); ok {
+	if value, ok := _c.mutation.VerificationMethod(); ok {
 		_spec.SetField(rustdesk.FieldVerificationMethod, field.TypeEnum, value)
 		_node.VerificationMethod = value
 	}
-	if value, ok := rc.mutation.TemporaryPasswordLength(); ok {
+	if value, ok := _c.mutation.TemporaryPasswordLength(); ok {
 		_spec.SetField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt, value)
 		_node.TemporaryPasswordLength = value
 	}
-	if nodes := rc.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -341,10 +341,10 @@ func (rc *RustdeskCreate) createSpec() (*Rustdesk, *sqlgraph.CreateSpec) {
 //			SetCustomRendezvousServer(v+v).
 //		}).
 //		Exec(ctx)
-func (rc *RustdeskCreate) OnConflict(opts ...sql.ConflictOption) *RustdeskUpsertOne {
-	rc.conflict = opts
+func (_c *RustdeskCreate) OnConflict(opts ...sql.ConflictOption) *RustdeskUpsertOne {
+	_c.conflict = opts
 	return &RustdeskUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -354,10 +354,10 @@ func (rc *RustdeskCreate) OnConflict(opts ...sql.ConflictOption) *RustdeskUpsert
 //	client.Rustdesk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rc *RustdeskCreate) OnConflictColumns(columns ...string) *RustdeskUpsertOne {
-	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
+func (_c *RustdeskCreate) OnConflictColumns(columns ...string) *RustdeskUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RustdeskUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -820,16 +820,16 @@ type RustdeskCreateBulk struct {
 }
 
 // Save creates the Rustdesk entities in the database.
-func (rcb *RustdeskCreateBulk) Save(ctx context.Context) ([]*Rustdesk, error) {
-	if rcb.err != nil {
-		return nil, rcb.err
+func (_c *RustdeskCreateBulk) Save(ctx context.Context) ([]*Rustdesk, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
-	nodes := make([]*Rustdesk, len(rcb.builders))
-	mutators := make([]Mutator, len(rcb.builders))
-	for i := range rcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Rustdesk, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := rcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RustdeskMutation)
@@ -843,12 +843,12 @@ func (rcb *RustdeskCreateBulk) Save(ctx context.Context) ([]*Rustdesk, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = rcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -872,7 +872,7 @@ func (rcb *RustdeskCreateBulk) Save(ctx context.Context) ([]*Rustdesk, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -880,8 +880,8 @@ func (rcb *RustdeskCreateBulk) Save(ctx context.Context) ([]*Rustdesk, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcb *RustdeskCreateBulk) SaveX(ctx context.Context) []*Rustdesk {
-	v, err := rcb.Save(ctx)
+func (_c *RustdeskCreateBulk) SaveX(ctx context.Context) []*Rustdesk {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -889,14 +889,14 @@ func (rcb *RustdeskCreateBulk) SaveX(ctx context.Context) []*Rustdesk {
 }
 
 // Exec executes the query.
-func (rcb *RustdeskCreateBulk) Exec(ctx context.Context) error {
-	_, err := rcb.Save(ctx)
+func (_c *RustdeskCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcb *RustdeskCreateBulk) ExecX(ctx context.Context) {
-	if err := rcb.Exec(ctx); err != nil {
+func (_c *RustdeskCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -916,10 +916,10 @@ func (rcb *RustdeskCreateBulk) ExecX(ctx context.Context) {
 //			SetCustomRendezvousServer(v+v).
 //		}).
 //		Exec(ctx)
-func (rcb *RustdeskCreateBulk) OnConflict(opts ...sql.ConflictOption) *RustdeskUpsertBulk {
-	rcb.conflict = opts
+func (_c *RustdeskCreateBulk) OnConflict(opts ...sql.ConflictOption) *RustdeskUpsertBulk {
+	_c.conflict = opts
 	return &RustdeskUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -929,10 +929,10 @@ func (rcb *RustdeskCreateBulk) OnConflict(opts ...sql.ConflictOption) *RustdeskU
 //	client.Rustdesk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rcb *RustdeskCreateBulk) OnConflictColumns(columns ...string) *RustdeskUpsertBulk {
-	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
+func (_c *RustdeskCreateBulk) OnConflictColumns(columns ...string) *RustdeskUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RustdeskUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 

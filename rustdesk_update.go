@@ -24,247 +24,247 @@ type RustdeskUpdate struct {
 }
 
 // Where appends a list predicates to the RustdeskUpdate builder.
-func (ru *RustdeskUpdate) Where(ps ...predicate.Rustdesk) *RustdeskUpdate {
-	ru.mutation.Where(ps...)
-	return ru
+func (_u *RustdeskUpdate) Where(ps ...predicate.Rustdesk) *RustdeskUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetCustomRendezvousServer sets the "custom_rendezvous_server" field.
-func (ru *RustdeskUpdate) SetCustomRendezvousServer(s string) *RustdeskUpdate {
-	ru.mutation.SetCustomRendezvousServer(s)
-	return ru
+func (_u *RustdeskUpdate) SetCustomRendezvousServer(v string) *RustdeskUpdate {
+	_u.mutation.SetCustomRendezvousServer(v)
+	return _u
 }
 
 // SetNillableCustomRendezvousServer sets the "custom_rendezvous_server" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableCustomRendezvousServer(s *string) *RustdeskUpdate {
-	if s != nil {
-		ru.SetCustomRendezvousServer(*s)
+func (_u *RustdeskUpdate) SetNillableCustomRendezvousServer(v *string) *RustdeskUpdate {
+	if v != nil {
+		_u.SetCustomRendezvousServer(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearCustomRendezvousServer clears the value of the "custom_rendezvous_server" field.
-func (ru *RustdeskUpdate) ClearCustomRendezvousServer() *RustdeskUpdate {
-	ru.mutation.ClearCustomRendezvousServer()
-	return ru
+func (_u *RustdeskUpdate) ClearCustomRendezvousServer() *RustdeskUpdate {
+	_u.mutation.ClearCustomRendezvousServer()
+	return _u
 }
 
 // SetRelayServer sets the "relay_server" field.
-func (ru *RustdeskUpdate) SetRelayServer(s string) *RustdeskUpdate {
-	ru.mutation.SetRelayServer(s)
-	return ru
+func (_u *RustdeskUpdate) SetRelayServer(v string) *RustdeskUpdate {
+	_u.mutation.SetRelayServer(v)
+	return _u
 }
 
 // SetNillableRelayServer sets the "relay_server" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableRelayServer(s *string) *RustdeskUpdate {
-	if s != nil {
-		ru.SetRelayServer(*s)
+func (_u *RustdeskUpdate) SetNillableRelayServer(v *string) *RustdeskUpdate {
+	if v != nil {
+		_u.SetRelayServer(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearRelayServer clears the value of the "relay_server" field.
-func (ru *RustdeskUpdate) ClearRelayServer() *RustdeskUpdate {
-	ru.mutation.ClearRelayServer()
-	return ru
+func (_u *RustdeskUpdate) ClearRelayServer() *RustdeskUpdate {
+	_u.mutation.ClearRelayServer()
+	return _u
 }
 
 // SetAPIServer sets the "api_server" field.
-func (ru *RustdeskUpdate) SetAPIServer(s string) *RustdeskUpdate {
-	ru.mutation.SetAPIServer(s)
-	return ru
+func (_u *RustdeskUpdate) SetAPIServer(v string) *RustdeskUpdate {
+	_u.mutation.SetAPIServer(v)
+	return _u
 }
 
 // SetNillableAPIServer sets the "api_server" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableAPIServer(s *string) *RustdeskUpdate {
-	if s != nil {
-		ru.SetAPIServer(*s)
+func (_u *RustdeskUpdate) SetNillableAPIServer(v *string) *RustdeskUpdate {
+	if v != nil {
+		_u.SetAPIServer(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearAPIServer clears the value of the "api_server" field.
-func (ru *RustdeskUpdate) ClearAPIServer() *RustdeskUpdate {
-	ru.mutation.ClearAPIServer()
-	return ru
+func (_u *RustdeskUpdate) ClearAPIServer() *RustdeskUpdate {
+	_u.mutation.ClearAPIServer()
+	return _u
 }
 
 // SetKey sets the "key" field.
-func (ru *RustdeskUpdate) SetKey(s string) *RustdeskUpdate {
-	ru.mutation.SetKey(s)
-	return ru
+func (_u *RustdeskUpdate) SetKey(v string) *RustdeskUpdate {
+	_u.mutation.SetKey(v)
+	return _u
 }
 
 // SetNillableKey sets the "key" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableKey(s *string) *RustdeskUpdate {
-	if s != nil {
-		ru.SetKey(*s)
+func (_u *RustdeskUpdate) SetNillableKey(v *string) *RustdeskUpdate {
+	if v != nil {
+		_u.SetKey(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearKey clears the value of the "key" field.
-func (ru *RustdeskUpdate) ClearKey() *RustdeskUpdate {
-	ru.mutation.ClearKey()
-	return ru
+func (_u *RustdeskUpdate) ClearKey() *RustdeskUpdate {
+	_u.mutation.ClearKey()
+	return _u
 }
 
 // SetUsePermanentPassword sets the "use_permanent_password" field.
-func (ru *RustdeskUpdate) SetUsePermanentPassword(b bool) *RustdeskUpdate {
-	ru.mutation.SetUsePermanentPassword(b)
-	return ru
+func (_u *RustdeskUpdate) SetUsePermanentPassword(v bool) *RustdeskUpdate {
+	_u.mutation.SetUsePermanentPassword(v)
+	return _u
 }
 
 // SetNillableUsePermanentPassword sets the "use_permanent_password" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableUsePermanentPassword(b *bool) *RustdeskUpdate {
-	if b != nil {
-		ru.SetUsePermanentPassword(*b)
+func (_u *RustdeskUpdate) SetNillableUsePermanentPassword(v *bool) *RustdeskUpdate {
+	if v != nil {
+		_u.SetUsePermanentPassword(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearUsePermanentPassword clears the value of the "use_permanent_password" field.
-func (ru *RustdeskUpdate) ClearUsePermanentPassword() *RustdeskUpdate {
-	ru.mutation.ClearUsePermanentPassword()
-	return ru
+func (_u *RustdeskUpdate) ClearUsePermanentPassword() *RustdeskUpdate {
+	_u.mutation.ClearUsePermanentPassword()
+	return _u
 }
 
 // SetWhitelist sets the "whitelist" field.
-func (ru *RustdeskUpdate) SetWhitelist(s string) *RustdeskUpdate {
-	ru.mutation.SetWhitelist(s)
-	return ru
+func (_u *RustdeskUpdate) SetWhitelist(v string) *RustdeskUpdate {
+	_u.mutation.SetWhitelist(v)
+	return _u
 }
 
 // SetNillableWhitelist sets the "whitelist" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableWhitelist(s *string) *RustdeskUpdate {
-	if s != nil {
-		ru.SetWhitelist(*s)
+func (_u *RustdeskUpdate) SetNillableWhitelist(v *string) *RustdeskUpdate {
+	if v != nil {
+		_u.SetWhitelist(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearWhitelist clears the value of the "whitelist" field.
-func (ru *RustdeskUpdate) ClearWhitelist() *RustdeskUpdate {
-	ru.mutation.ClearWhitelist()
-	return ru
+func (_u *RustdeskUpdate) ClearWhitelist() *RustdeskUpdate {
+	_u.mutation.ClearWhitelist()
+	return _u
 }
 
 // SetDirectIPAccess sets the "direct_ip_access" field.
-func (ru *RustdeskUpdate) SetDirectIPAccess(b bool) *RustdeskUpdate {
-	ru.mutation.SetDirectIPAccess(b)
-	return ru
+func (_u *RustdeskUpdate) SetDirectIPAccess(v bool) *RustdeskUpdate {
+	_u.mutation.SetDirectIPAccess(v)
+	return _u
 }
 
 // SetNillableDirectIPAccess sets the "direct_ip_access" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableDirectIPAccess(b *bool) *RustdeskUpdate {
-	if b != nil {
-		ru.SetDirectIPAccess(*b)
+func (_u *RustdeskUpdate) SetNillableDirectIPAccess(v *bool) *RustdeskUpdate {
+	if v != nil {
+		_u.SetDirectIPAccess(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearDirectIPAccess clears the value of the "direct_ip_access" field.
-func (ru *RustdeskUpdate) ClearDirectIPAccess() *RustdeskUpdate {
-	ru.mutation.ClearDirectIPAccess()
-	return ru
+func (_u *RustdeskUpdate) ClearDirectIPAccess() *RustdeskUpdate {
+	_u.mutation.ClearDirectIPAccess()
+	return _u
 }
 
 // SetVerificationMethod sets the "verification_method" field.
-func (ru *RustdeskUpdate) SetVerificationMethod(rm rustdesk.VerificationMethod) *RustdeskUpdate {
-	ru.mutation.SetVerificationMethod(rm)
-	return ru
+func (_u *RustdeskUpdate) SetVerificationMethod(v rustdesk.VerificationMethod) *RustdeskUpdate {
+	_u.mutation.SetVerificationMethod(v)
+	return _u
 }
 
 // SetNillableVerificationMethod sets the "verification_method" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableVerificationMethod(rm *rustdesk.VerificationMethod) *RustdeskUpdate {
-	if rm != nil {
-		ru.SetVerificationMethod(*rm)
+func (_u *RustdeskUpdate) SetNillableVerificationMethod(v *rustdesk.VerificationMethod) *RustdeskUpdate {
+	if v != nil {
+		_u.SetVerificationMethod(*v)
 	}
-	return ru
+	return _u
 }
 
 // ClearVerificationMethod clears the value of the "verification_method" field.
-func (ru *RustdeskUpdate) ClearVerificationMethod() *RustdeskUpdate {
-	ru.mutation.ClearVerificationMethod()
-	return ru
+func (_u *RustdeskUpdate) ClearVerificationMethod() *RustdeskUpdate {
+	_u.mutation.ClearVerificationMethod()
+	return _u
 }
 
 // SetTemporaryPasswordLength sets the "temporary_password_length" field.
-func (ru *RustdeskUpdate) SetTemporaryPasswordLength(i int) *RustdeskUpdate {
-	ru.mutation.ResetTemporaryPasswordLength()
-	ru.mutation.SetTemporaryPasswordLength(i)
-	return ru
+func (_u *RustdeskUpdate) SetTemporaryPasswordLength(v int) *RustdeskUpdate {
+	_u.mutation.ResetTemporaryPasswordLength()
+	_u.mutation.SetTemporaryPasswordLength(v)
+	return _u
 }
 
 // SetNillableTemporaryPasswordLength sets the "temporary_password_length" field if the given value is not nil.
-func (ru *RustdeskUpdate) SetNillableTemporaryPasswordLength(i *int) *RustdeskUpdate {
-	if i != nil {
-		ru.SetTemporaryPasswordLength(*i)
+func (_u *RustdeskUpdate) SetNillableTemporaryPasswordLength(v *int) *RustdeskUpdate {
+	if v != nil {
+		_u.SetTemporaryPasswordLength(*v)
 	}
-	return ru
+	return _u
 }
 
-// AddTemporaryPasswordLength adds i to the "temporary_password_length" field.
-func (ru *RustdeskUpdate) AddTemporaryPasswordLength(i int) *RustdeskUpdate {
-	ru.mutation.AddTemporaryPasswordLength(i)
-	return ru
+// AddTemporaryPasswordLength adds value to the "temporary_password_length" field.
+func (_u *RustdeskUpdate) AddTemporaryPasswordLength(v int) *RustdeskUpdate {
+	_u.mutation.AddTemporaryPasswordLength(v)
+	return _u
 }
 
 // ClearTemporaryPasswordLength clears the value of the "temporary_password_length" field.
-func (ru *RustdeskUpdate) ClearTemporaryPasswordLength() *RustdeskUpdate {
-	ru.mutation.ClearTemporaryPasswordLength()
-	return ru
+func (_u *RustdeskUpdate) ClearTemporaryPasswordLength() *RustdeskUpdate {
+	_u.mutation.ClearTemporaryPasswordLength()
+	return _u
 }
 
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
-func (ru *RustdeskUpdate) AddTenantIDs(ids ...int) *RustdeskUpdate {
-	ru.mutation.AddTenantIDs(ids...)
-	return ru
+func (_u *RustdeskUpdate) AddTenantIDs(ids ...int) *RustdeskUpdate {
+	_u.mutation.AddTenantIDs(ids...)
+	return _u
 }
 
 // AddTenant adds the "tenant" edges to the Tenant entity.
-func (ru *RustdeskUpdate) AddTenant(t ...*Tenant) *RustdeskUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *RustdeskUpdate) AddTenant(v ...*Tenant) *RustdeskUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ru.AddTenantIDs(ids...)
+	return _u.AddTenantIDs(ids...)
 }
 
 // Mutation returns the RustdeskMutation object of the builder.
-func (ru *RustdeskUpdate) Mutation() *RustdeskMutation {
-	return ru.mutation
+func (_u *RustdeskUpdate) Mutation() *RustdeskMutation {
+	return _u.mutation
 }
 
 // ClearTenant clears all "tenant" edges to the Tenant entity.
-func (ru *RustdeskUpdate) ClearTenant() *RustdeskUpdate {
-	ru.mutation.ClearTenant()
-	return ru
+func (_u *RustdeskUpdate) ClearTenant() *RustdeskUpdate {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // RemoveTenantIDs removes the "tenant" edge to Tenant entities by IDs.
-func (ru *RustdeskUpdate) RemoveTenantIDs(ids ...int) *RustdeskUpdate {
-	ru.mutation.RemoveTenantIDs(ids...)
-	return ru
+func (_u *RustdeskUpdate) RemoveTenantIDs(ids ...int) *RustdeskUpdate {
+	_u.mutation.RemoveTenantIDs(ids...)
+	return _u
 }
 
 // RemoveTenant removes "tenant" edges to Tenant entities.
-func (ru *RustdeskUpdate) RemoveTenant(t ...*Tenant) *RustdeskUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *RustdeskUpdate) RemoveTenant(v ...*Tenant) *RustdeskUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ru.RemoveTenantIDs(ids...)
+	return _u.RemoveTenantIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (ru *RustdeskUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, ru.sqlSave, ru.mutation, ru.hooks)
+func (_u *RustdeskUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ru *RustdeskUpdate) SaveX(ctx context.Context) int {
-	affected, err := ru.Save(ctx)
+func (_u *RustdeskUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -272,21 +272,21 @@ func (ru *RustdeskUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (ru *RustdeskUpdate) Exec(ctx context.Context) error {
-	_, err := ru.Save(ctx)
+func (_u *RustdeskUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ru *RustdeskUpdate) ExecX(ctx context.Context) {
-	if err := ru.Exec(ctx); err != nil {
+func (_u *RustdeskUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ru *RustdeskUpdate) check() error {
-	if v, ok := ru.mutation.VerificationMethod(); ok {
+func (_u *RustdeskUpdate) check() error {
+	if v, ok := _u.mutation.VerificationMethod(); ok {
 		if err := rustdesk.VerificationMethodValidator(v); err != nil {
 			return &ValidationError{Name: "verification_method", err: fmt.Errorf(`ent: validator failed for field "Rustdesk.verification_method": %w`, err)}
 		}
@@ -295,81 +295,81 @@ func (ru *RustdeskUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (ru *RustdeskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RustdeskUpdate {
-	ru.modifiers = append(ru.modifiers, modifiers...)
-	return ru
+func (_u *RustdeskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RustdeskUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (ru *RustdeskUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := ru.check(); err != nil {
-		return n, err
+func (_u *RustdeskUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(rustdesk.Table, rustdesk.Columns, sqlgraph.NewFieldSpec(rustdesk.FieldID, field.TypeInt))
-	if ps := ru.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := ru.mutation.CustomRendezvousServer(); ok {
+	if value, ok := _u.mutation.CustomRendezvousServer(); ok {
 		_spec.SetField(rustdesk.FieldCustomRendezvousServer, field.TypeString, value)
 	}
-	if ru.mutation.CustomRendezvousServerCleared() {
+	if _u.mutation.CustomRendezvousServerCleared() {
 		_spec.ClearField(rustdesk.FieldCustomRendezvousServer, field.TypeString)
 	}
-	if value, ok := ru.mutation.RelayServer(); ok {
+	if value, ok := _u.mutation.RelayServer(); ok {
 		_spec.SetField(rustdesk.FieldRelayServer, field.TypeString, value)
 	}
-	if ru.mutation.RelayServerCleared() {
+	if _u.mutation.RelayServerCleared() {
 		_spec.ClearField(rustdesk.FieldRelayServer, field.TypeString)
 	}
-	if value, ok := ru.mutation.APIServer(); ok {
+	if value, ok := _u.mutation.APIServer(); ok {
 		_spec.SetField(rustdesk.FieldAPIServer, field.TypeString, value)
 	}
-	if ru.mutation.APIServerCleared() {
+	if _u.mutation.APIServerCleared() {
 		_spec.ClearField(rustdesk.FieldAPIServer, field.TypeString)
 	}
-	if value, ok := ru.mutation.Key(); ok {
+	if value, ok := _u.mutation.Key(); ok {
 		_spec.SetField(rustdesk.FieldKey, field.TypeString, value)
 	}
-	if ru.mutation.KeyCleared() {
+	if _u.mutation.KeyCleared() {
 		_spec.ClearField(rustdesk.FieldKey, field.TypeString)
 	}
-	if value, ok := ru.mutation.UsePermanentPassword(); ok {
+	if value, ok := _u.mutation.UsePermanentPassword(); ok {
 		_spec.SetField(rustdesk.FieldUsePermanentPassword, field.TypeBool, value)
 	}
-	if ru.mutation.UsePermanentPasswordCleared() {
+	if _u.mutation.UsePermanentPasswordCleared() {
 		_spec.ClearField(rustdesk.FieldUsePermanentPassword, field.TypeBool)
 	}
-	if value, ok := ru.mutation.Whitelist(); ok {
+	if value, ok := _u.mutation.Whitelist(); ok {
 		_spec.SetField(rustdesk.FieldWhitelist, field.TypeString, value)
 	}
-	if ru.mutation.WhitelistCleared() {
+	if _u.mutation.WhitelistCleared() {
 		_spec.ClearField(rustdesk.FieldWhitelist, field.TypeString)
 	}
-	if value, ok := ru.mutation.DirectIPAccess(); ok {
+	if value, ok := _u.mutation.DirectIPAccess(); ok {
 		_spec.SetField(rustdesk.FieldDirectIPAccess, field.TypeBool, value)
 	}
-	if ru.mutation.DirectIPAccessCleared() {
+	if _u.mutation.DirectIPAccessCleared() {
 		_spec.ClearField(rustdesk.FieldDirectIPAccess, field.TypeBool)
 	}
-	if value, ok := ru.mutation.VerificationMethod(); ok {
+	if value, ok := _u.mutation.VerificationMethod(); ok {
 		_spec.SetField(rustdesk.FieldVerificationMethod, field.TypeEnum, value)
 	}
-	if ru.mutation.VerificationMethodCleared() {
+	if _u.mutation.VerificationMethodCleared() {
 		_spec.ClearField(rustdesk.FieldVerificationMethod, field.TypeEnum)
 	}
-	if value, ok := ru.mutation.TemporaryPasswordLength(); ok {
+	if value, ok := _u.mutation.TemporaryPasswordLength(); ok {
 		_spec.SetField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt, value)
 	}
-	if value, ok := ru.mutation.AddedTemporaryPasswordLength(); ok {
+	if value, ok := _u.mutation.AddedTemporaryPasswordLength(); ok {
 		_spec.AddField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt, value)
 	}
-	if ru.mutation.TemporaryPasswordLengthCleared() {
+	if _u.mutation.TemporaryPasswordLengthCleared() {
 		_spec.ClearField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt)
 	}
-	if ru.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -382,7 +382,7 @@ func (ru *RustdeskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ru.mutation.RemovedTenantIDs(); len(nodes) > 0 && !ru.mutation.TenantCleared() {
+	if nodes := _u.mutation.RemovedTenantIDs(); len(nodes) > 0 && !_u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -398,7 +398,7 @@ func (ru *RustdeskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ru.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -414,8 +414,8 @@ func (ru *RustdeskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(ru.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, ru.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rustdesk.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -423,8 +423,8 @@ func (ru *RustdeskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	ru.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // RustdeskUpdateOne is the builder for updating a single Rustdesk entity.
@@ -437,254 +437,254 @@ type RustdeskUpdateOne struct {
 }
 
 // SetCustomRendezvousServer sets the "custom_rendezvous_server" field.
-func (ruo *RustdeskUpdateOne) SetCustomRendezvousServer(s string) *RustdeskUpdateOne {
-	ruo.mutation.SetCustomRendezvousServer(s)
-	return ruo
+func (_u *RustdeskUpdateOne) SetCustomRendezvousServer(v string) *RustdeskUpdateOne {
+	_u.mutation.SetCustomRendezvousServer(v)
+	return _u
 }
 
 // SetNillableCustomRendezvousServer sets the "custom_rendezvous_server" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableCustomRendezvousServer(s *string) *RustdeskUpdateOne {
-	if s != nil {
-		ruo.SetCustomRendezvousServer(*s)
+func (_u *RustdeskUpdateOne) SetNillableCustomRendezvousServer(v *string) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetCustomRendezvousServer(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearCustomRendezvousServer clears the value of the "custom_rendezvous_server" field.
-func (ruo *RustdeskUpdateOne) ClearCustomRendezvousServer() *RustdeskUpdateOne {
-	ruo.mutation.ClearCustomRendezvousServer()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearCustomRendezvousServer() *RustdeskUpdateOne {
+	_u.mutation.ClearCustomRendezvousServer()
+	return _u
 }
 
 // SetRelayServer sets the "relay_server" field.
-func (ruo *RustdeskUpdateOne) SetRelayServer(s string) *RustdeskUpdateOne {
-	ruo.mutation.SetRelayServer(s)
-	return ruo
+func (_u *RustdeskUpdateOne) SetRelayServer(v string) *RustdeskUpdateOne {
+	_u.mutation.SetRelayServer(v)
+	return _u
 }
 
 // SetNillableRelayServer sets the "relay_server" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableRelayServer(s *string) *RustdeskUpdateOne {
-	if s != nil {
-		ruo.SetRelayServer(*s)
+func (_u *RustdeskUpdateOne) SetNillableRelayServer(v *string) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetRelayServer(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearRelayServer clears the value of the "relay_server" field.
-func (ruo *RustdeskUpdateOne) ClearRelayServer() *RustdeskUpdateOne {
-	ruo.mutation.ClearRelayServer()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearRelayServer() *RustdeskUpdateOne {
+	_u.mutation.ClearRelayServer()
+	return _u
 }
 
 // SetAPIServer sets the "api_server" field.
-func (ruo *RustdeskUpdateOne) SetAPIServer(s string) *RustdeskUpdateOne {
-	ruo.mutation.SetAPIServer(s)
-	return ruo
+func (_u *RustdeskUpdateOne) SetAPIServer(v string) *RustdeskUpdateOne {
+	_u.mutation.SetAPIServer(v)
+	return _u
 }
 
 // SetNillableAPIServer sets the "api_server" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableAPIServer(s *string) *RustdeskUpdateOne {
-	if s != nil {
-		ruo.SetAPIServer(*s)
+func (_u *RustdeskUpdateOne) SetNillableAPIServer(v *string) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetAPIServer(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearAPIServer clears the value of the "api_server" field.
-func (ruo *RustdeskUpdateOne) ClearAPIServer() *RustdeskUpdateOne {
-	ruo.mutation.ClearAPIServer()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearAPIServer() *RustdeskUpdateOne {
+	_u.mutation.ClearAPIServer()
+	return _u
 }
 
 // SetKey sets the "key" field.
-func (ruo *RustdeskUpdateOne) SetKey(s string) *RustdeskUpdateOne {
-	ruo.mutation.SetKey(s)
-	return ruo
+func (_u *RustdeskUpdateOne) SetKey(v string) *RustdeskUpdateOne {
+	_u.mutation.SetKey(v)
+	return _u
 }
 
 // SetNillableKey sets the "key" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableKey(s *string) *RustdeskUpdateOne {
-	if s != nil {
-		ruo.SetKey(*s)
+func (_u *RustdeskUpdateOne) SetNillableKey(v *string) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetKey(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearKey clears the value of the "key" field.
-func (ruo *RustdeskUpdateOne) ClearKey() *RustdeskUpdateOne {
-	ruo.mutation.ClearKey()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearKey() *RustdeskUpdateOne {
+	_u.mutation.ClearKey()
+	return _u
 }
 
 // SetUsePermanentPassword sets the "use_permanent_password" field.
-func (ruo *RustdeskUpdateOne) SetUsePermanentPassword(b bool) *RustdeskUpdateOne {
-	ruo.mutation.SetUsePermanentPassword(b)
-	return ruo
+func (_u *RustdeskUpdateOne) SetUsePermanentPassword(v bool) *RustdeskUpdateOne {
+	_u.mutation.SetUsePermanentPassword(v)
+	return _u
 }
 
 // SetNillableUsePermanentPassword sets the "use_permanent_password" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableUsePermanentPassword(b *bool) *RustdeskUpdateOne {
-	if b != nil {
-		ruo.SetUsePermanentPassword(*b)
+func (_u *RustdeskUpdateOne) SetNillableUsePermanentPassword(v *bool) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetUsePermanentPassword(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearUsePermanentPassword clears the value of the "use_permanent_password" field.
-func (ruo *RustdeskUpdateOne) ClearUsePermanentPassword() *RustdeskUpdateOne {
-	ruo.mutation.ClearUsePermanentPassword()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearUsePermanentPassword() *RustdeskUpdateOne {
+	_u.mutation.ClearUsePermanentPassword()
+	return _u
 }
 
 // SetWhitelist sets the "whitelist" field.
-func (ruo *RustdeskUpdateOne) SetWhitelist(s string) *RustdeskUpdateOne {
-	ruo.mutation.SetWhitelist(s)
-	return ruo
+func (_u *RustdeskUpdateOne) SetWhitelist(v string) *RustdeskUpdateOne {
+	_u.mutation.SetWhitelist(v)
+	return _u
 }
 
 // SetNillableWhitelist sets the "whitelist" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableWhitelist(s *string) *RustdeskUpdateOne {
-	if s != nil {
-		ruo.SetWhitelist(*s)
+func (_u *RustdeskUpdateOne) SetNillableWhitelist(v *string) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetWhitelist(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearWhitelist clears the value of the "whitelist" field.
-func (ruo *RustdeskUpdateOne) ClearWhitelist() *RustdeskUpdateOne {
-	ruo.mutation.ClearWhitelist()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearWhitelist() *RustdeskUpdateOne {
+	_u.mutation.ClearWhitelist()
+	return _u
 }
 
 // SetDirectIPAccess sets the "direct_ip_access" field.
-func (ruo *RustdeskUpdateOne) SetDirectIPAccess(b bool) *RustdeskUpdateOne {
-	ruo.mutation.SetDirectIPAccess(b)
-	return ruo
+func (_u *RustdeskUpdateOne) SetDirectIPAccess(v bool) *RustdeskUpdateOne {
+	_u.mutation.SetDirectIPAccess(v)
+	return _u
 }
 
 // SetNillableDirectIPAccess sets the "direct_ip_access" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableDirectIPAccess(b *bool) *RustdeskUpdateOne {
-	if b != nil {
-		ruo.SetDirectIPAccess(*b)
+func (_u *RustdeskUpdateOne) SetNillableDirectIPAccess(v *bool) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetDirectIPAccess(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearDirectIPAccess clears the value of the "direct_ip_access" field.
-func (ruo *RustdeskUpdateOne) ClearDirectIPAccess() *RustdeskUpdateOne {
-	ruo.mutation.ClearDirectIPAccess()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearDirectIPAccess() *RustdeskUpdateOne {
+	_u.mutation.ClearDirectIPAccess()
+	return _u
 }
 
 // SetVerificationMethod sets the "verification_method" field.
-func (ruo *RustdeskUpdateOne) SetVerificationMethod(rm rustdesk.VerificationMethod) *RustdeskUpdateOne {
-	ruo.mutation.SetVerificationMethod(rm)
-	return ruo
+func (_u *RustdeskUpdateOne) SetVerificationMethod(v rustdesk.VerificationMethod) *RustdeskUpdateOne {
+	_u.mutation.SetVerificationMethod(v)
+	return _u
 }
 
 // SetNillableVerificationMethod sets the "verification_method" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableVerificationMethod(rm *rustdesk.VerificationMethod) *RustdeskUpdateOne {
-	if rm != nil {
-		ruo.SetVerificationMethod(*rm)
+func (_u *RustdeskUpdateOne) SetNillableVerificationMethod(v *rustdesk.VerificationMethod) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetVerificationMethod(*v)
 	}
-	return ruo
+	return _u
 }
 
 // ClearVerificationMethod clears the value of the "verification_method" field.
-func (ruo *RustdeskUpdateOne) ClearVerificationMethod() *RustdeskUpdateOne {
-	ruo.mutation.ClearVerificationMethod()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearVerificationMethod() *RustdeskUpdateOne {
+	_u.mutation.ClearVerificationMethod()
+	return _u
 }
 
 // SetTemporaryPasswordLength sets the "temporary_password_length" field.
-func (ruo *RustdeskUpdateOne) SetTemporaryPasswordLength(i int) *RustdeskUpdateOne {
-	ruo.mutation.ResetTemporaryPasswordLength()
-	ruo.mutation.SetTemporaryPasswordLength(i)
-	return ruo
+func (_u *RustdeskUpdateOne) SetTemporaryPasswordLength(v int) *RustdeskUpdateOne {
+	_u.mutation.ResetTemporaryPasswordLength()
+	_u.mutation.SetTemporaryPasswordLength(v)
+	return _u
 }
 
 // SetNillableTemporaryPasswordLength sets the "temporary_password_length" field if the given value is not nil.
-func (ruo *RustdeskUpdateOne) SetNillableTemporaryPasswordLength(i *int) *RustdeskUpdateOne {
-	if i != nil {
-		ruo.SetTemporaryPasswordLength(*i)
+func (_u *RustdeskUpdateOne) SetNillableTemporaryPasswordLength(v *int) *RustdeskUpdateOne {
+	if v != nil {
+		_u.SetTemporaryPasswordLength(*v)
 	}
-	return ruo
+	return _u
 }
 
-// AddTemporaryPasswordLength adds i to the "temporary_password_length" field.
-func (ruo *RustdeskUpdateOne) AddTemporaryPasswordLength(i int) *RustdeskUpdateOne {
-	ruo.mutation.AddTemporaryPasswordLength(i)
-	return ruo
+// AddTemporaryPasswordLength adds value to the "temporary_password_length" field.
+func (_u *RustdeskUpdateOne) AddTemporaryPasswordLength(v int) *RustdeskUpdateOne {
+	_u.mutation.AddTemporaryPasswordLength(v)
+	return _u
 }
 
 // ClearTemporaryPasswordLength clears the value of the "temporary_password_length" field.
-func (ruo *RustdeskUpdateOne) ClearTemporaryPasswordLength() *RustdeskUpdateOne {
-	ruo.mutation.ClearTemporaryPasswordLength()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearTemporaryPasswordLength() *RustdeskUpdateOne {
+	_u.mutation.ClearTemporaryPasswordLength()
+	return _u
 }
 
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
-func (ruo *RustdeskUpdateOne) AddTenantIDs(ids ...int) *RustdeskUpdateOne {
-	ruo.mutation.AddTenantIDs(ids...)
-	return ruo
+func (_u *RustdeskUpdateOne) AddTenantIDs(ids ...int) *RustdeskUpdateOne {
+	_u.mutation.AddTenantIDs(ids...)
+	return _u
 }
 
 // AddTenant adds the "tenant" edges to the Tenant entity.
-func (ruo *RustdeskUpdateOne) AddTenant(t ...*Tenant) *RustdeskUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *RustdeskUpdateOne) AddTenant(v ...*Tenant) *RustdeskUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ruo.AddTenantIDs(ids...)
+	return _u.AddTenantIDs(ids...)
 }
 
 // Mutation returns the RustdeskMutation object of the builder.
-func (ruo *RustdeskUpdateOne) Mutation() *RustdeskMutation {
-	return ruo.mutation
+func (_u *RustdeskUpdateOne) Mutation() *RustdeskMutation {
+	return _u.mutation
 }
 
 // ClearTenant clears all "tenant" edges to the Tenant entity.
-func (ruo *RustdeskUpdateOne) ClearTenant() *RustdeskUpdateOne {
-	ruo.mutation.ClearTenant()
-	return ruo
+func (_u *RustdeskUpdateOne) ClearTenant() *RustdeskUpdateOne {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // RemoveTenantIDs removes the "tenant" edge to Tenant entities by IDs.
-func (ruo *RustdeskUpdateOne) RemoveTenantIDs(ids ...int) *RustdeskUpdateOne {
-	ruo.mutation.RemoveTenantIDs(ids...)
-	return ruo
+func (_u *RustdeskUpdateOne) RemoveTenantIDs(ids ...int) *RustdeskUpdateOne {
+	_u.mutation.RemoveTenantIDs(ids...)
+	return _u
 }
 
 // RemoveTenant removes "tenant" edges to Tenant entities.
-func (ruo *RustdeskUpdateOne) RemoveTenant(t ...*Tenant) *RustdeskUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *RustdeskUpdateOne) RemoveTenant(v ...*Tenant) *RustdeskUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return ruo.RemoveTenantIDs(ids...)
+	return _u.RemoveTenantIDs(ids...)
 }
 
 // Where appends a list predicates to the RustdeskUpdate builder.
-func (ruo *RustdeskUpdateOne) Where(ps ...predicate.Rustdesk) *RustdeskUpdateOne {
-	ruo.mutation.Where(ps...)
-	return ruo
+func (_u *RustdeskUpdateOne) Where(ps ...predicate.Rustdesk) *RustdeskUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (ruo *RustdeskUpdateOne) Select(field string, fields ...string) *RustdeskUpdateOne {
-	ruo.fields = append([]string{field}, fields...)
-	return ruo
+func (_u *RustdeskUpdateOne) Select(field string, fields ...string) *RustdeskUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Rustdesk entity.
-func (ruo *RustdeskUpdateOne) Save(ctx context.Context) (*Rustdesk, error) {
-	return withHooks(ctx, ruo.sqlSave, ruo.mutation, ruo.hooks)
+func (_u *RustdeskUpdateOne) Save(ctx context.Context) (*Rustdesk, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ruo *RustdeskUpdateOne) SaveX(ctx context.Context) *Rustdesk {
-	node, err := ruo.Save(ctx)
+func (_u *RustdeskUpdateOne) SaveX(ctx context.Context) *Rustdesk {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -692,21 +692,21 @@ func (ruo *RustdeskUpdateOne) SaveX(ctx context.Context) *Rustdesk {
 }
 
 // Exec executes the query on the entity.
-func (ruo *RustdeskUpdateOne) Exec(ctx context.Context) error {
-	_, err := ruo.Save(ctx)
+func (_u *RustdeskUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ruo *RustdeskUpdateOne) ExecX(ctx context.Context) {
-	if err := ruo.Exec(ctx); err != nil {
+func (_u *RustdeskUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ruo *RustdeskUpdateOne) check() error {
-	if v, ok := ruo.mutation.VerificationMethod(); ok {
+func (_u *RustdeskUpdateOne) check() error {
+	if v, ok := _u.mutation.VerificationMethod(); ok {
 		if err := rustdesk.VerificationMethodValidator(v); err != nil {
 			return &ValidationError{Name: "verification_method", err: fmt.Errorf(`ent: validator failed for field "Rustdesk.verification_method": %w`, err)}
 		}
@@ -715,22 +715,22 @@ func (ruo *RustdeskUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (ruo *RustdeskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RustdeskUpdateOne {
-	ruo.modifiers = append(ruo.modifiers, modifiers...)
-	return ruo
+func (_u *RustdeskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RustdeskUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (ruo *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err error) {
-	if err := ruo.check(); err != nil {
+func (_u *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(rustdesk.Table, rustdesk.Columns, sqlgraph.NewFieldSpec(rustdesk.FieldID, field.TypeInt))
-	id, ok := ruo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Rustdesk.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := ruo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, rustdesk.FieldID)
 		for _, f := range fields {
@@ -742,71 +742,71 @@ func (ruo *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err
 			}
 		}
 	}
-	if ps := ruo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := ruo.mutation.CustomRendezvousServer(); ok {
+	if value, ok := _u.mutation.CustomRendezvousServer(); ok {
 		_spec.SetField(rustdesk.FieldCustomRendezvousServer, field.TypeString, value)
 	}
-	if ruo.mutation.CustomRendezvousServerCleared() {
+	if _u.mutation.CustomRendezvousServerCleared() {
 		_spec.ClearField(rustdesk.FieldCustomRendezvousServer, field.TypeString)
 	}
-	if value, ok := ruo.mutation.RelayServer(); ok {
+	if value, ok := _u.mutation.RelayServer(); ok {
 		_spec.SetField(rustdesk.FieldRelayServer, field.TypeString, value)
 	}
-	if ruo.mutation.RelayServerCleared() {
+	if _u.mutation.RelayServerCleared() {
 		_spec.ClearField(rustdesk.FieldRelayServer, field.TypeString)
 	}
-	if value, ok := ruo.mutation.APIServer(); ok {
+	if value, ok := _u.mutation.APIServer(); ok {
 		_spec.SetField(rustdesk.FieldAPIServer, field.TypeString, value)
 	}
-	if ruo.mutation.APIServerCleared() {
+	if _u.mutation.APIServerCleared() {
 		_spec.ClearField(rustdesk.FieldAPIServer, field.TypeString)
 	}
-	if value, ok := ruo.mutation.Key(); ok {
+	if value, ok := _u.mutation.Key(); ok {
 		_spec.SetField(rustdesk.FieldKey, field.TypeString, value)
 	}
-	if ruo.mutation.KeyCleared() {
+	if _u.mutation.KeyCleared() {
 		_spec.ClearField(rustdesk.FieldKey, field.TypeString)
 	}
-	if value, ok := ruo.mutation.UsePermanentPassword(); ok {
+	if value, ok := _u.mutation.UsePermanentPassword(); ok {
 		_spec.SetField(rustdesk.FieldUsePermanentPassword, field.TypeBool, value)
 	}
-	if ruo.mutation.UsePermanentPasswordCleared() {
+	if _u.mutation.UsePermanentPasswordCleared() {
 		_spec.ClearField(rustdesk.FieldUsePermanentPassword, field.TypeBool)
 	}
-	if value, ok := ruo.mutation.Whitelist(); ok {
+	if value, ok := _u.mutation.Whitelist(); ok {
 		_spec.SetField(rustdesk.FieldWhitelist, field.TypeString, value)
 	}
-	if ruo.mutation.WhitelistCleared() {
+	if _u.mutation.WhitelistCleared() {
 		_spec.ClearField(rustdesk.FieldWhitelist, field.TypeString)
 	}
-	if value, ok := ruo.mutation.DirectIPAccess(); ok {
+	if value, ok := _u.mutation.DirectIPAccess(); ok {
 		_spec.SetField(rustdesk.FieldDirectIPAccess, field.TypeBool, value)
 	}
-	if ruo.mutation.DirectIPAccessCleared() {
+	if _u.mutation.DirectIPAccessCleared() {
 		_spec.ClearField(rustdesk.FieldDirectIPAccess, field.TypeBool)
 	}
-	if value, ok := ruo.mutation.VerificationMethod(); ok {
+	if value, ok := _u.mutation.VerificationMethod(); ok {
 		_spec.SetField(rustdesk.FieldVerificationMethod, field.TypeEnum, value)
 	}
-	if ruo.mutation.VerificationMethodCleared() {
+	if _u.mutation.VerificationMethodCleared() {
 		_spec.ClearField(rustdesk.FieldVerificationMethod, field.TypeEnum)
 	}
-	if value, ok := ruo.mutation.TemporaryPasswordLength(); ok {
+	if value, ok := _u.mutation.TemporaryPasswordLength(); ok {
 		_spec.SetField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt, value)
 	}
-	if value, ok := ruo.mutation.AddedTemporaryPasswordLength(); ok {
+	if value, ok := _u.mutation.AddedTemporaryPasswordLength(); ok {
 		_spec.AddField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt, value)
 	}
-	if ruo.mutation.TemporaryPasswordLengthCleared() {
+	if _u.mutation.TemporaryPasswordLengthCleared() {
 		_spec.ClearField(rustdesk.FieldTemporaryPasswordLength, field.TypeInt)
 	}
-	if ruo.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -819,7 +819,7 @@ func (ruo *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ruo.mutation.RemovedTenantIDs(); len(nodes) > 0 && !ruo.mutation.TenantCleared() {
+	if nodes := _u.mutation.RemovedTenantIDs(); len(nodes) > 0 && !_u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -835,7 +835,7 @@ func (ruo *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ruo.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -851,11 +851,11 @@ func (ruo *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(ruo.modifiers...)
-	_node = &Rustdesk{config: ruo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Rustdesk{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, ruo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{rustdesk.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -863,6 +863,6 @@ func (ruo *RustdeskUpdateOne) sqlSave(ctx context.Context) (_node *Rustdesk, err
 		}
 		return nil, err
 	}
-	ruo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

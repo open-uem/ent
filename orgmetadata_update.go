@@ -25,119 +25,119 @@ type OrgMetadataUpdate struct {
 }
 
 // Where appends a list predicates to the OrgMetadataUpdate builder.
-func (omu *OrgMetadataUpdate) Where(ps ...predicate.OrgMetadata) *OrgMetadataUpdate {
-	omu.mutation.Where(ps...)
-	return omu
+func (_u *OrgMetadataUpdate) Where(ps ...predicate.OrgMetadata) *OrgMetadataUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (omu *OrgMetadataUpdate) SetName(s string) *OrgMetadataUpdate {
-	omu.mutation.SetName(s)
-	return omu
+func (_u *OrgMetadataUpdate) SetName(v string) *OrgMetadataUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (omu *OrgMetadataUpdate) SetNillableName(s *string) *OrgMetadataUpdate {
-	if s != nil {
-		omu.SetName(*s)
+func (_u *OrgMetadataUpdate) SetNillableName(v *string) *OrgMetadataUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return omu
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (omu *OrgMetadataUpdate) SetDescription(s string) *OrgMetadataUpdate {
-	omu.mutation.SetDescription(s)
-	return omu
+func (_u *OrgMetadataUpdate) SetDescription(v string) *OrgMetadataUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (omu *OrgMetadataUpdate) SetNillableDescription(s *string) *OrgMetadataUpdate {
-	if s != nil {
-		omu.SetDescription(*s)
+func (_u *OrgMetadataUpdate) SetNillableDescription(v *string) *OrgMetadataUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return omu
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (omu *OrgMetadataUpdate) ClearDescription() *OrgMetadataUpdate {
-	omu.mutation.ClearDescription()
-	return omu
+func (_u *OrgMetadataUpdate) ClearDescription() *OrgMetadataUpdate {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the Metadata entity by IDs.
-func (omu *OrgMetadataUpdate) AddMetadatumIDs(ids ...int) *OrgMetadataUpdate {
-	omu.mutation.AddMetadatumIDs(ids...)
-	return omu
+func (_u *OrgMetadataUpdate) AddMetadatumIDs(ids ...int) *OrgMetadataUpdate {
+	_u.mutation.AddMetadatumIDs(ids...)
+	return _u
 }
 
 // AddMetadata adds the "metadata" edges to the Metadata entity.
-func (omu *OrgMetadataUpdate) AddMetadata(m ...*Metadata) *OrgMetadataUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *OrgMetadataUpdate) AddMetadata(v ...*Metadata) *OrgMetadataUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return omu.AddMetadatumIDs(ids...)
+	return _u.AddMetadatumIDs(ids...)
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (omu *OrgMetadataUpdate) SetTenantID(id int) *OrgMetadataUpdate {
-	omu.mutation.SetTenantID(id)
-	return omu
+func (_u *OrgMetadataUpdate) SetTenantID(id int) *OrgMetadataUpdate {
+	_u.mutation.SetTenantID(id)
+	return _u
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (omu *OrgMetadataUpdate) SetNillableTenantID(id *int) *OrgMetadataUpdate {
+func (_u *OrgMetadataUpdate) SetNillableTenantID(id *int) *OrgMetadataUpdate {
 	if id != nil {
-		omu = omu.SetTenantID(*id)
+		_u = _u.SetTenantID(*id)
 	}
-	return omu
+	return _u
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (omu *OrgMetadataUpdate) SetTenant(t *Tenant) *OrgMetadataUpdate {
-	return omu.SetTenantID(t.ID)
+func (_u *OrgMetadataUpdate) SetTenant(v *Tenant) *OrgMetadataUpdate {
+	return _u.SetTenantID(v.ID)
 }
 
 // Mutation returns the OrgMetadataMutation object of the builder.
-func (omu *OrgMetadataUpdate) Mutation() *OrgMetadataMutation {
-	return omu.mutation
+func (_u *OrgMetadataUpdate) Mutation() *OrgMetadataMutation {
+	return _u.mutation
 }
 
 // ClearMetadata clears all "metadata" edges to the Metadata entity.
-func (omu *OrgMetadataUpdate) ClearMetadata() *OrgMetadataUpdate {
-	omu.mutation.ClearMetadata()
-	return omu
+func (_u *OrgMetadataUpdate) ClearMetadata() *OrgMetadataUpdate {
+	_u.mutation.ClearMetadata()
+	return _u
 }
 
 // RemoveMetadatumIDs removes the "metadata" edge to Metadata entities by IDs.
-func (omu *OrgMetadataUpdate) RemoveMetadatumIDs(ids ...int) *OrgMetadataUpdate {
-	omu.mutation.RemoveMetadatumIDs(ids...)
-	return omu
+func (_u *OrgMetadataUpdate) RemoveMetadatumIDs(ids ...int) *OrgMetadataUpdate {
+	_u.mutation.RemoveMetadatumIDs(ids...)
+	return _u
 }
 
 // RemoveMetadata removes "metadata" edges to Metadata entities.
-func (omu *OrgMetadataUpdate) RemoveMetadata(m ...*Metadata) *OrgMetadataUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *OrgMetadataUpdate) RemoveMetadata(v ...*Metadata) *OrgMetadataUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return omu.RemoveMetadatumIDs(ids...)
+	return _u.RemoveMetadatumIDs(ids...)
 }
 
 // ClearTenant clears the "tenant" edge to the Tenant entity.
-func (omu *OrgMetadataUpdate) ClearTenant() *OrgMetadataUpdate {
-	omu.mutation.ClearTenant()
-	return omu
+func (_u *OrgMetadataUpdate) ClearTenant() *OrgMetadataUpdate {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (omu *OrgMetadataUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, omu.sqlSave, omu.mutation, omu.hooks)
+func (_u *OrgMetadataUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (omu *OrgMetadataUpdate) SaveX(ctx context.Context) int {
-	affected, err := omu.Save(ctx)
+func (_u *OrgMetadataUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -145,21 +145,21 @@ func (omu *OrgMetadataUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (omu *OrgMetadataUpdate) Exec(ctx context.Context) error {
-	_, err := omu.Save(ctx)
+func (_u *OrgMetadataUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (omu *OrgMetadataUpdate) ExecX(ctx context.Context) {
-	if err := omu.Exec(ctx); err != nil {
+func (_u *OrgMetadataUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (omu *OrgMetadataUpdate) check() error {
-	if v, ok := omu.mutation.Name(); ok {
+func (_u *OrgMetadataUpdate) check() error {
+	if v, ok := _u.mutation.Name(); ok {
 		if err := orgmetadata.NameValidator(v); err != nil {
 			return &ValidationError{Name: "name", err: fmt.Errorf(`ent: validator failed for field "OrgMetadata.name": %w`, err)}
 		}
@@ -168,33 +168,33 @@ func (omu *OrgMetadataUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (omu *OrgMetadataUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OrgMetadataUpdate {
-	omu.modifiers = append(omu.modifiers, modifiers...)
-	return omu
+func (_u *OrgMetadataUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OrgMetadataUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := omu.check(); err != nil {
-		return n, err
+func (_u *OrgMetadataUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(orgmetadata.Table, orgmetadata.Columns, sqlgraph.NewFieldSpec(orgmetadata.FieldID, field.TypeInt))
-	if ps := omu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := omu.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(orgmetadata.FieldName, field.TypeString, value)
 	}
-	if value, ok := omu.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(orgmetadata.FieldDescription, field.TypeString, value)
 	}
-	if omu.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(orgmetadata.FieldDescription, field.TypeString)
 	}
-	if omu.mutation.MetadataCleared() {
+	if _u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -207,7 +207,7 @@ func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := omu.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !omu.mutation.MetadataCleared() {
+	if nodes := _u.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !_u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -223,7 +223,7 @@ func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := omu.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -239,7 +239,7 @@ func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if omu.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -252,7 +252,7 @@ func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := omu.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -268,8 +268,8 @@ func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(omu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, omu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{orgmetadata.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -277,8 +277,8 @@ func (omu *OrgMetadataUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	omu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // OrgMetadataUpdateOne is the builder for updating a single OrgMetadata entity.
@@ -291,126 +291,126 @@ type OrgMetadataUpdateOne struct {
 }
 
 // SetName sets the "name" field.
-func (omuo *OrgMetadataUpdateOne) SetName(s string) *OrgMetadataUpdateOne {
-	omuo.mutation.SetName(s)
-	return omuo
+func (_u *OrgMetadataUpdateOne) SetName(v string) *OrgMetadataUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (omuo *OrgMetadataUpdateOne) SetNillableName(s *string) *OrgMetadataUpdateOne {
-	if s != nil {
-		omuo.SetName(*s)
+func (_u *OrgMetadataUpdateOne) SetNillableName(v *string) *OrgMetadataUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return omuo
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (omuo *OrgMetadataUpdateOne) SetDescription(s string) *OrgMetadataUpdateOne {
-	omuo.mutation.SetDescription(s)
-	return omuo
+func (_u *OrgMetadataUpdateOne) SetDescription(v string) *OrgMetadataUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (omuo *OrgMetadataUpdateOne) SetNillableDescription(s *string) *OrgMetadataUpdateOne {
-	if s != nil {
-		omuo.SetDescription(*s)
+func (_u *OrgMetadataUpdateOne) SetNillableDescription(v *string) *OrgMetadataUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return omuo
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (omuo *OrgMetadataUpdateOne) ClearDescription() *OrgMetadataUpdateOne {
-	omuo.mutation.ClearDescription()
-	return omuo
+func (_u *OrgMetadataUpdateOne) ClearDescription() *OrgMetadataUpdateOne {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the Metadata entity by IDs.
-func (omuo *OrgMetadataUpdateOne) AddMetadatumIDs(ids ...int) *OrgMetadataUpdateOne {
-	omuo.mutation.AddMetadatumIDs(ids...)
-	return omuo
+func (_u *OrgMetadataUpdateOne) AddMetadatumIDs(ids ...int) *OrgMetadataUpdateOne {
+	_u.mutation.AddMetadatumIDs(ids...)
+	return _u
 }
 
 // AddMetadata adds the "metadata" edges to the Metadata entity.
-func (omuo *OrgMetadataUpdateOne) AddMetadata(m ...*Metadata) *OrgMetadataUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *OrgMetadataUpdateOne) AddMetadata(v ...*Metadata) *OrgMetadataUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return omuo.AddMetadatumIDs(ids...)
+	return _u.AddMetadatumIDs(ids...)
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (omuo *OrgMetadataUpdateOne) SetTenantID(id int) *OrgMetadataUpdateOne {
-	omuo.mutation.SetTenantID(id)
-	return omuo
+func (_u *OrgMetadataUpdateOne) SetTenantID(id int) *OrgMetadataUpdateOne {
+	_u.mutation.SetTenantID(id)
+	return _u
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (omuo *OrgMetadataUpdateOne) SetNillableTenantID(id *int) *OrgMetadataUpdateOne {
+func (_u *OrgMetadataUpdateOne) SetNillableTenantID(id *int) *OrgMetadataUpdateOne {
 	if id != nil {
-		omuo = omuo.SetTenantID(*id)
+		_u = _u.SetTenantID(*id)
 	}
-	return omuo
+	return _u
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (omuo *OrgMetadataUpdateOne) SetTenant(t *Tenant) *OrgMetadataUpdateOne {
-	return omuo.SetTenantID(t.ID)
+func (_u *OrgMetadataUpdateOne) SetTenant(v *Tenant) *OrgMetadataUpdateOne {
+	return _u.SetTenantID(v.ID)
 }
 
 // Mutation returns the OrgMetadataMutation object of the builder.
-func (omuo *OrgMetadataUpdateOne) Mutation() *OrgMetadataMutation {
-	return omuo.mutation
+func (_u *OrgMetadataUpdateOne) Mutation() *OrgMetadataMutation {
+	return _u.mutation
 }
 
 // ClearMetadata clears all "metadata" edges to the Metadata entity.
-func (omuo *OrgMetadataUpdateOne) ClearMetadata() *OrgMetadataUpdateOne {
-	omuo.mutation.ClearMetadata()
-	return omuo
+func (_u *OrgMetadataUpdateOne) ClearMetadata() *OrgMetadataUpdateOne {
+	_u.mutation.ClearMetadata()
+	return _u
 }
 
 // RemoveMetadatumIDs removes the "metadata" edge to Metadata entities by IDs.
-func (omuo *OrgMetadataUpdateOne) RemoveMetadatumIDs(ids ...int) *OrgMetadataUpdateOne {
-	omuo.mutation.RemoveMetadatumIDs(ids...)
-	return omuo
+func (_u *OrgMetadataUpdateOne) RemoveMetadatumIDs(ids ...int) *OrgMetadataUpdateOne {
+	_u.mutation.RemoveMetadatumIDs(ids...)
+	return _u
 }
 
 // RemoveMetadata removes "metadata" edges to Metadata entities.
-func (omuo *OrgMetadataUpdateOne) RemoveMetadata(m ...*Metadata) *OrgMetadataUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *OrgMetadataUpdateOne) RemoveMetadata(v ...*Metadata) *OrgMetadataUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return omuo.RemoveMetadatumIDs(ids...)
+	return _u.RemoveMetadatumIDs(ids...)
 }
 
 // ClearTenant clears the "tenant" edge to the Tenant entity.
-func (omuo *OrgMetadataUpdateOne) ClearTenant() *OrgMetadataUpdateOne {
-	omuo.mutation.ClearTenant()
-	return omuo
+func (_u *OrgMetadataUpdateOne) ClearTenant() *OrgMetadataUpdateOne {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // Where appends a list predicates to the OrgMetadataUpdate builder.
-func (omuo *OrgMetadataUpdateOne) Where(ps ...predicate.OrgMetadata) *OrgMetadataUpdateOne {
-	omuo.mutation.Where(ps...)
-	return omuo
+func (_u *OrgMetadataUpdateOne) Where(ps ...predicate.OrgMetadata) *OrgMetadataUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (omuo *OrgMetadataUpdateOne) Select(field string, fields ...string) *OrgMetadataUpdateOne {
-	omuo.fields = append([]string{field}, fields...)
-	return omuo
+func (_u *OrgMetadataUpdateOne) Select(field string, fields ...string) *OrgMetadataUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated OrgMetadata entity.
-func (omuo *OrgMetadataUpdateOne) Save(ctx context.Context) (*OrgMetadata, error) {
-	return withHooks(ctx, omuo.sqlSave, omuo.mutation, omuo.hooks)
+func (_u *OrgMetadataUpdateOne) Save(ctx context.Context) (*OrgMetadata, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (omuo *OrgMetadataUpdateOne) SaveX(ctx context.Context) *OrgMetadata {
-	node, err := omuo.Save(ctx)
+func (_u *OrgMetadataUpdateOne) SaveX(ctx context.Context) *OrgMetadata {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -418,21 +418,21 @@ func (omuo *OrgMetadataUpdateOne) SaveX(ctx context.Context) *OrgMetadata {
 }
 
 // Exec executes the query on the entity.
-func (omuo *OrgMetadataUpdateOne) Exec(ctx context.Context) error {
-	_, err := omuo.Save(ctx)
+func (_u *OrgMetadataUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (omuo *OrgMetadataUpdateOne) ExecX(ctx context.Context) {
-	if err := omuo.Exec(ctx); err != nil {
+func (_u *OrgMetadataUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (omuo *OrgMetadataUpdateOne) check() error {
-	if v, ok := omuo.mutation.Name(); ok {
+func (_u *OrgMetadataUpdateOne) check() error {
+	if v, ok := _u.mutation.Name(); ok {
 		if err := orgmetadata.NameValidator(v); err != nil {
 			return &ValidationError{Name: "name", err: fmt.Errorf(`ent: validator failed for field "OrgMetadata.name": %w`, err)}
 		}
@@ -441,22 +441,22 @@ func (omuo *OrgMetadataUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (omuo *OrgMetadataUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OrgMetadataUpdateOne {
-	omuo.modifiers = append(omuo.modifiers, modifiers...)
-	return omuo
+func (_u *OrgMetadataUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *OrgMetadataUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetadata, err error) {
-	if err := omuo.check(); err != nil {
+func (_u *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetadata, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(orgmetadata.Table, orgmetadata.Columns, sqlgraph.NewFieldSpec(orgmetadata.FieldID, field.TypeInt))
-	id, ok := omuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "OrgMetadata.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := omuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, orgmetadata.FieldID)
 		for _, f := range fields {
@@ -468,23 +468,23 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 			}
 		}
 	}
-	if ps := omuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := omuo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(orgmetadata.FieldName, field.TypeString, value)
 	}
-	if value, ok := omuo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(orgmetadata.FieldDescription, field.TypeString, value)
 	}
-	if omuo.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(orgmetadata.FieldDescription, field.TypeString)
 	}
-	if omuo.mutation.MetadataCleared() {
+	if _u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -497,7 +497,7 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := omuo.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !omuo.mutation.MetadataCleared() {
+	if nodes := _u.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !_u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -513,7 +513,7 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := omuo.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -529,7 +529,7 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if omuo.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -542,7 +542,7 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := omuo.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -558,11 +558,11 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(omuo.modifiers...)
-	_node = &OrgMetadata{config: omuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &OrgMetadata{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, omuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{orgmetadata.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -570,6 +570,6 @@ func (omuo *OrgMetadataUpdateOne) sqlSave(ctx context.Context) (_node *OrgMetada
 		}
 		return nil, err
 	}
-	omuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

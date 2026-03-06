@@ -63,7 +63,7 @@ func (*Authentication) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Authentication fields.
-func (a *Authentication) assignValues(columns []string, values []any) error {
+func (_m *Authentication) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -74,81 +74,81 @@ func (a *Authentication) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			a.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case authentication.FieldUseCertificates:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_certificates", values[i])
 			} else if value.Valid {
-				a.UseCertificates = value.Bool
+				_m.UseCertificates = value.Bool
 			}
 		case authentication.FieldAllowRegister:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field allow_register", values[i])
 			} else if value.Valid {
-				a.AllowRegister = value.Bool
+				_m.AllowRegister = value.Bool
 			}
 		case authentication.FieldUseOIDC:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_OIDC", values[i])
 			} else if value.Valid {
-				a.UseOIDC = value.Bool
+				_m.UseOIDC = value.Bool
 			}
 		case authentication.FieldOIDCProvider:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_provider", values[i])
 			} else if value.Valid {
-				a.OIDCProvider = value.String
+				_m.OIDCProvider = value.String
 			}
 		case authentication.FieldOIDCIssuerURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_issuer_url", values[i])
 			} else if value.Valid {
-				a.OIDCIssuerURL = value.String
+				_m.OIDCIssuerURL = value.String
 			}
 		case authentication.FieldOIDCClientID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_client_id", values[i])
 			} else if value.Valid {
-				a.OIDCClientID = value.String
+				_m.OIDCClientID = value.String
 			}
 		case authentication.FieldOIDCRole:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_role", values[i])
 			} else if value.Valid {
-				a.OIDCRole = value.String
+				_m.OIDCRole = value.String
 			}
 		case authentication.FieldOIDCCookieEncriptionKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_cookie_encription_key", values[i])
 			} else if value.Valid {
-				a.OIDCCookieEncriptionKey = value.String
+				_m.OIDCCookieEncriptionKey = value.String
 			}
 		case authentication.FieldOIDCKeycloakPublicKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_keycloak_public_key", values[i])
 			} else if value.Valid {
-				a.OIDCKeycloakPublicKey = value.String
+				_m.OIDCKeycloakPublicKey = value.String
 			}
 		case authentication.FieldOIDCAutoCreateAccount:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_auto_create_account", values[i])
 			} else if value.Valid {
-				a.OIDCAutoCreateAccount = value.Bool
+				_m.OIDCAutoCreateAccount = value.Bool
 			}
 		case authentication.FieldOIDCAutoApprove:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field OIDC_auto_approve", values[i])
 			} else if value.Valid {
-				a.OIDCAutoApprove = value.Bool
+				_m.OIDCAutoApprove = value.Bool
 			}
 		case authentication.FieldUsePasswd:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_passwd", values[i])
 			} else if value.Valid {
-				a.UsePasswd = value.Bool
+				_m.UsePasswd = value.Bool
 			}
 		default:
-			a.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -156,68 +156,68 @@ func (a *Authentication) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Authentication.
 // This includes values selected through modifiers, order, etc.
-func (a *Authentication) Value(name string) (ent.Value, error) {
-	return a.selectValues.Get(name)
+func (_m *Authentication) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Authentication.
 // Note that you need to call Authentication.Unwrap() before calling this method if this Authentication
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (a *Authentication) Update() *AuthenticationUpdateOne {
-	return NewAuthenticationClient(a.config).UpdateOne(a)
+func (_m *Authentication) Update() *AuthenticationUpdateOne {
+	return NewAuthenticationClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Authentication entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (a *Authentication) Unwrap() *Authentication {
-	_tx, ok := a.config.driver.(*txDriver)
+func (_m *Authentication) Unwrap() *Authentication {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Authentication is not a transactional entity")
 	}
-	a.config.driver = _tx.drv
-	return a
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (a *Authentication) String() string {
+func (_m *Authentication) String() string {
 	var builder strings.Builder
 	builder.WriteString("Authentication(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("use_certificates=")
-	builder.WriteString(fmt.Sprintf("%v", a.UseCertificates))
+	builder.WriteString(fmt.Sprintf("%v", _m.UseCertificates))
 	builder.WriteString(", ")
 	builder.WriteString("allow_register=")
-	builder.WriteString(fmt.Sprintf("%v", a.AllowRegister))
+	builder.WriteString(fmt.Sprintf("%v", _m.AllowRegister))
 	builder.WriteString(", ")
 	builder.WriteString("use_OIDC=")
-	builder.WriteString(fmt.Sprintf("%v", a.UseOIDC))
+	builder.WriteString(fmt.Sprintf("%v", _m.UseOIDC))
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_provider=")
-	builder.WriteString(a.OIDCProvider)
+	builder.WriteString(_m.OIDCProvider)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_issuer_url=")
-	builder.WriteString(a.OIDCIssuerURL)
+	builder.WriteString(_m.OIDCIssuerURL)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_client_id=")
-	builder.WriteString(a.OIDCClientID)
+	builder.WriteString(_m.OIDCClientID)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_role=")
-	builder.WriteString(a.OIDCRole)
+	builder.WriteString(_m.OIDCRole)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_cookie_encription_key=")
-	builder.WriteString(a.OIDCCookieEncriptionKey)
+	builder.WriteString(_m.OIDCCookieEncriptionKey)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_keycloak_public_key=")
-	builder.WriteString(a.OIDCKeycloakPublicKey)
+	builder.WriteString(_m.OIDCKeycloakPublicKey)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_auto_create_account=")
-	builder.WriteString(fmt.Sprintf("%v", a.OIDCAutoCreateAccount))
+	builder.WriteString(fmt.Sprintf("%v", _m.OIDCAutoCreateAccount))
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_auto_approve=")
-	builder.WriteString(fmt.Sprintf("%v", a.OIDCAutoApprove))
+	builder.WriteString(fmt.Sprintf("%v", _m.OIDCAutoApprove))
 	builder.WriteString(", ")
 	builder.WriteString("use_passwd=")
-	builder.WriteString(fmt.Sprintf("%v", a.UsePasswd))
+	builder.WriteString(fmt.Sprintf("%v", _m.UsePasswd))
 	builder.WriteByte(')')
 	return builder.String()
 }

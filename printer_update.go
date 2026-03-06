@@ -24,135 +24,135 @@ type PrinterUpdate struct {
 }
 
 // Where appends a list predicates to the PrinterUpdate builder.
-func (pu *PrinterUpdate) Where(ps ...predicate.Printer) *PrinterUpdate {
-	pu.mutation.Where(ps...)
-	return pu
+func (_u *PrinterUpdate) Where(ps ...predicate.Printer) *PrinterUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (pu *PrinterUpdate) SetName(s string) *PrinterUpdate {
-	pu.mutation.SetName(s)
-	return pu
+func (_u *PrinterUpdate) SetName(v string) *PrinterUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (pu *PrinterUpdate) SetNillableName(s *string) *PrinterUpdate {
-	if s != nil {
-		pu.SetName(*s)
+func (_u *PrinterUpdate) SetNillableName(v *string) *PrinterUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return pu
+	return _u
 }
 
 // SetPort sets the "port" field.
-func (pu *PrinterUpdate) SetPort(s string) *PrinterUpdate {
-	pu.mutation.SetPort(s)
-	return pu
+func (_u *PrinterUpdate) SetPort(v string) *PrinterUpdate {
+	_u.mutation.SetPort(v)
+	return _u
 }
 
 // SetNillablePort sets the "port" field if the given value is not nil.
-func (pu *PrinterUpdate) SetNillablePort(s *string) *PrinterUpdate {
-	if s != nil {
-		pu.SetPort(*s)
+func (_u *PrinterUpdate) SetNillablePort(v *string) *PrinterUpdate {
+	if v != nil {
+		_u.SetPort(*v)
 	}
-	return pu
+	return _u
 }
 
 // ClearPort clears the value of the "port" field.
-func (pu *PrinterUpdate) ClearPort() *PrinterUpdate {
-	pu.mutation.ClearPort()
-	return pu
+func (_u *PrinterUpdate) ClearPort() *PrinterUpdate {
+	_u.mutation.ClearPort()
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (pu *PrinterUpdate) SetIsDefault(b bool) *PrinterUpdate {
-	pu.mutation.SetIsDefault(b)
-	return pu
+func (_u *PrinterUpdate) SetIsDefault(v bool) *PrinterUpdate {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (pu *PrinterUpdate) SetNillableIsDefault(b *bool) *PrinterUpdate {
-	if b != nil {
-		pu.SetIsDefault(*b)
+func (_u *PrinterUpdate) SetNillableIsDefault(v *bool) *PrinterUpdate {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return pu
+	return _u
 }
 
 // ClearIsDefault clears the value of the "is_default" field.
-func (pu *PrinterUpdate) ClearIsDefault() *PrinterUpdate {
-	pu.mutation.ClearIsDefault()
-	return pu
+func (_u *PrinterUpdate) ClearIsDefault() *PrinterUpdate {
+	_u.mutation.ClearIsDefault()
+	return _u
 }
 
 // SetIsNetwork sets the "is_network" field.
-func (pu *PrinterUpdate) SetIsNetwork(b bool) *PrinterUpdate {
-	pu.mutation.SetIsNetwork(b)
-	return pu
+func (_u *PrinterUpdate) SetIsNetwork(v bool) *PrinterUpdate {
+	_u.mutation.SetIsNetwork(v)
+	return _u
 }
 
 // SetNillableIsNetwork sets the "is_network" field if the given value is not nil.
-func (pu *PrinterUpdate) SetNillableIsNetwork(b *bool) *PrinterUpdate {
-	if b != nil {
-		pu.SetIsNetwork(*b)
+func (_u *PrinterUpdate) SetNillableIsNetwork(v *bool) *PrinterUpdate {
+	if v != nil {
+		_u.SetIsNetwork(*v)
 	}
-	return pu
+	return _u
 }
 
 // ClearIsNetwork clears the value of the "is_network" field.
-func (pu *PrinterUpdate) ClearIsNetwork() *PrinterUpdate {
-	pu.mutation.ClearIsNetwork()
-	return pu
+func (_u *PrinterUpdate) ClearIsNetwork() *PrinterUpdate {
+	_u.mutation.ClearIsNetwork()
+	return _u
 }
 
 // SetIsShared sets the "is_shared" field.
-func (pu *PrinterUpdate) SetIsShared(b bool) *PrinterUpdate {
-	pu.mutation.SetIsShared(b)
-	return pu
+func (_u *PrinterUpdate) SetIsShared(v bool) *PrinterUpdate {
+	_u.mutation.SetIsShared(v)
+	return _u
 }
 
 // SetNillableIsShared sets the "is_shared" field if the given value is not nil.
-func (pu *PrinterUpdate) SetNillableIsShared(b *bool) *PrinterUpdate {
-	if b != nil {
-		pu.SetIsShared(*b)
+func (_u *PrinterUpdate) SetNillableIsShared(v *bool) *PrinterUpdate {
+	if v != nil {
+		_u.SetIsShared(*v)
 	}
-	return pu
+	return _u
 }
 
 // ClearIsShared clears the value of the "is_shared" field.
-func (pu *PrinterUpdate) ClearIsShared() *PrinterUpdate {
-	pu.mutation.ClearIsShared()
-	return pu
+func (_u *PrinterUpdate) ClearIsShared() *PrinterUpdate {
+	_u.mutation.ClearIsShared()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (pu *PrinterUpdate) SetOwnerID(id string) *PrinterUpdate {
-	pu.mutation.SetOwnerID(id)
-	return pu
+func (_u *PrinterUpdate) SetOwnerID(id string) *PrinterUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (pu *PrinterUpdate) SetOwner(a *Agent) *PrinterUpdate {
-	return pu.SetOwnerID(a.ID)
+func (_u *PrinterUpdate) SetOwner(v *Agent) *PrinterUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the PrinterMutation object of the builder.
-func (pu *PrinterUpdate) Mutation() *PrinterMutation {
-	return pu.mutation
+func (_u *PrinterUpdate) Mutation() *PrinterMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (pu *PrinterUpdate) ClearOwner() *PrinterUpdate {
-	pu.mutation.ClearOwner()
-	return pu
+func (_u *PrinterUpdate) ClearOwner() *PrinterUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (pu *PrinterUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, pu.sqlSave, pu.mutation, pu.hooks)
+func (_u *PrinterUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (pu *PrinterUpdate) SaveX(ctx context.Context) int {
-	affected, err := pu.Save(ctx)
+func (_u *PrinterUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -160,72 +160,72 @@ func (pu *PrinterUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (pu *PrinterUpdate) Exec(ctx context.Context) error {
-	_, err := pu.Save(ctx)
+func (_u *PrinterUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pu *PrinterUpdate) ExecX(ctx context.Context) {
-	if err := pu.Exec(ctx); err != nil {
+func (_u *PrinterUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (pu *PrinterUpdate) check() error {
-	if pu.mutation.OwnerCleared() && len(pu.mutation.OwnerIDs()) > 0 {
+func (_u *PrinterUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Printer.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (pu *PrinterUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PrinterUpdate {
-	pu.modifiers = append(pu.modifiers, modifiers...)
-	return pu
+func (_u *PrinterUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PrinterUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (pu *PrinterUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := pu.check(); err != nil {
-		return n, err
+func (_u *PrinterUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(printer.Table, printer.Columns, sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt))
-	if ps := pu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := pu.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(printer.FieldName, field.TypeString, value)
 	}
-	if value, ok := pu.mutation.Port(); ok {
+	if value, ok := _u.mutation.Port(); ok {
 		_spec.SetField(printer.FieldPort, field.TypeString, value)
 	}
-	if pu.mutation.PortCleared() {
+	if _u.mutation.PortCleared() {
 		_spec.ClearField(printer.FieldPort, field.TypeString)
 	}
-	if value, ok := pu.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(printer.FieldIsDefault, field.TypeBool, value)
 	}
-	if pu.mutation.IsDefaultCleared() {
+	if _u.mutation.IsDefaultCleared() {
 		_spec.ClearField(printer.FieldIsDefault, field.TypeBool)
 	}
-	if value, ok := pu.mutation.IsNetwork(); ok {
+	if value, ok := _u.mutation.IsNetwork(); ok {
 		_spec.SetField(printer.FieldIsNetwork, field.TypeBool, value)
 	}
-	if pu.mutation.IsNetworkCleared() {
+	if _u.mutation.IsNetworkCleared() {
 		_spec.ClearField(printer.FieldIsNetwork, field.TypeBool)
 	}
-	if value, ok := pu.mutation.IsShared(); ok {
+	if value, ok := _u.mutation.IsShared(); ok {
 		_spec.SetField(printer.FieldIsShared, field.TypeBool, value)
 	}
-	if pu.mutation.IsSharedCleared() {
+	if _u.mutation.IsSharedCleared() {
 		_spec.ClearField(printer.FieldIsShared, field.TypeBool)
 	}
-	if pu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -238,7 +238,7 @@ func (pu *PrinterUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := pu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -254,8 +254,8 @@ func (pu *PrinterUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(pu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, pu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{printer.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -263,8 +263,8 @@ func (pu *PrinterUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	pu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // PrinterUpdateOne is the builder for updating a single Printer entity.
@@ -277,142 +277,142 @@ type PrinterUpdateOne struct {
 }
 
 // SetName sets the "name" field.
-func (puo *PrinterUpdateOne) SetName(s string) *PrinterUpdateOne {
-	puo.mutation.SetName(s)
-	return puo
+func (_u *PrinterUpdateOne) SetName(v string) *PrinterUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (puo *PrinterUpdateOne) SetNillableName(s *string) *PrinterUpdateOne {
-	if s != nil {
-		puo.SetName(*s)
+func (_u *PrinterUpdateOne) SetNillableName(v *string) *PrinterUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return puo
+	return _u
 }
 
 // SetPort sets the "port" field.
-func (puo *PrinterUpdateOne) SetPort(s string) *PrinterUpdateOne {
-	puo.mutation.SetPort(s)
-	return puo
+func (_u *PrinterUpdateOne) SetPort(v string) *PrinterUpdateOne {
+	_u.mutation.SetPort(v)
+	return _u
 }
 
 // SetNillablePort sets the "port" field if the given value is not nil.
-func (puo *PrinterUpdateOne) SetNillablePort(s *string) *PrinterUpdateOne {
-	if s != nil {
-		puo.SetPort(*s)
+func (_u *PrinterUpdateOne) SetNillablePort(v *string) *PrinterUpdateOne {
+	if v != nil {
+		_u.SetPort(*v)
 	}
-	return puo
+	return _u
 }
 
 // ClearPort clears the value of the "port" field.
-func (puo *PrinterUpdateOne) ClearPort() *PrinterUpdateOne {
-	puo.mutation.ClearPort()
-	return puo
+func (_u *PrinterUpdateOne) ClearPort() *PrinterUpdateOne {
+	_u.mutation.ClearPort()
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (puo *PrinterUpdateOne) SetIsDefault(b bool) *PrinterUpdateOne {
-	puo.mutation.SetIsDefault(b)
-	return puo
+func (_u *PrinterUpdateOne) SetIsDefault(v bool) *PrinterUpdateOne {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (puo *PrinterUpdateOne) SetNillableIsDefault(b *bool) *PrinterUpdateOne {
-	if b != nil {
-		puo.SetIsDefault(*b)
+func (_u *PrinterUpdateOne) SetNillableIsDefault(v *bool) *PrinterUpdateOne {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return puo
+	return _u
 }
 
 // ClearIsDefault clears the value of the "is_default" field.
-func (puo *PrinterUpdateOne) ClearIsDefault() *PrinterUpdateOne {
-	puo.mutation.ClearIsDefault()
-	return puo
+func (_u *PrinterUpdateOne) ClearIsDefault() *PrinterUpdateOne {
+	_u.mutation.ClearIsDefault()
+	return _u
 }
 
 // SetIsNetwork sets the "is_network" field.
-func (puo *PrinterUpdateOne) SetIsNetwork(b bool) *PrinterUpdateOne {
-	puo.mutation.SetIsNetwork(b)
-	return puo
+func (_u *PrinterUpdateOne) SetIsNetwork(v bool) *PrinterUpdateOne {
+	_u.mutation.SetIsNetwork(v)
+	return _u
 }
 
 // SetNillableIsNetwork sets the "is_network" field if the given value is not nil.
-func (puo *PrinterUpdateOne) SetNillableIsNetwork(b *bool) *PrinterUpdateOne {
-	if b != nil {
-		puo.SetIsNetwork(*b)
+func (_u *PrinterUpdateOne) SetNillableIsNetwork(v *bool) *PrinterUpdateOne {
+	if v != nil {
+		_u.SetIsNetwork(*v)
 	}
-	return puo
+	return _u
 }
 
 // ClearIsNetwork clears the value of the "is_network" field.
-func (puo *PrinterUpdateOne) ClearIsNetwork() *PrinterUpdateOne {
-	puo.mutation.ClearIsNetwork()
-	return puo
+func (_u *PrinterUpdateOne) ClearIsNetwork() *PrinterUpdateOne {
+	_u.mutation.ClearIsNetwork()
+	return _u
 }
 
 // SetIsShared sets the "is_shared" field.
-func (puo *PrinterUpdateOne) SetIsShared(b bool) *PrinterUpdateOne {
-	puo.mutation.SetIsShared(b)
-	return puo
+func (_u *PrinterUpdateOne) SetIsShared(v bool) *PrinterUpdateOne {
+	_u.mutation.SetIsShared(v)
+	return _u
 }
 
 // SetNillableIsShared sets the "is_shared" field if the given value is not nil.
-func (puo *PrinterUpdateOne) SetNillableIsShared(b *bool) *PrinterUpdateOne {
-	if b != nil {
-		puo.SetIsShared(*b)
+func (_u *PrinterUpdateOne) SetNillableIsShared(v *bool) *PrinterUpdateOne {
+	if v != nil {
+		_u.SetIsShared(*v)
 	}
-	return puo
+	return _u
 }
 
 // ClearIsShared clears the value of the "is_shared" field.
-func (puo *PrinterUpdateOne) ClearIsShared() *PrinterUpdateOne {
-	puo.mutation.ClearIsShared()
-	return puo
+func (_u *PrinterUpdateOne) ClearIsShared() *PrinterUpdateOne {
+	_u.mutation.ClearIsShared()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (puo *PrinterUpdateOne) SetOwnerID(id string) *PrinterUpdateOne {
-	puo.mutation.SetOwnerID(id)
-	return puo
+func (_u *PrinterUpdateOne) SetOwnerID(id string) *PrinterUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (puo *PrinterUpdateOne) SetOwner(a *Agent) *PrinterUpdateOne {
-	return puo.SetOwnerID(a.ID)
+func (_u *PrinterUpdateOne) SetOwner(v *Agent) *PrinterUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the PrinterMutation object of the builder.
-func (puo *PrinterUpdateOne) Mutation() *PrinterMutation {
-	return puo.mutation
+func (_u *PrinterUpdateOne) Mutation() *PrinterMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (puo *PrinterUpdateOne) ClearOwner() *PrinterUpdateOne {
-	puo.mutation.ClearOwner()
-	return puo
+func (_u *PrinterUpdateOne) ClearOwner() *PrinterUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the PrinterUpdate builder.
-func (puo *PrinterUpdateOne) Where(ps ...predicate.Printer) *PrinterUpdateOne {
-	puo.mutation.Where(ps...)
-	return puo
+func (_u *PrinterUpdateOne) Where(ps ...predicate.Printer) *PrinterUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (puo *PrinterUpdateOne) Select(field string, fields ...string) *PrinterUpdateOne {
-	puo.fields = append([]string{field}, fields...)
-	return puo
+func (_u *PrinterUpdateOne) Select(field string, fields ...string) *PrinterUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Printer entity.
-func (puo *PrinterUpdateOne) Save(ctx context.Context) (*Printer, error) {
-	return withHooks(ctx, puo.sqlSave, puo.mutation, puo.hooks)
+func (_u *PrinterUpdateOne) Save(ctx context.Context) (*Printer, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (puo *PrinterUpdateOne) SaveX(ctx context.Context) *Printer {
-	node, err := puo.Save(ctx)
+func (_u *PrinterUpdateOne) SaveX(ctx context.Context) *Printer {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -420,43 +420,43 @@ func (puo *PrinterUpdateOne) SaveX(ctx context.Context) *Printer {
 }
 
 // Exec executes the query on the entity.
-func (puo *PrinterUpdateOne) Exec(ctx context.Context) error {
-	_, err := puo.Save(ctx)
+func (_u *PrinterUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (puo *PrinterUpdateOne) ExecX(ctx context.Context) {
-	if err := puo.Exec(ctx); err != nil {
+func (_u *PrinterUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (puo *PrinterUpdateOne) check() error {
-	if puo.mutation.OwnerCleared() && len(puo.mutation.OwnerIDs()) > 0 {
+func (_u *PrinterUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Printer.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (puo *PrinterUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PrinterUpdateOne {
-	puo.modifiers = append(puo.modifiers, modifiers...)
-	return puo
+func (_u *PrinterUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PrinterUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (puo *PrinterUpdateOne) sqlSave(ctx context.Context) (_node *Printer, err error) {
-	if err := puo.check(); err != nil {
+func (_u *PrinterUpdateOne) sqlSave(ctx context.Context) (_node *Printer, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(printer.Table, printer.Columns, sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt))
-	id, ok := puo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Printer.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := puo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, printer.FieldID)
 		for _, f := range fields {
@@ -468,41 +468,41 @@ func (puo *PrinterUpdateOne) sqlSave(ctx context.Context) (_node *Printer, err e
 			}
 		}
 	}
-	if ps := puo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := puo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(printer.FieldName, field.TypeString, value)
 	}
-	if value, ok := puo.mutation.Port(); ok {
+	if value, ok := _u.mutation.Port(); ok {
 		_spec.SetField(printer.FieldPort, field.TypeString, value)
 	}
-	if puo.mutation.PortCleared() {
+	if _u.mutation.PortCleared() {
 		_spec.ClearField(printer.FieldPort, field.TypeString)
 	}
-	if value, ok := puo.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(printer.FieldIsDefault, field.TypeBool, value)
 	}
-	if puo.mutation.IsDefaultCleared() {
+	if _u.mutation.IsDefaultCleared() {
 		_spec.ClearField(printer.FieldIsDefault, field.TypeBool)
 	}
-	if value, ok := puo.mutation.IsNetwork(); ok {
+	if value, ok := _u.mutation.IsNetwork(); ok {
 		_spec.SetField(printer.FieldIsNetwork, field.TypeBool, value)
 	}
-	if puo.mutation.IsNetworkCleared() {
+	if _u.mutation.IsNetworkCleared() {
 		_spec.ClearField(printer.FieldIsNetwork, field.TypeBool)
 	}
-	if value, ok := puo.mutation.IsShared(); ok {
+	if value, ok := _u.mutation.IsShared(); ok {
 		_spec.SetField(printer.FieldIsShared, field.TypeBool, value)
 	}
-	if puo.mutation.IsSharedCleared() {
+	if _u.mutation.IsSharedCleared() {
 		_spec.ClearField(printer.FieldIsShared, field.TypeBool)
 	}
-	if puo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -515,7 +515,7 @@ func (puo *PrinterUpdateOne) sqlSave(ctx context.Context) (_node *Printer, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := puo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -531,11 +531,11 @@ func (puo *PrinterUpdateOne) sqlSave(ctx context.Context) (_node *Printer, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(puo.modifiers...)
-	_node = &Printer{config: puo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Printer{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, puo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{printer.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -543,6 +543,6 @@ func (puo *PrinterUpdateOne) sqlSave(ctx context.Context) (_node *Printer, err e
 		}
 		return nil, err
 	}
-	puo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

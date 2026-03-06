@@ -78,7 +78,7 @@ func (*Rustdesk) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Rustdesk fields.
-func (r *Rustdesk) assignValues(columns []string, values []any) error {
+func (_m *Rustdesk) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -89,63 +89,63 @@ func (r *Rustdesk) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			r.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case rustdesk.FieldCustomRendezvousServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field custom_rendezvous_server", values[i])
 			} else if value.Valid {
-				r.CustomRendezvousServer = value.String
+				_m.CustomRendezvousServer = value.String
 			}
 		case rustdesk.FieldRelayServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field relay_server", values[i])
 			} else if value.Valid {
-				r.RelayServer = value.String
+				_m.RelayServer = value.String
 			}
 		case rustdesk.FieldAPIServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field api_server", values[i])
 			} else if value.Valid {
-				r.APIServer = value.String
+				_m.APIServer = value.String
 			}
 		case rustdesk.FieldKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field key", values[i])
 			} else if value.Valid {
-				r.Key = value.String
+				_m.Key = value.String
 			}
 		case rustdesk.FieldUsePermanentPassword:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_permanent_password", values[i])
 			} else if value.Valid {
-				r.UsePermanentPassword = value.Bool
+				_m.UsePermanentPassword = value.Bool
 			}
 		case rustdesk.FieldWhitelist:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field whitelist", values[i])
 			} else if value.Valid {
-				r.Whitelist = value.String
+				_m.Whitelist = value.String
 			}
 		case rustdesk.FieldDirectIPAccess:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field direct_ip_access", values[i])
 			} else if value.Valid {
-				r.DirectIPAccess = value.Bool
+				_m.DirectIPAccess = value.Bool
 			}
 		case rustdesk.FieldVerificationMethod:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field verification_method", values[i])
 			} else if value.Valid {
-				r.VerificationMethod = rustdesk.VerificationMethod(value.String)
+				_m.VerificationMethod = rustdesk.VerificationMethod(value.String)
 			}
 		case rustdesk.FieldTemporaryPasswordLength:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field temporary_password_length", values[i])
 			} else if value.Valid {
-				r.TemporaryPasswordLength = int(value.Int64)
+				_m.TemporaryPasswordLength = int(value.Int64)
 			}
 		default:
-			r.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -153,64 +153,64 @@ func (r *Rustdesk) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Rustdesk.
 // This includes values selected through modifiers, order, etc.
-func (r *Rustdesk) Value(name string) (ent.Value, error) {
-	return r.selectValues.Get(name)
+func (_m *Rustdesk) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryTenant queries the "tenant" edge of the Rustdesk entity.
-func (r *Rustdesk) QueryTenant() *TenantQuery {
-	return NewRustdeskClient(r.config).QueryTenant(r)
+func (_m *Rustdesk) QueryTenant() *TenantQuery {
+	return NewRustdeskClient(_m.config).QueryTenant(_m)
 }
 
 // Update returns a builder for updating this Rustdesk.
 // Note that you need to call Rustdesk.Unwrap() before calling this method if this Rustdesk
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (r *Rustdesk) Update() *RustdeskUpdateOne {
-	return NewRustdeskClient(r.config).UpdateOne(r)
+func (_m *Rustdesk) Update() *RustdeskUpdateOne {
+	return NewRustdeskClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Rustdesk entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (r *Rustdesk) Unwrap() *Rustdesk {
-	_tx, ok := r.config.driver.(*txDriver)
+func (_m *Rustdesk) Unwrap() *Rustdesk {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Rustdesk is not a transactional entity")
 	}
-	r.config.driver = _tx.drv
-	return r
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (r *Rustdesk) String() string {
+func (_m *Rustdesk) String() string {
 	var builder strings.Builder
 	builder.WriteString("Rustdesk(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("custom_rendezvous_server=")
-	builder.WriteString(r.CustomRendezvousServer)
+	builder.WriteString(_m.CustomRendezvousServer)
 	builder.WriteString(", ")
 	builder.WriteString("relay_server=")
-	builder.WriteString(r.RelayServer)
+	builder.WriteString(_m.RelayServer)
 	builder.WriteString(", ")
 	builder.WriteString("api_server=")
-	builder.WriteString(r.APIServer)
+	builder.WriteString(_m.APIServer)
 	builder.WriteString(", ")
 	builder.WriteString("key=")
-	builder.WriteString(r.Key)
+	builder.WriteString(_m.Key)
 	builder.WriteString(", ")
 	builder.WriteString("use_permanent_password=")
-	builder.WriteString(fmt.Sprintf("%v", r.UsePermanentPassword))
+	builder.WriteString(fmt.Sprintf("%v", _m.UsePermanentPassword))
 	builder.WriteString(", ")
 	builder.WriteString("whitelist=")
-	builder.WriteString(r.Whitelist)
+	builder.WriteString(_m.Whitelist)
 	builder.WriteString(", ")
 	builder.WriteString("direct_ip_access=")
-	builder.WriteString(fmt.Sprintf("%v", r.DirectIPAccess))
+	builder.WriteString(fmt.Sprintf("%v", _m.DirectIPAccess))
 	builder.WriteString(", ")
 	builder.WriteString("verification_method=")
-	builder.WriteString(fmt.Sprintf("%v", r.VerificationMethod))
+	builder.WriteString(fmt.Sprintf("%v", _m.VerificationMethod))
 	builder.WriteString(", ")
 	builder.WriteString("temporary_password_length=")
-	builder.WriteString(fmt.Sprintf("%v", r.TemporaryPasswordLength))
+	builder.WriteString(fmt.Sprintf("%v", _m.TemporaryPasswordLength))
 	builder.WriteByte(')')
 	return builder.String()
 }

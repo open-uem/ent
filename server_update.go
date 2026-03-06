@@ -24,274 +24,274 @@ type ServerUpdate struct {
 }
 
 // Where appends a list predicates to the ServerUpdate builder.
-func (su *ServerUpdate) Where(ps ...predicate.Server) *ServerUpdate {
-	su.mutation.Where(ps...)
-	return su
+func (_u *ServerUpdate) Where(ps ...predicate.Server) *ServerUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetHostname sets the "hostname" field.
-func (su *ServerUpdate) SetHostname(s string) *ServerUpdate {
-	su.mutation.SetHostname(s)
-	return su
+func (_u *ServerUpdate) SetHostname(v string) *ServerUpdate {
+	_u.mutation.SetHostname(v)
+	return _u
 }
 
 // SetNillableHostname sets the "hostname" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableHostname(s *string) *ServerUpdate {
-	if s != nil {
-		su.SetHostname(*s)
+func (_u *ServerUpdate) SetNillableHostname(v *string) *ServerUpdate {
+	if v != nil {
+		_u.SetHostname(*v)
 	}
-	return su
+	return _u
 }
 
 // SetArch sets the "arch" field.
-func (su *ServerUpdate) SetArch(s string) *ServerUpdate {
-	su.mutation.SetArch(s)
-	return su
+func (_u *ServerUpdate) SetArch(v string) *ServerUpdate {
+	_u.mutation.SetArch(v)
+	return _u
 }
 
 // SetNillableArch sets the "arch" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableArch(s *string) *ServerUpdate {
-	if s != nil {
-		su.SetArch(*s)
+func (_u *ServerUpdate) SetNillableArch(v *string) *ServerUpdate {
+	if v != nil {
+		_u.SetArch(*v)
 	}
-	return su
+	return _u
 }
 
 // SetOs sets the "os" field.
-func (su *ServerUpdate) SetOs(s string) *ServerUpdate {
-	su.mutation.SetOs(s)
-	return su
+func (_u *ServerUpdate) SetOs(v string) *ServerUpdate {
+	_u.mutation.SetOs(v)
+	return _u
 }
 
 // SetNillableOs sets the "os" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableOs(s *string) *ServerUpdate {
-	if s != nil {
-		su.SetOs(*s)
+func (_u *ServerUpdate) SetNillableOs(v *string) *ServerUpdate {
+	if v != nil {
+		_u.SetOs(*v)
 	}
-	return su
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (su *ServerUpdate) SetVersion(s string) *ServerUpdate {
-	su.mutation.SetVersion(s)
-	return su
+func (_u *ServerUpdate) SetVersion(v string) *ServerUpdate {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableVersion(s *string) *ServerUpdate {
-	if s != nil {
-		su.SetVersion(*s)
+func (_u *ServerUpdate) SetNillableVersion(v *string) *ServerUpdate {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return su
+	return _u
 }
 
 // SetChannel sets the "channel" field.
-func (su *ServerUpdate) SetChannel(s server.Channel) *ServerUpdate {
-	su.mutation.SetChannel(s)
-	return su
+func (_u *ServerUpdate) SetChannel(v server.Channel) *ServerUpdate {
+	_u.mutation.SetChannel(v)
+	return _u
 }
 
 // SetNillableChannel sets the "channel" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableChannel(s *server.Channel) *ServerUpdate {
-	if s != nil {
-		su.SetChannel(*s)
+func (_u *ServerUpdate) SetNillableChannel(v *server.Channel) *ServerUpdate {
+	if v != nil {
+		_u.SetChannel(*v)
 	}
-	return su
+	return _u
 }
 
 // SetUpdateStatus sets the "update_status" field.
-func (su *ServerUpdate) SetUpdateStatus(ss server.UpdateStatus) *ServerUpdate {
-	su.mutation.SetUpdateStatus(ss)
-	return su
+func (_u *ServerUpdate) SetUpdateStatus(v server.UpdateStatus) *ServerUpdate {
+	_u.mutation.SetUpdateStatus(v)
+	return _u
 }
 
 // SetNillableUpdateStatus sets the "update_status" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableUpdateStatus(ss *server.UpdateStatus) *ServerUpdate {
-	if ss != nil {
-		su.SetUpdateStatus(*ss)
+func (_u *ServerUpdate) SetNillableUpdateStatus(v *server.UpdateStatus) *ServerUpdate {
+	if v != nil {
+		_u.SetUpdateStatus(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUpdateStatus clears the value of the "update_status" field.
-func (su *ServerUpdate) ClearUpdateStatus() *ServerUpdate {
-	su.mutation.ClearUpdateStatus()
-	return su
+func (_u *ServerUpdate) ClearUpdateStatus() *ServerUpdate {
+	_u.mutation.ClearUpdateStatus()
+	return _u
 }
 
 // SetUpdateMessage sets the "update_message" field.
-func (su *ServerUpdate) SetUpdateMessage(s string) *ServerUpdate {
-	su.mutation.SetUpdateMessage(s)
-	return su
+func (_u *ServerUpdate) SetUpdateMessage(v string) *ServerUpdate {
+	_u.mutation.SetUpdateMessage(v)
+	return _u
 }
 
 // SetNillableUpdateMessage sets the "update_message" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableUpdateMessage(s *string) *ServerUpdate {
-	if s != nil {
-		su.SetUpdateMessage(*s)
+func (_u *ServerUpdate) SetNillableUpdateMessage(v *string) *ServerUpdate {
+	if v != nil {
+		_u.SetUpdateMessage(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUpdateMessage clears the value of the "update_message" field.
-func (su *ServerUpdate) ClearUpdateMessage() *ServerUpdate {
-	su.mutation.ClearUpdateMessage()
-	return su
+func (_u *ServerUpdate) ClearUpdateMessage() *ServerUpdate {
+	_u.mutation.ClearUpdateMessage()
+	return _u
 }
 
 // SetUpdateWhen sets the "update_when" field.
-func (su *ServerUpdate) SetUpdateWhen(t time.Time) *ServerUpdate {
-	su.mutation.SetUpdateWhen(t)
-	return su
+func (_u *ServerUpdate) SetUpdateWhen(v time.Time) *ServerUpdate {
+	_u.mutation.SetUpdateWhen(v)
+	return _u
 }
 
 // SetNillableUpdateWhen sets the "update_when" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableUpdateWhen(t *time.Time) *ServerUpdate {
-	if t != nil {
-		su.SetUpdateWhen(*t)
+func (_u *ServerUpdate) SetNillableUpdateWhen(v *time.Time) *ServerUpdate {
+	if v != nil {
+		_u.SetUpdateWhen(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUpdateWhen clears the value of the "update_when" field.
-func (su *ServerUpdate) ClearUpdateWhen() *ServerUpdate {
-	su.mutation.ClearUpdateWhen()
-	return su
+func (_u *ServerUpdate) ClearUpdateWhen() *ServerUpdate {
+	_u.mutation.ClearUpdateWhen()
+	return _u
 }
 
 // SetNatsComponent sets the "nats_component" field.
-func (su *ServerUpdate) SetNatsComponent(b bool) *ServerUpdate {
-	su.mutation.SetNatsComponent(b)
-	return su
+func (_u *ServerUpdate) SetNatsComponent(v bool) *ServerUpdate {
+	_u.mutation.SetNatsComponent(v)
+	return _u
 }
 
 // SetNillableNatsComponent sets the "nats_component" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableNatsComponent(b *bool) *ServerUpdate {
-	if b != nil {
-		su.SetNatsComponent(*b)
+func (_u *ServerUpdate) SetNillableNatsComponent(v *bool) *ServerUpdate {
+	if v != nil {
+		_u.SetNatsComponent(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearNatsComponent clears the value of the "nats_component" field.
-func (su *ServerUpdate) ClearNatsComponent() *ServerUpdate {
-	su.mutation.ClearNatsComponent()
-	return su
+func (_u *ServerUpdate) ClearNatsComponent() *ServerUpdate {
+	_u.mutation.ClearNatsComponent()
+	return _u
 }
 
 // SetOcspComponent sets the "ocsp_component" field.
-func (su *ServerUpdate) SetOcspComponent(b bool) *ServerUpdate {
-	su.mutation.SetOcspComponent(b)
-	return su
+func (_u *ServerUpdate) SetOcspComponent(v bool) *ServerUpdate {
+	_u.mutation.SetOcspComponent(v)
+	return _u
 }
 
 // SetNillableOcspComponent sets the "ocsp_component" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableOcspComponent(b *bool) *ServerUpdate {
-	if b != nil {
-		su.SetOcspComponent(*b)
+func (_u *ServerUpdate) SetNillableOcspComponent(v *bool) *ServerUpdate {
+	if v != nil {
+		_u.SetOcspComponent(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearOcspComponent clears the value of the "ocsp_component" field.
-func (su *ServerUpdate) ClearOcspComponent() *ServerUpdate {
-	su.mutation.ClearOcspComponent()
-	return su
+func (_u *ServerUpdate) ClearOcspComponent() *ServerUpdate {
+	_u.mutation.ClearOcspComponent()
+	return _u
 }
 
 // SetConsoleComponent sets the "console_component" field.
-func (su *ServerUpdate) SetConsoleComponent(b bool) *ServerUpdate {
-	su.mutation.SetConsoleComponent(b)
-	return su
+func (_u *ServerUpdate) SetConsoleComponent(v bool) *ServerUpdate {
+	_u.mutation.SetConsoleComponent(v)
+	return _u
 }
 
 // SetNillableConsoleComponent sets the "console_component" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableConsoleComponent(b *bool) *ServerUpdate {
-	if b != nil {
-		su.SetConsoleComponent(*b)
+func (_u *ServerUpdate) SetNillableConsoleComponent(v *bool) *ServerUpdate {
+	if v != nil {
+		_u.SetConsoleComponent(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearConsoleComponent clears the value of the "console_component" field.
-func (su *ServerUpdate) ClearConsoleComponent() *ServerUpdate {
-	su.mutation.ClearConsoleComponent()
-	return su
+func (_u *ServerUpdate) ClearConsoleComponent() *ServerUpdate {
+	_u.mutation.ClearConsoleComponent()
+	return _u
 }
 
 // SetAgentWorkerComponent sets the "agent_worker_component" field.
-func (su *ServerUpdate) SetAgentWorkerComponent(b bool) *ServerUpdate {
-	su.mutation.SetAgentWorkerComponent(b)
-	return su
+func (_u *ServerUpdate) SetAgentWorkerComponent(v bool) *ServerUpdate {
+	_u.mutation.SetAgentWorkerComponent(v)
+	return _u
 }
 
 // SetNillableAgentWorkerComponent sets the "agent_worker_component" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableAgentWorkerComponent(b *bool) *ServerUpdate {
-	if b != nil {
-		su.SetAgentWorkerComponent(*b)
+func (_u *ServerUpdate) SetNillableAgentWorkerComponent(v *bool) *ServerUpdate {
+	if v != nil {
+		_u.SetAgentWorkerComponent(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearAgentWorkerComponent clears the value of the "agent_worker_component" field.
-func (su *ServerUpdate) ClearAgentWorkerComponent() *ServerUpdate {
-	su.mutation.ClearAgentWorkerComponent()
-	return su
+func (_u *ServerUpdate) ClearAgentWorkerComponent() *ServerUpdate {
+	_u.mutation.ClearAgentWorkerComponent()
+	return _u
 }
 
 // SetNotificationWorkerComponent sets the "notification_worker_component" field.
-func (su *ServerUpdate) SetNotificationWorkerComponent(b bool) *ServerUpdate {
-	su.mutation.SetNotificationWorkerComponent(b)
-	return su
+func (_u *ServerUpdate) SetNotificationWorkerComponent(v bool) *ServerUpdate {
+	_u.mutation.SetNotificationWorkerComponent(v)
+	return _u
 }
 
 // SetNillableNotificationWorkerComponent sets the "notification_worker_component" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableNotificationWorkerComponent(b *bool) *ServerUpdate {
-	if b != nil {
-		su.SetNotificationWorkerComponent(*b)
+func (_u *ServerUpdate) SetNillableNotificationWorkerComponent(v *bool) *ServerUpdate {
+	if v != nil {
+		_u.SetNotificationWorkerComponent(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearNotificationWorkerComponent clears the value of the "notification_worker_component" field.
-func (su *ServerUpdate) ClearNotificationWorkerComponent() *ServerUpdate {
-	su.mutation.ClearNotificationWorkerComponent()
-	return su
+func (_u *ServerUpdate) ClearNotificationWorkerComponent() *ServerUpdate {
+	_u.mutation.ClearNotificationWorkerComponent()
+	return _u
 }
 
 // SetCertManagerWorkerComponent sets the "cert_manager_worker_component" field.
-func (su *ServerUpdate) SetCertManagerWorkerComponent(b bool) *ServerUpdate {
-	su.mutation.SetCertManagerWorkerComponent(b)
-	return su
+func (_u *ServerUpdate) SetCertManagerWorkerComponent(v bool) *ServerUpdate {
+	_u.mutation.SetCertManagerWorkerComponent(v)
+	return _u
 }
 
 // SetNillableCertManagerWorkerComponent sets the "cert_manager_worker_component" field if the given value is not nil.
-func (su *ServerUpdate) SetNillableCertManagerWorkerComponent(b *bool) *ServerUpdate {
-	if b != nil {
-		su.SetCertManagerWorkerComponent(*b)
+func (_u *ServerUpdate) SetNillableCertManagerWorkerComponent(v *bool) *ServerUpdate {
+	if v != nil {
+		_u.SetCertManagerWorkerComponent(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearCertManagerWorkerComponent clears the value of the "cert_manager_worker_component" field.
-func (su *ServerUpdate) ClearCertManagerWorkerComponent() *ServerUpdate {
-	su.mutation.ClearCertManagerWorkerComponent()
-	return su
+func (_u *ServerUpdate) ClearCertManagerWorkerComponent() *ServerUpdate {
+	_u.mutation.ClearCertManagerWorkerComponent()
+	return _u
 }
 
 // Mutation returns the ServerMutation object of the builder.
-func (su *ServerUpdate) Mutation() *ServerMutation {
-	return su.mutation
+func (_u *ServerUpdate) Mutation() *ServerMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (su *ServerUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, su.sqlSave, su.mutation, su.hooks)
+func (_u *ServerUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (su *ServerUpdate) SaveX(ctx context.Context) int {
-	affected, err := su.Save(ctx)
+func (_u *ServerUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -299,26 +299,26 @@ func (su *ServerUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (su *ServerUpdate) Exec(ctx context.Context) error {
-	_, err := su.Save(ctx)
+func (_u *ServerUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (su *ServerUpdate) ExecX(ctx context.Context) {
-	if err := su.Exec(ctx); err != nil {
+func (_u *ServerUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (su *ServerUpdate) check() error {
-	if v, ok := su.mutation.Channel(); ok {
+func (_u *ServerUpdate) check() error {
+	if v, ok := _u.mutation.Channel(); ok {
 		if err := server.ChannelValidator(v); err != nil {
 			return &ValidationError{Name: "channel", err: fmt.Errorf(`ent: validator failed for field "Server.channel": %w`, err)}
 		}
 	}
-	if v, ok := su.mutation.UpdateStatus(); ok {
+	if v, ok := _u.mutation.UpdateStatus(); ok {
 		if err := server.UpdateStatusValidator(v); err != nil {
 			return &ValidationError{Name: "update_status", err: fmt.Errorf(`ent: validator failed for field "Server.update_status": %w`, err)}
 		}
@@ -327,94 +327,94 @@ func (su *ServerUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (su *ServerUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ServerUpdate {
-	su.modifiers = append(su.modifiers, modifiers...)
-	return su
+func (_u *ServerUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ServerUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (su *ServerUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := su.check(); err != nil {
-		return n, err
+func (_u *ServerUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(server.Table, server.Columns, sqlgraph.NewFieldSpec(server.FieldID, field.TypeInt))
-	if ps := su.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := su.mutation.Hostname(); ok {
+	if value, ok := _u.mutation.Hostname(); ok {
 		_spec.SetField(server.FieldHostname, field.TypeString, value)
 	}
-	if value, ok := su.mutation.Arch(); ok {
+	if value, ok := _u.mutation.Arch(); ok {
 		_spec.SetField(server.FieldArch, field.TypeString, value)
 	}
-	if value, ok := su.mutation.Os(); ok {
+	if value, ok := _u.mutation.Os(); ok {
 		_spec.SetField(server.FieldOs, field.TypeString, value)
 	}
-	if value, ok := su.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(server.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := su.mutation.Channel(); ok {
+	if value, ok := _u.mutation.Channel(); ok {
 		_spec.SetField(server.FieldChannel, field.TypeEnum, value)
 	}
-	if value, ok := su.mutation.UpdateStatus(); ok {
+	if value, ok := _u.mutation.UpdateStatus(); ok {
 		_spec.SetField(server.FieldUpdateStatus, field.TypeEnum, value)
 	}
-	if su.mutation.UpdateStatusCleared() {
+	if _u.mutation.UpdateStatusCleared() {
 		_spec.ClearField(server.FieldUpdateStatus, field.TypeEnum)
 	}
-	if value, ok := su.mutation.UpdateMessage(); ok {
+	if value, ok := _u.mutation.UpdateMessage(); ok {
 		_spec.SetField(server.FieldUpdateMessage, field.TypeString, value)
 	}
-	if su.mutation.UpdateMessageCleared() {
+	if _u.mutation.UpdateMessageCleared() {
 		_spec.ClearField(server.FieldUpdateMessage, field.TypeString)
 	}
-	if value, ok := su.mutation.UpdateWhen(); ok {
+	if value, ok := _u.mutation.UpdateWhen(); ok {
 		_spec.SetField(server.FieldUpdateWhen, field.TypeTime, value)
 	}
-	if su.mutation.UpdateWhenCleared() {
+	if _u.mutation.UpdateWhenCleared() {
 		_spec.ClearField(server.FieldUpdateWhen, field.TypeTime)
 	}
-	if value, ok := su.mutation.NatsComponent(); ok {
+	if value, ok := _u.mutation.NatsComponent(); ok {
 		_spec.SetField(server.FieldNatsComponent, field.TypeBool, value)
 	}
-	if su.mutation.NatsComponentCleared() {
+	if _u.mutation.NatsComponentCleared() {
 		_spec.ClearField(server.FieldNatsComponent, field.TypeBool)
 	}
-	if value, ok := su.mutation.OcspComponent(); ok {
+	if value, ok := _u.mutation.OcspComponent(); ok {
 		_spec.SetField(server.FieldOcspComponent, field.TypeBool, value)
 	}
-	if su.mutation.OcspComponentCleared() {
+	if _u.mutation.OcspComponentCleared() {
 		_spec.ClearField(server.FieldOcspComponent, field.TypeBool)
 	}
-	if value, ok := su.mutation.ConsoleComponent(); ok {
+	if value, ok := _u.mutation.ConsoleComponent(); ok {
 		_spec.SetField(server.FieldConsoleComponent, field.TypeBool, value)
 	}
-	if su.mutation.ConsoleComponentCleared() {
+	if _u.mutation.ConsoleComponentCleared() {
 		_spec.ClearField(server.FieldConsoleComponent, field.TypeBool)
 	}
-	if value, ok := su.mutation.AgentWorkerComponent(); ok {
+	if value, ok := _u.mutation.AgentWorkerComponent(); ok {
 		_spec.SetField(server.FieldAgentWorkerComponent, field.TypeBool, value)
 	}
-	if su.mutation.AgentWorkerComponentCleared() {
+	if _u.mutation.AgentWorkerComponentCleared() {
 		_spec.ClearField(server.FieldAgentWorkerComponent, field.TypeBool)
 	}
-	if value, ok := su.mutation.NotificationWorkerComponent(); ok {
+	if value, ok := _u.mutation.NotificationWorkerComponent(); ok {
 		_spec.SetField(server.FieldNotificationWorkerComponent, field.TypeBool, value)
 	}
-	if su.mutation.NotificationWorkerComponentCleared() {
+	if _u.mutation.NotificationWorkerComponentCleared() {
 		_spec.ClearField(server.FieldNotificationWorkerComponent, field.TypeBool)
 	}
-	if value, ok := su.mutation.CertManagerWorkerComponent(); ok {
+	if value, ok := _u.mutation.CertManagerWorkerComponent(); ok {
 		_spec.SetField(server.FieldCertManagerWorkerComponent, field.TypeBool, value)
 	}
-	if su.mutation.CertManagerWorkerComponentCleared() {
+	if _u.mutation.CertManagerWorkerComponentCleared() {
 		_spec.ClearField(server.FieldCertManagerWorkerComponent, field.TypeBool)
 	}
-	_spec.AddModifiers(su.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, su.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{server.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -422,8 +422,8 @@ func (su *ServerUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	su.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // ServerUpdateOne is the builder for updating a single Server entity.
@@ -436,281 +436,281 @@ type ServerUpdateOne struct {
 }
 
 // SetHostname sets the "hostname" field.
-func (suo *ServerUpdateOne) SetHostname(s string) *ServerUpdateOne {
-	suo.mutation.SetHostname(s)
-	return suo
+func (_u *ServerUpdateOne) SetHostname(v string) *ServerUpdateOne {
+	_u.mutation.SetHostname(v)
+	return _u
 }
 
 // SetNillableHostname sets the "hostname" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableHostname(s *string) *ServerUpdateOne {
-	if s != nil {
-		suo.SetHostname(*s)
+func (_u *ServerUpdateOne) SetNillableHostname(v *string) *ServerUpdateOne {
+	if v != nil {
+		_u.SetHostname(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetArch sets the "arch" field.
-func (suo *ServerUpdateOne) SetArch(s string) *ServerUpdateOne {
-	suo.mutation.SetArch(s)
-	return suo
+func (_u *ServerUpdateOne) SetArch(v string) *ServerUpdateOne {
+	_u.mutation.SetArch(v)
+	return _u
 }
 
 // SetNillableArch sets the "arch" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableArch(s *string) *ServerUpdateOne {
-	if s != nil {
-		suo.SetArch(*s)
+func (_u *ServerUpdateOne) SetNillableArch(v *string) *ServerUpdateOne {
+	if v != nil {
+		_u.SetArch(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetOs sets the "os" field.
-func (suo *ServerUpdateOne) SetOs(s string) *ServerUpdateOne {
-	suo.mutation.SetOs(s)
-	return suo
+func (_u *ServerUpdateOne) SetOs(v string) *ServerUpdateOne {
+	_u.mutation.SetOs(v)
+	return _u
 }
 
 // SetNillableOs sets the "os" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableOs(s *string) *ServerUpdateOne {
-	if s != nil {
-		suo.SetOs(*s)
+func (_u *ServerUpdateOne) SetNillableOs(v *string) *ServerUpdateOne {
+	if v != nil {
+		_u.SetOs(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (suo *ServerUpdateOne) SetVersion(s string) *ServerUpdateOne {
-	suo.mutation.SetVersion(s)
-	return suo
+func (_u *ServerUpdateOne) SetVersion(v string) *ServerUpdateOne {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableVersion(s *string) *ServerUpdateOne {
-	if s != nil {
-		suo.SetVersion(*s)
+func (_u *ServerUpdateOne) SetNillableVersion(v *string) *ServerUpdateOne {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetChannel sets the "channel" field.
-func (suo *ServerUpdateOne) SetChannel(s server.Channel) *ServerUpdateOne {
-	suo.mutation.SetChannel(s)
-	return suo
+func (_u *ServerUpdateOne) SetChannel(v server.Channel) *ServerUpdateOne {
+	_u.mutation.SetChannel(v)
+	return _u
 }
 
 // SetNillableChannel sets the "channel" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableChannel(s *server.Channel) *ServerUpdateOne {
-	if s != nil {
-		suo.SetChannel(*s)
+func (_u *ServerUpdateOne) SetNillableChannel(v *server.Channel) *ServerUpdateOne {
+	if v != nil {
+		_u.SetChannel(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetUpdateStatus sets the "update_status" field.
-func (suo *ServerUpdateOne) SetUpdateStatus(ss server.UpdateStatus) *ServerUpdateOne {
-	suo.mutation.SetUpdateStatus(ss)
-	return suo
+func (_u *ServerUpdateOne) SetUpdateStatus(v server.UpdateStatus) *ServerUpdateOne {
+	_u.mutation.SetUpdateStatus(v)
+	return _u
 }
 
 // SetNillableUpdateStatus sets the "update_status" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableUpdateStatus(ss *server.UpdateStatus) *ServerUpdateOne {
-	if ss != nil {
-		suo.SetUpdateStatus(*ss)
+func (_u *ServerUpdateOne) SetNillableUpdateStatus(v *server.UpdateStatus) *ServerUpdateOne {
+	if v != nil {
+		_u.SetUpdateStatus(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUpdateStatus clears the value of the "update_status" field.
-func (suo *ServerUpdateOne) ClearUpdateStatus() *ServerUpdateOne {
-	suo.mutation.ClearUpdateStatus()
-	return suo
+func (_u *ServerUpdateOne) ClearUpdateStatus() *ServerUpdateOne {
+	_u.mutation.ClearUpdateStatus()
+	return _u
 }
 
 // SetUpdateMessage sets the "update_message" field.
-func (suo *ServerUpdateOne) SetUpdateMessage(s string) *ServerUpdateOne {
-	suo.mutation.SetUpdateMessage(s)
-	return suo
+func (_u *ServerUpdateOne) SetUpdateMessage(v string) *ServerUpdateOne {
+	_u.mutation.SetUpdateMessage(v)
+	return _u
 }
 
 // SetNillableUpdateMessage sets the "update_message" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableUpdateMessage(s *string) *ServerUpdateOne {
-	if s != nil {
-		suo.SetUpdateMessage(*s)
+func (_u *ServerUpdateOne) SetNillableUpdateMessage(v *string) *ServerUpdateOne {
+	if v != nil {
+		_u.SetUpdateMessage(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUpdateMessage clears the value of the "update_message" field.
-func (suo *ServerUpdateOne) ClearUpdateMessage() *ServerUpdateOne {
-	suo.mutation.ClearUpdateMessage()
-	return suo
+func (_u *ServerUpdateOne) ClearUpdateMessage() *ServerUpdateOne {
+	_u.mutation.ClearUpdateMessage()
+	return _u
 }
 
 // SetUpdateWhen sets the "update_when" field.
-func (suo *ServerUpdateOne) SetUpdateWhen(t time.Time) *ServerUpdateOne {
-	suo.mutation.SetUpdateWhen(t)
-	return suo
+func (_u *ServerUpdateOne) SetUpdateWhen(v time.Time) *ServerUpdateOne {
+	_u.mutation.SetUpdateWhen(v)
+	return _u
 }
 
 // SetNillableUpdateWhen sets the "update_when" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableUpdateWhen(t *time.Time) *ServerUpdateOne {
-	if t != nil {
-		suo.SetUpdateWhen(*t)
+func (_u *ServerUpdateOne) SetNillableUpdateWhen(v *time.Time) *ServerUpdateOne {
+	if v != nil {
+		_u.SetUpdateWhen(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUpdateWhen clears the value of the "update_when" field.
-func (suo *ServerUpdateOne) ClearUpdateWhen() *ServerUpdateOne {
-	suo.mutation.ClearUpdateWhen()
-	return suo
+func (_u *ServerUpdateOne) ClearUpdateWhen() *ServerUpdateOne {
+	_u.mutation.ClearUpdateWhen()
+	return _u
 }
 
 // SetNatsComponent sets the "nats_component" field.
-func (suo *ServerUpdateOne) SetNatsComponent(b bool) *ServerUpdateOne {
-	suo.mutation.SetNatsComponent(b)
-	return suo
+func (_u *ServerUpdateOne) SetNatsComponent(v bool) *ServerUpdateOne {
+	_u.mutation.SetNatsComponent(v)
+	return _u
 }
 
 // SetNillableNatsComponent sets the "nats_component" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableNatsComponent(b *bool) *ServerUpdateOne {
-	if b != nil {
-		suo.SetNatsComponent(*b)
+func (_u *ServerUpdateOne) SetNillableNatsComponent(v *bool) *ServerUpdateOne {
+	if v != nil {
+		_u.SetNatsComponent(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearNatsComponent clears the value of the "nats_component" field.
-func (suo *ServerUpdateOne) ClearNatsComponent() *ServerUpdateOne {
-	suo.mutation.ClearNatsComponent()
-	return suo
+func (_u *ServerUpdateOne) ClearNatsComponent() *ServerUpdateOne {
+	_u.mutation.ClearNatsComponent()
+	return _u
 }
 
 // SetOcspComponent sets the "ocsp_component" field.
-func (suo *ServerUpdateOne) SetOcspComponent(b bool) *ServerUpdateOne {
-	suo.mutation.SetOcspComponent(b)
-	return suo
+func (_u *ServerUpdateOne) SetOcspComponent(v bool) *ServerUpdateOne {
+	_u.mutation.SetOcspComponent(v)
+	return _u
 }
 
 // SetNillableOcspComponent sets the "ocsp_component" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableOcspComponent(b *bool) *ServerUpdateOne {
-	if b != nil {
-		suo.SetOcspComponent(*b)
+func (_u *ServerUpdateOne) SetNillableOcspComponent(v *bool) *ServerUpdateOne {
+	if v != nil {
+		_u.SetOcspComponent(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearOcspComponent clears the value of the "ocsp_component" field.
-func (suo *ServerUpdateOne) ClearOcspComponent() *ServerUpdateOne {
-	suo.mutation.ClearOcspComponent()
-	return suo
+func (_u *ServerUpdateOne) ClearOcspComponent() *ServerUpdateOne {
+	_u.mutation.ClearOcspComponent()
+	return _u
 }
 
 // SetConsoleComponent sets the "console_component" field.
-func (suo *ServerUpdateOne) SetConsoleComponent(b bool) *ServerUpdateOne {
-	suo.mutation.SetConsoleComponent(b)
-	return suo
+func (_u *ServerUpdateOne) SetConsoleComponent(v bool) *ServerUpdateOne {
+	_u.mutation.SetConsoleComponent(v)
+	return _u
 }
 
 // SetNillableConsoleComponent sets the "console_component" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableConsoleComponent(b *bool) *ServerUpdateOne {
-	if b != nil {
-		suo.SetConsoleComponent(*b)
+func (_u *ServerUpdateOne) SetNillableConsoleComponent(v *bool) *ServerUpdateOne {
+	if v != nil {
+		_u.SetConsoleComponent(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearConsoleComponent clears the value of the "console_component" field.
-func (suo *ServerUpdateOne) ClearConsoleComponent() *ServerUpdateOne {
-	suo.mutation.ClearConsoleComponent()
-	return suo
+func (_u *ServerUpdateOne) ClearConsoleComponent() *ServerUpdateOne {
+	_u.mutation.ClearConsoleComponent()
+	return _u
 }
 
 // SetAgentWorkerComponent sets the "agent_worker_component" field.
-func (suo *ServerUpdateOne) SetAgentWorkerComponent(b bool) *ServerUpdateOne {
-	suo.mutation.SetAgentWorkerComponent(b)
-	return suo
+func (_u *ServerUpdateOne) SetAgentWorkerComponent(v bool) *ServerUpdateOne {
+	_u.mutation.SetAgentWorkerComponent(v)
+	return _u
 }
 
 // SetNillableAgentWorkerComponent sets the "agent_worker_component" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableAgentWorkerComponent(b *bool) *ServerUpdateOne {
-	if b != nil {
-		suo.SetAgentWorkerComponent(*b)
+func (_u *ServerUpdateOne) SetNillableAgentWorkerComponent(v *bool) *ServerUpdateOne {
+	if v != nil {
+		_u.SetAgentWorkerComponent(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearAgentWorkerComponent clears the value of the "agent_worker_component" field.
-func (suo *ServerUpdateOne) ClearAgentWorkerComponent() *ServerUpdateOne {
-	suo.mutation.ClearAgentWorkerComponent()
-	return suo
+func (_u *ServerUpdateOne) ClearAgentWorkerComponent() *ServerUpdateOne {
+	_u.mutation.ClearAgentWorkerComponent()
+	return _u
 }
 
 // SetNotificationWorkerComponent sets the "notification_worker_component" field.
-func (suo *ServerUpdateOne) SetNotificationWorkerComponent(b bool) *ServerUpdateOne {
-	suo.mutation.SetNotificationWorkerComponent(b)
-	return suo
+func (_u *ServerUpdateOne) SetNotificationWorkerComponent(v bool) *ServerUpdateOne {
+	_u.mutation.SetNotificationWorkerComponent(v)
+	return _u
 }
 
 // SetNillableNotificationWorkerComponent sets the "notification_worker_component" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableNotificationWorkerComponent(b *bool) *ServerUpdateOne {
-	if b != nil {
-		suo.SetNotificationWorkerComponent(*b)
+func (_u *ServerUpdateOne) SetNillableNotificationWorkerComponent(v *bool) *ServerUpdateOne {
+	if v != nil {
+		_u.SetNotificationWorkerComponent(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearNotificationWorkerComponent clears the value of the "notification_worker_component" field.
-func (suo *ServerUpdateOne) ClearNotificationWorkerComponent() *ServerUpdateOne {
-	suo.mutation.ClearNotificationWorkerComponent()
-	return suo
+func (_u *ServerUpdateOne) ClearNotificationWorkerComponent() *ServerUpdateOne {
+	_u.mutation.ClearNotificationWorkerComponent()
+	return _u
 }
 
 // SetCertManagerWorkerComponent sets the "cert_manager_worker_component" field.
-func (suo *ServerUpdateOne) SetCertManagerWorkerComponent(b bool) *ServerUpdateOne {
-	suo.mutation.SetCertManagerWorkerComponent(b)
-	return suo
+func (_u *ServerUpdateOne) SetCertManagerWorkerComponent(v bool) *ServerUpdateOne {
+	_u.mutation.SetCertManagerWorkerComponent(v)
+	return _u
 }
 
 // SetNillableCertManagerWorkerComponent sets the "cert_manager_worker_component" field if the given value is not nil.
-func (suo *ServerUpdateOne) SetNillableCertManagerWorkerComponent(b *bool) *ServerUpdateOne {
-	if b != nil {
-		suo.SetCertManagerWorkerComponent(*b)
+func (_u *ServerUpdateOne) SetNillableCertManagerWorkerComponent(v *bool) *ServerUpdateOne {
+	if v != nil {
+		_u.SetCertManagerWorkerComponent(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearCertManagerWorkerComponent clears the value of the "cert_manager_worker_component" field.
-func (suo *ServerUpdateOne) ClearCertManagerWorkerComponent() *ServerUpdateOne {
-	suo.mutation.ClearCertManagerWorkerComponent()
-	return suo
+func (_u *ServerUpdateOne) ClearCertManagerWorkerComponent() *ServerUpdateOne {
+	_u.mutation.ClearCertManagerWorkerComponent()
+	return _u
 }
 
 // Mutation returns the ServerMutation object of the builder.
-func (suo *ServerUpdateOne) Mutation() *ServerMutation {
-	return suo.mutation
+func (_u *ServerUpdateOne) Mutation() *ServerMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the ServerUpdate builder.
-func (suo *ServerUpdateOne) Where(ps ...predicate.Server) *ServerUpdateOne {
-	suo.mutation.Where(ps...)
-	return suo
+func (_u *ServerUpdateOne) Where(ps ...predicate.Server) *ServerUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (suo *ServerUpdateOne) Select(field string, fields ...string) *ServerUpdateOne {
-	suo.fields = append([]string{field}, fields...)
-	return suo
+func (_u *ServerUpdateOne) Select(field string, fields ...string) *ServerUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Server entity.
-func (suo *ServerUpdateOne) Save(ctx context.Context) (*Server, error) {
-	return withHooks(ctx, suo.sqlSave, suo.mutation, suo.hooks)
+func (_u *ServerUpdateOne) Save(ctx context.Context) (*Server, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (suo *ServerUpdateOne) SaveX(ctx context.Context) *Server {
-	node, err := suo.Save(ctx)
+func (_u *ServerUpdateOne) SaveX(ctx context.Context) *Server {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -718,26 +718,26 @@ func (suo *ServerUpdateOne) SaveX(ctx context.Context) *Server {
 }
 
 // Exec executes the query on the entity.
-func (suo *ServerUpdateOne) Exec(ctx context.Context) error {
-	_, err := suo.Save(ctx)
+func (_u *ServerUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suo *ServerUpdateOne) ExecX(ctx context.Context) {
-	if err := suo.Exec(ctx); err != nil {
+func (_u *ServerUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (suo *ServerUpdateOne) check() error {
-	if v, ok := suo.mutation.Channel(); ok {
+func (_u *ServerUpdateOne) check() error {
+	if v, ok := _u.mutation.Channel(); ok {
 		if err := server.ChannelValidator(v); err != nil {
 			return &ValidationError{Name: "channel", err: fmt.Errorf(`ent: validator failed for field "Server.channel": %w`, err)}
 		}
 	}
-	if v, ok := suo.mutation.UpdateStatus(); ok {
+	if v, ok := _u.mutation.UpdateStatus(); ok {
 		if err := server.UpdateStatusValidator(v); err != nil {
 			return &ValidationError{Name: "update_status", err: fmt.Errorf(`ent: validator failed for field "Server.update_status": %w`, err)}
 		}
@@ -746,22 +746,22 @@ func (suo *ServerUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (suo *ServerUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ServerUpdateOne {
-	suo.modifiers = append(suo.modifiers, modifiers...)
-	return suo
+func (_u *ServerUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ServerUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (suo *ServerUpdateOne) sqlSave(ctx context.Context) (_node *Server, err error) {
-	if err := suo.check(); err != nil {
+func (_u *ServerUpdateOne) sqlSave(ctx context.Context) (_node *Server, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(server.Table, server.Columns, sqlgraph.NewFieldSpec(server.FieldID, field.TypeInt))
-	id, ok := suo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Server.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := suo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, server.FieldID)
 		for _, f := range fields {
@@ -773,87 +773,87 @@ func (suo *ServerUpdateOne) sqlSave(ctx context.Context) (_node *Server, err err
 			}
 		}
 	}
-	if ps := suo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := suo.mutation.Hostname(); ok {
+	if value, ok := _u.mutation.Hostname(); ok {
 		_spec.SetField(server.FieldHostname, field.TypeString, value)
 	}
-	if value, ok := suo.mutation.Arch(); ok {
+	if value, ok := _u.mutation.Arch(); ok {
 		_spec.SetField(server.FieldArch, field.TypeString, value)
 	}
-	if value, ok := suo.mutation.Os(); ok {
+	if value, ok := _u.mutation.Os(); ok {
 		_spec.SetField(server.FieldOs, field.TypeString, value)
 	}
-	if value, ok := suo.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(server.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := suo.mutation.Channel(); ok {
+	if value, ok := _u.mutation.Channel(); ok {
 		_spec.SetField(server.FieldChannel, field.TypeEnum, value)
 	}
-	if value, ok := suo.mutation.UpdateStatus(); ok {
+	if value, ok := _u.mutation.UpdateStatus(); ok {
 		_spec.SetField(server.FieldUpdateStatus, field.TypeEnum, value)
 	}
-	if suo.mutation.UpdateStatusCleared() {
+	if _u.mutation.UpdateStatusCleared() {
 		_spec.ClearField(server.FieldUpdateStatus, field.TypeEnum)
 	}
-	if value, ok := suo.mutation.UpdateMessage(); ok {
+	if value, ok := _u.mutation.UpdateMessage(); ok {
 		_spec.SetField(server.FieldUpdateMessage, field.TypeString, value)
 	}
-	if suo.mutation.UpdateMessageCleared() {
+	if _u.mutation.UpdateMessageCleared() {
 		_spec.ClearField(server.FieldUpdateMessage, field.TypeString)
 	}
-	if value, ok := suo.mutation.UpdateWhen(); ok {
+	if value, ok := _u.mutation.UpdateWhen(); ok {
 		_spec.SetField(server.FieldUpdateWhen, field.TypeTime, value)
 	}
-	if suo.mutation.UpdateWhenCleared() {
+	if _u.mutation.UpdateWhenCleared() {
 		_spec.ClearField(server.FieldUpdateWhen, field.TypeTime)
 	}
-	if value, ok := suo.mutation.NatsComponent(); ok {
+	if value, ok := _u.mutation.NatsComponent(); ok {
 		_spec.SetField(server.FieldNatsComponent, field.TypeBool, value)
 	}
-	if suo.mutation.NatsComponentCleared() {
+	if _u.mutation.NatsComponentCleared() {
 		_spec.ClearField(server.FieldNatsComponent, field.TypeBool)
 	}
-	if value, ok := suo.mutation.OcspComponent(); ok {
+	if value, ok := _u.mutation.OcspComponent(); ok {
 		_spec.SetField(server.FieldOcspComponent, field.TypeBool, value)
 	}
-	if suo.mutation.OcspComponentCleared() {
+	if _u.mutation.OcspComponentCleared() {
 		_spec.ClearField(server.FieldOcspComponent, field.TypeBool)
 	}
-	if value, ok := suo.mutation.ConsoleComponent(); ok {
+	if value, ok := _u.mutation.ConsoleComponent(); ok {
 		_spec.SetField(server.FieldConsoleComponent, field.TypeBool, value)
 	}
-	if suo.mutation.ConsoleComponentCleared() {
+	if _u.mutation.ConsoleComponentCleared() {
 		_spec.ClearField(server.FieldConsoleComponent, field.TypeBool)
 	}
-	if value, ok := suo.mutation.AgentWorkerComponent(); ok {
+	if value, ok := _u.mutation.AgentWorkerComponent(); ok {
 		_spec.SetField(server.FieldAgentWorkerComponent, field.TypeBool, value)
 	}
-	if suo.mutation.AgentWorkerComponentCleared() {
+	if _u.mutation.AgentWorkerComponentCleared() {
 		_spec.ClearField(server.FieldAgentWorkerComponent, field.TypeBool)
 	}
-	if value, ok := suo.mutation.NotificationWorkerComponent(); ok {
+	if value, ok := _u.mutation.NotificationWorkerComponent(); ok {
 		_spec.SetField(server.FieldNotificationWorkerComponent, field.TypeBool, value)
 	}
-	if suo.mutation.NotificationWorkerComponentCleared() {
+	if _u.mutation.NotificationWorkerComponentCleared() {
 		_spec.ClearField(server.FieldNotificationWorkerComponent, field.TypeBool)
 	}
-	if value, ok := suo.mutation.CertManagerWorkerComponent(); ok {
+	if value, ok := _u.mutation.CertManagerWorkerComponent(); ok {
 		_spec.SetField(server.FieldCertManagerWorkerComponent, field.TypeBool, value)
 	}
-	if suo.mutation.CertManagerWorkerComponentCleared() {
+	if _u.mutation.CertManagerWorkerComponentCleared() {
 		_spec.ClearField(server.FieldCertManagerWorkerComponent, field.TypeBool)
 	}
-	_spec.AddModifiers(suo.modifiers...)
-	_node = &Server{config: suo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Server{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, suo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{server.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -861,6 +861,6 @@ func (suo *ServerUpdateOne) sqlSave(ctx context.Context) (_node *Server, err err
 		}
 		return nil, err
 	}
-	suo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

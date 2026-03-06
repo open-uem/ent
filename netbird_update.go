@@ -24,299 +24,299 @@ type NetbirdUpdate struct {
 }
 
 // Where appends a list predicates to the NetbirdUpdate builder.
-func (nu *NetbirdUpdate) Where(ps ...predicate.Netbird) *NetbirdUpdate {
-	nu.mutation.Where(ps...)
-	return nu
+func (_u *NetbirdUpdate) Where(ps ...predicate.Netbird) *NetbirdUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (nu *NetbirdUpdate) SetVersion(s string) *NetbirdUpdate {
-	nu.mutation.SetVersion(s)
-	return nu
+func (_u *NetbirdUpdate) SetVersion(v string) *NetbirdUpdate {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableVersion(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetVersion(*s)
+func (_u *NetbirdUpdate) SetNillableVersion(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return nu
+	return _u
 }
 
 // SetInstalled sets the "installed" field.
-func (nu *NetbirdUpdate) SetInstalled(b bool) *NetbirdUpdate {
-	nu.mutation.SetInstalled(b)
-	return nu
+func (_u *NetbirdUpdate) SetInstalled(v bool) *NetbirdUpdate {
+	_u.mutation.SetInstalled(v)
+	return _u
 }
 
 // SetNillableInstalled sets the "installed" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableInstalled(b *bool) *NetbirdUpdate {
-	if b != nil {
-		nu.SetInstalled(*b)
+func (_u *NetbirdUpdate) SetNillableInstalled(v *bool) *NetbirdUpdate {
+	if v != nil {
+		_u.SetInstalled(*v)
 	}
-	return nu
+	return _u
 }
 
 // SetServiceStatus sets the "service_status" field.
-func (nu *NetbirdUpdate) SetServiceStatus(s string) *NetbirdUpdate {
-	nu.mutation.SetServiceStatus(s)
-	return nu
+func (_u *NetbirdUpdate) SetServiceStatus(v string) *NetbirdUpdate {
+	_u.mutation.SetServiceStatus(v)
+	return _u
 }
 
 // SetNillableServiceStatus sets the "service_status" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableServiceStatus(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetServiceStatus(*s)
+func (_u *NetbirdUpdate) SetNillableServiceStatus(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetServiceStatus(*v)
 	}
-	return nu
+	return _u
 }
 
 // SetIP sets the "ip" field.
-func (nu *NetbirdUpdate) SetIP(s string) *NetbirdUpdate {
-	nu.mutation.SetIP(s)
-	return nu
+func (_u *NetbirdUpdate) SetIP(v string) *NetbirdUpdate {
+	_u.mutation.SetIP(v)
+	return _u
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableIP(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetIP(*s)
+func (_u *NetbirdUpdate) SetNillableIP(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetIP(*v)
 	}
-	return nu
+	return _u
 }
 
 // ClearIP clears the value of the "ip" field.
-func (nu *NetbirdUpdate) ClearIP() *NetbirdUpdate {
-	nu.mutation.ClearIP()
-	return nu
+func (_u *NetbirdUpdate) ClearIP() *NetbirdUpdate {
+	_u.mutation.ClearIP()
+	return _u
 }
 
 // SetProfile sets the "profile" field.
-func (nu *NetbirdUpdate) SetProfile(s string) *NetbirdUpdate {
-	nu.mutation.SetProfile(s)
-	return nu
+func (_u *NetbirdUpdate) SetProfile(v string) *NetbirdUpdate {
+	_u.mutation.SetProfile(v)
+	return _u
 }
 
 // SetNillableProfile sets the "profile" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableProfile(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetProfile(*s)
+func (_u *NetbirdUpdate) SetNillableProfile(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetProfile(*v)
 	}
-	return nu
+	return _u
 }
 
 // ClearProfile clears the value of the "profile" field.
-func (nu *NetbirdUpdate) ClearProfile() *NetbirdUpdate {
-	nu.mutation.ClearProfile()
-	return nu
+func (_u *NetbirdUpdate) ClearProfile() *NetbirdUpdate {
+	_u.mutation.ClearProfile()
+	return _u
 }
 
 // SetManagementURL sets the "management_url" field.
-func (nu *NetbirdUpdate) SetManagementURL(s string) *NetbirdUpdate {
-	nu.mutation.SetManagementURL(s)
-	return nu
+func (_u *NetbirdUpdate) SetManagementURL(v string) *NetbirdUpdate {
+	_u.mutation.SetManagementURL(v)
+	return _u
 }
 
 // SetNillableManagementURL sets the "management_url" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableManagementURL(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetManagementURL(*s)
+func (_u *NetbirdUpdate) SetNillableManagementURL(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetManagementURL(*v)
 	}
-	return nu
+	return _u
 }
 
 // ClearManagementURL clears the value of the "management_url" field.
-func (nu *NetbirdUpdate) ClearManagementURL() *NetbirdUpdate {
-	nu.mutation.ClearManagementURL()
-	return nu
+func (_u *NetbirdUpdate) ClearManagementURL() *NetbirdUpdate {
+	_u.mutation.ClearManagementURL()
+	return _u
 }
 
 // SetManagementConnected sets the "management_connected" field.
-func (nu *NetbirdUpdate) SetManagementConnected(b bool) *NetbirdUpdate {
-	nu.mutation.SetManagementConnected(b)
-	return nu
+func (_u *NetbirdUpdate) SetManagementConnected(v bool) *NetbirdUpdate {
+	_u.mutation.SetManagementConnected(v)
+	return _u
 }
 
 // SetNillableManagementConnected sets the "management_connected" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableManagementConnected(b *bool) *NetbirdUpdate {
-	if b != nil {
-		nu.SetManagementConnected(*b)
+func (_u *NetbirdUpdate) SetNillableManagementConnected(v *bool) *NetbirdUpdate {
+	if v != nil {
+		_u.SetManagementConnected(*v)
 	}
-	return nu
+	return _u
 }
 
 // SetSignalURL sets the "signal_url" field.
-func (nu *NetbirdUpdate) SetSignalURL(s string) *NetbirdUpdate {
-	nu.mutation.SetSignalURL(s)
-	return nu
+func (_u *NetbirdUpdate) SetSignalURL(v string) *NetbirdUpdate {
+	_u.mutation.SetSignalURL(v)
+	return _u
 }
 
 // SetNillableSignalURL sets the "signal_url" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableSignalURL(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetSignalURL(*s)
+func (_u *NetbirdUpdate) SetNillableSignalURL(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetSignalURL(*v)
 	}
-	return nu
+	return _u
 }
 
 // ClearSignalURL clears the value of the "signal_url" field.
-func (nu *NetbirdUpdate) ClearSignalURL() *NetbirdUpdate {
-	nu.mutation.ClearSignalURL()
-	return nu
+func (_u *NetbirdUpdate) ClearSignalURL() *NetbirdUpdate {
+	_u.mutation.ClearSignalURL()
+	return _u
 }
 
 // SetSignalConnected sets the "signal_connected" field.
-func (nu *NetbirdUpdate) SetSignalConnected(b bool) *NetbirdUpdate {
-	nu.mutation.SetSignalConnected(b)
-	return nu
+func (_u *NetbirdUpdate) SetSignalConnected(v bool) *NetbirdUpdate {
+	_u.mutation.SetSignalConnected(v)
+	return _u
 }
 
 // SetNillableSignalConnected sets the "signal_connected" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableSignalConnected(b *bool) *NetbirdUpdate {
-	if b != nil {
-		nu.SetSignalConnected(*b)
+func (_u *NetbirdUpdate) SetNillableSignalConnected(v *bool) *NetbirdUpdate {
+	if v != nil {
+		_u.SetSignalConnected(*v)
 	}
-	return nu
+	return _u
 }
 
 // SetSSHEnabled sets the "ssh_enabled" field.
-func (nu *NetbirdUpdate) SetSSHEnabled(b bool) *NetbirdUpdate {
-	nu.mutation.SetSSHEnabled(b)
-	return nu
+func (_u *NetbirdUpdate) SetSSHEnabled(v bool) *NetbirdUpdate {
+	_u.mutation.SetSSHEnabled(v)
+	return _u
 }
 
 // SetNillableSSHEnabled sets the "ssh_enabled" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableSSHEnabled(b *bool) *NetbirdUpdate {
-	if b != nil {
-		nu.SetSSHEnabled(*b)
+func (_u *NetbirdUpdate) SetNillableSSHEnabled(v *bool) *NetbirdUpdate {
+	if v != nil {
+		_u.SetSSHEnabled(*v)
 	}
-	return nu
+	return _u
 }
 
 // SetPeersTotal sets the "peers_total" field.
-func (nu *NetbirdUpdate) SetPeersTotal(i int) *NetbirdUpdate {
-	nu.mutation.ResetPeersTotal()
-	nu.mutation.SetPeersTotal(i)
-	return nu
+func (_u *NetbirdUpdate) SetPeersTotal(v int) *NetbirdUpdate {
+	_u.mutation.ResetPeersTotal()
+	_u.mutation.SetPeersTotal(v)
+	return _u
 }
 
 // SetNillablePeersTotal sets the "peers_total" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillablePeersTotal(i *int) *NetbirdUpdate {
-	if i != nil {
-		nu.SetPeersTotal(*i)
+func (_u *NetbirdUpdate) SetNillablePeersTotal(v *int) *NetbirdUpdate {
+	if v != nil {
+		_u.SetPeersTotal(*v)
 	}
-	return nu
+	return _u
 }
 
-// AddPeersTotal adds i to the "peers_total" field.
-func (nu *NetbirdUpdate) AddPeersTotal(i int) *NetbirdUpdate {
-	nu.mutation.AddPeersTotal(i)
-	return nu
+// AddPeersTotal adds value to the "peers_total" field.
+func (_u *NetbirdUpdate) AddPeersTotal(v int) *NetbirdUpdate {
+	_u.mutation.AddPeersTotal(v)
+	return _u
 }
 
 // ClearPeersTotal clears the value of the "peers_total" field.
-func (nu *NetbirdUpdate) ClearPeersTotal() *NetbirdUpdate {
-	nu.mutation.ClearPeersTotal()
-	return nu
+func (_u *NetbirdUpdate) ClearPeersTotal() *NetbirdUpdate {
+	_u.mutation.ClearPeersTotal()
+	return _u
 }
 
 // SetPeersConnected sets the "peers_connected" field.
-func (nu *NetbirdUpdate) SetPeersConnected(i int) *NetbirdUpdate {
-	nu.mutation.ResetPeersConnected()
-	nu.mutation.SetPeersConnected(i)
-	return nu
+func (_u *NetbirdUpdate) SetPeersConnected(v int) *NetbirdUpdate {
+	_u.mutation.ResetPeersConnected()
+	_u.mutation.SetPeersConnected(v)
+	return _u
 }
 
 // SetNillablePeersConnected sets the "peers_connected" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillablePeersConnected(i *int) *NetbirdUpdate {
-	if i != nil {
-		nu.SetPeersConnected(*i)
+func (_u *NetbirdUpdate) SetNillablePeersConnected(v *int) *NetbirdUpdate {
+	if v != nil {
+		_u.SetPeersConnected(*v)
 	}
-	return nu
+	return _u
 }
 
-// AddPeersConnected adds i to the "peers_connected" field.
-func (nu *NetbirdUpdate) AddPeersConnected(i int) *NetbirdUpdate {
-	nu.mutation.AddPeersConnected(i)
-	return nu
+// AddPeersConnected adds value to the "peers_connected" field.
+func (_u *NetbirdUpdate) AddPeersConnected(v int) *NetbirdUpdate {
+	_u.mutation.AddPeersConnected(v)
+	return _u
 }
 
 // ClearPeersConnected clears the value of the "peers_connected" field.
-func (nu *NetbirdUpdate) ClearPeersConnected() *NetbirdUpdate {
-	nu.mutation.ClearPeersConnected()
-	return nu
+func (_u *NetbirdUpdate) ClearPeersConnected() *NetbirdUpdate {
+	_u.mutation.ClearPeersConnected()
+	return _u
 }
 
 // SetProfilesAvailable sets the "profiles_available" field.
-func (nu *NetbirdUpdate) SetProfilesAvailable(s string) *NetbirdUpdate {
-	nu.mutation.SetProfilesAvailable(s)
-	return nu
+func (_u *NetbirdUpdate) SetProfilesAvailable(v string) *NetbirdUpdate {
+	_u.mutation.SetProfilesAvailable(v)
+	return _u
 }
 
 // SetNillableProfilesAvailable sets the "profiles_available" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableProfilesAvailable(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetProfilesAvailable(*s)
+func (_u *NetbirdUpdate) SetNillableProfilesAvailable(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetProfilesAvailable(*v)
 	}
-	return nu
+	return _u
 }
 
 // ClearProfilesAvailable clears the value of the "profiles_available" field.
-func (nu *NetbirdUpdate) ClearProfilesAvailable() *NetbirdUpdate {
-	nu.mutation.ClearProfilesAvailable()
-	return nu
+func (_u *NetbirdUpdate) ClearProfilesAvailable() *NetbirdUpdate {
+	_u.mutation.ClearProfilesAvailable()
+	return _u
 }
 
 // SetDNSServer sets the "dns_server" field.
-func (nu *NetbirdUpdate) SetDNSServer(s string) *NetbirdUpdate {
-	nu.mutation.SetDNSServer(s)
-	return nu
+func (_u *NetbirdUpdate) SetDNSServer(v string) *NetbirdUpdate {
+	_u.mutation.SetDNSServer(v)
+	return _u
 }
 
 // SetNillableDNSServer sets the "dns_server" field if the given value is not nil.
-func (nu *NetbirdUpdate) SetNillableDNSServer(s *string) *NetbirdUpdate {
-	if s != nil {
-		nu.SetDNSServer(*s)
+func (_u *NetbirdUpdate) SetNillableDNSServer(v *string) *NetbirdUpdate {
+	if v != nil {
+		_u.SetDNSServer(*v)
 	}
-	return nu
+	return _u
 }
 
 // ClearDNSServer clears the value of the "dns_server" field.
-func (nu *NetbirdUpdate) ClearDNSServer() *NetbirdUpdate {
-	nu.mutation.ClearDNSServer()
-	return nu
+func (_u *NetbirdUpdate) ClearDNSServer() *NetbirdUpdate {
+	_u.mutation.ClearDNSServer()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (nu *NetbirdUpdate) SetOwnerID(id string) *NetbirdUpdate {
-	nu.mutation.SetOwnerID(id)
-	return nu
+func (_u *NetbirdUpdate) SetOwnerID(id string) *NetbirdUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (nu *NetbirdUpdate) SetOwner(a *Agent) *NetbirdUpdate {
-	return nu.SetOwnerID(a.ID)
+func (_u *NetbirdUpdate) SetOwner(v *Agent) *NetbirdUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the NetbirdMutation object of the builder.
-func (nu *NetbirdUpdate) Mutation() *NetbirdMutation {
-	return nu.mutation
+func (_u *NetbirdUpdate) Mutation() *NetbirdMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (nu *NetbirdUpdate) ClearOwner() *NetbirdUpdate {
-	nu.mutation.ClearOwner()
-	return nu
+func (_u *NetbirdUpdate) ClearOwner() *NetbirdUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (nu *NetbirdUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, nu.sqlSave, nu.mutation, nu.hooks)
+func (_u *NetbirdUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nu *NetbirdUpdate) SaveX(ctx context.Context) int {
-	affected, err := nu.Save(ctx)
+func (_u *NetbirdUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -324,117 +324,117 @@ func (nu *NetbirdUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (nu *NetbirdUpdate) Exec(ctx context.Context) error {
-	_, err := nu.Save(ctx)
+func (_u *NetbirdUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nu *NetbirdUpdate) ExecX(ctx context.Context) {
-	if err := nu.Exec(ctx); err != nil {
+func (_u *NetbirdUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (nu *NetbirdUpdate) check() error {
-	if nu.mutation.OwnerCleared() && len(nu.mutation.OwnerIDs()) > 0 {
+func (_u *NetbirdUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Netbird.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (nu *NetbirdUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdUpdate {
-	nu.modifiers = append(nu.modifiers, modifiers...)
-	return nu
+func (_u *NetbirdUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := nu.check(); err != nil {
-		return n, err
+func (_u *NetbirdUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(netbird.Table, netbird.Columns, sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt))
-	if ps := nu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := nu.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(netbird.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := nu.mutation.Installed(); ok {
+	if value, ok := _u.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 	}
-	if value, ok := nu.mutation.ServiceStatus(); ok {
+	if value, ok := _u.mutation.ServiceStatus(); ok {
 		_spec.SetField(netbird.FieldServiceStatus, field.TypeString, value)
 	}
-	if value, ok := nu.mutation.IP(); ok {
+	if value, ok := _u.mutation.IP(); ok {
 		_spec.SetField(netbird.FieldIP, field.TypeString, value)
 	}
-	if nu.mutation.IPCleared() {
+	if _u.mutation.IPCleared() {
 		_spec.ClearField(netbird.FieldIP, field.TypeString)
 	}
-	if value, ok := nu.mutation.Profile(); ok {
+	if value, ok := _u.mutation.Profile(); ok {
 		_spec.SetField(netbird.FieldProfile, field.TypeString, value)
 	}
-	if nu.mutation.ProfileCleared() {
+	if _u.mutation.ProfileCleared() {
 		_spec.ClearField(netbird.FieldProfile, field.TypeString)
 	}
-	if value, ok := nu.mutation.ManagementURL(); ok {
+	if value, ok := _u.mutation.ManagementURL(); ok {
 		_spec.SetField(netbird.FieldManagementURL, field.TypeString, value)
 	}
-	if nu.mutation.ManagementURLCleared() {
+	if _u.mutation.ManagementURLCleared() {
 		_spec.ClearField(netbird.FieldManagementURL, field.TypeString)
 	}
-	if value, ok := nu.mutation.ManagementConnected(); ok {
+	if value, ok := _u.mutation.ManagementConnected(); ok {
 		_spec.SetField(netbird.FieldManagementConnected, field.TypeBool, value)
 	}
-	if value, ok := nu.mutation.SignalURL(); ok {
+	if value, ok := _u.mutation.SignalURL(); ok {
 		_spec.SetField(netbird.FieldSignalURL, field.TypeString, value)
 	}
-	if nu.mutation.SignalURLCleared() {
+	if _u.mutation.SignalURLCleared() {
 		_spec.ClearField(netbird.FieldSignalURL, field.TypeString)
 	}
-	if value, ok := nu.mutation.SignalConnected(); ok {
+	if value, ok := _u.mutation.SignalConnected(); ok {
 		_spec.SetField(netbird.FieldSignalConnected, field.TypeBool, value)
 	}
-	if value, ok := nu.mutation.SSHEnabled(); ok {
+	if value, ok := _u.mutation.SSHEnabled(); ok {
 		_spec.SetField(netbird.FieldSSHEnabled, field.TypeBool, value)
 	}
-	if value, ok := nu.mutation.PeersTotal(); ok {
+	if value, ok := _u.mutation.PeersTotal(); ok {
 		_spec.SetField(netbird.FieldPeersTotal, field.TypeInt, value)
 	}
-	if value, ok := nu.mutation.AddedPeersTotal(); ok {
+	if value, ok := _u.mutation.AddedPeersTotal(); ok {
 		_spec.AddField(netbird.FieldPeersTotal, field.TypeInt, value)
 	}
-	if nu.mutation.PeersTotalCleared() {
+	if _u.mutation.PeersTotalCleared() {
 		_spec.ClearField(netbird.FieldPeersTotal, field.TypeInt)
 	}
-	if value, ok := nu.mutation.PeersConnected(); ok {
+	if value, ok := _u.mutation.PeersConnected(); ok {
 		_spec.SetField(netbird.FieldPeersConnected, field.TypeInt, value)
 	}
-	if value, ok := nu.mutation.AddedPeersConnected(); ok {
+	if value, ok := _u.mutation.AddedPeersConnected(); ok {
 		_spec.AddField(netbird.FieldPeersConnected, field.TypeInt, value)
 	}
-	if nu.mutation.PeersConnectedCleared() {
+	if _u.mutation.PeersConnectedCleared() {
 		_spec.ClearField(netbird.FieldPeersConnected, field.TypeInt)
 	}
-	if value, ok := nu.mutation.ProfilesAvailable(); ok {
+	if value, ok := _u.mutation.ProfilesAvailable(); ok {
 		_spec.SetField(netbird.FieldProfilesAvailable, field.TypeString, value)
 	}
-	if nu.mutation.ProfilesAvailableCleared() {
+	if _u.mutation.ProfilesAvailableCleared() {
 		_spec.ClearField(netbird.FieldProfilesAvailable, field.TypeString)
 	}
-	if value, ok := nu.mutation.DNSServer(); ok {
+	if value, ok := _u.mutation.DNSServer(); ok {
 		_spec.SetField(netbird.FieldDNSServer, field.TypeString, value)
 	}
-	if nu.mutation.DNSServerCleared() {
+	if _u.mutation.DNSServerCleared() {
 		_spec.ClearField(netbird.FieldDNSServer, field.TypeString)
 	}
-	if nu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -447,7 +447,7 @@ func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -463,8 +463,8 @@ func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(nu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, nu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{netbird.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -472,8 +472,8 @@ func (nu *NetbirdUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	nu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // NetbirdUpdateOne is the builder for updating a single Netbird entity.
@@ -486,306 +486,306 @@ type NetbirdUpdateOne struct {
 }
 
 // SetVersion sets the "version" field.
-func (nuo *NetbirdUpdateOne) SetVersion(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetVersion(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetVersion(v string) *NetbirdUpdateOne {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableVersion(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetVersion(*s)
+func (_u *NetbirdUpdateOne) SetNillableVersion(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return nuo
+	return _u
 }
 
 // SetInstalled sets the "installed" field.
-func (nuo *NetbirdUpdateOne) SetInstalled(b bool) *NetbirdUpdateOne {
-	nuo.mutation.SetInstalled(b)
-	return nuo
+func (_u *NetbirdUpdateOne) SetInstalled(v bool) *NetbirdUpdateOne {
+	_u.mutation.SetInstalled(v)
+	return _u
 }
 
 // SetNillableInstalled sets the "installed" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableInstalled(b *bool) *NetbirdUpdateOne {
-	if b != nil {
-		nuo.SetInstalled(*b)
+func (_u *NetbirdUpdateOne) SetNillableInstalled(v *bool) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetInstalled(*v)
 	}
-	return nuo
+	return _u
 }
 
 // SetServiceStatus sets the "service_status" field.
-func (nuo *NetbirdUpdateOne) SetServiceStatus(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetServiceStatus(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetServiceStatus(v string) *NetbirdUpdateOne {
+	_u.mutation.SetServiceStatus(v)
+	return _u
 }
 
 // SetNillableServiceStatus sets the "service_status" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableServiceStatus(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetServiceStatus(*s)
+func (_u *NetbirdUpdateOne) SetNillableServiceStatus(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetServiceStatus(*v)
 	}
-	return nuo
+	return _u
 }
 
 // SetIP sets the "ip" field.
-func (nuo *NetbirdUpdateOne) SetIP(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetIP(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetIP(v string) *NetbirdUpdateOne {
+	_u.mutation.SetIP(v)
+	return _u
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableIP(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetIP(*s)
+func (_u *NetbirdUpdateOne) SetNillableIP(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetIP(*v)
 	}
-	return nuo
+	return _u
 }
 
 // ClearIP clears the value of the "ip" field.
-func (nuo *NetbirdUpdateOne) ClearIP() *NetbirdUpdateOne {
-	nuo.mutation.ClearIP()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearIP() *NetbirdUpdateOne {
+	_u.mutation.ClearIP()
+	return _u
 }
 
 // SetProfile sets the "profile" field.
-func (nuo *NetbirdUpdateOne) SetProfile(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetProfile(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetProfile(v string) *NetbirdUpdateOne {
+	_u.mutation.SetProfile(v)
+	return _u
 }
 
 // SetNillableProfile sets the "profile" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableProfile(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetProfile(*s)
+func (_u *NetbirdUpdateOne) SetNillableProfile(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetProfile(*v)
 	}
-	return nuo
+	return _u
 }
 
 // ClearProfile clears the value of the "profile" field.
-func (nuo *NetbirdUpdateOne) ClearProfile() *NetbirdUpdateOne {
-	nuo.mutation.ClearProfile()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearProfile() *NetbirdUpdateOne {
+	_u.mutation.ClearProfile()
+	return _u
 }
 
 // SetManagementURL sets the "management_url" field.
-func (nuo *NetbirdUpdateOne) SetManagementURL(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetManagementURL(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetManagementURL(v string) *NetbirdUpdateOne {
+	_u.mutation.SetManagementURL(v)
+	return _u
 }
 
 // SetNillableManagementURL sets the "management_url" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableManagementURL(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetManagementURL(*s)
+func (_u *NetbirdUpdateOne) SetNillableManagementURL(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetManagementURL(*v)
 	}
-	return nuo
+	return _u
 }
 
 // ClearManagementURL clears the value of the "management_url" field.
-func (nuo *NetbirdUpdateOne) ClearManagementURL() *NetbirdUpdateOne {
-	nuo.mutation.ClearManagementURL()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearManagementURL() *NetbirdUpdateOne {
+	_u.mutation.ClearManagementURL()
+	return _u
 }
 
 // SetManagementConnected sets the "management_connected" field.
-func (nuo *NetbirdUpdateOne) SetManagementConnected(b bool) *NetbirdUpdateOne {
-	nuo.mutation.SetManagementConnected(b)
-	return nuo
+func (_u *NetbirdUpdateOne) SetManagementConnected(v bool) *NetbirdUpdateOne {
+	_u.mutation.SetManagementConnected(v)
+	return _u
 }
 
 // SetNillableManagementConnected sets the "management_connected" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableManagementConnected(b *bool) *NetbirdUpdateOne {
-	if b != nil {
-		nuo.SetManagementConnected(*b)
+func (_u *NetbirdUpdateOne) SetNillableManagementConnected(v *bool) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetManagementConnected(*v)
 	}
-	return nuo
+	return _u
 }
 
 // SetSignalURL sets the "signal_url" field.
-func (nuo *NetbirdUpdateOne) SetSignalURL(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetSignalURL(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetSignalURL(v string) *NetbirdUpdateOne {
+	_u.mutation.SetSignalURL(v)
+	return _u
 }
 
 // SetNillableSignalURL sets the "signal_url" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableSignalURL(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetSignalURL(*s)
+func (_u *NetbirdUpdateOne) SetNillableSignalURL(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetSignalURL(*v)
 	}
-	return nuo
+	return _u
 }
 
 // ClearSignalURL clears the value of the "signal_url" field.
-func (nuo *NetbirdUpdateOne) ClearSignalURL() *NetbirdUpdateOne {
-	nuo.mutation.ClearSignalURL()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearSignalURL() *NetbirdUpdateOne {
+	_u.mutation.ClearSignalURL()
+	return _u
 }
 
 // SetSignalConnected sets the "signal_connected" field.
-func (nuo *NetbirdUpdateOne) SetSignalConnected(b bool) *NetbirdUpdateOne {
-	nuo.mutation.SetSignalConnected(b)
-	return nuo
+func (_u *NetbirdUpdateOne) SetSignalConnected(v bool) *NetbirdUpdateOne {
+	_u.mutation.SetSignalConnected(v)
+	return _u
 }
 
 // SetNillableSignalConnected sets the "signal_connected" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableSignalConnected(b *bool) *NetbirdUpdateOne {
-	if b != nil {
-		nuo.SetSignalConnected(*b)
+func (_u *NetbirdUpdateOne) SetNillableSignalConnected(v *bool) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetSignalConnected(*v)
 	}
-	return nuo
+	return _u
 }
 
 // SetSSHEnabled sets the "ssh_enabled" field.
-func (nuo *NetbirdUpdateOne) SetSSHEnabled(b bool) *NetbirdUpdateOne {
-	nuo.mutation.SetSSHEnabled(b)
-	return nuo
+func (_u *NetbirdUpdateOne) SetSSHEnabled(v bool) *NetbirdUpdateOne {
+	_u.mutation.SetSSHEnabled(v)
+	return _u
 }
 
 // SetNillableSSHEnabled sets the "ssh_enabled" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableSSHEnabled(b *bool) *NetbirdUpdateOne {
-	if b != nil {
-		nuo.SetSSHEnabled(*b)
+func (_u *NetbirdUpdateOne) SetNillableSSHEnabled(v *bool) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetSSHEnabled(*v)
 	}
-	return nuo
+	return _u
 }
 
 // SetPeersTotal sets the "peers_total" field.
-func (nuo *NetbirdUpdateOne) SetPeersTotal(i int) *NetbirdUpdateOne {
-	nuo.mutation.ResetPeersTotal()
-	nuo.mutation.SetPeersTotal(i)
-	return nuo
+func (_u *NetbirdUpdateOne) SetPeersTotal(v int) *NetbirdUpdateOne {
+	_u.mutation.ResetPeersTotal()
+	_u.mutation.SetPeersTotal(v)
+	return _u
 }
 
 // SetNillablePeersTotal sets the "peers_total" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillablePeersTotal(i *int) *NetbirdUpdateOne {
-	if i != nil {
-		nuo.SetPeersTotal(*i)
+func (_u *NetbirdUpdateOne) SetNillablePeersTotal(v *int) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetPeersTotal(*v)
 	}
-	return nuo
+	return _u
 }
 
-// AddPeersTotal adds i to the "peers_total" field.
-func (nuo *NetbirdUpdateOne) AddPeersTotal(i int) *NetbirdUpdateOne {
-	nuo.mutation.AddPeersTotal(i)
-	return nuo
+// AddPeersTotal adds value to the "peers_total" field.
+func (_u *NetbirdUpdateOne) AddPeersTotal(v int) *NetbirdUpdateOne {
+	_u.mutation.AddPeersTotal(v)
+	return _u
 }
 
 // ClearPeersTotal clears the value of the "peers_total" field.
-func (nuo *NetbirdUpdateOne) ClearPeersTotal() *NetbirdUpdateOne {
-	nuo.mutation.ClearPeersTotal()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearPeersTotal() *NetbirdUpdateOne {
+	_u.mutation.ClearPeersTotal()
+	return _u
 }
 
 // SetPeersConnected sets the "peers_connected" field.
-func (nuo *NetbirdUpdateOne) SetPeersConnected(i int) *NetbirdUpdateOne {
-	nuo.mutation.ResetPeersConnected()
-	nuo.mutation.SetPeersConnected(i)
-	return nuo
+func (_u *NetbirdUpdateOne) SetPeersConnected(v int) *NetbirdUpdateOne {
+	_u.mutation.ResetPeersConnected()
+	_u.mutation.SetPeersConnected(v)
+	return _u
 }
 
 // SetNillablePeersConnected sets the "peers_connected" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillablePeersConnected(i *int) *NetbirdUpdateOne {
-	if i != nil {
-		nuo.SetPeersConnected(*i)
+func (_u *NetbirdUpdateOne) SetNillablePeersConnected(v *int) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetPeersConnected(*v)
 	}
-	return nuo
+	return _u
 }
 
-// AddPeersConnected adds i to the "peers_connected" field.
-func (nuo *NetbirdUpdateOne) AddPeersConnected(i int) *NetbirdUpdateOne {
-	nuo.mutation.AddPeersConnected(i)
-	return nuo
+// AddPeersConnected adds value to the "peers_connected" field.
+func (_u *NetbirdUpdateOne) AddPeersConnected(v int) *NetbirdUpdateOne {
+	_u.mutation.AddPeersConnected(v)
+	return _u
 }
 
 // ClearPeersConnected clears the value of the "peers_connected" field.
-func (nuo *NetbirdUpdateOne) ClearPeersConnected() *NetbirdUpdateOne {
-	nuo.mutation.ClearPeersConnected()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearPeersConnected() *NetbirdUpdateOne {
+	_u.mutation.ClearPeersConnected()
+	return _u
 }
 
 // SetProfilesAvailable sets the "profiles_available" field.
-func (nuo *NetbirdUpdateOne) SetProfilesAvailable(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetProfilesAvailable(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetProfilesAvailable(v string) *NetbirdUpdateOne {
+	_u.mutation.SetProfilesAvailable(v)
+	return _u
 }
 
 // SetNillableProfilesAvailable sets the "profiles_available" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableProfilesAvailable(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetProfilesAvailable(*s)
+func (_u *NetbirdUpdateOne) SetNillableProfilesAvailable(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetProfilesAvailable(*v)
 	}
-	return nuo
+	return _u
 }
 
 // ClearProfilesAvailable clears the value of the "profiles_available" field.
-func (nuo *NetbirdUpdateOne) ClearProfilesAvailable() *NetbirdUpdateOne {
-	nuo.mutation.ClearProfilesAvailable()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearProfilesAvailable() *NetbirdUpdateOne {
+	_u.mutation.ClearProfilesAvailable()
+	return _u
 }
 
 // SetDNSServer sets the "dns_server" field.
-func (nuo *NetbirdUpdateOne) SetDNSServer(s string) *NetbirdUpdateOne {
-	nuo.mutation.SetDNSServer(s)
-	return nuo
+func (_u *NetbirdUpdateOne) SetDNSServer(v string) *NetbirdUpdateOne {
+	_u.mutation.SetDNSServer(v)
+	return _u
 }
 
 // SetNillableDNSServer sets the "dns_server" field if the given value is not nil.
-func (nuo *NetbirdUpdateOne) SetNillableDNSServer(s *string) *NetbirdUpdateOne {
-	if s != nil {
-		nuo.SetDNSServer(*s)
+func (_u *NetbirdUpdateOne) SetNillableDNSServer(v *string) *NetbirdUpdateOne {
+	if v != nil {
+		_u.SetDNSServer(*v)
 	}
-	return nuo
+	return _u
 }
 
 // ClearDNSServer clears the value of the "dns_server" field.
-func (nuo *NetbirdUpdateOne) ClearDNSServer() *NetbirdUpdateOne {
-	nuo.mutation.ClearDNSServer()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearDNSServer() *NetbirdUpdateOne {
+	_u.mutation.ClearDNSServer()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (nuo *NetbirdUpdateOne) SetOwnerID(id string) *NetbirdUpdateOne {
-	nuo.mutation.SetOwnerID(id)
-	return nuo
+func (_u *NetbirdUpdateOne) SetOwnerID(id string) *NetbirdUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (nuo *NetbirdUpdateOne) SetOwner(a *Agent) *NetbirdUpdateOne {
-	return nuo.SetOwnerID(a.ID)
+func (_u *NetbirdUpdateOne) SetOwner(v *Agent) *NetbirdUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the NetbirdMutation object of the builder.
-func (nuo *NetbirdUpdateOne) Mutation() *NetbirdMutation {
-	return nuo.mutation
+func (_u *NetbirdUpdateOne) Mutation() *NetbirdMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (nuo *NetbirdUpdateOne) ClearOwner() *NetbirdUpdateOne {
-	nuo.mutation.ClearOwner()
-	return nuo
+func (_u *NetbirdUpdateOne) ClearOwner() *NetbirdUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the NetbirdUpdate builder.
-func (nuo *NetbirdUpdateOne) Where(ps ...predicate.Netbird) *NetbirdUpdateOne {
-	nuo.mutation.Where(ps...)
-	return nuo
+func (_u *NetbirdUpdateOne) Where(ps ...predicate.Netbird) *NetbirdUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (nuo *NetbirdUpdateOne) Select(field string, fields ...string) *NetbirdUpdateOne {
-	nuo.fields = append([]string{field}, fields...)
-	return nuo
+func (_u *NetbirdUpdateOne) Select(field string, fields ...string) *NetbirdUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Netbird entity.
-func (nuo *NetbirdUpdateOne) Save(ctx context.Context) (*Netbird, error) {
-	return withHooks(ctx, nuo.sqlSave, nuo.mutation, nuo.hooks)
+func (_u *NetbirdUpdateOne) Save(ctx context.Context) (*Netbird, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nuo *NetbirdUpdateOne) SaveX(ctx context.Context) *Netbird {
-	node, err := nuo.Save(ctx)
+func (_u *NetbirdUpdateOne) SaveX(ctx context.Context) *Netbird {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -793,43 +793,43 @@ func (nuo *NetbirdUpdateOne) SaveX(ctx context.Context) *Netbird {
 }
 
 // Exec executes the query on the entity.
-func (nuo *NetbirdUpdateOne) Exec(ctx context.Context) error {
-	_, err := nuo.Save(ctx)
+func (_u *NetbirdUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nuo *NetbirdUpdateOne) ExecX(ctx context.Context) {
-	if err := nuo.Exec(ctx); err != nil {
+func (_u *NetbirdUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (nuo *NetbirdUpdateOne) check() error {
-	if nuo.mutation.OwnerCleared() && len(nuo.mutation.OwnerIDs()) > 0 {
+func (_u *NetbirdUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Netbird.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (nuo *NetbirdUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdUpdateOne {
-	nuo.modifiers = append(nuo.modifiers, modifiers...)
-	return nuo
+func (_u *NetbirdUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err error) {
-	if err := nuo.check(); err != nil {
+func (_u *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(netbird.Table, netbird.Columns, sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt))
-	id, ok := nuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Netbird.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := nuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, netbird.FieldID)
 		for _, f := range fields {
@@ -841,86 +841,86 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 			}
 		}
 	}
-	if ps := nuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := nuo.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(netbird.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := nuo.mutation.Installed(); ok {
+	if value, ok := _u.mutation.Installed(); ok {
 		_spec.SetField(netbird.FieldInstalled, field.TypeBool, value)
 	}
-	if value, ok := nuo.mutation.ServiceStatus(); ok {
+	if value, ok := _u.mutation.ServiceStatus(); ok {
 		_spec.SetField(netbird.FieldServiceStatus, field.TypeString, value)
 	}
-	if value, ok := nuo.mutation.IP(); ok {
+	if value, ok := _u.mutation.IP(); ok {
 		_spec.SetField(netbird.FieldIP, field.TypeString, value)
 	}
-	if nuo.mutation.IPCleared() {
+	if _u.mutation.IPCleared() {
 		_spec.ClearField(netbird.FieldIP, field.TypeString)
 	}
-	if value, ok := nuo.mutation.Profile(); ok {
+	if value, ok := _u.mutation.Profile(); ok {
 		_spec.SetField(netbird.FieldProfile, field.TypeString, value)
 	}
-	if nuo.mutation.ProfileCleared() {
+	if _u.mutation.ProfileCleared() {
 		_spec.ClearField(netbird.FieldProfile, field.TypeString)
 	}
-	if value, ok := nuo.mutation.ManagementURL(); ok {
+	if value, ok := _u.mutation.ManagementURL(); ok {
 		_spec.SetField(netbird.FieldManagementURL, field.TypeString, value)
 	}
-	if nuo.mutation.ManagementURLCleared() {
+	if _u.mutation.ManagementURLCleared() {
 		_spec.ClearField(netbird.FieldManagementURL, field.TypeString)
 	}
-	if value, ok := nuo.mutation.ManagementConnected(); ok {
+	if value, ok := _u.mutation.ManagementConnected(); ok {
 		_spec.SetField(netbird.FieldManagementConnected, field.TypeBool, value)
 	}
-	if value, ok := nuo.mutation.SignalURL(); ok {
+	if value, ok := _u.mutation.SignalURL(); ok {
 		_spec.SetField(netbird.FieldSignalURL, field.TypeString, value)
 	}
-	if nuo.mutation.SignalURLCleared() {
+	if _u.mutation.SignalURLCleared() {
 		_spec.ClearField(netbird.FieldSignalURL, field.TypeString)
 	}
-	if value, ok := nuo.mutation.SignalConnected(); ok {
+	if value, ok := _u.mutation.SignalConnected(); ok {
 		_spec.SetField(netbird.FieldSignalConnected, field.TypeBool, value)
 	}
-	if value, ok := nuo.mutation.SSHEnabled(); ok {
+	if value, ok := _u.mutation.SSHEnabled(); ok {
 		_spec.SetField(netbird.FieldSSHEnabled, field.TypeBool, value)
 	}
-	if value, ok := nuo.mutation.PeersTotal(); ok {
+	if value, ok := _u.mutation.PeersTotal(); ok {
 		_spec.SetField(netbird.FieldPeersTotal, field.TypeInt, value)
 	}
-	if value, ok := nuo.mutation.AddedPeersTotal(); ok {
+	if value, ok := _u.mutation.AddedPeersTotal(); ok {
 		_spec.AddField(netbird.FieldPeersTotal, field.TypeInt, value)
 	}
-	if nuo.mutation.PeersTotalCleared() {
+	if _u.mutation.PeersTotalCleared() {
 		_spec.ClearField(netbird.FieldPeersTotal, field.TypeInt)
 	}
-	if value, ok := nuo.mutation.PeersConnected(); ok {
+	if value, ok := _u.mutation.PeersConnected(); ok {
 		_spec.SetField(netbird.FieldPeersConnected, field.TypeInt, value)
 	}
-	if value, ok := nuo.mutation.AddedPeersConnected(); ok {
+	if value, ok := _u.mutation.AddedPeersConnected(); ok {
 		_spec.AddField(netbird.FieldPeersConnected, field.TypeInt, value)
 	}
-	if nuo.mutation.PeersConnectedCleared() {
+	if _u.mutation.PeersConnectedCleared() {
 		_spec.ClearField(netbird.FieldPeersConnected, field.TypeInt)
 	}
-	if value, ok := nuo.mutation.ProfilesAvailable(); ok {
+	if value, ok := _u.mutation.ProfilesAvailable(); ok {
 		_spec.SetField(netbird.FieldProfilesAvailable, field.TypeString, value)
 	}
-	if nuo.mutation.ProfilesAvailableCleared() {
+	if _u.mutation.ProfilesAvailableCleared() {
 		_spec.ClearField(netbird.FieldProfilesAvailable, field.TypeString)
 	}
-	if value, ok := nuo.mutation.DNSServer(); ok {
+	if value, ok := _u.mutation.DNSServer(); ok {
 		_spec.SetField(netbird.FieldDNSServer, field.TypeString, value)
 	}
-	if nuo.mutation.DNSServerCleared() {
+	if _u.mutation.DNSServerCleared() {
 		_spec.ClearField(netbird.FieldDNSServer, field.TypeString)
 	}
-	if nuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -933,7 +933,7 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -949,11 +949,11 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(nuo.modifiers...)
-	_node = &Netbird{config: nuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Netbird{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, nuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{netbird.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -961,6 +961,6 @@ func (nuo *NetbirdUpdateOne) sqlSave(ctx context.Context) (_node *Netbird, err e
 		}
 		return nil, err
 	}
-	nuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

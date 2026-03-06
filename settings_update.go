@@ -26,863 +26,863 @@ type SettingsUpdate struct {
 }
 
 // Where appends a list predicates to the SettingsUpdate builder.
-func (su *SettingsUpdate) Where(ps ...predicate.Settings) *SettingsUpdate {
-	su.mutation.Where(ps...)
-	return su
+func (_u *SettingsUpdate) Where(ps ...predicate.Settings) *SettingsUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetLanguage sets the "language" field.
-func (su *SettingsUpdate) SetLanguage(s string) *SettingsUpdate {
-	su.mutation.SetLanguage(s)
-	return su
+func (_u *SettingsUpdate) SetLanguage(v string) *SettingsUpdate {
+	_u.mutation.SetLanguage(v)
+	return _u
 }
 
 // SetNillableLanguage sets the "language" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableLanguage(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetLanguage(*s)
+func (_u *SettingsUpdate) SetNillableLanguage(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetLanguage(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearLanguage clears the value of the "language" field.
-func (su *SettingsUpdate) ClearLanguage() *SettingsUpdate {
-	su.mutation.ClearLanguage()
-	return su
+func (_u *SettingsUpdate) ClearLanguage() *SettingsUpdate {
+	_u.mutation.ClearLanguage()
+	return _u
 }
 
 // SetOrganization sets the "organization" field.
-func (su *SettingsUpdate) SetOrganization(s string) *SettingsUpdate {
-	su.mutation.SetOrganization(s)
-	return su
+func (_u *SettingsUpdate) SetOrganization(v string) *SettingsUpdate {
+	_u.mutation.SetOrganization(v)
+	return _u
 }
 
 // SetNillableOrganization sets the "organization" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableOrganization(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetOrganization(*s)
+func (_u *SettingsUpdate) SetNillableOrganization(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetOrganization(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearOrganization clears the value of the "organization" field.
-func (su *SettingsUpdate) ClearOrganization() *SettingsUpdate {
-	su.mutation.ClearOrganization()
-	return su
+func (_u *SettingsUpdate) ClearOrganization() *SettingsUpdate {
+	_u.mutation.ClearOrganization()
+	return _u
 }
 
 // SetPostalAddress sets the "postal_address" field.
-func (su *SettingsUpdate) SetPostalAddress(s string) *SettingsUpdate {
-	su.mutation.SetPostalAddress(s)
-	return su
+func (_u *SettingsUpdate) SetPostalAddress(v string) *SettingsUpdate {
+	_u.mutation.SetPostalAddress(v)
+	return _u
 }
 
 // SetNillablePostalAddress sets the "postal_address" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillablePostalAddress(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetPostalAddress(*s)
+func (_u *SettingsUpdate) SetNillablePostalAddress(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetPostalAddress(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearPostalAddress clears the value of the "postal_address" field.
-func (su *SettingsUpdate) ClearPostalAddress() *SettingsUpdate {
-	su.mutation.ClearPostalAddress()
-	return su
+func (_u *SettingsUpdate) ClearPostalAddress() *SettingsUpdate {
+	_u.mutation.ClearPostalAddress()
+	return _u
 }
 
 // SetPostalCode sets the "postal_code" field.
-func (su *SettingsUpdate) SetPostalCode(s string) *SettingsUpdate {
-	su.mutation.SetPostalCode(s)
-	return su
+func (_u *SettingsUpdate) SetPostalCode(v string) *SettingsUpdate {
+	_u.mutation.SetPostalCode(v)
+	return _u
 }
 
 // SetNillablePostalCode sets the "postal_code" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillablePostalCode(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetPostalCode(*s)
+func (_u *SettingsUpdate) SetNillablePostalCode(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetPostalCode(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearPostalCode clears the value of the "postal_code" field.
-func (su *SettingsUpdate) ClearPostalCode() *SettingsUpdate {
-	su.mutation.ClearPostalCode()
-	return su
+func (_u *SettingsUpdate) ClearPostalCode() *SettingsUpdate {
+	_u.mutation.ClearPostalCode()
+	return _u
 }
 
 // SetLocality sets the "locality" field.
-func (su *SettingsUpdate) SetLocality(s string) *SettingsUpdate {
-	su.mutation.SetLocality(s)
-	return su
+func (_u *SettingsUpdate) SetLocality(v string) *SettingsUpdate {
+	_u.mutation.SetLocality(v)
+	return _u
 }
 
 // SetNillableLocality sets the "locality" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableLocality(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetLocality(*s)
+func (_u *SettingsUpdate) SetNillableLocality(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetLocality(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearLocality clears the value of the "locality" field.
-func (su *SettingsUpdate) ClearLocality() *SettingsUpdate {
-	su.mutation.ClearLocality()
-	return su
+func (_u *SettingsUpdate) ClearLocality() *SettingsUpdate {
+	_u.mutation.ClearLocality()
+	return _u
 }
 
 // SetProvince sets the "province" field.
-func (su *SettingsUpdate) SetProvince(s string) *SettingsUpdate {
-	su.mutation.SetProvince(s)
-	return su
+func (_u *SettingsUpdate) SetProvince(v string) *SettingsUpdate {
+	_u.mutation.SetProvince(v)
+	return _u
 }
 
 // SetNillableProvince sets the "province" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableProvince(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetProvince(*s)
+func (_u *SettingsUpdate) SetNillableProvince(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetProvince(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearProvince clears the value of the "province" field.
-func (su *SettingsUpdate) ClearProvince() *SettingsUpdate {
-	su.mutation.ClearProvince()
-	return su
+func (_u *SettingsUpdate) ClearProvince() *SettingsUpdate {
+	_u.mutation.ClearProvince()
+	return _u
 }
 
 // SetState sets the "state" field.
-func (su *SettingsUpdate) SetState(s string) *SettingsUpdate {
-	su.mutation.SetState(s)
-	return su
+func (_u *SettingsUpdate) SetState(v string) *SettingsUpdate {
+	_u.mutation.SetState(v)
+	return _u
 }
 
 // SetNillableState sets the "state" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableState(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetState(*s)
+func (_u *SettingsUpdate) SetNillableState(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetState(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearState clears the value of the "state" field.
-func (su *SettingsUpdate) ClearState() *SettingsUpdate {
-	su.mutation.ClearState()
-	return su
+func (_u *SettingsUpdate) ClearState() *SettingsUpdate {
+	_u.mutation.ClearState()
+	return _u
 }
 
 // SetCountry sets the "country" field.
-func (su *SettingsUpdate) SetCountry(s string) *SettingsUpdate {
-	su.mutation.SetCountry(s)
-	return su
+func (_u *SettingsUpdate) SetCountry(v string) *SettingsUpdate {
+	_u.mutation.SetCountry(v)
+	return _u
 }
 
 // SetNillableCountry sets the "country" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableCountry(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetCountry(*s)
+func (_u *SettingsUpdate) SetNillableCountry(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetCountry(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearCountry clears the value of the "country" field.
-func (su *SettingsUpdate) ClearCountry() *SettingsUpdate {
-	su.mutation.ClearCountry()
-	return su
+func (_u *SettingsUpdate) ClearCountry() *SettingsUpdate {
+	_u.mutation.ClearCountry()
+	return _u
 }
 
 // SetSMTPServer sets the "smtp_server" field.
-func (su *SettingsUpdate) SetSMTPServer(s string) *SettingsUpdate {
-	su.mutation.SetSMTPServer(s)
-	return su
+func (_u *SettingsUpdate) SetSMTPServer(v string) *SettingsUpdate {
+	_u.mutation.SetSMTPServer(v)
+	return _u
 }
 
 // SetNillableSMTPServer sets the "smtp_server" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPServer(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetSMTPServer(*s)
+func (_u *SettingsUpdate) SetNillableSMTPServer(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPServer(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearSMTPServer clears the value of the "smtp_server" field.
-func (su *SettingsUpdate) ClearSMTPServer() *SettingsUpdate {
-	su.mutation.ClearSMTPServer()
-	return su
+func (_u *SettingsUpdate) ClearSMTPServer() *SettingsUpdate {
+	_u.mutation.ClearSMTPServer()
+	return _u
 }
 
 // SetSMTPPort sets the "smtp_port" field.
-func (su *SettingsUpdate) SetSMTPPort(i int) *SettingsUpdate {
-	su.mutation.ResetSMTPPort()
-	su.mutation.SetSMTPPort(i)
-	return su
+func (_u *SettingsUpdate) SetSMTPPort(v int) *SettingsUpdate {
+	_u.mutation.ResetSMTPPort()
+	_u.mutation.SetSMTPPort(v)
+	return _u
 }
 
 // SetNillableSMTPPort sets the "smtp_port" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPPort(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetSMTPPort(*i)
+func (_u *SettingsUpdate) SetNillableSMTPPort(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPPort(*v)
 	}
-	return su
+	return _u
 }
 
-// AddSMTPPort adds i to the "smtp_port" field.
-func (su *SettingsUpdate) AddSMTPPort(i int) *SettingsUpdate {
-	su.mutation.AddSMTPPort(i)
-	return su
+// AddSMTPPort adds value to the "smtp_port" field.
+func (_u *SettingsUpdate) AddSMTPPort(v int) *SettingsUpdate {
+	_u.mutation.AddSMTPPort(v)
+	return _u
 }
 
 // ClearSMTPPort clears the value of the "smtp_port" field.
-func (su *SettingsUpdate) ClearSMTPPort() *SettingsUpdate {
-	su.mutation.ClearSMTPPort()
-	return su
+func (_u *SettingsUpdate) ClearSMTPPort() *SettingsUpdate {
+	_u.mutation.ClearSMTPPort()
+	return _u
 }
 
 // SetSMTPUser sets the "smtp_user" field.
-func (su *SettingsUpdate) SetSMTPUser(s string) *SettingsUpdate {
-	su.mutation.SetSMTPUser(s)
-	return su
+func (_u *SettingsUpdate) SetSMTPUser(v string) *SettingsUpdate {
+	_u.mutation.SetSMTPUser(v)
+	return _u
 }
 
 // SetNillableSMTPUser sets the "smtp_user" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPUser(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetSMTPUser(*s)
+func (_u *SettingsUpdate) SetNillableSMTPUser(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPUser(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearSMTPUser clears the value of the "smtp_user" field.
-func (su *SettingsUpdate) ClearSMTPUser() *SettingsUpdate {
-	su.mutation.ClearSMTPUser()
-	return su
+func (_u *SettingsUpdate) ClearSMTPUser() *SettingsUpdate {
+	_u.mutation.ClearSMTPUser()
+	return _u
 }
 
 // SetSMTPPassword sets the "smtp_password" field.
-func (su *SettingsUpdate) SetSMTPPassword(s string) *SettingsUpdate {
-	su.mutation.SetSMTPPassword(s)
-	return su
+func (_u *SettingsUpdate) SetSMTPPassword(v string) *SettingsUpdate {
+	_u.mutation.SetSMTPPassword(v)
+	return _u
 }
 
 // SetNillableSMTPPassword sets the "smtp_password" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPPassword(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetSMTPPassword(*s)
+func (_u *SettingsUpdate) SetNillableSMTPPassword(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPPassword(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearSMTPPassword clears the value of the "smtp_password" field.
-func (su *SettingsUpdate) ClearSMTPPassword() *SettingsUpdate {
-	su.mutation.ClearSMTPPassword()
-	return su
+func (_u *SettingsUpdate) ClearSMTPPassword() *SettingsUpdate {
+	_u.mutation.ClearSMTPPassword()
+	return _u
 }
 
 // SetSMTPAuth sets the "smtp_auth" field.
-func (su *SettingsUpdate) SetSMTPAuth(s string) *SettingsUpdate {
-	su.mutation.SetSMTPAuth(s)
-	return su
+func (_u *SettingsUpdate) SetSMTPAuth(v string) *SettingsUpdate {
+	_u.mutation.SetSMTPAuth(v)
+	return _u
 }
 
 // SetNillableSMTPAuth sets the "smtp_auth" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPAuth(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetSMTPAuth(*s)
+func (_u *SettingsUpdate) SetNillableSMTPAuth(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPAuth(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearSMTPAuth clears the value of the "smtp_auth" field.
-func (su *SettingsUpdate) ClearSMTPAuth() *SettingsUpdate {
-	su.mutation.ClearSMTPAuth()
-	return su
+func (_u *SettingsUpdate) ClearSMTPAuth() *SettingsUpdate {
+	_u.mutation.ClearSMTPAuth()
+	return _u
 }
 
 // SetSMTPTLS sets the "smtp_tls" field.
-func (su *SettingsUpdate) SetSMTPTLS(b bool) *SettingsUpdate {
-	su.mutation.SetSMTPTLS(b)
-	return su
+func (_u *SettingsUpdate) SetSMTPTLS(v bool) *SettingsUpdate {
+	_u.mutation.SetSMTPTLS(v)
+	return _u
 }
 
 // SetNillableSMTPTLS sets the "smtp_tls" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPTLS(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetSMTPTLS(*b)
+func (_u *SettingsUpdate) SetNillableSMTPTLS(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPTLS(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (su *SettingsUpdate) ClearSMTPTLS() *SettingsUpdate {
-	su.mutation.ClearSMTPTLS()
-	return su
+func (_u *SettingsUpdate) ClearSMTPTLS() *SettingsUpdate {
+	_u.mutation.ClearSMTPTLS()
+	return _u
 }
 
 // SetSMTPStarttls sets the "smtp_starttls" field.
-func (su *SettingsUpdate) SetSMTPStarttls(b bool) *SettingsUpdate {
-	su.mutation.SetSMTPStarttls(b)
-	return su
+func (_u *SettingsUpdate) SetSMTPStarttls(v bool) *SettingsUpdate {
+	_u.mutation.SetSMTPStarttls(v)
+	return _u
 }
 
 // SetNillableSMTPStarttls sets the "smtp_starttls" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPStarttls(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetSMTPStarttls(*b)
+func (_u *SettingsUpdate) SetNillableSMTPStarttls(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetSMTPStarttls(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (su *SettingsUpdate) ClearSMTPStarttls() *SettingsUpdate {
-	su.mutation.ClearSMTPStarttls()
-	return su
+func (_u *SettingsUpdate) ClearSMTPStarttls() *SettingsUpdate {
+	_u.mutation.ClearSMTPStarttls()
+	return _u
 }
 
 // SetNatsServer sets the "nats_server" field.
-func (su *SettingsUpdate) SetNatsServer(s string) *SettingsUpdate {
-	su.mutation.SetNatsServer(s)
-	return su
+func (_u *SettingsUpdate) SetNatsServer(v string) *SettingsUpdate {
+	_u.mutation.SetNatsServer(v)
+	return _u
 }
 
 // SetNillableNatsServer sets the "nats_server" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableNatsServer(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetNatsServer(*s)
+func (_u *SettingsUpdate) SetNillableNatsServer(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetNatsServer(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearNatsServer clears the value of the "nats_server" field.
-func (su *SettingsUpdate) ClearNatsServer() *SettingsUpdate {
-	su.mutation.ClearNatsServer()
-	return su
+func (_u *SettingsUpdate) ClearNatsServer() *SettingsUpdate {
+	_u.mutation.ClearNatsServer()
+	return _u
 }
 
 // SetNatsPort sets the "nats_port" field.
-func (su *SettingsUpdate) SetNatsPort(s string) *SettingsUpdate {
-	su.mutation.SetNatsPort(s)
-	return su
+func (_u *SettingsUpdate) SetNatsPort(v string) *SettingsUpdate {
+	_u.mutation.SetNatsPort(v)
+	return _u
 }
 
 // SetNillableNatsPort sets the "nats_port" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableNatsPort(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetNatsPort(*s)
+func (_u *SettingsUpdate) SetNillableNatsPort(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetNatsPort(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearNatsPort clears the value of the "nats_port" field.
-func (su *SettingsUpdate) ClearNatsPort() *SettingsUpdate {
-	su.mutation.ClearNatsPort()
-	return su
+func (_u *SettingsUpdate) ClearNatsPort() *SettingsUpdate {
+	_u.mutation.ClearNatsPort()
+	return _u
 }
 
 // SetMessageFrom sets the "message_from" field.
-func (su *SettingsUpdate) SetMessageFrom(s string) *SettingsUpdate {
-	su.mutation.SetMessageFrom(s)
-	return su
+func (_u *SettingsUpdate) SetMessageFrom(v string) *SettingsUpdate {
+	_u.mutation.SetMessageFrom(v)
+	return _u
 }
 
 // SetNillableMessageFrom sets the "message_from" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableMessageFrom(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetMessageFrom(*s)
+func (_u *SettingsUpdate) SetNillableMessageFrom(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetMessageFrom(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearMessageFrom clears the value of the "message_from" field.
-func (su *SettingsUpdate) ClearMessageFrom() *SettingsUpdate {
-	su.mutation.ClearMessageFrom()
-	return su
+func (_u *SettingsUpdate) ClearMessageFrom() *SettingsUpdate {
+	_u.mutation.ClearMessageFrom()
+	return _u
 }
 
 // SetMaxUploadSize sets the "max_upload_size" field.
-func (su *SettingsUpdate) SetMaxUploadSize(s string) *SettingsUpdate {
-	su.mutation.SetMaxUploadSize(s)
-	return su
+func (_u *SettingsUpdate) SetMaxUploadSize(v string) *SettingsUpdate {
+	_u.mutation.SetMaxUploadSize(v)
+	return _u
 }
 
 // SetNillableMaxUploadSize sets the "max_upload_size" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableMaxUploadSize(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetMaxUploadSize(*s)
+func (_u *SettingsUpdate) SetNillableMaxUploadSize(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetMaxUploadSize(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearMaxUploadSize clears the value of the "max_upload_size" field.
-func (su *SettingsUpdate) ClearMaxUploadSize() *SettingsUpdate {
-	su.mutation.ClearMaxUploadSize()
-	return su
+func (_u *SettingsUpdate) ClearMaxUploadSize() *SettingsUpdate {
+	_u.mutation.ClearMaxUploadSize()
+	return _u
 }
 
 // SetUserCertYearsValid sets the "user_cert_years_valid" field.
-func (su *SettingsUpdate) SetUserCertYearsValid(i int) *SettingsUpdate {
-	su.mutation.ResetUserCertYearsValid()
-	su.mutation.SetUserCertYearsValid(i)
-	return su
+func (_u *SettingsUpdate) SetUserCertYearsValid(v int) *SettingsUpdate {
+	_u.mutation.ResetUserCertYearsValid()
+	_u.mutation.SetUserCertYearsValid(v)
+	return _u
 }
 
 // SetNillableUserCertYearsValid sets the "user_cert_years_valid" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableUserCertYearsValid(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetUserCertYearsValid(*i)
+func (_u *SettingsUpdate) SetNillableUserCertYearsValid(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetUserCertYearsValid(*v)
 	}
-	return su
+	return _u
 }
 
-// AddUserCertYearsValid adds i to the "user_cert_years_valid" field.
-func (su *SettingsUpdate) AddUserCertYearsValid(i int) *SettingsUpdate {
-	su.mutation.AddUserCertYearsValid(i)
-	return su
+// AddUserCertYearsValid adds value to the "user_cert_years_valid" field.
+func (_u *SettingsUpdate) AddUserCertYearsValid(v int) *SettingsUpdate {
+	_u.mutation.AddUserCertYearsValid(v)
+	return _u
 }
 
 // ClearUserCertYearsValid clears the value of the "user_cert_years_valid" field.
-func (su *SettingsUpdate) ClearUserCertYearsValid() *SettingsUpdate {
-	su.mutation.ClearUserCertYearsValid()
-	return su
+func (_u *SettingsUpdate) ClearUserCertYearsValid() *SettingsUpdate {
+	_u.mutation.ClearUserCertYearsValid()
+	return _u
 }
 
 // SetNatsRequestTimeoutSeconds sets the "nats_request_timeout_seconds" field.
-func (su *SettingsUpdate) SetNatsRequestTimeoutSeconds(i int) *SettingsUpdate {
-	su.mutation.ResetNatsRequestTimeoutSeconds()
-	su.mutation.SetNatsRequestTimeoutSeconds(i)
-	return su
+func (_u *SettingsUpdate) SetNatsRequestTimeoutSeconds(v int) *SettingsUpdate {
+	_u.mutation.ResetNatsRequestTimeoutSeconds()
+	_u.mutation.SetNatsRequestTimeoutSeconds(v)
+	return _u
 }
 
 // SetNillableNatsRequestTimeoutSeconds sets the "nats_request_timeout_seconds" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableNatsRequestTimeoutSeconds(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetNatsRequestTimeoutSeconds(*i)
+func (_u *SettingsUpdate) SetNillableNatsRequestTimeoutSeconds(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetNatsRequestTimeoutSeconds(*v)
 	}
-	return su
+	return _u
 }
 
-// AddNatsRequestTimeoutSeconds adds i to the "nats_request_timeout_seconds" field.
-func (su *SettingsUpdate) AddNatsRequestTimeoutSeconds(i int) *SettingsUpdate {
-	su.mutation.AddNatsRequestTimeoutSeconds(i)
-	return su
+// AddNatsRequestTimeoutSeconds adds value to the "nats_request_timeout_seconds" field.
+func (_u *SettingsUpdate) AddNatsRequestTimeoutSeconds(v int) *SettingsUpdate {
+	_u.mutation.AddNatsRequestTimeoutSeconds(v)
+	return _u
 }
 
 // ClearNatsRequestTimeoutSeconds clears the value of the "nats_request_timeout_seconds" field.
-func (su *SettingsUpdate) ClearNatsRequestTimeoutSeconds() *SettingsUpdate {
-	su.mutation.ClearNatsRequestTimeoutSeconds()
-	return su
+func (_u *SettingsUpdate) ClearNatsRequestTimeoutSeconds() *SettingsUpdate {
+	_u.mutation.ClearNatsRequestTimeoutSeconds()
+	return _u
 }
 
 // SetRefreshTimeInMinutes sets the "refresh_time_in_minutes" field.
-func (su *SettingsUpdate) SetRefreshTimeInMinutes(i int) *SettingsUpdate {
-	su.mutation.ResetRefreshTimeInMinutes()
-	su.mutation.SetRefreshTimeInMinutes(i)
-	return su
+func (_u *SettingsUpdate) SetRefreshTimeInMinutes(v int) *SettingsUpdate {
+	_u.mutation.ResetRefreshTimeInMinutes()
+	_u.mutation.SetRefreshTimeInMinutes(v)
+	return _u
 }
 
 // SetNillableRefreshTimeInMinutes sets the "refresh_time_in_minutes" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableRefreshTimeInMinutes(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetRefreshTimeInMinutes(*i)
+func (_u *SettingsUpdate) SetNillableRefreshTimeInMinutes(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetRefreshTimeInMinutes(*v)
 	}
-	return su
+	return _u
 }
 
-// AddRefreshTimeInMinutes adds i to the "refresh_time_in_minutes" field.
-func (su *SettingsUpdate) AddRefreshTimeInMinutes(i int) *SettingsUpdate {
-	su.mutation.AddRefreshTimeInMinutes(i)
-	return su
+// AddRefreshTimeInMinutes adds value to the "refresh_time_in_minutes" field.
+func (_u *SettingsUpdate) AddRefreshTimeInMinutes(v int) *SettingsUpdate {
+	_u.mutation.AddRefreshTimeInMinutes(v)
+	return _u
 }
 
 // ClearRefreshTimeInMinutes clears the value of the "refresh_time_in_minutes" field.
-func (su *SettingsUpdate) ClearRefreshTimeInMinutes() *SettingsUpdate {
-	su.mutation.ClearRefreshTimeInMinutes()
-	return su
+func (_u *SettingsUpdate) ClearRefreshTimeInMinutes() *SettingsUpdate {
+	_u.mutation.ClearRefreshTimeInMinutes()
+	return _u
 }
 
 // SetSessionLifetimeInMinutes sets the "session_lifetime_in_minutes" field.
-func (su *SettingsUpdate) SetSessionLifetimeInMinutes(i int) *SettingsUpdate {
-	su.mutation.ResetSessionLifetimeInMinutes()
-	su.mutation.SetSessionLifetimeInMinutes(i)
-	return su
+func (_u *SettingsUpdate) SetSessionLifetimeInMinutes(v int) *SettingsUpdate {
+	_u.mutation.ResetSessionLifetimeInMinutes()
+	_u.mutation.SetSessionLifetimeInMinutes(v)
+	return _u
 }
 
 // SetNillableSessionLifetimeInMinutes sets the "session_lifetime_in_minutes" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSessionLifetimeInMinutes(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetSessionLifetimeInMinutes(*i)
+func (_u *SettingsUpdate) SetNillableSessionLifetimeInMinutes(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetSessionLifetimeInMinutes(*v)
 	}
-	return su
+	return _u
 }
 
-// AddSessionLifetimeInMinutes adds i to the "session_lifetime_in_minutes" field.
-func (su *SettingsUpdate) AddSessionLifetimeInMinutes(i int) *SettingsUpdate {
-	su.mutation.AddSessionLifetimeInMinutes(i)
-	return su
+// AddSessionLifetimeInMinutes adds value to the "session_lifetime_in_minutes" field.
+func (_u *SettingsUpdate) AddSessionLifetimeInMinutes(v int) *SettingsUpdate {
+	_u.mutation.AddSessionLifetimeInMinutes(v)
+	return _u
 }
 
 // ClearSessionLifetimeInMinutes clears the value of the "session_lifetime_in_minutes" field.
-func (su *SettingsUpdate) ClearSessionLifetimeInMinutes() *SettingsUpdate {
-	su.mutation.ClearSessionLifetimeInMinutes()
-	return su
+func (_u *SettingsUpdate) ClearSessionLifetimeInMinutes() *SettingsUpdate {
+	_u.mutation.ClearSessionLifetimeInMinutes()
+	return _u
 }
 
 // SetUpdateChannel sets the "update_channel" field.
-func (su *SettingsUpdate) SetUpdateChannel(s string) *SettingsUpdate {
-	su.mutation.SetUpdateChannel(s)
-	return su
+func (_u *SettingsUpdate) SetUpdateChannel(v string) *SettingsUpdate {
+	_u.mutation.SetUpdateChannel(v)
+	return _u
 }
 
 // SetNillableUpdateChannel sets the "update_channel" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableUpdateChannel(s *string) *SettingsUpdate {
-	if s != nil {
-		su.SetUpdateChannel(*s)
+func (_u *SettingsUpdate) SetNillableUpdateChannel(v *string) *SettingsUpdate {
+	if v != nil {
+		_u.SetUpdateChannel(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUpdateChannel clears the value of the "update_channel" field.
-func (su *SettingsUpdate) ClearUpdateChannel() *SettingsUpdate {
-	su.mutation.ClearUpdateChannel()
-	return su
+func (_u *SettingsUpdate) ClearUpdateChannel() *SettingsUpdate {
+	_u.mutation.ClearUpdateChannel()
+	return _u
 }
 
 // SetCreated sets the "created" field.
-func (su *SettingsUpdate) SetCreated(t time.Time) *SettingsUpdate {
-	su.mutation.SetCreated(t)
-	return su
+func (_u *SettingsUpdate) SetCreated(v time.Time) *SettingsUpdate {
+	_u.mutation.SetCreated(v)
+	return _u
 }
 
 // SetNillableCreated sets the "created" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableCreated(t *time.Time) *SettingsUpdate {
-	if t != nil {
-		su.SetCreated(*t)
+func (_u *SettingsUpdate) SetNillableCreated(v *time.Time) *SettingsUpdate {
+	if v != nil {
+		_u.SetCreated(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearCreated clears the value of the "created" field.
-func (su *SettingsUpdate) ClearCreated() *SettingsUpdate {
-	su.mutation.ClearCreated()
-	return su
+func (_u *SettingsUpdate) ClearCreated() *SettingsUpdate {
+	_u.mutation.ClearCreated()
+	return _u
 }
 
 // SetModified sets the "modified" field.
-func (su *SettingsUpdate) SetModified(t time.Time) *SettingsUpdate {
-	su.mutation.SetModified(t)
-	return su
+func (_u *SettingsUpdate) SetModified(v time.Time) *SettingsUpdate {
+	_u.mutation.SetModified(v)
+	return _u
 }
 
 // ClearModified clears the value of the "modified" field.
-func (su *SettingsUpdate) ClearModified() *SettingsUpdate {
-	su.mutation.ClearModified()
-	return su
+func (_u *SettingsUpdate) ClearModified() *SettingsUpdate {
+	_u.mutation.ClearModified()
+	return _u
 }
 
 // SetAgentReportFrequenceInMinutes sets the "agent_report_frequence_in_minutes" field.
-func (su *SettingsUpdate) SetAgentReportFrequenceInMinutes(i int) *SettingsUpdate {
-	su.mutation.ResetAgentReportFrequenceInMinutes()
-	su.mutation.SetAgentReportFrequenceInMinutes(i)
-	return su
+func (_u *SettingsUpdate) SetAgentReportFrequenceInMinutes(v int) *SettingsUpdate {
+	_u.mutation.ResetAgentReportFrequenceInMinutes()
+	_u.mutation.SetAgentReportFrequenceInMinutes(v)
+	return _u
 }
 
 // SetNillableAgentReportFrequenceInMinutes sets the "agent_report_frequence_in_minutes" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableAgentReportFrequenceInMinutes(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetAgentReportFrequenceInMinutes(*i)
+func (_u *SettingsUpdate) SetNillableAgentReportFrequenceInMinutes(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetAgentReportFrequenceInMinutes(*v)
 	}
-	return su
+	return _u
 }
 
-// AddAgentReportFrequenceInMinutes adds i to the "agent_report_frequence_in_minutes" field.
-func (su *SettingsUpdate) AddAgentReportFrequenceInMinutes(i int) *SettingsUpdate {
-	su.mutation.AddAgentReportFrequenceInMinutes(i)
-	return su
+// AddAgentReportFrequenceInMinutes adds value to the "agent_report_frequence_in_minutes" field.
+func (_u *SettingsUpdate) AddAgentReportFrequenceInMinutes(v int) *SettingsUpdate {
+	_u.mutation.AddAgentReportFrequenceInMinutes(v)
+	return _u
 }
 
 // ClearAgentReportFrequenceInMinutes clears the value of the "agent_report_frequence_in_minutes" field.
-func (su *SettingsUpdate) ClearAgentReportFrequenceInMinutes() *SettingsUpdate {
-	su.mutation.ClearAgentReportFrequenceInMinutes()
-	return su
+func (_u *SettingsUpdate) ClearAgentReportFrequenceInMinutes() *SettingsUpdate {
+	_u.mutation.ClearAgentReportFrequenceInMinutes()
+	return _u
 }
 
 // SetRequestVncPin sets the "request_vnc_pin" field.
-func (su *SettingsUpdate) SetRequestVncPin(b bool) *SettingsUpdate {
-	su.mutation.SetRequestVncPin(b)
-	return su
+func (_u *SettingsUpdate) SetRequestVncPin(v bool) *SettingsUpdate {
+	_u.mutation.SetRequestVncPin(v)
+	return _u
 }
 
 // SetNillableRequestVncPin sets the "request_vnc_pin" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableRequestVncPin(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetRequestVncPin(*b)
+func (_u *SettingsUpdate) SetNillableRequestVncPin(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetRequestVncPin(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearRequestVncPin clears the value of the "request_vnc_pin" field.
-func (su *SettingsUpdate) ClearRequestVncPin() *SettingsUpdate {
-	su.mutation.ClearRequestVncPin()
-	return su
+func (_u *SettingsUpdate) ClearRequestVncPin() *SettingsUpdate {
+	_u.mutation.ClearRequestVncPin()
+	return _u
 }
 
 // SetProfilesApplicationFrequenceInMinutes sets the "profiles_application_frequence_in_minutes" field.
-func (su *SettingsUpdate) SetProfilesApplicationFrequenceInMinutes(i int) *SettingsUpdate {
-	su.mutation.ResetProfilesApplicationFrequenceInMinutes()
-	su.mutation.SetProfilesApplicationFrequenceInMinutes(i)
-	return su
+func (_u *SettingsUpdate) SetProfilesApplicationFrequenceInMinutes(v int) *SettingsUpdate {
+	_u.mutation.ResetProfilesApplicationFrequenceInMinutes()
+	_u.mutation.SetProfilesApplicationFrequenceInMinutes(v)
+	return _u
 }
 
 // SetNillableProfilesApplicationFrequenceInMinutes sets the "profiles_application_frequence_in_minutes" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableProfilesApplicationFrequenceInMinutes(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetProfilesApplicationFrequenceInMinutes(*i)
+func (_u *SettingsUpdate) SetNillableProfilesApplicationFrequenceInMinutes(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetProfilesApplicationFrequenceInMinutes(*v)
 	}
-	return su
+	return _u
 }
 
-// AddProfilesApplicationFrequenceInMinutes adds i to the "profiles_application_frequence_in_minutes" field.
-func (su *SettingsUpdate) AddProfilesApplicationFrequenceInMinutes(i int) *SettingsUpdate {
-	su.mutation.AddProfilesApplicationFrequenceInMinutes(i)
-	return su
+// AddProfilesApplicationFrequenceInMinutes adds value to the "profiles_application_frequence_in_minutes" field.
+func (_u *SettingsUpdate) AddProfilesApplicationFrequenceInMinutes(v int) *SettingsUpdate {
+	_u.mutation.AddProfilesApplicationFrequenceInMinutes(v)
+	return _u
 }
 
 // ClearProfilesApplicationFrequenceInMinutes clears the value of the "profiles_application_frequence_in_minutes" field.
-func (su *SettingsUpdate) ClearProfilesApplicationFrequenceInMinutes() *SettingsUpdate {
-	su.mutation.ClearProfilesApplicationFrequenceInMinutes()
-	return su
+func (_u *SettingsUpdate) ClearProfilesApplicationFrequenceInMinutes() *SettingsUpdate {
+	_u.mutation.ClearProfilesApplicationFrequenceInMinutes()
+	return _u
 }
 
 // SetUseWinget sets the "use_winget" field.
-func (su *SettingsUpdate) SetUseWinget(b bool) *SettingsUpdate {
-	su.mutation.SetUseWinget(b)
-	return su
+func (_u *SettingsUpdate) SetUseWinget(v bool) *SettingsUpdate {
+	_u.mutation.SetUseWinget(v)
+	return _u
 }
 
 // SetNillableUseWinget sets the "use_winget" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableUseWinget(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetUseWinget(*b)
+func (_u *SettingsUpdate) SetNillableUseWinget(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetUseWinget(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUseWinget clears the value of the "use_winget" field.
-func (su *SettingsUpdate) ClearUseWinget() *SettingsUpdate {
-	su.mutation.ClearUseWinget()
-	return su
+func (_u *SettingsUpdate) ClearUseWinget() *SettingsUpdate {
+	_u.mutation.ClearUseWinget()
+	return _u
 }
 
 // SetUseFlatpak sets the "use_flatpak" field.
-func (su *SettingsUpdate) SetUseFlatpak(b bool) *SettingsUpdate {
-	su.mutation.SetUseFlatpak(b)
-	return su
+func (_u *SettingsUpdate) SetUseFlatpak(v bool) *SettingsUpdate {
+	_u.mutation.SetUseFlatpak(v)
+	return _u
 }
 
 // SetNillableUseFlatpak sets the "use_flatpak" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableUseFlatpak(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetUseFlatpak(*b)
+func (_u *SettingsUpdate) SetNillableUseFlatpak(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetUseFlatpak(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUseFlatpak clears the value of the "use_flatpak" field.
-func (su *SettingsUpdate) ClearUseFlatpak() *SettingsUpdate {
-	su.mutation.ClearUseFlatpak()
-	return su
+func (_u *SettingsUpdate) ClearUseFlatpak() *SettingsUpdate {
+	_u.mutation.ClearUseFlatpak()
+	return _u
 }
 
 // SetUseBrew sets the "use_brew" field.
-func (su *SettingsUpdate) SetUseBrew(b bool) *SettingsUpdate {
-	su.mutation.SetUseBrew(b)
-	return su
+func (_u *SettingsUpdate) SetUseBrew(v bool) *SettingsUpdate {
+	_u.mutation.SetUseBrew(v)
+	return _u
 }
 
 // SetNillableUseBrew sets the "use_brew" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableUseBrew(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetUseBrew(*b)
+func (_u *SettingsUpdate) SetNillableUseBrew(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetUseBrew(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearUseBrew clears the value of the "use_brew" field.
-func (su *SettingsUpdate) ClearUseBrew() *SettingsUpdate {
-	su.mutation.ClearUseBrew()
-	return su
+func (_u *SettingsUpdate) ClearUseBrew() *SettingsUpdate {
+	_u.mutation.ClearUseBrew()
+	return _u
 }
 
 // SetDisableSftp sets the "disable_sftp" field.
-func (su *SettingsUpdate) SetDisableSftp(b bool) *SettingsUpdate {
-	su.mutation.SetDisableSftp(b)
-	return su
+func (_u *SettingsUpdate) SetDisableSftp(v bool) *SettingsUpdate {
+	_u.mutation.SetDisableSftp(v)
+	return _u
 }
 
 // SetNillableDisableSftp sets the "disable_sftp" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableDisableSftp(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetDisableSftp(*b)
+func (_u *SettingsUpdate) SetNillableDisableSftp(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetDisableSftp(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearDisableSftp clears the value of the "disable_sftp" field.
-func (su *SettingsUpdate) ClearDisableSftp() *SettingsUpdate {
-	su.mutation.ClearDisableSftp()
-	return su
+func (_u *SettingsUpdate) ClearDisableSftp() *SettingsUpdate {
+	_u.mutation.ClearDisableSftp()
+	return _u
 }
 
 // SetDisableRemoteAssistance sets the "disable_remote_assistance" field.
-func (su *SettingsUpdate) SetDisableRemoteAssistance(b bool) *SettingsUpdate {
-	su.mutation.SetDisableRemoteAssistance(b)
-	return su
+func (_u *SettingsUpdate) SetDisableRemoteAssistance(v bool) *SettingsUpdate {
+	_u.mutation.SetDisableRemoteAssistance(v)
+	return _u
 }
 
 // SetNillableDisableRemoteAssistance sets the "disable_remote_assistance" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableDisableRemoteAssistance(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetDisableRemoteAssistance(*b)
+func (_u *SettingsUpdate) SetNillableDisableRemoteAssistance(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetDisableRemoteAssistance(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearDisableRemoteAssistance clears the value of the "disable_remote_assistance" field.
-func (su *SettingsUpdate) ClearDisableRemoteAssistance() *SettingsUpdate {
-	su.mutation.ClearDisableRemoteAssistance()
-	return su
+func (_u *SettingsUpdate) ClearDisableRemoteAssistance() *SettingsUpdate {
+	_u.mutation.ClearDisableRemoteAssistance()
+	return _u
 }
 
 // SetDetectRemoteAgents sets the "detect_remote_agents" field.
-func (su *SettingsUpdate) SetDetectRemoteAgents(b bool) *SettingsUpdate {
-	su.mutation.SetDetectRemoteAgents(b)
-	return su
+func (_u *SettingsUpdate) SetDetectRemoteAgents(v bool) *SettingsUpdate {
+	_u.mutation.SetDetectRemoteAgents(v)
+	return _u
 }
 
 // SetNillableDetectRemoteAgents sets the "detect_remote_agents" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableDetectRemoteAgents(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetDetectRemoteAgents(*b)
+func (_u *SettingsUpdate) SetNillableDetectRemoteAgents(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetDetectRemoteAgents(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearDetectRemoteAgents clears the value of the "detect_remote_agents" field.
-func (su *SettingsUpdate) ClearDetectRemoteAgents() *SettingsUpdate {
-	su.mutation.ClearDetectRemoteAgents()
-	return su
+func (_u *SettingsUpdate) ClearDetectRemoteAgents() *SettingsUpdate {
+	_u.mutation.ClearDetectRemoteAgents()
+	return _u
 }
 
 // SetAutoAdmitAgents sets the "auto_admit_agents" field.
-func (su *SettingsUpdate) SetAutoAdmitAgents(b bool) *SettingsUpdate {
-	su.mutation.SetAutoAdmitAgents(b)
-	return su
+func (_u *SettingsUpdate) SetAutoAdmitAgents(v bool) *SettingsUpdate {
+	_u.mutation.SetAutoAdmitAgents(v)
+	return _u
 }
 
 // SetNillableAutoAdmitAgents sets the "auto_admit_agents" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableAutoAdmitAgents(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetAutoAdmitAgents(*b)
+func (_u *SettingsUpdate) SetNillableAutoAdmitAgents(v *bool) *SettingsUpdate {
+	if v != nil {
+		_u.SetAutoAdmitAgents(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearAutoAdmitAgents clears the value of the "auto_admit_agents" field.
-func (su *SettingsUpdate) ClearAutoAdmitAgents() *SettingsUpdate {
-	su.mutation.ClearAutoAdmitAgents()
-	return su
+func (_u *SettingsUpdate) ClearAutoAdmitAgents() *SettingsUpdate {
+	_u.mutation.ClearAutoAdmitAgents()
+	return _u
 }
 
 // SetDefaultItemsPerPage sets the "default_items_per_page" field.
-func (su *SettingsUpdate) SetDefaultItemsPerPage(i int) *SettingsUpdate {
-	su.mutation.ResetDefaultItemsPerPage()
-	su.mutation.SetDefaultItemsPerPage(i)
-	return su
+func (_u *SettingsUpdate) SetDefaultItemsPerPage(v int) *SettingsUpdate {
+	_u.mutation.ResetDefaultItemsPerPage()
+	_u.mutation.SetDefaultItemsPerPage(v)
+	return _u
 }
 
 // SetNillableDefaultItemsPerPage sets the "default_items_per_page" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableDefaultItemsPerPage(i *int) *SettingsUpdate {
-	if i != nil {
-		su.SetDefaultItemsPerPage(*i)
+func (_u *SettingsUpdate) SetNillableDefaultItemsPerPage(v *int) *SettingsUpdate {
+	if v != nil {
+		_u.SetDefaultItemsPerPage(*v)
 	}
-	return su
+	return _u
 }
 
-// AddDefaultItemsPerPage adds i to the "default_items_per_page" field.
-func (su *SettingsUpdate) AddDefaultItemsPerPage(i int) *SettingsUpdate {
-	su.mutation.AddDefaultItemsPerPage(i)
-	return su
+// AddDefaultItemsPerPage adds value to the "default_items_per_page" field.
+func (_u *SettingsUpdate) AddDefaultItemsPerPage(v int) *SettingsUpdate {
+	_u.mutation.AddDefaultItemsPerPage(v)
+	return _u
 }
 
 // ClearDefaultItemsPerPage clears the value of the "default_items_per_page" field.
-func (su *SettingsUpdate) ClearDefaultItemsPerPage() *SettingsUpdate {
-	su.mutation.ClearDefaultItemsPerPage()
-	return su
+func (_u *SettingsUpdate) ClearDefaultItemsPerPage() *SettingsUpdate {
+	_u.mutation.ClearDefaultItemsPerPage()
+	return _u
 }
 
 // SetTagID sets the "tag" edge to the Tag entity by ID.
-func (su *SettingsUpdate) SetTagID(id int) *SettingsUpdate {
-	su.mutation.SetTagID(id)
-	return su
+func (_u *SettingsUpdate) SetTagID(id int) *SettingsUpdate {
+	_u.mutation.SetTagID(id)
+	return _u
 }
 
 // SetNillableTagID sets the "tag" edge to the Tag entity by ID if the given value is not nil.
-func (su *SettingsUpdate) SetNillableTagID(id *int) *SettingsUpdate {
+func (_u *SettingsUpdate) SetNillableTagID(id *int) *SettingsUpdate {
 	if id != nil {
-		su = su.SetTagID(*id)
+		_u = _u.SetTagID(*id)
 	}
-	return su
+	return _u
 }
 
 // SetTag sets the "tag" edge to the Tag entity.
-func (su *SettingsUpdate) SetTag(t *Tag) *SettingsUpdate {
-	return su.SetTagID(t.ID)
+func (_u *SettingsUpdate) SetTag(v *Tag) *SettingsUpdate {
+	return _u.SetTagID(v.ID)
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (su *SettingsUpdate) SetTenantID(id int) *SettingsUpdate {
-	su.mutation.SetTenantID(id)
-	return su
+func (_u *SettingsUpdate) SetTenantID(id int) *SettingsUpdate {
+	_u.mutation.SetTenantID(id)
+	return _u
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (su *SettingsUpdate) SetNillableTenantID(id *int) *SettingsUpdate {
+func (_u *SettingsUpdate) SetNillableTenantID(id *int) *SettingsUpdate {
 	if id != nil {
-		su = su.SetTenantID(*id)
+		_u = _u.SetTenantID(*id)
 	}
-	return su
+	return _u
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (su *SettingsUpdate) SetTenant(t *Tenant) *SettingsUpdate {
-	return su.SetTenantID(t.ID)
+func (_u *SettingsUpdate) SetTenant(v *Tenant) *SettingsUpdate {
+	return _u.SetTenantID(v.ID)
 }
 
 // Mutation returns the SettingsMutation object of the builder.
-func (su *SettingsUpdate) Mutation() *SettingsMutation {
-	return su.mutation
+func (_u *SettingsUpdate) Mutation() *SettingsMutation {
+	return _u.mutation
 }
 
 // ClearTag clears the "tag" edge to the Tag entity.
-func (su *SettingsUpdate) ClearTag() *SettingsUpdate {
-	su.mutation.ClearTag()
-	return su
+func (_u *SettingsUpdate) ClearTag() *SettingsUpdate {
+	_u.mutation.ClearTag()
+	return _u
 }
 
 // ClearTenant clears the "tenant" edge to the Tenant entity.
-func (su *SettingsUpdate) ClearTenant() *SettingsUpdate {
-	su.mutation.ClearTenant()
-	return su
+func (_u *SettingsUpdate) ClearTenant() *SettingsUpdate {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (su *SettingsUpdate) Save(ctx context.Context) (int, error) {
-	su.defaults()
-	return withHooks(ctx, su.sqlSave, su.mutation, su.hooks)
+func (_u *SettingsUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (su *SettingsUpdate) SaveX(ctx context.Context) int {
-	affected, err := su.Save(ctx)
+func (_u *SettingsUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -890,288 +890,288 @@ func (su *SettingsUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (su *SettingsUpdate) Exec(ctx context.Context) error {
-	_, err := su.Save(ctx)
+func (_u *SettingsUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (su *SettingsUpdate) ExecX(ctx context.Context) {
-	if err := su.Exec(ctx); err != nil {
+func (_u *SettingsUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (su *SettingsUpdate) defaults() {
-	if _, ok := su.mutation.Modified(); !ok && !su.mutation.ModifiedCleared() {
+func (_u *SettingsUpdate) defaults() {
+	if _, ok := _u.mutation.Modified(); !ok && !_u.mutation.ModifiedCleared() {
 		v := settings.UpdateDefaultModified()
-		su.mutation.SetModified(v)
+		_u.mutation.SetModified(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (su *SettingsUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SettingsUpdate {
-	su.modifiers = append(su.modifiers, modifiers...)
-	return su
+func (_u *SettingsUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SettingsUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *SettingsUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(settings.Table, settings.Columns, sqlgraph.NewFieldSpec(settings.FieldID, field.TypeInt))
-	if ps := su.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := su.mutation.Language(); ok {
+	if value, ok := _u.mutation.Language(); ok {
 		_spec.SetField(settings.FieldLanguage, field.TypeString, value)
 	}
-	if su.mutation.LanguageCleared() {
+	if _u.mutation.LanguageCleared() {
 		_spec.ClearField(settings.FieldLanguage, field.TypeString)
 	}
-	if value, ok := su.mutation.Organization(); ok {
+	if value, ok := _u.mutation.Organization(); ok {
 		_spec.SetField(settings.FieldOrganization, field.TypeString, value)
 	}
-	if su.mutation.OrganizationCleared() {
+	if _u.mutation.OrganizationCleared() {
 		_spec.ClearField(settings.FieldOrganization, field.TypeString)
 	}
-	if value, ok := su.mutation.PostalAddress(); ok {
+	if value, ok := _u.mutation.PostalAddress(); ok {
 		_spec.SetField(settings.FieldPostalAddress, field.TypeString, value)
 	}
-	if su.mutation.PostalAddressCleared() {
+	if _u.mutation.PostalAddressCleared() {
 		_spec.ClearField(settings.FieldPostalAddress, field.TypeString)
 	}
-	if value, ok := su.mutation.PostalCode(); ok {
+	if value, ok := _u.mutation.PostalCode(); ok {
 		_spec.SetField(settings.FieldPostalCode, field.TypeString, value)
 	}
-	if su.mutation.PostalCodeCleared() {
+	if _u.mutation.PostalCodeCleared() {
 		_spec.ClearField(settings.FieldPostalCode, field.TypeString)
 	}
-	if value, ok := su.mutation.Locality(); ok {
+	if value, ok := _u.mutation.Locality(); ok {
 		_spec.SetField(settings.FieldLocality, field.TypeString, value)
 	}
-	if su.mutation.LocalityCleared() {
+	if _u.mutation.LocalityCleared() {
 		_spec.ClearField(settings.FieldLocality, field.TypeString)
 	}
-	if value, ok := su.mutation.Province(); ok {
+	if value, ok := _u.mutation.Province(); ok {
 		_spec.SetField(settings.FieldProvince, field.TypeString, value)
 	}
-	if su.mutation.ProvinceCleared() {
+	if _u.mutation.ProvinceCleared() {
 		_spec.ClearField(settings.FieldProvince, field.TypeString)
 	}
-	if value, ok := su.mutation.State(); ok {
+	if value, ok := _u.mutation.State(); ok {
 		_spec.SetField(settings.FieldState, field.TypeString, value)
 	}
-	if su.mutation.StateCleared() {
+	if _u.mutation.StateCleared() {
 		_spec.ClearField(settings.FieldState, field.TypeString)
 	}
-	if value, ok := su.mutation.Country(); ok {
+	if value, ok := _u.mutation.Country(); ok {
 		_spec.SetField(settings.FieldCountry, field.TypeString, value)
 	}
-	if su.mutation.CountryCleared() {
+	if _u.mutation.CountryCleared() {
 		_spec.ClearField(settings.FieldCountry, field.TypeString)
 	}
-	if value, ok := su.mutation.SMTPServer(); ok {
+	if value, ok := _u.mutation.SMTPServer(); ok {
 		_spec.SetField(settings.FieldSMTPServer, field.TypeString, value)
 	}
-	if su.mutation.SMTPServerCleared() {
+	if _u.mutation.SMTPServerCleared() {
 		_spec.ClearField(settings.FieldSMTPServer, field.TypeString)
 	}
-	if value, ok := su.mutation.SMTPPort(); ok {
+	if value, ok := _u.mutation.SMTPPort(); ok {
 		_spec.SetField(settings.FieldSMTPPort, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedSMTPPort(); ok {
+	if value, ok := _u.mutation.AddedSMTPPort(); ok {
 		_spec.AddField(settings.FieldSMTPPort, field.TypeInt, value)
 	}
-	if su.mutation.SMTPPortCleared() {
+	if _u.mutation.SMTPPortCleared() {
 		_spec.ClearField(settings.FieldSMTPPort, field.TypeInt)
 	}
-	if value, ok := su.mutation.SMTPUser(); ok {
+	if value, ok := _u.mutation.SMTPUser(); ok {
 		_spec.SetField(settings.FieldSMTPUser, field.TypeString, value)
 	}
-	if su.mutation.SMTPUserCleared() {
+	if _u.mutation.SMTPUserCleared() {
 		_spec.ClearField(settings.FieldSMTPUser, field.TypeString)
 	}
-	if value, ok := su.mutation.SMTPPassword(); ok {
+	if value, ok := _u.mutation.SMTPPassword(); ok {
 		_spec.SetField(settings.FieldSMTPPassword, field.TypeString, value)
 	}
-	if su.mutation.SMTPPasswordCleared() {
+	if _u.mutation.SMTPPasswordCleared() {
 		_spec.ClearField(settings.FieldSMTPPassword, field.TypeString)
 	}
-	if value, ok := su.mutation.SMTPAuth(); ok {
+	if value, ok := _u.mutation.SMTPAuth(); ok {
 		_spec.SetField(settings.FieldSMTPAuth, field.TypeString, value)
 	}
-	if su.mutation.SMTPAuthCleared() {
+	if _u.mutation.SMTPAuthCleared() {
 		_spec.ClearField(settings.FieldSMTPAuth, field.TypeString)
 	}
-	if value, ok := su.mutation.SMTPTLS(); ok {
+	if value, ok := _u.mutation.SMTPTLS(); ok {
 		_spec.SetField(settings.FieldSMTPTLS, field.TypeBool, value)
 	}
-	if su.mutation.SMTPTLSCleared() {
+	if _u.mutation.SMTPTLSCleared() {
 		_spec.ClearField(settings.FieldSMTPTLS, field.TypeBool)
 	}
-	if value, ok := su.mutation.SMTPStarttls(); ok {
+	if value, ok := _u.mutation.SMTPStarttls(); ok {
 		_spec.SetField(settings.FieldSMTPStarttls, field.TypeBool, value)
 	}
-	if su.mutation.SMTPStarttlsCleared() {
+	if _u.mutation.SMTPStarttlsCleared() {
 		_spec.ClearField(settings.FieldSMTPStarttls, field.TypeBool)
 	}
-	if value, ok := su.mutation.NatsServer(); ok {
+	if value, ok := _u.mutation.NatsServer(); ok {
 		_spec.SetField(settings.FieldNatsServer, field.TypeString, value)
 	}
-	if su.mutation.NatsServerCleared() {
+	if _u.mutation.NatsServerCleared() {
 		_spec.ClearField(settings.FieldNatsServer, field.TypeString)
 	}
-	if value, ok := su.mutation.NatsPort(); ok {
+	if value, ok := _u.mutation.NatsPort(); ok {
 		_spec.SetField(settings.FieldNatsPort, field.TypeString, value)
 	}
-	if su.mutation.NatsPortCleared() {
+	if _u.mutation.NatsPortCleared() {
 		_spec.ClearField(settings.FieldNatsPort, field.TypeString)
 	}
-	if value, ok := su.mutation.MessageFrom(); ok {
+	if value, ok := _u.mutation.MessageFrom(); ok {
 		_spec.SetField(settings.FieldMessageFrom, field.TypeString, value)
 	}
-	if su.mutation.MessageFromCleared() {
+	if _u.mutation.MessageFromCleared() {
 		_spec.ClearField(settings.FieldMessageFrom, field.TypeString)
 	}
-	if value, ok := su.mutation.MaxUploadSize(); ok {
+	if value, ok := _u.mutation.MaxUploadSize(); ok {
 		_spec.SetField(settings.FieldMaxUploadSize, field.TypeString, value)
 	}
-	if su.mutation.MaxUploadSizeCleared() {
+	if _u.mutation.MaxUploadSizeCleared() {
 		_spec.ClearField(settings.FieldMaxUploadSize, field.TypeString)
 	}
-	if value, ok := su.mutation.UserCertYearsValid(); ok {
+	if value, ok := _u.mutation.UserCertYearsValid(); ok {
 		_spec.SetField(settings.FieldUserCertYearsValid, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedUserCertYearsValid(); ok {
+	if value, ok := _u.mutation.AddedUserCertYearsValid(); ok {
 		_spec.AddField(settings.FieldUserCertYearsValid, field.TypeInt, value)
 	}
-	if su.mutation.UserCertYearsValidCleared() {
+	if _u.mutation.UserCertYearsValidCleared() {
 		_spec.ClearField(settings.FieldUserCertYearsValid, field.TypeInt)
 	}
-	if value, ok := su.mutation.NatsRequestTimeoutSeconds(); ok {
+	if value, ok := _u.mutation.NatsRequestTimeoutSeconds(); ok {
 		_spec.SetField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedNatsRequestTimeoutSeconds(); ok {
+	if value, ok := _u.mutation.AddedNatsRequestTimeoutSeconds(); ok {
 		_spec.AddField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt, value)
 	}
-	if su.mutation.NatsRequestTimeoutSecondsCleared() {
+	if _u.mutation.NatsRequestTimeoutSecondsCleared() {
 		_spec.ClearField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt)
 	}
-	if value, ok := su.mutation.RefreshTimeInMinutes(); ok {
+	if value, ok := _u.mutation.RefreshTimeInMinutes(); ok {
 		_spec.SetField(settings.FieldRefreshTimeInMinutes, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedRefreshTimeInMinutes(); ok {
+	if value, ok := _u.mutation.AddedRefreshTimeInMinutes(); ok {
 		_spec.AddField(settings.FieldRefreshTimeInMinutes, field.TypeInt, value)
 	}
-	if su.mutation.RefreshTimeInMinutesCleared() {
+	if _u.mutation.RefreshTimeInMinutesCleared() {
 		_spec.ClearField(settings.FieldRefreshTimeInMinutes, field.TypeInt)
 	}
-	if value, ok := su.mutation.SessionLifetimeInMinutes(); ok {
+	if value, ok := _u.mutation.SessionLifetimeInMinutes(); ok {
 		_spec.SetField(settings.FieldSessionLifetimeInMinutes, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedSessionLifetimeInMinutes(); ok {
+	if value, ok := _u.mutation.AddedSessionLifetimeInMinutes(); ok {
 		_spec.AddField(settings.FieldSessionLifetimeInMinutes, field.TypeInt, value)
 	}
-	if su.mutation.SessionLifetimeInMinutesCleared() {
+	if _u.mutation.SessionLifetimeInMinutesCleared() {
 		_spec.ClearField(settings.FieldSessionLifetimeInMinutes, field.TypeInt)
 	}
-	if value, ok := su.mutation.UpdateChannel(); ok {
+	if value, ok := _u.mutation.UpdateChannel(); ok {
 		_spec.SetField(settings.FieldUpdateChannel, field.TypeString, value)
 	}
-	if su.mutation.UpdateChannelCleared() {
+	if _u.mutation.UpdateChannelCleared() {
 		_spec.ClearField(settings.FieldUpdateChannel, field.TypeString)
 	}
-	if value, ok := su.mutation.Created(); ok {
+	if value, ok := _u.mutation.Created(); ok {
 		_spec.SetField(settings.FieldCreated, field.TypeTime, value)
 	}
-	if su.mutation.CreatedCleared() {
+	if _u.mutation.CreatedCleared() {
 		_spec.ClearField(settings.FieldCreated, field.TypeTime)
 	}
-	if value, ok := su.mutation.Modified(); ok {
+	if value, ok := _u.mutation.Modified(); ok {
 		_spec.SetField(settings.FieldModified, field.TypeTime, value)
 	}
-	if su.mutation.ModifiedCleared() {
+	if _u.mutation.ModifiedCleared() {
 		_spec.ClearField(settings.FieldModified, field.TypeTime)
 	}
-	if value, ok := su.mutation.AgentReportFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.AgentReportFrequenceInMinutes(); ok {
 		_spec.SetField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedAgentReportFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.AddedAgentReportFrequenceInMinutes(); ok {
 		_spec.AddField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt, value)
 	}
-	if su.mutation.AgentReportFrequenceInMinutesCleared() {
+	if _u.mutation.AgentReportFrequenceInMinutesCleared() {
 		_spec.ClearField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt)
 	}
-	if value, ok := su.mutation.RequestVncPin(); ok {
+	if value, ok := _u.mutation.RequestVncPin(); ok {
 		_spec.SetField(settings.FieldRequestVncPin, field.TypeBool, value)
 	}
-	if su.mutation.RequestVncPinCleared() {
+	if _u.mutation.RequestVncPinCleared() {
 		_spec.ClearField(settings.FieldRequestVncPin, field.TypeBool)
 	}
-	if value, ok := su.mutation.ProfilesApplicationFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.ProfilesApplicationFrequenceInMinutes(); ok {
 		_spec.SetField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedProfilesApplicationFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.AddedProfilesApplicationFrequenceInMinutes(); ok {
 		_spec.AddField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt, value)
 	}
-	if su.mutation.ProfilesApplicationFrequenceInMinutesCleared() {
+	if _u.mutation.ProfilesApplicationFrequenceInMinutesCleared() {
 		_spec.ClearField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt)
 	}
-	if value, ok := su.mutation.UseWinget(); ok {
+	if value, ok := _u.mutation.UseWinget(); ok {
 		_spec.SetField(settings.FieldUseWinget, field.TypeBool, value)
 	}
-	if su.mutation.UseWingetCleared() {
+	if _u.mutation.UseWingetCleared() {
 		_spec.ClearField(settings.FieldUseWinget, field.TypeBool)
 	}
-	if value, ok := su.mutation.UseFlatpak(); ok {
+	if value, ok := _u.mutation.UseFlatpak(); ok {
 		_spec.SetField(settings.FieldUseFlatpak, field.TypeBool, value)
 	}
-	if su.mutation.UseFlatpakCleared() {
+	if _u.mutation.UseFlatpakCleared() {
 		_spec.ClearField(settings.FieldUseFlatpak, field.TypeBool)
 	}
-	if value, ok := su.mutation.UseBrew(); ok {
+	if value, ok := _u.mutation.UseBrew(); ok {
 		_spec.SetField(settings.FieldUseBrew, field.TypeBool, value)
 	}
-	if su.mutation.UseBrewCleared() {
+	if _u.mutation.UseBrewCleared() {
 		_spec.ClearField(settings.FieldUseBrew, field.TypeBool)
 	}
-	if value, ok := su.mutation.DisableSftp(); ok {
+	if value, ok := _u.mutation.DisableSftp(); ok {
 		_spec.SetField(settings.FieldDisableSftp, field.TypeBool, value)
 	}
-	if su.mutation.DisableSftpCleared() {
+	if _u.mutation.DisableSftpCleared() {
 		_spec.ClearField(settings.FieldDisableSftp, field.TypeBool)
 	}
-	if value, ok := su.mutation.DisableRemoteAssistance(); ok {
+	if value, ok := _u.mutation.DisableRemoteAssistance(); ok {
 		_spec.SetField(settings.FieldDisableRemoteAssistance, field.TypeBool, value)
 	}
-	if su.mutation.DisableRemoteAssistanceCleared() {
+	if _u.mutation.DisableRemoteAssistanceCleared() {
 		_spec.ClearField(settings.FieldDisableRemoteAssistance, field.TypeBool)
 	}
-	if value, ok := su.mutation.DetectRemoteAgents(); ok {
+	if value, ok := _u.mutation.DetectRemoteAgents(); ok {
 		_spec.SetField(settings.FieldDetectRemoteAgents, field.TypeBool, value)
 	}
-	if su.mutation.DetectRemoteAgentsCleared() {
+	if _u.mutation.DetectRemoteAgentsCleared() {
 		_spec.ClearField(settings.FieldDetectRemoteAgents, field.TypeBool)
 	}
-	if value, ok := su.mutation.AutoAdmitAgents(); ok {
+	if value, ok := _u.mutation.AutoAdmitAgents(); ok {
 		_spec.SetField(settings.FieldAutoAdmitAgents, field.TypeBool, value)
 	}
-	if su.mutation.AutoAdmitAgentsCleared() {
+	if _u.mutation.AutoAdmitAgentsCleared() {
 		_spec.ClearField(settings.FieldAutoAdmitAgents, field.TypeBool)
 	}
-	if value, ok := su.mutation.DefaultItemsPerPage(); ok {
+	if value, ok := _u.mutation.DefaultItemsPerPage(); ok {
 		_spec.SetField(settings.FieldDefaultItemsPerPage, field.TypeInt, value)
 	}
-	if value, ok := su.mutation.AddedDefaultItemsPerPage(); ok {
+	if value, ok := _u.mutation.AddedDefaultItemsPerPage(); ok {
 		_spec.AddField(settings.FieldDefaultItemsPerPage, field.TypeInt, value)
 	}
-	if su.mutation.DefaultItemsPerPageCleared() {
+	if _u.mutation.DefaultItemsPerPageCleared() {
 		_spec.ClearField(settings.FieldDefaultItemsPerPage, field.TypeInt)
 	}
-	if su.mutation.TagCleared() {
+	if _u.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -1184,7 +1184,7 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.TagIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TagIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -1200,7 +1200,7 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if su.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -1213,7 +1213,7 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -1229,8 +1229,8 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(su.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, su.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{settings.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -1238,8 +1238,8 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	su.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // SettingsUpdateOne is the builder for updating a single Settings entity.
@@ -1252,870 +1252,870 @@ type SettingsUpdateOne struct {
 }
 
 // SetLanguage sets the "language" field.
-func (suo *SettingsUpdateOne) SetLanguage(s string) *SettingsUpdateOne {
-	suo.mutation.SetLanguage(s)
-	return suo
+func (_u *SettingsUpdateOne) SetLanguage(v string) *SettingsUpdateOne {
+	_u.mutation.SetLanguage(v)
+	return _u
 }
 
 // SetNillableLanguage sets the "language" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableLanguage(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetLanguage(*s)
+func (_u *SettingsUpdateOne) SetNillableLanguage(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetLanguage(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearLanguage clears the value of the "language" field.
-func (suo *SettingsUpdateOne) ClearLanguage() *SettingsUpdateOne {
-	suo.mutation.ClearLanguage()
-	return suo
+func (_u *SettingsUpdateOne) ClearLanguage() *SettingsUpdateOne {
+	_u.mutation.ClearLanguage()
+	return _u
 }
 
 // SetOrganization sets the "organization" field.
-func (suo *SettingsUpdateOne) SetOrganization(s string) *SettingsUpdateOne {
-	suo.mutation.SetOrganization(s)
-	return suo
+func (_u *SettingsUpdateOne) SetOrganization(v string) *SettingsUpdateOne {
+	_u.mutation.SetOrganization(v)
+	return _u
 }
 
 // SetNillableOrganization sets the "organization" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableOrganization(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetOrganization(*s)
+func (_u *SettingsUpdateOne) SetNillableOrganization(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetOrganization(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearOrganization clears the value of the "organization" field.
-func (suo *SettingsUpdateOne) ClearOrganization() *SettingsUpdateOne {
-	suo.mutation.ClearOrganization()
-	return suo
+func (_u *SettingsUpdateOne) ClearOrganization() *SettingsUpdateOne {
+	_u.mutation.ClearOrganization()
+	return _u
 }
 
 // SetPostalAddress sets the "postal_address" field.
-func (suo *SettingsUpdateOne) SetPostalAddress(s string) *SettingsUpdateOne {
-	suo.mutation.SetPostalAddress(s)
-	return suo
+func (_u *SettingsUpdateOne) SetPostalAddress(v string) *SettingsUpdateOne {
+	_u.mutation.SetPostalAddress(v)
+	return _u
 }
 
 // SetNillablePostalAddress sets the "postal_address" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillablePostalAddress(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetPostalAddress(*s)
+func (_u *SettingsUpdateOne) SetNillablePostalAddress(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetPostalAddress(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearPostalAddress clears the value of the "postal_address" field.
-func (suo *SettingsUpdateOne) ClearPostalAddress() *SettingsUpdateOne {
-	suo.mutation.ClearPostalAddress()
-	return suo
+func (_u *SettingsUpdateOne) ClearPostalAddress() *SettingsUpdateOne {
+	_u.mutation.ClearPostalAddress()
+	return _u
 }
 
 // SetPostalCode sets the "postal_code" field.
-func (suo *SettingsUpdateOne) SetPostalCode(s string) *SettingsUpdateOne {
-	suo.mutation.SetPostalCode(s)
-	return suo
+func (_u *SettingsUpdateOne) SetPostalCode(v string) *SettingsUpdateOne {
+	_u.mutation.SetPostalCode(v)
+	return _u
 }
 
 // SetNillablePostalCode sets the "postal_code" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillablePostalCode(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetPostalCode(*s)
+func (_u *SettingsUpdateOne) SetNillablePostalCode(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetPostalCode(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearPostalCode clears the value of the "postal_code" field.
-func (suo *SettingsUpdateOne) ClearPostalCode() *SettingsUpdateOne {
-	suo.mutation.ClearPostalCode()
-	return suo
+func (_u *SettingsUpdateOne) ClearPostalCode() *SettingsUpdateOne {
+	_u.mutation.ClearPostalCode()
+	return _u
 }
 
 // SetLocality sets the "locality" field.
-func (suo *SettingsUpdateOne) SetLocality(s string) *SettingsUpdateOne {
-	suo.mutation.SetLocality(s)
-	return suo
+func (_u *SettingsUpdateOne) SetLocality(v string) *SettingsUpdateOne {
+	_u.mutation.SetLocality(v)
+	return _u
 }
 
 // SetNillableLocality sets the "locality" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableLocality(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetLocality(*s)
+func (_u *SettingsUpdateOne) SetNillableLocality(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetLocality(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearLocality clears the value of the "locality" field.
-func (suo *SettingsUpdateOne) ClearLocality() *SettingsUpdateOne {
-	suo.mutation.ClearLocality()
-	return suo
+func (_u *SettingsUpdateOne) ClearLocality() *SettingsUpdateOne {
+	_u.mutation.ClearLocality()
+	return _u
 }
 
 // SetProvince sets the "province" field.
-func (suo *SettingsUpdateOne) SetProvince(s string) *SettingsUpdateOne {
-	suo.mutation.SetProvince(s)
-	return suo
+func (_u *SettingsUpdateOne) SetProvince(v string) *SettingsUpdateOne {
+	_u.mutation.SetProvince(v)
+	return _u
 }
 
 // SetNillableProvince sets the "province" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableProvince(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetProvince(*s)
+func (_u *SettingsUpdateOne) SetNillableProvince(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetProvince(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearProvince clears the value of the "province" field.
-func (suo *SettingsUpdateOne) ClearProvince() *SettingsUpdateOne {
-	suo.mutation.ClearProvince()
-	return suo
+func (_u *SettingsUpdateOne) ClearProvince() *SettingsUpdateOne {
+	_u.mutation.ClearProvince()
+	return _u
 }
 
 // SetState sets the "state" field.
-func (suo *SettingsUpdateOne) SetState(s string) *SettingsUpdateOne {
-	suo.mutation.SetState(s)
-	return suo
+func (_u *SettingsUpdateOne) SetState(v string) *SettingsUpdateOne {
+	_u.mutation.SetState(v)
+	return _u
 }
 
 // SetNillableState sets the "state" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableState(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetState(*s)
+func (_u *SettingsUpdateOne) SetNillableState(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetState(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearState clears the value of the "state" field.
-func (suo *SettingsUpdateOne) ClearState() *SettingsUpdateOne {
-	suo.mutation.ClearState()
-	return suo
+func (_u *SettingsUpdateOne) ClearState() *SettingsUpdateOne {
+	_u.mutation.ClearState()
+	return _u
 }
 
 // SetCountry sets the "country" field.
-func (suo *SettingsUpdateOne) SetCountry(s string) *SettingsUpdateOne {
-	suo.mutation.SetCountry(s)
-	return suo
+func (_u *SettingsUpdateOne) SetCountry(v string) *SettingsUpdateOne {
+	_u.mutation.SetCountry(v)
+	return _u
 }
 
 // SetNillableCountry sets the "country" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableCountry(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetCountry(*s)
+func (_u *SettingsUpdateOne) SetNillableCountry(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetCountry(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearCountry clears the value of the "country" field.
-func (suo *SettingsUpdateOne) ClearCountry() *SettingsUpdateOne {
-	suo.mutation.ClearCountry()
-	return suo
+func (_u *SettingsUpdateOne) ClearCountry() *SettingsUpdateOne {
+	_u.mutation.ClearCountry()
+	return _u
 }
 
 // SetSMTPServer sets the "smtp_server" field.
-func (suo *SettingsUpdateOne) SetSMTPServer(s string) *SettingsUpdateOne {
-	suo.mutation.SetSMTPServer(s)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPServer(v string) *SettingsUpdateOne {
+	_u.mutation.SetSMTPServer(v)
+	return _u
 }
 
 // SetNillableSMTPServer sets the "smtp_server" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPServer(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetSMTPServer(*s)
+func (_u *SettingsUpdateOne) SetNillableSMTPServer(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPServer(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearSMTPServer clears the value of the "smtp_server" field.
-func (suo *SettingsUpdateOne) ClearSMTPServer() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPServer()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPServer() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPServer()
+	return _u
 }
 
 // SetSMTPPort sets the "smtp_port" field.
-func (suo *SettingsUpdateOne) SetSMTPPort(i int) *SettingsUpdateOne {
-	suo.mutation.ResetSMTPPort()
-	suo.mutation.SetSMTPPort(i)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPPort(v int) *SettingsUpdateOne {
+	_u.mutation.ResetSMTPPort()
+	_u.mutation.SetSMTPPort(v)
+	return _u
 }
 
 // SetNillableSMTPPort sets the "smtp_port" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPPort(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetSMTPPort(*i)
+func (_u *SettingsUpdateOne) SetNillableSMTPPort(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPPort(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddSMTPPort adds i to the "smtp_port" field.
-func (suo *SettingsUpdateOne) AddSMTPPort(i int) *SettingsUpdateOne {
-	suo.mutation.AddSMTPPort(i)
-	return suo
+// AddSMTPPort adds value to the "smtp_port" field.
+func (_u *SettingsUpdateOne) AddSMTPPort(v int) *SettingsUpdateOne {
+	_u.mutation.AddSMTPPort(v)
+	return _u
 }
 
 // ClearSMTPPort clears the value of the "smtp_port" field.
-func (suo *SettingsUpdateOne) ClearSMTPPort() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPPort()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPPort() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPPort()
+	return _u
 }
 
 // SetSMTPUser sets the "smtp_user" field.
-func (suo *SettingsUpdateOne) SetSMTPUser(s string) *SettingsUpdateOne {
-	suo.mutation.SetSMTPUser(s)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPUser(v string) *SettingsUpdateOne {
+	_u.mutation.SetSMTPUser(v)
+	return _u
 }
 
 // SetNillableSMTPUser sets the "smtp_user" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPUser(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetSMTPUser(*s)
+func (_u *SettingsUpdateOne) SetNillableSMTPUser(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPUser(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearSMTPUser clears the value of the "smtp_user" field.
-func (suo *SettingsUpdateOne) ClearSMTPUser() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPUser()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPUser() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPUser()
+	return _u
 }
 
 // SetSMTPPassword sets the "smtp_password" field.
-func (suo *SettingsUpdateOne) SetSMTPPassword(s string) *SettingsUpdateOne {
-	suo.mutation.SetSMTPPassword(s)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPPassword(v string) *SettingsUpdateOne {
+	_u.mutation.SetSMTPPassword(v)
+	return _u
 }
 
 // SetNillableSMTPPassword sets the "smtp_password" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPPassword(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetSMTPPassword(*s)
+func (_u *SettingsUpdateOne) SetNillableSMTPPassword(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPPassword(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearSMTPPassword clears the value of the "smtp_password" field.
-func (suo *SettingsUpdateOne) ClearSMTPPassword() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPPassword()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPPassword() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPPassword()
+	return _u
 }
 
 // SetSMTPAuth sets the "smtp_auth" field.
-func (suo *SettingsUpdateOne) SetSMTPAuth(s string) *SettingsUpdateOne {
-	suo.mutation.SetSMTPAuth(s)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPAuth(v string) *SettingsUpdateOne {
+	_u.mutation.SetSMTPAuth(v)
+	return _u
 }
 
 // SetNillableSMTPAuth sets the "smtp_auth" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPAuth(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetSMTPAuth(*s)
+func (_u *SettingsUpdateOne) SetNillableSMTPAuth(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPAuth(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearSMTPAuth clears the value of the "smtp_auth" field.
-func (suo *SettingsUpdateOne) ClearSMTPAuth() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPAuth()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPAuth() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPAuth()
+	return _u
 }
 
 // SetSMTPTLS sets the "smtp_tls" field.
-func (suo *SettingsUpdateOne) SetSMTPTLS(b bool) *SettingsUpdateOne {
-	suo.mutation.SetSMTPTLS(b)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPTLS(v bool) *SettingsUpdateOne {
+	_u.mutation.SetSMTPTLS(v)
+	return _u
 }
 
 // SetNillableSMTPTLS sets the "smtp_tls" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPTLS(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetSMTPTLS(*b)
+func (_u *SettingsUpdateOne) SetNillableSMTPTLS(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPTLS(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (suo *SettingsUpdateOne) ClearSMTPTLS() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPTLS()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPTLS() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPTLS()
+	return _u
 }
 
 // SetSMTPStarttls sets the "smtp_starttls" field.
-func (suo *SettingsUpdateOne) SetSMTPStarttls(b bool) *SettingsUpdateOne {
-	suo.mutation.SetSMTPStarttls(b)
-	return suo
+func (_u *SettingsUpdateOne) SetSMTPStarttls(v bool) *SettingsUpdateOne {
+	_u.mutation.SetSMTPStarttls(v)
+	return _u
 }
 
 // SetNillableSMTPStarttls sets the "smtp_starttls" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPStarttls(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetSMTPStarttls(*b)
+func (_u *SettingsUpdateOne) SetNillableSMTPStarttls(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSMTPStarttls(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (suo *SettingsUpdateOne) ClearSMTPStarttls() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPStarttls()
-	return suo
+func (_u *SettingsUpdateOne) ClearSMTPStarttls() *SettingsUpdateOne {
+	_u.mutation.ClearSMTPStarttls()
+	return _u
 }
 
 // SetNatsServer sets the "nats_server" field.
-func (suo *SettingsUpdateOne) SetNatsServer(s string) *SettingsUpdateOne {
-	suo.mutation.SetNatsServer(s)
-	return suo
+func (_u *SettingsUpdateOne) SetNatsServer(v string) *SettingsUpdateOne {
+	_u.mutation.SetNatsServer(v)
+	return _u
 }
 
 // SetNillableNatsServer sets the "nats_server" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableNatsServer(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetNatsServer(*s)
+func (_u *SettingsUpdateOne) SetNillableNatsServer(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetNatsServer(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearNatsServer clears the value of the "nats_server" field.
-func (suo *SettingsUpdateOne) ClearNatsServer() *SettingsUpdateOne {
-	suo.mutation.ClearNatsServer()
-	return suo
+func (_u *SettingsUpdateOne) ClearNatsServer() *SettingsUpdateOne {
+	_u.mutation.ClearNatsServer()
+	return _u
 }
 
 // SetNatsPort sets the "nats_port" field.
-func (suo *SettingsUpdateOne) SetNatsPort(s string) *SettingsUpdateOne {
-	suo.mutation.SetNatsPort(s)
-	return suo
+func (_u *SettingsUpdateOne) SetNatsPort(v string) *SettingsUpdateOne {
+	_u.mutation.SetNatsPort(v)
+	return _u
 }
 
 // SetNillableNatsPort sets the "nats_port" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableNatsPort(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetNatsPort(*s)
+func (_u *SettingsUpdateOne) SetNillableNatsPort(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetNatsPort(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearNatsPort clears the value of the "nats_port" field.
-func (suo *SettingsUpdateOne) ClearNatsPort() *SettingsUpdateOne {
-	suo.mutation.ClearNatsPort()
-	return suo
+func (_u *SettingsUpdateOne) ClearNatsPort() *SettingsUpdateOne {
+	_u.mutation.ClearNatsPort()
+	return _u
 }
 
 // SetMessageFrom sets the "message_from" field.
-func (suo *SettingsUpdateOne) SetMessageFrom(s string) *SettingsUpdateOne {
-	suo.mutation.SetMessageFrom(s)
-	return suo
+func (_u *SettingsUpdateOne) SetMessageFrom(v string) *SettingsUpdateOne {
+	_u.mutation.SetMessageFrom(v)
+	return _u
 }
 
 // SetNillableMessageFrom sets the "message_from" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableMessageFrom(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetMessageFrom(*s)
+func (_u *SettingsUpdateOne) SetNillableMessageFrom(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetMessageFrom(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearMessageFrom clears the value of the "message_from" field.
-func (suo *SettingsUpdateOne) ClearMessageFrom() *SettingsUpdateOne {
-	suo.mutation.ClearMessageFrom()
-	return suo
+func (_u *SettingsUpdateOne) ClearMessageFrom() *SettingsUpdateOne {
+	_u.mutation.ClearMessageFrom()
+	return _u
 }
 
 // SetMaxUploadSize sets the "max_upload_size" field.
-func (suo *SettingsUpdateOne) SetMaxUploadSize(s string) *SettingsUpdateOne {
-	suo.mutation.SetMaxUploadSize(s)
-	return suo
+func (_u *SettingsUpdateOne) SetMaxUploadSize(v string) *SettingsUpdateOne {
+	_u.mutation.SetMaxUploadSize(v)
+	return _u
 }
 
 // SetNillableMaxUploadSize sets the "max_upload_size" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableMaxUploadSize(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetMaxUploadSize(*s)
+func (_u *SettingsUpdateOne) SetNillableMaxUploadSize(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetMaxUploadSize(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearMaxUploadSize clears the value of the "max_upload_size" field.
-func (suo *SettingsUpdateOne) ClearMaxUploadSize() *SettingsUpdateOne {
-	suo.mutation.ClearMaxUploadSize()
-	return suo
+func (_u *SettingsUpdateOne) ClearMaxUploadSize() *SettingsUpdateOne {
+	_u.mutation.ClearMaxUploadSize()
+	return _u
 }
 
 // SetUserCertYearsValid sets the "user_cert_years_valid" field.
-func (suo *SettingsUpdateOne) SetUserCertYearsValid(i int) *SettingsUpdateOne {
-	suo.mutation.ResetUserCertYearsValid()
-	suo.mutation.SetUserCertYearsValid(i)
-	return suo
+func (_u *SettingsUpdateOne) SetUserCertYearsValid(v int) *SettingsUpdateOne {
+	_u.mutation.ResetUserCertYearsValid()
+	_u.mutation.SetUserCertYearsValid(v)
+	return _u
 }
 
 // SetNillableUserCertYearsValid sets the "user_cert_years_valid" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableUserCertYearsValid(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetUserCertYearsValid(*i)
+func (_u *SettingsUpdateOne) SetNillableUserCertYearsValid(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetUserCertYearsValid(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddUserCertYearsValid adds i to the "user_cert_years_valid" field.
-func (suo *SettingsUpdateOne) AddUserCertYearsValid(i int) *SettingsUpdateOne {
-	suo.mutation.AddUserCertYearsValid(i)
-	return suo
+// AddUserCertYearsValid adds value to the "user_cert_years_valid" field.
+func (_u *SettingsUpdateOne) AddUserCertYearsValid(v int) *SettingsUpdateOne {
+	_u.mutation.AddUserCertYearsValid(v)
+	return _u
 }
 
 // ClearUserCertYearsValid clears the value of the "user_cert_years_valid" field.
-func (suo *SettingsUpdateOne) ClearUserCertYearsValid() *SettingsUpdateOne {
-	suo.mutation.ClearUserCertYearsValid()
-	return suo
+func (_u *SettingsUpdateOne) ClearUserCertYearsValid() *SettingsUpdateOne {
+	_u.mutation.ClearUserCertYearsValid()
+	return _u
 }
 
 // SetNatsRequestTimeoutSeconds sets the "nats_request_timeout_seconds" field.
-func (suo *SettingsUpdateOne) SetNatsRequestTimeoutSeconds(i int) *SettingsUpdateOne {
-	suo.mutation.ResetNatsRequestTimeoutSeconds()
-	suo.mutation.SetNatsRequestTimeoutSeconds(i)
-	return suo
+func (_u *SettingsUpdateOne) SetNatsRequestTimeoutSeconds(v int) *SettingsUpdateOne {
+	_u.mutation.ResetNatsRequestTimeoutSeconds()
+	_u.mutation.SetNatsRequestTimeoutSeconds(v)
+	return _u
 }
 
 // SetNillableNatsRequestTimeoutSeconds sets the "nats_request_timeout_seconds" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableNatsRequestTimeoutSeconds(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetNatsRequestTimeoutSeconds(*i)
+func (_u *SettingsUpdateOne) SetNillableNatsRequestTimeoutSeconds(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetNatsRequestTimeoutSeconds(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddNatsRequestTimeoutSeconds adds i to the "nats_request_timeout_seconds" field.
-func (suo *SettingsUpdateOne) AddNatsRequestTimeoutSeconds(i int) *SettingsUpdateOne {
-	suo.mutation.AddNatsRequestTimeoutSeconds(i)
-	return suo
+// AddNatsRequestTimeoutSeconds adds value to the "nats_request_timeout_seconds" field.
+func (_u *SettingsUpdateOne) AddNatsRequestTimeoutSeconds(v int) *SettingsUpdateOne {
+	_u.mutation.AddNatsRequestTimeoutSeconds(v)
+	return _u
 }
 
 // ClearNatsRequestTimeoutSeconds clears the value of the "nats_request_timeout_seconds" field.
-func (suo *SettingsUpdateOne) ClearNatsRequestTimeoutSeconds() *SettingsUpdateOne {
-	suo.mutation.ClearNatsRequestTimeoutSeconds()
-	return suo
+func (_u *SettingsUpdateOne) ClearNatsRequestTimeoutSeconds() *SettingsUpdateOne {
+	_u.mutation.ClearNatsRequestTimeoutSeconds()
+	return _u
 }
 
 // SetRefreshTimeInMinutes sets the "refresh_time_in_minutes" field.
-func (suo *SettingsUpdateOne) SetRefreshTimeInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.ResetRefreshTimeInMinutes()
-	suo.mutation.SetRefreshTimeInMinutes(i)
-	return suo
+func (_u *SettingsUpdateOne) SetRefreshTimeInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.ResetRefreshTimeInMinutes()
+	_u.mutation.SetRefreshTimeInMinutes(v)
+	return _u
 }
 
 // SetNillableRefreshTimeInMinutes sets the "refresh_time_in_minutes" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableRefreshTimeInMinutes(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetRefreshTimeInMinutes(*i)
+func (_u *SettingsUpdateOne) SetNillableRefreshTimeInMinutes(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetRefreshTimeInMinutes(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddRefreshTimeInMinutes adds i to the "refresh_time_in_minutes" field.
-func (suo *SettingsUpdateOne) AddRefreshTimeInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.AddRefreshTimeInMinutes(i)
-	return suo
+// AddRefreshTimeInMinutes adds value to the "refresh_time_in_minutes" field.
+func (_u *SettingsUpdateOne) AddRefreshTimeInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.AddRefreshTimeInMinutes(v)
+	return _u
 }
 
 // ClearRefreshTimeInMinutes clears the value of the "refresh_time_in_minutes" field.
-func (suo *SettingsUpdateOne) ClearRefreshTimeInMinutes() *SettingsUpdateOne {
-	suo.mutation.ClearRefreshTimeInMinutes()
-	return suo
+func (_u *SettingsUpdateOne) ClearRefreshTimeInMinutes() *SettingsUpdateOne {
+	_u.mutation.ClearRefreshTimeInMinutes()
+	return _u
 }
 
 // SetSessionLifetimeInMinutes sets the "session_lifetime_in_minutes" field.
-func (suo *SettingsUpdateOne) SetSessionLifetimeInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.ResetSessionLifetimeInMinutes()
-	suo.mutation.SetSessionLifetimeInMinutes(i)
-	return suo
+func (_u *SettingsUpdateOne) SetSessionLifetimeInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.ResetSessionLifetimeInMinutes()
+	_u.mutation.SetSessionLifetimeInMinutes(v)
+	return _u
 }
 
 // SetNillableSessionLifetimeInMinutes sets the "session_lifetime_in_minutes" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSessionLifetimeInMinutes(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetSessionLifetimeInMinutes(*i)
+func (_u *SettingsUpdateOne) SetNillableSessionLifetimeInMinutes(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetSessionLifetimeInMinutes(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddSessionLifetimeInMinutes adds i to the "session_lifetime_in_minutes" field.
-func (suo *SettingsUpdateOne) AddSessionLifetimeInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.AddSessionLifetimeInMinutes(i)
-	return suo
+// AddSessionLifetimeInMinutes adds value to the "session_lifetime_in_minutes" field.
+func (_u *SettingsUpdateOne) AddSessionLifetimeInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.AddSessionLifetimeInMinutes(v)
+	return _u
 }
 
 // ClearSessionLifetimeInMinutes clears the value of the "session_lifetime_in_minutes" field.
-func (suo *SettingsUpdateOne) ClearSessionLifetimeInMinutes() *SettingsUpdateOne {
-	suo.mutation.ClearSessionLifetimeInMinutes()
-	return suo
+func (_u *SettingsUpdateOne) ClearSessionLifetimeInMinutes() *SettingsUpdateOne {
+	_u.mutation.ClearSessionLifetimeInMinutes()
+	return _u
 }
 
 // SetUpdateChannel sets the "update_channel" field.
-func (suo *SettingsUpdateOne) SetUpdateChannel(s string) *SettingsUpdateOne {
-	suo.mutation.SetUpdateChannel(s)
-	return suo
+func (_u *SettingsUpdateOne) SetUpdateChannel(v string) *SettingsUpdateOne {
+	_u.mutation.SetUpdateChannel(v)
+	return _u
 }
 
 // SetNillableUpdateChannel sets the "update_channel" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableUpdateChannel(s *string) *SettingsUpdateOne {
-	if s != nil {
-		suo.SetUpdateChannel(*s)
+func (_u *SettingsUpdateOne) SetNillableUpdateChannel(v *string) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetUpdateChannel(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUpdateChannel clears the value of the "update_channel" field.
-func (suo *SettingsUpdateOne) ClearUpdateChannel() *SettingsUpdateOne {
-	suo.mutation.ClearUpdateChannel()
-	return suo
+func (_u *SettingsUpdateOne) ClearUpdateChannel() *SettingsUpdateOne {
+	_u.mutation.ClearUpdateChannel()
+	return _u
 }
 
 // SetCreated sets the "created" field.
-func (suo *SettingsUpdateOne) SetCreated(t time.Time) *SettingsUpdateOne {
-	suo.mutation.SetCreated(t)
-	return suo
+func (_u *SettingsUpdateOne) SetCreated(v time.Time) *SettingsUpdateOne {
+	_u.mutation.SetCreated(v)
+	return _u
 }
 
 // SetNillableCreated sets the "created" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableCreated(t *time.Time) *SettingsUpdateOne {
-	if t != nil {
-		suo.SetCreated(*t)
+func (_u *SettingsUpdateOne) SetNillableCreated(v *time.Time) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetCreated(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearCreated clears the value of the "created" field.
-func (suo *SettingsUpdateOne) ClearCreated() *SettingsUpdateOne {
-	suo.mutation.ClearCreated()
-	return suo
+func (_u *SettingsUpdateOne) ClearCreated() *SettingsUpdateOne {
+	_u.mutation.ClearCreated()
+	return _u
 }
 
 // SetModified sets the "modified" field.
-func (suo *SettingsUpdateOne) SetModified(t time.Time) *SettingsUpdateOne {
-	suo.mutation.SetModified(t)
-	return suo
+func (_u *SettingsUpdateOne) SetModified(v time.Time) *SettingsUpdateOne {
+	_u.mutation.SetModified(v)
+	return _u
 }
 
 // ClearModified clears the value of the "modified" field.
-func (suo *SettingsUpdateOne) ClearModified() *SettingsUpdateOne {
-	suo.mutation.ClearModified()
-	return suo
+func (_u *SettingsUpdateOne) ClearModified() *SettingsUpdateOne {
+	_u.mutation.ClearModified()
+	return _u
 }
 
 // SetAgentReportFrequenceInMinutes sets the "agent_report_frequence_in_minutes" field.
-func (suo *SettingsUpdateOne) SetAgentReportFrequenceInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.ResetAgentReportFrequenceInMinutes()
-	suo.mutation.SetAgentReportFrequenceInMinutes(i)
-	return suo
+func (_u *SettingsUpdateOne) SetAgentReportFrequenceInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.ResetAgentReportFrequenceInMinutes()
+	_u.mutation.SetAgentReportFrequenceInMinutes(v)
+	return _u
 }
 
 // SetNillableAgentReportFrequenceInMinutes sets the "agent_report_frequence_in_minutes" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableAgentReportFrequenceInMinutes(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetAgentReportFrequenceInMinutes(*i)
+func (_u *SettingsUpdateOne) SetNillableAgentReportFrequenceInMinutes(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetAgentReportFrequenceInMinutes(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddAgentReportFrequenceInMinutes adds i to the "agent_report_frequence_in_minutes" field.
-func (suo *SettingsUpdateOne) AddAgentReportFrequenceInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.AddAgentReportFrequenceInMinutes(i)
-	return suo
+// AddAgentReportFrequenceInMinutes adds value to the "agent_report_frequence_in_minutes" field.
+func (_u *SettingsUpdateOne) AddAgentReportFrequenceInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.AddAgentReportFrequenceInMinutes(v)
+	return _u
 }
 
 // ClearAgentReportFrequenceInMinutes clears the value of the "agent_report_frequence_in_minutes" field.
-func (suo *SettingsUpdateOne) ClearAgentReportFrequenceInMinutes() *SettingsUpdateOne {
-	suo.mutation.ClearAgentReportFrequenceInMinutes()
-	return suo
+func (_u *SettingsUpdateOne) ClearAgentReportFrequenceInMinutes() *SettingsUpdateOne {
+	_u.mutation.ClearAgentReportFrequenceInMinutes()
+	return _u
 }
 
 // SetRequestVncPin sets the "request_vnc_pin" field.
-func (suo *SettingsUpdateOne) SetRequestVncPin(b bool) *SettingsUpdateOne {
-	suo.mutation.SetRequestVncPin(b)
-	return suo
+func (_u *SettingsUpdateOne) SetRequestVncPin(v bool) *SettingsUpdateOne {
+	_u.mutation.SetRequestVncPin(v)
+	return _u
 }
 
 // SetNillableRequestVncPin sets the "request_vnc_pin" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableRequestVncPin(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetRequestVncPin(*b)
+func (_u *SettingsUpdateOne) SetNillableRequestVncPin(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetRequestVncPin(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearRequestVncPin clears the value of the "request_vnc_pin" field.
-func (suo *SettingsUpdateOne) ClearRequestVncPin() *SettingsUpdateOne {
-	suo.mutation.ClearRequestVncPin()
-	return suo
+func (_u *SettingsUpdateOne) ClearRequestVncPin() *SettingsUpdateOne {
+	_u.mutation.ClearRequestVncPin()
+	return _u
 }
 
 // SetProfilesApplicationFrequenceInMinutes sets the "profiles_application_frequence_in_minutes" field.
-func (suo *SettingsUpdateOne) SetProfilesApplicationFrequenceInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.ResetProfilesApplicationFrequenceInMinutes()
-	suo.mutation.SetProfilesApplicationFrequenceInMinutes(i)
-	return suo
+func (_u *SettingsUpdateOne) SetProfilesApplicationFrequenceInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.ResetProfilesApplicationFrequenceInMinutes()
+	_u.mutation.SetProfilesApplicationFrequenceInMinutes(v)
+	return _u
 }
 
 // SetNillableProfilesApplicationFrequenceInMinutes sets the "profiles_application_frequence_in_minutes" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableProfilesApplicationFrequenceInMinutes(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetProfilesApplicationFrequenceInMinutes(*i)
+func (_u *SettingsUpdateOne) SetNillableProfilesApplicationFrequenceInMinutes(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetProfilesApplicationFrequenceInMinutes(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddProfilesApplicationFrequenceInMinutes adds i to the "profiles_application_frequence_in_minutes" field.
-func (suo *SettingsUpdateOne) AddProfilesApplicationFrequenceInMinutes(i int) *SettingsUpdateOne {
-	suo.mutation.AddProfilesApplicationFrequenceInMinutes(i)
-	return suo
+// AddProfilesApplicationFrequenceInMinutes adds value to the "profiles_application_frequence_in_minutes" field.
+func (_u *SettingsUpdateOne) AddProfilesApplicationFrequenceInMinutes(v int) *SettingsUpdateOne {
+	_u.mutation.AddProfilesApplicationFrequenceInMinutes(v)
+	return _u
 }
 
 // ClearProfilesApplicationFrequenceInMinutes clears the value of the "profiles_application_frequence_in_minutes" field.
-func (suo *SettingsUpdateOne) ClearProfilesApplicationFrequenceInMinutes() *SettingsUpdateOne {
-	suo.mutation.ClearProfilesApplicationFrequenceInMinutes()
-	return suo
+func (_u *SettingsUpdateOne) ClearProfilesApplicationFrequenceInMinutes() *SettingsUpdateOne {
+	_u.mutation.ClearProfilesApplicationFrequenceInMinutes()
+	return _u
 }
 
 // SetUseWinget sets the "use_winget" field.
-func (suo *SettingsUpdateOne) SetUseWinget(b bool) *SettingsUpdateOne {
-	suo.mutation.SetUseWinget(b)
-	return suo
+func (_u *SettingsUpdateOne) SetUseWinget(v bool) *SettingsUpdateOne {
+	_u.mutation.SetUseWinget(v)
+	return _u
 }
 
 // SetNillableUseWinget sets the "use_winget" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableUseWinget(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetUseWinget(*b)
+func (_u *SettingsUpdateOne) SetNillableUseWinget(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetUseWinget(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUseWinget clears the value of the "use_winget" field.
-func (suo *SettingsUpdateOne) ClearUseWinget() *SettingsUpdateOne {
-	suo.mutation.ClearUseWinget()
-	return suo
+func (_u *SettingsUpdateOne) ClearUseWinget() *SettingsUpdateOne {
+	_u.mutation.ClearUseWinget()
+	return _u
 }
 
 // SetUseFlatpak sets the "use_flatpak" field.
-func (suo *SettingsUpdateOne) SetUseFlatpak(b bool) *SettingsUpdateOne {
-	suo.mutation.SetUseFlatpak(b)
-	return suo
+func (_u *SettingsUpdateOne) SetUseFlatpak(v bool) *SettingsUpdateOne {
+	_u.mutation.SetUseFlatpak(v)
+	return _u
 }
 
 // SetNillableUseFlatpak sets the "use_flatpak" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableUseFlatpak(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetUseFlatpak(*b)
+func (_u *SettingsUpdateOne) SetNillableUseFlatpak(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetUseFlatpak(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUseFlatpak clears the value of the "use_flatpak" field.
-func (suo *SettingsUpdateOne) ClearUseFlatpak() *SettingsUpdateOne {
-	suo.mutation.ClearUseFlatpak()
-	return suo
+func (_u *SettingsUpdateOne) ClearUseFlatpak() *SettingsUpdateOne {
+	_u.mutation.ClearUseFlatpak()
+	return _u
 }
 
 // SetUseBrew sets the "use_brew" field.
-func (suo *SettingsUpdateOne) SetUseBrew(b bool) *SettingsUpdateOne {
-	suo.mutation.SetUseBrew(b)
-	return suo
+func (_u *SettingsUpdateOne) SetUseBrew(v bool) *SettingsUpdateOne {
+	_u.mutation.SetUseBrew(v)
+	return _u
 }
 
 // SetNillableUseBrew sets the "use_brew" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableUseBrew(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetUseBrew(*b)
+func (_u *SettingsUpdateOne) SetNillableUseBrew(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetUseBrew(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearUseBrew clears the value of the "use_brew" field.
-func (suo *SettingsUpdateOne) ClearUseBrew() *SettingsUpdateOne {
-	suo.mutation.ClearUseBrew()
-	return suo
+func (_u *SettingsUpdateOne) ClearUseBrew() *SettingsUpdateOne {
+	_u.mutation.ClearUseBrew()
+	return _u
 }
 
 // SetDisableSftp sets the "disable_sftp" field.
-func (suo *SettingsUpdateOne) SetDisableSftp(b bool) *SettingsUpdateOne {
-	suo.mutation.SetDisableSftp(b)
-	return suo
+func (_u *SettingsUpdateOne) SetDisableSftp(v bool) *SettingsUpdateOne {
+	_u.mutation.SetDisableSftp(v)
+	return _u
 }
 
 // SetNillableDisableSftp sets the "disable_sftp" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableDisableSftp(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetDisableSftp(*b)
+func (_u *SettingsUpdateOne) SetNillableDisableSftp(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetDisableSftp(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearDisableSftp clears the value of the "disable_sftp" field.
-func (suo *SettingsUpdateOne) ClearDisableSftp() *SettingsUpdateOne {
-	suo.mutation.ClearDisableSftp()
-	return suo
+func (_u *SettingsUpdateOne) ClearDisableSftp() *SettingsUpdateOne {
+	_u.mutation.ClearDisableSftp()
+	return _u
 }
 
 // SetDisableRemoteAssistance sets the "disable_remote_assistance" field.
-func (suo *SettingsUpdateOne) SetDisableRemoteAssistance(b bool) *SettingsUpdateOne {
-	suo.mutation.SetDisableRemoteAssistance(b)
-	return suo
+func (_u *SettingsUpdateOne) SetDisableRemoteAssistance(v bool) *SettingsUpdateOne {
+	_u.mutation.SetDisableRemoteAssistance(v)
+	return _u
 }
 
 // SetNillableDisableRemoteAssistance sets the "disable_remote_assistance" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableDisableRemoteAssistance(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetDisableRemoteAssistance(*b)
+func (_u *SettingsUpdateOne) SetNillableDisableRemoteAssistance(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetDisableRemoteAssistance(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearDisableRemoteAssistance clears the value of the "disable_remote_assistance" field.
-func (suo *SettingsUpdateOne) ClearDisableRemoteAssistance() *SettingsUpdateOne {
-	suo.mutation.ClearDisableRemoteAssistance()
-	return suo
+func (_u *SettingsUpdateOne) ClearDisableRemoteAssistance() *SettingsUpdateOne {
+	_u.mutation.ClearDisableRemoteAssistance()
+	return _u
 }
 
 // SetDetectRemoteAgents sets the "detect_remote_agents" field.
-func (suo *SettingsUpdateOne) SetDetectRemoteAgents(b bool) *SettingsUpdateOne {
-	suo.mutation.SetDetectRemoteAgents(b)
-	return suo
+func (_u *SettingsUpdateOne) SetDetectRemoteAgents(v bool) *SettingsUpdateOne {
+	_u.mutation.SetDetectRemoteAgents(v)
+	return _u
 }
 
 // SetNillableDetectRemoteAgents sets the "detect_remote_agents" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableDetectRemoteAgents(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetDetectRemoteAgents(*b)
+func (_u *SettingsUpdateOne) SetNillableDetectRemoteAgents(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetDetectRemoteAgents(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearDetectRemoteAgents clears the value of the "detect_remote_agents" field.
-func (suo *SettingsUpdateOne) ClearDetectRemoteAgents() *SettingsUpdateOne {
-	suo.mutation.ClearDetectRemoteAgents()
-	return suo
+func (_u *SettingsUpdateOne) ClearDetectRemoteAgents() *SettingsUpdateOne {
+	_u.mutation.ClearDetectRemoteAgents()
+	return _u
 }
 
 // SetAutoAdmitAgents sets the "auto_admit_agents" field.
-func (suo *SettingsUpdateOne) SetAutoAdmitAgents(b bool) *SettingsUpdateOne {
-	suo.mutation.SetAutoAdmitAgents(b)
-	return suo
+func (_u *SettingsUpdateOne) SetAutoAdmitAgents(v bool) *SettingsUpdateOne {
+	_u.mutation.SetAutoAdmitAgents(v)
+	return _u
 }
 
 // SetNillableAutoAdmitAgents sets the "auto_admit_agents" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableAutoAdmitAgents(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetAutoAdmitAgents(*b)
+func (_u *SettingsUpdateOne) SetNillableAutoAdmitAgents(v *bool) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetAutoAdmitAgents(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearAutoAdmitAgents clears the value of the "auto_admit_agents" field.
-func (suo *SettingsUpdateOne) ClearAutoAdmitAgents() *SettingsUpdateOne {
-	suo.mutation.ClearAutoAdmitAgents()
-	return suo
+func (_u *SettingsUpdateOne) ClearAutoAdmitAgents() *SettingsUpdateOne {
+	_u.mutation.ClearAutoAdmitAgents()
+	return _u
 }
 
 // SetDefaultItemsPerPage sets the "default_items_per_page" field.
-func (suo *SettingsUpdateOne) SetDefaultItemsPerPage(i int) *SettingsUpdateOne {
-	suo.mutation.ResetDefaultItemsPerPage()
-	suo.mutation.SetDefaultItemsPerPage(i)
-	return suo
+func (_u *SettingsUpdateOne) SetDefaultItemsPerPage(v int) *SettingsUpdateOne {
+	_u.mutation.ResetDefaultItemsPerPage()
+	_u.mutation.SetDefaultItemsPerPage(v)
+	return _u
 }
 
 // SetNillableDefaultItemsPerPage sets the "default_items_per_page" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableDefaultItemsPerPage(i *int) *SettingsUpdateOne {
-	if i != nil {
-		suo.SetDefaultItemsPerPage(*i)
+func (_u *SettingsUpdateOne) SetNillableDefaultItemsPerPage(v *int) *SettingsUpdateOne {
+	if v != nil {
+		_u.SetDefaultItemsPerPage(*v)
 	}
-	return suo
+	return _u
 }
 
-// AddDefaultItemsPerPage adds i to the "default_items_per_page" field.
-func (suo *SettingsUpdateOne) AddDefaultItemsPerPage(i int) *SettingsUpdateOne {
-	suo.mutation.AddDefaultItemsPerPage(i)
-	return suo
+// AddDefaultItemsPerPage adds value to the "default_items_per_page" field.
+func (_u *SettingsUpdateOne) AddDefaultItemsPerPage(v int) *SettingsUpdateOne {
+	_u.mutation.AddDefaultItemsPerPage(v)
+	return _u
 }
 
 // ClearDefaultItemsPerPage clears the value of the "default_items_per_page" field.
-func (suo *SettingsUpdateOne) ClearDefaultItemsPerPage() *SettingsUpdateOne {
-	suo.mutation.ClearDefaultItemsPerPage()
-	return suo
+func (_u *SettingsUpdateOne) ClearDefaultItemsPerPage() *SettingsUpdateOne {
+	_u.mutation.ClearDefaultItemsPerPage()
+	return _u
 }
 
 // SetTagID sets the "tag" edge to the Tag entity by ID.
-func (suo *SettingsUpdateOne) SetTagID(id int) *SettingsUpdateOne {
-	suo.mutation.SetTagID(id)
-	return suo
+func (_u *SettingsUpdateOne) SetTagID(id int) *SettingsUpdateOne {
+	_u.mutation.SetTagID(id)
+	return _u
 }
 
 // SetNillableTagID sets the "tag" edge to the Tag entity by ID if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableTagID(id *int) *SettingsUpdateOne {
+func (_u *SettingsUpdateOne) SetNillableTagID(id *int) *SettingsUpdateOne {
 	if id != nil {
-		suo = suo.SetTagID(*id)
+		_u = _u.SetTagID(*id)
 	}
-	return suo
+	return _u
 }
 
 // SetTag sets the "tag" edge to the Tag entity.
-func (suo *SettingsUpdateOne) SetTag(t *Tag) *SettingsUpdateOne {
-	return suo.SetTagID(t.ID)
+func (_u *SettingsUpdateOne) SetTag(v *Tag) *SettingsUpdateOne {
+	return _u.SetTagID(v.ID)
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (suo *SettingsUpdateOne) SetTenantID(id int) *SettingsUpdateOne {
-	suo.mutation.SetTenantID(id)
-	return suo
+func (_u *SettingsUpdateOne) SetTenantID(id int) *SettingsUpdateOne {
+	_u.mutation.SetTenantID(id)
+	return _u
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableTenantID(id *int) *SettingsUpdateOne {
+func (_u *SettingsUpdateOne) SetNillableTenantID(id *int) *SettingsUpdateOne {
 	if id != nil {
-		suo = suo.SetTenantID(*id)
+		_u = _u.SetTenantID(*id)
 	}
-	return suo
+	return _u
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (suo *SettingsUpdateOne) SetTenant(t *Tenant) *SettingsUpdateOne {
-	return suo.SetTenantID(t.ID)
+func (_u *SettingsUpdateOne) SetTenant(v *Tenant) *SettingsUpdateOne {
+	return _u.SetTenantID(v.ID)
 }
 
 // Mutation returns the SettingsMutation object of the builder.
-func (suo *SettingsUpdateOne) Mutation() *SettingsMutation {
-	return suo.mutation
+func (_u *SettingsUpdateOne) Mutation() *SettingsMutation {
+	return _u.mutation
 }
 
 // ClearTag clears the "tag" edge to the Tag entity.
-func (suo *SettingsUpdateOne) ClearTag() *SettingsUpdateOne {
-	suo.mutation.ClearTag()
-	return suo
+func (_u *SettingsUpdateOne) ClearTag() *SettingsUpdateOne {
+	_u.mutation.ClearTag()
+	return _u
 }
 
 // ClearTenant clears the "tenant" edge to the Tenant entity.
-func (suo *SettingsUpdateOne) ClearTenant() *SettingsUpdateOne {
-	suo.mutation.ClearTenant()
-	return suo
+func (_u *SettingsUpdateOne) ClearTenant() *SettingsUpdateOne {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // Where appends a list predicates to the SettingsUpdate builder.
-func (suo *SettingsUpdateOne) Where(ps ...predicate.Settings) *SettingsUpdateOne {
-	suo.mutation.Where(ps...)
-	return suo
+func (_u *SettingsUpdateOne) Where(ps ...predicate.Settings) *SettingsUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (suo *SettingsUpdateOne) Select(field string, fields ...string) *SettingsUpdateOne {
-	suo.fields = append([]string{field}, fields...)
-	return suo
+func (_u *SettingsUpdateOne) Select(field string, fields ...string) *SettingsUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Settings entity.
-func (suo *SettingsUpdateOne) Save(ctx context.Context) (*Settings, error) {
-	suo.defaults()
-	return withHooks(ctx, suo.sqlSave, suo.mutation, suo.hooks)
+func (_u *SettingsUpdateOne) Save(ctx context.Context) (*Settings, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (suo *SettingsUpdateOne) SaveX(ctx context.Context) *Settings {
-	node, err := suo.Save(ctx)
+func (_u *SettingsUpdateOne) SaveX(ctx context.Context) *Settings {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -2123,40 +2123,40 @@ func (suo *SettingsUpdateOne) SaveX(ctx context.Context) *Settings {
 }
 
 // Exec executes the query on the entity.
-func (suo *SettingsUpdateOne) Exec(ctx context.Context) error {
-	_, err := suo.Save(ctx)
+func (_u *SettingsUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suo *SettingsUpdateOne) ExecX(ctx context.Context) {
-	if err := suo.Exec(ctx); err != nil {
+func (_u *SettingsUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (suo *SettingsUpdateOne) defaults() {
-	if _, ok := suo.mutation.Modified(); !ok && !suo.mutation.ModifiedCleared() {
+func (_u *SettingsUpdateOne) defaults() {
+	if _, ok := _u.mutation.Modified(); !ok && !_u.mutation.ModifiedCleared() {
 		v := settings.UpdateDefaultModified()
-		suo.mutation.SetModified(v)
+		_u.mutation.SetModified(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (suo *SettingsUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SettingsUpdateOne {
-	suo.modifiers = append(suo.modifiers, modifiers...)
-	return suo
+func (_u *SettingsUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SettingsUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err error) {
+func (_u *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err error) {
 	_spec := sqlgraph.NewUpdateSpec(settings.Table, settings.Columns, sqlgraph.NewFieldSpec(settings.FieldID, field.TypeInt))
-	id, ok := suo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Settings.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := suo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, settings.FieldID)
 		for _, f := range fields {
@@ -2168,260 +2168,260 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 			}
 		}
 	}
-	if ps := suo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := suo.mutation.Language(); ok {
+	if value, ok := _u.mutation.Language(); ok {
 		_spec.SetField(settings.FieldLanguage, field.TypeString, value)
 	}
-	if suo.mutation.LanguageCleared() {
+	if _u.mutation.LanguageCleared() {
 		_spec.ClearField(settings.FieldLanguage, field.TypeString)
 	}
-	if value, ok := suo.mutation.Organization(); ok {
+	if value, ok := _u.mutation.Organization(); ok {
 		_spec.SetField(settings.FieldOrganization, field.TypeString, value)
 	}
-	if suo.mutation.OrganizationCleared() {
+	if _u.mutation.OrganizationCleared() {
 		_spec.ClearField(settings.FieldOrganization, field.TypeString)
 	}
-	if value, ok := suo.mutation.PostalAddress(); ok {
+	if value, ok := _u.mutation.PostalAddress(); ok {
 		_spec.SetField(settings.FieldPostalAddress, field.TypeString, value)
 	}
-	if suo.mutation.PostalAddressCleared() {
+	if _u.mutation.PostalAddressCleared() {
 		_spec.ClearField(settings.FieldPostalAddress, field.TypeString)
 	}
-	if value, ok := suo.mutation.PostalCode(); ok {
+	if value, ok := _u.mutation.PostalCode(); ok {
 		_spec.SetField(settings.FieldPostalCode, field.TypeString, value)
 	}
-	if suo.mutation.PostalCodeCleared() {
+	if _u.mutation.PostalCodeCleared() {
 		_spec.ClearField(settings.FieldPostalCode, field.TypeString)
 	}
-	if value, ok := suo.mutation.Locality(); ok {
+	if value, ok := _u.mutation.Locality(); ok {
 		_spec.SetField(settings.FieldLocality, field.TypeString, value)
 	}
-	if suo.mutation.LocalityCleared() {
+	if _u.mutation.LocalityCleared() {
 		_spec.ClearField(settings.FieldLocality, field.TypeString)
 	}
-	if value, ok := suo.mutation.Province(); ok {
+	if value, ok := _u.mutation.Province(); ok {
 		_spec.SetField(settings.FieldProvince, field.TypeString, value)
 	}
-	if suo.mutation.ProvinceCleared() {
+	if _u.mutation.ProvinceCleared() {
 		_spec.ClearField(settings.FieldProvince, field.TypeString)
 	}
-	if value, ok := suo.mutation.State(); ok {
+	if value, ok := _u.mutation.State(); ok {
 		_spec.SetField(settings.FieldState, field.TypeString, value)
 	}
-	if suo.mutation.StateCleared() {
+	if _u.mutation.StateCleared() {
 		_spec.ClearField(settings.FieldState, field.TypeString)
 	}
-	if value, ok := suo.mutation.Country(); ok {
+	if value, ok := _u.mutation.Country(); ok {
 		_spec.SetField(settings.FieldCountry, field.TypeString, value)
 	}
-	if suo.mutation.CountryCleared() {
+	if _u.mutation.CountryCleared() {
 		_spec.ClearField(settings.FieldCountry, field.TypeString)
 	}
-	if value, ok := suo.mutation.SMTPServer(); ok {
+	if value, ok := _u.mutation.SMTPServer(); ok {
 		_spec.SetField(settings.FieldSMTPServer, field.TypeString, value)
 	}
-	if suo.mutation.SMTPServerCleared() {
+	if _u.mutation.SMTPServerCleared() {
 		_spec.ClearField(settings.FieldSMTPServer, field.TypeString)
 	}
-	if value, ok := suo.mutation.SMTPPort(); ok {
+	if value, ok := _u.mutation.SMTPPort(); ok {
 		_spec.SetField(settings.FieldSMTPPort, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedSMTPPort(); ok {
+	if value, ok := _u.mutation.AddedSMTPPort(); ok {
 		_spec.AddField(settings.FieldSMTPPort, field.TypeInt, value)
 	}
-	if suo.mutation.SMTPPortCleared() {
+	if _u.mutation.SMTPPortCleared() {
 		_spec.ClearField(settings.FieldSMTPPort, field.TypeInt)
 	}
-	if value, ok := suo.mutation.SMTPUser(); ok {
+	if value, ok := _u.mutation.SMTPUser(); ok {
 		_spec.SetField(settings.FieldSMTPUser, field.TypeString, value)
 	}
-	if suo.mutation.SMTPUserCleared() {
+	if _u.mutation.SMTPUserCleared() {
 		_spec.ClearField(settings.FieldSMTPUser, field.TypeString)
 	}
-	if value, ok := suo.mutation.SMTPPassword(); ok {
+	if value, ok := _u.mutation.SMTPPassword(); ok {
 		_spec.SetField(settings.FieldSMTPPassword, field.TypeString, value)
 	}
-	if suo.mutation.SMTPPasswordCleared() {
+	if _u.mutation.SMTPPasswordCleared() {
 		_spec.ClearField(settings.FieldSMTPPassword, field.TypeString)
 	}
-	if value, ok := suo.mutation.SMTPAuth(); ok {
+	if value, ok := _u.mutation.SMTPAuth(); ok {
 		_spec.SetField(settings.FieldSMTPAuth, field.TypeString, value)
 	}
-	if suo.mutation.SMTPAuthCleared() {
+	if _u.mutation.SMTPAuthCleared() {
 		_spec.ClearField(settings.FieldSMTPAuth, field.TypeString)
 	}
-	if value, ok := suo.mutation.SMTPTLS(); ok {
+	if value, ok := _u.mutation.SMTPTLS(); ok {
 		_spec.SetField(settings.FieldSMTPTLS, field.TypeBool, value)
 	}
-	if suo.mutation.SMTPTLSCleared() {
+	if _u.mutation.SMTPTLSCleared() {
 		_spec.ClearField(settings.FieldSMTPTLS, field.TypeBool)
 	}
-	if value, ok := suo.mutation.SMTPStarttls(); ok {
+	if value, ok := _u.mutation.SMTPStarttls(); ok {
 		_spec.SetField(settings.FieldSMTPStarttls, field.TypeBool, value)
 	}
-	if suo.mutation.SMTPStarttlsCleared() {
+	if _u.mutation.SMTPStarttlsCleared() {
 		_spec.ClearField(settings.FieldSMTPStarttls, field.TypeBool)
 	}
-	if value, ok := suo.mutation.NatsServer(); ok {
+	if value, ok := _u.mutation.NatsServer(); ok {
 		_spec.SetField(settings.FieldNatsServer, field.TypeString, value)
 	}
-	if suo.mutation.NatsServerCleared() {
+	if _u.mutation.NatsServerCleared() {
 		_spec.ClearField(settings.FieldNatsServer, field.TypeString)
 	}
-	if value, ok := suo.mutation.NatsPort(); ok {
+	if value, ok := _u.mutation.NatsPort(); ok {
 		_spec.SetField(settings.FieldNatsPort, field.TypeString, value)
 	}
-	if suo.mutation.NatsPortCleared() {
+	if _u.mutation.NatsPortCleared() {
 		_spec.ClearField(settings.FieldNatsPort, field.TypeString)
 	}
-	if value, ok := suo.mutation.MessageFrom(); ok {
+	if value, ok := _u.mutation.MessageFrom(); ok {
 		_spec.SetField(settings.FieldMessageFrom, field.TypeString, value)
 	}
-	if suo.mutation.MessageFromCleared() {
+	if _u.mutation.MessageFromCleared() {
 		_spec.ClearField(settings.FieldMessageFrom, field.TypeString)
 	}
-	if value, ok := suo.mutation.MaxUploadSize(); ok {
+	if value, ok := _u.mutation.MaxUploadSize(); ok {
 		_spec.SetField(settings.FieldMaxUploadSize, field.TypeString, value)
 	}
-	if suo.mutation.MaxUploadSizeCleared() {
+	if _u.mutation.MaxUploadSizeCleared() {
 		_spec.ClearField(settings.FieldMaxUploadSize, field.TypeString)
 	}
-	if value, ok := suo.mutation.UserCertYearsValid(); ok {
+	if value, ok := _u.mutation.UserCertYearsValid(); ok {
 		_spec.SetField(settings.FieldUserCertYearsValid, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedUserCertYearsValid(); ok {
+	if value, ok := _u.mutation.AddedUserCertYearsValid(); ok {
 		_spec.AddField(settings.FieldUserCertYearsValid, field.TypeInt, value)
 	}
-	if suo.mutation.UserCertYearsValidCleared() {
+	if _u.mutation.UserCertYearsValidCleared() {
 		_spec.ClearField(settings.FieldUserCertYearsValid, field.TypeInt)
 	}
-	if value, ok := suo.mutation.NatsRequestTimeoutSeconds(); ok {
+	if value, ok := _u.mutation.NatsRequestTimeoutSeconds(); ok {
 		_spec.SetField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedNatsRequestTimeoutSeconds(); ok {
+	if value, ok := _u.mutation.AddedNatsRequestTimeoutSeconds(); ok {
 		_spec.AddField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt, value)
 	}
-	if suo.mutation.NatsRequestTimeoutSecondsCleared() {
+	if _u.mutation.NatsRequestTimeoutSecondsCleared() {
 		_spec.ClearField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt)
 	}
-	if value, ok := suo.mutation.RefreshTimeInMinutes(); ok {
+	if value, ok := _u.mutation.RefreshTimeInMinutes(); ok {
 		_spec.SetField(settings.FieldRefreshTimeInMinutes, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedRefreshTimeInMinutes(); ok {
+	if value, ok := _u.mutation.AddedRefreshTimeInMinutes(); ok {
 		_spec.AddField(settings.FieldRefreshTimeInMinutes, field.TypeInt, value)
 	}
-	if suo.mutation.RefreshTimeInMinutesCleared() {
+	if _u.mutation.RefreshTimeInMinutesCleared() {
 		_spec.ClearField(settings.FieldRefreshTimeInMinutes, field.TypeInt)
 	}
-	if value, ok := suo.mutation.SessionLifetimeInMinutes(); ok {
+	if value, ok := _u.mutation.SessionLifetimeInMinutes(); ok {
 		_spec.SetField(settings.FieldSessionLifetimeInMinutes, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedSessionLifetimeInMinutes(); ok {
+	if value, ok := _u.mutation.AddedSessionLifetimeInMinutes(); ok {
 		_spec.AddField(settings.FieldSessionLifetimeInMinutes, field.TypeInt, value)
 	}
-	if suo.mutation.SessionLifetimeInMinutesCleared() {
+	if _u.mutation.SessionLifetimeInMinutesCleared() {
 		_spec.ClearField(settings.FieldSessionLifetimeInMinutes, field.TypeInt)
 	}
-	if value, ok := suo.mutation.UpdateChannel(); ok {
+	if value, ok := _u.mutation.UpdateChannel(); ok {
 		_spec.SetField(settings.FieldUpdateChannel, field.TypeString, value)
 	}
-	if suo.mutation.UpdateChannelCleared() {
+	if _u.mutation.UpdateChannelCleared() {
 		_spec.ClearField(settings.FieldUpdateChannel, field.TypeString)
 	}
-	if value, ok := suo.mutation.Created(); ok {
+	if value, ok := _u.mutation.Created(); ok {
 		_spec.SetField(settings.FieldCreated, field.TypeTime, value)
 	}
-	if suo.mutation.CreatedCleared() {
+	if _u.mutation.CreatedCleared() {
 		_spec.ClearField(settings.FieldCreated, field.TypeTime)
 	}
-	if value, ok := suo.mutation.Modified(); ok {
+	if value, ok := _u.mutation.Modified(); ok {
 		_spec.SetField(settings.FieldModified, field.TypeTime, value)
 	}
-	if suo.mutation.ModifiedCleared() {
+	if _u.mutation.ModifiedCleared() {
 		_spec.ClearField(settings.FieldModified, field.TypeTime)
 	}
-	if value, ok := suo.mutation.AgentReportFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.AgentReportFrequenceInMinutes(); ok {
 		_spec.SetField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedAgentReportFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.AddedAgentReportFrequenceInMinutes(); ok {
 		_spec.AddField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt, value)
 	}
-	if suo.mutation.AgentReportFrequenceInMinutesCleared() {
+	if _u.mutation.AgentReportFrequenceInMinutesCleared() {
 		_spec.ClearField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt)
 	}
-	if value, ok := suo.mutation.RequestVncPin(); ok {
+	if value, ok := _u.mutation.RequestVncPin(); ok {
 		_spec.SetField(settings.FieldRequestVncPin, field.TypeBool, value)
 	}
-	if suo.mutation.RequestVncPinCleared() {
+	if _u.mutation.RequestVncPinCleared() {
 		_spec.ClearField(settings.FieldRequestVncPin, field.TypeBool)
 	}
-	if value, ok := suo.mutation.ProfilesApplicationFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.ProfilesApplicationFrequenceInMinutes(); ok {
 		_spec.SetField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedProfilesApplicationFrequenceInMinutes(); ok {
+	if value, ok := _u.mutation.AddedProfilesApplicationFrequenceInMinutes(); ok {
 		_spec.AddField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt, value)
 	}
-	if suo.mutation.ProfilesApplicationFrequenceInMinutesCleared() {
+	if _u.mutation.ProfilesApplicationFrequenceInMinutesCleared() {
 		_spec.ClearField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt)
 	}
-	if value, ok := suo.mutation.UseWinget(); ok {
+	if value, ok := _u.mutation.UseWinget(); ok {
 		_spec.SetField(settings.FieldUseWinget, field.TypeBool, value)
 	}
-	if suo.mutation.UseWingetCleared() {
+	if _u.mutation.UseWingetCleared() {
 		_spec.ClearField(settings.FieldUseWinget, field.TypeBool)
 	}
-	if value, ok := suo.mutation.UseFlatpak(); ok {
+	if value, ok := _u.mutation.UseFlatpak(); ok {
 		_spec.SetField(settings.FieldUseFlatpak, field.TypeBool, value)
 	}
-	if suo.mutation.UseFlatpakCleared() {
+	if _u.mutation.UseFlatpakCleared() {
 		_spec.ClearField(settings.FieldUseFlatpak, field.TypeBool)
 	}
-	if value, ok := suo.mutation.UseBrew(); ok {
+	if value, ok := _u.mutation.UseBrew(); ok {
 		_spec.SetField(settings.FieldUseBrew, field.TypeBool, value)
 	}
-	if suo.mutation.UseBrewCleared() {
+	if _u.mutation.UseBrewCleared() {
 		_spec.ClearField(settings.FieldUseBrew, field.TypeBool)
 	}
-	if value, ok := suo.mutation.DisableSftp(); ok {
+	if value, ok := _u.mutation.DisableSftp(); ok {
 		_spec.SetField(settings.FieldDisableSftp, field.TypeBool, value)
 	}
-	if suo.mutation.DisableSftpCleared() {
+	if _u.mutation.DisableSftpCleared() {
 		_spec.ClearField(settings.FieldDisableSftp, field.TypeBool)
 	}
-	if value, ok := suo.mutation.DisableRemoteAssistance(); ok {
+	if value, ok := _u.mutation.DisableRemoteAssistance(); ok {
 		_spec.SetField(settings.FieldDisableRemoteAssistance, field.TypeBool, value)
 	}
-	if suo.mutation.DisableRemoteAssistanceCleared() {
+	if _u.mutation.DisableRemoteAssistanceCleared() {
 		_spec.ClearField(settings.FieldDisableRemoteAssistance, field.TypeBool)
 	}
-	if value, ok := suo.mutation.DetectRemoteAgents(); ok {
+	if value, ok := _u.mutation.DetectRemoteAgents(); ok {
 		_spec.SetField(settings.FieldDetectRemoteAgents, field.TypeBool, value)
 	}
-	if suo.mutation.DetectRemoteAgentsCleared() {
+	if _u.mutation.DetectRemoteAgentsCleared() {
 		_spec.ClearField(settings.FieldDetectRemoteAgents, field.TypeBool)
 	}
-	if value, ok := suo.mutation.AutoAdmitAgents(); ok {
+	if value, ok := _u.mutation.AutoAdmitAgents(); ok {
 		_spec.SetField(settings.FieldAutoAdmitAgents, field.TypeBool, value)
 	}
-	if suo.mutation.AutoAdmitAgentsCleared() {
+	if _u.mutation.AutoAdmitAgentsCleared() {
 		_spec.ClearField(settings.FieldAutoAdmitAgents, field.TypeBool)
 	}
-	if value, ok := suo.mutation.DefaultItemsPerPage(); ok {
+	if value, ok := _u.mutation.DefaultItemsPerPage(); ok {
 		_spec.SetField(settings.FieldDefaultItemsPerPage, field.TypeInt, value)
 	}
-	if value, ok := suo.mutation.AddedDefaultItemsPerPage(); ok {
+	if value, ok := _u.mutation.AddedDefaultItemsPerPage(); ok {
 		_spec.AddField(settings.FieldDefaultItemsPerPage, field.TypeInt, value)
 	}
-	if suo.mutation.DefaultItemsPerPageCleared() {
+	if _u.mutation.DefaultItemsPerPageCleared() {
 		_spec.ClearField(settings.FieldDefaultItemsPerPage, field.TypeInt)
 	}
-	if suo.mutation.TagCleared() {
+	if _u.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -2434,7 +2434,7 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.TagIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TagIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -2450,7 +2450,7 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if suo.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -2463,7 +2463,7 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -2479,11 +2479,11 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(suo.modifiers...)
-	_node = &Settings{config: suo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Settings{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, suo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{settings.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -2491,6 +2491,6 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 		}
 		return nil, err
 	}
-	suo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

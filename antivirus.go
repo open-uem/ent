@@ -72,7 +72,7 @@ func (*Antivirus) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Antivirus fields.
-func (a *Antivirus) assignValues(columns []string, values []any) error {
+func (_m *Antivirus) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -83,34 +83,34 @@ func (a *Antivirus) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			a.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case antivirus.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				a.Name = value.String
+				_m.Name = value.String
 			}
 		case antivirus.FieldIsActive:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_active", values[i])
 			} else if value.Valid {
-				a.IsActive = value.Bool
+				_m.IsActive = value.Bool
 			}
 		case antivirus.FieldIsUpdated:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_updated", values[i])
 			} else if value.Valid {
-				a.IsUpdated = value.Bool
+				_m.IsUpdated = value.Bool
 			}
 		case antivirus.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_antivirus", values[i])
 			} else if value.Valid {
-				a.agent_antivirus = new(string)
-				*a.agent_antivirus = value.String
+				_m.agent_antivirus = new(string)
+				*_m.agent_antivirus = value.String
 			}
 		default:
-			a.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -118,46 +118,46 @@ func (a *Antivirus) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Antivirus.
 // This includes values selected through modifiers, order, etc.
-func (a *Antivirus) Value(name string) (ent.Value, error) {
-	return a.selectValues.Get(name)
+func (_m *Antivirus) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Antivirus entity.
-func (a *Antivirus) QueryOwner() *AgentQuery {
-	return NewAntivirusClient(a.config).QueryOwner(a)
+func (_m *Antivirus) QueryOwner() *AgentQuery {
+	return NewAntivirusClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Antivirus.
 // Note that you need to call Antivirus.Unwrap() before calling this method if this Antivirus
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (a *Antivirus) Update() *AntivirusUpdateOne {
-	return NewAntivirusClient(a.config).UpdateOne(a)
+func (_m *Antivirus) Update() *AntivirusUpdateOne {
+	return NewAntivirusClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Antivirus entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (a *Antivirus) Unwrap() *Antivirus {
-	_tx, ok := a.config.driver.(*txDriver)
+func (_m *Antivirus) Unwrap() *Antivirus {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Antivirus is not a transactional entity")
 	}
-	a.config.driver = _tx.drv
-	return a
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (a *Antivirus) String() string {
+func (_m *Antivirus) String() string {
 	var builder strings.Builder
 	builder.WriteString("Antivirus(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(a.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("is_active=")
-	builder.WriteString(fmt.Sprintf("%v", a.IsActive))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsActive))
 	builder.WriteString(", ")
 	builder.WriteString("is_updated=")
-	builder.WriteString(fmt.Sprintf("%v", a.IsUpdated))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsUpdated))
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -23,91 +23,91 @@ type PrinterCreate struct {
 }
 
 // SetName sets the "name" field.
-func (pc *PrinterCreate) SetName(s string) *PrinterCreate {
-	pc.mutation.SetName(s)
-	return pc
+func (_c *PrinterCreate) SetName(v string) *PrinterCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetPort sets the "port" field.
-func (pc *PrinterCreate) SetPort(s string) *PrinterCreate {
-	pc.mutation.SetPort(s)
-	return pc
+func (_c *PrinterCreate) SetPort(v string) *PrinterCreate {
+	_c.mutation.SetPort(v)
+	return _c
 }
 
 // SetNillablePort sets the "port" field if the given value is not nil.
-func (pc *PrinterCreate) SetNillablePort(s *string) *PrinterCreate {
-	if s != nil {
-		pc.SetPort(*s)
+func (_c *PrinterCreate) SetNillablePort(v *string) *PrinterCreate {
+	if v != nil {
+		_c.SetPort(*v)
 	}
-	return pc
+	return _c
 }
 
 // SetIsDefault sets the "is_default" field.
-func (pc *PrinterCreate) SetIsDefault(b bool) *PrinterCreate {
-	pc.mutation.SetIsDefault(b)
-	return pc
+func (_c *PrinterCreate) SetIsDefault(v bool) *PrinterCreate {
+	_c.mutation.SetIsDefault(v)
+	return _c
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (pc *PrinterCreate) SetNillableIsDefault(b *bool) *PrinterCreate {
-	if b != nil {
-		pc.SetIsDefault(*b)
+func (_c *PrinterCreate) SetNillableIsDefault(v *bool) *PrinterCreate {
+	if v != nil {
+		_c.SetIsDefault(*v)
 	}
-	return pc
+	return _c
 }
 
 // SetIsNetwork sets the "is_network" field.
-func (pc *PrinterCreate) SetIsNetwork(b bool) *PrinterCreate {
-	pc.mutation.SetIsNetwork(b)
-	return pc
+func (_c *PrinterCreate) SetIsNetwork(v bool) *PrinterCreate {
+	_c.mutation.SetIsNetwork(v)
+	return _c
 }
 
 // SetNillableIsNetwork sets the "is_network" field if the given value is not nil.
-func (pc *PrinterCreate) SetNillableIsNetwork(b *bool) *PrinterCreate {
-	if b != nil {
-		pc.SetIsNetwork(*b)
+func (_c *PrinterCreate) SetNillableIsNetwork(v *bool) *PrinterCreate {
+	if v != nil {
+		_c.SetIsNetwork(*v)
 	}
-	return pc
+	return _c
 }
 
 // SetIsShared sets the "is_shared" field.
-func (pc *PrinterCreate) SetIsShared(b bool) *PrinterCreate {
-	pc.mutation.SetIsShared(b)
-	return pc
+func (_c *PrinterCreate) SetIsShared(v bool) *PrinterCreate {
+	_c.mutation.SetIsShared(v)
+	return _c
 }
 
 // SetNillableIsShared sets the "is_shared" field if the given value is not nil.
-func (pc *PrinterCreate) SetNillableIsShared(b *bool) *PrinterCreate {
-	if b != nil {
-		pc.SetIsShared(*b)
+func (_c *PrinterCreate) SetNillableIsShared(v *bool) *PrinterCreate {
+	if v != nil {
+		_c.SetIsShared(*v)
 	}
-	return pc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (pc *PrinterCreate) SetOwnerID(id string) *PrinterCreate {
-	pc.mutation.SetOwnerID(id)
-	return pc
+func (_c *PrinterCreate) SetOwnerID(id string) *PrinterCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (pc *PrinterCreate) SetOwner(a *Agent) *PrinterCreate {
-	return pc.SetOwnerID(a.ID)
+func (_c *PrinterCreate) SetOwner(v *Agent) *PrinterCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the PrinterMutation object of the builder.
-func (pc *PrinterCreate) Mutation() *PrinterMutation {
-	return pc.mutation
+func (_c *PrinterCreate) Mutation() *PrinterMutation {
+	return _c.mutation
 }
 
 // Save creates the Printer in the database.
-func (pc *PrinterCreate) Save(ctx context.Context) (*Printer, error) {
-	return withHooks(ctx, pc.sqlSave, pc.mutation, pc.hooks)
+func (_c *PrinterCreate) Save(ctx context.Context) (*Printer, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (pc *PrinterCreate) SaveX(ctx context.Context) *Printer {
-	v, err := pc.Save(ctx)
+func (_c *PrinterCreate) SaveX(ctx context.Context) *Printer {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -115,35 +115,35 @@ func (pc *PrinterCreate) SaveX(ctx context.Context) *Printer {
 }
 
 // Exec executes the query.
-func (pc *PrinterCreate) Exec(ctx context.Context) error {
-	_, err := pc.Save(ctx)
+func (_c *PrinterCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pc *PrinterCreate) ExecX(ctx context.Context) {
-	if err := pc.Exec(ctx); err != nil {
+func (_c *PrinterCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (pc *PrinterCreate) check() error {
-	if _, ok := pc.mutation.Name(); !ok {
+func (_c *PrinterCreate) check() error {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Printer.name"`)}
 	}
-	if len(pc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "Printer.owner"`)}
 	}
 	return nil
 }
 
-func (pc *PrinterCreate) sqlSave(ctx context.Context) (*Printer, error) {
-	if err := pc.check(); err != nil {
+func (_c *PrinterCreate) sqlSave(ctx context.Context) (*Printer, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := pc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, pc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -151,38 +151,38 @@ func (pc *PrinterCreate) sqlSave(ctx context.Context) (*Printer, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	pc.mutation.id = &_node.ID
-	pc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (pc *PrinterCreate) createSpec() (*Printer, *sqlgraph.CreateSpec) {
+func (_c *PrinterCreate) createSpec() (*Printer, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Printer{config: pc.config}
+		_node = &Printer{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(printer.Table, sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = pc.conflict
-	if value, ok := pc.mutation.Name(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(printer.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := pc.mutation.Port(); ok {
+	if value, ok := _c.mutation.Port(); ok {
 		_spec.SetField(printer.FieldPort, field.TypeString, value)
 		_node.Port = value
 	}
-	if value, ok := pc.mutation.IsDefault(); ok {
+	if value, ok := _c.mutation.IsDefault(); ok {
 		_spec.SetField(printer.FieldIsDefault, field.TypeBool, value)
 		_node.IsDefault = value
 	}
-	if value, ok := pc.mutation.IsNetwork(); ok {
+	if value, ok := _c.mutation.IsNetwork(); ok {
 		_spec.SetField(printer.FieldIsNetwork, field.TypeBool, value)
 		_node.IsNetwork = value
 	}
-	if value, ok := pc.mutation.IsShared(); ok {
+	if value, ok := _c.mutation.IsShared(); ok {
 		_spec.SetField(printer.FieldIsShared, field.TypeBool, value)
 		_node.IsShared = value
 	}
-	if nodes := pc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -218,10 +218,10 @@ func (pc *PrinterCreate) createSpec() (*Printer, *sqlgraph.CreateSpec) {
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (pc *PrinterCreate) OnConflict(opts ...sql.ConflictOption) *PrinterUpsertOne {
-	pc.conflict = opts
+func (_c *PrinterCreate) OnConflict(opts ...sql.ConflictOption) *PrinterUpsertOne {
+	_c.conflict = opts
 	return &PrinterUpsertOne{
-		create: pc,
+		create: _c,
 	}
 }
 
@@ -231,10 +231,10 @@ func (pc *PrinterCreate) OnConflict(opts ...sql.ConflictOption) *PrinterUpsertOn
 //	client.Printer.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (pc *PrinterCreate) OnConflictColumns(columns ...string) *PrinterUpsertOne {
-	pc.conflict = append(pc.conflict, sql.ConflictColumns(columns...))
+func (_c *PrinterCreate) OnConflictColumns(columns ...string) *PrinterUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &PrinterUpsertOne{
-		create: pc,
+		create: _c,
 	}
 }
 
@@ -515,16 +515,16 @@ type PrinterCreateBulk struct {
 }
 
 // Save creates the Printer entities in the database.
-func (pcb *PrinterCreateBulk) Save(ctx context.Context) ([]*Printer, error) {
-	if pcb.err != nil {
-		return nil, pcb.err
+func (_c *PrinterCreateBulk) Save(ctx context.Context) ([]*Printer, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(pcb.builders))
-	nodes := make([]*Printer, len(pcb.builders))
-	mutators := make([]Mutator, len(pcb.builders))
-	for i := range pcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Printer, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := pcb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*PrinterMutation)
 				if !ok {
@@ -537,12 +537,12 @@ func (pcb *PrinterCreateBulk) Save(ctx context.Context) ([]*Printer, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, pcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = pcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, pcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -566,7 +566,7 @@ func (pcb *PrinterCreateBulk) Save(ctx context.Context) ([]*Printer, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, pcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -574,8 +574,8 @@ func (pcb *PrinterCreateBulk) Save(ctx context.Context) ([]*Printer, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (pcb *PrinterCreateBulk) SaveX(ctx context.Context) []*Printer {
-	v, err := pcb.Save(ctx)
+func (_c *PrinterCreateBulk) SaveX(ctx context.Context) []*Printer {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -583,14 +583,14 @@ func (pcb *PrinterCreateBulk) SaveX(ctx context.Context) []*Printer {
 }
 
 // Exec executes the query.
-func (pcb *PrinterCreateBulk) Exec(ctx context.Context) error {
-	_, err := pcb.Save(ctx)
+func (_c *PrinterCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pcb *PrinterCreateBulk) ExecX(ctx context.Context) {
-	if err := pcb.Exec(ctx); err != nil {
+func (_c *PrinterCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -610,10 +610,10 @@ func (pcb *PrinterCreateBulk) ExecX(ctx context.Context) {
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (pcb *PrinterCreateBulk) OnConflict(opts ...sql.ConflictOption) *PrinterUpsertBulk {
-	pcb.conflict = opts
+func (_c *PrinterCreateBulk) OnConflict(opts ...sql.ConflictOption) *PrinterUpsertBulk {
+	_c.conflict = opts
 	return &PrinterUpsertBulk{
-		create: pcb,
+		create: _c,
 	}
 }
 
@@ -623,10 +623,10 @@ func (pcb *PrinterCreateBulk) OnConflict(opts ...sql.ConflictOption) *PrinterUps
 //	client.Printer.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (pcb *PrinterCreateBulk) OnConflictColumns(columns ...string) *PrinterUpsertBulk {
-	pcb.conflict = append(pcb.conflict, sql.ConflictColumns(columns...))
+func (_c *PrinterCreateBulk) OnConflictColumns(columns ...string) *PrinterUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &PrinterUpsertBulk{
-		create: pcb,
+		create: _c,
 	}
 }
 

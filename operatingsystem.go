@@ -85,7 +85,7 @@ func (*OperatingSystem) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the OperatingSystem fields.
-func (os *OperatingSystem) assignValues(columns []string, values []any) error {
+func (_m *OperatingSystem) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -96,70 +96,70 @@ func (os *OperatingSystem) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			os.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case operatingsystem.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				os.Type = value.String
+				_m.Type = value.String
 			}
 		case operatingsystem.FieldVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				os.Version = value.String
+				_m.Version = value.String
 			}
 		case operatingsystem.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				os.Description = value.String
+				_m.Description = value.String
 			}
 		case operatingsystem.FieldEdition:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field edition", values[i])
 			} else if value.Valid {
-				os.Edition = value.String
+				_m.Edition = value.String
 			}
 		case operatingsystem.FieldInstallDate:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field install_date", values[i])
 			} else if value.Valid {
-				os.InstallDate = value.Time
+				_m.InstallDate = value.Time
 			}
 		case operatingsystem.FieldArch:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field arch", values[i])
 			} else if value.Valid {
-				os.Arch = value.String
+				_m.Arch = value.String
 			}
 		case operatingsystem.FieldUsername:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field username", values[i])
 			} else if value.Valid {
-				os.Username = value.String
+				_m.Username = value.String
 			}
 		case operatingsystem.FieldLastBootupTime:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_bootup_time", values[i])
 			} else if value.Valid {
-				os.LastBootupTime = value.Time
+				_m.LastBootupTime = value.Time
 			}
 		case operatingsystem.FieldDomain:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field domain", values[i])
 			} else if value.Valid {
-				os.Domain = value.String
+				_m.Domain = value.String
 			}
 		case operatingsystem.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_operatingsystem", values[i])
 			} else if value.Valid {
-				os.agent_operatingsystem = new(string)
-				*os.agent_operatingsystem = value.String
+				_m.agent_operatingsystem = new(string)
+				*_m.agent_operatingsystem = value.String
 			}
 		default:
-			os.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -167,64 +167,64 @@ func (os *OperatingSystem) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the OperatingSystem.
 // This includes values selected through modifiers, order, etc.
-func (os *OperatingSystem) Value(name string) (ent.Value, error) {
-	return os.selectValues.Get(name)
+func (_m *OperatingSystem) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the OperatingSystem entity.
-func (os *OperatingSystem) QueryOwner() *AgentQuery {
-	return NewOperatingSystemClient(os.config).QueryOwner(os)
+func (_m *OperatingSystem) QueryOwner() *AgentQuery {
+	return NewOperatingSystemClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this OperatingSystem.
 // Note that you need to call OperatingSystem.Unwrap() before calling this method if this OperatingSystem
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (os *OperatingSystem) Update() *OperatingSystemUpdateOne {
-	return NewOperatingSystemClient(os.config).UpdateOne(os)
+func (_m *OperatingSystem) Update() *OperatingSystemUpdateOne {
+	return NewOperatingSystemClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the OperatingSystem entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (os *OperatingSystem) Unwrap() *OperatingSystem {
-	_tx, ok := os.config.driver.(*txDriver)
+func (_m *OperatingSystem) Unwrap() *OperatingSystem {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: OperatingSystem is not a transactional entity")
 	}
-	os.config.driver = _tx.drv
-	return os
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (os *OperatingSystem) String() string {
+func (_m *OperatingSystem) String() string {
 	var builder strings.Builder
 	builder.WriteString("OperatingSystem(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", os.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("type=")
-	builder.WriteString(os.Type)
+	builder.WriteString(_m.Type)
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(os.Version)
+	builder.WriteString(_m.Version)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(os.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("edition=")
-	builder.WriteString(os.Edition)
+	builder.WriteString(_m.Edition)
 	builder.WriteString(", ")
 	builder.WriteString("install_date=")
-	builder.WriteString(os.InstallDate.Format(time.ANSIC))
+	builder.WriteString(_m.InstallDate.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("arch=")
-	builder.WriteString(os.Arch)
+	builder.WriteString(_m.Arch)
 	builder.WriteString(", ")
 	builder.WriteString("username=")
-	builder.WriteString(os.Username)
+	builder.WriteString(_m.Username)
 	builder.WriteString(", ")
 	builder.WriteString("last_bootup_time=")
-	builder.WriteString(os.LastBootupTime.Format(time.ANSIC))
+	builder.WriteString(_m.LastBootupTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("domain=")
-	builder.WriteString(os.Domain)
+	builder.WriteString(_m.Domain)
 	builder.WriteByte(')')
 	return builder.String()
 }

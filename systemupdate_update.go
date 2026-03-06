@@ -25,97 +25,97 @@ type SystemUpdateUpdate struct {
 }
 
 // Where appends a list predicates to the SystemUpdateUpdate builder.
-func (suu *SystemUpdateUpdate) Where(ps ...predicate.SystemUpdate) *SystemUpdateUpdate {
-	suu.mutation.Where(ps...)
-	return suu
+func (_u *SystemUpdateUpdate) Where(ps ...predicate.SystemUpdate) *SystemUpdateUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetSystemUpdateStatus sets the "system_update_status" field.
-func (suu *SystemUpdateUpdate) SetSystemUpdateStatus(s string) *SystemUpdateUpdate {
-	suu.mutation.SetSystemUpdateStatus(s)
-	return suu
+func (_u *SystemUpdateUpdate) SetSystemUpdateStatus(v string) *SystemUpdateUpdate {
+	_u.mutation.SetSystemUpdateStatus(v)
+	return _u
 }
 
 // SetNillableSystemUpdateStatus sets the "system_update_status" field if the given value is not nil.
-func (suu *SystemUpdateUpdate) SetNillableSystemUpdateStatus(s *string) *SystemUpdateUpdate {
-	if s != nil {
-		suu.SetSystemUpdateStatus(*s)
+func (_u *SystemUpdateUpdate) SetNillableSystemUpdateStatus(v *string) *SystemUpdateUpdate {
+	if v != nil {
+		_u.SetSystemUpdateStatus(*v)
 	}
-	return suu
+	return _u
 }
 
 // SetLastInstall sets the "last_install" field.
-func (suu *SystemUpdateUpdate) SetLastInstall(t time.Time) *SystemUpdateUpdate {
-	suu.mutation.SetLastInstall(t)
-	return suu
+func (_u *SystemUpdateUpdate) SetLastInstall(v time.Time) *SystemUpdateUpdate {
+	_u.mutation.SetLastInstall(v)
+	return _u
 }
 
 // SetNillableLastInstall sets the "last_install" field if the given value is not nil.
-func (suu *SystemUpdateUpdate) SetNillableLastInstall(t *time.Time) *SystemUpdateUpdate {
-	if t != nil {
-		suu.SetLastInstall(*t)
+func (_u *SystemUpdateUpdate) SetNillableLastInstall(v *time.Time) *SystemUpdateUpdate {
+	if v != nil {
+		_u.SetLastInstall(*v)
 	}
-	return suu
+	return _u
 }
 
 // SetLastSearch sets the "last_search" field.
-func (suu *SystemUpdateUpdate) SetLastSearch(t time.Time) *SystemUpdateUpdate {
-	suu.mutation.SetLastSearch(t)
-	return suu
+func (_u *SystemUpdateUpdate) SetLastSearch(v time.Time) *SystemUpdateUpdate {
+	_u.mutation.SetLastSearch(v)
+	return _u
 }
 
 // SetNillableLastSearch sets the "last_search" field if the given value is not nil.
-func (suu *SystemUpdateUpdate) SetNillableLastSearch(t *time.Time) *SystemUpdateUpdate {
-	if t != nil {
-		suu.SetLastSearch(*t)
+func (_u *SystemUpdateUpdate) SetNillableLastSearch(v *time.Time) *SystemUpdateUpdate {
+	if v != nil {
+		_u.SetLastSearch(*v)
 	}
-	return suu
+	return _u
 }
 
 // SetPendingUpdates sets the "pending_updates" field.
-func (suu *SystemUpdateUpdate) SetPendingUpdates(b bool) *SystemUpdateUpdate {
-	suu.mutation.SetPendingUpdates(b)
-	return suu
+func (_u *SystemUpdateUpdate) SetPendingUpdates(v bool) *SystemUpdateUpdate {
+	_u.mutation.SetPendingUpdates(v)
+	return _u
 }
 
 // SetNillablePendingUpdates sets the "pending_updates" field if the given value is not nil.
-func (suu *SystemUpdateUpdate) SetNillablePendingUpdates(b *bool) *SystemUpdateUpdate {
-	if b != nil {
-		suu.SetPendingUpdates(*b)
+func (_u *SystemUpdateUpdate) SetNillablePendingUpdates(v *bool) *SystemUpdateUpdate {
+	if v != nil {
+		_u.SetPendingUpdates(*v)
 	}
-	return suu
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (suu *SystemUpdateUpdate) SetOwnerID(id string) *SystemUpdateUpdate {
-	suu.mutation.SetOwnerID(id)
-	return suu
+func (_u *SystemUpdateUpdate) SetOwnerID(id string) *SystemUpdateUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (suu *SystemUpdateUpdate) SetOwner(a *Agent) *SystemUpdateUpdate {
-	return suu.SetOwnerID(a.ID)
+func (_u *SystemUpdateUpdate) SetOwner(v *Agent) *SystemUpdateUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the SystemUpdateMutation object of the builder.
-func (suu *SystemUpdateUpdate) Mutation() *SystemUpdateMutation {
-	return suu.mutation
+func (_u *SystemUpdateUpdate) Mutation() *SystemUpdateMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (suu *SystemUpdateUpdate) ClearOwner() *SystemUpdateUpdate {
-	suu.mutation.ClearOwner()
-	return suu
+func (_u *SystemUpdateUpdate) ClearOwner() *SystemUpdateUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (suu *SystemUpdateUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, suu.sqlSave, suu.mutation, suu.hooks)
+func (_u *SystemUpdateUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (suu *SystemUpdateUpdate) SaveX(ctx context.Context) int {
-	affected, err := suu.Save(ctx)
+func (_u *SystemUpdateUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -123,57 +123,57 @@ func (suu *SystemUpdateUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (suu *SystemUpdateUpdate) Exec(ctx context.Context) error {
-	_, err := suu.Save(ctx)
+func (_u *SystemUpdateUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suu *SystemUpdateUpdate) ExecX(ctx context.Context) {
-	if err := suu.Exec(ctx); err != nil {
+func (_u *SystemUpdateUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (suu *SystemUpdateUpdate) check() error {
-	if suu.mutation.OwnerCleared() && len(suu.mutation.OwnerIDs()) > 0 {
+func (_u *SystemUpdateUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "SystemUpdate.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (suu *SystemUpdateUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SystemUpdateUpdate {
-	suu.modifiers = append(suu.modifiers, modifiers...)
-	return suu
+func (_u *SystemUpdateUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SystemUpdateUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (suu *SystemUpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := suu.check(); err != nil {
-		return n, err
+func (_u *SystemUpdateUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(systemupdate.Table, systemupdate.Columns, sqlgraph.NewFieldSpec(systemupdate.FieldID, field.TypeInt))
-	if ps := suu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := suu.mutation.SystemUpdateStatus(); ok {
+	if value, ok := _u.mutation.SystemUpdateStatus(); ok {
 		_spec.SetField(systemupdate.FieldSystemUpdateStatus, field.TypeString, value)
 	}
-	if value, ok := suu.mutation.LastInstall(); ok {
+	if value, ok := _u.mutation.LastInstall(); ok {
 		_spec.SetField(systemupdate.FieldLastInstall, field.TypeTime, value)
 	}
-	if value, ok := suu.mutation.LastSearch(); ok {
+	if value, ok := _u.mutation.LastSearch(); ok {
 		_spec.SetField(systemupdate.FieldLastSearch, field.TypeTime, value)
 	}
-	if value, ok := suu.mutation.PendingUpdates(); ok {
+	if value, ok := _u.mutation.PendingUpdates(); ok {
 		_spec.SetField(systemupdate.FieldPendingUpdates, field.TypeBool, value)
 	}
-	if suu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -186,7 +186,7 @@ func (suu *SystemUpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -202,8 +202,8 @@ func (suu *SystemUpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(suu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, suu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{systemupdate.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -211,8 +211,8 @@ func (suu *SystemUpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	suu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // SystemUpdateUpdateOne is the builder for updating a single SystemUpdate entity.
@@ -225,104 +225,104 @@ type SystemUpdateUpdateOne struct {
 }
 
 // SetSystemUpdateStatus sets the "system_update_status" field.
-func (suuo *SystemUpdateUpdateOne) SetSystemUpdateStatus(s string) *SystemUpdateUpdateOne {
-	suuo.mutation.SetSystemUpdateStatus(s)
-	return suuo
+func (_u *SystemUpdateUpdateOne) SetSystemUpdateStatus(v string) *SystemUpdateUpdateOne {
+	_u.mutation.SetSystemUpdateStatus(v)
+	return _u
 }
 
 // SetNillableSystemUpdateStatus sets the "system_update_status" field if the given value is not nil.
-func (suuo *SystemUpdateUpdateOne) SetNillableSystemUpdateStatus(s *string) *SystemUpdateUpdateOne {
-	if s != nil {
-		suuo.SetSystemUpdateStatus(*s)
+func (_u *SystemUpdateUpdateOne) SetNillableSystemUpdateStatus(v *string) *SystemUpdateUpdateOne {
+	if v != nil {
+		_u.SetSystemUpdateStatus(*v)
 	}
-	return suuo
+	return _u
 }
 
 // SetLastInstall sets the "last_install" field.
-func (suuo *SystemUpdateUpdateOne) SetLastInstall(t time.Time) *SystemUpdateUpdateOne {
-	suuo.mutation.SetLastInstall(t)
-	return suuo
+func (_u *SystemUpdateUpdateOne) SetLastInstall(v time.Time) *SystemUpdateUpdateOne {
+	_u.mutation.SetLastInstall(v)
+	return _u
 }
 
 // SetNillableLastInstall sets the "last_install" field if the given value is not nil.
-func (suuo *SystemUpdateUpdateOne) SetNillableLastInstall(t *time.Time) *SystemUpdateUpdateOne {
-	if t != nil {
-		suuo.SetLastInstall(*t)
+func (_u *SystemUpdateUpdateOne) SetNillableLastInstall(v *time.Time) *SystemUpdateUpdateOne {
+	if v != nil {
+		_u.SetLastInstall(*v)
 	}
-	return suuo
+	return _u
 }
 
 // SetLastSearch sets the "last_search" field.
-func (suuo *SystemUpdateUpdateOne) SetLastSearch(t time.Time) *SystemUpdateUpdateOne {
-	suuo.mutation.SetLastSearch(t)
-	return suuo
+func (_u *SystemUpdateUpdateOne) SetLastSearch(v time.Time) *SystemUpdateUpdateOne {
+	_u.mutation.SetLastSearch(v)
+	return _u
 }
 
 // SetNillableLastSearch sets the "last_search" field if the given value is not nil.
-func (suuo *SystemUpdateUpdateOne) SetNillableLastSearch(t *time.Time) *SystemUpdateUpdateOne {
-	if t != nil {
-		suuo.SetLastSearch(*t)
+func (_u *SystemUpdateUpdateOne) SetNillableLastSearch(v *time.Time) *SystemUpdateUpdateOne {
+	if v != nil {
+		_u.SetLastSearch(*v)
 	}
-	return suuo
+	return _u
 }
 
 // SetPendingUpdates sets the "pending_updates" field.
-func (suuo *SystemUpdateUpdateOne) SetPendingUpdates(b bool) *SystemUpdateUpdateOne {
-	suuo.mutation.SetPendingUpdates(b)
-	return suuo
+func (_u *SystemUpdateUpdateOne) SetPendingUpdates(v bool) *SystemUpdateUpdateOne {
+	_u.mutation.SetPendingUpdates(v)
+	return _u
 }
 
 // SetNillablePendingUpdates sets the "pending_updates" field if the given value is not nil.
-func (suuo *SystemUpdateUpdateOne) SetNillablePendingUpdates(b *bool) *SystemUpdateUpdateOne {
-	if b != nil {
-		suuo.SetPendingUpdates(*b)
+func (_u *SystemUpdateUpdateOne) SetNillablePendingUpdates(v *bool) *SystemUpdateUpdateOne {
+	if v != nil {
+		_u.SetPendingUpdates(*v)
 	}
-	return suuo
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (suuo *SystemUpdateUpdateOne) SetOwnerID(id string) *SystemUpdateUpdateOne {
-	suuo.mutation.SetOwnerID(id)
-	return suuo
+func (_u *SystemUpdateUpdateOne) SetOwnerID(id string) *SystemUpdateUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (suuo *SystemUpdateUpdateOne) SetOwner(a *Agent) *SystemUpdateUpdateOne {
-	return suuo.SetOwnerID(a.ID)
+func (_u *SystemUpdateUpdateOne) SetOwner(v *Agent) *SystemUpdateUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the SystemUpdateMutation object of the builder.
-func (suuo *SystemUpdateUpdateOne) Mutation() *SystemUpdateMutation {
-	return suuo.mutation
+func (_u *SystemUpdateUpdateOne) Mutation() *SystemUpdateMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (suuo *SystemUpdateUpdateOne) ClearOwner() *SystemUpdateUpdateOne {
-	suuo.mutation.ClearOwner()
-	return suuo
+func (_u *SystemUpdateUpdateOne) ClearOwner() *SystemUpdateUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the SystemUpdateUpdate builder.
-func (suuo *SystemUpdateUpdateOne) Where(ps ...predicate.SystemUpdate) *SystemUpdateUpdateOne {
-	suuo.mutation.Where(ps...)
-	return suuo
+func (_u *SystemUpdateUpdateOne) Where(ps ...predicate.SystemUpdate) *SystemUpdateUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (suuo *SystemUpdateUpdateOne) Select(field string, fields ...string) *SystemUpdateUpdateOne {
-	suuo.fields = append([]string{field}, fields...)
-	return suuo
+func (_u *SystemUpdateUpdateOne) Select(field string, fields ...string) *SystemUpdateUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated SystemUpdate entity.
-func (suuo *SystemUpdateUpdateOne) Save(ctx context.Context) (*SystemUpdate, error) {
-	return withHooks(ctx, suuo.sqlSave, suuo.mutation, suuo.hooks)
+func (_u *SystemUpdateUpdateOne) Save(ctx context.Context) (*SystemUpdate, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (suuo *SystemUpdateUpdateOne) SaveX(ctx context.Context) *SystemUpdate {
-	node, err := suuo.Save(ctx)
+func (_u *SystemUpdateUpdateOne) SaveX(ctx context.Context) *SystemUpdate {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -330,43 +330,43 @@ func (suuo *SystemUpdateUpdateOne) SaveX(ctx context.Context) *SystemUpdate {
 }
 
 // Exec executes the query on the entity.
-func (suuo *SystemUpdateUpdateOne) Exec(ctx context.Context) error {
-	_, err := suuo.Save(ctx)
+func (_u *SystemUpdateUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suuo *SystemUpdateUpdateOne) ExecX(ctx context.Context) {
-	if err := suuo.Exec(ctx); err != nil {
+func (_u *SystemUpdateUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (suuo *SystemUpdateUpdateOne) check() error {
-	if suuo.mutation.OwnerCleared() && len(suuo.mutation.OwnerIDs()) > 0 {
+func (_u *SystemUpdateUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "SystemUpdate.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (suuo *SystemUpdateUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SystemUpdateUpdateOne {
-	suuo.modifiers = append(suuo.modifiers, modifiers...)
-	return suuo
+func (_u *SystemUpdateUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SystemUpdateUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (suuo *SystemUpdateUpdateOne) sqlSave(ctx context.Context) (_node *SystemUpdate, err error) {
-	if err := suuo.check(); err != nil {
+func (_u *SystemUpdateUpdateOne) sqlSave(ctx context.Context) (_node *SystemUpdate, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(systemupdate.Table, systemupdate.Columns, sqlgraph.NewFieldSpec(systemupdate.FieldID, field.TypeInt))
-	id, ok := suuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "SystemUpdate.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := suuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, systemupdate.FieldID)
 		for _, f := range fields {
@@ -378,26 +378,26 @@ func (suuo *SystemUpdateUpdateOne) sqlSave(ctx context.Context) (_node *SystemUp
 			}
 		}
 	}
-	if ps := suuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := suuo.mutation.SystemUpdateStatus(); ok {
+	if value, ok := _u.mutation.SystemUpdateStatus(); ok {
 		_spec.SetField(systemupdate.FieldSystemUpdateStatus, field.TypeString, value)
 	}
-	if value, ok := suuo.mutation.LastInstall(); ok {
+	if value, ok := _u.mutation.LastInstall(); ok {
 		_spec.SetField(systemupdate.FieldLastInstall, field.TypeTime, value)
 	}
-	if value, ok := suuo.mutation.LastSearch(); ok {
+	if value, ok := _u.mutation.LastSearch(); ok {
 		_spec.SetField(systemupdate.FieldLastSearch, field.TypeTime, value)
 	}
-	if value, ok := suuo.mutation.PendingUpdates(); ok {
+	if value, ok := _u.mutation.PendingUpdates(); ok {
 		_spec.SetField(systemupdate.FieldPendingUpdates, field.TypeBool, value)
 	}
-	if suuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -410,7 +410,7 @@ func (suuo *SystemUpdateUpdateOne) sqlSave(ctx context.Context) (_node *SystemUp
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -426,11 +426,11 @@ func (suuo *SystemUpdateUpdateOne) sqlSave(ctx context.Context) (_node *SystemUp
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(suuo.modifiers...)
-	_node = &SystemUpdate{config: suuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &SystemUpdate{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, suuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{systemupdate.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -438,6 +438,6 @@ func (suuo *SystemUpdateUpdateOne) sqlSave(ctx context.Context) (_node *SystemUp
 		}
 		return nil, err
 	}
-	suuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -24,115 +24,115 @@ type PhysicalDiskUpdate struct {
 }
 
 // Where appends a list predicates to the PhysicalDiskUpdate builder.
-func (pdu *PhysicalDiskUpdate) Where(ps ...predicate.PhysicalDisk) *PhysicalDiskUpdate {
-	pdu.mutation.Where(ps...)
-	return pdu
+func (_u *PhysicalDiskUpdate) Where(ps ...predicate.PhysicalDisk) *PhysicalDiskUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetDeviceID sets the "device_id" field.
-func (pdu *PhysicalDiskUpdate) SetDeviceID(s string) *PhysicalDiskUpdate {
-	pdu.mutation.SetDeviceID(s)
-	return pdu
+func (_u *PhysicalDiskUpdate) SetDeviceID(v string) *PhysicalDiskUpdate {
+	_u.mutation.SetDeviceID(v)
+	return _u
 }
 
 // SetNillableDeviceID sets the "device_id" field if the given value is not nil.
-func (pdu *PhysicalDiskUpdate) SetNillableDeviceID(s *string) *PhysicalDiskUpdate {
-	if s != nil {
-		pdu.SetDeviceID(*s)
+func (_u *PhysicalDiskUpdate) SetNillableDeviceID(v *string) *PhysicalDiskUpdate {
+	if v != nil {
+		_u.SetDeviceID(*v)
 	}
-	return pdu
+	return _u
 }
 
 // SetModel sets the "model" field.
-func (pdu *PhysicalDiskUpdate) SetModel(s string) *PhysicalDiskUpdate {
-	pdu.mutation.SetModel(s)
-	return pdu
+func (_u *PhysicalDiskUpdate) SetModel(v string) *PhysicalDiskUpdate {
+	_u.mutation.SetModel(v)
+	return _u
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (pdu *PhysicalDiskUpdate) SetNillableModel(s *string) *PhysicalDiskUpdate {
-	if s != nil {
-		pdu.SetModel(*s)
+func (_u *PhysicalDiskUpdate) SetNillableModel(v *string) *PhysicalDiskUpdate {
+	if v != nil {
+		_u.SetModel(*v)
 	}
-	return pdu
+	return _u
 }
 
 // ClearModel clears the value of the "model" field.
-func (pdu *PhysicalDiskUpdate) ClearModel() *PhysicalDiskUpdate {
-	pdu.mutation.ClearModel()
-	return pdu
+func (_u *PhysicalDiskUpdate) ClearModel() *PhysicalDiskUpdate {
+	_u.mutation.ClearModel()
+	return _u
 }
 
 // SetSerialNumber sets the "serial_number" field.
-func (pdu *PhysicalDiskUpdate) SetSerialNumber(s string) *PhysicalDiskUpdate {
-	pdu.mutation.SetSerialNumber(s)
-	return pdu
+func (_u *PhysicalDiskUpdate) SetSerialNumber(v string) *PhysicalDiskUpdate {
+	_u.mutation.SetSerialNumber(v)
+	return _u
 }
 
 // SetNillableSerialNumber sets the "serial_number" field if the given value is not nil.
-func (pdu *PhysicalDiskUpdate) SetNillableSerialNumber(s *string) *PhysicalDiskUpdate {
-	if s != nil {
-		pdu.SetSerialNumber(*s)
+func (_u *PhysicalDiskUpdate) SetNillableSerialNumber(v *string) *PhysicalDiskUpdate {
+	if v != nil {
+		_u.SetSerialNumber(*v)
 	}
-	return pdu
+	return _u
 }
 
 // ClearSerialNumber clears the value of the "serial_number" field.
-func (pdu *PhysicalDiskUpdate) ClearSerialNumber() *PhysicalDiskUpdate {
-	pdu.mutation.ClearSerialNumber()
-	return pdu
+func (_u *PhysicalDiskUpdate) ClearSerialNumber() *PhysicalDiskUpdate {
+	_u.mutation.ClearSerialNumber()
+	return _u
 }
 
 // SetSizeInUnits sets the "size_in_units" field.
-func (pdu *PhysicalDiskUpdate) SetSizeInUnits(s string) *PhysicalDiskUpdate {
-	pdu.mutation.SetSizeInUnits(s)
-	return pdu
+func (_u *PhysicalDiskUpdate) SetSizeInUnits(v string) *PhysicalDiskUpdate {
+	_u.mutation.SetSizeInUnits(v)
+	return _u
 }
 
 // SetNillableSizeInUnits sets the "size_in_units" field if the given value is not nil.
-func (pdu *PhysicalDiskUpdate) SetNillableSizeInUnits(s *string) *PhysicalDiskUpdate {
-	if s != nil {
-		pdu.SetSizeInUnits(*s)
+func (_u *PhysicalDiskUpdate) SetNillableSizeInUnits(v *string) *PhysicalDiskUpdate {
+	if v != nil {
+		_u.SetSizeInUnits(*v)
 	}
-	return pdu
+	return _u
 }
 
 // ClearSizeInUnits clears the value of the "size_in_units" field.
-func (pdu *PhysicalDiskUpdate) ClearSizeInUnits() *PhysicalDiskUpdate {
-	pdu.mutation.ClearSizeInUnits()
-	return pdu
+func (_u *PhysicalDiskUpdate) ClearSizeInUnits() *PhysicalDiskUpdate {
+	_u.mutation.ClearSizeInUnits()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (pdu *PhysicalDiskUpdate) SetOwnerID(id string) *PhysicalDiskUpdate {
-	pdu.mutation.SetOwnerID(id)
-	return pdu
+func (_u *PhysicalDiskUpdate) SetOwnerID(id string) *PhysicalDiskUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (pdu *PhysicalDiskUpdate) SetOwner(a *Agent) *PhysicalDiskUpdate {
-	return pdu.SetOwnerID(a.ID)
+func (_u *PhysicalDiskUpdate) SetOwner(v *Agent) *PhysicalDiskUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the PhysicalDiskMutation object of the builder.
-func (pdu *PhysicalDiskUpdate) Mutation() *PhysicalDiskMutation {
-	return pdu.mutation
+func (_u *PhysicalDiskUpdate) Mutation() *PhysicalDiskMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (pdu *PhysicalDiskUpdate) ClearOwner() *PhysicalDiskUpdate {
-	pdu.mutation.ClearOwner()
-	return pdu
+func (_u *PhysicalDiskUpdate) ClearOwner() *PhysicalDiskUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (pdu *PhysicalDiskUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, pdu.sqlSave, pdu.mutation, pdu.hooks)
+func (_u *PhysicalDiskUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (pdu *PhysicalDiskUpdate) SaveX(ctx context.Context) int {
-	affected, err := pdu.Save(ctx)
+func (_u *PhysicalDiskUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -140,66 +140,66 @@ func (pdu *PhysicalDiskUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (pdu *PhysicalDiskUpdate) Exec(ctx context.Context) error {
-	_, err := pdu.Save(ctx)
+func (_u *PhysicalDiskUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pdu *PhysicalDiskUpdate) ExecX(ctx context.Context) {
-	if err := pdu.Exec(ctx); err != nil {
+func (_u *PhysicalDiskUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (pdu *PhysicalDiskUpdate) check() error {
-	if pdu.mutation.OwnerCleared() && len(pdu.mutation.OwnerIDs()) > 0 {
+func (_u *PhysicalDiskUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "PhysicalDisk.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (pdu *PhysicalDiskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PhysicalDiskUpdate {
-	pdu.modifiers = append(pdu.modifiers, modifiers...)
-	return pdu
+func (_u *PhysicalDiskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PhysicalDiskUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (pdu *PhysicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := pdu.check(); err != nil {
-		return n, err
+func (_u *PhysicalDiskUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(physicaldisk.Table, physicaldisk.Columns, sqlgraph.NewFieldSpec(physicaldisk.FieldID, field.TypeInt))
-	if ps := pdu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := pdu.mutation.DeviceID(); ok {
+	if value, ok := _u.mutation.DeviceID(); ok {
 		_spec.SetField(physicaldisk.FieldDeviceID, field.TypeString, value)
 	}
-	if value, ok := pdu.mutation.Model(); ok {
+	if value, ok := _u.mutation.Model(); ok {
 		_spec.SetField(physicaldisk.FieldModel, field.TypeString, value)
 	}
-	if pdu.mutation.ModelCleared() {
+	if _u.mutation.ModelCleared() {
 		_spec.ClearField(physicaldisk.FieldModel, field.TypeString)
 	}
-	if value, ok := pdu.mutation.SerialNumber(); ok {
+	if value, ok := _u.mutation.SerialNumber(); ok {
 		_spec.SetField(physicaldisk.FieldSerialNumber, field.TypeString, value)
 	}
-	if pdu.mutation.SerialNumberCleared() {
+	if _u.mutation.SerialNumberCleared() {
 		_spec.ClearField(physicaldisk.FieldSerialNumber, field.TypeString)
 	}
-	if value, ok := pdu.mutation.SizeInUnits(); ok {
+	if value, ok := _u.mutation.SizeInUnits(); ok {
 		_spec.SetField(physicaldisk.FieldSizeInUnits, field.TypeString, value)
 	}
-	if pdu.mutation.SizeInUnitsCleared() {
+	if _u.mutation.SizeInUnitsCleared() {
 		_spec.ClearField(physicaldisk.FieldSizeInUnits, field.TypeString)
 	}
-	if pdu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -212,7 +212,7 @@ func (pdu *PhysicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := pdu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -228,8 +228,8 @@ func (pdu *PhysicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(pdu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, pdu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{physicaldisk.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -237,8 +237,8 @@ func (pdu *PhysicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	pdu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // PhysicalDiskUpdateOne is the builder for updating a single PhysicalDisk entity.
@@ -251,122 +251,122 @@ type PhysicalDiskUpdateOne struct {
 }
 
 // SetDeviceID sets the "device_id" field.
-func (pduo *PhysicalDiskUpdateOne) SetDeviceID(s string) *PhysicalDiskUpdateOne {
-	pduo.mutation.SetDeviceID(s)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) SetDeviceID(v string) *PhysicalDiskUpdateOne {
+	_u.mutation.SetDeviceID(v)
+	return _u
 }
 
 // SetNillableDeviceID sets the "device_id" field if the given value is not nil.
-func (pduo *PhysicalDiskUpdateOne) SetNillableDeviceID(s *string) *PhysicalDiskUpdateOne {
-	if s != nil {
-		pduo.SetDeviceID(*s)
+func (_u *PhysicalDiskUpdateOne) SetNillableDeviceID(v *string) *PhysicalDiskUpdateOne {
+	if v != nil {
+		_u.SetDeviceID(*v)
 	}
-	return pduo
+	return _u
 }
 
 // SetModel sets the "model" field.
-func (pduo *PhysicalDiskUpdateOne) SetModel(s string) *PhysicalDiskUpdateOne {
-	pduo.mutation.SetModel(s)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) SetModel(v string) *PhysicalDiskUpdateOne {
+	_u.mutation.SetModel(v)
+	return _u
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (pduo *PhysicalDiskUpdateOne) SetNillableModel(s *string) *PhysicalDiskUpdateOne {
-	if s != nil {
-		pduo.SetModel(*s)
+func (_u *PhysicalDiskUpdateOne) SetNillableModel(v *string) *PhysicalDiskUpdateOne {
+	if v != nil {
+		_u.SetModel(*v)
 	}
-	return pduo
+	return _u
 }
 
 // ClearModel clears the value of the "model" field.
-func (pduo *PhysicalDiskUpdateOne) ClearModel() *PhysicalDiskUpdateOne {
-	pduo.mutation.ClearModel()
-	return pduo
+func (_u *PhysicalDiskUpdateOne) ClearModel() *PhysicalDiskUpdateOne {
+	_u.mutation.ClearModel()
+	return _u
 }
 
 // SetSerialNumber sets the "serial_number" field.
-func (pduo *PhysicalDiskUpdateOne) SetSerialNumber(s string) *PhysicalDiskUpdateOne {
-	pduo.mutation.SetSerialNumber(s)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) SetSerialNumber(v string) *PhysicalDiskUpdateOne {
+	_u.mutation.SetSerialNumber(v)
+	return _u
 }
 
 // SetNillableSerialNumber sets the "serial_number" field if the given value is not nil.
-func (pduo *PhysicalDiskUpdateOne) SetNillableSerialNumber(s *string) *PhysicalDiskUpdateOne {
-	if s != nil {
-		pduo.SetSerialNumber(*s)
+func (_u *PhysicalDiskUpdateOne) SetNillableSerialNumber(v *string) *PhysicalDiskUpdateOne {
+	if v != nil {
+		_u.SetSerialNumber(*v)
 	}
-	return pduo
+	return _u
 }
 
 // ClearSerialNumber clears the value of the "serial_number" field.
-func (pduo *PhysicalDiskUpdateOne) ClearSerialNumber() *PhysicalDiskUpdateOne {
-	pduo.mutation.ClearSerialNumber()
-	return pduo
+func (_u *PhysicalDiskUpdateOne) ClearSerialNumber() *PhysicalDiskUpdateOne {
+	_u.mutation.ClearSerialNumber()
+	return _u
 }
 
 // SetSizeInUnits sets the "size_in_units" field.
-func (pduo *PhysicalDiskUpdateOne) SetSizeInUnits(s string) *PhysicalDiskUpdateOne {
-	pduo.mutation.SetSizeInUnits(s)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) SetSizeInUnits(v string) *PhysicalDiskUpdateOne {
+	_u.mutation.SetSizeInUnits(v)
+	return _u
 }
 
 // SetNillableSizeInUnits sets the "size_in_units" field if the given value is not nil.
-func (pduo *PhysicalDiskUpdateOne) SetNillableSizeInUnits(s *string) *PhysicalDiskUpdateOne {
-	if s != nil {
-		pduo.SetSizeInUnits(*s)
+func (_u *PhysicalDiskUpdateOne) SetNillableSizeInUnits(v *string) *PhysicalDiskUpdateOne {
+	if v != nil {
+		_u.SetSizeInUnits(*v)
 	}
-	return pduo
+	return _u
 }
 
 // ClearSizeInUnits clears the value of the "size_in_units" field.
-func (pduo *PhysicalDiskUpdateOne) ClearSizeInUnits() *PhysicalDiskUpdateOne {
-	pduo.mutation.ClearSizeInUnits()
-	return pduo
+func (_u *PhysicalDiskUpdateOne) ClearSizeInUnits() *PhysicalDiskUpdateOne {
+	_u.mutation.ClearSizeInUnits()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (pduo *PhysicalDiskUpdateOne) SetOwnerID(id string) *PhysicalDiskUpdateOne {
-	pduo.mutation.SetOwnerID(id)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) SetOwnerID(id string) *PhysicalDiskUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (pduo *PhysicalDiskUpdateOne) SetOwner(a *Agent) *PhysicalDiskUpdateOne {
-	return pduo.SetOwnerID(a.ID)
+func (_u *PhysicalDiskUpdateOne) SetOwner(v *Agent) *PhysicalDiskUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the PhysicalDiskMutation object of the builder.
-func (pduo *PhysicalDiskUpdateOne) Mutation() *PhysicalDiskMutation {
-	return pduo.mutation
+func (_u *PhysicalDiskUpdateOne) Mutation() *PhysicalDiskMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (pduo *PhysicalDiskUpdateOne) ClearOwner() *PhysicalDiskUpdateOne {
-	pduo.mutation.ClearOwner()
-	return pduo
+func (_u *PhysicalDiskUpdateOne) ClearOwner() *PhysicalDiskUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the PhysicalDiskUpdate builder.
-func (pduo *PhysicalDiskUpdateOne) Where(ps ...predicate.PhysicalDisk) *PhysicalDiskUpdateOne {
-	pduo.mutation.Where(ps...)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) Where(ps ...predicate.PhysicalDisk) *PhysicalDiskUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (pduo *PhysicalDiskUpdateOne) Select(field string, fields ...string) *PhysicalDiskUpdateOne {
-	pduo.fields = append([]string{field}, fields...)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) Select(field string, fields ...string) *PhysicalDiskUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated PhysicalDisk entity.
-func (pduo *PhysicalDiskUpdateOne) Save(ctx context.Context) (*PhysicalDisk, error) {
-	return withHooks(ctx, pduo.sqlSave, pduo.mutation, pduo.hooks)
+func (_u *PhysicalDiskUpdateOne) Save(ctx context.Context) (*PhysicalDisk, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (pduo *PhysicalDiskUpdateOne) SaveX(ctx context.Context) *PhysicalDisk {
-	node, err := pduo.Save(ctx)
+func (_u *PhysicalDiskUpdateOne) SaveX(ctx context.Context) *PhysicalDisk {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -374,43 +374,43 @@ func (pduo *PhysicalDiskUpdateOne) SaveX(ctx context.Context) *PhysicalDisk {
 }
 
 // Exec executes the query on the entity.
-func (pduo *PhysicalDiskUpdateOne) Exec(ctx context.Context) error {
-	_, err := pduo.Save(ctx)
+func (_u *PhysicalDiskUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pduo *PhysicalDiskUpdateOne) ExecX(ctx context.Context) {
-	if err := pduo.Exec(ctx); err != nil {
+func (_u *PhysicalDiskUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (pduo *PhysicalDiskUpdateOne) check() error {
-	if pduo.mutation.OwnerCleared() && len(pduo.mutation.OwnerIDs()) > 0 {
+func (_u *PhysicalDiskUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "PhysicalDisk.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (pduo *PhysicalDiskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PhysicalDiskUpdateOne {
-	pduo.modifiers = append(pduo.modifiers, modifiers...)
-	return pduo
+func (_u *PhysicalDiskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *PhysicalDiskUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (pduo *PhysicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *PhysicalDisk, err error) {
-	if err := pduo.check(); err != nil {
+func (_u *PhysicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *PhysicalDisk, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(physicaldisk.Table, physicaldisk.Columns, sqlgraph.NewFieldSpec(physicaldisk.FieldID, field.TypeInt))
-	id, ok := pduo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "PhysicalDisk.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := pduo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, physicaldisk.FieldID)
 		for _, f := range fields {
@@ -422,35 +422,35 @@ func (pduo *PhysicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *Physical
 			}
 		}
 	}
-	if ps := pduo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := pduo.mutation.DeviceID(); ok {
+	if value, ok := _u.mutation.DeviceID(); ok {
 		_spec.SetField(physicaldisk.FieldDeviceID, field.TypeString, value)
 	}
-	if value, ok := pduo.mutation.Model(); ok {
+	if value, ok := _u.mutation.Model(); ok {
 		_spec.SetField(physicaldisk.FieldModel, field.TypeString, value)
 	}
-	if pduo.mutation.ModelCleared() {
+	if _u.mutation.ModelCleared() {
 		_spec.ClearField(physicaldisk.FieldModel, field.TypeString)
 	}
-	if value, ok := pduo.mutation.SerialNumber(); ok {
+	if value, ok := _u.mutation.SerialNumber(); ok {
 		_spec.SetField(physicaldisk.FieldSerialNumber, field.TypeString, value)
 	}
-	if pduo.mutation.SerialNumberCleared() {
+	if _u.mutation.SerialNumberCleared() {
 		_spec.ClearField(physicaldisk.FieldSerialNumber, field.TypeString)
 	}
-	if value, ok := pduo.mutation.SizeInUnits(); ok {
+	if value, ok := _u.mutation.SizeInUnits(); ok {
 		_spec.SetField(physicaldisk.FieldSizeInUnits, field.TypeString, value)
 	}
-	if pduo.mutation.SizeInUnitsCleared() {
+	if _u.mutation.SizeInUnitsCleared() {
 		_spec.ClearField(physicaldisk.FieldSizeInUnits, field.TypeString)
 	}
-	if pduo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -463,7 +463,7 @@ func (pduo *PhysicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *Physical
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := pduo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -479,11 +479,11 @@ func (pduo *PhysicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *Physical
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(pduo.modifiers...)
-	_node = &PhysicalDisk{config: pduo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &PhysicalDisk{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, pduo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{physicaldisk.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -491,6 +491,6 @@ func (pduo *PhysicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *Physical
 		}
 		return nil, err
 	}
-	pduo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

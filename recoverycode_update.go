@@ -24,77 +24,77 @@ type RecoveryCodeUpdate struct {
 }
 
 // Where appends a list predicates to the RecoveryCodeUpdate builder.
-func (rcu *RecoveryCodeUpdate) Where(ps ...predicate.RecoveryCode) *RecoveryCodeUpdate {
-	rcu.mutation.Where(ps...)
-	return rcu
+func (_u *RecoveryCodeUpdate) Where(ps ...predicate.RecoveryCode) *RecoveryCodeUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetCode sets the "code" field.
-func (rcu *RecoveryCodeUpdate) SetCode(s string) *RecoveryCodeUpdate {
-	rcu.mutation.SetCode(s)
-	return rcu
+func (_u *RecoveryCodeUpdate) SetCode(v string) *RecoveryCodeUpdate {
+	_u.mutation.SetCode(v)
+	return _u
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableCode(s *string) *RecoveryCodeUpdate {
-	if s != nil {
-		rcu.SetCode(*s)
+func (_u *RecoveryCodeUpdate) SetNillableCode(v *string) *RecoveryCodeUpdate {
+	if v != nil {
+		_u.SetCode(*v)
 	}
-	return rcu
+	return _u
 }
 
 // SetUsed sets the "used" field.
-func (rcu *RecoveryCodeUpdate) SetUsed(b bool) *RecoveryCodeUpdate {
-	rcu.mutation.SetUsed(b)
-	return rcu
+func (_u *RecoveryCodeUpdate) SetUsed(v bool) *RecoveryCodeUpdate {
+	_u.mutation.SetUsed(v)
+	return _u
 }
 
 // SetNillableUsed sets the "used" field if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUsed(b *bool) *RecoveryCodeUpdate {
-	if b != nil {
-		rcu.SetUsed(*b)
+func (_u *RecoveryCodeUpdate) SetNillableUsed(v *bool) *RecoveryCodeUpdate {
+	if v != nil {
+		_u.SetUsed(*v)
 	}
-	return rcu
+	return _u
 }
 
 // SetUserID sets the "user" edge to the User entity by ID.
-func (rcu *RecoveryCodeUpdate) SetUserID(id string) *RecoveryCodeUpdate {
-	rcu.mutation.SetUserID(id)
-	return rcu
+func (_u *RecoveryCodeUpdate) SetUserID(id string) *RecoveryCodeUpdate {
+	_u.mutation.SetUserID(id)
+	return _u
 }
 
 // SetNillableUserID sets the "user" edge to the User entity by ID if the given value is not nil.
-func (rcu *RecoveryCodeUpdate) SetNillableUserID(id *string) *RecoveryCodeUpdate {
+func (_u *RecoveryCodeUpdate) SetNillableUserID(id *string) *RecoveryCodeUpdate {
 	if id != nil {
-		rcu = rcu.SetUserID(*id)
+		_u = _u.SetUserID(*id)
 	}
-	return rcu
+	return _u
 }
 
 // SetUser sets the "user" edge to the User entity.
-func (rcu *RecoveryCodeUpdate) SetUser(u *User) *RecoveryCodeUpdate {
-	return rcu.SetUserID(u.ID)
+func (_u *RecoveryCodeUpdate) SetUser(v *User) *RecoveryCodeUpdate {
+	return _u.SetUserID(v.ID)
 }
 
 // Mutation returns the RecoveryCodeMutation object of the builder.
-func (rcu *RecoveryCodeUpdate) Mutation() *RecoveryCodeMutation {
-	return rcu.mutation
+func (_u *RecoveryCodeUpdate) Mutation() *RecoveryCodeMutation {
+	return _u.mutation
 }
 
 // ClearUser clears the "user" edge to the User entity.
-func (rcu *RecoveryCodeUpdate) ClearUser() *RecoveryCodeUpdate {
-	rcu.mutation.ClearUser()
-	return rcu
+func (_u *RecoveryCodeUpdate) ClearUser() *RecoveryCodeUpdate {
+	_u.mutation.ClearUser()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (rcu *RecoveryCodeUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, rcu.sqlSave, rcu.mutation, rcu.hooks)
+func (_u *RecoveryCodeUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcu *RecoveryCodeUpdate) SaveX(ctx context.Context) int {
-	affected, err := rcu.Save(ctx)
+func (_u *RecoveryCodeUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -102,21 +102,21 @@ func (rcu *RecoveryCodeUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (rcu *RecoveryCodeUpdate) Exec(ctx context.Context) error {
-	_, err := rcu.Save(ctx)
+func (_u *RecoveryCodeUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcu *RecoveryCodeUpdate) ExecX(ctx context.Context) {
-	if err := rcu.Exec(ctx); err != nil {
+func (_u *RecoveryCodeUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rcu *RecoveryCodeUpdate) check() error {
-	if v, ok := rcu.mutation.Code(); ok {
+func (_u *RecoveryCodeUpdate) check() error {
+	if v, ok := _u.mutation.Code(); ok {
 		if err := recoverycode.CodeValidator(v); err != nil {
 			return &ValidationError{Name: "code", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code": %w`, err)}
 		}
@@ -125,30 +125,30 @@ func (rcu *RecoveryCodeUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (rcu *RecoveryCodeUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RecoveryCodeUpdate {
-	rcu.modifiers = append(rcu.modifiers, modifiers...)
-	return rcu
+func (_u *RecoveryCodeUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RecoveryCodeUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (rcu *RecoveryCodeUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := rcu.check(); err != nil {
-		return n, err
+func (_u *RecoveryCodeUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(recoverycode.Table, recoverycode.Columns, sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt))
-	if ps := rcu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := rcu.mutation.Code(); ok {
+	if value, ok := _u.mutation.Code(); ok {
 		_spec.SetField(recoverycode.FieldCode, field.TypeString, value)
 	}
-	if value, ok := rcu.mutation.Used(); ok {
+	if value, ok := _u.mutation.Used(); ok {
 		_spec.SetField(recoverycode.FieldUsed, field.TypeBool, value)
 	}
-	if rcu.mutation.UserCleared() {
+	if _u.mutation.UserCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -161,7 +161,7 @@ func (rcu *RecoveryCodeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := rcu.mutation.UserIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.UserIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -177,8 +177,8 @@ func (rcu *RecoveryCodeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(rcu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, rcu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{recoverycode.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -186,8 +186,8 @@ func (rcu *RecoveryCodeUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	rcu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // RecoveryCodeUpdateOne is the builder for updating a single RecoveryCode entity.
@@ -200,84 +200,84 @@ type RecoveryCodeUpdateOne struct {
 }
 
 // SetCode sets the "code" field.
-func (rcuo *RecoveryCodeUpdateOne) SetCode(s string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetCode(s)
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) SetCode(v string) *RecoveryCodeUpdateOne {
+	_u.mutation.SetCode(v)
+	return _u
 }
 
 // SetNillableCode sets the "code" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableCode(s *string) *RecoveryCodeUpdateOne {
-	if s != nil {
-		rcuo.SetCode(*s)
+func (_u *RecoveryCodeUpdateOne) SetNillableCode(v *string) *RecoveryCodeUpdateOne {
+	if v != nil {
+		_u.SetCode(*v)
 	}
-	return rcuo
+	return _u
 }
 
 // SetUsed sets the "used" field.
-func (rcuo *RecoveryCodeUpdateOne) SetUsed(b bool) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUsed(b)
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) SetUsed(v bool) *RecoveryCodeUpdateOne {
+	_u.mutation.SetUsed(v)
+	return _u
 }
 
 // SetNillableUsed sets the "used" field if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUsed(b *bool) *RecoveryCodeUpdateOne {
-	if b != nil {
-		rcuo.SetUsed(*b)
+func (_u *RecoveryCodeUpdateOne) SetNillableUsed(v *bool) *RecoveryCodeUpdateOne {
+	if v != nil {
+		_u.SetUsed(*v)
 	}
-	return rcuo
+	return _u
 }
 
 // SetUserID sets the "user" edge to the User entity by ID.
-func (rcuo *RecoveryCodeUpdateOne) SetUserID(id string) *RecoveryCodeUpdateOne {
-	rcuo.mutation.SetUserID(id)
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) SetUserID(id string) *RecoveryCodeUpdateOne {
+	_u.mutation.SetUserID(id)
+	return _u
 }
 
 // SetNillableUserID sets the "user" edge to the User entity by ID if the given value is not nil.
-func (rcuo *RecoveryCodeUpdateOne) SetNillableUserID(id *string) *RecoveryCodeUpdateOne {
+func (_u *RecoveryCodeUpdateOne) SetNillableUserID(id *string) *RecoveryCodeUpdateOne {
 	if id != nil {
-		rcuo = rcuo.SetUserID(*id)
+		_u = _u.SetUserID(*id)
 	}
-	return rcuo
+	return _u
 }
 
 // SetUser sets the "user" edge to the User entity.
-func (rcuo *RecoveryCodeUpdateOne) SetUser(u *User) *RecoveryCodeUpdateOne {
-	return rcuo.SetUserID(u.ID)
+func (_u *RecoveryCodeUpdateOne) SetUser(v *User) *RecoveryCodeUpdateOne {
+	return _u.SetUserID(v.ID)
 }
 
 // Mutation returns the RecoveryCodeMutation object of the builder.
-func (rcuo *RecoveryCodeUpdateOne) Mutation() *RecoveryCodeMutation {
-	return rcuo.mutation
+func (_u *RecoveryCodeUpdateOne) Mutation() *RecoveryCodeMutation {
+	return _u.mutation
 }
 
 // ClearUser clears the "user" edge to the User entity.
-func (rcuo *RecoveryCodeUpdateOne) ClearUser() *RecoveryCodeUpdateOne {
-	rcuo.mutation.ClearUser()
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) ClearUser() *RecoveryCodeUpdateOne {
+	_u.mutation.ClearUser()
+	return _u
 }
 
 // Where appends a list predicates to the RecoveryCodeUpdate builder.
-func (rcuo *RecoveryCodeUpdateOne) Where(ps ...predicate.RecoveryCode) *RecoveryCodeUpdateOne {
-	rcuo.mutation.Where(ps...)
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) Where(ps ...predicate.RecoveryCode) *RecoveryCodeUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (rcuo *RecoveryCodeUpdateOne) Select(field string, fields ...string) *RecoveryCodeUpdateOne {
-	rcuo.fields = append([]string{field}, fields...)
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) Select(field string, fields ...string) *RecoveryCodeUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated RecoveryCode entity.
-func (rcuo *RecoveryCodeUpdateOne) Save(ctx context.Context) (*RecoveryCode, error) {
-	return withHooks(ctx, rcuo.sqlSave, rcuo.mutation, rcuo.hooks)
+func (_u *RecoveryCodeUpdateOne) Save(ctx context.Context) (*RecoveryCode, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcuo *RecoveryCodeUpdateOne) SaveX(ctx context.Context) *RecoveryCode {
-	node, err := rcuo.Save(ctx)
+func (_u *RecoveryCodeUpdateOne) SaveX(ctx context.Context) *RecoveryCode {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -285,21 +285,21 @@ func (rcuo *RecoveryCodeUpdateOne) SaveX(ctx context.Context) *RecoveryCode {
 }
 
 // Exec executes the query on the entity.
-func (rcuo *RecoveryCodeUpdateOne) Exec(ctx context.Context) error {
-	_, err := rcuo.Save(ctx)
+func (_u *RecoveryCodeUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcuo *RecoveryCodeUpdateOne) ExecX(ctx context.Context) {
-	if err := rcuo.Exec(ctx); err != nil {
+func (_u *RecoveryCodeUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rcuo *RecoveryCodeUpdateOne) check() error {
-	if v, ok := rcuo.mutation.Code(); ok {
+func (_u *RecoveryCodeUpdateOne) check() error {
+	if v, ok := _u.mutation.Code(); ok {
 		if err := recoverycode.CodeValidator(v); err != nil {
 			return &ValidationError{Name: "code", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code": %w`, err)}
 		}
@@ -308,22 +308,22 @@ func (rcuo *RecoveryCodeUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (rcuo *RecoveryCodeUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RecoveryCodeUpdateOne {
-	rcuo.modifiers = append(rcuo.modifiers, modifiers...)
-	return rcuo
+func (_u *RecoveryCodeUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *RecoveryCodeUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (rcuo *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *RecoveryCode, err error) {
-	if err := rcuo.check(); err != nil {
+func (_u *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *RecoveryCode, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(recoverycode.Table, recoverycode.Columns, sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt))
-	id, ok := rcuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "RecoveryCode.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := rcuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, recoverycode.FieldID)
 		for _, f := range fields {
@@ -335,20 +335,20 @@ func (rcuo *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *Recovery
 			}
 		}
 	}
-	if ps := rcuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := rcuo.mutation.Code(); ok {
+	if value, ok := _u.mutation.Code(); ok {
 		_spec.SetField(recoverycode.FieldCode, field.TypeString, value)
 	}
-	if value, ok := rcuo.mutation.Used(); ok {
+	if value, ok := _u.mutation.Used(); ok {
 		_spec.SetField(recoverycode.FieldUsed, field.TypeBool, value)
 	}
-	if rcuo.mutation.UserCleared() {
+	if _u.mutation.UserCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -361,7 +361,7 @@ func (rcuo *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *Recovery
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := rcuo.mutation.UserIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.UserIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -377,11 +377,11 @@ func (rcuo *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *Recovery
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(rcuo.modifiers...)
-	_node = &RecoveryCode{config: rcuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &RecoveryCode{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, rcuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{recoverycode.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -389,6 +389,6 @@ func (rcuo *RecoveryCodeUpdateOne) sqlSave(ctx context.Context) (_node *Recovery
 		}
 		return nil, err
 	}
-	rcuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

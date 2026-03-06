@@ -32,44 +32,44 @@ type NetworkAdapterQuery struct {
 }
 
 // Where adds a new predicate for the NetworkAdapterQuery builder.
-func (naq *NetworkAdapterQuery) Where(ps ...predicate.NetworkAdapter) *NetworkAdapterQuery {
-	naq.predicates = append(naq.predicates, ps...)
-	return naq
+func (_q *NetworkAdapterQuery) Where(ps ...predicate.NetworkAdapter) *NetworkAdapterQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (naq *NetworkAdapterQuery) Limit(limit int) *NetworkAdapterQuery {
-	naq.ctx.Limit = &limit
-	return naq
+func (_q *NetworkAdapterQuery) Limit(limit int) *NetworkAdapterQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (naq *NetworkAdapterQuery) Offset(offset int) *NetworkAdapterQuery {
-	naq.ctx.Offset = &offset
-	return naq
+func (_q *NetworkAdapterQuery) Offset(offset int) *NetworkAdapterQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (naq *NetworkAdapterQuery) Unique(unique bool) *NetworkAdapterQuery {
-	naq.ctx.Unique = &unique
-	return naq
+func (_q *NetworkAdapterQuery) Unique(unique bool) *NetworkAdapterQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (naq *NetworkAdapterQuery) Order(o ...networkadapter.OrderOption) *NetworkAdapterQuery {
-	naq.order = append(naq.order, o...)
-	return naq
+func (_q *NetworkAdapterQuery) Order(o ...networkadapter.OrderOption) *NetworkAdapterQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (naq *NetworkAdapterQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: naq.config}).Query()
+func (_q *NetworkAdapterQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := naq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := naq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (naq *NetworkAdapterQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, networkadapter.OwnerTable, networkadapter.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(naq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (naq *NetworkAdapterQuery) QueryOwner() *AgentQuery {
 
 // First returns the first NetworkAdapter entity from the query.
 // Returns a *NotFoundError when no NetworkAdapter was found.
-func (naq *NetworkAdapterQuery) First(ctx context.Context) (*NetworkAdapter, error) {
-	nodes, err := naq.Limit(1).All(setContextOp(ctx, naq.ctx, ent.OpQueryFirst))
+func (_q *NetworkAdapterQuery) First(ctx context.Context) (*NetworkAdapter, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (naq *NetworkAdapterQuery) First(ctx context.Context) (*NetworkAdapter, err
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) FirstX(ctx context.Context) *NetworkAdapter {
-	node, err := naq.First(ctx)
+func (_q *NetworkAdapterQuery) FirstX(ctx context.Context) *NetworkAdapter {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (naq *NetworkAdapterQuery) FirstX(ctx context.Context) *NetworkAdapter {
 
 // FirstID returns the first NetworkAdapter ID from the query.
 // Returns a *NotFoundError when no NetworkAdapter ID was found.
-func (naq *NetworkAdapterQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *NetworkAdapterQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = naq.Limit(1).IDs(setContextOp(ctx, naq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (naq *NetworkAdapterQuery) FirstID(ctx context.Context) (id int, err error)
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) FirstIDX(ctx context.Context) int {
-	id, err := naq.FirstID(ctx)
+func (_q *NetworkAdapterQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (naq *NetworkAdapterQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single NetworkAdapter entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one NetworkAdapter entity is found.
 // Returns a *NotFoundError when no NetworkAdapter entities are found.
-func (naq *NetworkAdapterQuery) Only(ctx context.Context) (*NetworkAdapter, error) {
-	nodes, err := naq.Limit(2).All(setContextOp(ctx, naq.ctx, ent.OpQueryOnly))
+func (_q *NetworkAdapterQuery) Only(ctx context.Context) (*NetworkAdapter, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (naq *NetworkAdapterQuery) Only(ctx context.Context) (*NetworkAdapter, erro
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) OnlyX(ctx context.Context) *NetworkAdapter {
-	node, err := naq.Only(ctx)
+func (_q *NetworkAdapterQuery) OnlyX(ctx context.Context) *NetworkAdapter {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (naq *NetworkAdapterQuery) OnlyX(ctx context.Context) *NetworkAdapter {
 // OnlyID is like Only, but returns the only NetworkAdapter ID in the query.
 // Returns a *NotSingularError when more than one NetworkAdapter ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (naq *NetworkAdapterQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *NetworkAdapterQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = naq.Limit(2).IDs(setContextOp(ctx, naq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (naq *NetworkAdapterQuery) OnlyID(ctx context.Context) (id int, err error) 
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) OnlyIDX(ctx context.Context) int {
-	id, err := naq.OnlyID(ctx)
+func (_q *NetworkAdapterQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (naq *NetworkAdapterQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of NetworkAdapters.
-func (naq *NetworkAdapterQuery) All(ctx context.Context) ([]*NetworkAdapter, error) {
-	ctx = setContextOp(ctx, naq.ctx, ent.OpQueryAll)
-	if err := naq.prepareQuery(ctx); err != nil {
+func (_q *NetworkAdapterQuery) All(ctx context.Context) ([]*NetworkAdapter, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*NetworkAdapter, *NetworkAdapterQuery]()
-	return withInterceptors[[]*NetworkAdapter](ctx, naq, qr, naq.inters)
+	return withInterceptors[[]*NetworkAdapter](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) AllX(ctx context.Context) []*NetworkAdapter {
-	nodes, err := naq.All(ctx)
+func (_q *NetworkAdapterQuery) AllX(ctx context.Context) []*NetworkAdapter {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (naq *NetworkAdapterQuery) AllX(ctx context.Context) []*NetworkAdapter {
 }
 
 // IDs executes the query and returns a list of NetworkAdapter IDs.
-func (naq *NetworkAdapterQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if naq.ctx.Unique == nil && naq.path != nil {
-		naq.Unique(true)
+func (_q *NetworkAdapterQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, naq.ctx, ent.OpQueryIDs)
-	if err = naq.Select(networkadapter.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(networkadapter.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) IDsX(ctx context.Context) []int {
-	ids, err := naq.IDs(ctx)
+func (_q *NetworkAdapterQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (naq *NetworkAdapterQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (naq *NetworkAdapterQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, naq.ctx, ent.OpQueryCount)
-	if err := naq.prepareQuery(ctx); err != nil {
+func (_q *NetworkAdapterQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, naq, querierCount[*NetworkAdapterQuery](), naq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*NetworkAdapterQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) CountX(ctx context.Context) int {
-	count, err := naq.Count(ctx)
+func (_q *NetworkAdapterQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (naq *NetworkAdapterQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (naq *NetworkAdapterQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, naq.ctx, ent.OpQueryExist)
-	switch _, err := naq.FirstID(ctx); {
+func (_q *NetworkAdapterQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (naq *NetworkAdapterQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (naq *NetworkAdapterQuery) ExistX(ctx context.Context) bool {
-	exist, err := naq.Exist(ctx)
+func (_q *NetworkAdapterQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (naq *NetworkAdapterQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the NetworkAdapterQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (naq *NetworkAdapterQuery) Clone() *NetworkAdapterQuery {
-	if naq == nil {
+func (_q *NetworkAdapterQuery) Clone() *NetworkAdapterQuery {
+	if _q == nil {
 		return nil
 	}
 	return &NetworkAdapterQuery{
-		config:     naq.config,
-		ctx:        naq.ctx.Clone(),
-		order:      append([]networkadapter.OrderOption{}, naq.order...),
-		inters:     append([]Interceptor{}, naq.inters...),
-		predicates: append([]predicate.NetworkAdapter{}, naq.predicates...),
-		withOwner:  naq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]networkadapter.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.NetworkAdapter{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       naq.sql.Clone(),
-		path:      naq.path,
-		modifiers: append([]func(*sql.Selector){}, naq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (naq *NetworkAdapterQuery) WithOwner(opts ...func(*AgentQuery)) *NetworkAdapterQuery {
-	query := (&AgentClient{config: naq.config}).Query()
+func (_q *NetworkAdapterQuery) WithOwner(opts ...func(*AgentQuery)) *NetworkAdapterQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	naq.withOwner = query
-	return naq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (naq *NetworkAdapterQuery) WithOwner(opts ...func(*AgentQuery)) *NetworkAda
 //		GroupBy(networkadapter.FieldName).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (naq *NetworkAdapterQuery) GroupBy(field string, fields ...string) *NetworkAdapterGroupBy {
-	naq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &NetworkAdapterGroupBy{build: naq}
-	grbuild.flds = &naq.ctx.Fields
+func (_q *NetworkAdapterQuery) GroupBy(field string, fields ...string) *NetworkAdapterGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &NetworkAdapterGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = networkadapter.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (naq *NetworkAdapterQuery) GroupBy(field string, fields ...string) *Network
 //	client.NetworkAdapter.Query().
 //		Select(networkadapter.FieldName).
 //		Scan(ctx, &v)
-func (naq *NetworkAdapterQuery) Select(fields ...string) *NetworkAdapterSelect {
-	naq.ctx.Fields = append(naq.ctx.Fields, fields...)
-	sbuild := &NetworkAdapterSelect{NetworkAdapterQuery: naq}
+func (_q *NetworkAdapterQuery) Select(fields ...string) *NetworkAdapterSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &NetworkAdapterSelect{NetworkAdapterQuery: _q}
 	sbuild.label = networkadapter.Label
-	sbuild.flds, sbuild.scan = &naq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a NetworkAdapterSelect configured with the given aggregations.
-func (naq *NetworkAdapterQuery) Aggregate(fns ...AggregateFunc) *NetworkAdapterSelect {
-	return naq.Select().Aggregate(fns...)
+func (_q *NetworkAdapterQuery) Aggregate(fns ...AggregateFunc) *NetworkAdapterSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (naq *NetworkAdapterQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range naq.inters {
+func (_q *NetworkAdapterQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, naq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range naq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !networkadapter.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if naq.path != nil {
-		prev, err := naq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		naq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (naq *NetworkAdapterQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*NetworkAdapter, error) {
+func (_q *NetworkAdapterQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*NetworkAdapter, error) {
 	var (
 		nodes       = []*NetworkAdapter{}
-		withFKs     = naq.withFKs
-		_spec       = naq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			naq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if naq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (naq *NetworkAdapterQuery) sqlAll(ctx context.Context, hooks ...queryHook) 
 		return (*NetworkAdapter).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &NetworkAdapter{config: naq.config}
+		node := &NetworkAdapter{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(naq.modifiers) > 0 {
-		_spec.Modifiers = naq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, naq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := naq.withOwner; query != nil {
-		if err := naq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *NetworkAdapter, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (naq *NetworkAdapterQuery) sqlAll(ctx context.Context, hooks ...queryHook) 
 	return nodes, nil
 }
 
-func (naq *NetworkAdapterQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*NetworkAdapter, init func(*NetworkAdapter), assign func(*NetworkAdapter, *Agent)) error {
+func (_q *NetworkAdapterQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*NetworkAdapter, init func(*NetworkAdapter), assign func(*NetworkAdapter, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*NetworkAdapter)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (naq *NetworkAdapterQuery) loadOwner(ctx context.Context, query *AgentQuery
 	return nil
 }
 
-func (naq *NetworkAdapterQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := naq.querySpec()
-	if len(naq.modifiers) > 0 {
-		_spec.Modifiers = naq.modifiers
+func (_q *NetworkAdapterQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = naq.ctx.Fields
-	if len(naq.ctx.Fields) > 0 {
-		_spec.Unique = naq.ctx.Unique != nil && *naq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, naq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (naq *NetworkAdapterQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *NetworkAdapterQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(networkadapter.Table, networkadapter.Columns, sqlgraph.NewFieldSpec(networkadapter.FieldID, field.TypeInt))
-	_spec.From = naq.sql
-	if unique := naq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if naq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := naq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, networkadapter.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (naq *NetworkAdapterQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := naq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := naq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := naq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := naq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (naq *NetworkAdapterQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (naq *NetworkAdapterQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(naq.driver.Dialect())
+func (_q *NetworkAdapterQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(networkadapter.Table)
-	columns := naq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = networkadapter.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if naq.sql != nil {
-		selector = naq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if naq.ctx.Unique != nil && *naq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range naq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range naq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range naq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := naq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := naq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (naq *NetworkAdapterQuery) Modify(modifiers ...func(s *sql.Selector)) *NetworkAdapterSelect {
-	naq.modifiers = append(naq.modifiers, modifiers...)
-	return naq.Select()
+func (_q *NetworkAdapterQuery) Modify(modifiers ...func(s *sql.Selector)) *NetworkAdapterSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // NetworkAdapterGroupBy is the group-by builder for NetworkAdapter entities.
@@ -547,41 +547,41 @@ type NetworkAdapterGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (nagb *NetworkAdapterGroupBy) Aggregate(fns ...AggregateFunc) *NetworkAdapterGroupBy {
-	nagb.fns = append(nagb.fns, fns...)
-	return nagb
+func (_g *NetworkAdapterGroupBy) Aggregate(fns ...AggregateFunc) *NetworkAdapterGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (nagb *NetworkAdapterGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, nagb.build.ctx, ent.OpQueryGroupBy)
-	if err := nagb.build.prepareQuery(ctx); err != nil {
+func (_g *NetworkAdapterGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*NetworkAdapterQuery, *NetworkAdapterGroupBy](ctx, nagb.build, nagb, nagb.build.inters, v)
+	return scanWithInterceptors[*NetworkAdapterQuery, *NetworkAdapterGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (nagb *NetworkAdapterGroupBy) sqlScan(ctx context.Context, root *NetworkAdapterQuery, v any) error {
+func (_g *NetworkAdapterGroupBy) sqlScan(ctx context.Context, root *NetworkAdapterQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(nagb.fns))
-	for _, fn := range nagb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*nagb.flds)+len(nagb.fns))
-		for _, f := range *nagb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*nagb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := nagb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type NetworkAdapterSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (nas *NetworkAdapterSelect) Aggregate(fns ...AggregateFunc) *NetworkAdapterSelect {
-	nas.fns = append(nas.fns, fns...)
-	return nas
+func (_s *NetworkAdapterSelect) Aggregate(fns ...AggregateFunc) *NetworkAdapterSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (nas *NetworkAdapterSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, nas.ctx, ent.OpQuerySelect)
-	if err := nas.prepareQuery(ctx); err != nil {
+func (_s *NetworkAdapterSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*NetworkAdapterQuery, *NetworkAdapterSelect](ctx, nas.NetworkAdapterQuery, nas, nas.inters, v)
+	return scanWithInterceptors[*NetworkAdapterQuery, *NetworkAdapterSelect](ctx, _s.NetworkAdapterQuery, _s, _s.inters, v)
 }
 
-func (nas *NetworkAdapterSelect) sqlScan(ctx context.Context, root *NetworkAdapterQuery, v any) error {
+func (_s *NetworkAdapterSelect) sqlScan(ctx context.Context, root *NetworkAdapterQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(nas.fns))
-	for _, fn := range nas.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*nas.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (nas *NetworkAdapterSelect) sqlScan(ctx context.Context, root *NetworkAdapt
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := nas.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (nas *NetworkAdapterSelect) sqlScan(ctx context.Context, root *NetworkAdapt
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (nas *NetworkAdapterSelect) Modify(modifiers ...func(s *sql.Selector)) *NetworkAdapterSelect {
-	nas.modifiers = append(nas.modifiers, modifiers...)
-	return nas
+func (_s *NetworkAdapterSelect) Modify(modifiers ...func(s *sql.Selector)) *NetworkAdapterSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

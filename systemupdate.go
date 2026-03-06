@@ -77,7 +77,7 @@ func (*SystemUpdate) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the SystemUpdate fields.
-func (su *SystemUpdate) assignValues(columns []string, values []any) error {
+func (_m *SystemUpdate) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -88,40 +88,40 @@ func (su *SystemUpdate) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			su.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case systemupdate.FieldSystemUpdateStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field system_update_status", values[i])
 			} else if value.Valid {
-				su.SystemUpdateStatus = value.String
+				_m.SystemUpdateStatus = value.String
 			}
 		case systemupdate.FieldLastInstall:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_install", values[i])
 			} else if value.Valid {
-				su.LastInstall = value.Time
+				_m.LastInstall = value.Time
 			}
 		case systemupdate.FieldLastSearch:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_search", values[i])
 			} else if value.Valid {
-				su.LastSearch = value.Time
+				_m.LastSearch = value.Time
 			}
 		case systemupdate.FieldPendingUpdates:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field pending_updates", values[i])
 			} else if value.Valid {
-				su.PendingUpdates = value.Bool
+				_m.PendingUpdates = value.Bool
 			}
 		case systemupdate.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_systemupdate", values[i])
 			} else if value.Valid {
-				su.agent_systemupdate = new(string)
-				*su.agent_systemupdate = value.String
+				_m.agent_systemupdate = new(string)
+				*_m.agent_systemupdate = value.String
 			}
 		default:
-			su.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -129,49 +129,49 @@ func (su *SystemUpdate) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the SystemUpdate.
 // This includes values selected through modifiers, order, etc.
-func (su *SystemUpdate) Value(name string) (ent.Value, error) {
-	return su.selectValues.Get(name)
+func (_m *SystemUpdate) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the SystemUpdate entity.
-func (su *SystemUpdate) QueryOwner() *AgentQuery {
-	return NewSystemUpdateClient(su.config).QueryOwner(su)
+func (_m *SystemUpdate) QueryOwner() *AgentQuery {
+	return NewSystemUpdateClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this SystemUpdate.
 // Note that you need to call SystemUpdate.Unwrap() before calling this method if this SystemUpdate
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (su *SystemUpdate) Update() *SystemUpdateUpdateOne {
-	return NewSystemUpdateClient(su.config).UpdateOne(su)
+func (_m *SystemUpdate) Update() *SystemUpdateUpdateOne {
+	return NewSystemUpdateClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the SystemUpdate entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (su *SystemUpdate) Unwrap() *SystemUpdate {
-	_tx, ok := su.config.driver.(*txDriver)
+func (_m *SystemUpdate) Unwrap() *SystemUpdate {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: SystemUpdate is not a transactional entity")
 	}
-	su.config.driver = _tx.drv
-	return su
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (su *SystemUpdate) String() string {
+func (_m *SystemUpdate) String() string {
 	var builder strings.Builder
 	builder.WriteString("SystemUpdate(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", su.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("system_update_status=")
-	builder.WriteString(su.SystemUpdateStatus)
+	builder.WriteString(_m.SystemUpdateStatus)
 	builder.WriteString(", ")
 	builder.WriteString("last_install=")
-	builder.WriteString(su.LastInstall.Format(time.ANSIC))
+	builder.WriteString(_m.LastInstall.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("last_search=")
-	builder.WriteString(su.LastSearch.Format(time.ANSIC))
+	builder.WriteString(_m.LastSearch.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("pending_updates=")
-	builder.WriteString(fmt.Sprintf("%v", su.PendingUpdates))
+	builder.WriteString(fmt.Sprintf("%v", _m.PendingUpdates))
 	builder.WriteByte(')')
 	return builder.String()
 }

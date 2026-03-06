@@ -101,7 +101,7 @@ func (*Site) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Site fields.
-func (s *Site) assignValues(columns []string, values []any) error {
+func (_m *Site) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -112,46 +112,46 @@ func (s *Site) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			s.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case site.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				s.Description = value.String
+				_m.Description = value.String
 			}
 		case site.FieldIsDefault:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_default", values[i])
 			} else if value.Valid {
-				s.IsDefault = value.Bool
+				_m.IsDefault = value.Bool
 			}
 		case site.FieldDomain:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field domain", values[i])
 			} else if value.Valid {
-				s.Domain = value.String
+				_m.Domain = value.String
 			}
 		case site.FieldCreated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created", values[i])
 			} else if value.Valid {
-				s.Created = value.Time
+				_m.Created = value.Time
 			}
 		case site.FieldModified:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field modified", values[i])
 			} else if value.Valid {
-				s.Modified = value.Time
+				_m.Modified = value.Time
 			}
 		case site.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field tenant_sites", value)
 			} else if value.Valid {
-				s.tenant_sites = new(int)
-				*s.tenant_sites = int(value.Int64)
+				_m.tenant_sites = new(int)
+				*_m.tenant_sites = int(value.Int64)
 			}
 		default:
-			s.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -159,62 +159,62 @@ func (s *Site) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Site.
 // This includes values selected through modifiers, order, etc.
-func (s *Site) Value(name string) (ent.Value, error) {
-	return s.selectValues.Get(name)
+func (_m *Site) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryTenant queries the "tenant" edge of the Site entity.
-func (s *Site) QueryTenant() *TenantQuery {
-	return NewSiteClient(s.config).QueryTenant(s)
+func (_m *Site) QueryTenant() *TenantQuery {
+	return NewSiteClient(_m.config).QueryTenant(_m)
 }
 
 // QueryAgents queries the "agents" edge of the Site entity.
-func (s *Site) QueryAgents() *AgentQuery {
-	return NewSiteClient(s.config).QueryAgents(s)
+func (_m *Site) QueryAgents() *AgentQuery {
+	return NewSiteClient(_m.config).QueryAgents(_m)
 }
 
 // QueryProfiles queries the "profiles" edge of the Site entity.
-func (s *Site) QueryProfiles() *ProfileQuery {
-	return NewSiteClient(s.config).QueryProfiles(s)
+func (_m *Site) QueryProfiles() *ProfileQuery {
+	return NewSiteClient(_m.config).QueryProfiles(_m)
 }
 
 // Update returns a builder for updating this Site.
 // Note that you need to call Site.Unwrap() before calling this method if this Site
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (s *Site) Update() *SiteUpdateOne {
-	return NewSiteClient(s.config).UpdateOne(s)
+func (_m *Site) Update() *SiteUpdateOne {
+	return NewSiteClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Site entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (s *Site) Unwrap() *Site {
-	_tx, ok := s.config.driver.(*txDriver)
+func (_m *Site) Unwrap() *Site {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Site is not a transactional entity")
 	}
-	s.config.driver = _tx.drv
-	return s
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (s *Site) String() string {
+func (_m *Site) String() string {
 	var builder strings.Builder
 	builder.WriteString("Site(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", s.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("description=")
-	builder.WriteString(s.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("is_default=")
-	builder.WriteString(fmt.Sprintf("%v", s.IsDefault))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsDefault))
 	builder.WriteString(", ")
 	builder.WriteString("domain=")
-	builder.WriteString(s.Domain)
+	builder.WriteString(_m.Domain)
 	builder.WriteString(", ")
 	builder.WriteString("created=")
-	builder.WriteString(s.Created.Format(time.ANSIC))
+	builder.WriteString(_m.Created.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("modified=")
-	builder.WriteString(s.Modified.Format(time.ANSIC))
+	builder.WriteString(_m.Modified.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

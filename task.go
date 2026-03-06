@@ -273,7 +273,7 @@ func (*Task) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Task fields.
-func (t *Task) assignValues(columns []string, values []any) error {
+func (_m *Task) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -284,562 +284,562 @@ func (t *Task) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			t.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case task.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				t.Name = value.String
+				_m.Name = value.String
 			}
 		case task.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				t.Type = task.Type(value.String)
+				_m.Type = task.Type(value.String)
 			}
 		case task.FieldPackageID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field package_id", values[i])
 			} else if value.Valid {
-				t.PackageID = value.String
+				_m.PackageID = value.String
 			}
 		case task.FieldPackageName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field package_name", values[i])
 			} else if value.Valid {
-				t.PackageName = value.String
+				_m.PackageName = value.String
 			}
 		case task.FieldPackageLatest:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field package_latest", values[i])
 			} else if value.Valid {
-				t.PackageLatest = value.Bool
+				_m.PackageLatest = value.Bool
 			}
 		case task.FieldRegistryKey:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field registry_key", values[i])
 			} else if value.Valid {
-				t.RegistryKey = value.String
+				_m.RegistryKey = value.String
 			}
 		case task.FieldRegistryKeyValueName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field registry_key_value_name", values[i])
 			} else if value.Valid {
-				t.RegistryKeyValueName = value.String
+				_m.RegistryKeyValueName = value.String
 			}
 		case task.FieldRegistryKeyValueType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field registry_key_value_type", values[i])
 			} else if value.Valid {
-				t.RegistryKeyValueType = task.RegistryKeyValueType(value.String)
+				_m.RegistryKeyValueType = task.RegistryKeyValueType(value.String)
 			}
 		case task.FieldRegistryKeyValueData:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field registry_key_value_data", values[i])
 			} else if value.Valid {
-				t.RegistryKeyValueData = value.String
+				_m.RegistryKeyValueData = value.String
 			}
 		case task.FieldRegistryHex:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field registry_hex", values[i])
 			} else if value.Valid {
-				t.RegistryHex = value.Bool
+				_m.RegistryHex = value.Bool
 			}
 		case task.FieldRegistryForce:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field registry_force", values[i])
 			} else if value.Valid {
-				t.RegistryForce = value.Bool
+				_m.RegistryForce = value.Bool
 			}
 		case task.FieldLocalUserUsername:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_username", values[i])
 			} else if value.Valid {
-				t.LocalUserUsername = value.String
+				_m.LocalUserUsername = value.String
 			}
 		case task.FieldLocalUserDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_description", values[i])
 			} else if value.Valid {
-				t.LocalUserDescription = value.String
+				_m.LocalUserDescription = value.String
 			}
 		case task.FieldLocalUserDisable:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_disable", values[i])
 			} else if value.Valid {
-				t.LocalUserDisable = value.Bool
+				_m.LocalUserDisable = value.Bool
 			}
 		case task.FieldLocalUserFullname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_fullname", values[i])
 			} else if value.Valid {
-				t.LocalUserFullname = value.String
+				_m.LocalUserFullname = value.String
 			}
 		case task.FieldLocalUserPassword:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password", values[i])
 			} else if value.Valid {
-				t.LocalUserPassword = value.String
+				_m.LocalUserPassword = value.String
 			}
 		case task.FieldLocalUserPasswordChangeNotAllowed:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_change_not_allowed", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordChangeNotAllowed = value.Bool
+				_m.LocalUserPasswordChangeNotAllowed = value.Bool
 			}
 		case task.FieldLocalUserPasswordChangeRequired:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_change_required", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordChangeRequired = value.Bool
+				_m.LocalUserPasswordChangeRequired = value.Bool
 			}
 		case task.FieldLocalUserPasswordNeverExpires:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_never_expires", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordNeverExpires = value.Bool
+				_m.LocalUserPasswordNeverExpires = value.Bool
 			}
 		case task.FieldLocalUserAppend:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_append", values[i])
 			} else if value.Valid {
-				t.LocalUserAppend = value.Bool
+				_m.LocalUserAppend = value.Bool
 			}
 		case task.FieldLocalUserCreateHome:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_create_home", values[i])
 			} else if value.Valid {
-				t.LocalUserCreateHome = value.Bool
+				_m.LocalUserCreateHome = value.Bool
 			}
 		case task.FieldLocalUserExpires:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_expires", values[i])
 			} else if value.Valid {
-				t.LocalUserExpires = value.String
+				_m.LocalUserExpires = value.String
 			}
 		case task.FieldLocalUserForce:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_force", values[i])
 			} else if value.Valid {
-				t.LocalUserForce = value.Bool
+				_m.LocalUserForce = value.Bool
 			}
 		case task.FieldLocalUserGenerateSSHKey:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_generate_ssh_key", values[i])
 			} else if value.Valid {
-				t.LocalUserGenerateSSHKey = value.Bool
+				_m.LocalUserGenerateSSHKey = value.Bool
 			}
 		case task.FieldLocalUserGroup:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_group", values[i])
 			} else if value.Valid {
-				t.LocalUserGroup = value.String
+				_m.LocalUserGroup = value.String
 			}
 		case task.FieldLocalUserGroups:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_groups", values[i])
 			} else if value.Valid {
-				t.LocalUserGroups = value.String
+				_m.LocalUserGroups = value.String
 			}
 		case task.FieldLocalUserHome:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_home", values[i])
 			} else if value.Valid {
-				t.LocalUserHome = value.String
+				_m.LocalUserHome = value.String
 			}
 		case task.FieldLocalUserMoveHome:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_move_home", values[i])
 			} else if value.Valid {
-				t.LocalUserMoveHome = value.Bool
+				_m.LocalUserMoveHome = value.Bool
 			}
 		case task.FieldLocalUserNonunique:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_nonunique", values[i])
 			} else if value.Valid {
-				t.LocalUserNonunique = value.Bool
+				_m.LocalUserNonunique = value.Bool
 			}
 		case task.FieldLocalUserPasswordExpireAccountDisable:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_expire_account_disable", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordExpireAccountDisable = value.String
+				_m.LocalUserPasswordExpireAccountDisable = value.String
 			}
 		case task.FieldLocalUserPasswordExpireMax:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_expire_max", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordExpireMax = value.String
+				_m.LocalUserPasswordExpireMax = value.String
 			}
 		case task.FieldLocalUserPasswordExpireMin:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_expire_min", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordExpireMin = value.String
+				_m.LocalUserPasswordExpireMin = value.String
 			}
 		case task.FieldLocalUserPasswordExpireWarn:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_expire_warn", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordExpireWarn = value.String
+				_m.LocalUserPasswordExpireWarn = value.String
 			}
 		case task.FieldLocalUserPasswordLock:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_password_lock", values[i])
 			} else if value.Valid {
-				t.LocalUserPasswordLock = value.Bool
+				_m.LocalUserPasswordLock = value.Bool
 			}
 		case task.FieldLocalUserSeuser:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_seuser", values[i])
 			} else if value.Valid {
-				t.LocalUserSeuser = value.String
+				_m.LocalUserSeuser = value.String
 			}
 		case task.FieldLocalUserShell:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_shell", values[i])
 			} else if value.Valid {
-				t.LocalUserShell = value.String
+				_m.LocalUserShell = value.String
 			}
 		case task.FieldLocalUserSkeleton:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_skeleton", values[i])
 			} else if value.Valid {
-				t.LocalUserSkeleton = value.String
+				_m.LocalUserSkeleton = value.String
 			}
 		case task.FieldLocalUserSystem:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_system", values[i])
 			} else if value.Valid {
-				t.LocalUserSystem = value.Bool
+				_m.LocalUserSystem = value.Bool
 			}
 		case task.FieldLocalUserID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_id", values[i])
 			} else if value.Valid {
-				t.LocalUserID = value.String
+				_m.LocalUserID = value.String
 			}
 		case task.FieldLocalUserIDMax:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_id_max", values[i])
 			} else if value.Valid {
-				t.LocalUserIDMax = value.String
+				_m.LocalUserIDMax = value.String
 			}
 		case task.FieldLocalUserIDMin:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_id_min", values[i])
 			} else if value.Valid {
-				t.LocalUserIDMin = value.String
+				_m.LocalUserIDMin = value.String
 			}
 		case task.FieldLocalUserSSHKeyBits:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_ssh_key_bits", values[i])
 			} else if value.Valid {
-				t.LocalUserSSHKeyBits = value.String
+				_m.LocalUserSSHKeyBits = value.String
 			}
 		case task.FieldLocalUserSSHKeyComment:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_ssh_key_comment", values[i])
 			} else if value.Valid {
-				t.LocalUserSSHKeyComment = value.String
+				_m.LocalUserSSHKeyComment = value.String
 			}
 		case task.FieldLocalUserSSHKeyFile:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_ssh_key_file", values[i])
 			} else if value.Valid {
-				t.LocalUserSSHKeyFile = value.String
+				_m.LocalUserSSHKeyFile = value.String
 			}
 		case task.FieldLocalUserSSHKeyPassphrase:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_ssh_key_passphrase", values[i])
 			} else if value.Valid {
-				t.LocalUserSSHKeyPassphrase = value.String
+				_m.LocalUserSSHKeyPassphrase = value.String
 			}
 		case task.FieldLocalUserSSHKeyType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_ssh_key_type", values[i])
 			} else if value.Valid {
-				t.LocalUserSSHKeyType = value.String
+				_m.LocalUserSSHKeyType = value.String
 			}
 		case task.FieldLocalUserUmask:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_user_umask", values[i])
 			} else if value.Valid {
-				t.LocalUserUmask = value.String
+				_m.LocalUserUmask = value.String
 			}
 		case task.FieldLocalGroupID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_id", values[i])
 			} else if value.Valid {
-				t.LocalGroupID = value.String
+				_m.LocalGroupID = value.String
 			}
 		case task.FieldLocalGroupName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_name", values[i])
 			} else if value.Valid {
-				t.LocalGroupName = value.String
+				_m.LocalGroupName = value.String
 			}
 		case task.FieldLocalGroupDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_description", values[i])
 			} else if value.Valid {
-				t.LocalGroupDescription = value.String
+				_m.LocalGroupDescription = value.String
 			}
 		case task.FieldLocalGroupSystem:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_system", values[i])
 			} else if value.Valid {
-				t.LocalGroupSystem = value.Bool
+				_m.LocalGroupSystem = value.Bool
 			}
 		case task.FieldLocalGroupForce:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_force", values[i])
 			} else if value.Valid {
-				t.LocalGroupForce = value.Bool
+				_m.LocalGroupForce = value.Bool
 			}
 		case task.FieldLocalGroupMembers:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_members", values[i])
 			} else if value.Valid {
-				t.LocalGroupMembers = value.String
+				_m.LocalGroupMembers = value.String
 			}
 		case task.FieldLocalGroupMembersToInclude:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_members_to_include", values[i])
 			} else if value.Valid {
-				t.LocalGroupMembersToInclude = value.String
+				_m.LocalGroupMembersToInclude = value.String
 			}
 		case task.FieldLocalGroupMembersToExclude:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field local_group_members_to_exclude", values[i])
 			} else if value.Valid {
-				t.LocalGroupMembersToExclude = value.String
+				_m.LocalGroupMembersToExclude = value.String
 			}
 		case task.FieldMsiProductid:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field msi_productid", values[i])
 			} else if value.Valid {
-				t.MsiProductid = value.String
+				_m.MsiProductid = value.String
 			}
 		case task.FieldMsiPath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field msi_path", values[i])
 			} else if value.Valid {
-				t.MsiPath = value.String
+				_m.MsiPath = value.String
 			}
 		case task.FieldMsiArguments:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field msi_arguments", values[i])
 			} else if value.Valid {
-				t.MsiArguments = value.String
+				_m.MsiArguments = value.String
 			}
 		case task.FieldMsiFileHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field msi_file_hash", values[i])
 			} else if value.Valid {
-				t.MsiFileHash = value.String
+				_m.MsiFileHash = value.String
 			}
 		case task.FieldMsiFileHashAlg:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field msi_file_hash_alg", values[i])
 			} else if value.Valid {
-				t.MsiFileHashAlg = task.MsiFileHashAlg(value.String)
+				_m.MsiFileHashAlg = task.MsiFileHashAlg(value.String)
 			}
 		case task.FieldMsiLogPath:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field msi_log_path", values[i])
 			} else if value.Valid {
-				t.MsiLogPath = value.String
+				_m.MsiLogPath = value.String
 			}
 		case task.FieldScript:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field script", values[i])
 			} else if value.Valid {
-				t.Script = value.String
+				_m.Script = value.String
 			}
 		case task.FieldScriptExecutable:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field script_executable", values[i])
 			} else if value.Valid {
-				t.ScriptExecutable = value.String
+				_m.ScriptExecutable = value.String
 			}
 		case task.FieldScriptCreates:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field script_creates", values[i])
 			} else if value.Valid {
-				t.ScriptCreates = value.String
+				_m.ScriptCreates = value.String
 			}
 		case task.FieldScriptRun:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field script_run", values[i])
 			} else if value.Valid {
-				t.ScriptRun = task.ScriptRun(value.String)
+				_m.ScriptRun = task.ScriptRun(value.String)
 			}
 		case task.FieldAgentType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_type", values[i])
 			} else if value.Valid {
-				t.AgentType = task.AgentType(value.String)
+				_m.AgentType = task.AgentType(value.String)
 			}
 		case task.FieldWhen:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field when", values[i])
 			} else if value.Valid {
-				t.When = value.Time
+				_m.When = value.Time
 			}
 		case task.FieldBrewUpdate:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field brew_update", values[i])
 			} else if value.Valid {
-				t.BrewUpdate = value.Bool
+				_m.BrewUpdate = value.Bool
 			}
 		case task.FieldBrewUpgradeAll:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field brew_upgrade_all", values[i])
 			} else if value.Valid {
-				t.BrewUpgradeAll = value.Bool
+				_m.BrewUpgradeAll = value.Bool
 			}
 		case task.FieldBrewUpgradeOptions:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field brew_upgrade_options", values[i])
 			} else if value.Valid {
-				t.BrewUpgradeOptions = value.String
+				_m.BrewUpgradeOptions = value.String
 			}
 		case task.FieldBrewInstallOptions:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field brew_install_options", values[i])
 			} else if value.Valid {
-				t.BrewInstallOptions = value.String
+				_m.BrewInstallOptions = value.String
 			}
 		case task.FieldBrewGreedy:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field brew_greedy", values[i])
 			} else if value.Valid {
-				t.BrewGreedy = value.Bool
+				_m.BrewGreedy = value.Bool
 			}
 		case task.FieldPackageVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field package_version", values[i])
 			} else if value.Valid {
-				t.PackageVersion = value.String
+				_m.PackageVersion = value.String
 			}
 		case task.FieldAptAllowDowngrade:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_allow_downgrade", values[i])
 			} else if value.Valid {
-				t.AptAllowDowngrade = value.Bool
+				_m.AptAllowDowngrade = value.Bool
 			}
 		case task.FieldAptDeb:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_deb", values[i])
 			} else if value.Valid {
-				t.AptDeb = value.String
+				_m.AptDeb = value.String
 			}
 		case task.FieldAptDpkgOptions:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_dpkg_options", values[i])
 			} else if value.Valid {
-				t.AptDpkgOptions = value.String
+				_m.AptDpkgOptions = value.String
 			}
 		case task.FieldAptFailOnAutoremove:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_fail_on_autoremove", values[i])
 			} else if value.Valid {
-				t.AptFailOnAutoremove = value.Bool
+				_m.AptFailOnAutoremove = value.Bool
 			}
 		case task.FieldAptForce:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_force", values[i])
 			} else if value.Valid {
-				t.AptForce = value.Bool
+				_m.AptForce = value.Bool
 			}
 		case task.FieldAptInstallRecommends:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_install_recommends", values[i])
 			} else if value.Valid {
-				t.AptInstallRecommends = value.Bool
+				_m.AptInstallRecommends = value.Bool
 			}
 		case task.FieldAptName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_name", values[i])
 			} else if value.Valid {
-				t.AptName = value.String
+				_m.AptName = value.String
 			}
 		case task.FieldAptOnlyUpgrade:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_only_upgrade", values[i])
 			} else if value.Valid {
-				t.AptOnlyUpgrade = value.Bool
+				_m.AptOnlyUpgrade = value.Bool
 			}
 		case task.FieldAptPurge:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_purge", values[i])
 			} else if value.Valid {
-				t.AptPurge = value.Bool
+				_m.AptPurge = value.Bool
 			}
 		case task.FieldAptUpdateCache:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_update_cache", values[i])
 			} else if value.Valid {
-				t.AptUpdateCache = value.Bool
+				_m.AptUpdateCache = value.Bool
 			}
 		case task.FieldAptUpgradeType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field apt_upgrade_type", values[i])
 			} else if value.Valid {
-				t.AptUpgradeType = task.AptUpgradeType(value.String)
+				_m.AptUpgradeType = task.AptUpgradeType(value.String)
 			}
 		case task.FieldVersion:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				t.Version = int(value.Int64)
+				_m.Version = int(value.Int64)
 			}
 		case task.FieldTenant:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field tenant", values[i])
 			} else if value.Valid {
-				t.Tenant = int(value.Int64)
+				_m.Tenant = int(value.Int64)
 			}
 		case task.FieldNetbirdGroups:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field netbird_groups", values[i])
 			} else if value.Valid {
-				t.NetbirdGroups = value.String
+				_m.NetbirdGroups = value.String
 			}
 		case task.FieldNetbirdAllowExtraDNSLabels:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field netbird_allow_extra_dns_labels", values[i])
 			} else if value.Valid {
-				t.NetbirdAllowExtraDNSLabels = value.Bool
+				_m.NetbirdAllowExtraDNSLabels = value.Bool
 			}
 		case task.FieldIgnoreErrors:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field ignore_errors", values[i])
 			} else if value.Valid {
-				t.IgnoreErrors = value.Bool
+				_m.IgnoreErrors = value.Bool
 			}
 		case task.FieldDisabled:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field disabled", values[i])
 			} else if value.Valid {
-				t.Disabled = value.Bool
+				_m.Disabled = value.Bool
 			}
 		case task.FieldOrder:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field order", values[i])
 			} else if value.Valid {
-				t.Order = int(value.Int64)
+				_m.Order = int(value.Int64)
 			}
 		case task.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field profile_tasks", value)
 			} else if value.Valid {
-				t.profile_tasks = new(int)
-				*t.profile_tasks = int(value.Int64)
+				_m.profile_tasks = new(int)
+				*_m.profile_tasks = int(value.Int64)
 			}
 		default:
-			t.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -847,320 +847,320 @@ func (t *Task) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Task.
 // This includes values selected through modifiers, order, etc.
-func (t *Task) Value(name string) (ent.Value, error) {
-	return t.selectValues.Get(name)
+func (_m *Task) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryTags queries the "tags" edge of the Task entity.
-func (t *Task) QueryTags() *TagQuery {
-	return NewTaskClient(t.config).QueryTags(t)
+func (_m *Task) QueryTags() *TagQuery {
+	return NewTaskClient(_m.config).QueryTags(_m)
 }
 
 // QueryProfile queries the "profile" edge of the Task entity.
-func (t *Task) QueryProfile() *ProfileQuery {
-	return NewTaskClient(t.config).QueryProfile(t)
+func (_m *Task) QueryProfile() *ProfileQuery {
+	return NewTaskClient(_m.config).QueryProfile(_m)
 }
 
 // QueryReports queries the "reports" edge of the Task entity.
-func (t *Task) QueryReports() *TaskReportQuery {
-	return NewTaskClient(t.config).QueryReports(t)
+func (_m *Task) QueryReports() *TaskReportQuery {
+	return NewTaskClient(_m.config).QueryReports(_m)
 }
 
 // Update returns a builder for updating this Task.
 // Note that you need to call Task.Unwrap() before calling this method if this Task
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (t *Task) Update() *TaskUpdateOne {
-	return NewTaskClient(t.config).UpdateOne(t)
+func (_m *Task) Update() *TaskUpdateOne {
+	return NewTaskClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Task entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (t *Task) Unwrap() *Task {
-	_tx, ok := t.config.driver.(*txDriver)
+func (_m *Task) Unwrap() *Task {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Task is not a transactional entity")
 	}
-	t.config.driver = _tx.drv
-	return t
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (t *Task) String() string {
+func (_m *Task) String() string {
 	var builder strings.Builder
 	builder.WriteString("Task(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", t.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(t.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(fmt.Sprintf("%v", t.Type))
+	builder.WriteString(fmt.Sprintf("%v", _m.Type))
 	builder.WriteString(", ")
 	builder.WriteString("package_id=")
-	builder.WriteString(t.PackageID)
+	builder.WriteString(_m.PackageID)
 	builder.WriteString(", ")
 	builder.WriteString("package_name=")
-	builder.WriteString(t.PackageName)
+	builder.WriteString(_m.PackageName)
 	builder.WriteString(", ")
 	builder.WriteString("package_latest=")
-	builder.WriteString(fmt.Sprintf("%v", t.PackageLatest))
+	builder.WriteString(fmt.Sprintf("%v", _m.PackageLatest))
 	builder.WriteString(", ")
 	builder.WriteString("registry_key=")
-	builder.WriteString(t.RegistryKey)
+	builder.WriteString(_m.RegistryKey)
 	builder.WriteString(", ")
 	builder.WriteString("registry_key_value_name=")
-	builder.WriteString(t.RegistryKeyValueName)
+	builder.WriteString(_m.RegistryKeyValueName)
 	builder.WriteString(", ")
 	builder.WriteString("registry_key_value_type=")
-	builder.WriteString(fmt.Sprintf("%v", t.RegistryKeyValueType))
+	builder.WriteString(fmt.Sprintf("%v", _m.RegistryKeyValueType))
 	builder.WriteString(", ")
 	builder.WriteString("registry_key_value_data=")
-	builder.WriteString(t.RegistryKeyValueData)
+	builder.WriteString(_m.RegistryKeyValueData)
 	builder.WriteString(", ")
 	builder.WriteString("registry_hex=")
-	builder.WriteString(fmt.Sprintf("%v", t.RegistryHex))
+	builder.WriteString(fmt.Sprintf("%v", _m.RegistryHex))
 	builder.WriteString(", ")
 	builder.WriteString("registry_force=")
-	builder.WriteString(fmt.Sprintf("%v", t.RegistryForce))
+	builder.WriteString(fmt.Sprintf("%v", _m.RegistryForce))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_username=")
-	builder.WriteString(t.LocalUserUsername)
+	builder.WriteString(_m.LocalUserUsername)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_description=")
-	builder.WriteString(t.LocalUserDescription)
+	builder.WriteString(_m.LocalUserDescription)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_disable=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserDisable))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserDisable))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_fullname=")
-	builder.WriteString(t.LocalUserFullname)
+	builder.WriteString(_m.LocalUserFullname)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password=")
-	builder.WriteString(t.LocalUserPassword)
+	builder.WriteString(_m.LocalUserPassword)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_change_not_allowed=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserPasswordChangeNotAllowed))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserPasswordChangeNotAllowed))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_change_required=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserPasswordChangeRequired))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserPasswordChangeRequired))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_never_expires=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserPasswordNeverExpires))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserPasswordNeverExpires))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_append=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserAppend))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserAppend))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_create_home=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserCreateHome))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserCreateHome))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_expires=")
-	builder.WriteString(t.LocalUserExpires)
+	builder.WriteString(_m.LocalUserExpires)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_force=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserForce))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserForce))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_generate_ssh_key=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserGenerateSSHKey))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserGenerateSSHKey))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_group=")
-	builder.WriteString(t.LocalUserGroup)
+	builder.WriteString(_m.LocalUserGroup)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_groups=")
-	builder.WriteString(t.LocalUserGroups)
+	builder.WriteString(_m.LocalUserGroups)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_home=")
-	builder.WriteString(t.LocalUserHome)
+	builder.WriteString(_m.LocalUserHome)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_move_home=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserMoveHome))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserMoveHome))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_nonunique=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserNonunique))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserNonunique))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_expire_account_disable=")
-	builder.WriteString(t.LocalUserPasswordExpireAccountDisable)
+	builder.WriteString(_m.LocalUserPasswordExpireAccountDisable)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_expire_max=")
-	builder.WriteString(t.LocalUserPasswordExpireMax)
+	builder.WriteString(_m.LocalUserPasswordExpireMax)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_expire_min=")
-	builder.WriteString(t.LocalUserPasswordExpireMin)
+	builder.WriteString(_m.LocalUserPasswordExpireMin)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_expire_warn=")
-	builder.WriteString(t.LocalUserPasswordExpireWarn)
+	builder.WriteString(_m.LocalUserPasswordExpireWarn)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_password_lock=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserPasswordLock))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserPasswordLock))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_seuser=")
-	builder.WriteString(t.LocalUserSeuser)
+	builder.WriteString(_m.LocalUserSeuser)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_shell=")
-	builder.WriteString(t.LocalUserShell)
+	builder.WriteString(_m.LocalUserShell)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_skeleton=")
-	builder.WriteString(t.LocalUserSkeleton)
+	builder.WriteString(_m.LocalUserSkeleton)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_system=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalUserSystem))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalUserSystem))
 	builder.WriteString(", ")
 	builder.WriteString("local_user_id=")
-	builder.WriteString(t.LocalUserID)
+	builder.WriteString(_m.LocalUserID)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_id_max=")
-	builder.WriteString(t.LocalUserIDMax)
+	builder.WriteString(_m.LocalUserIDMax)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_id_min=")
-	builder.WriteString(t.LocalUserIDMin)
+	builder.WriteString(_m.LocalUserIDMin)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_ssh_key_bits=")
-	builder.WriteString(t.LocalUserSSHKeyBits)
+	builder.WriteString(_m.LocalUserSSHKeyBits)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_ssh_key_comment=")
-	builder.WriteString(t.LocalUserSSHKeyComment)
+	builder.WriteString(_m.LocalUserSSHKeyComment)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_ssh_key_file=")
-	builder.WriteString(t.LocalUserSSHKeyFile)
+	builder.WriteString(_m.LocalUserSSHKeyFile)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_ssh_key_passphrase=")
-	builder.WriteString(t.LocalUserSSHKeyPassphrase)
+	builder.WriteString(_m.LocalUserSSHKeyPassphrase)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_ssh_key_type=")
-	builder.WriteString(t.LocalUserSSHKeyType)
+	builder.WriteString(_m.LocalUserSSHKeyType)
 	builder.WriteString(", ")
 	builder.WriteString("local_user_umask=")
-	builder.WriteString(t.LocalUserUmask)
+	builder.WriteString(_m.LocalUserUmask)
 	builder.WriteString(", ")
 	builder.WriteString("local_group_id=")
-	builder.WriteString(t.LocalGroupID)
+	builder.WriteString(_m.LocalGroupID)
 	builder.WriteString(", ")
 	builder.WriteString("local_group_name=")
-	builder.WriteString(t.LocalGroupName)
+	builder.WriteString(_m.LocalGroupName)
 	builder.WriteString(", ")
 	builder.WriteString("local_group_description=")
-	builder.WriteString(t.LocalGroupDescription)
+	builder.WriteString(_m.LocalGroupDescription)
 	builder.WriteString(", ")
 	builder.WriteString("local_group_system=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalGroupSystem))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalGroupSystem))
 	builder.WriteString(", ")
 	builder.WriteString("local_group_force=")
-	builder.WriteString(fmt.Sprintf("%v", t.LocalGroupForce))
+	builder.WriteString(fmt.Sprintf("%v", _m.LocalGroupForce))
 	builder.WriteString(", ")
 	builder.WriteString("local_group_members=")
-	builder.WriteString(t.LocalGroupMembers)
+	builder.WriteString(_m.LocalGroupMembers)
 	builder.WriteString(", ")
 	builder.WriteString("local_group_members_to_include=")
-	builder.WriteString(t.LocalGroupMembersToInclude)
+	builder.WriteString(_m.LocalGroupMembersToInclude)
 	builder.WriteString(", ")
 	builder.WriteString("local_group_members_to_exclude=")
-	builder.WriteString(t.LocalGroupMembersToExclude)
+	builder.WriteString(_m.LocalGroupMembersToExclude)
 	builder.WriteString(", ")
 	builder.WriteString("msi_productid=")
-	builder.WriteString(t.MsiProductid)
+	builder.WriteString(_m.MsiProductid)
 	builder.WriteString(", ")
 	builder.WriteString("msi_path=")
-	builder.WriteString(t.MsiPath)
+	builder.WriteString(_m.MsiPath)
 	builder.WriteString(", ")
 	builder.WriteString("msi_arguments=")
-	builder.WriteString(t.MsiArguments)
+	builder.WriteString(_m.MsiArguments)
 	builder.WriteString(", ")
 	builder.WriteString("msi_file_hash=")
-	builder.WriteString(t.MsiFileHash)
+	builder.WriteString(_m.MsiFileHash)
 	builder.WriteString(", ")
 	builder.WriteString("msi_file_hash_alg=")
-	builder.WriteString(fmt.Sprintf("%v", t.MsiFileHashAlg))
+	builder.WriteString(fmt.Sprintf("%v", _m.MsiFileHashAlg))
 	builder.WriteString(", ")
 	builder.WriteString("msi_log_path=")
-	builder.WriteString(t.MsiLogPath)
+	builder.WriteString(_m.MsiLogPath)
 	builder.WriteString(", ")
 	builder.WriteString("script=")
-	builder.WriteString(t.Script)
+	builder.WriteString(_m.Script)
 	builder.WriteString(", ")
 	builder.WriteString("script_executable=")
-	builder.WriteString(t.ScriptExecutable)
+	builder.WriteString(_m.ScriptExecutable)
 	builder.WriteString(", ")
 	builder.WriteString("script_creates=")
-	builder.WriteString(t.ScriptCreates)
+	builder.WriteString(_m.ScriptCreates)
 	builder.WriteString(", ")
 	builder.WriteString("script_run=")
-	builder.WriteString(fmt.Sprintf("%v", t.ScriptRun))
+	builder.WriteString(fmt.Sprintf("%v", _m.ScriptRun))
 	builder.WriteString(", ")
 	builder.WriteString("agent_type=")
-	builder.WriteString(fmt.Sprintf("%v", t.AgentType))
+	builder.WriteString(fmt.Sprintf("%v", _m.AgentType))
 	builder.WriteString(", ")
 	builder.WriteString("when=")
-	builder.WriteString(t.When.Format(time.ANSIC))
+	builder.WriteString(_m.When.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("brew_update=")
-	builder.WriteString(fmt.Sprintf("%v", t.BrewUpdate))
+	builder.WriteString(fmt.Sprintf("%v", _m.BrewUpdate))
 	builder.WriteString(", ")
 	builder.WriteString("brew_upgrade_all=")
-	builder.WriteString(fmt.Sprintf("%v", t.BrewUpgradeAll))
+	builder.WriteString(fmt.Sprintf("%v", _m.BrewUpgradeAll))
 	builder.WriteString(", ")
 	builder.WriteString("brew_upgrade_options=")
-	builder.WriteString(t.BrewUpgradeOptions)
+	builder.WriteString(_m.BrewUpgradeOptions)
 	builder.WriteString(", ")
 	builder.WriteString("brew_install_options=")
-	builder.WriteString(t.BrewInstallOptions)
+	builder.WriteString(_m.BrewInstallOptions)
 	builder.WriteString(", ")
 	builder.WriteString("brew_greedy=")
-	builder.WriteString(fmt.Sprintf("%v", t.BrewGreedy))
+	builder.WriteString(fmt.Sprintf("%v", _m.BrewGreedy))
 	builder.WriteString(", ")
 	builder.WriteString("package_version=")
-	builder.WriteString(t.PackageVersion)
+	builder.WriteString(_m.PackageVersion)
 	builder.WriteString(", ")
 	builder.WriteString("apt_allow_downgrade=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptAllowDowngrade))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptAllowDowngrade))
 	builder.WriteString(", ")
 	builder.WriteString("apt_deb=")
-	builder.WriteString(t.AptDeb)
+	builder.WriteString(_m.AptDeb)
 	builder.WriteString(", ")
 	builder.WriteString("apt_dpkg_options=")
-	builder.WriteString(t.AptDpkgOptions)
+	builder.WriteString(_m.AptDpkgOptions)
 	builder.WriteString(", ")
 	builder.WriteString("apt_fail_on_autoremove=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptFailOnAutoremove))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptFailOnAutoremove))
 	builder.WriteString(", ")
 	builder.WriteString("apt_force=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptForce))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptForce))
 	builder.WriteString(", ")
 	builder.WriteString("apt_install_recommends=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptInstallRecommends))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptInstallRecommends))
 	builder.WriteString(", ")
 	builder.WriteString("apt_name=")
-	builder.WriteString(t.AptName)
+	builder.WriteString(_m.AptName)
 	builder.WriteString(", ")
 	builder.WriteString("apt_only_upgrade=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptOnlyUpgrade))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptOnlyUpgrade))
 	builder.WriteString(", ")
 	builder.WriteString("apt_purge=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptPurge))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptPurge))
 	builder.WriteString(", ")
 	builder.WriteString("apt_update_cache=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptUpdateCache))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptUpdateCache))
 	builder.WriteString(", ")
 	builder.WriteString("apt_upgrade_type=")
-	builder.WriteString(fmt.Sprintf("%v", t.AptUpgradeType))
+	builder.WriteString(fmt.Sprintf("%v", _m.AptUpgradeType))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(fmt.Sprintf("%v", t.Version))
+	builder.WriteString(fmt.Sprintf("%v", _m.Version))
 	builder.WriteString(", ")
 	builder.WriteString("tenant=")
-	builder.WriteString(fmt.Sprintf("%v", t.Tenant))
+	builder.WriteString(fmt.Sprintf("%v", _m.Tenant))
 	builder.WriteString(", ")
 	builder.WriteString("netbird_groups=")
-	builder.WriteString(t.NetbirdGroups)
+	builder.WriteString(_m.NetbirdGroups)
 	builder.WriteString(", ")
 	builder.WriteString("netbird_allow_extra_dns_labels=")
-	builder.WriteString(fmt.Sprintf("%v", t.NetbirdAllowExtraDNSLabels))
+	builder.WriteString(fmt.Sprintf("%v", _m.NetbirdAllowExtraDNSLabels))
 	builder.WriteString(", ")
 	builder.WriteString("ignore_errors=")
-	builder.WriteString(fmt.Sprintf("%v", t.IgnoreErrors))
+	builder.WriteString(fmt.Sprintf("%v", _m.IgnoreErrors))
 	builder.WriteString(", ")
 	builder.WriteString("disabled=")
-	builder.WriteString(fmt.Sprintf("%v", t.Disabled))
+	builder.WriteString(fmt.Sprintf("%v", _m.Disabled))
 	builder.WriteString(", ")
 	builder.WriteString("order=")
-	builder.WriteString(fmt.Sprintf("%v", t.Order))
+	builder.WriteString(fmt.Sprintf("%v", _m.Order))
 	builder.WriteByte(')')
 	return builder.String()
 }

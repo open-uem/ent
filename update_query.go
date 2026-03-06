@@ -32,44 +32,44 @@ type UpdateQuery struct {
 }
 
 // Where adds a new predicate for the UpdateQuery builder.
-func (uq *UpdateQuery) Where(ps ...predicate.Update) *UpdateQuery {
-	uq.predicates = append(uq.predicates, ps...)
-	return uq
+func (_q *UpdateQuery) Where(ps ...predicate.Update) *UpdateQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (uq *UpdateQuery) Limit(limit int) *UpdateQuery {
-	uq.ctx.Limit = &limit
-	return uq
+func (_q *UpdateQuery) Limit(limit int) *UpdateQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (uq *UpdateQuery) Offset(offset int) *UpdateQuery {
-	uq.ctx.Offset = &offset
-	return uq
+func (_q *UpdateQuery) Offset(offset int) *UpdateQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (uq *UpdateQuery) Unique(unique bool) *UpdateQuery {
-	uq.ctx.Unique = &unique
-	return uq
+func (_q *UpdateQuery) Unique(unique bool) *UpdateQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (uq *UpdateQuery) Order(o ...update.OrderOption) *UpdateQuery {
-	uq.order = append(uq.order, o...)
-	return uq
+func (_q *UpdateQuery) Order(o ...update.OrderOption) *UpdateQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (uq *UpdateQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: uq.config}).Query()
+func (_q *UpdateQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := uq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := uq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (uq *UpdateQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, update.OwnerTable, update.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (uq *UpdateQuery) QueryOwner() *AgentQuery {
 
 // First returns the first Update entity from the query.
 // Returns a *NotFoundError when no Update was found.
-func (uq *UpdateQuery) First(ctx context.Context) (*Update, error) {
-	nodes, err := uq.Limit(1).All(setContextOp(ctx, uq.ctx, ent.OpQueryFirst))
+func (_q *UpdateQuery) First(ctx context.Context) (*Update, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (uq *UpdateQuery) First(ctx context.Context) (*Update, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (uq *UpdateQuery) FirstX(ctx context.Context) *Update {
-	node, err := uq.First(ctx)
+func (_q *UpdateQuery) FirstX(ctx context.Context) *Update {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (uq *UpdateQuery) FirstX(ctx context.Context) *Update {
 
 // FirstID returns the first Update ID from the query.
 // Returns a *NotFoundError when no Update ID was found.
-func (uq *UpdateQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *UpdateQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = uq.Limit(1).IDs(setContextOp(ctx, uq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (uq *UpdateQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (uq *UpdateQuery) FirstIDX(ctx context.Context) int {
-	id, err := uq.FirstID(ctx)
+func (_q *UpdateQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (uq *UpdateQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single Update entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Update entity is found.
 // Returns a *NotFoundError when no Update entities are found.
-func (uq *UpdateQuery) Only(ctx context.Context) (*Update, error) {
-	nodes, err := uq.Limit(2).All(setContextOp(ctx, uq.ctx, ent.OpQueryOnly))
+func (_q *UpdateQuery) Only(ctx context.Context) (*Update, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (uq *UpdateQuery) Only(ctx context.Context) (*Update, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (uq *UpdateQuery) OnlyX(ctx context.Context) *Update {
-	node, err := uq.Only(ctx)
+func (_q *UpdateQuery) OnlyX(ctx context.Context) *Update {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (uq *UpdateQuery) OnlyX(ctx context.Context) *Update {
 // OnlyID is like Only, but returns the only Update ID in the query.
 // Returns a *NotSingularError when more than one Update ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (uq *UpdateQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *UpdateQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = uq.Limit(2).IDs(setContextOp(ctx, uq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (uq *UpdateQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (uq *UpdateQuery) OnlyIDX(ctx context.Context) int {
-	id, err := uq.OnlyID(ctx)
+func (_q *UpdateQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (uq *UpdateQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of Updates.
-func (uq *UpdateQuery) All(ctx context.Context) ([]*Update, error) {
-	ctx = setContextOp(ctx, uq.ctx, ent.OpQueryAll)
-	if err := uq.prepareQuery(ctx); err != nil {
+func (_q *UpdateQuery) All(ctx context.Context) ([]*Update, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Update, *UpdateQuery]()
-	return withInterceptors[[]*Update](ctx, uq, qr, uq.inters)
+	return withInterceptors[[]*Update](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (uq *UpdateQuery) AllX(ctx context.Context) []*Update {
-	nodes, err := uq.All(ctx)
+func (_q *UpdateQuery) AllX(ctx context.Context) []*Update {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (uq *UpdateQuery) AllX(ctx context.Context) []*Update {
 }
 
 // IDs executes the query and returns a list of Update IDs.
-func (uq *UpdateQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if uq.ctx.Unique == nil && uq.path != nil {
-		uq.Unique(true)
+func (_q *UpdateQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, uq.ctx, ent.OpQueryIDs)
-	if err = uq.Select(update.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(update.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (uq *UpdateQuery) IDsX(ctx context.Context) []int {
-	ids, err := uq.IDs(ctx)
+func (_q *UpdateQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (uq *UpdateQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (uq *UpdateQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, uq.ctx, ent.OpQueryCount)
-	if err := uq.prepareQuery(ctx); err != nil {
+func (_q *UpdateQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, uq, querierCount[*UpdateQuery](), uq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*UpdateQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (uq *UpdateQuery) CountX(ctx context.Context) int {
-	count, err := uq.Count(ctx)
+func (_q *UpdateQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (uq *UpdateQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (uq *UpdateQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, uq.ctx, ent.OpQueryExist)
-	switch _, err := uq.FirstID(ctx); {
+func (_q *UpdateQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (uq *UpdateQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (uq *UpdateQuery) ExistX(ctx context.Context) bool {
-	exist, err := uq.Exist(ctx)
+func (_q *UpdateQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (uq *UpdateQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the UpdateQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (uq *UpdateQuery) Clone() *UpdateQuery {
-	if uq == nil {
+func (_q *UpdateQuery) Clone() *UpdateQuery {
+	if _q == nil {
 		return nil
 	}
 	return &UpdateQuery{
-		config:     uq.config,
-		ctx:        uq.ctx.Clone(),
-		order:      append([]update.OrderOption{}, uq.order...),
-		inters:     append([]Interceptor{}, uq.inters...),
-		predicates: append([]predicate.Update{}, uq.predicates...),
-		withOwner:  uq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]update.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.Update{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       uq.sql.Clone(),
-		path:      uq.path,
-		modifiers: append([]func(*sql.Selector){}, uq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (uq *UpdateQuery) WithOwner(opts ...func(*AgentQuery)) *UpdateQuery {
-	query := (&AgentClient{config: uq.config}).Query()
+func (_q *UpdateQuery) WithOwner(opts ...func(*AgentQuery)) *UpdateQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	uq.withOwner = query
-	return uq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (uq *UpdateQuery) WithOwner(opts ...func(*AgentQuery)) *UpdateQuery {
 //		GroupBy(update.FieldTitle).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (uq *UpdateQuery) GroupBy(field string, fields ...string) *UpdateGroupBy {
-	uq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &UpdateGroupBy{build: uq}
-	grbuild.flds = &uq.ctx.Fields
+func (_q *UpdateQuery) GroupBy(field string, fields ...string) *UpdateGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &UpdateGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = update.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (uq *UpdateQuery) GroupBy(field string, fields ...string) *UpdateGroupBy {
 //	client.Update.Query().
 //		Select(update.FieldTitle).
 //		Scan(ctx, &v)
-func (uq *UpdateQuery) Select(fields ...string) *UpdateSelect {
-	uq.ctx.Fields = append(uq.ctx.Fields, fields...)
-	sbuild := &UpdateSelect{UpdateQuery: uq}
+func (_q *UpdateQuery) Select(fields ...string) *UpdateSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &UpdateSelect{UpdateQuery: _q}
 	sbuild.label = update.Label
-	sbuild.flds, sbuild.scan = &uq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a UpdateSelect configured with the given aggregations.
-func (uq *UpdateQuery) Aggregate(fns ...AggregateFunc) *UpdateSelect {
-	return uq.Select().Aggregate(fns...)
+func (_q *UpdateQuery) Aggregate(fns ...AggregateFunc) *UpdateSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (uq *UpdateQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range uq.inters {
+func (_q *UpdateQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, uq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range uq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !update.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if uq.path != nil {
-		prev, err := uq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		uq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (uq *UpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Update, error) {
+func (_q *UpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Update, error) {
 	var (
 		nodes       = []*Update{}
-		withFKs     = uq.withFKs
-		_spec       = uq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			uq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if uq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (uq *UpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Updat
 		return (*Update).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Update{config: uq.config}
+		node := &Update{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(uq.modifiers) > 0 {
-		_spec.Modifiers = uq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, uq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := uq.withOwner; query != nil {
-		if err := uq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *Update, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (uq *UpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Updat
 	return nodes, nil
 }
 
-func (uq *UpdateQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*Update, init func(*Update), assign func(*Update, *Agent)) error {
+func (_q *UpdateQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*Update, init func(*Update), assign func(*Update, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*Update)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (uq *UpdateQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes [
 	return nil
 }
 
-func (uq *UpdateQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := uq.querySpec()
-	if len(uq.modifiers) > 0 {
-		_spec.Modifiers = uq.modifiers
+func (_q *UpdateQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = uq.ctx.Fields
-	if len(uq.ctx.Fields) > 0 {
-		_spec.Unique = uq.ctx.Unique != nil && *uq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, uq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (uq *UpdateQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *UpdateQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(update.Table, update.Columns, sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt))
-	_spec.From = uq.sql
-	if unique := uq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if uq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := uq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, update.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (uq *UpdateQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := uq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := uq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := uq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := uq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (uq *UpdateQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (uq *UpdateQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(uq.driver.Dialect())
+func (_q *UpdateQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(update.Table)
-	columns := uq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = update.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if uq.sql != nil {
-		selector = uq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if uq.ctx.Unique != nil && *uq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range uq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range uq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range uq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := uq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := uq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (uq *UpdateQuery) Modify(modifiers ...func(s *sql.Selector)) *UpdateSelect {
-	uq.modifiers = append(uq.modifiers, modifiers...)
-	return uq.Select()
+func (_q *UpdateQuery) Modify(modifiers ...func(s *sql.Selector)) *UpdateSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // UpdateGroupBy is the group-by builder for Update entities.
@@ -547,41 +547,41 @@ type UpdateGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (ugb *UpdateGroupBy) Aggregate(fns ...AggregateFunc) *UpdateGroupBy {
-	ugb.fns = append(ugb.fns, fns...)
-	return ugb
+func (_g *UpdateGroupBy) Aggregate(fns ...AggregateFunc) *UpdateGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ugb *UpdateGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ugb.build.ctx, ent.OpQueryGroupBy)
-	if err := ugb.build.prepareQuery(ctx); err != nil {
+func (_g *UpdateGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*UpdateQuery, *UpdateGroupBy](ctx, ugb.build, ugb, ugb.build.inters, v)
+	return scanWithInterceptors[*UpdateQuery, *UpdateGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (ugb *UpdateGroupBy) sqlScan(ctx context.Context, root *UpdateQuery, v any) error {
+func (_g *UpdateGroupBy) sqlScan(ctx context.Context, root *UpdateQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(ugb.fns))
-	for _, fn := range ugb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*ugb.flds)+len(ugb.fns))
-		for _, f := range *ugb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*ugb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ugb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type UpdateSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (us *UpdateSelect) Aggregate(fns ...AggregateFunc) *UpdateSelect {
-	us.fns = append(us.fns, fns...)
-	return us
+func (_s *UpdateSelect) Aggregate(fns ...AggregateFunc) *UpdateSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (us *UpdateSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, us.ctx, ent.OpQuerySelect)
-	if err := us.prepareQuery(ctx); err != nil {
+func (_s *UpdateSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*UpdateQuery, *UpdateSelect](ctx, us.UpdateQuery, us, us.inters, v)
+	return scanWithInterceptors[*UpdateQuery, *UpdateSelect](ctx, _s.UpdateQuery, _s, _s.inters, v)
 }
 
-func (us *UpdateSelect) sqlScan(ctx context.Context, root *UpdateQuery, v any) error {
+func (_s *UpdateSelect) sqlScan(ctx context.Context, root *UpdateQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(us.fns))
-	for _, fn := range us.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*us.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (us *UpdateSelect) sqlScan(ctx context.Context, root *UpdateQuery, v any) e
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := us.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (us *UpdateSelect) sqlScan(ctx context.Context, root *UpdateQuery, v any) e
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (us *UpdateSelect) Modify(modifiers ...func(s *sql.Selector)) *UpdateSelect {
-	us.modifiers = append(us.modifiers, modifiers...)
-	return us
+func (_s *UpdateSelect) Modify(modifiers ...func(s *sql.Selector)) *UpdateSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

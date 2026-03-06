@@ -20,56 +20,56 @@ type OrgMetadataDelete struct {
 }
 
 // Where appends a list predicates to the OrgMetadataDelete builder.
-func (omd *OrgMetadataDelete) Where(ps ...predicate.OrgMetadata) *OrgMetadataDelete {
-	omd.mutation.Where(ps...)
-	return omd
+func (_d *OrgMetadataDelete) Where(ps ...predicate.OrgMetadata) *OrgMetadataDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (omd *OrgMetadataDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, omd.sqlExec, omd.mutation, omd.hooks)
+func (_d *OrgMetadataDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (omd *OrgMetadataDelete) ExecX(ctx context.Context) int {
-	n, err := omd.Exec(ctx)
+func (_d *OrgMetadataDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (omd *OrgMetadataDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *OrgMetadataDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(orgmetadata.Table, sqlgraph.NewFieldSpec(orgmetadata.FieldID, field.TypeInt))
-	if ps := omd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, omd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	omd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // OrgMetadataDeleteOne is the builder for deleting a single OrgMetadata entity.
 type OrgMetadataDeleteOne struct {
-	omd *OrgMetadataDelete
+	_d *OrgMetadataDelete
 }
 
 // Where appends a list predicates to the OrgMetadataDelete builder.
-func (omdo *OrgMetadataDeleteOne) Where(ps ...predicate.OrgMetadata) *OrgMetadataDeleteOne {
-	omdo.omd.mutation.Where(ps...)
-	return omdo
+func (_d *OrgMetadataDeleteOne) Where(ps ...predicate.OrgMetadata) *OrgMetadataDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (omdo *OrgMetadataDeleteOne) Exec(ctx context.Context) error {
-	n, err := omdo.omd.Exec(ctx)
+func (_d *OrgMetadataDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (omdo *OrgMetadataDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (omdo *OrgMetadataDeleteOne) ExecX(ctx context.Context) {
-	if err := omdo.Exec(ctx); err != nil {
+func (_d *OrgMetadataDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

@@ -25,182 +25,182 @@ type DeploymentUpdate struct {
 }
 
 // Where appends a list predicates to the DeploymentUpdate builder.
-func (du *DeploymentUpdate) Where(ps ...predicate.Deployment) *DeploymentUpdate {
-	du.mutation.Where(ps...)
-	return du
+func (_u *DeploymentUpdate) Where(ps ...predicate.Deployment) *DeploymentUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetPackageID sets the "package_id" field.
-func (du *DeploymentUpdate) SetPackageID(s string) *DeploymentUpdate {
-	du.mutation.SetPackageID(s)
-	return du
+func (_u *DeploymentUpdate) SetPackageID(v string) *DeploymentUpdate {
+	_u.mutation.SetPackageID(v)
+	return _u
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillablePackageID(s *string) *DeploymentUpdate {
-	if s != nil {
-		du.SetPackageID(*s)
+func (_u *DeploymentUpdate) SetNillablePackageID(v *string) *DeploymentUpdate {
+	if v != nil {
+		_u.SetPackageID(*v)
 	}
-	return du
+	return _u
 }
 
 // SetName sets the "name" field.
-func (du *DeploymentUpdate) SetName(s string) *DeploymentUpdate {
-	du.mutation.SetName(s)
-	return du
+func (_u *DeploymentUpdate) SetName(v string) *DeploymentUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillableName(s *string) *DeploymentUpdate {
-	if s != nil {
-		du.SetName(*s)
+func (_u *DeploymentUpdate) SetNillableName(v *string) *DeploymentUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return du
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (du *DeploymentUpdate) SetVersion(s string) *DeploymentUpdate {
-	du.mutation.SetVersion(s)
-	return du
+func (_u *DeploymentUpdate) SetVersion(v string) *DeploymentUpdate {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillableVersion(s *string) *DeploymentUpdate {
-	if s != nil {
-		du.SetVersion(*s)
+func (_u *DeploymentUpdate) SetNillableVersion(v *string) *DeploymentUpdate {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return du
+	return _u
 }
 
 // ClearVersion clears the value of the "version" field.
-func (du *DeploymentUpdate) ClearVersion() *DeploymentUpdate {
-	du.mutation.ClearVersion()
-	return du
+func (_u *DeploymentUpdate) ClearVersion() *DeploymentUpdate {
+	_u.mutation.ClearVersion()
+	return _u
 }
 
 // SetInstalled sets the "installed" field.
-func (du *DeploymentUpdate) SetInstalled(t time.Time) *DeploymentUpdate {
-	du.mutation.SetInstalled(t)
-	return du
+func (_u *DeploymentUpdate) SetInstalled(v time.Time) *DeploymentUpdate {
+	_u.mutation.SetInstalled(v)
+	return _u
 }
 
 // SetNillableInstalled sets the "installed" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillableInstalled(t *time.Time) *DeploymentUpdate {
-	if t != nil {
-		du.SetInstalled(*t)
+func (_u *DeploymentUpdate) SetNillableInstalled(v *time.Time) *DeploymentUpdate {
+	if v != nil {
+		_u.SetInstalled(*v)
 	}
-	return du
+	return _u
 }
 
 // ClearInstalled clears the value of the "installed" field.
-func (du *DeploymentUpdate) ClearInstalled() *DeploymentUpdate {
-	du.mutation.ClearInstalled()
-	return du
+func (_u *DeploymentUpdate) ClearInstalled() *DeploymentUpdate {
+	_u.mutation.ClearInstalled()
+	return _u
 }
 
 // SetUpdated sets the "updated" field.
-func (du *DeploymentUpdate) SetUpdated(t time.Time) *DeploymentUpdate {
-	du.mutation.SetUpdated(t)
-	return du
+func (_u *DeploymentUpdate) SetUpdated(v time.Time) *DeploymentUpdate {
+	_u.mutation.SetUpdated(v)
+	return _u
 }
 
 // ClearUpdated clears the value of the "updated" field.
-func (du *DeploymentUpdate) ClearUpdated() *DeploymentUpdate {
-	du.mutation.ClearUpdated()
-	return du
+func (_u *DeploymentUpdate) ClearUpdated() *DeploymentUpdate {
+	_u.mutation.ClearUpdated()
+	return _u
 }
 
 // SetFailed sets the "failed" field.
-func (du *DeploymentUpdate) SetFailed(b bool) *DeploymentUpdate {
-	du.mutation.SetFailed(b)
-	return du
+func (_u *DeploymentUpdate) SetFailed(v bool) *DeploymentUpdate {
+	_u.mutation.SetFailed(v)
+	return _u
 }
 
 // SetNillableFailed sets the "failed" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillableFailed(b *bool) *DeploymentUpdate {
-	if b != nil {
-		du.SetFailed(*b)
+func (_u *DeploymentUpdate) SetNillableFailed(v *bool) *DeploymentUpdate {
+	if v != nil {
+		_u.SetFailed(*v)
 	}
-	return du
+	return _u
 }
 
 // ClearFailed clears the value of the "failed" field.
-func (du *DeploymentUpdate) ClearFailed() *DeploymentUpdate {
-	du.mutation.ClearFailed()
-	return du
+func (_u *DeploymentUpdate) ClearFailed() *DeploymentUpdate {
+	_u.mutation.ClearFailed()
+	return _u
 }
 
 // SetByProfile sets the "by_profile" field.
-func (du *DeploymentUpdate) SetByProfile(b bool) *DeploymentUpdate {
-	du.mutation.SetByProfile(b)
-	return du
+func (_u *DeploymentUpdate) SetByProfile(v bool) *DeploymentUpdate {
+	_u.mutation.SetByProfile(v)
+	return _u
 }
 
 // SetNillableByProfile sets the "by_profile" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillableByProfile(b *bool) *DeploymentUpdate {
-	if b != nil {
-		du.SetByProfile(*b)
+func (_u *DeploymentUpdate) SetNillableByProfile(v *bool) *DeploymentUpdate {
+	if v != nil {
+		_u.SetByProfile(*v)
 	}
-	return du
+	return _u
 }
 
 // ClearByProfile clears the value of the "by_profile" field.
-func (du *DeploymentUpdate) ClearByProfile() *DeploymentUpdate {
-	du.mutation.ClearByProfile()
-	return du
+func (_u *DeploymentUpdate) ClearByProfile() *DeploymentUpdate {
+	_u.mutation.ClearByProfile()
+	return _u
 }
 
 // SetMoreInfo sets the "more_info" field.
-func (du *DeploymentUpdate) SetMoreInfo(s string) *DeploymentUpdate {
-	du.mutation.SetMoreInfo(s)
-	return du
+func (_u *DeploymentUpdate) SetMoreInfo(v string) *DeploymentUpdate {
+	_u.mutation.SetMoreInfo(v)
+	return _u
 }
 
 // SetNillableMoreInfo sets the "more_info" field if the given value is not nil.
-func (du *DeploymentUpdate) SetNillableMoreInfo(s *string) *DeploymentUpdate {
-	if s != nil {
-		du.SetMoreInfo(*s)
+func (_u *DeploymentUpdate) SetNillableMoreInfo(v *string) *DeploymentUpdate {
+	if v != nil {
+		_u.SetMoreInfo(*v)
 	}
-	return du
+	return _u
 }
 
 // ClearMoreInfo clears the value of the "more_info" field.
-func (du *DeploymentUpdate) ClearMoreInfo() *DeploymentUpdate {
-	du.mutation.ClearMoreInfo()
-	return du
+func (_u *DeploymentUpdate) ClearMoreInfo() *DeploymentUpdate {
+	_u.mutation.ClearMoreInfo()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (du *DeploymentUpdate) SetOwnerID(id string) *DeploymentUpdate {
-	du.mutation.SetOwnerID(id)
-	return du
+func (_u *DeploymentUpdate) SetOwnerID(id string) *DeploymentUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (du *DeploymentUpdate) SetOwner(a *Agent) *DeploymentUpdate {
-	return du.SetOwnerID(a.ID)
+func (_u *DeploymentUpdate) SetOwner(v *Agent) *DeploymentUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the DeploymentMutation object of the builder.
-func (du *DeploymentUpdate) Mutation() *DeploymentMutation {
-	return du.mutation
+func (_u *DeploymentUpdate) Mutation() *DeploymentMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (du *DeploymentUpdate) ClearOwner() *DeploymentUpdate {
-	du.mutation.ClearOwner()
-	return du
+func (_u *DeploymentUpdate) ClearOwner() *DeploymentUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (du *DeploymentUpdate) Save(ctx context.Context) (int, error) {
-	du.defaults()
-	return withHooks(ctx, du.sqlSave, du.mutation, du.hooks)
+func (_u *DeploymentUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (du *DeploymentUpdate) SaveX(ctx context.Context) int {
-	affected, err := du.Save(ctx)
+func (_u *DeploymentUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -208,95 +208,95 @@ func (du *DeploymentUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (du *DeploymentUpdate) Exec(ctx context.Context) error {
-	_, err := du.Save(ctx)
+func (_u *DeploymentUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (du *DeploymentUpdate) ExecX(ctx context.Context) {
-	if err := du.Exec(ctx); err != nil {
+func (_u *DeploymentUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (du *DeploymentUpdate) defaults() {
-	if _, ok := du.mutation.Updated(); !ok && !du.mutation.UpdatedCleared() {
+func (_u *DeploymentUpdate) defaults() {
+	if _, ok := _u.mutation.Updated(); !ok && !_u.mutation.UpdatedCleared() {
 		v := deployment.UpdateDefaultUpdated()
-		du.mutation.SetUpdated(v)
+		_u.mutation.SetUpdated(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (du *DeploymentUpdate) check() error {
-	if du.mutation.OwnerCleared() && len(du.mutation.OwnerIDs()) > 0 {
+func (_u *DeploymentUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Deployment.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (du *DeploymentUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *DeploymentUpdate {
-	du.modifiers = append(du.modifiers, modifiers...)
-	return du
+func (_u *DeploymentUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *DeploymentUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (du *DeploymentUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := du.check(); err != nil {
-		return n, err
+func (_u *DeploymentUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(deployment.Table, deployment.Columns, sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt))
-	if ps := du.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := du.mutation.PackageID(); ok {
+	if value, ok := _u.mutation.PackageID(); ok {
 		_spec.SetField(deployment.FieldPackageID, field.TypeString, value)
 	}
-	if value, ok := du.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(deployment.FieldName, field.TypeString, value)
 	}
-	if value, ok := du.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(deployment.FieldVersion, field.TypeString, value)
 	}
-	if du.mutation.VersionCleared() {
+	if _u.mutation.VersionCleared() {
 		_spec.ClearField(deployment.FieldVersion, field.TypeString)
 	}
-	if value, ok := du.mutation.Installed(); ok {
+	if value, ok := _u.mutation.Installed(); ok {
 		_spec.SetField(deployment.FieldInstalled, field.TypeTime, value)
 	}
-	if du.mutation.InstalledCleared() {
+	if _u.mutation.InstalledCleared() {
 		_spec.ClearField(deployment.FieldInstalled, field.TypeTime)
 	}
-	if value, ok := du.mutation.Updated(); ok {
+	if value, ok := _u.mutation.Updated(); ok {
 		_spec.SetField(deployment.FieldUpdated, field.TypeTime, value)
 	}
-	if du.mutation.UpdatedCleared() {
+	if _u.mutation.UpdatedCleared() {
 		_spec.ClearField(deployment.FieldUpdated, field.TypeTime)
 	}
-	if value, ok := du.mutation.Failed(); ok {
+	if value, ok := _u.mutation.Failed(); ok {
 		_spec.SetField(deployment.FieldFailed, field.TypeBool, value)
 	}
-	if du.mutation.FailedCleared() {
+	if _u.mutation.FailedCleared() {
 		_spec.ClearField(deployment.FieldFailed, field.TypeBool)
 	}
-	if value, ok := du.mutation.ByProfile(); ok {
+	if value, ok := _u.mutation.ByProfile(); ok {
 		_spec.SetField(deployment.FieldByProfile, field.TypeBool, value)
 	}
-	if du.mutation.ByProfileCleared() {
+	if _u.mutation.ByProfileCleared() {
 		_spec.ClearField(deployment.FieldByProfile, field.TypeBool)
 	}
-	if value, ok := du.mutation.MoreInfo(); ok {
+	if value, ok := _u.mutation.MoreInfo(); ok {
 		_spec.SetField(deployment.FieldMoreInfo, field.TypeString, value)
 	}
-	if du.mutation.MoreInfoCleared() {
+	if _u.mutation.MoreInfoCleared() {
 		_spec.ClearField(deployment.FieldMoreInfo, field.TypeString)
 	}
-	if du.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -309,7 +309,7 @@ func (du *DeploymentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := du.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -325,8 +325,8 @@ func (du *DeploymentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(du.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, du.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{deployment.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -334,8 +334,8 @@ func (du *DeploymentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	du.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // DeploymentUpdateOne is the builder for updating a single Deployment entity.
@@ -348,189 +348,189 @@ type DeploymentUpdateOne struct {
 }
 
 // SetPackageID sets the "package_id" field.
-func (duo *DeploymentUpdateOne) SetPackageID(s string) *DeploymentUpdateOne {
-	duo.mutation.SetPackageID(s)
-	return duo
+func (_u *DeploymentUpdateOne) SetPackageID(v string) *DeploymentUpdateOne {
+	_u.mutation.SetPackageID(v)
+	return _u
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillablePackageID(s *string) *DeploymentUpdateOne {
-	if s != nil {
-		duo.SetPackageID(*s)
+func (_u *DeploymentUpdateOne) SetNillablePackageID(v *string) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetPackageID(*v)
 	}
-	return duo
+	return _u
 }
 
 // SetName sets the "name" field.
-func (duo *DeploymentUpdateOne) SetName(s string) *DeploymentUpdateOne {
-	duo.mutation.SetName(s)
-	return duo
+func (_u *DeploymentUpdateOne) SetName(v string) *DeploymentUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillableName(s *string) *DeploymentUpdateOne {
-	if s != nil {
-		duo.SetName(*s)
+func (_u *DeploymentUpdateOne) SetNillableName(v *string) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return duo
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (duo *DeploymentUpdateOne) SetVersion(s string) *DeploymentUpdateOne {
-	duo.mutation.SetVersion(s)
-	return duo
+func (_u *DeploymentUpdateOne) SetVersion(v string) *DeploymentUpdateOne {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillableVersion(s *string) *DeploymentUpdateOne {
-	if s != nil {
-		duo.SetVersion(*s)
+func (_u *DeploymentUpdateOne) SetNillableVersion(v *string) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return duo
+	return _u
 }
 
 // ClearVersion clears the value of the "version" field.
-func (duo *DeploymentUpdateOne) ClearVersion() *DeploymentUpdateOne {
-	duo.mutation.ClearVersion()
-	return duo
+func (_u *DeploymentUpdateOne) ClearVersion() *DeploymentUpdateOne {
+	_u.mutation.ClearVersion()
+	return _u
 }
 
 // SetInstalled sets the "installed" field.
-func (duo *DeploymentUpdateOne) SetInstalled(t time.Time) *DeploymentUpdateOne {
-	duo.mutation.SetInstalled(t)
-	return duo
+func (_u *DeploymentUpdateOne) SetInstalled(v time.Time) *DeploymentUpdateOne {
+	_u.mutation.SetInstalled(v)
+	return _u
 }
 
 // SetNillableInstalled sets the "installed" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillableInstalled(t *time.Time) *DeploymentUpdateOne {
-	if t != nil {
-		duo.SetInstalled(*t)
+func (_u *DeploymentUpdateOne) SetNillableInstalled(v *time.Time) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetInstalled(*v)
 	}
-	return duo
+	return _u
 }
 
 // ClearInstalled clears the value of the "installed" field.
-func (duo *DeploymentUpdateOne) ClearInstalled() *DeploymentUpdateOne {
-	duo.mutation.ClearInstalled()
-	return duo
+func (_u *DeploymentUpdateOne) ClearInstalled() *DeploymentUpdateOne {
+	_u.mutation.ClearInstalled()
+	return _u
 }
 
 // SetUpdated sets the "updated" field.
-func (duo *DeploymentUpdateOne) SetUpdated(t time.Time) *DeploymentUpdateOne {
-	duo.mutation.SetUpdated(t)
-	return duo
+func (_u *DeploymentUpdateOne) SetUpdated(v time.Time) *DeploymentUpdateOne {
+	_u.mutation.SetUpdated(v)
+	return _u
 }
 
 // ClearUpdated clears the value of the "updated" field.
-func (duo *DeploymentUpdateOne) ClearUpdated() *DeploymentUpdateOne {
-	duo.mutation.ClearUpdated()
-	return duo
+func (_u *DeploymentUpdateOne) ClearUpdated() *DeploymentUpdateOne {
+	_u.mutation.ClearUpdated()
+	return _u
 }
 
 // SetFailed sets the "failed" field.
-func (duo *DeploymentUpdateOne) SetFailed(b bool) *DeploymentUpdateOne {
-	duo.mutation.SetFailed(b)
-	return duo
+func (_u *DeploymentUpdateOne) SetFailed(v bool) *DeploymentUpdateOne {
+	_u.mutation.SetFailed(v)
+	return _u
 }
 
 // SetNillableFailed sets the "failed" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillableFailed(b *bool) *DeploymentUpdateOne {
-	if b != nil {
-		duo.SetFailed(*b)
+func (_u *DeploymentUpdateOne) SetNillableFailed(v *bool) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetFailed(*v)
 	}
-	return duo
+	return _u
 }
 
 // ClearFailed clears the value of the "failed" field.
-func (duo *DeploymentUpdateOne) ClearFailed() *DeploymentUpdateOne {
-	duo.mutation.ClearFailed()
-	return duo
+func (_u *DeploymentUpdateOne) ClearFailed() *DeploymentUpdateOne {
+	_u.mutation.ClearFailed()
+	return _u
 }
 
 // SetByProfile sets the "by_profile" field.
-func (duo *DeploymentUpdateOne) SetByProfile(b bool) *DeploymentUpdateOne {
-	duo.mutation.SetByProfile(b)
-	return duo
+func (_u *DeploymentUpdateOne) SetByProfile(v bool) *DeploymentUpdateOne {
+	_u.mutation.SetByProfile(v)
+	return _u
 }
 
 // SetNillableByProfile sets the "by_profile" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillableByProfile(b *bool) *DeploymentUpdateOne {
-	if b != nil {
-		duo.SetByProfile(*b)
+func (_u *DeploymentUpdateOne) SetNillableByProfile(v *bool) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetByProfile(*v)
 	}
-	return duo
+	return _u
 }
 
 // ClearByProfile clears the value of the "by_profile" field.
-func (duo *DeploymentUpdateOne) ClearByProfile() *DeploymentUpdateOne {
-	duo.mutation.ClearByProfile()
-	return duo
+func (_u *DeploymentUpdateOne) ClearByProfile() *DeploymentUpdateOne {
+	_u.mutation.ClearByProfile()
+	return _u
 }
 
 // SetMoreInfo sets the "more_info" field.
-func (duo *DeploymentUpdateOne) SetMoreInfo(s string) *DeploymentUpdateOne {
-	duo.mutation.SetMoreInfo(s)
-	return duo
+func (_u *DeploymentUpdateOne) SetMoreInfo(v string) *DeploymentUpdateOne {
+	_u.mutation.SetMoreInfo(v)
+	return _u
 }
 
 // SetNillableMoreInfo sets the "more_info" field if the given value is not nil.
-func (duo *DeploymentUpdateOne) SetNillableMoreInfo(s *string) *DeploymentUpdateOne {
-	if s != nil {
-		duo.SetMoreInfo(*s)
+func (_u *DeploymentUpdateOne) SetNillableMoreInfo(v *string) *DeploymentUpdateOne {
+	if v != nil {
+		_u.SetMoreInfo(*v)
 	}
-	return duo
+	return _u
 }
 
 // ClearMoreInfo clears the value of the "more_info" field.
-func (duo *DeploymentUpdateOne) ClearMoreInfo() *DeploymentUpdateOne {
-	duo.mutation.ClearMoreInfo()
-	return duo
+func (_u *DeploymentUpdateOne) ClearMoreInfo() *DeploymentUpdateOne {
+	_u.mutation.ClearMoreInfo()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (duo *DeploymentUpdateOne) SetOwnerID(id string) *DeploymentUpdateOne {
-	duo.mutation.SetOwnerID(id)
-	return duo
+func (_u *DeploymentUpdateOne) SetOwnerID(id string) *DeploymentUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (duo *DeploymentUpdateOne) SetOwner(a *Agent) *DeploymentUpdateOne {
-	return duo.SetOwnerID(a.ID)
+func (_u *DeploymentUpdateOne) SetOwner(v *Agent) *DeploymentUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the DeploymentMutation object of the builder.
-func (duo *DeploymentUpdateOne) Mutation() *DeploymentMutation {
-	return duo.mutation
+func (_u *DeploymentUpdateOne) Mutation() *DeploymentMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (duo *DeploymentUpdateOne) ClearOwner() *DeploymentUpdateOne {
-	duo.mutation.ClearOwner()
-	return duo
+func (_u *DeploymentUpdateOne) ClearOwner() *DeploymentUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the DeploymentUpdate builder.
-func (duo *DeploymentUpdateOne) Where(ps ...predicate.Deployment) *DeploymentUpdateOne {
-	duo.mutation.Where(ps...)
-	return duo
+func (_u *DeploymentUpdateOne) Where(ps ...predicate.Deployment) *DeploymentUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (duo *DeploymentUpdateOne) Select(field string, fields ...string) *DeploymentUpdateOne {
-	duo.fields = append([]string{field}, fields...)
-	return duo
+func (_u *DeploymentUpdateOne) Select(field string, fields ...string) *DeploymentUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Deployment entity.
-func (duo *DeploymentUpdateOne) Save(ctx context.Context) (*Deployment, error) {
-	duo.defaults()
-	return withHooks(ctx, duo.sqlSave, duo.mutation, duo.hooks)
+func (_u *DeploymentUpdateOne) Save(ctx context.Context) (*Deployment, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (duo *DeploymentUpdateOne) SaveX(ctx context.Context) *Deployment {
-	node, err := duo.Save(ctx)
+func (_u *DeploymentUpdateOne) SaveX(ctx context.Context) *Deployment {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -538,51 +538,51 @@ func (duo *DeploymentUpdateOne) SaveX(ctx context.Context) *Deployment {
 }
 
 // Exec executes the query on the entity.
-func (duo *DeploymentUpdateOne) Exec(ctx context.Context) error {
-	_, err := duo.Save(ctx)
+func (_u *DeploymentUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (duo *DeploymentUpdateOne) ExecX(ctx context.Context) {
-	if err := duo.Exec(ctx); err != nil {
+func (_u *DeploymentUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (duo *DeploymentUpdateOne) defaults() {
-	if _, ok := duo.mutation.Updated(); !ok && !duo.mutation.UpdatedCleared() {
+func (_u *DeploymentUpdateOne) defaults() {
+	if _, ok := _u.mutation.Updated(); !ok && !_u.mutation.UpdatedCleared() {
 		v := deployment.UpdateDefaultUpdated()
-		duo.mutation.SetUpdated(v)
+		_u.mutation.SetUpdated(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (duo *DeploymentUpdateOne) check() error {
-	if duo.mutation.OwnerCleared() && len(duo.mutation.OwnerIDs()) > 0 {
+func (_u *DeploymentUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Deployment.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (duo *DeploymentUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *DeploymentUpdateOne {
-	duo.modifiers = append(duo.modifiers, modifiers...)
-	return duo
+func (_u *DeploymentUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *DeploymentUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (duo *DeploymentUpdateOne) sqlSave(ctx context.Context) (_node *Deployment, err error) {
-	if err := duo.check(); err != nil {
+func (_u *DeploymentUpdateOne) sqlSave(ctx context.Context) (_node *Deployment, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(deployment.Table, deployment.Columns, sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt))
-	id, ok := duo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Deployment.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := duo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, deployment.FieldID)
 		for _, f := range fields {
@@ -594,56 +594,56 @@ func (duo *DeploymentUpdateOne) sqlSave(ctx context.Context) (_node *Deployment,
 			}
 		}
 	}
-	if ps := duo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := duo.mutation.PackageID(); ok {
+	if value, ok := _u.mutation.PackageID(); ok {
 		_spec.SetField(deployment.FieldPackageID, field.TypeString, value)
 	}
-	if value, ok := duo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(deployment.FieldName, field.TypeString, value)
 	}
-	if value, ok := duo.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(deployment.FieldVersion, field.TypeString, value)
 	}
-	if duo.mutation.VersionCleared() {
+	if _u.mutation.VersionCleared() {
 		_spec.ClearField(deployment.FieldVersion, field.TypeString)
 	}
-	if value, ok := duo.mutation.Installed(); ok {
+	if value, ok := _u.mutation.Installed(); ok {
 		_spec.SetField(deployment.FieldInstalled, field.TypeTime, value)
 	}
-	if duo.mutation.InstalledCleared() {
+	if _u.mutation.InstalledCleared() {
 		_spec.ClearField(deployment.FieldInstalled, field.TypeTime)
 	}
-	if value, ok := duo.mutation.Updated(); ok {
+	if value, ok := _u.mutation.Updated(); ok {
 		_spec.SetField(deployment.FieldUpdated, field.TypeTime, value)
 	}
-	if duo.mutation.UpdatedCleared() {
+	if _u.mutation.UpdatedCleared() {
 		_spec.ClearField(deployment.FieldUpdated, field.TypeTime)
 	}
-	if value, ok := duo.mutation.Failed(); ok {
+	if value, ok := _u.mutation.Failed(); ok {
 		_spec.SetField(deployment.FieldFailed, field.TypeBool, value)
 	}
-	if duo.mutation.FailedCleared() {
+	if _u.mutation.FailedCleared() {
 		_spec.ClearField(deployment.FieldFailed, field.TypeBool)
 	}
-	if value, ok := duo.mutation.ByProfile(); ok {
+	if value, ok := _u.mutation.ByProfile(); ok {
 		_spec.SetField(deployment.FieldByProfile, field.TypeBool, value)
 	}
-	if duo.mutation.ByProfileCleared() {
+	if _u.mutation.ByProfileCleared() {
 		_spec.ClearField(deployment.FieldByProfile, field.TypeBool)
 	}
-	if value, ok := duo.mutation.MoreInfo(); ok {
+	if value, ok := _u.mutation.MoreInfo(); ok {
 		_spec.SetField(deployment.FieldMoreInfo, field.TypeString, value)
 	}
-	if duo.mutation.MoreInfoCleared() {
+	if _u.mutation.MoreInfoCleared() {
 		_spec.ClearField(deployment.FieldMoreInfo, field.TypeString)
 	}
-	if duo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -656,7 +656,7 @@ func (duo *DeploymentUpdateOne) sqlSave(ctx context.Context) (_node *Deployment,
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := duo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -672,11 +672,11 @@ func (duo *DeploymentUpdateOne) sqlSave(ctx context.Context) (_node *Deployment,
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(duo.modifiers...)
-	_node = &Deployment{config: duo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Deployment{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, duo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{deployment.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -684,6 +684,6 @@ func (duo *DeploymentUpdateOne) sqlSave(ctx context.Context) (_node *Deployment,
 		}
 		return nil, err
 	}
-	duo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

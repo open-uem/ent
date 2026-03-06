@@ -24,50 +24,50 @@ type WingetConfigExclusionCreate struct {
 }
 
 // SetPackageID sets the "package_id" field.
-func (wcec *WingetConfigExclusionCreate) SetPackageID(s string) *WingetConfigExclusionCreate {
-	wcec.mutation.SetPackageID(s)
-	return wcec
+func (_c *WingetConfigExclusionCreate) SetPackageID(v string) *WingetConfigExclusionCreate {
+	_c.mutation.SetPackageID(v)
+	return _c
 }
 
 // SetWhen sets the "when" field.
-func (wcec *WingetConfigExclusionCreate) SetWhen(t time.Time) *WingetConfigExclusionCreate {
-	wcec.mutation.SetWhen(t)
-	return wcec
+func (_c *WingetConfigExclusionCreate) SetWhen(v time.Time) *WingetConfigExclusionCreate {
+	_c.mutation.SetWhen(v)
+	return _c
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (wcec *WingetConfigExclusionCreate) SetNillableWhen(t *time.Time) *WingetConfigExclusionCreate {
-	if t != nil {
-		wcec.SetWhen(*t)
+func (_c *WingetConfigExclusionCreate) SetNillableWhen(v *time.Time) *WingetConfigExclusionCreate {
+	if v != nil {
+		_c.SetWhen(*v)
 	}
-	return wcec
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (wcec *WingetConfigExclusionCreate) SetOwnerID(id string) *WingetConfigExclusionCreate {
-	wcec.mutation.SetOwnerID(id)
-	return wcec
+func (_c *WingetConfigExclusionCreate) SetOwnerID(id string) *WingetConfigExclusionCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (wcec *WingetConfigExclusionCreate) SetOwner(a *Agent) *WingetConfigExclusionCreate {
-	return wcec.SetOwnerID(a.ID)
+func (_c *WingetConfigExclusionCreate) SetOwner(v *Agent) *WingetConfigExclusionCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the WingetConfigExclusionMutation object of the builder.
-func (wcec *WingetConfigExclusionCreate) Mutation() *WingetConfigExclusionMutation {
-	return wcec.mutation
+func (_c *WingetConfigExclusionCreate) Mutation() *WingetConfigExclusionMutation {
+	return _c.mutation
 }
 
 // Save creates the WingetConfigExclusion in the database.
-func (wcec *WingetConfigExclusionCreate) Save(ctx context.Context) (*WingetConfigExclusion, error) {
-	wcec.defaults()
-	return withHooks(ctx, wcec.sqlSave, wcec.mutation, wcec.hooks)
+func (_c *WingetConfigExclusionCreate) Save(ctx context.Context) (*WingetConfigExclusion, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (wcec *WingetConfigExclusionCreate) SaveX(ctx context.Context) *WingetConfigExclusion {
-	v, err := wcec.Save(ctx)
+func (_c *WingetConfigExclusionCreate) SaveX(ctx context.Context) *WingetConfigExclusion {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -75,43 +75,43 @@ func (wcec *WingetConfigExclusionCreate) SaveX(ctx context.Context) *WingetConfi
 }
 
 // Exec executes the query.
-func (wcec *WingetConfigExclusionCreate) Exec(ctx context.Context) error {
-	_, err := wcec.Save(ctx)
+func (_c *WingetConfigExclusionCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wcec *WingetConfigExclusionCreate) ExecX(ctx context.Context) {
-	if err := wcec.Exec(ctx); err != nil {
+func (_c *WingetConfigExclusionCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (wcec *WingetConfigExclusionCreate) defaults() {
-	if _, ok := wcec.mutation.When(); !ok {
+func (_c *WingetConfigExclusionCreate) defaults() {
+	if _, ok := _c.mutation.When(); !ok {
 		v := wingetconfigexclusion.DefaultWhen()
-		wcec.mutation.SetWhen(v)
+		_c.mutation.SetWhen(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (wcec *WingetConfigExclusionCreate) check() error {
-	if _, ok := wcec.mutation.PackageID(); !ok {
+func (_c *WingetConfigExclusionCreate) check() error {
+	if _, ok := _c.mutation.PackageID(); !ok {
 		return &ValidationError{Name: "package_id", err: errors.New(`ent: missing required field "WingetConfigExclusion.package_id"`)}
 	}
-	if len(wcec.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "WingetConfigExclusion.owner"`)}
 	}
 	return nil
 }
 
-func (wcec *WingetConfigExclusionCreate) sqlSave(ctx context.Context) (*WingetConfigExclusion, error) {
-	if err := wcec.check(); err != nil {
+func (_c *WingetConfigExclusionCreate) sqlSave(ctx context.Context) (*WingetConfigExclusion, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := wcec.createSpec()
-	if err := sqlgraph.CreateNode(ctx, wcec.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -119,26 +119,26 @@ func (wcec *WingetConfigExclusionCreate) sqlSave(ctx context.Context) (*WingetCo
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	wcec.mutation.id = &_node.ID
-	wcec.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (wcec *WingetConfigExclusionCreate) createSpec() (*WingetConfigExclusion, *sqlgraph.CreateSpec) {
+func (_c *WingetConfigExclusionCreate) createSpec() (*WingetConfigExclusion, *sqlgraph.CreateSpec) {
 	var (
-		_node = &WingetConfigExclusion{config: wcec.config}
+		_node = &WingetConfigExclusion{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(wingetconfigexclusion.Table, sqlgraph.NewFieldSpec(wingetconfigexclusion.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = wcec.conflict
-	if value, ok := wcec.mutation.PackageID(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.PackageID(); ok {
 		_spec.SetField(wingetconfigexclusion.FieldPackageID, field.TypeString, value)
 		_node.PackageID = value
 	}
-	if value, ok := wcec.mutation.When(); ok {
+	if value, ok := _c.mutation.When(); ok {
 		_spec.SetField(wingetconfigexclusion.FieldWhen, field.TypeTime, value)
 		_node.When = value
 	}
-	if nodes := wcec.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -174,10 +174,10 @@ func (wcec *WingetConfigExclusionCreate) createSpec() (*WingetConfigExclusion, *
 //			SetPackageID(v+v).
 //		}).
 //		Exec(ctx)
-func (wcec *WingetConfigExclusionCreate) OnConflict(opts ...sql.ConflictOption) *WingetConfigExclusionUpsertOne {
-	wcec.conflict = opts
+func (_c *WingetConfigExclusionCreate) OnConflict(opts ...sql.ConflictOption) *WingetConfigExclusionUpsertOne {
+	_c.conflict = opts
 	return &WingetConfigExclusionUpsertOne{
-		create: wcec,
+		create: _c,
 	}
 }
 
@@ -187,10 +187,10 @@ func (wcec *WingetConfigExclusionCreate) OnConflict(opts ...sql.ConflictOption) 
 //	client.WingetConfigExclusion.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (wcec *WingetConfigExclusionCreate) OnConflictColumns(columns ...string) *WingetConfigExclusionUpsertOne {
-	wcec.conflict = append(wcec.conflict, sql.ConflictColumns(columns...))
+func (_c *WingetConfigExclusionCreate) OnConflictColumns(columns ...string) *WingetConfigExclusionUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &WingetConfigExclusionUpsertOne{
-		create: wcec,
+		create: _c,
 	}
 }
 
@@ -354,16 +354,16 @@ type WingetConfigExclusionCreateBulk struct {
 }
 
 // Save creates the WingetConfigExclusion entities in the database.
-func (wcecb *WingetConfigExclusionCreateBulk) Save(ctx context.Context) ([]*WingetConfigExclusion, error) {
-	if wcecb.err != nil {
-		return nil, wcecb.err
+func (_c *WingetConfigExclusionCreateBulk) Save(ctx context.Context) ([]*WingetConfigExclusion, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(wcecb.builders))
-	nodes := make([]*WingetConfigExclusion, len(wcecb.builders))
-	mutators := make([]Mutator, len(wcecb.builders))
-	for i := range wcecb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*WingetConfigExclusion, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := wcecb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*WingetConfigExclusionMutation)
@@ -377,12 +377,12 @@ func (wcecb *WingetConfigExclusionCreateBulk) Save(ctx context.Context) ([]*Wing
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, wcecb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = wcecb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, wcecb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -406,7 +406,7 @@ func (wcecb *WingetConfigExclusionCreateBulk) Save(ctx context.Context) ([]*Wing
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, wcecb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -414,8 +414,8 @@ func (wcecb *WingetConfigExclusionCreateBulk) Save(ctx context.Context) ([]*Wing
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (wcecb *WingetConfigExclusionCreateBulk) SaveX(ctx context.Context) []*WingetConfigExclusion {
-	v, err := wcecb.Save(ctx)
+func (_c *WingetConfigExclusionCreateBulk) SaveX(ctx context.Context) []*WingetConfigExclusion {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -423,14 +423,14 @@ func (wcecb *WingetConfigExclusionCreateBulk) SaveX(ctx context.Context) []*Wing
 }
 
 // Exec executes the query.
-func (wcecb *WingetConfigExclusionCreateBulk) Exec(ctx context.Context) error {
-	_, err := wcecb.Save(ctx)
+func (_c *WingetConfigExclusionCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wcecb *WingetConfigExclusionCreateBulk) ExecX(ctx context.Context) {
-	if err := wcecb.Exec(ctx); err != nil {
+func (_c *WingetConfigExclusionCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -450,10 +450,10 @@ func (wcecb *WingetConfigExclusionCreateBulk) ExecX(ctx context.Context) {
 //			SetPackageID(v+v).
 //		}).
 //		Exec(ctx)
-func (wcecb *WingetConfigExclusionCreateBulk) OnConflict(opts ...sql.ConflictOption) *WingetConfigExclusionUpsertBulk {
-	wcecb.conflict = opts
+func (_c *WingetConfigExclusionCreateBulk) OnConflict(opts ...sql.ConflictOption) *WingetConfigExclusionUpsertBulk {
+	_c.conflict = opts
 	return &WingetConfigExclusionUpsertBulk{
-		create: wcecb,
+		create: _c,
 	}
 }
 
@@ -463,10 +463,10 @@ func (wcecb *WingetConfigExclusionCreateBulk) OnConflict(opts ...sql.ConflictOpt
 //	client.WingetConfigExclusion.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (wcecb *WingetConfigExclusionCreateBulk) OnConflictColumns(columns ...string) *WingetConfigExclusionUpsertBulk {
-	wcecb.conflict = append(wcecb.conflict, sql.ConflictColumns(columns...))
+func (_c *WingetConfigExclusionCreateBulk) OnConflictColumns(columns ...string) *WingetConfigExclusionUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &WingetConfigExclusionUpsertBulk{
-		create: wcecb,
+		create: _c,
 	}
 }
 

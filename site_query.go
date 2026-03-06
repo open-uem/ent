@@ -37,44 +37,44 @@ type SiteQuery struct {
 }
 
 // Where adds a new predicate for the SiteQuery builder.
-func (sq *SiteQuery) Where(ps ...predicate.Site) *SiteQuery {
-	sq.predicates = append(sq.predicates, ps...)
-	return sq
+func (_q *SiteQuery) Where(ps ...predicate.Site) *SiteQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (sq *SiteQuery) Limit(limit int) *SiteQuery {
-	sq.ctx.Limit = &limit
-	return sq
+func (_q *SiteQuery) Limit(limit int) *SiteQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (sq *SiteQuery) Offset(offset int) *SiteQuery {
-	sq.ctx.Offset = &offset
-	return sq
+func (_q *SiteQuery) Offset(offset int) *SiteQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (sq *SiteQuery) Unique(unique bool) *SiteQuery {
-	sq.ctx.Unique = &unique
-	return sq
+func (_q *SiteQuery) Unique(unique bool) *SiteQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (sq *SiteQuery) Order(o ...site.OrderOption) *SiteQuery {
-	sq.order = append(sq.order, o...)
-	return sq
+func (_q *SiteQuery) Order(o ...site.OrderOption) *SiteQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryTenant chains the current query on the "tenant" edge.
-func (sq *SiteQuery) QueryTenant() *TenantQuery {
-	query := (&TenantClient{config: sq.config}).Query()
+func (_q *SiteQuery) QueryTenant() *TenantQuery {
+	query := (&TenantClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := sq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := sq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -83,20 +83,20 @@ func (sq *SiteQuery) QueryTenant() *TenantQuery {
 			sqlgraph.To(tenant.Table, tenant.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, site.TenantTable, site.TenantColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryAgents chains the current query on the "agents" edge.
-func (sq *SiteQuery) QueryAgents() *AgentQuery {
-	query := (&AgentClient{config: sq.config}).Query()
+func (_q *SiteQuery) QueryAgents() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := sq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := sq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -105,20 +105,20 @@ func (sq *SiteQuery) QueryAgents() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, site.AgentsTable, site.AgentsPrimaryKey...),
 		)
-		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryProfiles chains the current query on the "profiles" edge.
-func (sq *SiteQuery) QueryProfiles() *ProfileQuery {
-	query := (&ProfileClient{config: sq.config}).Query()
+func (_q *SiteQuery) QueryProfiles() *ProfileQuery {
+	query := (&ProfileClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := sq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := sq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -127,7 +127,7 @@ func (sq *SiteQuery) QueryProfiles() *ProfileQuery {
 			sqlgraph.To(profile.Table, profile.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, site.ProfilesTable, site.ProfilesColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -135,8 +135,8 @@ func (sq *SiteQuery) QueryProfiles() *ProfileQuery {
 
 // First returns the first Site entity from the query.
 // Returns a *NotFoundError when no Site was found.
-func (sq *SiteQuery) First(ctx context.Context) (*Site, error) {
-	nodes, err := sq.Limit(1).All(setContextOp(ctx, sq.ctx, ent.OpQueryFirst))
+func (_q *SiteQuery) First(ctx context.Context) (*Site, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -147,8 +147,8 @@ func (sq *SiteQuery) First(ctx context.Context) (*Site, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (sq *SiteQuery) FirstX(ctx context.Context) *Site {
-	node, err := sq.First(ctx)
+func (_q *SiteQuery) FirstX(ctx context.Context) *Site {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -157,9 +157,9 @@ func (sq *SiteQuery) FirstX(ctx context.Context) *Site {
 
 // FirstID returns the first Site ID from the query.
 // Returns a *NotFoundError when no Site ID was found.
-func (sq *SiteQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *SiteQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = sq.Limit(1).IDs(setContextOp(ctx, sq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -170,8 +170,8 @@ func (sq *SiteQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (sq *SiteQuery) FirstIDX(ctx context.Context) int {
-	id, err := sq.FirstID(ctx)
+func (_q *SiteQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -181,8 +181,8 @@ func (sq *SiteQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single Site entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Site entity is found.
 // Returns a *NotFoundError when no Site entities are found.
-func (sq *SiteQuery) Only(ctx context.Context) (*Site, error) {
-	nodes, err := sq.Limit(2).All(setContextOp(ctx, sq.ctx, ent.OpQueryOnly))
+func (_q *SiteQuery) Only(ctx context.Context) (*Site, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -197,8 +197,8 @@ func (sq *SiteQuery) Only(ctx context.Context) (*Site, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (sq *SiteQuery) OnlyX(ctx context.Context) *Site {
-	node, err := sq.Only(ctx)
+func (_q *SiteQuery) OnlyX(ctx context.Context) *Site {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -208,9 +208,9 @@ func (sq *SiteQuery) OnlyX(ctx context.Context) *Site {
 // OnlyID is like Only, but returns the only Site ID in the query.
 // Returns a *NotSingularError when more than one Site ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (sq *SiteQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *SiteQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = sq.Limit(2).IDs(setContextOp(ctx, sq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -225,8 +225,8 @@ func (sq *SiteQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (sq *SiteQuery) OnlyIDX(ctx context.Context) int {
-	id, err := sq.OnlyID(ctx)
+func (_q *SiteQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -234,18 +234,18 @@ func (sq *SiteQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of Sites.
-func (sq *SiteQuery) All(ctx context.Context) ([]*Site, error) {
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryAll)
-	if err := sq.prepareQuery(ctx); err != nil {
+func (_q *SiteQuery) All(ctx context.Context) ([]*Site, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Site, *SiteQuery]()
-	return withInterceptors[[]*Site](ctx, sq, qr, sq.inters)
+	return withInterceptors[[]*Site](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (sq *SiteQuery) AllX(ctx context.Context) []*Site {
-	nodes, err := sq.All(ctx)
+func (_q *SiteQuery) AllX(ctx context.Context) []*Site {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -253,20 +253,20 @@ func (sq *SiteQuery) AllX(ctx context.Context) []*Site {
 }
 
 // IDs executes the query and returns a list of Site IDs.
-func (sq *SiteQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if sq.ctx.Unique == nil && sq.path != nil {
-		sq.Unique(true)
+func (_q *SiteQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryIDs)
-	if err = sq.Select(site.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(site.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (sq *SiteQuery) IDsX(ctx context.Context) []int {
-	ids, err := sq.IDs(ctx)
+func (_q *SiteQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -274,17 +274,17 @@ func (sq *SiteQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (sq *SiteQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryCount)
-	if err := sq.prepareQuery(ctx); err != nil {
+func (_q *SiteQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, sq, querierCount[*SiteQuery](), sq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*SiteQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (sq *SiteQuery) CountX(ctx context.Context) int {
-	count, err := sq.Count(ctx)
+func (_q *SiteQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -292,9 +292,9 @@ func (sq *SiteQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (sq *SiteQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryExist)
-	switch _, err := sq.FirstID(ctx); {
+func (_q *SiteQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -305,8 +305,8 @@ func (sq *SiteQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (sq *SiteQuery) ExistX(ctx context.Context) bool {
-	exist, err := sq.Exist(ctx)
+func (_q *SiteQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -315,57 +315,57 @@ func (sq *SiteQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the SiteQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (sq *SiteQuery) Clone() *SiteQuery {
-	if sq == nil {
+func (_q *SiteQuery) Clone() *SiteQuery {
+	if _q == nil {
 		return nil
 	}
 	return &SiteQuery{
-		config:       sq.config,
-		ctx:          sq.ctx.Clone(),
-		order:        append([]site.OrderOption{}, sq.order...),
-		inters:       append([]Interceptor{}, sq.inters...),
-		predicates:   append([]predicate.Site{}, sq.predicates...),
-		withTenant:   sq.withTenant.Clone(),
-		withAgents:   sq.withAgents.Clone(),
-		withProfiles: sq.withProfiles.Clone(),
+		config:       _q.config,
+		ctx:          _q.ctx.Clone(),
+		order:        append([]site.OrderOption{}, _q.order...),
+		inters:       append([]Interceptor{}, _q.inters...),
+		predicates:   append([]predicate.Site{}, _q.predicates...),
+		withTenant:   _q.withTenant.Clone(),
+		withAgents:   _q.withAgents.Clone(),
+		withProfiles: _q.withProfiles.Clone(),
 		// clone intermediate query.
-		sql:       sq.sql.Clone(),
-		path:      sq.path,
-		modifiers: append([]func(*sql.Selector){}, sq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithTenant tells the query-builder to eager-load the nodes that are connected to
 // the "tenant" edge. The optional arguments are used to configure the query builder of the edge.
-func (sq *SiteQuery) WithTenant(opts ...func(*TenantQuery)) *SiteQuery {
-	query := (&TenantClient{config: sq.config}).Query()
+func (_q *SiteQuery) WithTenant(opts ...func(*TenantQuery)) *SiteQuery {
+	query := (&TenantClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	sq.withTenant = query
-	return sq
+	_q.withTenant = query
+	return _q
 }
 
 // WithAgents tells the query-builder to eager-load the nodes that are connected to
 // the "agents" edge. The optional arguments are used to configure the query builder of the edge.
-func (sq *SiteQuery) WithAgents(opts ...func(*AgentQuery)) *SiteQuery {
-	query := (&AgentClient{config: sq.config}).Query()
+func (_q *SiteQuery) WithAgents(opts ...func(*AgentQuery)) *SiteQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	sq.withAgents = query
-	return sq
+	_q.withAgents = query
+	return _q
 }
 
 // WithProfiles tells the query-builder to eager-load the nodes that are connected to
 // the "profiles" edge. The optional arguments are used to configure the query builder of the edge.
-func (sq *SiteQuery) WithProfiles(opts ...func(*ProfileQuery)) *SiteQuery {
-	query := (&ProfileClient{config: sq.config}).Query()
+func (_q *SiteQuery) WithProfiles(opts ...func(*ProfileQuery)) *SiteQuery {
+	query := (&ProfileClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	sq.withProfiles = query
-	return sq
+	_q.withProfiles = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -382,10 +382,10 @@ func (sq *SiteQuery) WithProfiles(opts ...func(*ProfileQuery)) *SiteQuery {
 //		GroupBy(site.FieldDescription).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (sq *SiteQuery) GroupBy(field string, fields ...string) *SiteGroupBy {
-	sq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &SiteGroupBy{build: sq}
-	grbuild.flds = &sq.ctx.Fields
+func (_q *SiteQuery) GroupBy(field string, fields ...string) *SiteGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &SiteGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = site.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -403,57 +403,57 @@ func (sq *SiteQuery) GroupBy(field string, fields ...string) *SiteGroupBy {
 //	client.Site.Query().
 //		Select(site.FieldDescription).
 //		Scan(ctx, &v)
-func (sq *SiteQuery) Select(fields ...string) *SiteSelect {
-	sq.ctx.Fields = append(sq.ctx.Fields, fields...)
-	sbuild := &SiteSelect{SiteQuery: sq}
+func (_q *SiteQuery) Select(fields ...string) *SiteSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &SiteSelect{SiteQuery: _q}
 	sbuild.label = site.Label
-	sbuild.flds, sbuild.scan = &sq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a SiteSelect configured with the given aggregations.
-func (sq *SiteQuery) Aggregate(fns ...AggregateFunc) *SiteSelect {
-	return sq.Select().Aggregate(fns...)
+func (_q *SiteQuery) Aggregate(fns ...AggregateFunc) *SiteSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (sq *SiteQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range sq.inters {
+func (_q *SiteQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, sq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range sq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !site.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if sq.path != nil {
-		prev, err := sq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		sq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, error) {
+func (_q *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, error) {
 	var (
 		nodes       = []*Site{}
-		withFKs     = sq.withFKs
-		_spec       = sq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [3]bool{
-			sq.withTenant != nil,
-			sq.withAgents != nil,
-			sq.withProfiles != nil,
+			_q.withTenant != nil,
+			_q.withAgents != nil,
+			_q.withProfiles != nil,
 		}
 	)
-	if sq.withTenant != nil {
+	if _q.withTenant != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -463,38 +463,38 @@ func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, e
 		return (*Site).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Site{config: sq.config}
+		node := &Site{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(sq.modifiers) > 0 {
-		_spec.Modifiers = sq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, sq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := sq.withTenant; query != nil {
-		if err := sq.loadTenant(ctx, query, nodes, nil,
+	if query := _q.withTenant; query != nil {
+		if err := _q.loadTenant(ctx, query, nodes, nil,
 			func(n *Site, e *Tenant) { n.Edges.Tenant = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := sq.withAgents; query != nil {
-		if err := sq.loadAgents(ctx, query, nodes,
+	if query := _q.withAgents; query != nil {
+		if err := _q.loadAgents(ctx, query, nodes,
 			func(n *Site) { n.Edges.Agents = []*Agent{} },
 			func(n *Site, e *Agent) { n.Edges.Agents = append(n.Edges.Agents, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := sq.withProfiles; query != nil {
-		if err := sq.loadProfiles(ctx, query, nodes,
+	if query := _q.withProfiles; query != nil {
+		if err := _q.loadProfiles(ctx, query, nodes,
 			func(n *Site) { n.Edges.Profiles = []*Profile{} },
 			func(n *Site, e *Profile) { n.Edges.Profiles = append(n.Edges.Profiles, e) }); err != nil {
 			return nil, err
@@ -503,7 +503,7 @@ func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, e
 	return nodes, nil
 }
 
-func (sq *SiteQuery) loadTenant(ctx context.Context, query *TenantQuery, nodes []*Site, init func(*Site), assign func(*Site, *Tenant)) error {
+func (_q *SiteQuery) loadTenant(ctx context.Context, query *TenantQuery, nodes []*Site, init func(*Site), assign func(*Site, *Tenant)) error {
 	ids := make([]int, 0, len(nodes))
 	nodeids := make(map[int][]*Site)
 	for i := range nodes {
@@ -535,7 +535,7 @@ func (sq *SiteQuery) loadTenant(ctx context.Context, query *TenantQuery, nodes [
 	}
 	return nil
 }
-func (sq *SiteQuery) loadAgents(ctx context.Context, query *AgentQuery, nodes []*Site, init func(*Site), assign func(*Site, *Agent)) error {
+func (_q *SiteQuery) loadAgents(ctx context.Context, query *AgentQuery, nodes []*Site, init func(*Site), assign func(*Site, *Agent)) error {
 	edgeIDs := make([]driver.Value, len(nodes))
 	byID := make(map[int]*Site)
 	nids := make(map[string]map[*Site]struct{})
@@ -596,7 +596,7 @@ func (sq *SiteQuery) loadAgents(ctx context.Context, query *AgentQuery, nodes []
 	}
 	return nil
 }
-func (sq *SiteQuery) loadProfiles(ctx context.Context, query *ProfileQuery, nodes []*Site, init func(*Site), assign func(*Site, *Profile)) error {
+func (_q *SiteQuery) loadProfiles(ctx context.Context, query *ProfileQuery, nodes []*Site, init func(*Site), assign func(*Site, *Profile)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[int]*Site)
 	for i := range nodes {
@@ -628,27 +628,27 @@ func (sq *SiteQuery) loadProfiles(ctx context.Context, query *ProfileQuery, node
 	return nil
 }
 
-func (sq *SiteQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := sq.querySpec()
-	if len(sq.modifiers) > 0 {
-		_spec.Modifiers = sq.modifiers
+func (_q *SiteQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = sq.ctx.Fields
-	if len(sq.ctx.Fields) > 0 {
-		_spec.Unique = sq.ctx.Unique != nil && *sq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, sq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (sq *SiteQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *SiteQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(site.Table, site.Columns, sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt))
-	_spec.From = sq.sql
-	if unique := sq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if sq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := sq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, site.FieldID)
 		for i := range fields {
@@ -657,20 +657,20 @@ func (sq *SiteQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := sq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := sq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := sq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := sq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -680,45 +680,45 @@ func (sq *SiteQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (sq *SiteQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(sq.driver.Dialect())
+func (_q *SiteQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(site.Table)
-	columns := sq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = site.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if sq.sql != nil {
-		selector = sq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if sq.ctx.Unique != nil && *sq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range sq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range sq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range sq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := sq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := sq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (sq *SiteQuery) Modify(modifiers ...func(s *sql.Selector)) *SiteSelect {
-	sq.modifiers = append(sq.modifiers, modifiers...)
-	return sq.Select()
+func (_q *SiteQuery) Modify(modifiers ...func(s *sql.Selector)) *SiteSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // SiteGroupBy is the group-by builder for Site entities.
@@ -728,41 +728,41 @@ type SiteGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (sgb *SiteGroupBy) Aggregate(fns ...AggregateFunc) *SiteGroupBy {
-	sgb.fns = append(sgb.fns, fns...)
-	return sgb
+func (_g *SiteGroupBy) Aggregate(fns ...AggregateFunc) *SiteGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (sgb *SiteGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, sgb.build.ctx, ent.OpQueryGroupBy)
-	if err := sgb.build.prepareQuery(ctx); err != nil {
+func (_g *SiteGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*SiteQuery, *SiteGroupBy](ctx, sgb.build, sgb, sgb.build.inters, v)
+	return scanWithInterceptors[*SiteQuery, *SiteGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (sgb *SiteGroupBy) sqlScan(ctx context.Context, root *SiteQuery, v any) error {
+func (_g *SiteGroupBy) sqlScan(ctx context.Context, root *SiteQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(sgb.fns))
-	for _, fn := range sgb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*sgb.flds)+len(sgb.fns))
-		for _, f := range *sgb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*sgb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := sgb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -776,27 +776,27 @@ type SiteSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (ss *SiteSelect) Aggregate(fns ...AggregateFunc) *SiteSelect {
-	ss.fns = append(ss.fns, fns...)
-	return ss
+func (_s *SiteSelect) Aggregate(fns ...AggregateFunc) *SiteSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ss *SiteSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ss.ctx, ent.OpQuerySelect)
-	if err := ss.prepareQuery(ctx); err != nil {
+func (_s *SiteSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*SiteQuery, *SiteSelect](ctx, ss.SiteQuery, ss, ss.inters, v)
+	return scanWithInterceptors[*SiteQuery, *SiteSelect](ctx, _s.SiteQuery, _s, _s.inters, v)
 }
 
-func (ss *SiteSelect) sqlScan(ctx context.Context, root *SiteQuery, v any) error {
+func (_s *SiteSelect) sqlScan(ctx context.Context, root *SiteQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(ss.fns))
-	for _, fn := range ss.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*ss.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -804,7 +804,7 @@ func (ss *SiteSelect) sqlScan(ctx context.Context, root *SiteQuery, v any) error
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ss.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -812,7 +812,7 @@ func (ss *SiteSelect) sqlScan(ctx context.Context, root *SiteQuery, v any) error
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (ss *SiteSelect) Modify(modifiers ...func(s *sql.Selector)) *SiteSelect {
-	ss.modifiers = append(ss.modifiers, modifiers...)
-	return ss
+func (_s *SiteSelect) Modify(modifiers ...func(s *sql.Selector)) *SiteSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

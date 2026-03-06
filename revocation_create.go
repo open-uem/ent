@@ -23,81 +23,81 @@ type RevocationCreate struct {
 }
 
 // SetReason sets the "reason" field.
-func (rc *RevocationCreate) SetReason(i int) *RevocationCreate {
-	rc.mutation.SetReason(i)
-	return rc
+func (_c *RevocationCreate) SetReason(v int) *RevocationCreate {
+	_c.mutation.SetReason(v)
+	return _c
 }
 
 // SetNillableReason sets the "reason" field if the given value is not nil.
-func (rc *RevocationCreate) SetNillableReason(i *int) *RevocationCreate {
-	if i != nil {
-		rc.SetReason(*i)
+func (_c *RevocationCreate) SetNillableReason(v *int) *RevocationCreate {
+	if v != nil {
+		_c.SetReason(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetInfo sets the "info" field.
-func (rc *RevocationCreate) SetInfo(s string) *RevocationCreate {
-	rc.mutation.SetInfo(s)
-	return rc
+func (_c *RevocationCreate) SetInfo(v string) *RevocationCreate {
+	_c.mutation.SetInfo(v)
+	return _c
 }
 
 // SetNillableInfo sets the "info" field if the given value is not nil.
-func (rc *RevocationCreate) SetNillableInfo(s *string) *RevocationCreate {
-	if s != nil {
-		rc.SetInfo(*s)
+func (_c *RevocationCreate) SetNillableInfo(v *string) *RevocationCreate {
+	if v != nil {
+		_c.SetInfo(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetExpiry sets the "expiry" field.
-func (rc *RevocationCreate) SetExpiry(t time.Time) *RevocationCreate {
-	rc.mutation.SetExpiry(t)
-	return rc
+func (_c *RevocationCreate) SetExpiry(v time.Time) *RevocationCreate {
+	_c.mutation.SetExpiry(v)
+	return _c
 }
 
 // SetNillableExpiry sets the "expiry" field if the given value is not nil.
-func (rc *RevocationCreate) SetNillableExpiry(t *time.Time) *RevocationCreate {
-	if t != nil {
-		rc.SetExpiry(*t)
+func (_c *RevocationCreate) SetNillableExpiry(v *time.Time) *RevocationCreate {
+	if v != nil {
+		_c.SetExpiry(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetRevoked sets the "revoked" field.
-func (rc *RevocationCreate) SetRevoked(t time.Time) *RevocationCreate {
-	rc.mutation.SetRevoked(t)
-	return rc
+func (_c *RevocationCreate) SetRevoked(v time.Time) *RevocationCreate {
+	_c.mutation.SetRevoked(v)
+	return _c
 }
 
 // SetNillableRevoked sets the "revoked" field if the given value is not nil.
-func (rc *RevocationCreate) SetNillableRevoked(t *time.Time) *RevocationCreate {
-	if t != nil {
-		rc.SetRevoked(*t)
+func (_c *RevocationCreate) SetNillableRevoked(v *time.Time) *RevocationCreate {
+	if v != nil {
+		_c.SetRevoked(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (rc *RevocationCreate) SetID(i int64) *RevocationCreate {
-	rc.mutation.SetID(i)
-	return rc
+func (_c *RevocationCreate) SetID(v int64) *RevocationCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // Mutation returns the RevocationMutation object of the builder.
-func (rc *RevocationCreate) Mutation() *RevocationMutation {
-	return rc.mutation
+func (_c *RevocationCreate) Mutation() *RevocationMutation {
+	return _c.mutation
 }
 
 // Save creates the Revocation in the database.
-func (rc *RevocationCreate) Save(ctx context.Context) (*Revocation, error) {
-	rc.defaults()
-	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
+func (_c *RevocationCreate) Save(ctx context.Context) (*Revocation, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (rc *RevocationCreate) SaveX(ctx context.Context) *Revocation {
-	v, err := rc.Save(ctx)
+func (_c *RevocationCreate) SaveX(ctx context.Context) *Revocation {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -105,44 +105,44 @@ func (rc *RevocationCreate) SaveX(ctx context.Context) *Revocation {
 }
 
 // Exec executes the query.
-func (rc *RevocationCreate) Exec(ctx context.Context) error {
-	_, err := rc.Save(ctx)
+func (_c *RevocationCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rc *RevocationCreate) ExecX(ctx context.Context) {
-	if err := rc.Exec(ctx); err != nil {
+func (_c *RevocationCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (rc *RevocationCreate) defaults() {
-	if _, ok := rc.mutation.Reason(); !ok {
+func (_c *RevocationCreate) defaults() {
+	if _, ok := _c.mutation.Reason(); !ok {
 		v := revocation.DefaultReason
-		rc.mutation.SetReason(v)
+		_c.mutation.SetReason(v)
 	}
-	if _, ok := rc.mutation.Revoked(); !ok {
+	if _, ok := _c.mutation.Revoked(); !ok {
 		v := revocation.DefaultRevoked()
-		rc.mutation.SetRevoked(v)
+		_c.mutation.SetRevoked(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rc *RevocationCreate) check() error {
-	if _, ok := rc.mutation.Revoked(); !ok {
+func (_c *RevocationCreate) check() error {
+	if _, ok := _c.mutation.Revoked(); !ok {
 		return &ValidationError{Name: "revoked", err: errors.New(`ent: missing required field "Revocation.revoked"`)}
 	}
 	return nil
 }
 
-func (rc *RevocationCreate) sqlSave(ctx context.Context) (*Revocation, error) {
-	if err := rc.check(); err != nil {
+func (_c *RevocationCreate) sqlSave(ctx context.Context) (*Revocation, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := rc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -152,34 +152,34 @@ func (rc *RevocationCreate) sqlSave(ctx context.Context) (*Revocation, error) {
 		id := _spec.ID.Value.(int64)
 		_node.ID = int64(id)
 	}
-	rc.mutation.id = &_node.ID
-	rc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (rc *RevocationCreate) createSpec() (*Revocation, *sqlgraph.CreateSpec) {
+func (_c *RevocationCreate) createSpec() (*Revocation, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Revocation{config: rc.config}
+		_node = &Revocation{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(revocation.Table, sqlgraph.NewFieldSpec(revocation.FieldID, field.TypeInt64))
 	)
-	_spec.OnConflict = rc.conflict
-	if id, ok := rc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := rc.mutation.Reason(); ok {
+	if value, ok := _c.mutation.Reason(); ok {
 		_spec.SetField(revocation.FieldReason, field.TypeInt, value)
 		_node.Reason = value
 	}
-	if value, ok := rc.mutation.Info(); ok {
+	if value, ok := _c.mutation.Info(); ok {
 		_spec.SetField(revocation.FieldInfo, field.TypeString, value)
 		_node.Info = value
 	}
-	if value, ok := rc.mutation.Expiry(); ok {
+	if value, ok := _c.mutation.Expiry(); ok {
 		_spec.SetField(revocation.FieldExpiry, field.TypeTime, value)
 		_node.Expiry = value
 	}
-	if value, ok := rc.mutation.Revoked(); ok {
+	if value, ok := _c.mutation.Revoked(); ok {
 		_spec.SetField(revocation.FieldRevoked, field.TypeTime, value)
 		_node.Revoked = value
 	}
@@ -202,10 +202,10 @@ func (rc *RevocationCreate) createSpec() (*Revocation, *sqlgraph.CreateSpec) {
 //			SetReason(v+v).
 //		}).
 //		Exec(ctx)
-func (rc *RevocationCreate) OnConflict(opts ...sql.ConflictOption) *RevocationUpsertOne {
-	rc.conflict = opts
+func (_c *RevocationCreate) OnConflict(opts ...sql.ConflictOption) *RevocationUpsertOne {
+	_c.conflict = opts
 	return &RevocationUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -215,10 +215,10 @@ func (rc *RevocationCreate) OnConflict(opts ...sql.ConflictOption) *RevocationUp
 //	client.Revocation.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rc *RevocationCreate) OnConflictColumns(columns ...string) *RevocationUpsertOne {
-	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
+func (_c *RevocationCreate) OnConflictColumns(columns ...string) *RevocationUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RevocationUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -481,16 +481,16 @@ type RevocationCreateBulk struct {
 }
 
 // Save creates the Revocation entities in the database.
-func (rcb *RevocationCreateBulk) Save(ctx context.Context) ([]*Revocation, error) {
-	if rcb.err != nil {
-		return nil, rcb.err
+func (_c *RevocationCreateBulk) Save(ctx context.Context) ([]*Revocation, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
-	nodes := make([]*Revocation, len(rcb.builders))
-	mutators := make([]Mutator, len(rcb.builders))
-	for i := range rcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Revocation, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := rcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RevocationMutation)
@@ -504,12 +504,12 @@ func (rcb *RevocationCreateBulk) Save(ctx context.Context) ([]*Revocation, error
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = rcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -533,7 +533,7 @@ func (rcb *RevocationCreateBulk) Save(ctx context.Context) ([]*Revocation, error
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -541,8 +541,8 @@ func (rcb *RevocationCreateBulk) Save(ctx context.Context) ([]*Revocation, error
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcb *RevocationCreateBulk) SaveX(ctx context.Context) []*Revocation {
-	v, err := rcb.Save(ctx)
+func (_c *RevocationCreateBulk) SaveX(ctx context.Context) []*Revocation {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -550,14 +550,14 @@ func (rcb *RevocationCreateBulk) SaveX(ctx context.Context) []*Revocation {
 }
 
 // Exec executes the query.
-func (rcb *RevocationCreateBulk) Exec(ctx context.Context) error {
-	_, err := rcb.Save(ctx)
+func (_c *RevocationCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcb *RevocationCreateBulk) ExecX(ctx context.Context) {
-	if err := rcb.Exec(ctx); err != nil {
+func (_c *RevocationCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -577,10 +577,10 @@ func (rcb *RevocationCreateBulk) ExecX(ctx context.Context) {
 //			SetReason(v+v).
 //		}).
 //		Exec(ctx)
-func (rcb *RevocationCreateBulk) OnConflict(opts ...sql.ConflictOption) *RevocationUpsertBulk {
-	rcb.conflict = opts
+func (_c *RevocationCreateBulk) OnConflict(opts ...sql.ConflictOption) *RevocationUpsertBulk {
+	_c.conflict = opts
 	return &RevocationUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -590,10 +590,10 @@ func (rcb *RevocationCreateBulk) OnConflict(opts ...sql.ConflictOption) *Revocat
 //	client.Revocation.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rcb *RevocationCreateBulk) OnConflictColumns(columns ...string) *RevocationUpsertBulk {
-	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
+func (_c *RevocationCreateBulk) OnConflictColumns(columns ...string) *RevocationUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RevocationUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 

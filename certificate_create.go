@@ -23,72 +23,72 @@ type CertificateCreate struct {
 }
 
 // SetType sets the "type" field.
-func (cc *CertificateCreate) SetType(c certificate.Type) *CertificateCreate {
-	cc.mutation.SetType(c)
-	return cc
+func (_c *CertificateCreate) SetType(v certificate.Type) *CertificateCreate {
+	_c.mutation.SetType(v)
+	return _c
 }
 
 // SetDescription sets the "description" field.
-func (cc *CertificateCreate) SetDescription(s string) *CertificateCreate {
-	cc.mutation.SetDescription(s)
-	return cc
+func (_c *CertificateCreate) SetDescription(v string) *CertificateCreate {
+	_c.mutation.SetDescription(v)
+	return _c
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (cc *CertificateCreate) SetNillableDescription(s *string) *CertificateCreate {
-	if s != nil {
-		cc.SetDescription(*s)
+func (_c *CertificateCreate) SetNillableDescription(v *string) *CertificateCreate {
+	if v != nil {
+		_c.SetDescription(*v)
 	}
-	return cc
+	return _c
 }
 
 // SetExpiry sets the "expiry" field.
-func (cc *CertificateCreate) SetExpiry(t time.Time) *CertificateCreate {
-	cc.mutation.SetExpiry(t)
-	return cc
+func (_c *CertificateCreate) SetExpiry(v time.Time) *CertificateCreate {
+	_c.mutation.SetExpiry(v)
+	return _c
 }
 
 // SetNillableExpiry sets the "expiry" field if the given value is not nil.
-func (cc *CertificateCreate) SetNillableExpiry(t *time.Time) *CertificateCreate {
-	if t != nil {
-		cc.SetExpiry(*t)
+func (_c *CertificateCreate) SetNillableExpiry(v *time.Time) *CertificateCreate {
+	if v != nil {
+		_c.SetExpiry(*v)
 	}
-	return cc
+	return _c
 }
 
 // SetUID sets the "uid" field.
-func (cc *CertificateCreate) SetUID(s string) *CertificateCreate {
-	cc.mutation.SetUID(s)
-	return cc
+func (_c *CertificateCreate) SetUID(v string) *CertificateCreate {
+	_c.mutation.SetUID(v)
+	return _c
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (cc *CertificateCreate) SetNillableUID(s *string) *CertificateCreate {
-	if s != nil {
-		cc.SetUID(*s)
+func (_c *CertificateCreate) SetNillableUID(v *string) *CertificateCreate {
+	if v != nil {
+		_c.SetUID(*v)
 	}
-	return cc
+	return _c
 }
 
 // SetID sets the "id" field.
-func (cc *CertificateCreate) SetID(i int64) *CertificateCreate {
-	cc.mutation.SetID(i)
-	return cc
+func (_c *CertificateCreate) SetID(v int64) *CertificateCreate {
+	_c.mutation.SetID(v)
+	return _c
 }
 
 // Mutation returns the CertificateMutation object of the builder.
-func (cc *CertificateCreate) Mutation() *CertificateMutation {
-	return cc.mutation
+func (_c *CertificateCreate) Mutation() *CertificateMutation {
+	return _c.mutation
 }
 
 // Save creates the Certificate in the database.
-func (cc *CertificateCreate) Save(ctx context.Context) (*Certificate, error) {
-	return withHooks(ctx, cc.sqlSave, cc.mutation, cc.hooks)
+func (_c *CertificateCreate) Save(ctx context.Context) (*Certificate, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (cc *CertificateCreate) SaveX(ctx context.Context) *Certificate {
-	v, err := cc.Save(ctx)
+func (_c *CertificateCreate) SaveX(ctx context.Context) *Certificate {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -96,24 +96,24 @@ func (cc *CertificateCreate) SaveX(ctx context.Context) *Certificate {
 }
 
 // Exec executes the query.
-func (cc *CertificateCreate) Exec(ctx context.Context) error {
-	_, err := cc.Save(ctx)
+func (_c *CertificateCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cc *CertificateCreate) ExecX(ctx context.Context) {
-	if err := cc.Exec(ctx); err != nil {
+func (_c *CertificateCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cc *CertificateCreate) check() error {
-	if _, ok := cc.mutation.GetType(); !ok {
+func (_c *CertificateCreate) check() error {
+	if _, ok := _c.mutation.GetType(); !ok {
 		return &ValidationError{Name: "type", err: errors.New(`ent: missing required field "Certificate.type"`)}
 	}
-	if v, ok := cc.mutation.GetType(); ok {
+	if v, ok := _c.mutation.GetType(); ok {
 		if err := certificate.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Certificate.type": %w`, err)}
 		}
@@ -121,12 +121,12 @@ func (cc *CertificateCreate) check() error {
 	return nil
 }
 
-func (cc *CertificateCreate) sqlSave(ctx context.Context) (*Certificate, error) {
-	if err := cc.check(); err != nil {
+func (_c *CertificateCreate) sqlSave(ctx context.Context) (*Certificate, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := cc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, cc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -136,34 +136,34 @@ func (cc *CertificateCreate) sqlSave(ctx context.Context) (*Certificate, error) 
 		id := _spec.ID.Value.(int64)
 		_node.ID = int64(id)
 	}
-	cc.mutation.id = &_node.ID
-	cc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (cc *CertificateCreate) createSpec() (*Certificate, *sqlgraph.CreateSpec) {
+func (_c *CertificateCreate) createSpec() (*Certificate, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Certificate{config: cc.config}
+		_node = &Certificate{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(certificate.Table, sqlgraph.NewFieldSpec(certificate.FieldID, field.TypeInt64))
 	)
-	_spec.OnConflict = cc.conflict
-	if id, ok := cc.mutation.ID(); ok {
+	_spec.OnConflict = _c.conflict
+	if id, ok := _c.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
 	}
-	if value, ok := cc.mutation.GetType(); ok {
+	if value, ok := _c.mutation.GetType(); ok {
 		_spec.SetField(certificate.FieldType, field.TypeEnum, value)
 		_node.Type = value
 	}
-	if value, ok := cc.mutation.Description(); ok {
+	if value, ok := _c.mutation.Description(); ok {
 		_spec.SetField(certificate.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := cc.mutation.Expiry(); ok {
+	if value, ok := _c.mutation.Expiry(); ok {
 		_spec.SetField(certificate.FieldExpiry, field.TypeTime, value)
 		_node.Expiry = value
 	}
-	if value, ok := cc.mutation.UID(); ok {
+	if value, ok := _c.mutation.UID(); ok {
 		_spec.SetField(certificate.FieldUID, field.TypeString, value)
 		_node.UID = value
 	}
@@ -186,10 +186,10 @@ func (cc *CertificateCreate) createSpec() (*Certificate, *sqlgraph.CreateSpec) {
 //			SetType(v+v).
 //		}).
 //		Exec(ctx)
-func (cc *CertificateCreate) OnConflict(opts ...sql.ConflictOption) *CertificateUpsertOne {
-	cc.conflict = opts
+func (_c *CertificateCreate) OnConflict(opts ...sql.ConflictOption) *CertificateUpsertOne {
+	_c.conflict = opts
 	return &CertificateUpsertOne{
-		create: cc,
+		create: _c,
 	}
 }
 
@@ -199,10 +199,10 @@ func (cc *CertificateCreate) OnConflict(opts ...sql.ConflictOption) *Certificate
 //	client.Certificate.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (cc *CertificateCreate) OnConflictColumns(columns ...string) *CertificateUpsertOne {
-	cc.conflict = append(cc.conflict, sql.ConflictColumns(columns...))
+func (_c *CertificateCreate) OnConflictColumns(columns ...string) *CertificateUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &CertificateUpsertOne{
-		create: cc,
+		create: _c,
 	}
 }
 
@@ -452,16 +452,16 @@ type CertificateCreateBulk struct {
 }
 
 // Save creates the Certificate entities in the database.
-func (ccb *CertificateCreateBulk) Save(ctx context.Context) ([]*Certificate, error) {
-	if ccb.err != nil {
-		return nil, ccb.err
+func (_c *CertificateCreateBulk) Save(ctx context.Context) ([]*Certificate, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(ccb.builders))
-	nodes := make([]*Certificate, len(ccb.builders))
-	mutators := make([]Mutator, len(ccb.builders))
-	for i := range ccb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Certificate, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := ccb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*CertificateMutation)
 				if !ok {
@@ -474,12 +474,12 @@ func (ccb *CertificateCreateBulk) Save(ctx context.Context) ([]*Certificate, err
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, ccb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = ccb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, ccb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -503,7 +503,7 @@ func (ccb *CertificateCreateBulk) Save(ctx context.Context) ([]*Certificate, err
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, ccb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -511,8 +511,8 @@ func (ccb *CertificateCreateBulk) Save(ctx context.Context) ([]*Certificate, err
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ccb *CertificateCreateBulk) SaveX(ctx context.Context) []*Certificate {
-	v, err := ccb.Save(ctx)
+func (_c *CertificateCreateBulk) SaveX(ctx context.Context) []*Certificate {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -520,14 +520,14 @@ func (ccb *CertificateCreateBulk) SaveX(ctx context.Context) []*Certificate {
 }
 
 // Exec executes the query.
-func (ccb *CertificateCreateBulk) Exec(ctx context.Context) error {
-	_, err := ccb.Save(ctx)
+func (_c *CertificateCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ccb *CertificateCreateBulk) ExecX(ctx context.Context) {
-	if err := ccb.Exec(ctx); err != nil {
+func (_c *CertificateCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -547,10 +547,10 @@ func (ccb *CertificateCreateBulk) ExecX(ctx context.Context) {
 //			SetType(v+v).
 //		}).
 //		Exec(ctx)
-func (ccb *CertificateCreateBulk) OnConflict(opts ...sql.ConflictOption) *CertificateUpsertBulk {
-	ccb.conflict = opts
+func (_c *CertificateCreateBulk) OnConflict(opts ...sql.ConflictOption) *CertificateUpsertBulk {
+	_c.conflict = opts
 	return &CertificateUpsertBulk{
-		create: ccb,
+		create: _c,
 	}
 }
 
@@ -560,10 +560,10 @@ func (ccb *CertificateCreateBulk) OnConflict(opts ...sql.ConflictOption) *Certif
 //	client.Certificate.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ccb *CertificateCreateBulk) OnConflictColumns(columns ...string) *CertificateUpsertBulk {
-	ccb.conflict = append(ccb.conflict, sql.ConflictColumns(columns...))
+func (_c *CertificateCreateBulk) OnConflictColumns(columns ...string) *CertificateUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &CertificateUpsertBulk{
-		create: ccb,
+		create: _c,
 	}
 }
 

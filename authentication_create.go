@@ -22,187 +22,187 @@ type AuthenticationCreate struct {
 }
 
 // SetUseCertificates sets the "use_certificates" field.
-func (ac *AuthenticationCreate) SetUseCertificates(b bool) *AuthenticationCreate {
-	ac.mutation.SetUseCertificates(b)
-	return ac
+func (_c *AuthenticationCreate) SetUseCertificates(v bool) *AuthenticationCreate {
+	_c.mutation.SetUseCertificates(v)
+	return _c
 }
 
 // SetNillableUseCertificates sets the "use_certificates" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableUseCertificates(b *bool) *AuthenticationCreate {
-	if b != nil {
-		ac.SetUseCertificates(*b)
+func (_c *AuthenticationCreate) SetNillableUseCertificates(v *bool) *AuthenticationCreate {
+	if v != nil {
+		_c.SetUseCertificates(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetAllowRegister sets the "allow_register" field.
-func (ac *AuthenticationCreate) SetAllowRegister(b bool) *AuthenticationCreate {
-	ac.mutation.SetAllowRegister(b)
-	return ac
+func (_c *AuthenticationCreate) SetAllowRegister(v bool) *AuthenticationCreate {
+	_c.mutation.SetAllowRegister(v)
+	return _c
 }
 
 // SetNillableAllowRegister sets the "allow_register" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableAllowRegister(b *bool) *AuthenticationCreate {
-	if b != nil {
-		ac.SetAllowRegister(*b)
+func (_c *AuthenticationCreate) SetNillableAllowRegister(v *bool) *AuthenticationCreate {
+	if v != nil {
+		_c.SetAllowRegister(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUseOIDC sets the "use_OIDC" field.
-func (ac *AuthenticationCreate) SetUseOIDC(b bool) *AuthenticationCreate {
-	ac.mutation.SetUseOIDC(b)
-	return ac
+func (_c *AuthenticationCreate) SetUseOIDC(v bool) *AuthenticationCreate {
+	_c.mutation.SetUseOIDC(v)
+	return _c
 }
 
 // SetNillableUseOIDC sets the "use_OIDC" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableUseOIDC(b *bool) *AuthenticationCreate {
-	if b != nil {
-		ac.SetUseOIDC(*b)
+func (_c *AuthenticationCreate) SetNillableUseOIDC(v *bool) *AuthenticationCreate {
+	if v != nil {
+		_c.SetUseOIDC(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCProvider sets the "OIDC_provider" field.
-func (ac *AuthenticationCreate) SetOIDCProvider(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCProvider(s)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCProvider(v string) *AuthenticationCreate {
+	_c.mutation.SetOIDCProvider(v)
+	return _c
 }
 
 // SetNillableOIDCProvider sets the "OIDC_provider" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCProvider(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCProvider(*s)
+func (_c *AuthenticationCreate) SetNillableOIDCProvider(v *string) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCProvider(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCIssuerURL sets the "OIDC_issuer_url" field.
-func (ac *AuthenticationCreate) SetOIDCIssuerURL(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCIssuerURL(s)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCIssuerURL(v string) *AuthenticationCreate {
+	_c.mutation.SetOIDCIssuerURL(v)
+	return _c
 }
 
 // SetNillableOIDCIssuerURL sets the "OIDC_issuer_url" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCIssuerURL(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCIssuerURL(*s)
+func (_c *AuthenticationCreate) SetNillableOIDCIssuerURL(v *string) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCIssuerURL(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCClientID sets the "OIDC_client_id" field.
-func (ac *AuthenticationCreate) SetOIDCClientID(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCClientID(s)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCClientID(v string) *AuthenticationCreate {
+	_c.mutation.SetOIDCClientID(v)
+	return _c
 }
 
 // SetNillableOIDCClientID sets the "OIDC_client_id" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCClientID(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCClientID(*s)
+func (_c *AuthenticationCreate) SetNillableOIDCClientID(v *string) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCClientID(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCRole sets the "OIDC_role" field.
-func (ac *AuthenticationCreate) SetOIDCRole(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCRole(s)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCRole(v string) *AuthenticationCreate {
+	_c.mutation.SetOIDCRole(v)
+	return _c
 }
 
 // SetNillableOIDCRole sets the "OIDC_role" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCRole(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCRole(*s)
+func (_c *AuthenticationCreate) SetNillableOIDCRole(v *string) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCRole(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCCookieEncriptionKey sets the "OIDC_cookie_encription_key" field.
-func (ac *AuthenticationCreate) SetOIDCCookieEncriptionKey(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCCookieEncriptionKey(s)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCCookieEncriptionKey(v string) *AuthenticationCreate {
+	_c.mutation.SetOIDCCookieEncriptionKey(v)
+	return _c
 }
 
 // SetNillableOIDCCookieEncriptionKey sets the "OIDC_cookie_encription_key" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCCookieEncriptionKey(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCCookieEncriptionKey(*s)
+func (_c *AuthenticationCreate) SetNillableOIDCCookieEncriptionKey(v *string) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCCookieEncriptionKey(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (ac *AuthenticationCreate) SetOIDCKeycloakPublicKey(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCKeycloakPublicKey(s)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCKeycloakPublicKey(v string) *AuthenticationCreate {
+	_c.mutation.SetOIDCKeycloakPublicKey(v)
+	return _c
 }
 
 // SetNillableOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCKeycloakPublicKey(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCKeycloakPublicKey(*s)
+func (_c *AuthenticationCreate) SetNillableOIDCKeycloakPublicKey(v *string) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCKeycloakPublicKey(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
-func (ac *AuthenticationCreate) SetOIDCAutoCreateAccount(b bool) *AuthenticationCreate {
-	ac.mutation.SetOIDCAutoCreateAccount(b)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCAutoCreateAccount(v bool) *AuthenticationCreate {
+	_c.mutation.SetOIDCAutoCreateAccount(v)
+	return _c
 }
 
 // SetNillableOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCAutoCreateAccount(b *bool) *AuthenticationCreate {
-	if b != nil {
-		ac.SetOIDCAutoCreateAccount(*b)
+func (_c *AuthenticationCreate) SetNillableOIDCAutoCreateAccount(v *bool) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCAutoCreateAccount(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetOIDCAutoApprove sets the "OIDC_auto_approve" field.
-func (ac *AuthenticationCreate) SetOIDCAutoApprove(b bool) *AuthenticationCreate {
-	ac.mutation.SetOIDCAutoApprove(b)
-	return ac
+func (_c *AuthenticationCreate) SetOIDCAutoApprove(v bool) *AuthenticationCreate {
+	_c.mutation.SetOIDCAutoApprove(v)
+	return _c
 }
 
 // SetNillableOIDCAutoApprove sets the "OIDC_auto_approve" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCAutoApprove(b *bool) *AuthenticationCreate {
-	if b != nil {
-		ac.SetOIDCAutoApprove(*b)
+func (_c *AuthenticationCreate) SetNillableOIDCAutoApprove(v *bool) *AuthenticationCreate {
+	if v != nil {
+		_c.SetOIDCAutoApprove(*v)
 	}
-	return ac
+	return _c
 }
 
 // SetUsePasswd sets the "use_passwd" field.
-func (ac *AuthenticationCreate) SetUsePasswd(b bool) *AuthenticationCreate {
-	ac.mutation.SetUsePasswd(b)
-	return ac
+func (_c *AuthenticationCreate) SetUsePasswd(v bool) *AuthenticationCreate {
+	_c.mutation.SetUsePasswd(v)
+	return _c
 }
 
 // SetNillableUsePasswd sets the "use_passwd" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableUsePasswd(b *bool) *AuthenticationCreate {
-	if b != nil {
-		ac.SetUsePasswd(*b)
+func (_c *AuthenticationCreate) SetNillableUsePasswd(v *bool) *AuthenticationCreate {
+	if v != nil {
+		_c.SetUsePasswd(*v)
 	}
-	return ac
+	return _c
 }
 
 // Mutation returns the AuthenticationMutation object of the builder.
-func (ac *AuthenticationCreate) Mutation() *AuthenticationMutation {
-	return ac.mutation
+func (_c *AuthenticationCreate) Mutation() *AuthenticationMutation {
+	return _c.mutation
 }
 
 // Save creates the Authentication in the database.
-func (ac *AuthenticationCreate) Save(ctx context.Context) (*Authentication, error) {
-	ac.defaults()
-	return withHooks(ctx, ac.sqlSave, ac.mutation, ac.hooks)
+func (_c *AuthenticationCreate) Save(ctx context.Context) (*Authentication, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (ac *AuthenticationCreate) SaveX(ctx context.Context) *Authentication {
-	v, err := ac.Save(ctx)
+func (_c *AuthenticationCreate) SaveX(ctx context.Context) *Authentication {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -210,81 +210,81 @@ func (ac *AuthenticationCreate) SaveX(ctx context.Context) *Authentication {
 }
 
 // Exec executes the query.
-func (ac *AuthenticationCreate) Exec(ctx context.Context) error {
-	_, err := ac.Save(ctx)
+func (_c *AuthenticationCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ac *AuthenticationCreate) ExecX(ctx context.Context) {
-	if err := ac.Exec(ctx); err != nil {
+func (_c *AuthenticationCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (ac *AuthenticationCreate) defaults() {
-	if _, ok := ac.mutation.UseCertificates(); !ok {
+func (_c *AuthenticationCreate) defaults() {
+	if _, ok := _c.mutation.UseCertificates(); !ok {
 		v := authentication.DefaultUseCertificates
-		ac.mutation.SetUseCertificates(v)
+		_c.mutation.SetUseCertificates(v)
 	}
-	if _, ok := ac.mutation.AllowRegister(); !ok {
+	if _, ok := _c.mutation.AllowRegister(); !ok {
 		v := authentication.DefaultAllowRegister
-		ac.mutation.SetAllowRegister(v)
+		_c.mutation.SetAllowRegister(v)
 	}
-	if _, ok := ac.mutation.UseOIDC(); !ok {
+	if _, ok := _c.mutation.UseOIDC(); !ok {
 		v := authentication.DefaultUseOIDC
-		ac.mutation.SetUseOIDC(v)
+		_c.mutation.SetUseOIDC(v)
 	}
-	if _, ok := ac.mutation.OIDCProvider(); !ok {
+	if _, ok := _c.mutation.OIDCProvider(); !ok {
 		v := authentication.DefaultOIDCProvider
-		ac.mutation.SetOIDCProvider(v)
+		_c.mutation.SetOIDCProvider(v)
 	}
-	if _, ok := ac.mutation.OIDCIssuerURL(); !ok {
+	if _, ok := _c.mutation.OIDCIssuerURL(); !ok {
 		v := authentication.DefaultOIDCIssuerURL
-		ac.mutation.SetOIDCIssuerURL(v)
+		_c.mutation.SetOIDCIssuerURL(v)
 	}
-	if _, ok := ac.mutation.OIDCClientID(); !ok {
+	if _, ok := _c.mutation.OIDCClientID(); !ok {
 		v := authentication.DefaultOIDCClientID
-		ac.mutation.SetOIDCClientID(v)
+		_c.mutation.SetOIDCClientID(v)
 	}
-	if _, ok := ac.mutation.OIDCRole(); !ok {
+	if _, ok := _c.mutation.OIDCRole(); !ok {
 		v := authentication.DefaultOIDCRole
-		ac.mutation.SetOIDCRole(v)
+		_c.mutation.SetOIDCRole(v)
 	}
-	if _, ok := ac.mutation.OIDCCookieEncriptionKey(); !ok {
+	if _, ok := _c.mutation.OIDCCookieEncriptionKey(); !ok {
 		v := authentication.DefaultOIDCCookieEncriptionKey
-		ac.mutation.SetOIDCCookieEncriptionKey(v)
+		_c.mutation.SetOIDCCookieEncriptionKey(v)
 	}
-	if _, ok := ac.mutation.OIDCKeycloakPublicKey(); !ok {
+	if _, ok := _c.mutation.OIDCKeycloakPublicKey(); !ok {
 		v := authentication.DefaultOIDCKeycloakPublicKey
-		ac.mutation.SetOIDCKeycloakPublicKey(v)
+		_c.mutation.SetOIDCKeycloakPublicKey(v)
 	}
-	if _, ok := ac.mutation.OIDCAutoCreateAccount(); !ok {
+	if _, ok := _c.mutation.OIDCAutoCreateAccount(); !ok {
 		v := authentication.DefaultOIDCAutoCreateAccount
-		ac.mutation.SetOIDCAutoCreateAccount(v)
+		_c.mutation.SetOIDCAutoCreateAccount(v)
 	}
-	if _, ok := ac.mutation.OIDCAutoApprove(); !ok {
+	if _, ok := _c.mutation.OIDCAutoApprove(); !ok {
 		v := authentication.DefaultOIDCAutoApprove
-		ac.mutation.SetOIDCAutoApprove(v)
+		_c.mutation.SetOIDCAutoApprove(v)
 	}
-	if _, ok := ac.mutation.UsePasswd(); !ok {
+	if _, ok := _c.mutation.UsePasswd(); !ok {
 		v := authentication.DefaultUsePasswd
-		ac.mutation.SetUsePasswd(v)
+		_c.mutation.SetUsePasswd(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ac *AuthenticationCreate) check() error {
+func (_c *AuthenticationCreate) check() error {
 	return nil
 }
 
-func (ac *AuthenticationCreate) sqlSave(ctx context.Context) (*Authentication, error) {
-	if err := ac.check(); err != nil {
+func (_c *AuthenticationCreate) sqlSave(ctx context.Context) (*Authentication, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := ac.createSpec()
-	if err := sqlgraph.CreateNode(ctx, ac.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -292,62 +292,62 @@ func (ac *AuthenticationCreate) sqlSave(ctx context.Context) (*Authentication, e
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	ac.mutation.id = &_node.ID
-	ac.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (ac *AuthenticationCreate) createSpec() (*Authentication, *sqlgraph.CreateSpec) {
+func (_c *AuthenticationCreate) createSpec() (*Authentication, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Authentication{config: ac.config}
+		_node = &Authentication{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(authentication.Table, sqlgraph.NewFieldSpec(authentication.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = ac.conflict
-	if value, ok := ac.mutation.UseCertificates(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.UseCertificates(); ok {
 		_spec.SetField(authentication.FieldUseCertificates, field.TypeBool, value)
 		_node.UseCertificates = value
 	}
-	if value, ok := ac.mutation.AllowRegister(); ok {
+	if value, ok := _c.mutation.AllowRegister(); ok {
 		_spec.SetField(authentication.FieldAllowRegister, field.TypeBool, value)
 		_node.AllowRegister = value
 	}
-	if value, ok := ac.mutation.UseOIDC(); ok {
+	if value, ok := _c.mutation.UseOIDC(); ok {
 		_spec.SetField(authentication.FieldUseOIDC, field.TypeBool, value)
 		_node.UseOIDC = value
 	}
-	if value, ok := ac.mutation.OIDCProvider(); ok {
+	if value, ok := _c.mutation.OIDCProvider(); ok {
 		_spec.SetField(authentication.FieldOIDCProvider, field.TypeString, value)
 		_node.OIDCProvider = value
 	}
-	if value, ok := ac.mutation.OIDCIssuerURL(); ok {
+	if value, ok := _c.mutation.OIDCIssuerURL(); ok {
 		_spec.SetField(authentication.FieldOIDCIssuerURL, field.TypeString, value)
 		_node.OIDCIssuerURL = value
 	}
-	if value, ok := ac.mutation.OIDCClientID(); ok {
+	if value, ok := _c.mutation.OIDCClientID(); ok {
 		_spec.SetField(authentication.FieldOIDCClientID, field.TypeString, value)
 		_node.OIDCClientID = value
 	}
-	if value, ok := ac.mutation.OIDCRole(); ok {
+	if value, ok := _c.mutation.OIDCRole(); ok {
 		_spec.SetField(authentication.FieldOIDCRole, field.TypeString, value)
 		_node.OIDCRole = value
 	}
-	if value, ok := ac.mutation.OIDCCookieEncriptionKey(); ok {
+	if value, ok := _c.mutation.OIDCCookieEncriptionKey(); ok {
 		_spec.SetField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString, value)
 		_node.OIDCCookieEncriptionKey = value
 	}
-	if value, ok := ac.mutation.OIDCKeycloakPublicKey(); ok {
+	if value, ok := _c.mutation.OIDCKeycloakPublicKey(); ok {
 		_spec.SetField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString, value)
 		_node.OIDCKeycloakPublicKey = value
 	}
-	if value, ok := ac.mutation.OIDCAutoCreateAccount(); ok {
+	if value, ok := _c.mutation.OIDCAutoCreateAccount(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool, value)
 		_node.OIDCAutoCreateAccount = value
 	}
-	if value, ok := ac.mutation.OIDCAutoApprove(); ok {
+	if value, ok := _c.mutation.OIDCAutoApprove(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoApprove, field.TypeBool, value)
 		_node.OIDCAutoApprove = value
 	}
-	if value, ok := ac.mutation.UsePasswd(); ok {
+	if value, ok := _c.mutation.UsePasswd(); ok {
 		_spec.SetField(authentication.FieldUsePasswd, field.TypeBool, value)
 		_node.UsePasswd = value
 	}
@@ -370,10 +370,10 @@ func (ac *AuthenticationCreate) createSpec() (*Authentication, *sqlgraph.CreateS
 //			SetUseCertificates(v+v).
 //		}).
 //		Exec(ctx)
-func (ac *AuthenticationCreate) OnConflict(opts ...sql.ConflictOption) *AuthenticationUpsertOne {
-	ac.conflict = opts
+func (_c *AuthenticationCreate) OnConflict(opts ...sql.ConflictOption) *AuthenticationUpsertOne {
+	_c.conflict = opts
 	return &AuthenticationUpsertOne{
-		create: ac,
+		create: _c,
 	}
 }
 
@@ -383,10 +383,10 @@ func (ac *AuthenticationCreate) OnConflict(opts ...sql.ConflictOption) *Authenti
 //	client.Authentication.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ac *AuthenticationCreate) OnConflictColumns(columns ...string) *AuthenticationUpsertOne {
-	ac.conflict = append(ac.conflict, sql.ConflictColumns(columns...))
+func (_c *AuthenticationCreate) OnConflictColumns(columns ...string) *AuthenticationUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &AuthenticationUpsertOne{
-		create: ac,
+		create: _c,
 	}
 }
 
@@ -953,16 +953,16 @@ type AuthenticationCreateBulk struct {
 }
 
 // Save creates the Authentication entities in the database.
-func (acb *AuthenticationCreateBulk) Save(ctx context.Context) ([]*Authentication, error) {
-	if acb.err != nil {
-		return nil, acb.err
+func (_c *AuthenticationCreateBulk) Save(ctx context.Context) ([]*Authentication, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(acb.builders))
-	nodes := make([]*Authentication, len(acb.builders))
-	mutators := make([]Mutator, len(acb.builders))
-	for i := range acb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Authentication, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := acb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*AuthenticationMutation)
@@ -976,12 +976,12 @@ func (acb *AuthenticationCreateBulk) Save(ctx context.Context) ([]*Authenticatio
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, acb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = acb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, acb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -1005,7 +1005,7 @@ func (acb *AuthenticationCreateBulk) Save(ctx context.Context) ([]*Authenticatio
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, acb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -1013,8 +1013,8 @@ func (acb *AuthenticationCreateBulk) Save(ctx context.Context) ([]*Authenticatio
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (acb *AuthenticationCreateBulk) SaveX(ctx context.Context) []*Authentication {
-	v, err := acb.Save(ctx)
+func (_c *AuthenticationCreateBulk) SaveX(ctx context.Context) []*Authentication {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1022,14 +1022,14 @@ func (acb *AuthenticationCreateBulk) SaveX(ctx context.Context) []*Authenticatio
 }
 
 // Exec executes the query.
-func (acb *AuthenticationCreateBulk) Exec(ctx context.Context) error {
-	_, err := acb.Save(ctx)
+func (_c *AuthenticationCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (acb *AuthenticationCreateBulk) ExecX(ctx context.Context) {
-	if err := acb.Exec(ctx); err != nil {
+func (_c *AuthenticationCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1049,10 +1049,10 @@ func (acb *AuthenticationCreateBulk) ExecX(ctx context.Context) {
 //			SetUseCertificates(v+v).
 //		}).
 //		Exec(ctx)
-func (acb *AuthenticationCreateBulk) OnConflict(opts ...sql.ConflictOption) *AuthenticationUpsertBulk {
-	acb.conflict = opts
+func (_c *AuthenticationCreateBulk) OnConflict(opts ...sql.ConflictOption) *AuthenticationUpsertBulk {
+	_c.conflict = opts
 	return &AuthenticationUpsertBulk{
-		create: acb,
+		create: _c,
 	}
 }
 
@@ -1062,10 +1062,10 @@ func (acb *AuthenticationCreateBulk) OnConflict(opts ...sql.ConflictOption) *Aut
 //	client.Authentication.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (acb *AuthenticationCreateBulk) OnConflictColumns(columns ...string) *AuthenticationUpsertBulk {
-	acb.conflict = append(acb.conflict, sql.ConflictColumns(columns...))
+func (_c *AuthenticationCreateBulk) OnConflictColumns(columns ...string) *AuthenticationUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &AuthenticationUpsertBulk{
-		create: acb,
+		create: _c,
 	}
 }
 

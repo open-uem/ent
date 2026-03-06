@@ -72,7 +72,7 @@ func (*PhysicalDisk) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the PhysicalDisk fields.
-func (pd *PhysicalDisk) assignValues(columns []string, values []any) error {
+func (_m *PhysicalDisk) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -83,40 +83,40 @@ func (pd *PhysicalDisk) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			pd.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case physicaldisk.FieldDeviceID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field device_id", values[i])
 			} else if value.Valid {
-				pd.DeviceID = value.String
+				_m.DeviceID = value.String
 			}
 		case physicaldisk.FieldModel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field model", values[i])
 			} else if value.Valid {
-				pd.Model = value.String
+				_m.Model = value.String
 			}
 		case physicaldisk.FieldSerialNumber:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field serial_number", values[i])
 			} else if value.Valid {
-				pd.SerialNumber = value.String
+				_m.SerialNumber = value.String
 			}
 		case physicaldisk.FieldSizeInUnits:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field size_in_units", values[i])
 			} else if value.Valid {
-				pd.SizeInUnits = value.String
+				_m.SizeInUnits = value.String
 			}
 		case physicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_physicaldisks", values[i])
 			} else if value.Valid {
-				pd.agent_physicaldisks = new(string)
-				*pd.agent_physicaldisks = value.String
+				_m.agent_physicaldisks = new(string)
+				*_m.agent_physicaldisks = value.String
 			}
 		default:
-			pd.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -124,49 +124,49 @@ func (pd *PhysicalDisk) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the PhysicalDisk.
 // This includes values selected through modifiers, order, etc.
-func (pd *PhysicalDisk) Value(name string) (ent.Value, error) {
-	return pd.selectValues.Get(name)
+func (_m *PhysicalDisk) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the PhysicalDisk entity.
-func (pd *PhysicalDisk) QueryOwner() *AgentQuery {
-	return NewPhysicalDiskClient(pd.config).QueryOwner(pd)
+func (_m *PhysicalDisk) QueryOwner() *AgentQuery {
+	return NewPhysicalDiskClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this PhysicalDisk.
 // Note that you need to call PhysicalDisk.Unwrap() before calling this method if this PhysicalDisk
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (pd *PhysicalDisk) Update() *PhysicalDiskUpdateOne {
-	return NewPhysicalDiskClient(pd.config).UpdateOne(pd)
+func (_m *PhysicalDisk) Update() *PhysicalDiskUpdateOne {
+	return NewPhysicalDiskClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the PhysicalDisk entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (pd *PhysicalDisk) Unwrap() *PhysicalDisk {
-	_tx, ok := pd.config.driver.(*txDriver)
+func (_m *PhysicalDisk) Unwrap() *PhysicalDisk {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: PhysicalDisk is not a transactional entity")
 	}
-	pd.config.driver = _tx.drv
-	return pd
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (pd *PhysicalDisk) String() string {
+func (_m *PhysicalDisk) String() string {
 	var builder strings.Builder
 	builder.WriteString("PhysicalDisk(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", pd.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("device_id=")
-	builder.WriteString(pd.DeviceID)
+	builder.WriteString(_m.DeviceID)
 	builder.WriteString(", ")
 	builder.WriteString("model=")
-	builder.WriteString(pd.Model)
+	builder.WriteString(_m.Model)
 	builder.WriteString(", ")
 	builder.WriteString("serial_number=")
-	builder.WriteString(pd.SerialNumber)
+	builder.WriteString(_m.SerialNumber)
 	builder.WriteString(", ")
 	builder.WriteString("size_in_units=")
-	builder.WriteString(pd.SizeInUnits)
+	builder.WriteString(_m.SizeInUnits)
 	builder.WriteByte(')')
 	return builder.String()
 }

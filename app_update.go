@@ -24,109 +24,109 @@ type AppUpdate struct {
 }
 
 // Where appends a list predicates to the AppUpdate builder.
-func (au *AppUpdate) Where(ps ...predicate.App) *AppUpdate {
-	au.mutation.Where(ps...)
-	return au
+func (_u *AppUpdate) Where(ps ...predicate.App) *AppUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (au *AppUpdate) SetName(s string) *AppUpdate {
-	au.mutation.SetName(s)
-	return au
+func (_u *AppUpdate) SetName(v string) *AppUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (au *AppUpdate) SetNillableName(s *string) *AppUpdate {
-	if s != nil {
-		au.SetName(*s)
+func (_u *AppUpdate) SetNillableName(v *string) *AppUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return au
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (au *AppUpdate) SetVersion(s string) *AppUpdate {
-	au.mutation.SetVersion(s)
-	return au
+func (_u *AppUpdate) SetVersion(v string) *AppUpdate {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (au *AppUpdate) SetNillableVersion(s *string) *AppUpdate {
-	if s != nil {
-		au.SetVersion(*s)
+func (_u *AppUpdate) SetNillableVersion(v *string) *AppUpdate {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return au
+	return _u
 }
 
 // SetPublisher sets the "publisher" field.
-func (au *AppUpdate) SetPublisher(s string) *AppUpdate {
-	au.mutation.SetPublisher(s)
-	return au
+func (_u *AppUpdate) SetPublisher(v string) *AppUpdate {
+	_u.mutation.SetPublisher(v)
+	return _u
 }
 
 // SetNillablePublisher sets the "publisher" field if the given value is not nil.
-func (au *AppUpdate) SetNillablePublisher(s *string) *AppUpdate {
-	if s != nil {
-		au.SetPublisher(*s)
+func (_u *AppUpdate) SetNillablePublisher(v *string) *AppUpdate {
+	if v != nil {
+		_u.SetPublisher(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearPublisher clears the value of the "publisher" field.
-func (au *AppUpdate) ClearPublisher() *AppUpdate {
-	au.mutation.ClearPublisher()
-	return au
+func (_u *AppUpdate) ClearPublisher() *AppUpdate {
+	_u.mutation.ClearPublisher()
+	return _u
 }
 
 // SetInstallDate sets the "install_date" field.
-func (au *AppUpdate) SetInstallDate(s string) *AppUpdate {
-	au.mutation.SetInstallDate(s)
-	return au
+func (_u *AppUpdate) SetInstallDate(v string) *AppUpdate {
+	_u.mutation.SetInstallDate(v)
+	return _u
 }
 
 // SetNillableInstallDate sets the "install_date" field if the given value is not nil.
-func (au *AppUpdate) SetNillableInstallDate(s *string) *AppUpdate {
-	if s != nil {
-		au.SetInstallDate(*s)
+func (_u *AppUpdate) SetNillableInstallDate(v *string) *AppUpdate {
+	if v != nil {
+		_u.SetInstallDate(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearInstallDate clears the value of the "install_date" field.
-func (au *AppUpdate) ClearInstallDate() *AppUpdate {
-	au.mutation.ClearInstallDate()
-	return au
+func (_u *AppUpdate) ClearInstallDate() *AppUpdate {
+	_u.mutation.ClearInstallDate()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (au *AppUpdate) SetOwnerID(id string) *AppUpdate {
-	au.mutation.SetOwnerID(id)
-	return au
+func (_u *AppUpdate) SetOwnerID(id string) *AppUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (au *AppUpdate) SetOwner(a *Agent) *AppUpdate {
-	return au.SetOwnerID(a.ID)
+func (_u *AppUpdate) SetOwner(v *Agent) *AppUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the AppMutation object of the builder.
-func (au *AppUpdate) Mutation() *AppMutation {
-	return au.mutation
+func (_u *AppUpdate) Mutation() *AppMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (au *AppUpdate) ClearOwner() *AppUpdate {
-	au.mutation.ClearOwner()
-	return au
+func (_u *AppUpdate) ClearOwner() *AppUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (au *AppUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, au.sqlSave, au.mutation, au.hooks)
+func (_u *AppUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (au *AppUpdate) SaveX(ctx context.Context) int {
-	affected, err := au.Save(ctx)
+func (_u *AppUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -134,63 +134,63 @@ func (au *AppUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (au *AppUpdate) Exec(ctx context.Context) error {
-	_, err := au.Save(ctx)
+func (_u *AppUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (au *AppUpdate) ExecX(ctx context.Context) {
-	if err := au.Exec(ctx); err != nil {
+func (_u *AppUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (au *AppUpdate) check() error {
-	if au.mutation.OwnerCleared() && len(au.mutation.OwnerIDs()) > 0 {
+func (_u *AppUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "App.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (au *AppUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AppUpdate {
-	au.modifiers = append(au.modifiers, modifiers...)
-	return au
+func (_u *AppUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AppUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (au *AppUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := au.check(); err != nil {
-		return n, err
+func (_u *AppUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(app.Table, app.Columns, sqlgraph.NewFieldSpec(app.FieldID, field.TypeInt))
-	if ps := au.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := au.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(app.FieldName, field.TypeString, value)
 	}
-	if value, ok := au.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(app.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := au.mutation.Publisher(); ok {
+	if value, ok := _u.mutation.Publisher(); ok {
 		_spec.SetField(app.FieldPublisher, field.TypeString, value)
 	}
-	if au.mutation.PublisherCleared() {
+	if _u.mutation.PublisherCleared() {
 		_spec.ClearField(app.FieldPublisher, field.TypeString)
 	}
-	if value, ok := au.mutation.InstallDate(); ok {
+	if value, ok := _u.mutation.InstallDate(); ok {
 		_spec.SetField(app.FieldInstallDate, field.TypeString, value)
 	}
-	if au.mutation.InstallDateCleared() {
+	if _u.mutation.InstallDateCleared() {
 		_spec.ClearField(app.FieldInstallDate, field.TypeString)
 	}
-	if au.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -203,7 +203,7 @@ func (au *AppUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -219,8 +219,8 @@ func (au *AppUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(au.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{app.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -228,8 +228,8 @@ func (au *AppUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	au.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // AppUpdateOne is the builder for updating a single App entity.
@@ -242,116 +242,116 @@ type AppUpdateOne struct {
 }
 
 // SetName sets the "name" field.
-func (auo *AppUpdateOne) SetName(s string) *AppUpdateOne {
-	auo.mutation.SetName(s)
-	return auo
+func (_u *AppUpdateOne) SetName(v string) *AppUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (auo *AppUpdateOne) SetNillableName(s *string) *AppUpdateOne {
-	if s != nil {
-		auo.SetName(*s)
+func (_u *AppUpdateOne) SetNillableName(v *string) *AppUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (auo *AppUpdateOne) SetVersion(s string) *AppUpdateOne {
-	auo.mutation.SetVersion(s)
-	return auo
+func (_u *AppUpdateOne) SetVersion(v string) *AppUpdateOne {
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (auo *AppUpdateOne) SetNillableVersion(s *string) *AppUpdateOne {
-	if s != nil {
-		auo.SetVersion(*s)
+func (_u *AppUpdateOne) SetNillableVersion(v *string) *AppUpdateOne {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetPublisher sets the "publisher" field.
-func (auo *AppUpdateOne) SetPublisher(s string) *AppUpdateOne {
-	auo.mutation.SetPublisher(s)
-	return auo
+func (_u *AppUpdateOne) SetPublisher(v string) *AppUpdateOne {
+	_u.mutation.SetPublisher(v)
+	return _u
 }
 
 // SetNillablePublisher sets the "publisher" field if the given value is not nil.
-func (auo *AppUpdateOne) SetNillablePublisher(s *string) *AppUpdateOne {
-	if s != nil {
-		auo.SetPublisher(*s)
+func (_u *AppUpdateOne) SetNillablePublisher(v *string) *AppUpdateOne {
+	if v != nil {
+		_u.SetPublisher(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearPublisher clears the value of the "publisher" field.
-func (auo *AppUpdateOne) ClearPublisher() *AppUpdateOne {
-	auo.mutation.ClearPublisher()
-	return auo
+func (_u *AppUpdateOne) ClearPublisher() *AppUpdateOne {
+	_u.mutation.ClearPublisher()
+	return _u
 }
 
 // SetInstallDate sets the "install_date" field.
-func (auo *AppUpdateOne) SetInstallDate(s string) *AppUpdateOne {
-	auo.mutation.SetInstallDate(s)
-	return auo
+func (_u *AppUpdateOne) SetInstallDate(v string) *AppUpdateOne {
+	_u.mutation.SetInstallDate(v)
+	return _u
 }
 
 // SetNillableInstallDate sets the "install_date" field if the given value is not nil.
-func (auo *AppUpdateOne) SetNillableInstallDate(s *string) *AppUpdateOne {
-	if s != nil {
-		auo.SetInstallDate(*s)
+func (_u *AppUpdateOne) SetNillableInstallDate(v *string) *AppUpdateOne {
+	if v != nil {
+		_u.SetInstallDate(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearInstallDate clears the value of the "install_date" field.
-func (auo *AppUpdateOne) ClearInstallDate() *AppUpdateOne {
-	auo.mutation.ClearInstallDate()
-	return auo
+func (_u *AppUpdateOne) ClearInstallDate() *AppUpdateOne {
+	_u.mutation.ClearInstallDate()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (auo *AppUpdateOne) SetOwnerID(id string) *AppUpdateOne {
-	auo.mutation.SetOwnerID(id)
-	return auo
+func (_u *AppUpdateOne) SetOwnerID(id string) *AppUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (auo *AppUpdateOne) SetOwner(a *Agent) *AppUpdateOne {
-	return auo.SetOwnerID(a.ID)
+func (_u *AppUpdateOne) SetOwner(v *Agent) *AppUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the AppMutation object of the builder.
-func (auo *AppUpdateOne) Mutation() *AppMutation {
-	return auo.mutation
+func (_u *AppUpdateOne) Mutation() *AppMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (auo *AppUpdateOne) ClearOwner() *AppUpdateOne {
-	auo.mutation.ClearOwner()
-	return auo
+func (_u *AppUpdateOne) ClearOwner() *AppUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the AppUpdate builder.
-func (auo *AppUpdateOne) Where(ps ...predicate.App) *AppUpdateOne {
-	auo.mutation.Where(ps...)
-	return auo
+func (_u *AppUpdateOne) Where(ps ...predicate.App) *AppUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (auo *AppUpdateOne) Select(field string, fields ...string) *AppUpdateOne {
-	auo.fields = append([]string{field}, fields...)
-	return auo
+func (_u *AppUpdateOne) Select(field string, fields ...string) *AppUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated App entity.
-func (auo *AppUpdateOne) Save(ctx context.Context) (*App, error) {
-	return withHooks(ctx, auo.sqlSave, auo.mutation, auo.hooks)
+func (_u *AppUpdateOne) Save(ctx context.Context) (*App, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (auo *AppUpdateOne) SaveX(ctx context.Context) *App {
-	node, err := auo.Save(ctx)
+func (_u *AppUpdateOne) SaveX(ctx context.Context) *App {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -359,43 +359,43 @@ func (auo *AppUpdateOne) SaveX(ctx context.Context) *App {
 }
 
 // Exec executes the query on the entity.
-func (auo *AppUpdateOne) Exec(ctx context.Context) error {
-	_, err := auo.Save(ctx)
+func (_u *AppUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (auo *AppUpdateOne) ExecX(ctx context.Context) {
-	if err := auo.Exec(ctx); err != nil {
+func (_u *AppUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (auo *AppUpdateOne) check() error {
-	if auo.mutation.OwnerCleared() && len(auo.mutation.OwnerIDs()) > 0 {
+func (_u *AppUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "App.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (auo *AppUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AppUpdateOne {
-	auo.modifiers = append(auo.modifiers, modifiers...)
-	return auo
+func (_u *AppUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AppUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (auo *AppUpdateOne) sqlSave(ctx context.Context) (_node *App, err error) {
-	if err := auo.check(); err != nil {
+func (_u *AppUpdateOne) sqlSave(ctx context.Context) (_node *App, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(app.Table, app.Columns, sqlgraph.NewFieldSpec(app.FieldID, field.TypeInt))
-	id, ok := auo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "App.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := auo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, app.FieldID)
 		for _, f := range fields {
@@ -407,32 +407,32 @@ func (auo *AppUpdateOne) sqlSave(ctx context.Context) (_node *App, err error) {
 			}
 		}
 	}
-	if ps := auo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := auo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(app.FieldName, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(app.FieldVersion, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.Publisher(); ok {
+	if value, ok := _u.mutation.Publisher(); ok {
 		_spec.SetField(app.FieldPublisher, field.TypeString, value)
 	}
-	if auo.mutation.PublisherCleared() {
+	if _u.mutation.PublisherCleared() {
 		_spec.ClearField(app.FieldPublisher, field.TypeString)
 	}
-	if value, ok := auo.mutation.InstallDate(); ok {
+	if value, ok := _u.mutation.InstallDate(); ok {
 		_spec.SetField(app.FieldInstallDate, field.TypeString, value)
 	}
-	if auo.mutation.InstallDateCleared() {
+	if _u.mutation.InstallDateCleared() {
 		_spec.ClearField(app.FieldInstallDate, field.TypeString)
 	}
-	if auo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -445,7 +445,7 @@ func (auo *AppUpdateOne) sqlSave(ctx context.Context) (_node *App, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -461,11 +461,11 @@ func (auo *AppUpdateOne) sqlSave(ctx context.Context) (_node *App, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(auo.modifiers...)
-	_node = &App{config: auo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &App{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, auo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{app.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -473,6 +473,6 @@ func (auo *AppUpdateOne) sqlSave(ctx context.Context) (_node *App, err error) {
 		}
 		return nil, err
 	}
-	auo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

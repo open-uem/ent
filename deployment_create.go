@@ -24,126 +24,126 @@ type DeploymentCreate struct {
 }
 
 // SetPackageID sets the "package_id" field.
-func (dc *DeploymentCreate) SetPackageID(s string) *DeploymentCreate {
-	dc.mutation.SetPackageID(s)
-	return dc
+func (_c *DeploymentCreate) SetPackageID(v string) *DeploymentCreate {
+	_c.mutation.SetPackageID(v)
+	return _c
 }
 
 // SetName sets the "name" field.
-func (dc *DeploymentCreate) SetName(s string) *DeploymentCreate {
-	dc.mutation.SetName(s)
-	return dc
+func (_c *DeploymentCreate) SetName(v string) *DeploymentCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetVersion sets the "version" field.
-func (dc *DeploymentCreate) SetVersion(s string) *DeploymentCreate {
-	dc.mutation.SetVersion(s)
-	return dc
+func (_c *DeploymentCreate) SetVersion(v string) *DeploymentCreate {
+	_c.mutation.SetVersion(v)
+	return _c
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (dc *DeploymentCreate) SetNillableVersion(s *string) *DeploymentCreate {
-	if s != nil {
-		dc.SetVersion(*s)
+func (_c *DeploymentCreate) SetNillableVersion(v *string) *DeploymentCreate {
+	if v != nil {
+		_c.SetVersion(*v)
 	}
-	return dc
+	return _c
 }
 
 // SetInstalled sets the "installed" field.
-func (dc *DeploymentCreate) SetInstalled(t time.Time) *DeploymentCreate {
-	dc.mutation.SetInstalled(t)
-	return dc
+func (_c *DeploymentCreate) SetInstalled(v time.Time) *DeploymentCreate {
+	_c.mutation.SetInstalled(v)
+	return _c
 }
 
 // SetNillableInstalled sets the "installed" field if the given value is not nil.
-func (dc *DeploymentCreate) SetNillableInstalled(t *time.Time) *DeploymentCreate {
-	if t != nil {
-		dc.SetInstalled(*t)
+func (_c *DeploymentCreate) SetNillableInstalled(v *time.Time) *DeploymentCreate {
+	if v != nil {
+		_c.SetInstalled(*v)
 	}
-	return dc
+	return _c
 }
 
 // SetUpdated sets the "updated" field.
-func (dc *DeploymentCreate) SetUpdated(t time.Time) *DeploymentCreate {
-	dc.mutation.SetUpdated(t)
-	return dc
+func (_c *DeploymentCreate) SetUpdated(v time.Time) *DeploymentCreate {
+	_c.mutation.SetUpdated(v)
+	return _c
 }
 
 // SetNillableUpdated sets the "updated" field if the given value is not nil.
-func (dc *DeploymentCreate) SetNillableUpdated(t *time.Time) *DeploymentCreate {
-	if t != nil {
-		dc.SetUpdated(*t)
+func (_c *DeploymentCreate) SetNillableUpdated(v *time.Time) *DeploymentCreate {
+	if v != nil {
+		_c.SetUpdated(*v)
 	}
-	return dc
+	return _c
 }
 
 // SetFailed sets the "failed" field.
-func (dc *DeploymentCreate) SetFailed(b bool) *DeploymentCreate {
-	dc.mutation.SetFailed(b)
-	return dc
+func (_c *DeploymentCreate) SetFailed(v bool) *DeploymentCreate {
+	_c.mutation.SetFailed(v)
+	return _c
 }
 
 // SetNillableFailed sets the "failed" field if the given value is not nil.
-func (dc *DeploymentCreate) SetNillableFailed(b *bool) *DeploymentCreate {
-	if b != nil {
-		dc.SetFailed(*b)
+func (_c *DeploymentCreate) SetNillableFailed(v *bool) *DeploymentCreate {
+	if v != nil {
+		_c.SetFailed(*v)
 	}
-	return dc
+	return _c
 }
 
 // SetByProfile sets the "by_profile" field.
-func (dc *DeploymentCreate) SetByProfile(b bool) *DeploymentCreate {
-	dc.mutation.SetByProfile(b)
-	return dc
+func (_c *DeploymentCreate) SetByProfile(v bool) *DeploymentCreate {
+	_c.mutation.SetByProfile(v)
+	return _c
 }
 
 // SetNillableByProfile sets the "by_profile" field if the given value is not nil.
-func (dc *DeploymentCreate) SetNillableByProfile(b *bool) *DeploymentCreate {
-	if b != nil {
-		dc.SetByProfile(*b)
+func (_c *DeploymentCreate) SetNillableByProfile(v *bool) *DeploymentCreate {
+	if v != nil {
+		_c.SetByProfile(*v)
 	}
-	return dc
+	return _c
 }
 
 // SetMoreInfo sets the "more_info" field.
-func (dc *DeploymentCreate) SetMoreInfo(s string) *DeploymentCreate {
-	dc.mutation.SetMoreInfo(s)
-	return dc
+func (_c *DeploymentCreate) SetMoreInfo(v string) *DeploymentCreate {
+	_c.mutation.SetMoreInfo(v)
+	return _c
 }
 
 // SetNillableMoreInfo sets the "more_info" field if the given value is not nil.
-func (dc *DeploymentCreate) SetNillableMoreInfo(s *string) *DeploymentCreate {
-	if s != nil {
-		dc.SetMoreInfo(*s)
+func (_c *DeploymentCreate) SetNillableMoreInfo(v *string) *DeploymentCreate {
+	if v != nil {
+		_c.SetMoreInfo(*v)
 	}
-	return dc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (dc *DeploymentCreate) SetOwnerID(id string) *DeploymentCreate {
-	dc.mutation.SetOwnerID(id)
-	return dc
+func (_c *DeploymentCreate) SetOwnerID(id string) *DeploymentCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (dc *DeploymentCreate) SetOwner(a *Agent) *DeploymentCreate {
-	return dc.SetOwnerID(a.ID)
+func (_c *DeploymentCreate) SetOwner(v *Agent) *DeploymentCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the DeploymentMutation object of the builder.
-func (dc *DeploymentCreate) Mutation() *DeploymentMutation {
-	return dc.mutation
+func (_c *DeploymentCreate) Mutation() *DeploymentMutation {
+	return _c.mutation
 }
 
 // Save creates the Deployment in the database.
-func (dc *DeploymentCreate) Save(ctx context.Context) (*Deployment, error) {
-	dc.defaults()
-	return withHooks(ctx, dc.sqlSave, dc.mutation, dc.hooks)
+func (_c *DeploymentCreate) Save(ctx context.Context) (*Deployment, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (dc *DeploymentCreate) SaveX(ctx context.Context) *Deployment {
-	v, err := dc.Save(ctx)
+func (_c *DeploymentCreate) SaveX(ctx context.Context) *Deployment {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -151,58 +151,58 @@ func (dc *DeploymentCreate) SaveX(ctx context.Context) *Deployment {
 }
 
 // Exec executes the query.
-func (dc *DeploymentCreate) Exec(ctx context.Context) error {
-	_, err := dc.Save(ctx)
+func (_c *DeploymentCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (dc *DeploymentCreate) ExecX(ctx context.Context) {
-	if err := dc.Exec(ctx); err != nil {
+func (_c *DeploymentCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (dc *DeploymentCreate) defaults() {
-	if _, ok := dc.mutation.Installed(); !ok {
+func (_c *DeploymentCreate) defaults() {
+	if _, ok := _c.mutation.Installed(); !ok {
 		v := deployment.DefaultInstalled()
-		dc.mutation.SetInstalled(v)
+		_c.mutation.SetInstalled(v)
 	}
-	if _, ok := dc.mutation.Updated(); !ok {
+	if _, ok := _c.mutation.Updated(); !ok {
 		v := deployment.DefaultUpdated()
-		dc.mutation.SetUpdated(v)
+		_c.mutation.SetUpdated(v)
 	}
-	if _, ok := dc.mutation.Failed(); !ok {
+	if _, ok := _c.mutation.Failed(); !ok {
 		v := deployment.DefaultFailed
-		dc.mutation.SetFailed(v)
+		_c.mutation.SetFailed(v)
 	}
-	if _, ok := dc.mutation.ByProfile(); !ok {
+	if _, ok := _c.mutation.ByProfile(); !ok {
 		v := deployment.DefaultByProfile
-		dc.mutation.SetByProfile(v)
+		_c.mutation.SetByProfile(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (dc *DeploymentCreate) check() error {
-	if _, ok := dc.mutation.PackageID(); !ok {
+func (_c *DeploymentCreate) check() error {
+	if _, ok := _c.mutation.PackageID(); !ok {
 		return &ValidationError{Name: "package_id", err: errors.New(`ent: missing required field "Deployment.package_id"`)}
 	}
-	if _, ok := dc.mutation.Name(); !ok {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Deployment.name"`)}
 	}
-	if len(dc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "Deployment.owner"`)}
 	}
 	return nil
 }
 
-func (dc *DeploymentCreate) sqlSave(ctx context.Context) (*Deployment, error) {
-	if err := dc.check(); err != nil {
+func (_c *DeploymentCreate) sqlSave(ctx context.Context) (*Deployment, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := dc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, dc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -210,50 +210,50 @@ func (dc *DeploymentCreate) sqlSave(ctx context.Context) (*Deployment, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	dc.mutation.id = &_node.ID
-	dc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (dc *DeploymentCreate) createSpec() (*Deployment, *sqlgraph.CreateSpec) {
+func (_c *DeploymentCreate) createSpec() (*Deployment, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Deployment{config: dc.config}
+		_node = &Deployment{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(deployment.Table, sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = dc.conflict
-	if value, ok := dc.mutation.PackageID(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.PackageID(); ok {
 		_spec.SetField(deployment.FieldPackageID, field.TypeString, value)
 		_node.PackageID = value
 	}
-	if value, ok := dc.mutation.Name(); ok {
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(deployment.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := dc.mutation.Version(); ok {
+	if value, ok := _c.mutation.Version(); ok {
 		_spec.SetField(deployment.FieldVersion, field.TypeString, value)
 		_node.Version = value
 	}
-	if value, ok := dc.mutation.Installed(); ok {
+	if value, ok := _c.mutation.Installed(); ok {
 		_spec.SetField(deployment.FieldInstalled, field.TypeTime, value)
 		_node.Installed = value
 	}
-	if value, ok := dc.mutation.Updated(); ok {
+	if value, ok := _c.mutation.Updated(); ok {
 		_spec.SetField(deployment.FieldUpdated, field.TypeTime, value)
 		_node.Updated = value
 	}
-	if value, ok := dc.mutation.Failed(); ok {
+	if value, ok := _c.mutation.Failed(); ok {
 		_spec.SetField(deployment.FieldFailed, field.TypeBool, value)
 		_node.Failed = value
 	}
-	if value, ok := dc.mutation.ByProfile(); ok {
+	if value, ok := _c.mutation.ByProfile(); ok {
 		_spec.SetField(deployment.FieldByProfile, field.TypeBool, value)
 		_node.ByProfile = value
 	}
-	if value, ok := dc.mutation.MoreInfo(); ok {
+	if value, ok := _c.mutation.MoreInfo(); ok {
 		_spec.SetField(deployment.FieldMoreInfo, field.TypeString, value)
 		_node.MoreInfo = value
 	}
-	if nodes := dc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -289,10 +289,10 @@ func (dc *DeploymentCreate) createSpec() (*Deployment, *sqlgraph.CreateSpec) {
 //			SetPackageID(v+v).
 //		}).
 //		Exec(ctx)
-func (dc *DeploymentCreate) OnConflict(opts ...sql.ConflictOption) *DeploymentUpsertOne {
-	dc.conflict = opts
+func (_c *DeploymentCreate) OnConflict(opts ...sql.ConflictOption) *DeploymentUpsertOne {
+	_c.conflict = opts
 	return &DeploymentUpsertOne{
-		create: dc,
+		create: _c,
 	}
 }
 
@@ -302,10 +302,10 @@ func (dc *DeploymentCreate) OnConflict(opts ...sql.ConflictOption) *DeploymentUp
 //	client.Deployment.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (dc *DeploymentCreate) OnConflictColumns(columns ...string) *DeploymentUpsertOne {
-	dc.conflict = append(dc.conflict, sql.ConflictColumns(columns...))
+func (_c *DeploymentCreate) OnConflictColumns(columns ...string) *DeploymentUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &DeploymentUpsertOne{
-		create: dc,
+		create: _c,
 	}
 }
 
@@ -690,16 +690,16 @@ type DeploymentCreateBulk struct {
 }
 
 // Save creates the Deployment entities in the database.
-func (dcb *DeploymentCreateBulk) Save(ctx context.Context) ([]*Deployment, error) {
-	if dcb.err != nil {
-		return nil, dcb.err
+func (_c *DeploymentCreateBulk) Save(ctx context.Context) ([]*Deployment, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(dcb.builders))
-	nodes := make([]*Deployment, len(dcb.builders))
-	mutators := make([]Mutator, len(dcb.builders))
-	for i := range dcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Deployment, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := dcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*DeploymentMutation)
@@ -713,12 +713,12 @@ func (dcb *DeploymentCreateBulk) Save(ctx context.Context) ([]*Deployment, error
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, dcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = dcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, dcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -742,7 +742,7 @@ func (dcb *DeploymentCreateBulk) Save(ctx context.Context) ([]*Deployment, error
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, dcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -750,8 +750,8 @@ func (dcb *DeploymentCreateBulk) Save(ctx context.Context) ([]*Deployment, error
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (dcb *DeploymentCreateBulk) SaveX(ctx context.Context) []*Deployment {
-	v, err := dcb.Save(ctx)
+func (_c *DeploymentCreateBulk) SaveX(ctx context.Context) []*Deployment {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -759,14 +759,14 @@ func (dcb *DeploymentCreateBulk) SaveX(ctx context.Context) []*Deployment {
 }
 
 // Exec executes the query.
-func (dcb *DeploymentCreateBulk) Exec(ctx context.Context) error {
-	_, err := dcb.Save(ctx)
+func (_c *DeploymentCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (dcb *DeploymentCreateBulk) ExecX(ctx context.Context) {
-	if err := dcb.Exec(ctx); err != nil {
+func (_c *DeploymentCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -786,10 +786,10 @@ func (dcb *DeploymentCreateBulk) ExecX(ctx context.Context) {
 //			SetPackageID(v+v).
 //		}).
 //		Exec(ctx)
-func (dcb *DeploymentCreateBulk) OnConflict(opts ...sql.ConflictOption) *DeploymentUpsertBulk {
-	dcb.conflict = opts
+func (_c *DeploymentCreateBulk) OnConflict(opts ...sql.ConflictOption) *DeploymentUpsertBulk {
+	_c.conflict = opts
 	return &DeploymentUpsertBulk{
-		create: dcb,
+		create: _c,
 	}
 }
 
@@ -799,10 +799,10 @@ func (dcb *DeploymentCreateBulk) OnConflict(opts ...sql.ConflictOption) *Deploym
 //	client.Deployment.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (dcb *DeploymentCreateBulk) OnConflictColumns(columns ...string) *DeploymentUpsertBulk {
-	dcb.conflict = append(dcb.conflict, sql.ConflictColumns(columns...))
+func (_c *DeploymentCreateBulk) OnConflictColumns(columns ...string) *DeploymentUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &DeploymentUpsertBulk{
-		create: dcb,
+		create: _c,
 	}
 }
 

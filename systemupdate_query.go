@@ -32,44 +32,44 @@ type SystemUpdateQuery struct {
 }
 
 // Where adds a new predicate for the SystemUpdateQuery builder.
-func (suq *SystemUpdateQuery) Where(ps ...predicate.SystemUpdate) *SystemUpdateQuery {
-	suq.predicates = append(suq.predicates, ps...)
-	return suq
+func (_q *SystemUpdateQuery) Where(ps ...predicate.SystemUpdate) *SystemUpdateQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (suq *SystemUpdateQuery) Limit(limit int) *SystemUpdateQuery {
-	suq.ctx.Limit = &limit
-	return suq
+func (_q *SystemUpdateQuery) Limit(limit int) *SystemUpdateQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (suq *SystemUpdateQuery) Offset(offset int) *SystemUpdateQuery {
-	suq.ctx.Offset = &offset
-	return suq
+func (_q *SystemUpdateQuery) Offset(offset int) *SystemUpdateQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (suq *SystemUpdateQuery) Unique(unique bool) *SystemUpdateQuery {
-	suq.ctx.Unique = &unique
-	return suq
+func (_q *SystemUpdateQuery) Unique(unique bool) *SystemUpdateQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (suq *SystemUpdateQuery) Order(o ...systemupdate.OrderOption) *SystemUpdateQuery {
-	suq.order = append(suq.order, o...)
-	return suq
+func (_q *SystemUpdateQuery) Order(o ...systemupdate.OrderOption) *SystemUpdateQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (suq *SystemUpdateQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: suq.config}).Query()
+func (_q *SystemUpdateQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := suq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := suq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (suq *SystemUpdateQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, true, systemupdate.OwnerTable, systemupdate.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(suq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (suq *SystemUpdateQuery) QueryOwner() *AgentQuery {
 
 // First returns the first SystemUpdate entity from the query.
 // Returns a *NotFoundError when no SystemUpdate was found.
-func (suq *SystemUpdateQuery) First(ctx context.Context) (*SystemUpdate, error) {
-	nodes, err := suq.Limit(1).All(setContextOp(ctx, suq.ctx, ent.OpQueryFirst))
+func (_q *SystemUpdateQuery) First(ctx context.Context) (*SystemUpdate, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (suq *SystemUpdateQuery) First(ctx context.Context) (*SystemUpdate, error) 
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (suq *SystemUpdateQuery) FirstX(ctx context.Context) *SystemUpdate {
-	node, err := suq.First(ctx)
+func (_q *SystemUpdateQuery) FirstX(ctx context.Context) *SystemUpdate {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (suq *SystemUpdateQuery) FirstX(ctx context.Context) *SystemUpdate {
 
 // FirstID returns the first SystemUpdate ID from the query.
 // Returns a *NotFoundError when no SystemUpdate ID was found.
-func (suq *SystemUpdateQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *SystemUpdateQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = suq.Limit(1).IDs(setContextOp(ctx, suq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (suq *SystemUpdateQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (suq *SystemUpdateQuery) FirstIDX(ctx context.Context) int {
-	id, err := suq.FirstID(ctx)
+func (_q *SystemUpdateQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (suq *SystemUpdateQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single SystemUpdate entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one SystemUpdate entity is found.
 // Returns a *NotFoundError when no SystemUpdate entities are found.
-func (suq *SystemUpdateQuery) Only(ctx context.Context) (*SystemUpdate, error) {
-	nodes, err := suq.Limit(2).All(setContextOp(ctx, suq.ctx, ent.OpQueryOnly))
+func (_q *SystemUpdateQuery) Only(ctx context.Context) (*SystemUpdate, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (suq *SystemUpdateQuery) Only(ctx context.Context) (*SystemUpdate, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (suq *SystemUpdateQuery) OnlyX(ctx context.Context) *SystemUpdate {
-	node, err := suq.Only(ctx)
+func (_q *SystemUpdateQuery) OnlyX(ctx context.Context) *SystemUpdate {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (suq *SystemUpdateQuery) OnlyX(ctx context.Context) *SystemUpdate {
 // OnlyID is like Only, but returns the only SystemUpdate ID in the query.
 // Returns a *NotSingularError when more than one SystemUpdate ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (suq *SystemUpdateQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *SystemUpdateQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = suq.Limit(2).IDs(setContextOp(ctx, suq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (suq *SystemUpdateQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (suq *SystemUpdateQuery) OnlyIDX(ctx context.Context) int {
-	id, err := suq.OnlyID(ctx)
+func (_q *SystemUpdateQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (suq *SystemUpdateQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of SystemUpdates.
-func (suq *SystemUpdateQuery) All(ctx context.Context) ([]*SystemUpdate, error) {
-	ctx = setContextOp(ctx, suq.ctx, ent.OpQueryAll)
-	if err := suq.prepareQuery(ctx); err != nil {
+func (_q *SystemUpdateQuery) All(ctx context.Context) ([]*SystemUpdate, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*SystemUpdate, *SystemUpdateQuery]()
-	return withInterceptors[[]*SystemUpdate](ctx, suq, qr, suq.inters)
+	return withInterceptors[[]*SystemUpdate](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (suq *SystemUpdateQuery) AllX(ctx context.Context) []*SystemUpdate {
-	nodes, err := suq.All(ctx)
+func (_q *SystemUpdateQuery) AllX(ctx context.Context) []*SystemUpdate {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (suq *SystemUpdateQuery) AllX(ctx context.Context) []*SystemUpdate {
 }
 
 // IDs executes the query and returns a list of SystemUpdate IDs.
-func (suq *SystemUpdateQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if suq.ctx.Unique == nil && suq.path != nil {
-		suq.Unique(true)
+func (_q *SystemUpdateQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, suq.ctx, ent.OpQueryIDs)
-	if err = suq.Select(systemupdate.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(systemupdate.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (suq *SystemUpdateQuery) IDsX(ctx context.Context) []int {
-	ids, err := suq.IDs(ctx)
+func (_q *SystemUpdateQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (suq *SystemUpdateQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (suq *SystemUpdateQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, suq.ctx, ent.OpQueryCount)
-	if err := suq.prepareQuery(ctx); err != nil {
+func (_q *SystemUpdateQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, suq, querierCount[*SystemUpdateQuery](), suq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*SystemUpdateQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (suq *SystemUpdateQuery) CountX(ctx context.Context) int {
-	count, err := suq.Count(ctx)
+func (_q *SystemUpdateQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (suq *SystemUpdateQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (suq *SystemUpdateQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, suq.ctx, ent.OpQueryExist)
-	switch _, err := suq.FirstID(ctx); {
+func (_q *SystemUpdateQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (suq *SystemUpdateQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (suq *SystemUpdateQuery) ExistX(ctx context.Context) bool {
-	exist, err := suq.Exist(ctx)
+func (_q *SystemUpdateQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (suq *SystemUpdateQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the SystemUpdateQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (suq *SystemUpdateQuery) Clone() *SystemUpdateQuery {
-	if suq == nil {
+func (_q *SystemUpdateQuery) Clone() *SystemUpdateQuery {
+	if _q == nil {
 		return nil
 	}
 	return &SystemUpdateQuery{
-		config:     suq.config,
-		ctx:        suq.ctx.Clone(),
-		order:      append([]systemupdate.OrderOption{}, suq.order...),
-		inters:     append([]Interceptor{}, suq.inters...),
-		predicates: append([]predicate.SystemUpdate{}, suq.predicates...),
-		withOwner:  suq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]systemupdate.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.SystemUpdate{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       suq.sql.Clone(),
-		path:      suq.path,
-		modifiers: append([]func(*sql.Selector){}, suq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (suq *SystemUpdateQuery) WithOwner(opts ...func(*AgentQuery)) *SystemUpdateQuery {
-	query := (&AgentClient{config: suq.config}).Query()
+func (_q *SystemUpdateQuery) WithOwner(opts ...func(*AgentQuery)) *SystemUpdateQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	suq.withOwner = query
-	return suq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (suq *SystemUpdateQuery) WithOwner(opts ...func(*AgentQuery)) *SystemUpdate
 //		GroupBy(systemupdate.FieldSystemUpdateStatus).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (suq *SystemUpdateQuery) GroupBy(field string, fields ...string) *SystemUpdateGroupBy {
-	suq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &SystemUpdateGroupBy{build: suq}
-	grbuild.flds = &suq.ctx.Fields
+func (_q *SystemUpdateQuery) GroupBy(field string, fields ...string) *SystemUpdateGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &SystemUpdateGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = systemupdate.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (suq *SystemUpdateQuery) GroupBy(field string, fields ...string) *SystemUpd
 //	client.SystemUpdate.Query().
 //		Select(systemupdate.FieldSystemUpdateStatus).
 //		Scan(ctx, &v)
-func (suq *SystemUpdateQuery) Select(fields ...string) *SystemUpdateSelect {
-	suq.ctx.Fields = append(suq.ctx.Fields, fields...)
-	sbuild := &SystemUpdateSelect{SystemUpdateQuery: suq}
+func (_q *SystemUpdateQuery) Select(fields ...string) *SystemUpdateSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &SystemUpdateSelect{SystemUpdateQuery: _q}
 	sbuild.label = systemupdate.Label
-	sbuild.flds, sbuild.scan = &suq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a SystemUpdateSelect configured with the given aggregations.
-func (suq *SystemUpdateQuery) Aggregate(fns ...AggregateFunc) *SystemUpdateSelect {
-	return suq.Select().Aggregate(fns...)
+func (_q *SystemUpdateQuery) Aggregate(fns ...AggregateFunc) *SystemUpdateSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (suq *SystemUpdateQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range suq.inters {
+func (_q *SystemUpdateQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, suq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range suq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !systemupdate.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if suq.path != nil {
-		prev, err := suq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		suq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (suq *SystemUpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*SystemUpdate, error) {
+func (_q *SystemUpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*SystemUpdate, error) {
 	var (
 		nodes       = []*SystemUpdate{}
-		withFKs     = suq.withFKs
-		_spec       = suq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			suq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if suq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (suq *SystemUpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([
 		return (*SystemUpdate).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &SystemUpdate{config: suq.config}
+		node := &SystemUpdate{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(suq.modifiers) > 0 {
-		_spec.Modifiers = suq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, suq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := suq.withOwner; query != nil {
-		if err := suq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *SystemUpdate, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (suq *SystemUpdateQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([
 	return nodes, nil
 }
 
-func (suq *SystemUpdateQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*SystemUpdate, init func(*SystemUpdate), assign func(*SystemUpdate, *Agent)) error {
+func (_q *SystemUpdateQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*SystemUpdate, init func(*SystemUpdate), assign func(*SystemUpdate, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*SystemUpdate)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (suq *SystemUpdateQuery) loadOwner(ctx context.Context, query *AgentQuery, 
 	return nil
 }
 
-func (suq *SystemUpdateQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := suq.querySpec()
-	if len(suq.modifiers) > 0 {
-		_spec.Modifiers = suq.modifiers
+func (_q *SystemUpdateQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = suq.ctx.Fields
-	if len(suq.ctx.Fields) > 0 {
-		_spec.Unique = suq.ctx.Unique != nil && *suq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, suq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (suq *SystemUpdateQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *SystemUpdateQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(systemupdate.Table, systemupdate.Columns, sqlgraph.NewFieldSpec(systemupdate.FieldID, field.TypeInt))
-	_spec.From = suq.sql
-	if unique := suq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if suq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := suq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, systemupdate.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (suq *SystemUpdateQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := suq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := suq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := suq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := suq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (suq *SystemUpdateQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (suq *SystemUpdateQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(suq.driver.Dialect())
+func (_q *SystemUpdateQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(systemupdate.Table)
-	columns := suq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = systemupdate.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if suq.sql != nil {
-		selector = suq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if suq.ctx.Unique != nil && *suq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range suq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range suq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range suq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := suq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := suq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (suq *SystemUpdateQuery) Modify(modifiers ...func(s *sql.Selector)) *SystemUpdateSelect {
-	suq.modifiers = append(suq.modifiers, modifiers...)
-	return suq.Select()
+func (_q *SystemUpdateQuery) Modify(modifiers ...func(s *sql.Selector)) *SystemUpdateSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // SystemUpdateGroupBy is the group-by builder for SystemUpdate entities.
@@ -547,41 +547,41 @@ type SystemUpdateGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (sugb *SystemUpdateGroupBy) Aggregate(fns ...AggregateFunc) *SystemUpdateGroupBy {
-	sugb.fns = append(sugb.fns, fns...)
-	return sugb
+func (_g *SystemUpdateGroupBy) Aggregate(fns ...AggregateFunc) *SystemUpdateGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (sugb *SystemUpdateGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, sugb.build.ctx, ent.OpQueryGroupBy)
-	if err := sugb.build.prepareQuery(ctx); err != nil {
+func (_g *SystemUpdateGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*SystemUpdateQuery, *SystemUpdateGroupBy](ctx, sugb.build, sugb, sugb.build.inters, v)
+	return scanWithInterceptors[*SystemUpdateQuery, *SystemUpdateGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (sugb *SystemUpdateGroupBy) sqlScan(ctx context.Context, root *SystemUpdateQuery, v any) error {
+func (_g *SystemUpdateGroupBy) sqlScan(ctx context.Context, root *SystemUpdateQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(sugb.fns))
-	for _, fn := range sugb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*sugb.flds)+len(sugb.fns))
-		for _, f := range *sugb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*sugb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := sugb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type SystemUpdateSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (sus *SystemUpdateSelect) Aggregate(fns ...AggregateFunc) *SystemUpdateSelect {
-	sus.fns = append(sus.fns, fns...)
-	return sus
+func (_s *SystemUpdateSelect) Aggregate(fns ...AggregateFunc) *SystemUpdateSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (sus *SystemUpdateSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, sus.ctx, ent.OpQuerySelect)
-	if err := sus.prepareQuery(ctx); err != nil {
+func (_s *SystemUpdateSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*SystemUpdateQuery, *SystemUpdateSelect](ctx, sus.SystemUpdateQuery, sus, sus.inters, v)
+	return scanWithInterceptors[*SystemUpdateQuery, *SystemUpdateSelect](ctx, _s.SystemUpdateQuery, _s, _s.inters, v)
 }
 
-func (sus *SystemUpdateSelect) sqlScan(ctx context.Context, root *SystemUpdateQuery, v any) error {
+func (_s *SystemUpdateSelect) sqlScan(ctx context.Context, root *SystemUpdateQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(sus.fns))
-	for _, fn := range sus.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*sus.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (sus *SystemUpdateSelect) sqlScan(ctx context.Context, root *SystemUpdateQu
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := sus.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (sus *SystemUpdateSelect) sqlScan(ctx context.Context, root *SystemUpdateQu
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (sus *SystemUpdateSelect) Modify(modifiers ...func(s *sql.Selector)) *SystemUpdateSelect {
-	sus.modifiers = append(sus.modifiers, modifiers...)
-	return sus
+func (_s *SystemUpdateSelect) Modify(modifiers ...func(s *sql.Selector)) *SystemUpdateSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

@@ -45,1284 +45,1284 @@ type AgentUpdate struct {
 }
 
 // Where appends a list predicates to the AgentUpdate builder.
-func (au *AgentUpdate) Where(ps ...predicate.Agent) *AgentUpdate {
-	au.mutation.Where(ps...)
-	return au
+func (_u *AgentUpdate) Where(ps ...predicate.Agent) *AgentUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetOs sets the "os" field.
-func (au *AgentUpdate) SetOs(s string) *AgentUpdate {
-	au.mutation.SetOs(s)
-	return au
+func (_u *AgentUpdate) SetOs(v string) *AgentUpdate {
+	_u.mutation.SetOs(v)
+	return _u
 }
 
 // SetNillableOs sets the "os" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableOs(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetOs(*s)
+func (_u *AgentUpdate) SetNillableOs(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetOs(*v)
 	}
-	return au
+	return _u
 }
 
 // SetHostname sets the "hostname" field.
-func (au *AgentUpdate) SetHostname(s string) *AgentUpdate {
-	au.mutation.SetHostname(s)
-	return au
+func (_u *AgentUpdate) SetHostname(v string) *AgentUpdate {
+	_u.mutation.SetHostname(v)
+	return _u
 }
 
 // SetNillableHostname sets the "hostname" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableHostname(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetHostname(*s)
+func (_u *AgentUpdate) SetNillableHostname(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetHostname(*v)
 	}
-	return au
+	return _u
 }
 
 // SetIP sets the "ip" field.
-func (au *AgentUpdate) SetIP(s string) *AgentUpdate {
-	au.mutation.SetIP(s)
-	return au
+func (_u *AgentUpdate) SetIP(v string) *AgentUpdate {
+	_u.mutation.SetIP(v)
+	return _u
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableIP(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetIP(*s)
+func (_u *AgentUpdate) SetNillableIP(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetIP(*v)
 	}
-	return au
+	return _u
 }
 
 // SetMAC sets the "mac" field.
-func (au *AgentUpdate) SetMAC(s string) *AgentUpdate {
-	au.mutation.SetMAC(s)
-	return au
+func (_u *AgentUpdate) SetMAC(v string) *AgentUpdate {
+	_u.mutation.SetMAC(v)
+	return _u
 }
 
 // SetNillableMAC sets the "mac" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableMAC(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetMAC(*s)
+func (_u *AgentUpdate) SetNillableMAC(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetMAC(*v)
 	}
-	return au
+	return _u
 }
 
 // SetFirstContact sets the "first_contact" field.
-func (au *AgentUpdate) SetFirstContact(t time.Time) *AgentUpdate {
-	au.mutation.SetFirstContact(t)
-	return au
+func (_u *AgentUpdate) SetFirstContact(v time.Time) *AgentUpdate {
+	_u.mutation.SetFirstContact(v)
+	return _u
 }
 
 // SetNillableFirstContact sets the "first_contact" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableFirstContact(t *time.Time) *AgentUpdate {
-	if t != nil {
-		au.SetFirstContact(*t)
+func (_u *AgentUpdate) SetNillableFirstContact(v *time.Time) *AgentUpdate {
+	if v != nil {
+		_u.SetFirstContact(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearFirstContact clears the value of the "first_contact" field.
-func (au *AgentUpdate) ClearFirstContact() *AgentUpdate {
-	au.mutation.ClearFirstContact()
-	return au
+func (_u *AgentUpdate) ClearFirstContact() *AgentUpdate {
+	_u.mutation.ClearFirstContact()
+	return _u
 }
 
 // SetLastContact sets the "last_contact" field.
-func (au *AgentUpdate) SetLastContact(t time.Time) *AgentUpdate {
-	au.mutation.SetLastContact(t)
-	return au
+func (_u *AgentUpdate) SetLastContact(v time.Time) *AgentUpdate {
+	_u.mutation.SetLastContact(v)
+	return _u
 }
 
 // SetNillableLastContact sets the "last_contact" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableLastContact(t *time.Time) *AgentUpdate {
-	if t != nil {
-		au.SetLastContact(*t)
+func (_u *AgentUpdate) SetNillableLastContact(v *time.Time) *AgentUpdate {
+	if v != nil {
+		_u.SetLastContact(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearLastContact clears the value of the "last_contact" field.
-func (au *AgentUpdate) ClearLastContact() *AgentUpdate {
-	au.mutation.ClearLastContact()
-	return au
+func (_u *AgentUpdate) ClearLastContact() *AgentUpdate {
+	_u.mutation.ClearLastContact()
+	return _u
 }
 
 // SetVnc sets the "vnc" field.
-func (au *AgentUpdate) SetVnc(s string) *AgentUpdate {
-	au.mutation.SetVnc(s)
-	return au
+func (_u *AgentUpdate) SetVnc(v string) *AgentUpdate {
+	_u.mutation.SetVnc(v)
+	return _u
 }
 
 // SetNillableVnc sets the "vnc" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableVnc(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetVnc(*s)
+func (_u *AgentUpdate) SetNillableVnc(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetVnc(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearVnc clears the value of the "vnc" field.
-func (au *AgentUpdate) ClearVnc() *AgentUpdate {
-	au.mutation.ClearVnc()
-	return au
+func (_u *AgentUpdate) ClearVnc() *AgentUpdate {
+	_u.mutation.ClearVnc()
+	return _u
 }
 
 // SetNotes sets the "notes" field.
-func (au *AgentUpdate) SetNotes(s string) *AgentUpdate {
-	au.mutation.SetNotes(s)
-	return au
+func (_u *AgentUpdate) SetNotes(v string) *AgentUpdate {
+	_u.mutation.SetNotes(v)
+	return _u
 }
 
 // SetNillableNotes sets the "notes" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableNotes(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetNotes(*s)
+func (_u *AgentUpdate) SetNillableNotes(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetNotes(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearNotes clears the value of the "notes" field.
-func (au *AgentUpdate) ClearNotes() *AgentUpdate {
-	au.mutation.ClearNotes()
-	return au
+func (_u *AgentUpdate) ClearNotes() *AgentUpdate {
+	_u.mutation.ClearNotes()
+	return _u
 }
 
 // SetUpdateTaskStatus sets the "update_task_status" field.
-func (au *AgentUpdate) SetUpdateTaskStatus(s string) *AgentUpdate {
-	au.mutation.SetUpdateTaskStatus(s)
-	return au
+func (_u *AgentUpdate) SetUpdateTaskStatus(v string) *AgentUpdate {
+	_u.mutation.SetUpdateTaskStatus(v)
+	return _u
 }
 
 // SetNillableUpdateTaskStatus sets the "update_task_status" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableUpdateTaskStatus(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetUpdateTaskStatus(*s)
+func (_u *AgentUpdate) SetNillableUpdateTaskStatus(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetUpdateTaskStatus(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUpdateTaskStatus clears the value of the "update_task_status" field.
-func (au *AgentUpdate) ClearUpdateTaskStatus() *AgentUpdate {
-	au.mutation.ClearUpdateTaskStatus()
-	return au
+func (_u *AgentUpdate) ClearUpdateTaskStatus() *AgentUpdate {
+	_u.mutation.ClearUpdateTaskStatus()
+	return _u
 }
 
 // SetUpdateTaskDescription sets the "update_task_description" field.
-func (au *AgentUpdate) SetUpdateTaskDescription(s string) *AgentUpdate {
-	au.mutation.SetUpdateTaskDescription(s)
-	return au
+func (_u *AgentUpdate) SetUpdateTaskDescription(v string) *AgentUpdate {
+	_u.mutation.SetUpdateTaskDescription(v)
+	return _u
 }
 
 // SetNillableUpdateTaskDescription sets the "update_task_description" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableUpdateTaskDescription(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetUpdateTaskDescription(*s)
+func (_u *AgentUpdate) SetNillableUpdateTaskDescription(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetUpdateTaskDescription(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUpdateTaskDescription clears the value of the "update_task_description" field.
-func (au *AgentUpdate) ClearUpdateTaskDescription() *AgentUpdate {
-	au.mutation.ClearUpdateTaskDescription()
-	return au
+func (_u *AgentUpdate) ClearUpdateTaskDescription() *AgentUpdate {
+	_u.mutation.ClearUpdateTaskDescription()
+	return _u
 }
 
 // SetUpdateTaskResult sets the "update_task_result" field.
-func (au *AgentUpdate) SetUpdateTaskResult(s string) *AgentUpdate {
-	au.mutation.SetUpdateTaskResult(s)
-	return au
+func (_u *AgentUpdate) SetUpdateTaskResult(v string) *AgentUpdate {
+	_u.mutation.SetUpdateTaskResult(v)
+	return _u
 }
 
 // SetNillableUpdateTaskResult sets the "update_task_result" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableUpdateTaskResult(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetUpdateTaskResult(*s)
+func (_u *AgentUpdate) SetNillableUpdateTaskResult(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetUpdateTaskResult(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUpdateTaskResult clears the value of the "update_task_result" field.
-func (au *AgentUpdate) ClearUpdateTaskResult() *AgentUpdate {
-	au.mutation.ClearUpdateTaskResult()
-	return au
+func (_u *AgentUpdate) ClearUpdateTaskResult() *AgentUpdate {
+	_u.mutation.ClearUpdateTaskResult()
+	return _u
 }
 
 // SetUpdateTaskExecution sets the "update_task_execution" field.
-func (au *AgentUpdate) SetUpdateTaskExecution(t time.Time) *AgentUpdate {
-	au.mutation.SetUpdateTaskExecution(t)
-	return au
+func (_u *AgentUpdate) SetUpdateTaskExecution(v time.Time) *AgentUpdate {
+	_u.mutation.SetUpdateTaskExecution(v)
+	return _u
 }
 
 // SetNillableUpdateTaskExecution sets the "update_task_execution" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableUpdateTaskExecution(t *time.Time) *AgentUpdate {
-	if t != nil {
-		au.SetUpdateTaskExecution(*t)
+func (_u *AgentUpdate) SetNillableUpdateTaskExecution(v *time.Time) *AgentUpdate {
+	if v != nil {
+		_u.SetUpdateTaskExecution(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUpdateTaskExecution clears the value of the "update_task_execution" field.
-func (au *AgentUpdate) ClearUpdateTaskExecution() *AgentUpdate {
-	au.mutation.ClearUpdateTaskExecution()
-	return au
+func (_u *AgentUpdate) ClearUpdateTaskExecution() *AgentUpdate {
+	_u.mutation.ClearUpdateTaskExecution()
+	return _u
 }
 
 // SetUpdateTaskVersion sets the "update_task_version" field.
-func (au *AgentUpdate) SetUpdateTaskVersion(s string) *AgentUpdate {
-	au.mutation.SetUpdateTaskVersion(s)
-	return au
+func (_u *AgentUpdate) SetUpdateTaskVersion(v string) *AgentUpdate {
+	_u.mutation.SetUpdateTaskVersion(v)
+	return _u
 }
 
 // SetNillableUpdateTaskVersion sets the "update_task_version" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableUpdateTaskVersion(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetUpdateTaskVersion(*s)
+func (_u *AgentUpdate) SetNillableUpdateTaskVersion(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetUpdateTaskVersion(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUpdateTaskVersion clears the value of the "update_task_version" field.
-func (au *AgentUpdate) ClearUpdateTaskVersion() *AgentUpdate {
-	au.mutation.ClearUpdateTaskVersion()
-	return au
+func (_u *AgentUpdate) ClearUpdateTaskVersion() *AgentUpdate {
+	_u.mutation.ClearUpdateTaskVersion()
+	return _u
 }
 
 // SetVncProxyPort sets the "vnc_proxy_port" field.
-func (au *AgentUpdate) SetVncProxyPort(s string) *AgentUpdate {
-	au.mutation.SetVncProxyPort(s)
-	return au
+func (_u *AgentUpdate) SetVncProxyPort(v string) *AgentUpdate {
+	_u.mutation.SetVncProxyPort(v)
+	return _u
 }
 
 // SetNillableVncProxyPort sets the "vnc_proxy_port" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableVncProxyPort(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetVncProxyPort(*s)
+func (_u *AgentUpdate) SetNillableVncProxyPort(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetVncProxyPort(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearVncProxyPort clears the value of the "vnc_proxy_port" field.
-func (au *AgentUpdate) ClearVncProxyPort() *AgentUpdate {
-	au.mutation.ClearVncProxyPort()
-	return au
+func (_u *AgentUpdate) ClearVncProxyPort() *AgentUpdate {
+	_u.mutation.ClearVncProxyPort()
+	return _u
 }
 
 // SetSftpPort sets the "sftp_port" field.
-func (au *AgentUpdate) SetSftpPort(s string) *AgentUpdate {
-	au.mutation.SetSftpPort(s)
-	return au
+func (_u *AgentUpdate) SetSftpPort(v string) *AgentUpdate {
+	_u.mutation.SetSftpPort(v)
+	return _u
 }
 
 // SetNillableSftpPort sets the "sftp_port" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableSftpPort(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetSftpPort(*s)
+func (_u *AgentUpdate) SetNillableSftpPort(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetSftpPort(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearSftpPort clears the value of the "sftp_port" field.
-func (au *AgentUpdate) ClearSftpPort() *AgentUpdate {
-	au.mutation.ClearSftpPort()
-	return au
+func (_u *AgentUpdate) ClearSftpPort() *AgentUpdate {
+	_u.mutation.ClearSftpPort()
+	return _u
 }
 
 // SetAgentStatus sets the "agent_status" field.
-func (au *AgentUpdate) SetAgentStatus(as agent.AgentStatus) *AgentUpdate {
-	au.mutation.SetAgentStatus(as)
-	return au
+func (_u *AgentUpdate) SetAgentStatus(v agent.AgentStatus) *AgentUpdate {
+	_u.mutation.SetAgentStatus(v)
+	return _u
 }
 
 // SetNillableAgentStatus sets the "agent_status" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableAgentStatus(as *agent.AgentStatus) *AgentUpdate {
-	if as != nil {
-		au.SetAgentStatus(*as)
+func (_u *AgentUpdate) SetNillableAgentStatus(v *agent.AgentStatus) *AgentUpdate {
+	if v != nil {
+		_u.SetAgentStatus(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearAgentStatus clears the value of the "agent_status" field.
-func (au *AgentUpdate) ClearAgentStatus() *AgentUpdate {
-	au.mutation.ClearAgentStatus()
-	return au
+func (_u *AgentUpdate) ClearAgentStatus() *AgentUpdate {
+	_u.mutation.ClearAgentStatus()
+	return _u
 }
 
 // SetCertificateReady sets the "certificate_ready" field.
-func (au *AgentUpdate) SetCertificateReady(b bool) *AgentUpdate {
-	au.mutation.SetCertificateReady(b)
-	return au
+func (_u *AgentUpdate) SetCertificateReady(v bool) *AgentUpdate {
+	_u.mutation.SetCertificateReady(v)
+	return _u
 }
 
 // SetNillableCertificateReady sets the "certificate_ready" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableCertificateReady(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetCertificateReady(*b)
+func (_u *AgentUpdate) SetNillableCertificateReady(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetCertificateReady(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearCertificateReady clears the value of the "certificate_ready" field.
-func (au *AgentUpdate) ClearCertificateReady() *AgentUpdate {
-	au.mutation.ClearCertificateReady()
-	return au
+func (_u *AgentUpdate) ClearCertificateReady() *AgentUpdate {
+	_u.mutation.ClearCertificateReady()
+	return _u
 }
 
 // SetRestartRequired sets the "restart_required" field.
-func (au *AgentUpdate) SetRestartRequired(b bool) *AgentUpdate {
-	au.mutation.SetRestartRequired(b)
-	return au
+func (_u *AgentUpdate) SetRestartRequired(v bool) *AgentUpdate {
+	_u.mutation.SetRestartRequired(v)
+	return _u
 }
 
 // SetNillableRestartRequired sets the "restart_required" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableRestartRequired(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetRestartRequired(*b)
+func (_u *AgentUpdate) SetNillableRestartRequired(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetRestartRequired(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearRestartRequired clears the value of the "restart_required" field.
-func (au *AgentUpdate) ClearRestartRequired() *AgentUpdate {
-	au.mutation.ClearRestartRequired()
-	return au
+func (_u *AgentUpdate) ClearRestartRequired() *AgentUpdate {
+	_u.mutation.ClearRestartRequired()
+	return _u
 }
 
 // SetIsRemote sets the "is_remote" field.
-func (au *AgentUpdate) SetIsRemote(b bool) *AgentUpdate {
-	au.mutation.SetIsRemote(b)
-	return au
+func (_u *AgentUpdate) SetIsRemote(v bool) *AgentUpdate {
+	_u.mutation.SetIsRemote(v)
+	return _u
 }
 
 // SetNillableIsRemote sets the "is_remote" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableIsRemote(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetIsRemote(*b)
+func (_u *AgentUpdate) SetNillableIsRemote(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetIsRemote(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearIsRemote clears the value of the "is_remote" field.
-func (au *AgentUpdate) ClearIsRemote() *AgentUpdate {
-	au.mutation.ClearIsRemote()
-	return au
+func (_u *AgentUpdate) ClearIsRemote() *AgentUpdate {
+	_u.mutation.ClearIsRemote()
+	return _u
 }
 
 // SetDebugMode sets the "debug_mode" field.
-func (au *AgentUpdate) SetDebugMode(b bool) *AgentUpdate {
-	au.mutation.SetDebugMode(b)
-	return au
+func (_u *AgentUpdate) SetDebugMode(v bool) *AgentUpdate {
+	_u.mutation.SetDebugMode(v)
+	return _u
 }
 
 // SetNillableDebugMode sets the "debug_mode" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableDebugMode(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetDebugMode(*b)
+func (_u *AgentUpdate) SetNillableDebugMode(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetDebugMode(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearDebugMode clears the value of the "debug_mode" field.
-func (au *AgentUpdate) ClearDebugMode() *AgentUpdate {
-	au.mutation.ClearDebugMode()
-	return au
+func (_u *AgentUpdate) ClearDebugMode() *AgentUpdate {
+	_u.mutation.ClearDebugMode()
+	return _u
 }
 
 // SetSftpService sets the "sftp_service" field.
-func (au *AgentUpdate) SetSftpService(b bool) *AgentUpdate {
-	au.mutation.SetSftpService(b)
-	return au
+func (_u *AgentUpdate) SetSftpService(v bool) *AgentUpdate {
+	_u.mutation.SetSftpService(v)
+	return _u
 }
 
 // SetNillableSftpService sets the "sftp_service" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableSftpService(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetSftpService(*b)
+func (_u *AgentUpdate) SetNillableSftpService(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetSftpService(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearSftpService clears the value of the "sftp_service" field.
-func (au *AgentUpdate) ClearSftpService() *AgentUpdate {
-	au.mutation.ClearSftpService()
-	return au
+func (_u *AgentUpdate) ClearSftpService() *AgentUpdate {
+	_u.mutation.ClearSftpService()
+	return _u
 }
 
 // SetRemoteAssistance sets the "remote_assistance" field.
-func (au *AgentUpdate) SetRemoteAssistance(b bool) *AgentUpdate {
-	au.mutation.SetRemoteAssistance(b)
-	return au
+func (_u *AgentUpdate) SetRemoteAssistance(v bool) *AgentUpdate {
+	_u.mutation.SetRemoteAssistance(v)
+	return _u
 }
 
 // SetNillableRemoteAssistance sets the "remote_assistance" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableRemoteAssistance(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetRemoteAssistance(*b)
+func (_u *AgentUpdate) SetNillableRemoteAssistance(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetRemoteAssistance(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearRemoteAssistance clears the value of the "remote_assistance" field.
-func (au *AgentUpdate) ClearRemoteAssistance() *AgentUpdate {
-	au.mutation.ClearRemoteAssistance()
-	return au
+func (_u *AgentUpdate) ClearRemoteAssistance() *AgentUpdate {
+	_u.mutation.ClearRemoteAssistance()
+	return _u
 }
 
 // SetSettingsModified sets the "settings_modified" field.
-func (au *AgentUpdate) SetSettingsModified(t time.Time) *AgentUpdate {
-	au.mutation.SetSettingsModified(t)
-	return au
+func (_u *AgentUpdate) SetSettingsModified(v time.Time) *AgentUpdate {
+	_u.mutation.SetSettingsModified(v)
+	return _u
 }
 
 // SetNillableSettingsModified sets the "settings_modified" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableSettingsModified(t *time.Time) *AgentUpdate {
-	if t != nil {
-		au.SetSettingsModified(*t)
+func (_u *AgentUpdate) SetNillableSettingsModified(v *time.Time) *AgentUpdate {
+	if v != nil {
+		_u.SetSettingsModified(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearSettingsModified clears the value of the "settings_modified" field.
-func (au *AgentUpdate) ClearSettingsModified() *AgentUpdate {
-	au.mutation.ClearSettingsModified()
-	return au
+func (_u *AgentUpdate) ClearSettingsModified() *AgentUpdate {
+	_u.mutation.ClearSettingsModified()
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (au *AgentUpdate) SetDescription(s string) *AgentUpdate {
-	au.mutation.SetDescription(s)
-	return au
+func (_u *AgentUpdate) SetDescription(v string) *AgentUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableDescription(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetDescription(*s)
+func (_u *AgentUpdate) SetNillableDescription(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (au *AgentUpdate) ClearDescription() *AgentUpdate {
-	au.mutation.ClearDescription()
-	return au
+func (_u *AgentUpdate) ClearDescription() *AgentUpdate {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // SetNickname sets the "nickname" field.
-func (au *AgentUpdate) SetNickname(s string) *AgentUpdate {
-	au.mutation.SetNickname(s)
-	return au
+func (_u *AgentUpdate) SetNickname(v string) *AgentUpdate {
+	_u.mutation.SetNickname(v)
+	return _u
 }
 
 // SetNillableNickname sets the "nickname" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableNickname(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetNickname(*s)
+func (_u *AgentUpdate) SetNillableNickname(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetNickname(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearNickname clears the value of the "nickname" field.
-func (au *AgentUpdate) ClearNickname() *AgentUpdate {
-	au.mutation.ClearNickname()
-	return au
+func (_u *AgentUpdate) ClearNickname() *AgentUpdate {
+	_u.mutation.ClearNickname()
+	return _u
 }
 
 // SetEndpointType sets the "endpoint_type" field.
-func (au *AgentUpdate) SetEndpointType(at agent.EndpointType) *AgentUpdate {
-	au.mutation.SetEndpointType(at)
-	return au
+func (_u *AgentUpdate) SetEndpointType(v agent.EndpointType) *AgentUpdate {
+	_u.mutation.SetEndpointType(v)
+	return _u
 }
 
 // SetNillableEndpointType sets the "endpoint_type" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableEndpointType(at *agent.EndpointType) *AgentUpdate {
-	if at != nil {
-		au.SetEndpointType(*at)
+func (_u *AgentUpdate) SetNillableEndpointType(v *agent.EndpointType) *AgentUpdate {
+	if v != nil {
+		_u.SetEndpointType(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearEndpointType clears the value of the "endpoint_type" field.
-func (au *AgentUpdate) ClearEndpointType() *AgentUpdate {
-	au.mutation.ClearEndpointType()
-	return au
+func (_u *AgentUpdate) ClearEndpointType() *AgentUpdate {
+	_u.mutation.ClearEndpointType()
+	return _u
 }
 
 // SetHasRustdesk sets the "has_rustdesk" field.
-func (au *AgentUpdate) SetHasRustdesk(b bool) *AgentUpdate {
-	au.mutation.SetHasRustdesk(b)
-	return au
+func (_u *AgentUpdate) SetHasRustdesk(v bool) *AgentUpdate {
+	_u.mutation.SetHasRustdesk(v)
+	return _u
 }
 
 // SetNillableHasRustdesk sets the "has_rustdesk" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableHasRustdesk(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetHasRustdesk(*b)
+func (_u *AgentUpdate) SetNillableHasRustdesk(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetHasRustdesk(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearHasRustdesk clears the value of the "has_rustdesk" field.
-func (au *AgentUpdate) ClearHasRustdesk() *AgentUpdate {
-	au.mutation.ClearHasRustdesk()
-	return au
+func (_u *AgentUpdate) ClearHasRustdesk() *AgentUpdate {
+	_u.mutation.ClearHasRustdesk()
+	return _u
 }
 
 // SetIsWayland sets the "is_wayland" field.
-func (au *AgentUpdate) SetIsWayland(b bool) *AgentUpdate {
-	au.mutation.SetIsWayland(b)
-	return au
+func (_u *AgentUpdate) SetIsWayland(v bool) *AgentUpdate {
+	_u.mutation.SetIsWayland(v)
+	return _u
 }
 
 // SetNillableIsWayland sets the "is_wayland" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableIsWayland(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetIsWayland(*b)
+func (_u *AgentUpdate) SetNillableIsWayland(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetIsWayland(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearIsWayland clears the value of the "is_wayland" field.
-func (au *AgentUpdate) ClearIsWayland() *AgentUpdate {
-	au.mutation.ClearIsWayland()
-	return au
+func (_u *AgentUpdate) ClearIsWayland() *AgentUpdate {
+	_u.mutation.ClearIsWayland()
+	return _u
 }
 
 // SetIsFlatpakRustdesk sets the "is_flatpak_rustdesk" field.
-func (au *AgentUpdate) SetIsFlatpakRustdesk(b bool) *AgentUpdate {
-	au.mutation.SetIsFlatpakRustdesk(b)
-	return au
+func (_u *AgentUpdate) SetIsFlatpakRustdesk(v bool) *AgentUpdate {
+	_u.mutation.SetIsFlatpakRustdesk(v)
+	return _u
 }
 
 // SetNillableIsFlatpakRustdesk sets the "is_flatpak_rustdesk" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableIsFlatpakRustdesk(b *bool) *AgentUpdate {
-	if b != nil {
-		au.SetIsFlatpakRustdesk(*b)
+func (_u *AgentUpdate) SetNillableIsFlatpakRustdesk(v *bool) *AgentUpdate {
+	if v != nil {
+		_u.SetIsFlatpakRustdesk(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearIsFlatpakRustdesk clears the value of the "is_flatpak_rustdesk" field.
-func (au *AgentUpdate) ClearIsFlatpakRustdesk() *AgentUpdate {
-	au.mutation.ClearIsFlatpakRustdesk()
-	return au
+func (_u *AgentUpdate) ClearIsFlatpakRustdesk() *AgentUpdate {
+	_u.mutation.ClearIsFlatpakRustdesk()
+	return _u
 }
 
 // SetWan sets the "wan" field.
-func (au *AgentUpdate) SetWan(s string) *AgentUpdate {
-	au.mutation.SetWan(s)
-	return au
+func (_u *AgentUpdate) SetWan(v string) *AgentUpdate {
+	_u.mutation.SetWan(v)
+	return _u
 }
 
 // SetNillableWan sets the "wan" field if the given value is not nil.
-func (au *AgentUpdate) SetNillableWan(s *string) *AgentUpdate {
-	if s != nil {
-		au.SetWan(*s)
+func (_u *AgentUpdate) SetNillableWan(v *string) *AgentUpdate {
+	if v != nil {
+		_u.SetWan(*v)
 	}
-	return au
+	return _u
 }
 
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
-func (au *AgentUpdate) SetComputerID(id int) *AgentUpdate {
-	au.mutation.SetComputerID(id)
-	return au
+func (_u *AgentUpdate) SetComputerID(id int) *AgentUpdate {
+	_u.mutation.SetComputerID(id)
+	return _u
 }
 
 // SetNillableComputerID sets the "computer" edge to the Computer entity by ID if the given value is not nil.
-func (au *AgentUpdate) SetNillableComputerID(id *int) *AgentUpdate {
+func (_u *AgentUpdate) SetNillableComputerID(id *int) *AgentUpdate {
 	if id != nil {
-		au = au.SetComputerID(*id)
+		_u = _u.SetComputerID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetComputer sets the "computer" edge to the Computer entity.
-func (au *AgentUpdate) SetComputer(c *Computer) *AgentUpdate {
-	return au.SetComputerID(c.ID)
+func (_u *AgentUpdate) SetComputer(v *Computer) *AgentUpdate {
+	return _u.SetComputerID(v.ID)
 }
 
 // SetOperatingsystemID sets the "operatingsystem" edge to the OperatingSystem entity by ID.
-func (au *AgentUpdate) SetOperatingsystemID(id int) *AgentUpdate {
-	au.mutation.SetOperatingsystemID(id)
-	return au
+func (_u *AgentUpdate) SetOperatingsystemID(id int) *AgentUpdate {
+	_u.mutation.SetOperatingsystemID(id)
+	return _u
 }
 
 // SetNillableOperatingsystemID sets the "operatingsystem" edge to the OperatingSystem entity by ID if the given value is not nil.
-func (au *AgentUpdate) SetNillableOperatingsystemID(id *int) *AgentUpdate {
+func (_u *AgentUpdate) SetNillableOperatingsystemID(id *int) *AgentUpdate {
 	if id != nil {
-		au = au.SetOperatingsystemID(*id)
+		_u = _u.SetOperatingsystemID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetOperatingsystem sets the "operatingsystem" edge to the OperatingSystem entity.
-func (au *AgentUpdate) SetOperatingsystem(o *OperatingSystem) *AgentUpdate {
-	return au.SetOperatingsystemID(o.ID)
+func (_u *AgentUpdate) SetOperatingsystem(v *OperatingSystem) *AgentUpdate {
+	return _u.SetOperatingsystemID(v.ID)
 }
 
 // SetSystemupdateID sets the "systemupdate" edge to the SystemUpdate entity by ID.
-func (au *AgentUpdate) SetSystemupdateID(id int) *AgentUpdate {
-	au.mutation.SetSystemupdateID(id)
-	return au
+func (_u *AgentUpdate) SetSystemupdateID(id int) *AgentUpdate {
+	_u.mutation.SetSystemupdateID(id)
+	return _u
 }
 
 // SetNillableSystemupdateID sets the "systemupdate" edge to the SystemUpdate entity by ID if the given value is not nil.
-func (au *AgentUpdate) SetNillableSystemupdateID(id *int) *AgentUpdate {
+func (_u *AgentUpdate) SetNillableSystemupdateID(id *int) *AgentUpdate {
 	if id != nil {
-		au = au.SetSystemupdateID(*id)
+		_u = _u.SetSystemupdateID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetSystemupdate sets the "systemupdate" edge to the SystemUpdate entity.
-func (au *AgentUpdate) SetSystemupdate(s *SystemUpdate) *AgentUpdate {
-	return au.SetSystemupdateID(s.ID)
+func (_u *AgentUpdate) SetSystemupdate(v *SystemUpdate) *AgentUpdate {
+	return _u.SetSystemupdateID(v.ID)
 }
 
 // SetAntivirusID sets the "antivirus" edge to the Antivirus entity by ID.
-func (au *AgentUpdate) SetAntivirusID(id int) *AgentUpdate {
-	au.mutation.SetAntivirusID(id)
-	return au
+func (_u *AgentUpdate) SetAntivirusID(id int) *AgentUpdate {
+	_u.mutation.SetAntivirusID(id)
+	return _u
 }
 
 // SetNillableAntivirusID sets the "antivirus" edge to the Antivirus entity by ID if the given value is not nil.
-func (au *AgentUpdate) SetNillableAntivirusID(id *int) *AgentUpdate {
+func (_u *AgentUpdate) SetNillableAntivirusID(id *int) *AgentUpdate {
 	if id != nil {
-		au = au.SetAntivirusID(*id)
+		_u = _u.SetAntivirusID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetAntivirus sets the "antivirus" edge to the Antivirus entity.
-func (au *AgentUpdate) SetAntivirus(a *Antivirus) *AgentUpdate {
-	return au.SetAntivirusID(a.ID)
+func (_u *AgentUpdate) SetAntivirus(v *Antivirus) *AgentUpdate {
+	return _u.SetAntivirusID(v.ID)
 }
 
 // AddLogicaldiskIDs adds the "logicaldisks" edge to the LogicalDisk entity by IDs.
-func (au *AgentUpdate) AddLogicaldiskIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddLogicaldiskIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddLogicaldiskIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddLogicaldiskIDs(ids...)
+	return _u
 }
 
 // AddLogicaldisks adds the "logicaldisks" edges to the LogicalDisk entity.
-func (au *AgentUpdate) AddLogicaldisks(l ...*LogicalDisk) *AgentUpdate {
-	ids := make([]int, len(l))
-	for i := range l {
-		ids[i] = l[i].ID
+func (_u *AgentUpdate) AddLogicaldisks(v ...*LogicalDisk) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddLogicaldiskIDs(ids...)
+	return _u.AddLogicaldiskIDs(ids...)
 }
 
 // AddAppIDs adds the "apps" edge to the App entity by IDs.
-func (au *AgentUpdate) AddAppIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddAppIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddAppIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddAppIDs(ids...)
+	return _u
 }
 
 // AddApps adds the "apps" edges to the App entity.
-func (au *AgentUpdate) AddApps(a ...*App) *AgentUpdate {
-	ids := make([]int, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *AgentUpdate) AddApps(v ...*App) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddAppIDs(ids...)
+	return _u.AddAppIDs(ids...)
 }
 
 // AddMonitorIDs adds the "monitors" edge to the Monitor entity by IDs.
-func (au *AgentUpdate) AddMonitorIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddMonitorIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddMonitorIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddMonitorIDs(ids...)
+	return _u
 }
 
 // AddMonitors adds the "monitors" edges to the Monitor entity.
-func (au *AgentUpdate) AddMonitors(m ...*Monitor) *AgentUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdate) AddMonitors(v ...*Monitor) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddMonitorIDs(ids...)
+	return _u.AddMonitorIDs(ids...)
 }
 
 // AddShareIDs adds the "shares" edge to the Share entity by IDs.
-func (au *AgentUpdate) AddShareIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddShareIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddShareIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddShareIDs(ids...)
+	return _u
 }
 
 // AddShares adds the "shares" edges to the Share entity.
-func (au *AgentUpdate) AddShares(s ...*Share) *AgentUpdate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdate) AddShares(v ...*Share) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddShareIDs(ids...)
+	return _u.AddShareIDs(ids...)
 }
 
 // AddPrinterIDs adds the "printers" edge to the Printer entity by IDs.
-func (au *AgentUpdate) AddPrinterIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddPrinterIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddPrinterIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddPrinterIDs(ids...)
+	return _u
 }
 
 // AddPrinters adds the "printers" edges to the Printer entity.
-func (au *AgentUpdate) AddPrinters(p ...*Printer) *AgentUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdate) AddPrinters(v ...*Printer) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddPrinterIDs(ids...)
+	return _u.AddPrinterIDs(ids...)
 }
 
 // AddNetworkadapterIDs adds the "networkadapters" edge to the NetworkAdapter entity by IDs.
-func (au *AgentUpdate) AddNetworkadapterIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddNetworkadapterIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddNetworkadapterIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddNetworkadapterIDs(ids...)
+	return _u
 }
 
 // AddNetworkadapters adds the "networkadapters" edges to the NetworkAdapter entity.
-func (au *AgentUpdate) AddNetworkadapters(n ...*NetworkAdapter) *AgentUpdate {
-	ids := make([]int, len(n))
-	for i := range n {
-		ids[i] = n[i].ID
+func (_u *AgentUpdate) AddNetworkadapters(v ...*NetworkAdapter) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddNetworkadapterIDs(ids...)
+	return _u.AddNetworkadapterIDs(ids...)
 }
 
 // AddDeploymentIDs adds the "deployments" edge to the Deployment entity by IDs.
-func (au *AgentUpdate) AddDeploymentIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddDeploymentIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddDeploymentIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddDeploymentIDs(ids...)
+	return _u
 }
 
 // AddDeployments adds the "deployments" edges to the Deployment entity.
-func (au *AgentUpdate) AddDeployments(d ...*Deployment) *AgentUpdate {
-	ids := make([]int, len(d))
-	for i := range d {
-		ids[i] = d[i].ID
+func (_u *AgentUpdate) AddDeployments(v ...*Deployment) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddDeploymentIDs(ids...)
+	return _u.AddDeploymentIDs(ids...)
 }
 
 // AddUpdateIDs adds the "updates" edge to the Update entity by IDs.
-func (au *AgentUpdate) AddUpdateIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddUpdateIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddUpdateIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddUpdateIDs(ids...)
+	return _u
 }
 
 // AddUpdates adds the "updates" edges to the Update entity.
-func (au *AgentUpdate) AddUpdates(u ...*Update) *AgentUpdate {
-	ids := make([]int, len(u))
-	for i := range u {
-		ids[i] = u[i].ID
+func (_u *AgentUpdate) AddUpdates(v ...*Update) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddUpdateIDs(ids...)
+	return _u.AddUpdateIDs(ids...)
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (au *AgentUpdate) AddTagIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddTagIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddTagIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddTagIDs(ids...)
+	return _u
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (au *AgentUpdate) AddTags(t ...*Tag) *AgentUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *AgentUpdate) AddTags(v ...*Tag) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddTagIDs(ids...)
+	return _u.AddTagIDs(ids...)
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the Metadata entity by IDs.
-func (au *AgentUpdate) AddMetadatumIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddMetadatumIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddMetadatumIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddMetadatumIDs(ids...)
+	return _u
 }
 
 // AddMetadata adds the "metadata" edges to the Metadata entity.
-func (au *AgentUpdate) AddMetadata(m ...*Metadata) *AgentUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdate) AddMetadata(v ...*Metadata) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddMetadatumIDs(ids...)
+	return _u.AddMetadatumIDs(ids...)
 }
 
 // AddWingetcfgexclusionIDs adds the "wingetcfgexclusions" edge to the WingetConfigExclusion entity by IDs.
-func (au *AgentUpdate) AddWingetcfgexclusionIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddWingetcfgexclusionIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddWingetcfgexclusionIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddWingetcfgexclusionIDs(ids...)
+	return _u
 }
 
 // AddWingetcfgexclusions adds the "wingetcfgexclusions" edges to the WingetConfigExclusion entity.
-func (au *AgentUpdate) AddWingetcfgexclusions(w ...*WingetConfigExclusion) *AgentUpdate {
-	ids := make([]int, len(w))
-	for i := range w {
-		ids[i] = w[i].ID
+func (_u *AgentUpdate) AddWingetcfgexclusions(v ...*WingetConfigExclusion) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddWingetcfgexclusionIDs(ids...)
+	return _u.AddWingetcfgexclusionIDs(ids...)
 }
 
 // AddMemoryslotIDs adds the "memoryslots" edge to the MemorySlot entity by IDs.
-func (au *AgentUpdate) AddMemoryslotIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddMemoryslotIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddMemoryslotIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddMemoryslotIDs(ids...)
+	return _u
 }
 
 // AddMemoryslots adds the "memoryslots" edges to the MemorySlot entity.
-func (au *AgentUpdate) AddMemoryslots(m ...*MemorySlot) *AgentUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdate) AddMemoryslots(v ...*MemorySlot) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddMemoryslotIDs(ids...)
+	return _u.AddMemoryslotIDs(ids...)
 }
 
 // SetReleaseID sets the "release" edge to the Release entity by ID.
-func (au *AgentUpdate) SetReleaseID(id int) *AgentUpdate {
-	au.mutation.SetReleaseID(id)
-	return au
+func (_u *AgentUpdate) SetReleaseID(id int) *AgentUpdate {
+	_u.mutation.SetReleaseID(id)
+	return _u
 }
 
 // SetNillableReleaseID sets the "release" edge to the Release entity by ID if the given value is not nil.
-func (au *AgentUpdate) SetNillableReleaseID(id *int) *AgentUpdate {
+func (_u *AgentUpdate) SetNillableReleaseID(id *int) *AgentUpdate {
 	if id != nil {
-		au = au.SetReleaseID(*id)
+		_u = _u.SetReleaseID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetRelease sets the "release" edge to the Release entity.
-func (au *AgentUpdate) SetRelease(r *Release) *AgentUpdate {
-	return au.SetReleaseID(r.ID)
+func (_u *AgentUpdate) SetRelease(v *Release) *AgentUpdate {
+	return _u.SetReleaseID(v.ID)
 }
 
 // AddProfileissueIDs adds the "profileissue" edge to the ProfileIssue entity by IDs.
-func (au *AgentUpdate) AddProfileissueIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddProfileissueIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddProfileissueIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddProfileissueIDs(ids...)
+	return _u
 }
 
 // AddProfileissue adds the "profileissue" edges to the ProfileIssue entity.
-func (au *AgentUpdate) AddProfileissue(p ...*ProfileIssue) *AgentUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdate) AddProfileissue(v ...*ProfileIssue) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddProfileissueIDs(ids...)
+	return _u.AddProfileissueIDs(ids...)
 }
 
 // AddSiteIDs adds the "site" edge to the Site entity by IDs.
-func (au *AgentUpdate) AddSiteIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddSiteIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddSiteIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddSiteIDs(ids...)
+	return _u
 }
 
 // AddSite adds the "site" edges to the Site entity.
-func (au *AgentUpdate) AddSite(s ...*Site) *AgentUpdate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdate) AddSite(v ...*Site) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddSiteIDs(ids...)
+	return _u.AddSiteIDs(ids...)
 }
 
 // AddPhysicaldiskIDs adds the "physicaldisks" edge to the PhysicalDisk entity by IDs.
-func (au *AgentUpdate) AddPhysicaldiskIDs(ids ...int) *AgentUpdate {
-	au.mutation.AddPhysicaldiskIDs(ids...)
-	return au
+func (_u *AgentUpdate) AddPhysicaldiskIDs(ids ...int) *AgentUpdate {
+	_u.mutation.AddPhysicaldiskIDs(ids...)
+	return _u
 }
 
 // AddPhysicaldisks adds the "physicaldisks" edges to the PhysicalDisk entity.
-func (au *AgentUpdate) AddPhysicaldisks(p ...*PhysicalDisk) *AgentUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdate) AddPhysicaldisks(v ...*PhysicalDisk) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.AddPhysicaldiskIDs(ids...)
+	return _u.AddPhysicaldiskIDs(ids...)
 }
 
 // SetNetbirdID sets the "netbird" edge to the Netbird entity by ID.
-func (au *AgentUpdate) SetNetbirdID(id int) *AgentUpdate {
-	au.mutation.SetNetbirdID(id)
-	return au
+func (_u *AgentUpdate) SetNetbirdID(id int) *AgentUpdate {
+	_u.mutation.SetNetbirdID(id)
+	return _u
 }
 
 // SetNillableNetbirdID sets the "netbird" edge to the Netbird entity by ID if the given value is not nil.
-func (au *AgentUpdate) SetNillableNetbirdID(id *int) *AgentUpdate {
+func (_u *AgentUpdate) SetNillableNetbirdID(id *int) *AgentUpdate {
 	if id != nil {
-		au = au.SetNetbirdID(*id)
+		_u = _u.SetNetbirdID(*id)
 	}
-	return au
+	return _u
 }
 
 // SetNetbird sets the "netbird" edge to the Netbird entity.
-func (au *AgentUpdate) SetNetbird(n *Netbird) *AgentUpdate {
-	return au.SetNetbirdID(n.ID)
+func (_u *AgentUpdate) SetNetbird(v *Netbird) *AgentUpdate {
+	return _u.SetNetbirdID(v.ID)
 }
 
 // Mutation returns the AgentMutation object of the builder.
-func (au *AgentUpdate) Mutation() *AgentMutation {
-	return au.mutation
+func (_u *AgentUpdate) Mutation() *AgentMutation {
+	return _u.mutation
 }
 
 // ClearComputer clears the "computer" edge to the Computer entity.
-func (au *AgentUpdate) ClearComputer() *AgentUpdate {
-	au.mutation.ClearComputer()
-	return au
+func (_u *AgentUpdate) ClearComputer() *AgentUpdate {
+	_u.mutation.ClearComputer()
+	return _u
 }
 
 // ClearOperatingsystem clears the "operatingsystem" edge to the OperatingSystem entity.
-func (au *AgentUpdate) ClearOperatingsystem() *AgentUpdate {
-	au.mutation.ClearOperatingsystem()
-	return au
+func (_u *AgentUpdate) ClearOperatingsystem() *AgentUpdate {
+	_u.mutation.ClearOperatingsystem()
+	return _u
 }
 
 // ClearSystemupdate clears the "systemupdate" edge to the SystemUpdate entity.
-func (au *AgentUpdate) ClearSystemupdate() *AgentUpdate {
-	au.mutation.ClearSystemupdate()
-	return au
+func (_u *AgentUpdate) ClearSystemupdate() *AgentUpdate {
+	_u.mutation.ClearSystemupdate()
+	return _u
 }
 
 // ClearAntivirus clears the "antivirus" edge to the Antivirus entity.
-func (au *AgentUpdate) ClearAntivirus() *AgentUpdate {
-	au.mutation.ClearAntivirus()
-	return au
+func (_u *AgentUpdate) ClearAntivirus() *AgentUpdate {
+	_u.mutation.ClearAntivirus()
+	return _u
 }
 
 // ClearLogicaldisks clears all "logicaldisks" edges to the LogicalDisk entity.
-func (au *AgentUpdate) ClearLogicaldisks() *AgentUpdate {
-	au.mutation.ClearLogicaldisks()
-	return au
+func (_u *AgentUpdate) ClearLogicaldisks() *AgentUpdate {
+	_u.mutation.ClearLogicaldisks()
+	return _u
 }
 
 // RemoveLogicaldiskIDs removes the "logicaldisks" edge to LogicalDisk entities by IDs.
-func (au *AgentUpdate) RemoveLogicaldiskIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveLogicaldiskIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveLogicaldiskIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveLogicaldiskIDs(ids...)
+	return _u
 }
 
 // RemoveLogicaldisks removes "logicaldisks" edges to LogicalDisk entities.
-func (au *AgentUpdate) RemoveLogicaldisks(l ...*LogicalDisk) *AgentUpdate {
-	ids := make([]int, len(l))
-	for i := range l {
-		ids[i] = l[i].ID
+func (_u *AgentUpdate) RemoveLogicaldisks(v ...*LogicalDisk) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveLogicaldiskIDs(ids...)
+	return _u.RemoveLogicaldiskIDs(ids...)
 }
 
 // ClearApps clears all "apps" edges to the App entity.
-func (au *AgentUpdate) ClearApps() *AgentUpdate {
-	au.mutation.ClearApps()
-	return au
+func (_u *AgentUpdate) ClearApps() *AgentUpdate {
+	_u.mutation.ClearApps()
+	return _u
 }
 
 // RemoveAppIDs removes the "apps" edge to App entities by IDs.
-func (au *AgentUpdate) RemoveAppIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveAppIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveAppIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveAppIDs(ids...)
+	return _u
 }
 
 // RemoveApps removes "apps" edges to App entities.
-func (au *AgentUpdate) RemoveApps(a ...*App) *AgentUpdate {
-	ids := make([]int, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *AgentUpdate) RemoveApps(v ...*App) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveAppIDs(ids...)
+	return _u.RemoveAppIDs(ids...)
 }
 
 // ClearMonitors clears all "monitors" edges to the Monitor entity.
-func (au *AgentUpdate) ClearMonitors() *AgentUpdate {
-	au.mutation.ClearMonitors()
-	return au
+func (_u *AgentUpdate) ClearMonitors() *AgentUpdate {
+	_u.mutation.ClearMonitors()
+	return _u
 }
 
 // RemoveMonitorIDs removes the "monitors" edge to Monitor entities by IDs.
-func (au *AgentUpdate) RemoveMonitorIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveMonitorIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveMonitorIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveMonitorIDs(ids...)
+	return _u
 }
 
 // RemoveMonitors removes "monitors" edges to Monitor entities.
-func (au *AgentUpdate) RemoveMonitors(m ...*Monitor) *AgentUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdate) RemoveMonitors(v ...*Monitor) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveMonitorIDs(ids...)
+	return _u.RemoveMonitorIDs(ids...)
 }
 
 // ClearShares clears all "shares" edges to the Share entity.
-func (au *AgentUpdate) ClearShares() *AgentUpdate {
-	au.mutation.ClearShares()
-	return au
+func (_u *AgentUpdate) ClearShares() *AgentUpdate {
+	_u.mutation.ClearShares()
+	return _u
 }
 
 // RemoveShareIDs removes the "shares" edge to Share entities by IDs.
-func (au *AgentUpdate) RemoveShareIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveShareIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveShareIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveShareIDs(ids...)
+	return _u
 }
 
 // RemoveShares removes "shares" edges to Share entities.
-func (au *AgentUpdate) RemoveShares(s ...*Share) *AgentUpdate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdate) RemoveShares(v ...*Share) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveShareIDs(ids...)
+	return _u.RemoveShareIDs(ids...)
 }
 
 // ClearPrinters clears all "printers" edges to the Printer entity.
-func (au *AgentUpdate) ClearPrinters() *AgentUpdate {
-	au.mutation.ClearPrinters()
-	return au
+func (_u *AgentUpdate) ClearPrinters() *AgentUpdate {
+	_u.mutation.ClearPrinters()
+	return _u
 }
 
 // RemovePrinterIDs removes the "printers" edge to Printer entities by IDs.
-func (au *AgentUpdate) RemovePrinterIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemovePrinterIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemovePrinterIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemovePrinterIDs(ids...)
+	return _u
 }
 
 // RemovePrinters removes "printers" edges to Printer entities.
-func (au *AgentUpdate) RemovePrinters(p ...*Printer) *AgentUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdate) RemovePrinters(v ...*Printer) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemovePrinterIDs(ids...)
+	return _u.RemovePrinterIDs(ids...)
 }
 
 // ClearNetworkadapters clears all "networkadapters" edges to the NetworkAdapter entity.
-func (au *AgentUpdate) ClearNetworkadapters() *AgentUpdate {
-	au.mutation.ClearNetworkadapters()
-	return au
+func (_u *AgentUpdate) ClearNetworkadapters() *AgentUpdate {
+	_u.mutation.ClearNetworkadapters()
+	return _u
 }
 
 // RemoveNetworkadapterIDs removes the "networkadapters" edge to NetworkAdapter entities by IDs.
-func (au *AgentUpdate) RemoveNetworkadapterIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveNetworkadapterIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveNetworkadapterIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveNetworkadapterIDs(ids...)
+	return _u
 }
 
 // RemoveNetworkadapters removes "networkadapters" edges to NetworkAdapter entities.
-func (au *AgentUpdate) RemoveNetworkadapters(n ...*NetworkAdapter) *AgentUpdate {
-	ids := make([]int, len(n))
-	for i := range n {
-		ids[i] = n[i].ID
+func (_u *AgentUpdate) RemoveNetworkadapters(v ...*NetworkAdapter) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveNetworkadapterIDs(ids...)
+	return _u.RemoveNetworkadapterIDs(ids...)
 }
 
 // ClearDeployments clears all "deployments" edges to the Deployment entity.
-func (au *AgentUpdate) ClearDeployments() *AgentUpdate {
-	au.mutation.ClearDeployments()
-	return au
+func (_u *AgentUpdate) ClearDeployments() *AgentUpdate {
+	_u.mutation.ClearDeployments()
+	return _u
 }
 
 // RemoveDeploymentIDs removes the "deployments" edge to Deployment entities by IDs.
-func (au *AgentUpdate) RemoveDeploymentIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveDeploymentIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveDeploymentIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveDeploymentIDs(ids...)
+	return _u
 }
 
 // RemoveDeployments removes "deployments" edges to Deployment entities.
-func (au *AgentUpdate) RemoveDeployments(d ...*Deployment) *AgentUpdate {
-	ids := make([]int, len(d))
-	for i := range d {
-		ids[i] = d[i].ID
+func (_u *AgentUpdate) RemoveDeployments(v ...*Deployment) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveDeploymentIDs(ids...)
+	return _u.RemoveDeploymentIDs(ids...)
 }
 
 // ClearUpdates clears all "updates" edges to the Update entity.
-func (au *AgentUpdate) ClearUpdates() *AgentUpdate {
-	au.mutation.ClearUpdates()
-	return au
+func (_u *AgentUpdate) ClearUpdates() *AgentUpdate {
+	_u.mutation.ClearUpdates()
+	return _u
 }
 
 // RemoveUpdateIDs removes the "updates" edge to Update entities by IDs.
-func (au *AgentUpdate) RemoveUpdateIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveUpdateIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveUpdateIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveUpdateIDs(ids...)
+	return _u
 }
 
 // RemoveUpdates removes "updates" edges to Update entities.
-func (au *AgentUpdate) RemoveUpdates(u ...*Update) *AgentUpdate {
-	ids := make([]int, len(u))
-	for i := range u {
-		ids[i] = u[i].ID
+func (_u *AgentUpdate) RemoveUpdates(v ...*Update) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveUpdateIDs(ids...)
+	return _u.RemoveUpdateIDs(ids...)
 }
 
 // ClearTags clears all "tags" edges to the Tag entity.
-func (au *AgentUpdate) ClearTags() *AgentUpdate {
-	au.mutation.ClearTags()
-	return au
+func (_u *AgentUpdate) ClearTags() *AgentUpdate {
+	_u.mutation.ClearTags()
+	return _u
 }
 
 // RemoveTagIDs removes the "tags" edge to Tag entities by IDs.
-func (au *AgentUpdate) RemoveTagIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveTagIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveTagIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveTagIDs(ids...)
+	return _u
 }
 
 // RemoveTags removes "tags" edges to Tag entities.
-func (au *AgentUpdate) RemoveTags(t ...*Tag) *AgentUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *AgentUpdate) RemoveTags(v ...*Tag) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveTagIDs(ids...)
+	return _u.RemoveTagIDs(ids...)
 }
 
 // ClearMetadata clears all "metadata" edges to the Metadata entity.
-func (au *AgentUpdate) ClearMetadata() *AgentUpdate {
-	au.mutation.ClearMetadata()
-	return au
+func (_u *AgentUpdate) ClearMetadata() *AgentUpdate {
+	_u.mutation.ClearMetadata()
+	return _u
 }
 
 // RemoveMetadatumIDs removes the "metadata" edge to Metadata entities by IDs.
-func (au *AgentUpdate) RemoveMetadatumIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveMetadatumIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveMetadatumIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveMetadatumIDs(ids...)
+	return _u
 }
 
 // RemoveMetadata removes "metadata" edges to Metadata entities.
-func (au *AgentUpdate) RemoveMetadata(m ...*Metadata) *AgentUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdate) RemoveMetadata(v ...*Metadata) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveMetadatumIDs(ids...)
+	return _u.RemoveMetadatumIDs(ids...)
 }
 
 // ClearWingetcfgexclusions clears all "wingetcfgexclusions" edges to the WingetConfigExclusion entity.
-func (au *AgentUpdate) ClearWingetcfgexclusions() *AgentUpdate {
-	au.mutation.ClearWingetcfgexclusions()
-	return au
+func (_u *AgentUpdate) ClearWingetcfgexclusions() *AgentUpdate {
+	_u.mutation.ClearWingetcfgexclusions()
+	return _u
 }
 
 // RemoveWingetcfgexclusionIDs removes the "wingetcfgexclusions" edge to WingetConfigExclusion entities by IDs.
-func (au *AgentUpdate) RemoveWingetcfgexclusionIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveWingetcfgexclusionIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveWingetcfgexclusionIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveWingetcfgexclusionIDs(ids...)
+	return _u
 }
 
 // RemoveWingetcfgexclusions removes "wingetcfgexclusions" edges to WingetConfigExclusion entities.
-func (au *AgentUpdate) RemoveWingetcfgexclusions(w ...*WingetConfigExclusion) *AgentUpdate {
-	ids := make([]int, len(w))
-	for i := range w {
-		ids[i] = w[i].ID
+func (_u *AgentUpdate) RemoveWingetcfgexclusions(v ...*WingetConfigExclusion) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveWingetcfgexclusionIDs(ids...)
+	return _u.RemoveWingetcfgexclusionIDs(ids...)
 }
 
 // ClearMemoryslots clears all "memoryslots" edges to the MemorySlot entity.
-func (au *AgentUpdate) ClearMemoryslots() *AgentUpdate {
-	au.mutation.ClearMemoryslots()
-	return au
+func (_u *AgentUpdate) ClearMemoryslots() *AgentUpdate {
+	_u.mutation.ClearMemoryslots()
+	return _u
 }
 
 // RemoveMemoryslotIDs removes the "memoryslots" edge to MemorySlot entities by IDs.
-func (au *AgentUpdate) RemoveMemoryslotIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveMemoryslotIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveMemoryslotIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveMemoryslotIDs(ids...)
+	return _u
 }
 
 // RemoveMemoryslots removes "memoryslots" edges to MemorySlot entities.
-func (au *AgentUpdate) RemoveMemoryslots(m ...*MemorySlot) *AgentUpdate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdate) RemoveMemoryslots(v ...*MemorySlot) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveMemoryslotIDs(ids...)
+	return _u.RemoveMemoryslotIDs(ids...)
 }
 
 // ClearRelease clears the "release" edge to the Release entity.
-func (au *AgentUpdate) ClearRelease() *AgentUpdate {
-	au.mutation.ClearRelease()
-	return au
+func (_u *AgentUpdate) ClearRelease() *AgentUpdate {
+	_u.mutation.ClearRelease()
+	return _u
 }
 
 // ClearProfileissue clears all "profileissue" edges to the ProfileIssue entity.
-func (au *AgentUpdate) ClearProfileissue() *AgentUpdate {
-	au.mutation.ClearProfileissue()
-	return au
+func (_u *AgentUpdate) ClearProfileissue() *AgentUpdate {
+	_u.mutation.ClearProfileissue()
+	return _u
 }
 
 // RemoveProfileissueIDs removes the "profileissue" edge to ProfileIssue entities by IDs.
-func (au *AgentUpdate) RemoveProfileissueIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveProfileissueIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveProfileissueIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveProfileissueIDs(ids...)
+	return _u
 }
 
 // RemoveProfileissue removes "profileissue" edges to ProfileIssue entities.
-func (au *AgentUpdate) RemoveProfileissue(p ...*ProfileIssue) *AgentUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdate) RemoveProfileissue(v ...*ProfileIssue) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveProfileissueIDs(ids...)
+	return _u.RemoveProfileissueIDs(ids...)
 }
 
 // ClearSite clears all "site" edges to the Site entity.
-func (au *AgentUpdate) ClearSite() *AgentUpdate {
-	au.mutation.ClearSite()
-	return au
+func (_u *AgentUpdate) ClearSite() *AgentUpdate {
+	_u.mutation.ClearSite()
+	return _u
 }
 
 // RemoveSiteIDs removes the "site" edge to Site entities by IDs.
-func (au *AgentUpdate) RemoveSiteIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemoveSiteIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemoveSiteIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemoveSiteIDs(ids...)
+	return _u
 }
 
 // RemoveSite removes "site" edges to Site entities.
-func (au *AgentUpdate) RemoveSite(s ...*Site) *AgentUpdate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdate) RemoveSite(v ...*Site) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemoveSiteIDs(ids...)
+	return _u.RemoveSiteIDs(ids...)
 }
 
 // ClearPhysicaldisks clears all "physicaldisks" edges to the PhysicalDisk entity.
-func (au *AgentUpdate) ClearPhysicaldisks() *AgentUpdate {
-	au.mutation.ClearPhysicaldisks()
-	return au
+func (_u *AgentUpdate) ClearPhysicaldisks() *AgentUpdate {
+	_u.mutation.ClearPhysicaldisks()
+	return _u
 }
 
 // RemovePhysicaldiskIDs removes the "physicaldisks" edge to PhysicalDisk entities by IDs.
-func (au *AgentUpdate) RemovePhysicaldiskIDs(ids ...int) *AgentUpdate {
-	au.mutation.RemovePhysicaldiskIDs(ids...)
-	return au
+func (_u *AgentUpdate) RemovePhysicaldiskIDs(ids ...int) *AgentUpdate {
+	_u.mutation.RemovePhysicaldiskIDs(ids...)
+	return _u
 }
 
 // RemovePhysicaldisks removes "physicaldisks" edges to PhysicalDisk entities.
-func (au *AgentUpdate) RemovePhysicaldisks(p ...*PhysicalDisk) *AgentUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdate) RemovePhysicaldisks(v ...*PhysicalDisk) *AgentUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return au.RemovePhysicaldiskIDs(ids...)
+	return _u.RemovePhysicaldiskIDs(ids...)
 }
 
 // ClearNetbird clears the "netbird" edge to the Netbird entity.
-func (au *AgentUpdate) ClearNetbird() *AgentUpdate {
-	au.mutation.ClearNetbird()
-	return au
+func (_u *AgentUpdate) ClearNetbird() *AgentUpdate {
+	_u.mutation.ClearNetbird()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (au *AgentUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, au.sqlSave, au.mutation, au.hooks)
+func (_u *AgentUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (au *AgentUpdate) SaveX(ctx context.Context) int {
-	affected, err := au.Save(ctx)
+func (_u *AgentUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1330,36 +1330,36 @@ func (au *AgentUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (au *AgentUpdate) Exec(ctx context.Context) error {
-	_, err := au.Save(ctx)
+func (_u *AgentUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (au *AgentUpdate) ExecX(ctx context.Context) {
-	if err := au.Exec(ctx); err != nil {
+func (_u *AgentUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (au *AgentUpdate) check() error {
-	if v, ok := au.mutation.Os(); ok {
+func (_u *AgentUpdate) check() error {
+	if v, ok := _u.mutation.Os(); ok {
 		if err := agent.OsValidator(v); err != nil {
 			return &ValidationError{Name: "os", err: fmt.Errorf(`ent: validator failed for field "Agent.os": %w`, err)}
 		}
 	}
-	if v, ok := au.mutation.Hostname(); ok {
+	if v, ok := _u.mutation.Hostname(); ok {
 		if err := agent.HostnameValidator(v); err != nil {
 			return &ValidationError{Name: "hostname", err: fmt.Errorf(`ent: validator failed for field "Agent.hostname": %w`, err)}
 		}
 	}
-	if v, ok := au.mutation.AgentStatus(); ok {
+	if v, ok := _u.mutation.AgentStatus(); ok {
 		if err := agent.AgentStatusValidator(v); err != nil {
 			return &ValidationError{Name: "agent_status", err: fmt.Errorf(`ent: validator failed for field "Agent.agent_status": %w`, err)}
 		}
 	}
-	if v, ok := au.mutation.EndpointType(); ok {
+	if v, ok := _u.mutation.EndpointType(); ok {
 		if err := agent.EndpointTypeValidator(v); err != nil {
 			return &ValidationError{Name: "endpoint_type", err: fmt.Errorf(`ent: validator failed for field "Agent.endpoint_type": %w`, err)}
 		}
@@ -1368,189 +1368,189 @@ func (au *AgentUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (au *AgentUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AgentUpdate {
-	au.modifiers = append(au.modifiers, modifiers...)
-	return au
+func (_u *AgentUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AgentUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := au.check(); err != nil {
-		return n, err
+func (_u *AgentUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(agent.Table, agent.Columns, sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString))
-	if ps := au.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := au.mutation.Os(); ok {
+	if value, ok := _u.mutation.Os(); ok {
 		_spec.SetField(agent.FieldOs, field.TypeString, value)
 	}
-	if value, ok := au.mutation.Hostname(); ok {
+	if value, ok := _u.mutation.Hostname(); ok {
 		_spec.SetField(agent.FieldHostname, field.TypeString, value)
 	}
-	if value, ok := au.mutation.IP(); ok {
+	if value, ok := _u.mutation.IP(); ok {
 		_spec.SetField(agent.FieldIP, field.TypeString, value)
 	}
-	if value, ok := au.mutation.MAC(); ok {
+	if value, ok := _u.mutation.MAC(); ok {
 		_spec.SetField(agent.FieldMAC, field.TypeString, value)
 	}
-	if value, ok := au.mutation.FirstContact(); ok {
+	if value, ok := _u.mutation.FirstContact(); ok {
 		_spec.SetField(agent.FieldFirstContact, field.TypeTime, value)
 	}
-	if au.mutation.FirstContactCleared() {
+	if _u.mutation.FirstContactCleared() {
 		_spec.ClearField(agent.FieldFirstContact, field.TypeTime)
 	}
-	if value, ok := au.mutation.LastContact(); ok {
+	if value, ok := _u.mutation.LastContact(); ok {
 		_spec.SetField(agent.FieldLastContact, field.TypeTime, value)
 	}
-	if au.mutation.LastContactCleared() {
+	if _u.mutation.LastContactCleared() {
 		_spec.ClearField(agent.FieldLastContact, field.TypeTime)
 	}
-	if value, ok := au.mutation.Vnc(); ok {
+	if value, ok := _u.mutation.Vnc(); ok {
 		_spec.SetField(agent.FieldVnc, field.TypeString, value)
 	}
-	if au.mutation.VncCleared() {
+	if _u.mutation.VncCleared() {
 		_spec.ClearField(agent.FieldVnc, field.TypeString)
 	}
-	if value, ok := au.mutation.Notes(); ok {
+	if value, ok := _u.mutation.Notes(); ok {
 		_spec.SetField(agent.FieldNotes, field.TypeString, value)
 	}
-	if au.mutation.NotesCleared() {
+	if _u.mutation.NotesCleared() {
 		_spec.ClearField(agent.FieldNotes, field.TypeString)
 	}
-	if value, ok := au.mutation.UpdateTaskStatus(); ok {
+	if value, ok := _u.mutation.UpdateTaskStatus(); ok {
 		_spec.SetField(agent.FieldUpdateTaskStatus, field.TypeString, value)
 	}
-	if au.mutation.UpdateTaskStatusCleared() {
+	if _u.mutation.UpdateTaskStatusCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskStatus, field.TypeString)
 	}
-	if value, ok := au.mutation.UpdateTaskDescription(); ok {
+	if value, ok := _u.mutation.UpdateTaskDescription(); ok {
 		_spec.SetField(agent.FieldUpdateTaskDescription, field.TypeString, value)
 	}
-	if au.mutation.UpdateTaskDescriptionCleared() {
+	if _u.mutation.UpdateTaskDescriptionCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskDescription, field.TypeString)
 	}
-	if value, ok := au.mutation.UpdateTaskResult(); ok {
+	if value, ok := _u.mutation.UpdateTaskResult(); ok {
 		_spec.SetField(agent.FieldUpdateTaskResult, field.TypeString, value)
 	}
-	if au.mutation.UpdateTaskResultCleared() {
+	if _u.mutation.UpdateTaskResultCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskResult, field.TypeString)
 	}
-	if value, ok := au.mutation.UpdateTaskExecution(); ok {
+	if value, ok := _u.mutation.UpdateTaskExecution(); ok {
 		_spec.SetField(agent.FieldUpdateTaskExecution, field.TypeTime, value)
 	}
-	if au.mutation.UpdateTaskExecutionCleared() {
+	if _u.mutation.UpdateTaskExecutionCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskExecution, field.TypeTime)
 	}
-	if value, ok := au.mutation.UpdateTaskVersion(); ok {
+	if value, ok := _u.mutation.UpdateTaskVersion(); ok {
 		_spec.SetField(agent.FieldUpdateTaskVersion, field.TypeString, value)
 	}
-	if au.mutation.UpdateTaskVersionCleared() {
+	if _u.mutation.UpdateTaskVersionCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskVersion, field.TypeString)
 	}
-	if value, ok := au.mutation.VncProxyPort(); ok {
+	if value, ok := _u.mutation.VncProxyPort(); ok {
 		_spec.SetField(agent.FieldVncProxyPort, field.TypeString, value)
 	}
-	if au.mutation.VncProxyPortCleared() {
+	if _u.mutation.VncProxyPortCleared() {
 		_spec.ClearField(agent.FieldVncProxyPort, field.TypeString)
 	}
-	if value, ok := au.mutation.SftpPort(); ok {
+	if value, ok := _u.mutation.SftpPort(); ok {
 		_spec.SetField(agent.FieldSftpPort, field.TypeString, value)
 	}
-	if au.mutation.SftpPortCleared() {
+	if _u.mutation.SftpPortCleared() {
 		_spec.ClearField(agent.FieldSftpPort, field.TypeString)
 	}
-	if value, ok := au.mutation.AgentStatus(); ok {
+	if value, ok := _u.mutation.AgentStatus(); ok {
 		_spec.SetField(agent.FieldAgentStatus, field.TypeEnum, value)
 	}
-	if au.mutation.AgentStatusCleared() {
+	if _u.mutation.AgentStatusCleared() {
 		_spec.ClearField(agent.FieldAgentStatus, field.TypeEnum)
 	}
-	if value, ok := au.mutation.CertificateReady(); ok {
+	if value, ok := _u.mutation.CertificateReady(); ok {
 		_spec.SetField(agent.FieldCertificateReady, field.TypeBool, value)
 	}
-	if au.mutation.CertificateReadyCleared() {
+	if _u.mutation.CertificateReadyCleared() {
 		_spec.ClearField(agent.FieldCertificateReady, field.TypeBool)
 	}
-	if value, ok := au.mutation.RestartRequired(); ok {
+	if value, ok := _u.mutation.RestartRequired(); ok {
 		_spec.SetField(agent.FieldRestartRequired, field.TypeBool, value)
 	}
-	if au.mutation.RestartRequiredCleared() {
+	if _u.mutation.RestartRequiredCleared() {
 		_spec.ClearField(agent.FieldRestartRequired, field.TypeBool)
 	}
-	if value, ok := au.mutation.IsRemote(); ok {
+	if value, ok := _u.mutation.IsRemote(); ok {
 		_spec.SetField(agent.FieldIsRemote, field.TypeBool, value)
 	}
-	if au.mutation.IsRemoteCleared() {
+	if _u.mutation.IsRemoteCleared() {
 		_spec.ClearField(agent.FieldIsRemote, field.TypeBool)
 	}
-	if value, ok := au.mutation.DebugMode(); ok {
+	if value, ok := _u.mutation.DebugMode(); ok {
 		_spec.SetField(agent.FieldDebugMode, field.TypeBool, value)
 	}
-	if au.mutation.DebugModeCleared() {
+	if _u.mutation.DebugModeCleared() {
 		_spec.ClearField(agent.FieldDebugMode, field.TypeBool)
 	}
-	if value, ok := au.mutation.SftpService(); ok {
+	if value, ok := _u.mutation.SftpService(); ok {
 		_spec.SetField(agent.FieldSftpService, field.TypeBool, value)
 	}
-	if au.mutation.SftpServiceCleared() {
+	if _u.mutation.SftpServiceCleared() {
 		_spec.ClearField(agent.FieldSftpService, field.TypeBool)
 	}
-	if value, ok := au.mutation.RemoteAssistance(); ok {
+	if value, ok := _u.mutation.RemoteAssistance(); ok {
 		_spec.SetField(agent.FieldRemoteAssistance, field.TypeBool, value)
 	}
-	if au.mutation.RemoteAssistanceCleared() {
+	if _u.mutation.RemoteAssistanceCleared() {
 		_spec.ClearField(agent.FieldRemoteAssistance, field.TypeBool)
 	}
-	if value, ok := au.mutation.SettingsModified(); ok {
+	if value, ok := _u.mutation.SettingsModified(); ok {
 		_spec.SetField(agent.FieldSettingsModified, field.TypeTime, value)
 	}
-	if au.mutation.SettingsModifiedCleared() {
+	if _u.mutation.SettingsModifiedCleared() {
 		_spec.ClearField(agent.FieldSettingsModified, field.TypeTime)
 	}
-	if value, ok := au.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(agent.FieldDescription, field.TypeString, value)
 	}
-	if au.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(agent.FieldDescription, field.TypeString)
 	}
-	if value, ok := au.mutation.Nickname(); ok {
+	if value, ok := _u.mutation.Nickname(); ok {
 		_spec.SetField(agent.FieldNickname, field.TypeString, value)
 	}
-	if au.mutation.NicknameCleared() {
+	if _u.mutation.NicknameCleared() {
 		_spec.ClearField(agent.FieldNickname, field.TypeString)
 	}
-	if value, ok := au.mutation.EndpointType(); ok {
+	if value, ok := _u.mutation.EndpointType(); ok {
 		_spec.SetField(agent.FieldEndpointType, field.TypeEnum, value)
 	}
-	if au.mutation.EndpointTypeCleared() {
+	if _u.mutation.EndpointTypeCleared() {
 		_spec.ClearField(agent.FieldEndpointType, field.TypeEnum)
 	}
-	if value, ok := au.mutation.HasRustdesk(); ok {
+	if value, ok := _u.mutation.HasRustdesk(); ok {
 		_spec.SetField(agent.FieldHasRustdesk, field.TypeBool, value)
 	}
-	if au.mutation.HasRustdeskCleared() {
+	if _u.mutation.HasRustdeskCleared() {
 		_spec.ClearField(agent.FieldHasRustdesk, field.TypeBool)
 	}
-	if value, ok := au.mutation.IsWayland(); ok {
+	if value, ok := _u.mutation.IsWayland(); ok {
 		_spec.SetField(agent.FieldIsWayland, field.TypeBool, value)
 	}
-	if au.mutation.IsWaylandCleared() {
+	if _u.mutation.IsWaylandCleared() {
 		_spec.ClearField(agent.FieldIsWayland, field.TypeBool)
 	}
-	if value, ok := au.mutation.IsFlatpakRustdesk(); ok {
+	if value, ok := _u.mutation.IsFlatpakRustdesk(); ok {
 		_spec.SetField(agent.FieldIsFlatpakRustdesk, field.TypeBool, value)
 	}
-	if au.mutation.IsFlatpakRustdeskCleared() {
+	if _u.mutation.IsFlatpakRustdeskCleared() {
 		_spec.ClearField(agent.FieldIsFlatpakRustdesk, field.TypeBool)
 	}
-	if value, ok := au.mutation.Wan(); ok {
+	if value, ok := _u.mutation.Wan(); ok {
 		_spec.SetField(agent.FieldWan, field.TypeString, value)
 	}
-	if au.mutation.ComputerCleared() {
+	if _u.mutation.ComputerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1563,7 +1563,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.ComputerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ComputerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1579,7 +1579,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.OperatingsystemCleared() {
+	if _u.mutation.OperatingsystemCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1592,7 +1592,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.OperatingsystemIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OperatingsystemIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1608,7 +1608,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.SystemupdateCleared() {
+	if _u.mutation.SystemupdateCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1621,7 +1621,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.SystemupdateIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SystemupdateIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1637,7 +1637,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.AntivirusCleared() {
+	if _u.mutation.AntivirusCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1650,7 +1650,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.AntivirusIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AntivirusIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -1666,7 +1666,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.LogicaldisksCleared() {
+	if _u.mutation.LogicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1679,23 +1679,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedLogicaldisksIDs(); len(nodes) > 0 && !au.mutation.LogicaldisksCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.LogicaldisksTable,
-			Columns: []string{agent.LogicaldisksColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.LogicaldisksIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedLogicaldisksIDs(); len(nodes) > 0 && !_u.mutation.LogicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1709,9 +1693,25 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.LogicaldisksIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.LogicaldisksTable,
+			Columns: []string{agent.LogicaldisksColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.AppsCleared() {
+	if _u.mutation.AppsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1724,7 +1724,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedAppsIDs(); len(nodes) > 0 && !au.mutation.AppsCleared() {
+	if nodes := _u.mutation.RemovedAppsIDs(); len(nodes) > 0 && !_u.mutation.AppsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1740,7 +1740,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.AppsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AppsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1756,7 +1756,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.MonitorsCleared() {
+	if _u.mutation.MonitorsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1769,23 +1769,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedMonitorsIDs(); len(nodes) > 0 && !au.mutation.MonitorsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MonitorsTable,
-			Columns: []string{agent.MonitorsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.MonitorsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedMonitorsIDs(); len(nodes) > 0 && !_u.mutation.MonitorsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1799,9 +1783,25 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.MonitorsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.MonitorsTable,
+			Columns: []string{agent.MonitorsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.SharesCleared() {
+	if _u.mutation.SharesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1814,7 +1814,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedSharesIDs(); len(nodes) > 0 && !au.mutation.SharesCleared() {
+	if nodes := _u.mutation.RemovedSharesIDs(); len(nodes) > 0 && !_u.mutation.SharesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1830,7 +1830,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.SharesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SharesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1846,7 +1846,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.PrintersCleared() {
+	if _u.mutation.PrintersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1859,23 +1859,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedPrintersIDs(); len(nodes) > 0 && !au.mutation.PrintersCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.PrintersTable,
-			Columns: []string{agent.PrintersColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.PrintersIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedPrintersIDs(); len(nodes) > 0 && !_u.mutation.PrintersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1889,9 +1873,25 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.PrintersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PrintersTable,
+			Columns: []string{agent.PrintersColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.NetworkadaptersCleared() {
+	if _u.mutation.NetworkadaptersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1904,7 +1904,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedNetworkadaptersIDs(); len(nodes) > 0 && !au.mutation.NetworkadaptersCleared() {
+	if nodes := _u.mutation.RemovedNetworkadaptersIDs(); len(nodes) > 0 && !_u.mutation.NetworkadaptersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1920,7 +1920,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.NetworkadaptersIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.NetworkadaptersIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1936,7 +1936,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.DeploymentsCleared() {
+	if _u.mutation.DeploymentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1949,23 +1949,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedDeploymentsIDs(); len(nodes) > 0 && !au.mutation.DeploymentsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.DeploymentsTable,
-			Columns: []string{agent.DeploymentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.DeploymentsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedDeploymentsIDs(); len(nodes) > 0 && !_u.mutation.DeploymentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1979,9 +1963,25 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.DeploymentsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.DeploymentsTable,
+			Columns: []string{agent.DeploymentsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.UpdatesCleared() {
+	if _u.mutation.UpdatesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -1994,7 +1994,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedUpdatesIDs(); len(nodes) > 0 && !au.mutation.UpdatesCleared() {
+	if nodes := _u.mutation.RemovedUpdatesIDs(); len(nodes) > 0 && !_u.mutation.UpdatesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2010,7 +2010,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.UpdatesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.UpdatesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2026,7 +2026,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.TagsCleared() {
+	if _u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -2039,23 +2039,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedTagsIDs(); len(nodes) > 0 && !au.mutation.TagsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2M,
-			Inverse: false,
-			Table:   agent.TagsTable,
-			Columns: agent.TagsPrimaryKey,
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(tag.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := au.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedTagsIDs(); len(nodes) > 0 && !_u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -2069,9 +2053,25 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.TagsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   agent.TagsTable,
+			Columns: agent.TagsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tag.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.MetadataCleared() {
+	if _u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2084,7 +2084,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !au.mutation.MetadataCleared() {
+	if nodes := _u.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !_u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2100,7 +2100,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2116,7 +2116,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.WingetcfgexclusionsCleared() {
+	if _u.mutation.WingetcfgexclusionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2129,7 +2129,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedWingetcfgexclusionsIDs(); len(nodes) > 0 && !au.mutation.WingetcfgexclusionsCleared() {
+	if nodes := _u.mutation.RemovedWingetcfgexclusionsIDs(); len(nodes) > 0 && !_u.mutation.WingetcfgexclusionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2145,7 +2145,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.WingetcfgexclusionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.WingetcfgexclusionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2161,7 +2161,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.MemoryslotsCleared() {
+	if _u.mutation.MemoryslotsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2174,7 +2174,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedMemoryslotsIDs(); len(nodes) > 0 && !au.mutation.MemoryslotsCleared() {
+	if nodes := _u.mutation.RemovedMemoryslotsIDs(); len(nodes) > 0 && !_u.mutation.MemoryslotsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2190,7 +2190,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.MemoryslotsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MemoryslotsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2206,7 +2206,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.ReleaseCleared() {
+	if _u.mutation.ReleaseCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2219,7 +2219,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.ReleaseIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ReleaseIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2235,7 +2235,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.ProfileissueCleared() {
+	if _u.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -2248,7 +2248,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedProfileissueIDs(); len(nodes) > 0 && !au.mutation.ProfileissueCleared() {
+	if nodes := _u.mutation.RemovedProfileissueIDs(); len(nodes) > 0 && !_u.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -2264,7 +2264,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.ProfileissueIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -2280,7 +2280,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.SiteCleared() {
+	if _u.mutation.SiteCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -2293,7 +2293,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedSiteIDs(); len(nodes) > 0 && !au.mutation.SiteCleared() {
+	if nodes := _u.mutation.RemovedSiteIDs(); len(nodes) > 0 && !_u.mutation.SiteCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -2309,7 +2309,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.SiteIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SiteIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -2325,7 +2325,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.PhysicaldisksCleared() {
+	if _u.mutation.PhysicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2338,7 +2338,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.RemovedPhysicaldisksIDs(); len(nodes) > 0 && !au.mutation.PhysicaldisksCleared() {
+	if nodes := _u.mutation.RemovedPhysicaldisksIDs(); len(nodes) > 0 && !_u.mutation.PhysicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2354,7 +2354,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.PhysicaldisksIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.PhysicaldisksIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2370,7 +2370,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if au.mutation.NetbirdCleared() {
+	if _u.mutation.NetbirdCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -2383,7 +2383,7 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := au.mutation.NetbirdIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.NetbirdIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -2399,8 +2399,8 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(au.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{agent.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -2408,8 +2408,8 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	au.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // AgentUpdateOne is the builder for updating a single Agent entity.
@@ -2422,1291 +2422,1291 @@ type AgentUpdateOne struct {
 }
 
 // SetOs sets the "os" field.
-func (auo *AgentUpdateOne) SetOs(s string) *AgentUpdateOne {
-	auo.mutation.SetOs(s)
-	return auo
+func (_u *AgentUpdateOne) SetOs(v string) *AgentUpdateOne {
+	_u.mutation.SetOs(v)
+	return _u
 }
 
 // SetNillableOs sets the "os" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableOs(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetOs(*s)
+func (_u *AgentUpdateOne) SetNillableOs(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetOs(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetHostname sets the "hostname" field.
-func (auo *AgentUpdateOne) SetHostname(s string) *AgentUpdateOne {
-	auo.mutation.SetHostname(s)
-	return auo
+func (_u *AgentUpdateOne) SetHostname(v string) *AgentUpdateOne {
+	_u.mutation.SetHostname(v)
+	return _u
 }
 
 // SetNillableHostname sets the "hostname" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableHostname(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetHostname(*s)
+func (_u *AgentUpdateOne) SetNillableHostname(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetHostname(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetIP sets the "ip" field.
-func (auo *AgentUpdateOne) SetIP(s string) *AgentUpdateOne {
-	auo.mutation.SetIP(s)
-	return auo
+func (_u *AgentUpdateOne) SetIP(v string) *AgentUpdateOne {
+	_u.mutation.SetIP(v)
+	return _u
 }
 
 // SetNillableIP sets the "ip" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableIP(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetIP(*s)
+func (_u *AgentUpdateOne) SetNillableIP(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetIP(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetMAC sets the "mac" field.
-func (auo *AgentUpdateOne) SetMAC(s string) *AgentUpdateOne {
-	auo.mutation.SetMAC(s)
-	return auo
+func (_u *AgentUpdateOne) SetMAC(v string) *AgentUpdateOne {
+	_u.mutation.SetMAC(v)
+	return _u
 }
 
 // SetNillableMAC sets the "mac" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableMAC(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetMAC(*s)
+func (_u *AgentUpdateOne) SetNillableMAC(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetMAC(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetFirstContact sets the "first_contact" field.
-func (auo *AgentUpdateOne) SetFirstContact(t time.Time) *AgentUpdateOne {
-	auo.mutation.SetFirstContact(t)
-	return auo
+func (_u *AgentUpdateOne) SetFirstContact(v time.Time) *AgentUpdateOne {
+	_u.mutation.SetFirstContact(v)
+	return _u
 }
 
 // SetNillableFirstContact sets the "first_contact" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableFirstContact(t *time.Time) *AgentUpdateOne {
-	if t != nil {
-		auo.SetFirstContact(*t)
+func (_u *AgentUpdateOne) SetNillableFirstContact(v *time.Time) *AgentUpdateOne {
+	if v != nil {
+		_u.SetFirstContact(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearFirstContact clears the value of the "first_contact" field.
-func (auo *AgentUpdateOne) ClearFirstContact() *AgentUpdateOne {
-	auo.mutation.ClearFirstContact()
-	return auo
+func (_u *AgentUpdateOne) ClearFirstContact() *AgentUpdateOne {
+	_u.mutation.ClearFirstContact()
+	return _u
 }
 
 // SetLastContact sets the "last_contact" field.
-func (auo *AgentUpdateOne) SetLastContact(t time.Time) *AgentUpdateOne {
-	auo.mutation.SetLastContact(t)
-	return auo
+func (_u *AgentUpdateOne) SetLastContact(v time.Time) *AgentUpdateOne {
+	_u.mutation.SetLastContact(v)
+	return _u
 }
 
 // SetNillableLastContact sets the "last_contact" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableLastContact(t *time.Time) *AgentUpdateOne {
-	if t != nil {
-		auo.SetLastContact(*t)
+func (_u *AgentUpdateOne) SetNillableLastContact(v *time.Time) *AgentUpdateOne {
+	if v != nil {
+		_u.SetLastContact(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearLastContact clears the value of the "last_contact" field.
-func (auo *AgentUpdateOne) ClearLastContact() *AgentUpdateOne {
-	auo.mutation.ClearLastContact()
-	return auo
+func (_u *AgentUpdateOne) ClearLastContact() *AgentUpdateOne {
+	_u.mutation.ClearLastContact()
+	return _u
 }
 
 // SetVnc sets the "vnc" field.
-func (auo *AgentUpdateOne) SetVnc(s string) *AgentUpdateOne {
-	auo.mutation.SetVnc(s)
-	return auo
+func (_u *AgentUpdateOne) SetVnc(v string) *AgentUpdateOne {
+	_u.mutation.SetVnc(v)
+	return _u
 }
 
 // SetNillableVnc sets the "vnc" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableVnc(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetVnc(*s)
+func (_u *AgentUpdateOne) SetNillableVnc(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetVnc(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearVnc clears the value of the "vnc" field.
-func (auo *AgentUpdateOne) ClearVnc() *AgentUpdateOne {
-	auo.mutation.ClearVnc()
-	return auo
+func (_u *AgentUpdateOne) ClearVnc() *AgentUpdateOne {
+	_u.mutation.ClearVnc()
+	return _u
 }
 
 // SetNotes sets the "notes" field.
-func (auo *AgentUpdateOne) SetNotes(s string) *AgentUpdateOne {
-	auo.mutation.SetNotes(s)
-	return auo
+func (_u *AgentUpdateOne) SetNotes(v string) *AgentUpdateOne {
+	_u.mutation.SetNotes(v)
+	return _u
 }
 
 // SetNillableNotes sets the "notes" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableNotes(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetNotes(*s)
+func (_u *AgentUpdateOne) SetNillableNotes(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetNotes(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearNotes clears the value of the "notes" field.
-func (auo *AgentUpdateOne) ClearNotes() *AgentUpdateOne {
-	auo.mutation.ClearNotes()
-	return auo
+func (_u *AgentUpdateOne) ClearNotes() *AgentUpdateOne {
+	_u.mutation.ClearNotes()
+	return _u
 }
 
 // SetUpdateTaskStatus sets the "update_task_status" field.
-func (auo *AgentUpdateOne) SetUpdateTaskStatus(s string) *AgentUpdateOne {
-	auo.mutation.SetUpdateTaskStatus(s)
-	return auo
+func (_u *AgentUpdateOne) SetUpdateTaskStatus(v string) *AgentUpdateOne {
+	_u.mutation.SetUpdateTaskStatus(v)
+	return _u
 }
 
 // SetNillableUpdateTaskStatus sets the "update_task_status" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableUpdateTaskStatus(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetUpdateTaskStatus(*s)
+func (_u *AgentUpdateOne) SetNillableUpdateTaskStatus(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetUpdateTaskStatus(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUpdateTaskStatus clears the value of the "update_task_status" field.
-func (auo *AgentUpdateOne) ClearUpdateTaskStatus() *AgentUpdateOne {
-	auo.mutation.ClearUpdateTaskStatus()
-	return auo
+func (_u *AgentUpdateOne) ClearUpdateTaskStatus() *AgentUpdateOne {
+	_u.mutation.ClearUpdateTaskStatus()
+	return _u
 }
 
 // SetUpdateTaskDescription sets the "update_task_description" field.
-func (auo *AgentUpdateOne) SetUpdateTaskDescription(s string) *AgentUpdateOne {
-	auo.mutation.SetUpdateTaskDescription(s)
-	return auo
+func (_u *AgentUpdateOne) SetUpdateTaskDescription(v string) *AgentUpdateOne {
+	_u.mutation.SetUpdateTaskDescription(v)
+	return _u
 }
 
 // SetNillableUpdateTaskDescription sets the "update_task_description" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableUpdateTaskDescription(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetUpdateTaskDescription(*s)
+func (_u *AgentUpdateOne) SetNillableUpdateTaskDescription(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetUpdateTaskDescription(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUpdateTaskDescription clears the value of the "update_task_description" field.
-func (auo *AgentUpdateOne) ClearUpdateTaskDescription() *AgentUpdateOne {
-	auo.mutation.ClearUpdateTaskDescription()
-	return auo
+func (_u *AgentUpdateOne) ClearUpdateTaskDescription() *AgentUpdateOne {
+	_u.mutation.ClearUpdateTaskDescription()
+	return _u
 }
 
 // SetUpdateTaskResult sets the "update_task_result" field.
-func (auo *AgentUpdateOne) SetUpdateTaskResult(s string) *AgentUpdateOne {
-	auo.mutation.SetUpdateTaskResult(s)
-	return auo
+func (_u *AgentUpdateOne) SetUpdateTaskResult(v string) *AgentUpdateOne {
+	_u.mutation.SetUpdateTaskResult(v)
+	return _u
 }
 
 // SetNillableUpdateTaskResult sets the "update_task_result" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableUpdateTaskResult(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetUpdateTaskResult(*s)
+func (_u *AgentUpdateOne) SetNillableUpdateTaskResult(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetUpdateTaskResult(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUpdateTaskResult clears the value of the "update_task_result" field.
-func (auo *AgentUpdateOne) ClearUpdateTaskResult() *AgentUpdateOne {
-	auo.mutation.ClearUpdateTaskResult()
-	return auo
+func (_u *AgentUpdateOne) ClearUpdateTaskResult() *AgentUpdateOne {
+	_u.mutation.ClearUpdateTaskResult()
+	return _u
 }
 
 // SetUpdateTaskExecution sets the "update_task_execution" field.
-func (auo *AgentUpdateOne) SetUpdateTaskExecution(t time.Time) *AgentUpdateOne {
-	auo.mutation.SetUpdateTaskExecution(t)
-	return auo
+func (_u *AgentUpdateOne) SetUpdateTaskExecution(v time.Time) *AgentUpdateOne {
+	_u.mutation.SetUpdateTaskExecution(v)
+	return _u
 }
 
 // SetNillableUpdateTaskExecution sets the "update_task_execution" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableUpdateTaskExecution(t *time.Time) *AgentUpdateOne {
-	if t != nil {
-		auo.SetUpdateTaskExecution(*t)
+func (_u *AgentUpdateOne) SetNillableUpdateTaskExecution(v *time.Time) *AgentUpdateOne {
+	if v != nil {
+		_u.SetUpdateTaskExecution(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUpdateTaskExecution clears the value of the "update_task_execution" field.
-func (auo *AgentUpdateOne) ClearUpdateTaskExecution() *AgentUpdateOne {
-	auo.mutation.ClearUpdateTaskExecution()
-	return auo
+func (_u *AgentUpdateOne) ClearUpdateTaskExecution() *AgentUpdateOne {
+	_u.mutation.ClearUpdateTaskExecution()
+	return _u
 }
 
 // SetUpdateTaskVersion sets the "update_task_version" field.
-func (auo *AgentUpdateOne) SetUpdateTaskVersion(s string) *AgentUpdateOne {
-	auo.mutation.SetUpdateTaskVersion(s)
-	return auo
+func (_u *AgentUpdateOne) SetUpdateTaskVersion(v string) *AgentUpdateOne {
+	_u.mutation.SetUpdateTaskVersion(v)
+	return _u
 }
 
 // SetNillableUpdateTaskVersion sets the "update_task_version" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableUpdateTaskVersion(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetUpdateTaskVersion(*s)
+func (_u *AgentUpdateOne) SetNillableUpdateTaskVersion(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetUpdateTaskVersion(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUpdateTaskVersion clears the value of the "update_task_version" field.
-func (auo *AgentUpdateOne) ClearUpdateTaskVersion() *AgentUpdateOne {
-	auo.mutation.ClearUpdateTaskVersion()
-	return auo
+func (_u *AgentUpdateOne) ClearUpdateTaskVersion() *AgentUpdateOne {
+	_u.mutation.ClearUpdateTaskVersion()
+	return _u
 }
 
 // SetVncProxyPort sets the "vnc_proxy_port" field.
-func (auo *AgentUpdateOne) SetVncProxyPort(s string) *AgentUpdateOne {
-	auo.mutation.SetVncProxyPort(s)
-	return auo
+func (_u *AgentUpdateOne) SetVncProxyPort(v string) *AgentUpdateOne {
+	_u.mutation.SetVncProxyPort(v)
+	return _u
 }
 
 // SetNillableVncProxyPort sets the "vnc_proxy_port" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableVncProxyPort(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetVncProxyPort(*s)
+func (_u *AgentUpdateOne) SetNillableVncProxyPort(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetVncProxyPort(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearVncProxyPort clears the value of the "vnc_proxy_port" field.
-func (auo *AgentUpdateOne) ClearVncProxyPort() *AgentUpdateOne {
-	auo.mutation.ClearVncProxyPort()
-	return auo
+func (_u *AgentUpdateOne) ClearVncProxyPort() *AgentUpdateOne {
+	_u.mutation.ClearVncProxyPort()
+	return _u
 }
 
 // SetSftpPort sets the "sftp_port" field.
-func (auo *AgentUpdateOne) SetSftpPort(s string) *AgentUpdateOne {
-	auo.mutation.SetSftpPort(s)
-	return auo
+func (_u *AgentUpdateOne) SetSftpPort(v string) *AgentUpdateOne {
+	_u.mutation.SetSftpPort(v)
+	return _u
 }
 
 // SetNillableSftpPort sets the "sftp_port" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableSftpPort(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetSftpPort(*s)
+func (_u *AgentUpdateOne) SetNillableSftpPort(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetSftpPort(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearSftpPort clears the value of the "sftp_port" field.
-func (auo *AgentUpdateOne) ClearSftpPort() *AgentUpdateOne {
-	auo.mutation.ClearSftpPort()
-	return auo
+func (_u *AgentUpdateOne) ClearSftpPort() *AgentUpdateOne {
+	_u.mutation.ClearSftpPort()
+	return _u
 }
 
 // SetAgentStatus sets the "agent_status" field.
-func (auo *AgentUpdateOne) SetAgentStatus(as agent.AgentStatus) *AgentUpdateOne {
-	auo.mutation.SetAgentStatus(as)
-	return auo
+func (_u *AgentUpdateOne) SetAgentStatus(v agent.AgentStatus) *AgentUpdateOne {
+	_u.mutation.SetAgentStatus(v)
+	return _u
 }
 
 // SetNillableAgentStatus sets the "agent_status" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableAgentStatus(as *agent.AgentStatus) *AgentUpdateOne {
-	if as != nil {
-		auo.SetAgentStatus(*as)
+func (_u *AgentUpdateOne) SetNillableAgentStatus(v *agent.AgentStatus) *AgentUpdateOne {
+	if v != nil {
+		_u.SetAgentStatus(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearAgentStatus clears the value of the "agent_status" field.
-func (auo *AgentUpdateOne) ClearAgentStatus() *AgentUpdateOne {
-	auo.mutation.ClearAgentStatus()
-	return auo
+func (_u *AgentUpdateOne) ClearAgentStatus() *AgentUpdateOne {
+	_u.mutation.ClearAgentStatus()
+	return _u
 }
 
 // SetCertificateReady sets the "certificate_ready" field.
-func (auo *AgentUpdateOne) SetCertificateReady(b bool) *AgentUpdateOne {
-	auo.mutation.SetCertificateReady(b)
-	return auo
+func (_u *AgentUpdateOne) SetCertificateReady(v bool) *AgentUpdateOne {
+	_u.mutation.SetCertificateReady(v)
+	return _u
 }
 
 // SetNillableCertificateReady sets the "certificate_ready" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableCertificateReady(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetCertificateReady(*b)
+func (_u *AgentUpdateOne) SetNillableCertificateReady(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetCertificateReady(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearCertificateReady clears the value of the "certificate_ready" field.
-func (auo *AgentUpdateOne) ClearCertificateReady() *AgentUpdateOne {
-	auo.mutation.ClearCertificateReady()
-	return auo
+func (_u *AgentUpdateOne) ClearCertificateReady() *AgentUpdateOne {
+	_u.mutation.ClearCertificateReady()
+	return _u
 }
 
 // SetRestartRequired sets the "restart_required" field.
-func (auo *AgentUpdateOne) SetRestartRequired(b bool) *AgentUpdateOne {
-	auo.mutation.SetRestartRequired(b)
-	return auo
+func (_u *AgentUpdateOne) SetRestartRequired(v bool) *AgentUpdateOne {
+	_u.mutation.SetRestartRequired(v)
+	return _u
 }
 
 // SetNillableRestartRequired sets the "restart_required" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableRestartRequired(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetRestartRequired(*b)
+func (_u *AgentUpdateOne) SetNillableRestartRequired(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetRestartRequired(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearRestartRequired clears the value of the "restart_required" field.
-func (auo *AgentUpdateOne) ClearRestartRequired() *AgentUpdateOne {
-	auo.mutation.ClearRestartRequired()
-	return auo
+func (_u *AgentUpdateOne) ClearRestartRequired() *AgentUpdateOne {
+	_u.mutation.ClearRestartRequired()
+	return _u
 }
 
 // SetIsRemote sets the "is_remote" field.
-func (auo *AgentUpdateOne) SetIsRemote(b bool) *AgentUpdateOne {
-	auo.mutation.SetIsRemote(b)
-	return auo
+func (_u *AgentUpdateOne) SetIsRemote(v bool) *AgentUpdateOne {
+	_u.mutation.SetIsRemote(v)
+	return _u
 }
 
 // SetNillableIsRemote sets the "is_remote" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableIsRemote(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetIsRemote(*b)
+func (_u *AgentUpdateOne) SetNillableIsRemote(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetIsRemote(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearIsRemote clears the value of the "is_remote" field.
-func (auo *AgentUpdateOne) ClearIsRemote() *AgentUpdateOne {
-	auo.mutation.ClearIsRemote()
-	return auo
+func (_u *AgentUpdateOne) ClearIsRemote() *AgentUpdateOne {
+	_u.mutation.ClearIsRemote()
+	return _u
 }
 
 // SetDebugMode sets the "debug_mode" field.
-func (auo *AgentUpdateOne) SetDebugMode(b bool) *AgentUpdateOne {
-	auo.mutation.SetDebugMode(b)
-	return auo
+func (_u *AgentUpdateOne) SetDebugMode(v bool) *AgentUpdateOne {
+	_u.mutation.SetDebugMode(v)
+	return _u
 }
 
 // SetNillableDebugMode sets the "debug_mode" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableDebugMode(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetDebugMode(*b)
+func (_u *AgentUpdateOne) SetNillableDebugMode(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetDebugMode(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearDebugMode clears the value of the "debug_mode" field.
-func (auo *AgentUpdateOne) ClearDebugMode() *AgentUpdateOne {
-	auo.mutation.ClearDebugMode()
-	return auo
+func (_u *AgentUpdateOne) ClearDebugMode() *AgentUpdateOne {
+	_u.mutation.ClearDebugMode()
+	return _u
 }
 
 // SetSftpService sets the "sftp_service" field.
-func (auo *AgentUpdateOne) SetSftpService(b bool) *AgentUpdateOne {
-	auo.mutation.SetSftpService(b)
-	return auo
+func (_u *AgentUpdateOne) SetSftpService(v bool) *AgentUpdateOne {
+	_u.mutation.SetSftpService(v)
+	return _u
 }
 
 // SetNillableSftpService sets the "sftp_service" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableSftpService(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetSftpService(*b)
+func (_u *AgentUpdateOne) SetNillableSftpService(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetSftpService(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearSftpService clears the value of the "sftp_service" field.
-func (auo *AgentUpdateOne) ClearSftpService() *AgentUpdateOne {
-	auo.mutation.ClearSftpService()
-	return auo
+func (_u *AgentUpdateOne) ClearSftpService() *AgentUpdateOne {
+	_u.mutation.ClearSftpService()
+	return _u
 }
 
 // SetRemoteAssistance sets the "remote_assistance" field.
-func (auo *AgentUpdateOne) SetRemoteAssistance(b bool) *AgentUpdateOne {
-	auo.mutation.SetRemoteAssistance(b)
-	return auo
+func (_u *AgentUpdateOne) SetRemoteAssistance(v bool) *AgentUpdateOne {
+	_u.mutation.SetRemoteAssistance(v)
+	return _u
 }
 
 // SetNillableRemoteAssistance sets the "remote_assistance" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableRemoteAssistance(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetRemoteAssistance(*b)
+func (_u *AgentUpdateOne) SetNillableRemoteAssistance(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetRemoteAssistance(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearRemoteAssistance clears the value of the "remote_assistance" field.
-func (auo *AgentUpdateOne) ClearRemoteAssistance() *AgentUpdateOne {
-	auo.mutation.ClearRemoteAssistance()
-	return auo
+func (_u *AgentUpdateOne) ClearRemoteAssistance() *AgentUpdateOne {
+	_u.mutation.ClearRemoteAssistance()
+	return _u
 }
 
 // SetSettingsModified sets the "settings_modified" field.
-func (auo *AgentUpdateOne) SetSettingsModified(t time.Time) *AgentUpdateOne {
-	auo.mutation.SetSettingsModified(t)
-	return auo
+func (_u *AgentUpdateOne) SetSettingsModified(v time.Time) *AgentUpdateOne {
+	_u.mutation.SetSettingsModified(v)
+	return _u
 }
 
 // SetNillableSettingsModified sets the "settings_modified" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableSettingsModified(t *time.Time) *AgentUpdateOne {
-	if t != nil {
-		auo.SetSettingsModified(*t)
+func (_u *AgentUpdateOne) SetNillableSettingsModified(v *time.Time) *AgentUpdateOne {
+	if v != nil {
+		_u.SetSettingsModified(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearSettingsModified clears the value of the "settings_modified" field.
-func (auo *AgentUpdateOne) ClearSettingsModified() *AgentUpdateOne {
-	auo.mutation.ClearSettingsModified()
-	return auo
+func (_u *AgentUpdateOne) ClearSettingsModified() *AgentUpdateOne {
+	_u.mutation.ClearSettingsModified()
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (auo *AgentUpdateOne) SetDescription(s string) *AgentUpdateOne {
-	auo.mutation.SetDescription(s)
-	return auo
+func (_u *AgentUpdateOne) SetDescription(v string) *AgentUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableDescription(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetDescription(*s)
+func (_u *AgentUpdateOne) SetNillableDescription(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (auo *AgentUpdateOne) ClearDescription() *AgentUpdateOne {
-	auo.mutation.ClearDescription()
-	return auo
+func (_u *AgentUpdateOne) ClearDescription() *AgentUpdateOne {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // SetNickname sets the "nickname" field.
-func (auo *AgentUpdateOne) SetNickname(s string) *AgentUpdateOne {
-	auo.mutation.SetNickname(s)
-	return auo
+func (_u *AgentUpdateOne) SetNickname(v string) *AgentUpdateOne {
+	_u.mutation.SetNickname(v)
+	return _u
 }
 
 // SetNillableNickname sets the "nickname" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableNickname(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetNickname(*s)
+func (_u *AgentUpdateOne) SetNillableNickname(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetNickname(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearNickname clears the value of the "nickname" field.
-func (auo *AgentUpdateOne) ClearNickname() *AgentUpdateOne {
-	auo.mutation.ClearNickname()
-	return auo
+func (_u *AgentUpdateOne) ClearNickname() *AgentUpdateOne {
+	_u.mutation.ClearNickname()
+	return _u
 }
 
 // SetEndpointType sets the "endpoint_type" field.
-func (auo *AgentUpdateOne) SetEndpointType(at agent.EndpointType) *AgentUpdateOne {
-	auo.mutation.SetEndpointType(at)
-	return auo
+func (_u *AgentUpdateOne) SetEndpointType(v agent.EndpointType) *AgentUpdateOne {
+	_u.mutation.SetEndpointType(v)
+	return _u
 }
 
 // SetNillableEndpointType sets the "endpoint_type" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableEndpointType(at *agent.EndpointType) *AgentUpdateOne {
-	if at != nil {
-		auo.SetEndpointType(*at)
+func (_u *AgentUpdateOne) SetNillableEndpointType(v *agent.EndpointType) *AgentUpdateOne {
+	if v != nil {
+		_u.SetEndpointType(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearEndpointType clears the value of the "endpoint_type" field.
-func (auo *AgentUpdateOne) ClearEndpointType() *AgentUpdateOne {
-	auo.mutation.ClearEndpointType()
-	return auo
+func (_u *AgentUpdateOne) ClearEndpointType() *AgentUpdateOne {
+	_u.mutation.ClearEndpointType()
+	return _u
 }
 
 // SetHasRustdesk sets the "has_rustdesk" field.
-func (auo *AgentUpdateOne) SetHasRustdesk(b bool) *AgentUpdateOne {
-	auo.mutation.SetHasRustdesk(b)
-	return auo
+func (_u *AgentUpdateOne) SetHasRustdesk(v bool) *AgentUpdateOne {
+	_u.mutation.SetHasRustdesk(v)
+	return _u
 }
 
 // SetNillableHasRustdesk sets the "has_rustdesk" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableHasRustdesk(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetHasRustdesk(*b)
+func (_u *AgentUpdateOne) SetNillableHasRustdesk(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetHasRustdesk(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearHasRustdesk clears the value of the "has_rustdesk" field.
-func (auo *AgentUpdateOne) ClearHasRustdesk() *AgentUpdateOne {
-	auo.mutation.ClearHasRustdesk()
-	return auo
+func (_u *AgentUpdateOne) ClearHasRustdesk() *AgentUpdateOne {
+	_u.mutation.ClearHasRustdesk()
+	return _u
 }
 
 // SetIsWayland sets the "is_wayland" field.
-func (auo *AgentUpdateOne) SetIsWayland(b bool) *AgentUpdateOne {
-	auo.mutation.SetIsWayland(b)
-	return auo
+func (_u *AgentUpdateOne) SetIsWayland(v bool) *AgentUpdateOne {
+	_u.mutation.SetIsWayland(v)
+	return _u
 }
 
 // SetNillableIsWayland sets the "is_wayland" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableIsWayland(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetIsWayland(*b)
+func (_u *AgentUpdateOne) SetNillableIsWayland(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetIsWayland(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearIsWayland clears the value of the "is_wayland" field.
-func (auo *AgentUpdateOne) ClearIsWayland() *AgentUpdateOne {
-	auo.mutation.ClearIsWayland()
-	return auo
+func (_u *AgentUpdateOne) ClearIsWayland() *AgentUpdateOne {
+	_u.mutation.ClearIsWayland()
+	return _u
 }
 
 // SetIsFlatpakRustdesk sets the "is_flatpak_rustdesk" field.
-func (auo *AgentUpdateOne) SetIsFlatpakRustdesk(b bool) *AgentUpdateOne {
-	auo.mutation.SetIsFlatpakRustdesk(b)
-	return auo
+func (_u *AgentUpdateOne) SetIsFlatpakRustdesk(v bool) *AgentUpdateOne {
+	_u.mutation.SetIsFlatpakRustdesk(v)
+	return _u
 }
 
 // SetNillableIsFlatpakRustdesk sets the "is_flatpak_rustdesk" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableIsFlatpakRustdesk(b *bool) *AgentUpdateOne {
-	if b != nil {
-		auo.SetIsFlatpakRustdesk(*b)
+func (_u *AgentUpdateOne) SetNillableIsFlatpakRustdesk(v *bool) *AgentUpdateOne {
+	if v != nil {
+		_u.SetIsFlatpakRustdesk(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearIsFlatpakRustdesk clears the value of the "is_flatpak_rustdesk" field.
-func (auo *AgentUpdateOne) ClearIsFlatpakRustdesk() *AgentUpdateOne {
-	auo.mutation.ClearIsFlatpakRustdesk()
-	return auo
+func (_u *AgentUpdateOne) ClearIsFlatpakRustdesk() *AgentUpdateOne {
+	_u.mutation.ClearIsFlatpakRustdesk()
+	return _u
 }
 
 // SetWan sets the "wan" field.
-func (auo *AgentUpdateOne) SetWan(s string) *AgentUpdateOne {
-	auo.mutation.SetWan(s)
-	return auo
+func (_u *AgentUpdateOne) SetWan(v string) *AgentUpdateOne {
+	_u.mutation.SetWan(v)
+	return _u
 }
 
 // SetNillableWan sets the "wan" field if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableWan(s *string) *AgentUpdateOne {
-	if s != nil {
-		auo.SetWan(*s)
+func (_u *AgentUpdateOne) SetNillableWan(v *string) *AgentUpdateOne {
+	if v != nil {
+		_u.SetWan(*v)
 	}
-	return auo
+	return _u
 }
 
 // SetComputerID sets the "computer" edge to the Computer entity by ID.
-func (auo *AgentUpdateOne) SetComputerID(id int) *AgentUpdateOne {
-	auo.mutation.SetComputerID(id)
-	return auo
+func (_u *AgentUpdateOne) SetComputerID(id int) *AgentUpdateOne {
+	_u.mutation.SetComputerID(id)
+	return _u
 }
 
 // SetNillableComputerID sets the "computer" edge to the Computer entity by ID if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableComputerID(id *int) *AgentUpdateOne {
+func (_u *AgentUpdateOne) SetNillableComputerID(id *int) *AgentUpdateOne {
 	if id != nil {
-		auo = auo.SetComputerID(*id)
+		_u = _u.SetComputerID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetComputer sets the "computer" edge to the Computer entity.
-func (auo *AgentUpdateOne) SetComputer(c *Computer) *AgentUpdateOne {
-	return auo.SetComputerID(c.ID)
+func (_u *AgentUpdateOne) SetComputer(v *Computer) *AgentUpdateOne {
+	return _u.SetComputerID(v.ID)
 }
 
 // SetOperatingsystemID sets the "operatingsystem" edge to the OperatingSystem entity by ID.
-func (auo *AgentUpdateOne) SetOperatingsystemID(id int) *AgentUpdateOne {
-	auo.mutation.SetOperatingsystemID(id)
-	return auo
+func (_u *AgentUpdateOne) SetOperatingsystemID(id int) *AgentUpdateOne {
+	_u.mutation.SetOperatingsystemID(id)
+	return _u
 }
 
 // SetNillableOperatingsystemID sets the "operatingsystem" edge to the OperatingSystem entity by ID if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableOperatingsystemID(id *int) *AgentUpdateOne {
+func (_u *AgentUpdateOne) SetNillableOperatingsystemID(id *int) *AgentUpdateOne {
 	if id != nil {
-		auo = auo.SetOperatingsystemID(*id)
+		_u = _u.SetOperatingsystemID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetOperatingsystem sets the "operatingsystem" edge to the OperatingSystem entity.
-func (auo *AgentUpdateOne) SetOperatingsystem(o *OperatingSystem) *AgentUpdateOne {
-	return auo.SetOperatingsystemID(o.ID)
+func (_u *AgentUpdateOne) SetOperatingsystem(v *OperatingSystem) *AgentUpdateOne {
+	return _u.SetOperatingsystemID(v.ID)
 }
 
 // SetSystemupdateID sets the "systemupdate" edge to the SystemUpdate entity by ID.
-func (auo *AgentUpdateOne) SetSystemupdateID(id int) *AgentUpdateOne {
-	auo.mutation.SetSystemupdateID(id)
-	return auo
+func (_u *AgentUpdateOne) SetSystemupdateID(id int) *AgentUpdateOne {
+	_u.mutation.SetSystemupdateID(id)
+	return _u
 }
 
 // SetNillableSystemupdateID sets the "systemupdate" edge to the SystemUpdate entity by ID if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableSystemupdateID(id *int) *AgentUpdateOne {
+func (_u *AgentUpdateOne) SetNillableSystemupdateID(id *int) *AgentUpdateOne {
 	if id != nil {
-		auo = auo.SetSystemupdateID(*id)
+		_u = _u.SetSystemupdateID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetSystemupdate sets the "systemupdate" edge to the SystemUpdate entity.
-func (auo *AgentUpdateOne) SetSystemupdate(s *SystemUpdate) *AgentUpdateOne {
-	return auo.SetSystemupdateID(s.ID)
+func (_u *AgentUpdateOne) SetSystemupdate(v *SystemUpdate) *AgentUpdateOne {
+	return _u.SetSystemupdateID(v.ID)
 }
 
 // SetAntivirusID sets the "antivirus" edge to the Antivirus entity by ID.
-func (auo *AgentUpdateOne) SetAntivirusID(id int) *AgentUpdateOne {
-	auo.mutation.SetAntivirusID(id)
-	return auo
+func (_u *AgentUpdateOne) SetAntivirusID(id int) *AgentUpdateOne {
+	_u.mutation.SetAntivirusID(id)
+	return _u
 }
 
 // SetNillableAntivirusID sets the "antivirus" edge to the Antivirus entity by ID if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableAntivirusID(id *int) *AgentUpdateOne {
+func (_u *AgentUpdateOne) SetNillableAntivirusID(id *int) *AgentUpdateOne {
 	if id != nil {
-		auo = auo.SetAntivirusID(*id)
+		_u = _u.SetAntivirusID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetAntivirus sets the "antivirus" edge to the Antivirus entity.
-func (auo *AgentUpdateOne) SetAntivirus(a *Antivirus) *AgentUpdateOne {
-	return auo.SetAntivirusID(a.ID)
+func (_u *AgentUpdateOne) SetAntivirus(v *Antivirus) *AgentUpdateOne {
+	return _u.SetAntivirusID(v.ID)
 }
 
 // AddLogicaldiskIDs adds the "logicaldisks" edge to the LogicalDisk entity by IDs.
-func (auo *AgentUpdateOne) AddLogicaldiskIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddLogicaldiskIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddLogicaldiskIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddLogicaldiskIDs(ids...)
+	return _u
 }
 
 // AddLogicaldisks adds the "logicaldisks" edges to the LogicalDisk entity.
-func (auo *AgentUpdateOne) AddLogicaldisks(l ...*LogicalDisk) *AgentUpdateOne {
-	ids := make([]int, len(l))
-	for i := range l {
-		ids[i] = l[i].ID
+func (_u *AgentUpdateOne) AddLogicaldisks(v ...*LogicalDisk) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddLogicaldiskIDs(ids...)
+	return _u.AddLogicaldiskIDs(ids...)
 }
 
 // AddAppIDs adds the "apps" edge to the App entity by IDs.
-func (auo *AgentUpdateOne) AddAppIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddAppIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddAppIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddAppIDs(ids...)
+	return _u
 }
 
 // AddApps adds the "apps" edges to the App entity.
-func (auo *AgentUpdateOne) AddApps(a ...*App) *AgentUpdateOne {
-	ids := make([]int, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *AgentUpdateOne) AddApps(v ...*App) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddAppIDs(ids...)
+	return _u.AddAppIDs(ids...)
 }
 
 // AddMonitorIDs adds the "monitors" edge to the Monitor entity by IDs.
-func (auo *AgentUpdateOne) AddMonitorIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddMonitorIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddMonitorIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddMonitorIDs(ids...)
+	return _u
 }
 
 // AddMonitors adds the "monitors" edges to the Monitor entity.
-func (auo *AgentUpdateOne) AddMonitors(m ...*Monitor) *AgentUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdateOne) AddMonitors(v ...*Monitor) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddMonitorIDs(ids...)
+	return _u.AddMonitorIDs(ids...)
 }
 
 // AddShareIDs adds the "shares" edge to the Share entity by IDs.
-func (auo *AgentUpdateOne) AddShareIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddShareIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddShareIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddShareIDs(ids...)
+	return _u
 }
 
 // AddShares adds the "shares" edges to the Share entity.
-func (auo *AgentUpdateOne) AddShares(s ...*Share) *AgentUpdateOne {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdateOne) AddShares(v ...*Share) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddShareIDs(ids...)
+	return _u.AddShareIDs(ids...)
 }
 
 // AddPrinterIDs adds the "printers" edge to the Printer entity by IDs.
-func (auo *AgentUpdateOne) AddPrinterIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddPrinterIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddPrinterIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddPrinterIDs(ids...)
+	return _u
 }
 
 // AddPrinters adds the "printers" edges to the Printer entity.
-func (auo *AgentUpdateOne) AddPrinters(p ...*Printer) *AgentUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdateOne) AddPrinters(v ...*Printer) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddPrinterIDs(ids...)
+	return _u.AddPrinterIDs(ids...)
 }
 
 // AddNetworkadapterIDs adds the "networkadapters" edge to the NetworkAdapter entity by IDs.
-func (auo *AgentUpdateOne) AddNetworkadapterIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddNetworkadapterIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddNetworkadapterIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddNetworkadapterIDs(ids...)
+	return _u
 }
 
 // AddNetworkadapters adds the "networkadapters" edges to the NetworkAdapter entity.
-func (auo *AgentUpdateOne) AddNetworkadapters(n ...*NetworkAdapter) *AgentUpdateOne {
-	ids := make([]int, len(n))
-	for i := range n {
-		ids[i] = n[i].ID
+func (_u *AgentUpdateOne) AddNetworkadapters(v ...*NetworkAdapter) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddNetworkadapterIDs(ids...)
+	return _u.AddNetworkadapterIDs(ids...)
 }
 
 // AddDeploymentIDs adds the "deployments" edge to the Deployment entity by IDs.
-func (auo *AgentUpdateOne) AddDeploymentIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddDeploymentIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddDeploymentIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddDeploymentIDs(ids...)
+	return _u
 }
 
 // AddDeployments adds the "deployments" edges to the Deployment entity.
-func (auo *AgentUpdateOne) AddDeployments(d ...*Deployment) *AgentUpdateOne {
-	ids := make([]int, len(d))
-	for i := range d {
-		ids[i] = d[i].ID
+func (_u *AgentUpdateOne) AddDeployments(v ...*Deployment) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddDeploymentIDs(ids...)
+	return _u.AddDeploymentIDs(ids...)
 }
 
 // AddUpdateIDs adds the "updates" edge to the Update entity by IDs.
-func (auo *AgentUpdateOne) AddUpdateIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddUpdateIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddUpdateIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddUpdateIDs(ids...)
+	return _u
 }
 
 // AddUpdates adds the "updates" edges to the Update entity.
-func (auo *AgentUpdateOne) AddUpdates(u ...*Update) *AgentUpdateOne {
-	ids := make([]int, len(u))
-	for i := range u {
-		ids[i] = u[i].ID
+func (_u *AgentUpdateOne) AddUpdates(v ...*Update) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddUpdateIDs(ids...)
+	return _u.AddUpdateIDs(ids...)
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (auo *AgentUpdateOne) AddTagIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddTagIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddTagIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddTagIDs(ids...)
+	return _u
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (auo *AgentUpdateOne) AddTags(t ...*Tag) *AgentUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *AgentUpdateOne) AddTags(v ...*Tag) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddTagIDs(ids...)
+	return _u.AddTagIDs(ids...)
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the Metadata entity by IDs.
-func (auo *AgentUpdateOne) AddMetadatumIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddMetadatumIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddMetadatumIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddMetadatumIDs(ids...)
+	return _u
 }
 
 // AddMetadata adds the "metadata" edges to the Metadata entity.
-func (auo *AgentUpdateOne) AddMetadata(m ...*Metadata) *AgentUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdateOne) AddMetadata(v ...*Metadata) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddMetadatumIDs(ids...)
+	return _u.AddMetadatumIDs(ids...)
 }
 
 // AddWingetcfgexclusionIDs adds the "wingetcfgexclusions" edge to the WingetConfigExclusion entity by IDs.
-func (auo *AgentUpdateOne) AddWingetcfgexclusionIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddWingetcfgexclusionIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddWingetcfgexclusionIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddWingetcfgexclusionIDs(ids...)
+	return _u
 }
 
 // AddWingetcfgexclusions adds the "wingetcfgexclusions" edges to the WingetConfigExclusion entity.
-func (auo *AgentUpdateOne) AddWingetcfgexclusions(w ...*WingetConfigExclusion) *AgentUpdateOne {
-	ids := make([]int, len(w))
-	for i := range w {
-		ids[i] = w[i].ID
+func (_u *AgentUpdateOne) AddWingetcfgexclusions(v ...*WingetConfigExclusion) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddWingetcfgexclusionIDs(ids...)
+	return _u.AddWingetcfgexclusionIDs(ids...)
 }
 
 // AddMemoryslotIDs adds the "memoryslots" edge to the MemorySlot entity by IDs.
-func (auo *AgentUpdateOne) AddMemoryslotIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddMemoryslotIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddMemoryslotIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddMemoryslotIDs(ids...)
+	return _u
 }
 
 // AddMemoryslots adds the "memoryslots" edges to the MemorySlot entity.
-func (auo *AgentUpdateOne) AddMemoryslots(m ...*MemorySlot) *AgentUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdateOne) AddMemoryslots(v ...*MemorySlot) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddMemoryslotIDs(ids...)
+	return _u.AddMemoryslotIDs(ids...)
 }
 
 // SetReleaseID sets the "release" edge to the Release entity by ID.
-func (auo *AgentUpdateOne) SetReleaseID(id int) *AgentUpdateOne {
-	auo.mutation.SetReleaseID(id)
-	return auo
+func (_u *AgentUpdateOne) SetReleaseID(id int) *AgentUpdateOne {
+	_u.mutation.SetReleaseID(id)
+	return _u
 }
 
 // SetNillableReleaseID sets the "release" edge to the Release entity by ID if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableReleaseID(id *int) *AgentUpdateOne {
+func (_u *AgentUpdateOne) SetNillableReleaseID(id *int) *AgentUpdateOne {
 	if id != nil {
-		auo = auo.SetReleaseID(*id)
+		_u = _u.SetReleaseID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetRelease sets the "release" edge to the Release entity.
-func (auo *AgentUpdateOne) SetRelease(r *Release) *AgentUpdateOne {
-	return auo.SetReleaseID(r.ID)
+func (_u *AgentUpdateOne) SetRelease(v *Release) *AgentUpdateOne {
+	return _u.SetReleaseID(v.ID)
 }
 
 // AddProfileissueIDs adds the "profileissue" edge to the ProfileIssue entity by IDs.
-func (auo *AgentUpdateOne) AddProfileissueIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddProfileissueIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddProfileissueIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddProfileissueIDs(ids...)
+	return _u
 }
 
 // AddProfileissue adds the "profileissue" edges to the ProfileIssue entity.
-func (auo *AgentUpdateOne) AddProfileissue(p ...*ProfileIssue) *AgentUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdateOne) AddProfileissue(v ...*ProfileIssue) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddProfileissueIDs(ids...)
+	return _u.AddProfileissueIDs(ids...)
 }
 
 // AddSiteIDs adds the "site" edge to the Site entity by IDs.
-func (auo *AgentUpdateOne) AddSiteIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddSiteIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddSiteIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddSiteIDs(ids...)
+	return _u
 }
 
 // AddSite adds the "site" edges to the Site entity.
-func (auo *AgentUpdateOne) AddSite(s ...*Site) *AgentUpdateOne {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdateOne) AddSite(v ...*Site) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddSiteIDs(ids...)
+	return _u.AddSiteIDs(ids...)
 }
 
 // AddPhysicaldiskIDs adds the "physicaldisks" edge to the PhysicalDisk entity by IDs.
-func (auo *AgentUpdateOne) AddPhysicaldiskIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.AddPhysicaldiskIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) AddPhysicaldiskIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.AddPhysicaldiskIDs(ids...)
+	return _u
 }
 
 // AddPhysicaldisks adds the "physicaldisks" edges to the PhysicalDisk entity.
-func (auo *AgentUpdateOne) AddPhysicaldisks(p ...*PhysicalDisk) *AgentUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdateOne) AddPhysicaldisks(v ...*PhysicalDisk) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.AddPhysicaldiskIDs(ids...)
+	return _u.AddPhysicaldiskIDs(ids...)
 }
 
 // SetNetbirdID sets the "netbird" edge to the Netbird entity by ID.
-func (auo *AgentUpdateOne) SetNetbirdID(id int) *AgentUpdateOne {
-	auo.mutation.SetNetbirdID(id)
-	return auo
+func (_u *AgentUpdateOne) SetNetbirdID(id int) *AgentUpdateOne {
+	_u.mutation.SetNetbirdID(id)
+	return _u
 }
 
 // SetNillableNetbirdID sets the "netbird" edge to the Netbird entity by ID if the given value is not nil.
-func (auo *AgentUpdateOne) SetNillableNetbirdID(id *int) *AgentUpdateOne {
+func (_u *AgentUpdateOne) SetNillableNetbirdID(id *int) *AgentUpdateOne {
 	if id != nil {
-		auo = auo.SetNetbirdID(*id)
+		_u = _u.SetNetbirdID(*id)
 	}
-	return auo
+	return _u
 }
 
 // SetNetbird sets the "netbird" edge to the Netbird entity.
-func (auo *AgentUpdateOne) SetNetbird(n *Netbird) *AgentUpdateOne {
-	return auo.SetNetbirdID(n.ID)
+func (_u *AgentUpdateOne) SetNetbird(v *Netbird) *AgentUpdateOne {
+	return _u.SetNetbirdID(v.ID)
 }
 
 // Mutation returns the AgentMutation object of the builder.
-func (auo *AgentUpdateOne) Mutation() *AgentMutation {
-	return auo.mutation
+func (_u *AgentUpdateOne) Mutation() *AgentMutation {
+	return _u.mutation
 }
 
 // ClearComputer clears the "computer" edge to the Computer entity.
-func (auo *AgentUpdateOne) ClearComputer() *AgentUpdateOne {
-	auo.mutation.ClearComputer()
-	return auo
+func (_u *AgentUpdateOne) ClearComputer() *AgentUpdateOne {
+	_u.mutation.ClearComputer()
+	return _u
 }
 
 // ClearOperatingsystem clears the "operatingsystem" edge to the OperatingSystem entity.
-func (auo *AgentUpdateOne) ClearOperatingsystem() *AgentUpdateOne {
-	auo.mutation.ClearOperatingsystem()
-	return auo
+func (_u *AgentUpdateOne) ClearOperatingsystem() *AgentUpdateOne {
+	_u.mutation.ClearOperatingsystem()
+	return _u
 }
 
 // ClearSystemupdate clears the "systemupdate" edge to the SystemUpdate entity.
-func (auo *AgentUpdateOne) ClearSystemupdate() *AgentUpdateOne {
-	auo.mutation.ClearSystemupdate()
-	return auo
+func (_u *AgentUpdateOne) ClearSystemupdate() *AgentUpdateOne {
+	_u.mutation.ClearSystemupdate()
+	return _u
 }
 
 // ClearAntivirus clears the "antivirus" edge to the Antivirus entity.
-func (auo *AgentUpdateOne) ClearAntivirus() *AgentUpdateOne {
-	auo.mutation.ClearAntivirus()
-	return auo
+func (_u *AgentUpdateOne) ClearAntivirus() *AgentUpdateOne {
+	_u.mutation.ClearAntivirus()
+	return _u
 }
 
 // ClearLogicaldisks clears all "logicaldisks" edges to the LogicalDisk entity.
-func (auo *AgentUpdateOne) ClearLogicaldisks() *AgentUpdateOne {
-	auo.mutation.ClearLogicaldisks()
-	return auo
+func (_u *AgentUpdateOne) ClearLogicaldisks() *AgentUpdateOne {
+	_u.mutation.ClearLogicaldisks()
+	return _u
 }
 
 // RemoveLogicaldiskIDs removes the "logicaldisks" edge to LogicalDisk entities by IDs.
-func (auo *AgentUpdateOne) RemoveLogicaldiskIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveLogicaldiskIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveLogicaldiskIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveLogicaldiskIDs(ids...)
+	return _u
 }
 
 // RemoveLogicaldisks removes "logicaldisks" edges to LogicalDisk entities.
-func (auo *AgentUpdateOne) RemoveLogicaldisks(l ...*LogicalDisk) *AgentUpdateOne {
-	ids := make([]int, len(l))
-	for i := range l {
-		ids[i] = l[i].ID
+func (_u *AgentUpdateOne) RemoveLogicaldisks(v ...*LogicalDisk) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveLogicaldiskIDs(ids...)
+	return _u.RemoveLogicaldiskIDs(ids...)
 }
 
 // ClearApps clears all "apps" edges to the App entity.
-func (auo *AgentUpdateOne) ClearApps() *AgentUpdateOne {
-	auo.mutation.ClearApps()
-	return auo
+func (_u *AgentUpdateOne) ClearApps() *AgentUpdateOne {
+	_u.mutation.ClearApps()
+	return _u
 }
 
 // RemoveAppIDs removes the "apps" edge to App entities by IDs.
-func (auo *AgentUpdateOne) RemoveAppIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveAppIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveAppIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveAppIDs(ids...)
+	return _u
 }
 
 // RemoveApps removes "apps" edges to App entities.
-func (auo *AgentUpdateOne) RemoveApps(a ...*App) *AgentUpdateOne {
-	ids := make([]int, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *AgentUpdateOne) RemoveApps(v ...*App) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveAppIDs(ids...)
+	return _u.RemoveAppIDs(ids...)
 }
 
 // ClearMonitors clears all "monitors" edges to the Monitor entity.
-func (auo *AgentUpdateOne) ClearMonitors() *AgentUpdateOne {
-	auo.mutation.ClearMonitors()
-	return auo
+func (_u *AgentUpdateOne) ClearMonitors() *AgentUpdateOne {
+	_u.mutation.ClearMonitors()
+	return _u
 }
 
 // RemoveMonitorIDs removes the "monitors" edge to Monitor entities by IDs.
-func (auo *AgentUpdateOne) RemoveMonitorIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveMonitorIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveMonitorIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveMonitorIDs(ids...)
+	return _u
 }
 
 // RemoveMonitors removes "monitors" edges to Monitor entities.
-func (auo *AgentUpdateOne) RemoveMonitors(m ...*Monitor) *AgentUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdateOne) RemoveMonitors(v ...*Monitor) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveMonitorIDs(ids...)
+	return _u.RemoveMonitorIDs(ids...)
 }
 
 // ClearShares clears all "shares" edges to the Share entity.
-func (auo *AgentUpdateOne) ClearShares() *AgentUpdateOne {
-	auo.mutation.ClearShares()
-	return auo
+func (_u *AgentUpdateOne) ClearShares() *AgentUpdateOne {
+	_u.mutation.ClearShares()
+	return _u
 }
 
 // RemoveShareIDs removes the "shares" edge to Share entities by IDs.
-func (auo *AgentUpdateOne) RemoveShareIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveShareIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveShareIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveShareIDs(ids...)
+	return _u
 }
 
 // RemoveShares removes "shares" edges to Share entities.
-func (auo *AgentUpdateOne) RemoveShares(s ...*Share) *AgentUpdateOne {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdateOne) RemoveShares(v ...*Share) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveShareIDs(ids...)
+	return _u.RemoveShareIDs(ids...)
 }
 
 // ClearPrinters clears all "printers" edges to the Printer entity.
-func (auo *AgentUpdateOne) ClearPrinters() *AgentUpdateOne {
-	auo.mutation.ClearPrinters()
-	return auo
+func (_u *AgentUpdateOne) ClearPrinters() *AgentUpdateOne {
+	_u.mutation.ClearPrinters()
+	return _u
 }
 
 // RemovePrinterIDs removes the "printers" edge to Printer entities by IDs.
-func (auo *AgentUpdateOne) RemovePrinterIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemovePrinterIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemovePrinterIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemovePrinterIDs(ids...)
+	return _u
 }
 
 // RemovePrinters removes "printers" edges to Printer entities.
-func (auo *AgentUpdateOne) RemovePrinters(p ...*Printer) *AgentUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdateOne) RemovePrinters(v ...*Printer) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemovePrinterIDs(ids...)
+	return _u.RemovePrinterIDs(ids...)
 }
 
 // ClearNetworkadapters clears all "networkadapters" edges to the NetworkAdapter entity.
-func (auo *AgentUpdateOne) ClearNetworkadapters() *AgentUpdateOne {
-	auo.mutation.ClearNetworkadapters()
-	return auo
+func (_u *AgentUpdateOne) ClearNetworkadapters() *AgentUpdateOne {
+	_u.mutation.ClearNetworkadapters()
+	return _u
 }
 
 // RemoveNetworkadapterIDs removes the "networkadapters" edge to NetworkAdapter entities by IDs.
-func (auo *AgentUpdateOne) RemoveNetworkadapterIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveNetworkadapterIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveNetworkadapterIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveNetworkadapterIDs(ids...)
+	return _u
 }
 
 // RemoveNetworkadapters removes "networkadapters" edges to NetworkAdapter entities.
-func (auo *AgentUpdateOne) RemoveNetworkadapters(n ...*NetworkAdapter) *AgentUpdateOne {
-	ids := make([]int, len(n))
-	for i := range n {
-		ids[i] = n[i].ID
+func (_u *AgentUpdateOne) RemoveNetworkadapters(v ...*NetworkAdapter) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveNetworkadapterIDs(ids...)
+	return _u.RemoveNetworkadapterIDs(ids...)
 }
 
 // ClearDeployments clears all "deployments" edges to the Deployment entity.
-func (auo *AgentUpdateOne) ClearDeployments() *AgentUpdateOne {
-	auo.mutation.ClearDeployments()
-	return auo
+func (_u *AgentUpdateOne) ClearDeployments() *AgentUpdateOne {
+	_u.mutation.ClearDeployments()
+	return _u
 }
 
 // RemoveDeploymentIDs removes the "deployments" edge to Deployment entities by IDs.
-func (auo *AgentUpdateOne) RemoveDeploymentIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveDeploymentIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveDeploymentIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveDeploymentIDs(ids...)
+	return _u
 }
 
 // RemoveDeployments removes "deployments" edges to Deployment entities.
-func (auo *AgentUpdateOne) RemoveDeployments(d ...*Deployment) *AgentUpdateOne {
-	ids := make([]int, len(d))
-	for i := range d {
-		ids[i] = d[i].ID
+func (_u *AgentUpdateOne) RemoveDeployments(v ...*Deployment) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveDeploymentIDs(ids...)
+	return _u.RemoveDeploymentIDs(ids...)
 }
 
 // ClearUpdates clears all "updates" edges to the Update entity.
-func (auo *AgentUpdateOne) ClearUpdates() *AgentUpdateOne {
-	auo.mutation.ClearUpdates()
-	return auo
+func (_u *AgentUpdateOne) ClearUpdates() *AgentUpdateOne {
+	_u.mutation.ClearUpdates()
+	return _u
 }
 
 // RemoveUpdateIDs removes the "updates" edge to Update entities by IDs.
-func (auo *AgentUpdateOne) RemoveUpdateIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveUpdateIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveUpdateIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveUpdateIDs(ids...)
+	return _u
 }
 
 // RemoveUpdates removes "updates" edges to Update entities.
-func (auo *AgentUpdateOne) RemoveUpdates(u ...*Update) *AgentUpdateOne {
-	ids := make([]int, len(u))
-	for i := range u {
-		ids[i] = u[i].ID
+func (_u *AgentUpdateOne) RemoveUpdates(v ...*Update) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveUpdateIDs(ids...)
+	return _u.RemoveUpdateIDs(ids...)
 }
 
 // ClearTags clears all "tags" edges to the Tag entity.
-func (auo *AgentUpdateOne) ClearTags() *AgentUpdateOne {
-	auo.mutation.ClearTags()
-	return auo
+func (_u *AgentUpdateOne) ClearTags() *AgentUpdateOne {
+	_u.mutation.ClearTags()
+	return _u
 }
 
 // RemoveTagIDs removes the "tags" edge to Tag entities by IDs.
-func (auo *AgentUpdateOne) RemoveTagIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveTagIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveTagIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveTagIDs(ids...)
+	return _u
 }
 
 // RemoveTags removes "tags" edges to Tag entities.
-func (auo *AgentUpdateOne) RemoveTags(t ...*Tag) *AgentUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *AgentUpdateOne) RemoveTags(v ...*Tag) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveTagIDs(ids...)
+	return _u.RemoveTagIDs(ids...)
 }
 
 // ClearMetadata clears all "metadata" edges to the Metadata entity.
-func (auo *AgentUpdateOne) ClearMetadata() *AgentUpdateOne {
-	auo.mutation.ClearMetadata()
-	return auo
+func (_u *AgentUpdateOne) ClearMetadata() *AgentUpdateOne {
+	_u.mutation.ClearMetadata()
+	return _u
 }
 
 // RemoveMetadatumIDs removes the "metadata" edge to Metadata entities by IDs.
-func (auo *AgentUpdateOne) RemoveMetadatumIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveMetadatumIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveMetadatumIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveMetadatumIDs(ids...)
+	return _u
 }
 
 // RemoveMetadata removes "metadata" edges to Metadata entities.
-func (auo *AgentUpdateOne) RemoveMetadata(m ...*Metadata) *AgentUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdateOne) RemoveMetadata(v ...*Metadata) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveMetadatumIDs(ids...)
+	return _u.RemoveMetadatumIDs(ids...)
 }
 
 // ClearWingetcfgexclusions clears all "wingetcfgexclusions" edges to the WingetConfigExclusion entity.
-func (auo *AgentUpdateOne) ClearWingetcfgexclusions() *AgentUpdateOne {
-	auo.mutation.ClearWingetcfgexclusions()
-	return auo
+func (_u *AgentUpdateOne) ClearWingetcfgexclusions() *AgentUpdateOne {
+	_u.mutation.ClearWingetcfgexclusions()
+	return _u
 }
 
 // RemoveWingetcfgexclusionIDs removes the "wingetcfgexclusions" edge to WingetConfigExclusion entities by IDs.
-func (auo *AgentUpdateOne) RemoveWingetcfgexclusionIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveWingetcfgexclusionIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveWingetcfgexclusionIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveWingetcfgexclusionIDs(ids...)
+	return _u
 }
 
 // RemoveWingetcfgexclusions removes "wingetcfgexclusions" edges to WingetConfigExclusion entities.
-func (auo *AgentUpdateOne) RemoveWingetcfgexclusions(w ...*WingetConfigExclusion) *AgentUpdateOne {
-	ids := make([]int, len(w))
-	for i := range w {
-		ids[i] = w[i].ID
+func (_u *AgentUpdateOne) RemoveWingetcfgexclusions(v ...*WingetConfigExclusion) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveWingetcfgexclusionIDs(ids...)
+	return _u.RemoveWingetcfgexclusionIDs(ids...)
 }
 
 // ClearMemoryslots clears all "memoryslots" edges to the MemorySlot entity.
-func (auo *AgentUpdateOne) ClearMemoryslots() *AgentUpdateOne {
-	auo.mutation.ClearMemoryslots()
-	return auo
+func (_u *AgentUpdateOne) ClearMemoryslots() *AgentUpdateOne {
+	_u.mutation.ClearMemoryslots()
+	return _u
 }
 
 // RemoveMemoryslotIDs removes the "memoryslots" edge to MemorySlot entities by IDs.
-func (auo *AgentUpdateOne) RemoveMemoryslotIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveMemoryslotIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveMemoryslotIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveMemoryslotIDs(ids...)
+	return _u
 }
 
 // RemoveMemoryslots removes "memoryslots" edges to MemorySlot entities.
-func (auo *AgentUpdateOne) RemoveMemoryslots(m ...*MemorySlot) *AgentUpdateOne {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_u *AgentUpdateOne) RemoveMemoryslots(v ...*MemorySlot) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveMemoryslotIDs(ids...)
+	return _u.RemoveMemoryslotIDs(ids...)
 }
 
 // ClearRelease clears the "release" edge to the Release entity.
-func (auo *AgentUpdateOne) ClearRelease() *AgentUpdateOne {
-	auo.mutation.ClearRelease()
-	return auo
+func (_u *AgentUpdateOne) ClearRelease() *AgentUpdateOne {
+	_u.mutation.ClearRelease()
+	return _u
 }
 
 // ClearProfileissue clears all "profileissue" edges to the ProfileIssue entity.
-func (auo *AgentUpdateOne) ClearProfileissue() *AgentUpdateOne {
-	auo.mutation.ClearProfileissue()
-	return auo
+func (_u *AgentUpdateOne) ClearProfileissue() *AgentUpdateOne {
+	_u.mutation.ClearProfileissue()
+	return _u
 }
 
 // RemoveProfileissueIDs removes the "profileissue" edge to ProfileIssue entities by IDs.
-func (auo *AgentUpdateOne) RemoveProfileissueIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveProfileissueIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveProfileissueIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveProfileissueIDs(ids...)
+	return _u
 }
 
 // RemoveProfileissue removes "profileissue" edges to ProfileIssue entities.
-func (auo *AgentUpdateOne) RemoveProfileissue(p ...*ProfileIssue) *AgentUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdateOne) RemoveProfileissue(v ...*ProfileIssue) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveProfileissueIDs(ids...)
+	return _u.RemoveProfileissueIDs(ids...)
 }
 
 // ClearSite clears all "site" edges to the Site entity.
-func (auo *AgentUpdateOne) ClearSite() *AgentUpdateOne {
-	auo.mutation.ClearSite()
-	return auo
+func (_u *AgentUpdateOne) ClearSite() *AgentUpdateOne {
+	_u.mutation.ClearSite()
+	return _u
 }
 
 // RemoveSiteIDs removes the "site" edge to Site entities by IDs.
-func (auo *AgentUpdateOne) RemoveSiteIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemoveSiteIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemoveSiteIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemoveSiteIDs(ids...)
+	return _u
 }
 
 // RemoveSite removes "site" edges to Site entities.
-func (auo *AgentUpdateOne) RemoveSite(s ...*Site) *AgentUpdateOne {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_u *AgentUpdateOne) RemoveSite(v ...*Site) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemoveSiteIDs(ids...)
+	return _u.RemoveSiteIDs(ids...)
 }
 
 // ClearPhysicaldisks clears all "physicaldisks" edges to the PhysicalDisk entity.
-func (auo *AgentUpdateOne) ClearPhysicaldisks() *AgentUpdateOne {
-	auo.mutation.ClearPhysicaldisks()
-	return auo
+func (_u *AgentUpdateOne) ClearPhysicaldisks() *AgentUpdateOne {
+	_u.mutation.ClearPhysicaldisks()
+	return _u
 }
 
 // RemovePhysicaldiskIDs removes the "physicaldisks" edge to PhysicalDisk entities by IDs.
-func (auo *AgentUpdateOne) RemovePhysicaldiskIDs(ids ...int) *AgentUpdateOne {
-	auo.mutation.RemovePhysicaldiskIDs(ids...)
-	return auo
+func (_u *AgentUpdateOne) RemovePhysicaldiskIDs(ids ...int) *AgentUpdateOne {
+	_u.mutation.RemovePhysicaldiskIDs(ids...)
+	return _u
 }
 
 // RemovePhysicaldisks removes "physicaldisks" edges to PhysicalDisk entities.
-func (auo *AgentUpdateOne) RemovePhysicaldisks(p ...*PhysicalDisk) *AgentUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *AgentUpdateOne) RemovePhysicaldisks(v ...*PhysicalDisk) *AgentUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return auo.RemovePhysicaldiskIDs(ids...)
+	return _u.RemovePhysicaldiskIDs(ids...)
 }
 
 // ClearNetbird clears the "netbird" edge to the Netbird entity.
-func (auo *AgentUpdateOne) ClearNetbird() *AgentUpdateOne {
-	auo.mutation.ClearNetbird()
-	return auo
+func (_u *AgentUpdateOne) ClearNetbird() *AgentUpdateOne {
+	_u.mutation.ClearNetbird()
+	return _u
 }
 
 // Where appends a list predicates to the AgentUpdate builder.
-func (auo *AgentUpdateOne) Where(ps ...predicate.Agent) *AgentUpdateOne {
-	auo.mutation.Where(ps...)
-	return auo
+func (_u *AgentUpdateOne) Where(ps ...predicate.Agent) *AgentUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (auo *AgentUpdateOne) Select(field string, fields ...string) *AgentUpdateOne {
-	auo.fields = append([]string{field}, fields...)
-	return auo
+func (_u *AgentUpdateOne) Select(field string, fields ...string) *AgentUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Agent entity.
-func (auo *AgentUpdateOne) Save(ctx context.Context) (*Agent, error) {
-	return withHooks(ctx, auo.sqlSave, auo.mutation, auo.hooks)
+func (_u *AgentUpdateOne) Save(ctx context.Context) (*Agent, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (auo *AgentUpdateOne) SaveX(ctx context.Context) *Agent {
-	node, err := auo.Save(ctx)
+func (_u *AgentUpdateOne) SaveX(ctx context.Context) *Agent {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -3714,36 +3714,36 @@ func (auo *AgentUpdateOne) SaveX(ctx context.Context) *Agent {
 }
 
 // Exec executes the query on the entity.
-func (auo *AgentUpdateOne) Exec(ctx context.Context) error {
-	_, err := auo.Save(ctx)
+func (_u *AgentUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (auo *AgentUpdateOne) ExecX(ctx context.Context) {
-	if err := auo.Exec(ctx); err != nil {
+func (_u *AgentUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (auo *AgentUpdateOne) check() error {
-	if v, ok := auo.mutation.Os(); ok {
+func (_u *AgentUpdateOne) check() error {
+	if v, ok := _u.mutation.Os(); ok {
 		if err := agent.OsValidator(v); err != nil {
 			return &ValidationError{Name: "os", err: fmt.Errorf(`ent: validator failed for field "Agent.os": %w`, err)}
 		}
 	}
-	if v, ok := auo.mutation.Hostname(); ok {
+	if v, ok := _u.mutation.Hostname(); ok {
 		if err := agent.HostnameValidator(v); err != nil {
 			return &ValidationError{Name: "hostname", err: fmt.Errorf(`ent: validator failed for field "Agent.hostname": %w`, err)}
 		}
 	}
-	if v, ok := auo.mutation.AgentStatus(); ok {
+	if v, ok := _u.mutation.AgentStatus(); ok {
 		if err := agent.AgentStatusValidator(v); err != nil {
 			return &ValidationError{Name: "agent_status", err: fmt.Errorf(`ent: validator failed for field "Agent.agent_status": %w`, err)}
 		}
 	}
-	if v, ok := auo.mutation.EndpointType(); ok {
+	if v, ok := _u.mutation.EndpointType(); ok {
 		if err := agent.EndpointTypeValidator(v); err != nil {
 			return &ValidationError{Name: "endpoint_type", err: fmt.Errorf(`ent: validator failed for field "Agent.endpoint_type": %w`, err)}
 		}
@@ -3752,22 +3752,22 @@ func (auo *AgentUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (auo *AgentUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AgentUpdateOne {
-	auo.modifiers = append(auo.modifiers, modifiers...)
-	return auo
+func (_u *AgentUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AgentUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error) {
-	if err := auo.check(); err != nil {
+func (_u *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(agent.Table, agent.Columns, sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString))
-	id, ok := auo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Agent.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := auo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, agent.FieldID)
 		for _, f := range fields {
@@ -3779,179 +3779,179 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 			}
 		}
 	}
-	if ps := auo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := auo.mutation.Os(); ok {
+	if value, ok := _u.mutation.Os(); ok {
 		_spec.SetField(agent.FieldOs, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.Hostname(); ok {
+	if value, ok := _u.mutation.Hostname(); ok {
 		_spec.SetField(agent.FieldHostname, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.IP(); ok {
+	if value, ok := _u.mutation.IP(); ok {
 		_spec.SetField(agent.FieldIP, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.MAC(); ok {
+	if value, ok := _u.mutation.MAC(); ok {
 		_spec.SetField(agent.FieldMAC, field.TypeString, value)
 	}
-	if value, ok := auo.mutation.FirstContact(); ok {
+	if value, ok := _u.mutation.FirstContact(); ok {
 		_spec.SetField(agent.FieldFirstContact, field.TypeTime, value)
 	}
-	if auo.mutation.FirstContactCleared() {
+	if _u.mutation.FirstContactCleared() {
 		_spec.ClearField(agent.FieldFirstContact, field.TypeTime)
 	}
-	if value, ok := auo.mutation.LastContact(); ok {
+	if value, ok := _u.mutation.LastContact(); ok {
 		_spec.SetField(agent.FieldLastContact, field.TypeTime, value)
 	}
-	if auo.mutation.LastContactCleared() {
+	if _u.mutation.LastContactCleared() {
 		_spec.ClearField(agent.FieldLastContact, field.TypeTime)
 	}
-	if value, ok := auo.mutation.Vnc(); ok {
+	if value, ok := _u.mutation.Vnc(); ok {
 		_spec.SetField(agent.FieldVnc, field.TypeString, value)
 	}
-	if auo.mutation.VncCleared() {
+	if _u.mutation.VncCleared() {
 		_spec.ClearField(agent.FieldVnc, field.TypeString)
 	}
-	if value, ok := auo.mutation.Notes(); ok {
+	if value, ok := _u.mutation.Notes(); ok {
 		_spec.SetField(agent.FieldNotes, field.TypeString, value)
 	}
-	if auo.mutation.NotesCleared() {
+	if _u.mutation.NotesCleared() {
 		_spec.ClearField(agent.FieldNotes, field.TypeString)
 	}
-	if value, ok := auo.mutation.UpdateTaskStatus(); ok {
+	if value, ok := _u.mutation.UpdateTaskStatus(); ok {
 		_spec.SetField(agent.FieldUpdateTaskStatus, field.TypeString, value)
 	}
-	if auo.mutation.UpdateTaskStatusCleared() {
+	if _u.mutation.UpdateTaskStatusCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskStatus, field.TypeString)
 	}
-	if value, ok := auo.mutation.UpdateTaskDescription(); ok {
+	if value, ok := _u.mutation.UpdateTaskDescription(); ok {
 		_spec.SetField(agent.FieldUpdateTaskDescription, field.TypeString, value)
 	}
-	if auo.mutation.UpdateTaskDescriptionCleared() {
+	if _u.mutation.UpdateTaskDescriptionCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskDescription, field.TypeString)
 	}
-	if value, ok := auo.mutation.UpdateTaskResult(); ok {
+	if value, ok := _u.mutation.UpdateTaskResult(); ok {
 		_spec.SetField(agent.FieldUpdateTaskResult, field.TypeString, value)
 	}
-	if auo.mutation.UpdateTaskResultCleared() {
+	if _u.mutation.UpdateTaskResultCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskResult, field.TypeString)
 	}
-	if value, ok := auo.mutation.UpdateTaskExecution(); ok {
+	if value, ok := _u.mutation.UpdateTaskExecution(); ok {
 		_spec.SetField(agent.FieldUpdateTaskExecution, field.TypeTime, value)
 	}
-	if auo.mutation.UpdateTaskExecutionCleared() {
+	if _u.mutation.UpdateTaskExecutionCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskExecution, field.TypeTime)
 	}
-	if value, ok := auo.mutation.UpdateTaskVersion(); ok {
+	if value, ok := _u.mutation.UpdateTaskVersion(); ok {
 		_spec.SetField(agent.FieldUpdateTaskVersion, field.TypeString, value)
 	}
-	if auo.mutation.UpdateTaskVersionCleared() {
+	if _u.mutation.UpdateTaskVersionCleared() {
 		_spec.ClearField(agent.FieldUpdateTaskVersion, field.TypeString)
 	}
-	if value, ok := auo.mutation.VncProxyPort(); ok {
+	if value, ok := _u.mutation.VncProxyPort(); ok {
 		_spec.SetField(agent.FieldVncProxyPort, field.TypeString, value)
 	}
-	if auo.mutation.VncProxyPortCleared() {
+	if _u.mutation.VncProxyPortCleared() {
 		_spec.ClearField(agent.FieldVncProxyPort, field.TypeString)
 	}
-	if value, ok := auo.mutation.SftpPort(); ok {
+	if value, ok := _u.mutation.SftpPort(); ok {
 		_spec.SetField(agent.FieldSftpPort, field.TypeString, value)
 	}
-	if auo.mutation.SftpPortCleared() {
+	if _u.mutation.SftpPortCleared() {
 		_spec.ClearField(agent.FieldSftpPort, field.TypeString)
 	}
-	if value, ok := auo.mutation.AgentStatus(); ok {
+	if value, ok := _u.mutation.AgentStatus(); ok {
 		_spec.SetField(agent.FieldAgentStatus, field.TypeEnum, value)
 	}
-	if auo.mutation.AgentStatusCleared() {
+	if _u.mutation.AgentStatusCleared() {
 		_spec.ClearField(agent.FieldAgentStatus, field.TypeEnum)
 	}
-	if value, ok := auo.mutation.CertificateReady(); ok {
+	if value, ok := _u.mutation.CertificateReady(); ok {
 		_spec.SetField(agent.FieldCertificateReady, field.TypeBool, value)
 	}
-	if auo.mutation.CertificateReadyCleared() {
+	if _u.mutation.CertificateReadyCleared() {
 		_spec.ClearField(agent.FieldCertificateReady, field.TypeBool)
 	}
-	if value, ok := auo.mutation.RestartRequired(); ok {
+	if value, ok := _u.mutation.RestartRequired(); ok {
 		_spec.SetField(agent.FieldRestartRequired, field.TypeBool, value)
 	}
-	if auo.mutation.RestartRequiredCleared() {
+	if _u.mutation.RestartRequiredCleared() {
 		_spec.ClearField(agent.FieldRestartRequired, field.TypeBool)
 	}
-	if value, ok := auo.mutation.IsRemote(); ok {
+	if value, ok := _u.mutation.IsRemote(); ok {
 		_spec.SetField(agent.FieldIsRemote, field.TypeBool, value)
 	}
-	if auo.mutation.IsRemoteCleared() {
+	if _u.mutation.IsRemoteCleared() {
 		_spec.ClearField(agent.FieldIsRemote, field.TypeBool)
 	}
-	if value, ok := auo.mutation.DebugMode(); ok {
+	if value, ok := _u.mutation.DebugMode(); ok {
 		_spec.SetField(agent.FieldDebugMode, field.TypeBool, value)
 	}
-	if auo.mutation.DebugModeCleared() {
+	if _u.mutation.DebugModeCleared() {
 		_spec.ClearField(agent.FieldDebugMode, field.TypeBool)
 	}
-	if value, ok := auo.mutation.SftpService(); ok {
+	if value, ok := _u.mutation.SftpService(); ok {
 		_spec.SetField(agent.FieldSftpService, field.TypeBool, value)
 	}
-	if auo.mutation.SftpServiceCleared() {
+	if _u.mutation.SftpServiceCleared() {
 		_spec.ClearField(agent.FieldSftpService, field.TypeBool)
 	}
-	if value, ok := auo.mutation.RemoteAssistance(); ok {
+	if value, ok := _u.mutation.RemoteAssistance(); ok {
 		_spec.SetField(agent.FieldRemoteAssistance, field.TypeBool, value)
 	}
-	if auo.mutation.RemoteAssistanceCleared() {
+	if _u.mutation.RemoteAssistanceCleared() {
 		_spec.ClearField(agent.FieldRemoteAssistance, field.TypeBool)
 	}
-	if value, ok := auo.mutation.SettingsModified(); ok {
+	if value, ok := _u.mutation.SettingsModified(); ok {
 		_spec.SetField(agent.FieldSettingsModified, field.TypeTime, value)
 	}
-	if auo.mutation.SettingsModifiedCleared() {
+	if _u.mutation.SettingsModifiedCleared() {
 		_spec.ClearField(agent.FieldSettingsModified, field.TypeTime)
 	}
-	if value, ok := auo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(agent.FieldDescription, field.TypeString, value)
 	}
-	if auo.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(agent.FieldDescription, field.TypeString)
 	}
-	if value, ok := auo.mutation.Nickname(); ok {
+	if value, ok := _u.mutation.Nickname(); ok {
 		_spec.SetField(agent.FieldNickname, field.TypeString, value)
 	}
-	if auo.mutation.NicknameCleared() {
+	if _u.mutation.NicknameCleared() {
 		_spec.ClearField(agent.FieldNickname, field.TypeString)
 	}
-	if value, ok := auo.mutation.EndpointType(); ok {
+	if value, ok := _u.mutation.EndpointType(); ok {
 		_spec.SetField(agent.FieldEndpointType, field.TypeEnum, value)
 	}
-	if auo.mutation.EndpointTypeCleared() {
+	if _u.mutation.EndpointTypeCleared() {
 		_spec.ClearField(agent.FieldEndpointType, field.TypeEnum)
 	}
-	if value, ok := auo.mutation.HasRustdesk(); ok {
+	if value, ok := _u.mutation.HasRustdesk(); ok {
 		_spec.SetField(agent.FieldHasRustdesk, field.TypeBool, value)
 	}
-	if auo.mutation.HasRustdeskCleared() {
+	if _u.mutation.HasRustdeskCleared() {
 		_spec.ClearField(agent.FieldHasRustdesk, field.TypeBool)
 	}
-	if value, ok := auo.mutation.IsWayland(); ok {
+	if value, ok := _u.mutation.IsWayland(); ok {
 		_spec.SetField(agent.FieldIsWayland, field.TypeBool, value)
 	}
-	if auo.mutation.IsWaylandCleared() {
+	if _u.mutation.IsWaylandCleared() {
 		_spec.ClearField(agent.FieldIsWayland, field.TypeBool)
 	}
-	if value, ok := auo.mutation.IsFlatpakRustdesk(); ok {
+	if value, ok := _u.mutation.IsFlatpakRustdesk(); ok {
 		_spec.SetField(agent.FieldIsFlatpakRustdesk, field.TypeBool, value)
 	}
-	if auo.mutation.IsFlatpakRustdeskCleared() {
+	if _u.mutation.IsFlatpakRustdeskCleared() {
 		_spec.ClearField(agent.FieldIsFlatpakRustdesk, field.TypeBool)
 	}
-	if value, ok := auo.mutation.Wan(); ok {
+	if value, ok := _u.mutation.Wan(); ok {
 		_spec.SetField(agent.FieldWan, field.TypeString, value)
 	}
-	if auo.mutation.ComputerCleared() {
+	if _u.mutation.ComputerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -3964,7 +3964,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.ComputerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ComputerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -3980,7 +3980,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.OperatingsystemCleared() {
+	if _u.mutation.OperatingsystemCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -3993,7 +3993,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.OperatingsystemIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OperatingsystemIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4009,7 +4009,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.SystemupdateCleared() {
+	if _u.mutation.SystemupdateCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4022,7 +4022,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.SystemupdateIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SystemupdateIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4038,7 +4038,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.AntivirusCleared() {
+	if _u.mutation.AntivirusCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4051,7 +4051,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.AntivirusIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AntivirusIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4067,7 +4067,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.LogicaldisksCleared() {
+	if _u.mutation.LogicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4080,23 +4080,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedLogicaldisksIDs(); len(nodes) > 0 && !auo.mutation.LogicaldisksCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.LogicaldisksTable,
-			Columns: []string{agent.LogicaldisksColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.LogicaldisksIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedLogicaldisksIDs(); len(nodes) > 0 && !_u.mutation.LogicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4110,9 +4094,25 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.LogicaldisksIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.LogicaldisksTable,
+			Columns: []string{agent.LogicaldisksColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.AppsCleared() {
+	if _u.mutation.AppsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4125,7 +4125,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedAppsIDs(); len(nodes) > 0 && !auo.mutation.AppsCleared() {
+	if nodes := _u.mutation.RemovedAppsIDs(); len(nodes) > 0 && !_u.mutation.AppsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4141,7 +4141,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.AppsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AppsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4157,7 +4157,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.MonitorsCleared() {
+	if _u.mutation.MonitorsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4170,23 +4170,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedMonitorsIDs(); len(nodes) > 0 && !auo.mutation.MonitorsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.MonitorsTable,
-			Columns: []string{agent.MonitorsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.MonitorsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedMonitorsIDs(); len(nodes) > 0 && !_u.mutation.MonitorsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4200,9 +4184,25 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.MonitorsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.MonitorsTable,
+			Columns: []string{agent.MonitorsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.SharesCleared() {
+	if _u.mutation.SharesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4215,7 +4215,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedSharesIDs(); len(nodes) > 0 && !auo.mutation.SharesCleared() {
+	if nodes := _u.mutation.RemovedSharesIDs(); len(nodes) > 0 && !_u.mutation.SharesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4231,7 +4231,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.SharesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SharesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4247,7 +4247,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.PrintersCleared() {
+	if _u.mutation.PrintersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4260,23 +4260,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedPrintersIDs(); len(nodes) > 0 && !auo.mutation.PrintersCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.PrintersTable,
-			Columns: []string{agent.PrintersColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.PrintersIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedPrintersIDs(); len(nodes) > 0 && !_u.mutation.PrintersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4290,9 +4274,25 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.PrintersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PrintersTable,
+			Columns: []string{agent.PrintersColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.NetworkadaptersCleared() {
+	if _u.mutation.NetworkadaptersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4305,7 +4305,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedNetworkadaptersIDs(); len(nodes) > 0 && !auo.mutation.NetworkadaptersCleared() {
+	if nodes := _u.mutation.RemovedNetworkadaptersIDs(); len(nodes) > 0 && !_u.mutation.NetworkadaptersCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4321,7 +4321,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.NetworkadaptersIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.NetworkadaptersIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4337,7 +4337,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.DeploymentsCleared() {
+	if _u.mutation.DeploymentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4350,23 +4350,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedDeploymentsIDs(); len(nodes) > 0 && !auo.mutation.DeploymentsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.O2M,
-			Inverse: false,
-			Table:   agent.DeploymentsTable,
-			Columns: []string{agent.DeploymentsColumn},
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.DeploymentsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedDeploymentsIDs(); len(nodes) > 0 && !_u.mutation.DeploymentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4380,9 +4364,25 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.DeploymentsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.DeploymentsTable,
+			Columns: []string{agent.DeploymentsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(deployment.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.UpdatesCleared() {
+	if _u.mutation.UpdatesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4395,7 +4395,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedUpdatesIDs(); len(nodes) > 0 && !auo.mutation.UpdatesCleared() {
+	if nodes := _u.mutation.RemovedUpdatesIDs(); len(nodes) > 0 && !_u.mutation.UpdatesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4411,7 +4411,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.UpdatesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.UpdatesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4427,7 +4427,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.TagsCleared() {
+	if _u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -4440,23 +4440,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedTagsIDs(); len(nodes) > 0 && !auo.mutation.TagsCleared() {
-		edge := &sqlgraph.EdgeSpec{
-			Rel:     sqlgraph.M2M,
-			Inverse: false,
-			Table:   agent.TagsTable,
-			Columns: agent.TagsPrimaryKey,
-			Bidi:    false,
-			Target: &sqlgraph.EdgeTarget{
-				IDSpec: sqlgraph.NewFieldSpec(tag.FieldID, field.TypeInt),
-			},
-		}
-		for _, k := range nodes {
-			edge.Target.Nodes = append(edge.Target.Nodes, k)
-		}
-		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
-	}
-	if nodes := auo.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.RemovedTagsIDs(); len(nodes) > 0 && !_u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -4470,9 +4454,25 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		for _, k := range nodes {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := _u.mutation.TagsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   agent.TagsTable,
+			Columns: agent.TagsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tag.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.MetadataCleared() {
+	if _u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4485,7 +4485,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !auo.mutation.MetadataCleared() {
+	if nodes := _u.mutation.RemovedMetadataIDs(); len(nodes) > 0 && !_u.mutation.MetadataCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4501,7 +4501,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4517,7 +4517,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.WingetcfgexclusionsCleared() {
+	if _u.mutation.WingetcfgexclusionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4530,7 +4530,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedWingetcfgexclusionsIDs(); len(nodes) > 0 && !auo.mutation.WingetcfgexclusionsCleared() {
+	if nodes := _u.mutation.RemovedWingetcfgexclusionsIDs(); len(nodes) > 0 && !_u.mutation.WingetcfgexclusionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4546,7 +4546,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.WingetcfgexclusionsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.WingetcfgexclusionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4562,7 +4562,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.MemoryslotsCleared() {
+	if _u.mutation.MemoryslotsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4575,7 +4575,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedMemoryslotsIDs(); len(nodes) > 0 && !auo.mutation.MemoryslotsCleared() {
+	if nodes := _u.mutation.RemovedMemoryslotsIDs(); len(nodes) > 0 && !_u.mutation.MemoryslotsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4591,7 +4591,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.MemoryslotsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.MemoryslotsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4607,7 +4607,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.ReleaseCleared() {
+	if _u.mutation.ReleaseCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -4620,7 +4620,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.ReleaseIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ReleaseIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -4636,7 +4636,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.ProfileissueCleared() {
+	if _u.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -4649,7 +4649,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedProfileissueIDs(); len(nodes) > 0 && !auo.mutation.ProfileissueCleared() {
+	if nodes := _u.mutation.RemovedProfileissueIDs(); len(nodes) > 0 && !_u.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -4665,7 +4665,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.ProfileissueIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -4681,7 +4681,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.SiteCleared() {
+	if _u.mutation.SiteCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -4694,7 +4694,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedSiteIDs(); len(nodes) > 0 && !auo.mutation.SiteCleared() {
+	if nodes := _u.mutation.RemovedSiteIDs(); len(nodes) > 0 && !_u.mutation.SiteCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -4710,7 +4710,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.SiteIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.SiteIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: true,
@@ -4726,7 +4726,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.PhysicaldisksCleared() {
+	if _u.mutation.PhysicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4739,7 +4739,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.RemovedPhysicaldisksIDs(); len(nodes) > 0 && !auo.mutation.PhysicaldisksCleared() {
+	if nodes := _u.mutation.RemovedPhysicaldisksIDs(); len(nodes) > 0 && !_u.mutation.PhysicaldisksCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4755,7 +4755,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.PhysicaldisksIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.PhysicaldisksIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -4771,7 +4771,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if auo.mutation.NetbirdCleared() {
+	if _u.mutation.NetbirdCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4784,7 +4784,7 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := auo.mutation.NetbirdIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.NetbirdIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -4800,11 +4800,11 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(auo.modifiers...)
-	_node = &Agent{config: auo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Agent{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, auo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{agent.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -4812,6 +4812,6 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 		}
 		return nil, err
 	}
-	auo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -27,1944 +27,1944 @@ type TaskUpdate struct {
 }
 
 // Where appends a list predicates to the TaskUpdate builder.
-func (tu *TaskUpdate) Where(ps ...predicate.Task) *TaskUpdate {
-	tu.mutation.Where(ps...)
-	return tu
+func (_u *TaskUpdate) Where(ps ...predicate.Task) *TaskUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (tu *TaskUpdate) SetName(s string) *TaskUpdate {
-	tu.mutation.SetName(s)
-	return tu
+func (_u *TaskUpdate) SetName(v string) *TaskUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableName(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetName(*s)
+func (_u *TaskUpdate) SetNillableName(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return tu
+	return _u
 }
 
 // SetType sets the "type" field.
-func (tu *TaskUpdate) SetType(t task.Type) *TaskUpdate {
-	tu.mutation.SetType(t)
-	return tu
+func (_u *TaskUpdate) SetType(v task.Type) *TaskUpdate {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableType(t *task.Type) *TaskUpdate {
-	if t != nil {
-		tu.SetType(*t)
+func (_u *TaskUpdate) SetNillableType(v *task.Type) *TaskUpdate {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return tu
+	return _u
 }
 
 // SetPackageID sets the "package_id" field.
-func (tu *TaskUpdate) SetPackageID(s string) *TaskUpdate {
-	tu.mutation.SetPackageID(s)
-	return tu
+func (_u *TaskUpdate) SetPackageID(v string) *TaskUpdate {
+	_u.mutation.SetPackageID(v)
+	return _u
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillablePackageID(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetPackageID(*s)
+func (_u *TaskUpdate) SetNillablePackageID(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetPackageID(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearPackageID clears the value of the "package_id" field.
-func (tu *TaskUpdate) ClearPackageID() *TaskUpdate {
-	tu.mutation.ClearPackageID()
-	return tu
+func (_u *TaskUpdate) ClearPackageID() *TaskUpdate {
+	_u.mutation.ClearPackageID()
+	return _u
 }
 
 // SetPackageName sets the "package_name" field.
-func (tu *TaskUpdate) SetPackageName(s string) *TaskUpdate {
-	tu.mutation.SetPackageName(s)
-	return tu
+func (_u *TaskUpdate) SetPackageName(v string) *TaskUpdate {
+	_u.mutation.SetPackageName(v)
+	return _u
 }
 
 // SetNillablePackageName sets the "package_name" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillablePackageName(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetPackageName(*s)
+func (_u *TaskUpdate) SetNillablePackageName(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetPackageName(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearPackageName clears the value of the "package_name" field.
-func (tu *TaskUpdate) ClearPackageName() *TaskUpdate {
-	tu.mutation.ClearPackageName()
-	return tu
+func (_u *TaskUpdate) ClearPackageName() *TaskUpdate {
+	_u.mutation.ClearPackageName()
+	return _u
 }
 
 // SetPackageLatest sets the "package_latest" field.
-func (tu *TaskUpdate) SetPackageLatest(b bool) *TaskUpdate {
-	tu.mutation.SetPackageLatest(b)
-	return tu
+func (_u *TaskUpdate) SetPackageLatest(v bool) *TaskUpdate {
+	_u.mutation.SetPackageLatest(v)
+	return _u
 }
 
 // SetNillablePackageLatest sets the "package_latest" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillablePackageLatest(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetPackageLatest(*b)
+func (_u *TaskUpdate) SetNillablePackageLatest(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetPackageLatest(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearPackageLatest clears the value of the "package_latest" field.
-func (tu *TaskUpdate) ClearPackageLatest() *TaskUpdate {
-	tu.mutation.ClearPackageLatest()
-	return tu
+func (_u *TaskUpdate) ClearPackageLatest() *TaskUpdate {
+	_u.mutation.ClearPackageLatest()
+	return _u
 }
 
 // SetRegistryKey sets the "registry_key" field.
-func (tu *TaskUpdate) SetRegistryKey(s string) *TaskUpdate {
-	tu.mutation.SetRegistryKey(s)
-	return tu
+func (_u *TaskUpdate) SetRegistryKey(v string) *TaskUpdate {
+	_u.mutation.SetRegistryKey(v)
+	return _u
 }
 
 // SetNillableRegistryKey sets the "registry_key" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableRegistryKey(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetRegistryKey(*s)
+func (_u *TaskUpdate) SetNillableRegistryKey(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetRegistryKey(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearRegistryKey clears the value of the "registry_key" field.
-func (tu *TaskUpdate) ClearRegistryKey() *TaskUpdate {
-	tu.mutation.ClearRegistryKey()
-	return tu
+func (_u *TaskUpdate) ClearRegistryKey() *TaskUpdate {
+	_u.mutation.ClearRegistryKey()
+	return _u
 }
 
 // SetRegistryKeyValueName sets the "registry_key_value_name" field.
-func (tu *TaskUpdate) SetRegistryKeyValueName(s string) *TaskUpdate {
-	tu.mutation.SetRegistryKeyValueName(s)
-	return tu
+func (_u *TaskUpdate) SetRegistryKeyValueName(v string) *TaskUpdate {
+	_u.mutation.SetRegistryKeyValueName(v)
+	return _u
 }
 
 // SetNillableRegistryKeyValueName sets the "registry_key_value_name" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableRegistryKeyValueName(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetRegistryKeyValueName(*s)
+func (_u *TaskUpdate) SetNillableRegistryKeyValueName(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetRegistryKeyValueName(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearRegistryKeyValueName clears the value of the "registry_key_value_name" field.
-func (tu *TaskUpdate) ClearRegistryKeyValueName() *TaskUpdate {
-	tu.mutation.ClearRegistryKeyValueName()
-	return tu
+func (_u *TaskUpdate) ClearRegistryKeyValueName() *TaskUpdate {
+	_u.mutation.ClearRegistryKeyValueName()
+	return _u
 }
 
 // SetRegistryKeyValueType sets the "registry_key_value_type" field.
-func (tu *TaskUpdate) SetRegistryKeyValueType(tkvt task.RegistryKeyValueType) *TaskUpdate {
-	tu.mutation.SetRegistryKeyValueType(tkvt)
-	return tu
+func (_u *TaskUpdate) SetRegistryKeyValueType(v task.RegistryKeyValueType) *TaskUpdate {
+	_u.mutation.SetRegistryKeyValueType(v)
+	return _u
 }
 
 // SetNillableRegistryKeyValueType sets the "registry_key_value_type" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableRegistryKeyValueType(tkvt *task.RegistryKeyValueType) *TaskUpdate {
-	if tkvt != nil {
-		tu.SetRegistryKeyValueType(*tkvt)
+func (_u *TaskUpdate) SetNillableRegistryKeyValueType(v *task.RegistryKeyValueType) *TaskUpdate {
+	if v != nil {
+		_u.SetRegistryKeyValueType(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearRegistryKeyValueType clears the value of the "registry_key_value_type" field.
-func (tu *TaskUpdate) ClearRegistryKeyValueType() *TaskUpdate {
-	tu.mutation.ClearRegistryKeyValueType()
-	return tu
+func (_u *TaskUpdate) ClearRegistryKeyValueType() *TaskUpdate {
+	_u.mutation.ClearRegistryKeyValueType()
+	return _u
 }
 
 // SetRegistryKeyValueData sets the "registry_key_value_data" field.
-func (tu *TaskUpdate) SetRegistryKeyValueData(s string) *TaskUpdate {
-	tu.mutation.SetRegistryKeyValueData(s)
-	return tu
+func (_u *TaskUpdate) SetRegistryKeyValueData(v string) *TaskUpdate {
+	_u.mutation.SetRegistryKeyValueData(v)
+	return _u
 }
 
 // SetNillableRegistryKeyValueData sets the "registry_key_value_data" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableRegistryKeyValueData(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetRegistryKeyValueData(*s)
+func (_u *TaskUpdate) SetNillableRegistryKeyValueData(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetRegistryKeyValueData(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearRegistryKeyValueData clears the value of the "registry_key_value_data" field.
-func (tu *TaskUpdate) ClearRegistryKeyValueData() *TaskUpdate {
-	tu.mutation.ClearRegistryKeyValueData()
-	return tu
+func (_u *TaskUpdate) ClearRegistryKeyValueData() *TaskUpdate {
+	_u.mutation.ClearRegistryKeyValueData()
+	return _u
 }
 
 // SetRegistryHex sets the "registry_hex" field.
-func (tu *TaskUpdate) SetRegistryHex(b bool) *TaskUpdate {
-	tu.mutation.SetRegistryHex(b)
-	return tu
+func (_u *TaskUpdate) SetRegistryHex(v bool) *TaskUpdate {
+	_u.mutation.SetRegistryHex(v)
+	return _u
 }
 
 // SetNillableRegistryHex sets the "registry_hex" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableRegistryHex(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetRegistryHex(*b)
+func (_u *TaskUpdate) SetNillableRegistryHex(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetRegistryHex(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearRegistryHex clears the value of the "registry_hex" field.
-func (tu *TaskUpdate) ClearRegistryHex() *TaskUpdate {
-	tu.mutation.ClearRegistryHex()
-	return tu
+func (_u *TaskUpdate) ClearRegistryHex() *TaskUpdate {
+	_u.mutation.ClearRegistryHex()
+	return _u
 }
 
 // SetRegistryForce sets the "registry_force" field.
-func (tu *TaskUpdate) SetRegistryForce(b bool) *TaskUpdate {
-	tu.mutation.SetRegistryForce(b)
-	return tu
+func (_u *TaskUpdate) SetRegistryForce(v bool) *TaskUpdate {
+	_u.mutation.SetRegistryForce(v)
+	return _u
 }
 
 // SetNillableRegistryForce sets the "registry_force" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableRegistryForce(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetRegistryForce(*b)
+func (_u *TaskUpdate) SetNillableRegistryForce(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetRegistryForce(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearRegistryForce clears the value of the "registry_force" field.
-func (tu *TaskUpdate) ClearRegistryForce() *TaskUpdate {
-	tu.mutation.ClearRegistryForce()
-	return tu
+func (_u *TaskUpdate) ClearRegistryForce() *TaskUpdate {
+	_u.mutation.ClearRegistryForce()
+	return _u
 }
 
 // SetLocalUserUsername sets the "local_user_username" field.
-func (tu *TaskUpdate) SetLocalUserUsername(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserUsername(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserUsername(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserUsername(v)
+	return _u
 }
 
 // SetNillableLocalUserUsername sets the "local_user_username" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserUsername(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserUsername(*s)
+func (_u *TaskUpdate) SetNillableLocalUserUsername(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserUsername(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserUsername clears the value of the "local_user_username" field.
-func (tu *TaskUpdate) ClearLocalUserUsername() *TaskUpdate {
-	tu.mutation.ClearLocalUserUsername()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserUsername() *TaskUpdate {
+	_u.mutation.ClearLocalUserUsername()
+	return _u
 }
 
 // SetLocalUserDescription sets the "local_user_description" field.
-func (tu *TaskUpdate) SetLocalUserDescription(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserDescription(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserDescription(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserDescription(v)
+	return _u
 }
 
 // SetNillableLocalUserDescription sets the "local_user_description" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserDescription(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserDescription(*s)
+func (_u *TaskUpdate) SetNillableLocalUserDescription(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserDescription(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserDescription clears the value of the "local_user_description" field.
-func (tu *TaskUpdate) ClearLocalUserDescription() *TaskUpdate {
-	tu.mutation.ClearLocalUserDescription()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserDescription() *TaskUpdate {
+	_u.mutation.ClearLocalUserDescription()
+	return _u
 }
 
 // SetLocalUserDisable sets the "local_user_disable" field.
-func (tu *TaskUpdate) SetLocalUserDisable(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserDisable(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserDisable(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserDisable(v)
+	return _u
 }
 
 // SetNillableLocalUserDisable sets the "local_user_disable" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserDisable(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserDisable(*b)
+func (_u *TaskUpdate) SetNillableLocalUserDisable(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserDisable(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserDisable clears the value of the "local_user_disable" field.
-func (tu *TaskUpdate) ClearLocalUserDisable() *TaskUpdate {
-	tu.mutation.ClearLocalUserDisable()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserDisable() *TaskUpdate {
+	_u.mutation.ClearLocalUserDisable()
+	return _u
 }
 
 // SetLocalUserFullname sets the "local_user_fullname" field.
-func (tu *TaskUpdate) SetLocalUserFullname(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserFullname(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserFullname(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserFullname(v)
+	return _u
 }
 
 // SetNillableLocalUserFullname sets the "local_user_fullname" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserFullname(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserFullname(*s)
+func (_u *TaskUpdate) SetNillableLocalUserFullname(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserFullname(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserFullname clears the value of the "local_user_fullname" field.
-func (tu *TaskUpdate) ClearLocalUserFullname() *TaskUpdate {
-	tu.mutation.ClearLocalUserFullname()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserFullname() *TaskUpdate {
+	_u.mutation.ClearLocalUserFullname()
+	return _u
 }
 
 // SetLocalUserPassword sets the "local_user_password" field.
-func (tu *TaskUpdate) SetLocalUserPassword(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserPassword(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPassword(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserPassword(v)
+	return _u
 }
 
 // SetNillableLocalUserPassword sets the "local_user_password" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPassword(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserPassword(*s)
+func (_u *TaskUpdate) SetNillableLocalUserPassword(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPassword(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPassword clears the value of the "local_user_password" field.
-func (tu *TaskUpdate) ClearLocalUserPassword() *TaskUpdate {
-	tu.mutation.ClearLocalUserPassword()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPassword() *TaskUpdate {
+	_u.mutation.ClearLocalUserPassword()
+	return _u
 }
 
 // SetLocalUserPasswordChangeNotAllowed sets the "local_user_password_change_not_allowed" field.
-func (tu *TaskUpdate) SetLocalUserPasswordChangeNotAllowed(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordChangeNotAllowed(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordChangeNotAllowed(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordChangeNotAllowed(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordChangeNotAllowed sets the "local_user_password_change_not_allowed" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordChangeNotAllowed(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserPasswordChangeNotAllowed(*b)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordChangeNotAllowed(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordChangeNotAllowed(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordChangeNotAllowed clears the value of the "local_user_password_change_not_allowed" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordChangeNotAllowed() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordChangeNotAllowed()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordChangeNotAllowed() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordChangeNotAllowed()
+	return _u
 }
 
 // SetLocalUserPasswordChangeRequired sets the "local_user_password_change_required" field.
-func (tu *TaskUpdate) SetLocalUserPasswordChangeRequired(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordChangeRequired(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordChangeRequired(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordChangeRequired(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordChangeRequired sets the "local_user_password_change_required" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordChangeRequired(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserPasswordChangeRequired(*b)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordChangeRequired(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordChangeRequired(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordChangeRequired clears the value of the "local_user_password_change_required" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordChangeRequired() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordChangeRequired()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordChangeRequired() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordChangeRequired()
+	return _u
 }
 
 // SetLocalUserPasswordNeverExpires sets the "local_user_password_never_expires" field.
-func (tu *TaskUpdate) SetLocalUserPasswordNeverExpires(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordNeverExpires(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordNeverExpires(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordNeverExpires(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordNeverExpires sets the "local_user_password_never_expires" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordNeverExpires(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserPasswordNeverExpires(*b)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordNeverExpires(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordNeverExpires(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordNeverExpires clears the value of the "local_user_password_never_expires" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordNeverExpires() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordNeverExpires()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordNeverExpires() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordNeverExpires()
+	return _u
 }
 
 // SetLocalUserAppend sets the "local_user_append" field.
-func (tu *TaskUpdate) SetLocalUserAppend(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserAppend(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserAppend(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserAppend(v)
+	return _u
 }
 
 // SetNillableLocalUserAppend sets the "local_user_append" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserAppend(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserAppend(*b)
+func (_u *TaskUpdate) SetNillableLocalUserAppend(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserAppend(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserAppend clears the value of the "local_user_append" field.
-func (tu *TaskUpdate) ClearLocalUserAppend() *TaskUpdate {
-	tu.mutation.ClearLocalUserAppend()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserAppend() *TaskUpdate {
+	_u.mutation.ClearLocalUserAppend()
+	return _u
 }
 
 // SetLocalUserCreateHome sets the "local_user_create_home" field.
-func (tu *TaskUpdate) SetLocalUserCreateHome(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserCreateHome(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserCreateHome(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserCreateHome(v)
+	return _u
 }
 
 // SetNillableLocalUserCreateHome sets the "local_user_create_home" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserCreateHome(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserCreateHome(*b)
+func (_u *TaskUpdate) SetNillableLocalUserCreateHome(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserCreateHome(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserCreateHome clears the value of the "local_user_create_home" field.
-func (tu *TaskUpdate) ClearLocalUserCreateHome() *TaskUpdate {
-	tu.mutation.ClearLocalUserCreateHome()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserCreateHome() *TaskUpdate {
+	_u.mutation.ClearLocalUserCreateHome()
+	return _u
 }
 
 // SetLocalUserExpires sets the "local_user_expires" field.
-func (tu *TaskUpdate) SetLocalUserExpires(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserExpires(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserExpires(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserExpires(v)
+	return _u
 }
 
 // SetNillableLocalUserExpires sets the "local_user_expires" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserExpires(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserExpires(*s)
+func (_u *TaskUpdate) SetNillableLocalUserExpires(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserExpires(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserExpires clears the value of the "local_user_expires" field.
-func (tu *TaskUpdate) ClearLocalUserExpires() *TaskUpdate {
-	tu.mutation.ClearLocalUserExpires()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserExpires() *TaskUpdate {
+	_u.mutation.ClearLocalUserExpires()
+	return _u
 }
 
 // SetLocalUserForce sets the "local_user_force" field.
-func (tu *TaskUpdate) SetLocalUserForce(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserForce(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserForce(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserForce(v)
+	return _u
 }
 
 // SetNillableLocalUserForce sets the "local_user_force" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserForce(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserForce(*b)
+func (_u *TaskUpdate) SetNillableLocalUserForce(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserForce(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserForce clears the value of the "local_user_force" field.
-func (tu *TaskUpdate) ClearLocalUserForce() *TaskUpdate {
-	tu.mutation.ClearLocalUserForce()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserForce() *TaskUpdate {
+	_u.mutation.ClearLocalUserForce()
+	return _u
 }
 
 // SetLocalUserGenerateSSHKey sets the "local_user_generate_ssh_key" field.
-func (tu *TaskUpdate) SetLocalUserGenerateSSHKey(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserGenerateSSHKey(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserGenerateSSHKey(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserGenerateSSHKey(v)
+	return _u
 }
 
 // SetNillableLocalUserGenerateSSHKey sets the "local_user_generate_ssh_key" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserGenerateSSHKey(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserGenerateSSHKey(*b)
+func (_u *TaskUpdate) SetNillableLocalUserGenerateSSHKey(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserGenerateSSHKey(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserGenerateSSHKey clears the value of the "local_user_generate_ssh_key" field.
-func (tu *TaskUpdate) ClearLocalUserGenerateSSHKey() *TaskUpdate {
-	tu.mutation.ClearLocalUserGenerateSSHKey()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserGenerateSSHKey() *TaskUpdate {
+	_u.mutation.ClearLocalUserGenerateSSHKey()
+	return _u
 }
 
 // SetLocalUserGroup sets the "local_user_group" field.
-func (tu *TaskUpdate) SetLocalUserGroup(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserGroup(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserGroup(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserGroup(v)
+	return _u
 }
 
 // SetNillableLocalUserGroup sets the "local_user_group" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserGroup(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserGroup(*s)
+func (_u *TaskUpdate) SetNillableLocalUserGroup(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserGroup(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserGroup clears the value of the "local_user_group" field.
-func (tu *TaskUpdate) ClearLocalUserGroup() *TaskUpdate {
-	tu.mutation.ClearLocalUserGroup()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserGroup() *TaskUpdate {
+	_u.mutation.ClearLocalUserGroup()
+	return _u
 }
 
 // SetLocalUserGroups sets the "local_user_groups" field.
-func (tu *TaskUpdate) SetLocalUserGroups(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserGroups(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserGroups(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserGroups(v)
+	return _u
 }
 
 // SetNillableLocalUserGroups sets the "local_user_groups" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserGroups(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserGroups(*s)
+func (_u *TaskUpdate) SetNillableLocalUserGroups(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserGroups(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserGroups clears the value of the "local_user_groups" field.
-func (tu *TaskUpdate) ClearLocalUserGroups() *TaskUpdate {
-	tu.mutation.ClearLocalUserGroups()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserGroups() *TaskUpdate {
+	_u.mutation.ClearLocalUserGroups()
+	return _u
 }
 
 // SetLocalUserHome sets the "local_user_home" field.
-func (tu *TaskUpdate) SetLocalUserHome(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserHome(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserHome(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserHome(v)
+	return _u
 }
 
 // SetNillableLocalUserHome sets the "local_user_home" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserHome(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserHome(*s)
+func (_u *TaskUpdate) SetNillableLocalUserHome(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserHome(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserHome clears the value of the "local_user_home" field.
-func (tu *TaskUpdate) ClearLocalUserHome() *TaskUpdate {
-	tu.mutation.ClearLocalUserHome()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserHome() *TaskUpdate {
+	_u.mutation.ClearLocalUserHome()
+	return _u
 }
 
 // SetLocalUserMoveHome sets the "local_user_move_home" field.
-func (tu *TaskUpdate) SetLocalUserMoveHome(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserMoveHome(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserMoveHome(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserMoveHome(v)
+	return _u
 }
 
 // SetNillableLocalUserMoveHome sets the "local_user_move_home" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserMoveHome(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserMoveHome(*b)
+func (_u *TaskUpdate) SetNillableLocalUserMoveHome(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserMoveHome(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserMoveHome clears the value of the "local_user_move_home" field.
-func (tu *TaskUpdate) ClearLocalUserMoveHome() *TaskUpdate {
-	tu.mutation.ClearLocalUserMoveHome()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserMoveHome() *TaskUpdate {
+	_u.mutation.ClearLocalUserMoveHome()
+	return _u
 }
 
 // SetLocalUserNonunique sets the "local_user_nonunique" field.
-func (tu *TaskUpdate) SetLocalUserNonunique(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserNonunique(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserNonunique(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserNonunique(v)
+	return _u
 }
 
 // SetNillableLocalUserNonunique sets the "local_user_nonunique" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserNonunique(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserNonunique(*b)
+func (_u *TaskUpdate) SetNillableLocalUserNonunique(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserNonunique(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserNonunique clears the value of the "local_user_nonunique" field.
-func (tu *TaskUpdate) ClearLocalUserNonunique() *TaskUpdate {
-	tu.mutation.ClearLocalUserNonunique()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserNonunique() *TaskUpdate {
+	_u.mutation.ClearLocalUserNonunique()
+	return _u
 }
 
 // SetLocalUserPasswordExpireAccountDisable sets the "local_user_password_expire_account_disable" field.
-func (tu *TaskUpdate) SetLocalUserPasswordExpireAccountDisable(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordExpireAccountDisable(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordExpireAccountDisable(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordExpireAccountDisable(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireAccountDisable sets the "local_user_password_expire_account_disable" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordExpireAccountDisable(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserPasswordExpireAccountDisable(*s)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordExpireAccountDisable(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireAccountDisable(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordExpireAccountDisable clears the value of the "local_user_password_expire_account_disable" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordExpireAccountDisable() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordExpireAccountDisable()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordExpireAccountDisable() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordExpireAccountDisable()
+	return _u
 }
 
 // SetLocalUserPasswordExpireMax sets the "local_user_password_expire_max" field.
-func (tu *TaskUpdate) SetLocalUserPasswordExpireMax(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordExpireMax(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordExpireMax(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordExpireMax(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireMax sets the "local_user_password_expire_max" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordExpireMax(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserPasswordExpireMax(*s)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordExpireMax(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireMax(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordExpireMax clears the value of the "local_user_password_expire_max" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordExpireMax() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordExpireMax()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordExpireMax() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordExpireMax()
+	return _u
 }
 
 // SetLocalUserPasswordExpireMin sets the "local_user_password_expire_min" field.
-func (tu *TaskUpdate) SetLocalUserPasswordExpireMin(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordExpireMin(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordExpireMin(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordExpireMin(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireMin sets the "local_user_password_expire_min" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordExpireMin(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserPasswordExpireMin(*s)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordExpireMin(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireMin(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordExpireMin clears the value of the "local_user_password_expire_min" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordExpireMin() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordExpireMin()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordExpireMin() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordExpireMin()
+	return _u
 }
 
 // SetLocalUserPasswordExpireWarn sets the "local_user_password_expire_warn" field.
-func (tu *TaskUpdate) SetLocalUserPasswordExpireWarn(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordExpireWarn(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordExpireWarn(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordExpireWarn(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireWarn sets the "local_user_password_expire_warn" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordExpireWarn(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserPasswordExpireWarn(*s)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordExpireWarn(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireWarn(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordExpireWarn clears the value of the "local_user_password_expire_warn" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordExpireWarn() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordExpireWarn()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordExpireWarn() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordExpireWarn()
+	return _u
 }
 
 // SetLocalUserPasswordLock sets the "local_user_password_lock" field.
-func (tu *TaskUpdate) SetLocalUserPasswordLock(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserPasswordLock(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserPasswordLock(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserPasswordLock(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordLock sets the "local_user_password_lock" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserPasswordLock(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserPasswordLock(*b)
+func (_u *TaskUpdate) SetNillableLocalUserPasswordLock(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserPasswordLock(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserPasswordLock clears the value of the "local_user_password_lock" field.
-func (tu *TaskUpdate) ClearLocalUserPasswordLock() *TaskUpdate {
-	tu.mutation.ClearLocalUserPasswordLock()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserPasswordLock() *TaskUpdate {
+	_u.mutation.ClearLocalUserPasswordLock()
+	return _u
 }
 
 // SetLocalUserSeuser sets the "local_user_seuser" field.
-func (tu *TaskUpdate) SetLocalUserSeuser(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSeuser(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSeuser(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSeuser(v)
+	return _u
 }
 
 // SetNillableLocalUserSeuser sets the "local_user_seuser" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSeuser(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSeuser(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSeuser(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSeuser(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSeuser clears the value of the "local_user_seuser" field.
-func (tu *TaskUpdate) ClearLocalUserSeuser() *TaskUpdate {
-	tu.mutation.ClearLocalUserSeuser()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSeuser() *TaskUpdate {
+	_u.mutation.ClearLocalUserSeuser()
+	return _u
 }
 
 // SetLocalUserShell sets the "local_user_shell" field.
-func (tu *TaskUpdate) SetLocalUserShell(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserShell(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserShell(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserShell(v)
+	return _u
 }
 
 // SetNillableLocalUserShell sets the "local_user_shell" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserShell(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserShell(*s)
+func (_u *TaskUpdate) SetNillableLocalUserShell(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserShell(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserShell clears the value of the "local_user_shell" field.
-func (tu *TaskUpdate) ClearLocalUserShell() *TaskUpdate {
-	tu.mutation.ClearLocalUserShell()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserShell() *TaskUpdate {
+	_u.mutation.ClearLocalUserShell()
+	return _u
 }
 
 // SetLocalUserSkeleton sets the "local_user_skeleton" field.
-func (tu *TaskUpdate) SetLocalUserSkeleton(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSkeleton(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSkeleton(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSkeleton(v)
+	return _u
 }
 
 // SetNillableLocalUserSkeleton sets the "local_user_skeleton" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSkeleton(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSkeleton(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSkeleton(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSkeleton(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSkeleton clears the value of the "local_user_skeleton" field.
-func (tu *TaskUpdate) ClearLocalUserSkeleton() *TaskUpdate {
-	tu.mutation.ClearLocalUserSkeleton()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSkeleton() *TaskUpdate {
+	_u.mutation.ClearLocalUserSkeleton()
+	return _u
 }
 
 // SetLocalUserSystem sets the "local_user_system" field.
-func (tu *TaskUpdate) SetLocalUserSystem(b bool) *TaskUpdate {
-	tu.mutation.SetLocalUserSystem(b)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSystem(v bool) *TaskUpdate {
+	_u.mutation.SetLocalUserSystem(v)
+	return _u
 }
 
 // SetNillableLocalUserSystem sets the "local_user_system" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSystem(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalUserSystem(*b)
+func (_u *TaskUpdate) SetNillableLocalUserSystem(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSystem(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSystem clears the value of the "local_user_system" field.
-func (tu *TaskUpdate) ClearLocalUserSystem() *TaskUpdate {
-	tu.mutation.ClearLocalUserSystem()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSystem() *TaskUpdate {
+	_u.mutation.ClearLocalUserSystem()
+	return _u
 }
 
 // SetLocalUserID sets the "local_user_id" field.
-func (tu *TaskUpdate) SetLocalUserID(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserID(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserID(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserID(v)
+	return _u
 }
 
 // SetNillableLocalUserID sets the "local_user_id" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserID(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserID(*s)
+func (_u *TaskUpdate) SetNillableLocalUserID(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserID(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserID clears the value of the "local_user_id" field.
-func (tu *TaskUpdate) ClearLocalUserID() *TaskUpdate {
-	tu.mutation.ClearLocalUserID()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserID() *TaskUpdate {
+	_u.mutation.ClearLocalUserID()
+	return _u
 }
 
 // SetLocalUserIDMax sets the "local_user_id_max" field.
-func (tu *TaskUpdate) SetLocalUserIDMax(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserIDMax(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserIDMax(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserIDMax(v)
+	return _u
 }
 
 // SetNillableLocalUserIDMax sets the "local_user_id_max" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserIDMax(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserIDMax(*s)
+func (_u *TaskUpdate) SetNillableLocalUserIDMax(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserIDMax(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserIDMax clears the value of the "local_user_id_max" field.
-func (tu *TaskUpdate) ClearLocalUserIDMax() *TaskUpdate {
-	tu.mutation.ClearLocalUserIDMax()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserIDMax() *TaskUpdate {
+	_u.mutation.ClearLocalUserIDMax()
+	return _u
 }
 
 // SetLocalUserIDMin sets the "local_user_id_min" field.
-func (tu *TaskUpdate) SetLocalUserIDMin(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserIDMin(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserIDMin(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserIDMin(v)
+	return _u
 }
 
 // SetNillableLocalUserIDMin sets the "local_user_id_min" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserIDMin(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserIDMin(*s)
+func (_u *TaskUpdate) SetNillableLocalUserIDMin(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserIDMin(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserIDMin clears the value of the "local_user_id_min" field.
-func (tu *TaskUpdate) ClearLocalUserIDMin() *TaskUpdate {
-	tu.mutation.ClearLocalUserIDMin()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserIDMin() *TaskUpdate {
+	_u.mutation.ClearLocalUserIDMin()
+	return _u
 }
 
 // SetLocalUserSSHKeyBits sets the "local_user_ssh_key_bits" field.
-func (tu *TaskUpdate) SetLocalUserSSHKeyBits(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSSHKeyBits(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSSHKeyBits(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSSHKeyBits(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyBits sets the "local_user_ssh_key_bits" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSSHKeyBits(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSSHKeyBits(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSSHKeyBits(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSSHKeyBits(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSSHKeyBits clears the value of the "local_user_ssh_key_bits" field.
-func (tu *TaskUpdate) ClearLocalUserSSHKeyBits() *TaskUpdate {
-	tu.mutation.ClearLocalUserSSHKeyBits()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSSHKeyBits() *TaskUpdate {
+	_u.mutation.ClearLocalUserSSHKeyBits()
+	return _u
 }
 
 // SetLocalUserSSHKeyComment sets the "local_user_ssh_key_comment" field.
-func (tu *TaskUpdate) SetLocalUserSSHKeyComment(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSSHKeyComment(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSSHKeyComment(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSSHKeyComment(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyComment sets the "local_user_ssh_key_comment" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSSHKeyComment(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSSHKeyComment(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSSHKeyComment(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSSHKeyComment(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSSHKeyComment clears the value of the "local_user_ssh_key_comment" field.
-func (tu *TaskUpdate) ClearLocalUserSSHKeyComment() *TaskUpdate {
-	tu.mutation.ClearLocalUserSSHKeyComment()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSSHKeyComment() *TaskUpdate {
+	_u.mutation.ClearLocalUserSSHKeyComment()
+	return _u
 }
 
 // SetLocalUserSSHKeyFile sets the "local_user_ssh_key_file" field.
-func (tu *TaskUpdate) SetLocalUserSSHKeyFile(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSSHKeyFile(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSSHKeyFile(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSSHKeyFile(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyFile sets the "local_user_ssh_key_file" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSSHKeyFile(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSSHKeyFile(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSSHKeyFile(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSSHKeyFile(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSSHKeyFile clears the value of the "local_user_ssh_key_file" field.
-func (tu *TaskUpdate) ClearLocalUserSSHKeyFile() *TaskUpdate {
-	tu.mutation.ClearLocalUserSSHKeyFile()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSSHKeyFile() *TaskUpdate {
+	_u.mutation.ClearLocalUserSSHKeyFile()
+	return _u
 }
 
 // SetLocalUserSSHKeyPassphrase sets the "local_user_ssh_key_passphrase" field.
-func (tu *TaskUpdate) SetLocalUserSSHKeyPassphrase(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSSHKeyPassphrase(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSSHKeyPassphrase(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSSHKeyPassphrase(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyPassphrase sets the "local_user_ssh_key_passphrase" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSSHKeyPassphrase(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSSHKeyPassphrase(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSSHKeyPassphrase(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSSHKeyPassphrase(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSSHKeyPassphrase clears the value of the "local_user_ssh_key_passphrase" field.
-func (tu *TaskUpdate) ClearLocalUserSSHKeyPassphrase() *TaskUpdate {
-	tu.mutation.ClearLocalUserSSHKeyPassphrase()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSSHKeyPassphrase() *TaskUpdate {
+	_u.mutation.ClearLocalUserSSHKeyPassphrase()
+	return _u
 }
 
 // SetLocalUserSSHKeyType sets the "local_user_ssh_key_type" field.
-func (tu *TaskUpdate) SetLocalUserSSHKeyType(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserSSHKeyType(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserSSHKeyType(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserSSHKeyType(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyType sets the "local_user_ssh_key_type" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserSSHKeyType(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserSSHKeyType(*s)
+func (_u *TaskUpdate) SetNillableLocalUserSSHKeyType(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserSSHKeyType(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserSSHKeyType clears the value of the "local_user_ssh_key_type" field.
-func (tu *TaskUpdate) ClearLocalUserSSHKeyType() *TaskUpdate {
-	tu.mutation.ClearLocalUserSSHKeyType()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserSSHKeyType() *TaskUpdate {
+	_u.mutation.ClearLocalUserSSHKeyType()
+	return _u
 }
 
 // SetLocalUserUmask sets the "local_user_umask" field.
-func (tu *TaskUpdate) SetLocalUserUmask(s string) *TaskUpdate {
-	tu.mutation.SetLocalUserUmask(s)
-	return tu
+func (_u *TaskUpdate) SetLocalUserUmask(v string) *TaskUpdate {
+	_u.mutation.SetLocalUserUmask(v)
+	return _u
 }
 
 // SetNillableLocalUserUmask sets the "local_user_umask" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalUserUmask(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalUserUmask(*s)
+func (_u *TaskUpdate) SetNillableLocalUserUmask(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalUserUmask(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalUserUmask clears the value of the "local_user_umask" field.
-func (tu *TaskUpdate) ClearLocalUserUmask() *TaskUpdate {
-	tu.mutation.ClearLocalUserUmask()
-	return tu
+func (_u *TaskUpdate) ClearLocalUserUmask() *TaskUpdate {
+	_u.mutation.ClearLocalUserUmask()
+	return _u
 }
 
 // SetLocalGroupID sets the "local_group_id" field.
-func (tu *TaskUpdate) SetLocalGroupID(s string) *TaskUpdate {
-	tu.mutation.SetLocalGroupID(s)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupID(v string) *TaskUpdate {
+	_u.mutation.SetLocalGroupID(v)
+	return _u
 }
 
 // SetNillableLocalGroupID sets the "local_group_id" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupID(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalGroupID(*s)
+func (_u *TaskUpdate) SetNillableLocalGroupID(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupID(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupID clears the value of the "local_group_id" field.
-func (tu *TaskUpdate) ClearLocalGroupID() *TaskUpdate {
-	tu.mutation.ClearLocalGroupID()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupID() *TaskUpdate {
+	_u.mutation.ClearLocalGroupID()
+	return _u
 }
 
 // SetLocalGroupName sets the "local_group_name" field.
-func (tu *TaskUpdate) SetLocalGroupName(s string) *TaskUpdate {
-	tu.mutation.SetLocalGroupName(s)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupName(v string) *TaskUpdate {
+	_u.mutation.SetLocalGroupName(v)
+	return _u
 }
 
 // SetNillableLocalGroupName sets the "local_group_name" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupName(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalGroupName(*s)
+func (_u *TaskUpdate) SetNillableLocalGroupName(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupName(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupName clears the value of the "local_group_name" field.
-func (tu *TaskUpdate) ClearLocalGroupName() *TaskUpdate {
-	tu.mutation.ClearLocalGroupName()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupName() *TaskUpdate {
+	_u.mutation.ClearLocalGroupName()
+	return _u
 }
 
 // SetLocalGroupDescription sets the "local_group_description" field.
-func (tu *TaskUpdate) SetLocalGroupDescription(s string) *TaskUpdate {
-	tu.mutation.SetLocalGroupDescription(s)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupDescription(v string) *TaskUpdate {
+	_u.mutation.SetLocalGroupDescription(v)
+	return _u
 }
 
 // SetNillableLocalGroupDescription sets the "local_group_description" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupDescription(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalGroupDescription(*s)
+func (_u *TaskUpdate) SetNillableLocalGroupDescription(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupDescription(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupDescription clears the value of the "local_group_description" field.
-func (tu *TaskUpdate) ClearLocalGroupDescription() *TaskUpdate {
-	tu.mutation.ClearLocalGroupDescription()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupDescription() *TaskUpdate {
+	_u.mutation.ClearLocalGroupDescription()
+	return _u
 }
 
 // SetLocalGroupSystem sets the "local_group_system" field.
-func (tu *TaskUpdate) SetLocalGroupSystem(b bool) *TaskUpdate {
-	tu.mutation.SetLocalGroupSystem(b)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupSystem(v bool) *TaskUpdate {
+	_u.mutation.SetLocalGroupSystem(v)
+	return _u
 }
 
 // SetNillableLocalGroupSystem sets the "local_group_system" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupSystem(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalGroupSystem(*b)
+func (_u *TaskUpdate) SetNillableLocalGroupSystem(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupSystem(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupSystem clears the value of the "local_group_system" field.
-func (tu *TaskUpdate) ClearLocalGroupSystem() *TaskUpdate {
-	tu.mutation.ClearLocalGroupSystem()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupSystem() *TaskUpdate {
+	_u.mutation.ClearLocalGroupSystem()
+	return _u
 }
 
 // SetLocalGroupForce sets the "local_group_force" field.
-func (tu *TaskUpdate) SetLocalGroupForce(b bool) *TaskUpdate {
-	tu.mutation.SetLocalGroupForce(b)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupForce(v bool) *TaskUpdate {
+	_u.mutation.SetLocalGroupForce(v)
+	return _u
 }
 
 // SetNillableLocalGroupForce sets the "local_group_force" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupForce(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetLocalGroupForce(*b)
+func (_u *TaskUpdate) SetNillableLocalGroupForce(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupForce(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupForce clears the value of the "local_group_force" field.
-func (tu *TaskUpdate) ClearLocalGroupForce() *TaskUpdate {
-	tu.mutation.ClearLocalGroupForce()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupForce() *TaskUpdate {
+	_u.mutation.ClearLocalGroupForce()
+	return _u
 }
 
 // SetLocalGroupMembers sets the "local_group_members" field.
-func (tu *TaskUpdate) SetLocalGroupMembers(s string) *TaskUpdate {
-	tu.mutation.SetLocalGroupMembers(s)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupMembers(v string) *TaskUpdate {
+	_u.mutation.SetLocalGroupMembers(v)
+	return _u
 }
 
 // SetNillableLocalGroupMembers sets the "local_group_members" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupMembers(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalGroupMembers(*s)
+func (_u *TaskUpdate) SetNillableLocalGroupMembers(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupMembers(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupMembers clears the value of the "local_group_members" field.
-func (tu *TaskUpdate) ClearLocalGroupMembers() *TaskUpdate {
-	tu.mutation.ClearLocalGroupMembers()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupMembers() *TaskUpdate {
+	_u.mutation.ClearLocalGroupMembers()
+	return _u
 }
 
 // SetLocalGroupMembersToInclude sets the "local_group_members_to_include" field.
-func (tu *TaskUpdate) SetLocalGroupMembersToInclude(s string) *TaskUpdate {
-	tu.mutation.SetLocalGroupMembersToInclude(s)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupMembersToInclude(v string) *TaskUpdate {
+	_u.mutation.SetLocalGroupMembersToInclude(v)
+	return _u
 }
 
 // SetNillableLocalGroupMembersToInclude sets the "local_group_members_to_include" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupMembersToInclude(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalGroupMembersToInclude(*s)
+func (_u *TaskUpdate) SetNillableLocalGroupMembersToInclude(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupMembersToInclude(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupMembersToInclude clears the value of the "local_group_members_to_include" field.
-func (tu *TaskUpdate) ClearLocalGroupMembersToInclude() *TaskUpdate {
-	tu.mutation.ClearLocalGroupMembersToInclude()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupMembersToInclude() *TaskUpdate {
+	_u.mutation.ClearLocalGroupMembersToInclude()
+	return _u
 }
 
 // SetLocalGroupMembersToExclude sets the "local_group_members_to_exclude" field.
-func (tu *TaskUpdate) SetLocalGroupMembersToExclude(s string) *TaskUpdate {
-	tu.mutation.SetLocalGroupMembersToExclude(s)
-	return tu
+func (_u *TaskUpdate) SetLocalGroupMembersToExclude(v string) *TaskUpdate {
+	_u.mutation.SetLocalGroupMembersToExclude(v)
+	return _u
 }
 
 // SetNillableLocalGroupMembersToExclude sets the "local_group_members_to_exclude" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableLocalGroupMembersToExclude(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetLocalGroupMembersToExclude(*s)
+func (_u *TaskUpdate) SetNillableLocalGroupMembersToExclude(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetLocalGroupMembersToExclude(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearLocalGroupMembersToExclude clears the value of the "local_group_members_to_exclude" field.
-func (tu *TaskUpdate) ClearLocalGroupMembersToExclude() *TaskUpdate {
-	tu.mutation.ClearLocalGroupMembersToExclude()
-	return tu
+func (_u *TaskUpdate) ClearLocalGroupMembersToExclude() *TaskUpdate {
+	_u.mutation.ClearLocalGroupMembersToExclude()
+	return _u
 }
 
 // SetMsiProductid sets the "msi_productid" field.
-func (tu *TaskUpdate) SetMsiProductid(s string) *TaskUpdate {
-	tu.mutation.SetMsiProductid(s)
-	return tu
+func (_u *TaskUpdate) SetMsiProductid(v string) *TaskUpdate {
+	_u.mutation.SetMsiProductid(v)
+	return _u
 }
 
 // SetNillableMsiProductid sets the "msi_productid" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableMsiProductid(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetMsiProductid(*s)
+func (_u *TaskUpdate) SetNillableMsiProductid(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetMsiProductid(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearMsiProductid clears the value of the "msi_productid" field.
-func (tu *TaskUpdate) ClearMsiProductid() *TaskUpdate {
-	tu.mutation.ClearMsiProductid()
-	return tu
+func (_u *TaskUpdate) ClearMsiProductid() *TaskUpdate {
+	_u.mutation.ClearMsiProductid()
+	return _u
 }
 
 // SetMsiPath sets the "msi_path" field.
-func (tu *TaskUpdate) SetMsiPath(s string) *TaskUpdate {
-	tu.mutation.SetMsiPath(s)
-	return tu
+func (_u *TaskUpdate) SetMsiPath(v string) *TaskUpdate {
+	_u.mutation.SetMsiPath(v)
+	return _u
 }
 
 // SetNillableMsiPath sets the "msi_path" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableMsiPath(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetMsiPath(*s)
+func (_u *TaskUpdate) SetNillableMsiPath(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetMsiPath(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearMsiPath clears the value of the "msi_path" field.
-func (tu *TaskUpdate) ClearMsiPath() *TaskUpdate {
-	tu.mutation.ClearMsiPath()
-	return tu
+func (_u *TaskUpdate) ClearMsiPath() *TaskUpdate {
+	_u.mutation.ClearMsiPath()
+	return _u
 }
 
 // SetMsiArguments sets the "msi_arguments" field.
-func (tu *TaskUpdate) SetMsiArguments(s string) *TaskUpdate {
-	tu.mutation.SetMsiArguments(s)
-	return tu
+func (_u *TaskUpdate) SetMsiArguments(v string) *TaskUpdate {
+	_u.mutation.SetMsiArguments(v)
+	return _u
 }
 
 // SetNillableMsiArguments sets the "msi_arguments" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableMsiArguments(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetMsiArguments(*s)
+func (_u *TaskUpdate) SetNillableMsiArguments(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetMsiArguments(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearMsiArguments clears the value of the "msi_arguments" field.
-func (tu *TaskUpdate) ClearMsiArguments() *TaskUpdate {
-	tu.mutation.ClearMsiArguments()
-	return tu
+func (_u *TaskUpdate) ClearMsiArguments() *TaskUpdate {
+	_u.mutation.ClearMsiArguments()
+	return _u
 }
 
 // SetMsiFileHash sets the "msi_file_hash" field.
-func (tu *TaskUpdate) SetMsiFileHash(s string) *TaskUpdate {
-	tu.mutation.SetMsiFileHash(s)
-	return tu
+func (_u *TaskUpdate) SetMsiFileHash(v string) *TaskUpdate {
+	_u.mutation.SetMsiFileHash(v)
+	return _u
 }
 
 // SetNillableMsiFileHash sets the "msi_file_hash" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableMsiFileHash(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetMsiFileHash(*s)
+func (_u *TaskUpdate) SetNillableMsiFileHash(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetMsiFileHash(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearMsiFileHash clears the value of the "msi_file_hash" field.
-func (tu *TaskUpdate) ClearMsiFileHash() *TaskUpdate {
-	tu.mutation.ClearMsiFileHash()
-	return tu
+func (_u *TaskUpdate) ClearMsiFileHash() *TaskUpdate {
+	_u.mutation.ClearMsiFileHash()
+	return _u
 }
 
 // SetMsiFileHashAlg sets the "msi_file_hash_alg" field.
-func (tu *TaskUpdate) SetMsiFileHashAlg(tfha task.MsiFileHashAlg) *TaskUpdate {
-	tu.mutation.SetMsiFileHashAlg(tfha)
-	return tu
+func (_u *TaskUpdate) SetMsiFileHashAlg(v task.MsiFileHashAlg) *TaskUpdate {
+	_u.mutation.SetMsiFileHashAlg(v)
+	return _u
 }
 
 // SetNillableMsiFileHashAlg sets the "msi_file_hash_alg" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableMsiFileHashAlg(tfha *task.MsiFileHashAlg) *TaskUpdate {
-	if tfha != nil {
-		tu.SetMsiFileHashAlg(*tfha)
+func (_u *TaskUpdate) SetNillableMsiFileHashAlg(v *task.MsiFileHashAlg) *TaskUpdate {
+	if v != nil {
+		_u.SetMsiFileHashAlg(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearMsiFileHashAlg clears the value of the "msi_file_hash_alg" field.
-func (tu *TaskUpdate) ClearMsiFileHashAlg() *TaskUpdate {
-	tu.mutation.ClearMsiFileHashAlg()
-	return tu
+func (_u *TaskUpdate) ClearMsiFileHashAlg() *TaskUpdate {
+	_u.mutation.ClearMsiFileHashAlg()
+	return _u
 }
 
 // SetMsiLogPath sets the "msi_log_path" field.
-func (tu *TaskUpdate) SetMsiLogPath(s string) *TaskUpdate {
-	tu.mutation.SetMsiLogPath(s)
-	return tu
+func (_u *TaskUpdate) SetMsiLogPath(v string) *TaskUpdate {
+	_u.mutation.SetMsiLogPath(v)
+	return _u
 }
 
 // SetNillableMsiLogPath sets the "msi_log_path" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableMsiLogPath(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetMsiLogPath(*s)
+func (_u *TaskUpdate) SetNillableMsiLogPath(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetMsiLogPath(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearMsiLogPath clears the value of the "msi_log_path" field.
-func (tu *TaskUpdate) ClearMsiLogPath() *TaskUpdate {
-	tu.mutation.ClearMsiLogPath()
-	return tu
+func (_u *TaskUpdate) ClearMsiLogPath() *TaskUpdate {
+	_u.mutation.ClearMsiLogPath()
+	return _u
 }
 
 // SetScript sets the "script" field.
-func (tu *TaskUpdate) SetScript(s string) *TaskUpdate {
-	tu.mutation.SetScript(s)
-	return tu
+func (_u *TaskUpdate) SetScript(v string) *TaskUpdate {
+	_u.mutation.SetScript(v)
+	return _u
 }
 
 // SetNillableScript sets the "script" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableScript(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetScript(*s)
+func (_u *TaskUpdate) SetNillableScript(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetScript(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearScript clears the value of the "script" field.
-func (tu *TaskUpdate) ClearScript() *TaskUpdate {
-	tu.mutation.ClearScript()
-	return tu
+func (_u *TaskUpdate) ClearScript() *TaskUpdate {
+	_u.mutation.ClearScript()
+	return _u
 }
 
 // SetScriptExecutable sets the "script_executable" field.
-func (tu *TaskUpdate) SetScriptExecutable(s string) *TaskUpdate {
-	tu.mutation.SetScriptExecutable(s)
-	return tu
+func (_u *TaskUpdate) SetScriptExecutable(v string) *TaskUpdate {
+	_u.mutation.SetScriptExecutable(v)
+	return _u
 }
 
 // SetNillableScriptExecutable sets the "script_executable" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableScriptExecutable(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetScriptExecutable(*s)
+func (_u *TaskUpdate) SetNillableScriptExecutable(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetScriptExecutable(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearScriptExecutable clears the value of the "script_executable" field.
-func (tu *TaskUpdate) ClearScriptExecutable() *TaskUpdate {
-	tu.mutation.ClearScriptExecutable()
-	return tu
+func (_u *TaskUpdate) ClearScriptExecutable() *TaskUpdate {
+	_u.mutation.ClearScriptExecutable()
+	return _u
 }
 
 // SetScriptCreates sets the "script_creates" field.
-func (tu *TaskUpdate) SetScriptCreates(s string) *TaskUpdate {
-	tu.mutation.SetScriptCreates(s)
-	return tu
+func (_u *TaskUpdate) SetScriptCreates(v string) *TaskUpdate {
+	_u.mutation.SetScriptCreates(v)
+	return _u
 }
 
 // SetNillableScriptCreates sets the "script_creates" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableScriptCreates(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetScriptCreates(*s)
+func (_u *TaskUpdate) SetNillableScriptCreates(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetScriptCreates(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearScriptCreates clears the value of the "script_creates" field.
-func (tu *TaskUpdate) ClearScriptCreates() *TaskUpdate {
-	tu.mutation.ClearScriptCreates()
-	return tu
+func (_u *TaskUpdate) ClearScriptCreates() *TaskUpdate {
+	_u.mutation.ClearScriptCreates()
+	return _u
 }
 
 // SetScriptRun sets the "script_run" field.
-func (tu *TaskUpdate) SetScriptRun(tr task.ScriptRun) *TaskUpdate {
-	tu.mutation.SetScriptRun(tr)
-	return tu
+func (_u *TaskUpdate) SetScriptRun(v task.ScriptRun) *TaskUpdate {
+	_u.mutation.SetScriptRun(v)
+	return _u
 }
 
 // SetNillableScriptRun sets the "script_run" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableScriptRun(tr *task.ScriptRun) *TaskUpdate {
-	if tr != nil {
-		tu.SetScriptRun(*tr)
+func (_u *TaskUpdate) SetNillableScriptRun(v *task.ScriptRun) *TaskUpdate {
+	if v != nil {
+		_u.SetScriptRun(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearScriptRun clears the value of the "script_run" field.
-func (tu *TaskUpdate) ClearScriptRun() *TaskUpdate {
-	tu.mutation.ClearScriptRun()
-	return tu
+func (_u *TaskUpdate) ClearScriptRun() *TaskUpdate {
+	_u.mutation.ClearScriptRun()
+	return _u
 }
 
 // SetAgentType sets the "agent_type" field.
-func (tu *TaskUpdate) SetAgentType(tt task.AgentType) *TaskUpdate {
-	tu.mutation.SetAgentType(tt)
-	return tu
+func (_u *TaskUpdate) SetAgentType(v task.AgentType) *TaskUpdate {
+	_u.mutation.SetAgentType(v)
+	return _u
 }
 
 // SetNillableAgentType sets the "agent_type" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAgentType(tt *task.AgentType) *TaskUpdate {
-	if tt != nil {
-		tu.SetAgentType(*tt)
+func (_u *TaskUpdate) SetNillableAgentType(v *task.AgentType) *TaskUpdate {
+	if v != nil {
+		_u.SetAgentType(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAgentType clears the value of the "agent_type" field.
-func (tu *TaskUpdate) ClearAgentType() *TaskUpdate {
-	tu.mutation.ClearAgentType()
-	return tu
+func (_u *TaskUpdate) ClearAgentType() *TaskUpdate {
+	_u.mutation.ClearAgentType()
+	return _u
 }
 
 // SetWhen sets the "when" field.
-func (tu *TaskUpdate) SetWhen(t time.Time) *TaskUpdate {
-	tu.mutation.SetWhen(t)
-	return tu
+func (_u *TaskUpdate) SetWhen(v time.Time) *TaskUpdate {
+	_u.mutation.SetWhen(v)
+	return _u
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableWhen(t *time.Time) *TaskUpdate {
-	if t != nil {
-		tu.SetWhen(*t)
+func (_u *TaskUpdate) SetNillableWhen(v *time.Time) *TaskUpdate {
+	if v != nil {
+		_u.SetWhen(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearWhen clears the value of the "when" field.
-func (tu *TaskUpdate) ClearWhen() *TaskUpdate {
-	tu.mutation.ClearWhen()
-	return tu
+func (_u *TaskUpdate) ClearWhen() *TaskUpdate {
+	_u.mutation.ClearWhen()
+	return _u
 }
 
 // SetBrewUpdate sets the "brew_update" field.
-func (tu *TaskUpdate) SetBrewUpdate(b bool) *TaskUpdate {
-	tu.mutation.SetBrewUpdate(b)
-	return tu
+func (_u *TaskUpdate) SetBrewUpdate(v bool) *TaskUpdate {
+	_u.mutation.SetBrewUpdate(v)
+	return _u
 }
 
 // SetNillableBrewUpdate sets the "brew_update" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableBrewUpdate(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetBrewUpdate(*b)
+func (_u *TaskUpdate) SetNillableBrewUpdate(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetBrewUpdate(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearBrewUpdate clears the value of the "brew_update" field.
-func (tu *TaskUpdate) ClearBrewUpdate() *TaskUpdate {
-	tu.mutation.ClearBrewUpdate()
-	return tu
+func (_u *TaskUpdate) ClearBrewUpdate() *TaskUpdate {
+	_u.mutation.ClearBrewUpdate()
+	return _u
 }
 
 // SetBrewUpgradeAll sets the "brew_upgrade_all" field.
-func (tu *TaskUpdate) SetBrewUpgradeAll(b bool) *TaskUpdate {
-	tu.mutation.SetBrewUpgradeAll(b)
-	return tu
+func (_u *TaskUpdate) SetBrewUpgradeAll(v bool) *TaskUpdate {
+	_u.mutation.SetBrewUpgradeAll(v)
+	return _u
 }
 
 // SetNillableBrewUpgradeAll sets the "brew_upgrade_all" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableBrewUpgradeAll(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetBrewUpgradeAll(*b)
+func (_u *TaskUpdate) SetNillableBrewUpgradeAll(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetBrewUpgradeAll(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearBrewUpgradeAll clears the value of the "brew_upgrade_all" field.
-func (tu *TaskUpdate) ClearBrewUpgradeAll() *TaskUpdate {
-	tu.mutation.ClearBrewUpgradeAll()
-	return tu
+func (_u *TaskUpdate) ClearBrewUpgradeAll() *TaskUpdate {
+	_u.mutation.ClearBrewUpgradeAll()
+	return _u
 }
 
 // SetBrewUpgradeOptions sets the "brew_upgrade_options" field.
-func (tu *TaskUpdate) SetBrewUpgradeOptions(s string) *TaskUpdate {
-	tu.mutation.SetBrewUpgradeOptions(s)
-	return tu
+func (_u *TaskUpdate) SetBrewUpgradeOptions(v string) *TaskUpdate {
+	_u.mutation.SetBrewUpgradeOptions(v)
+	return _u
 }
 
 // SetNillableBrewUpgradeOptions sets the "brew_upgrade_options" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableBrewUpgradeOptions(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetBrewUpgradeOptions(*s)
+func (_u *TaskUpdate) SetNillableBrewUpgradeOptions(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetBrewUpgradeOptions(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearBrewUpgradeOptions clears the value of the "brew_upgrade_options" field.
-func (tu *TaskUpdate) ClearBrewUpgradeOptions() *TaskUpdate {
-	tu.mutation.ClearBrewUpgradeOptions()
-	return tu
+func (_u *TaskUpdate) ClearBrewUpgradeOptions() *TaskUpdate {
+	_u.mutation.ClearBrewUpgradeOptions()
+	return _u
 }
 
 // SetBrewInstallOptions sets the "brew_install_options" field.
-func (tu *TaskUpdate) SetBrewInstallOptions(s string) *TaskUpdate {
-	tu.mutation.SetBrewInstallOptions(s)
-	return tu
+func (_u *TaskUpdate) SetBrewInstallOptions(v string) *TaskUpdate {
+	_u.mutation.SetBrewInstallOptions(v)
+	return _u
 }
 
 // SetNillableBrewInstallOptions sets the "brew_install_options" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableBrewInstallOptions(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetBrewInstallOptions(*s)
+func (_u *TaskUpdate) SetNillableBrewInstallOptions(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetBrewInstallOptions(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearBrewInstallOptions clears the value of the "brew_install_options" field.
-func (tu *TaskUpdate) ClearBrewInstallOptions() *TaskUpdate {
-	tu.mutation.ClearBrewInstallOptions()
-	return tu
+func (_u *TaskUpdate) ClearBrewInstallOptions() *TaskUpdate {
+	_u.mutation.ClearBrewInstallOptions()
+	return _u
 }
 
 // SetBrewGreedy sets the "brew_greedy" field.
-func (tu *TaskUpdate) SetBrewGreedy(b bool) *TaskUpdate {
-	tu.mutation.SetBrewGreedy(b)
-	return tu
+func (_u *TaskUpdate) SetBrewGreedy(v bool) *TaskUpdate {
+	_u.mutation.SetBrewGreedy(v)
+	return _u
 }
 
 // SetNillableBrewGreedy sets the "brew_greedy" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableBrewGreedy(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetBrewGreedy(*b)
+func (_u *TaskUpdate) SetNillableBrewGreedy(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetBrewGreedy(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearBrewGreedy clears the value of the "brew_greedy" field.
-func (tu *TaskUpdate) ClearBrewGreedy() *TaskUpdate {
-	tu.mutation.ClearBrewGreedy()
-	return tu
+func (_u *TaskUpdate) ClearBrewGreedy() *TaskUpdate {
+	_u.mutation.ClearBrewGreedy()
+	return _u
 }
 
 // SetPackageVersion sets the "package_version" field.
-func (tu *TaskUpdate) SetPackageVersion(s string) *TaskUpdate {
-	tu.mutation.SetPackageVersion(s)
-	return tu
+func (_u *TaskUpdate) SetPackageVersion(v string) *TaskUpdate {
+	_u.mutation.SetPackageVersion(v)
+	return _u
 }
 
 // SetNillablePackageVersion sets the "package_version" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillablePackageVersion(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetPackageVersion(*s)
+func (_u *TaskUpdate) SetNillablePackageVersion(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetPackageVersion(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearPackageVersion clears the value of the "package_version" field.
-func (tu *TaskUpdate) ClearPackageVersion() *TaskUpdate {
-	tu.mutation.ClearPackageVersion()
-	return tu
+func (_u *TaskUpdate) ClearPackageVersion() *TaskUpdate {
+	_u.mutation.ClearPackageVersion()
+	return _u
 }
 
 // SetAptAllowDowngrade sets the "apt_allow_downgrade" field.
-func (tu *TaskUpdate) SetAptAllowDowngrade(b bool) *TaskUpdate {
-	tu.mutation.SetAptAllowDowngrade(b)
-	return tu
+func (_u *TaskUpdate) SetAptAllowDowngrade(v bool) *TaskUpdate {
+	_u.mutation.SetAptAllowDowngrade(v)
+	return _u
 }
 
 // SetNillableAptAllowDowngrade sets the "apt_allow_downgrade" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptAllowDowngrade(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptAllowDowngrade(*b)
+func (_u *TaskUpdate) SetNillableAptAllowDowngrade(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptAllowDowngrade(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptAllowDowngrade clears the value of the "apt_allow_downgrade" field.
-func (tu *TaskUpdate) ClearAptAllowDowngrade() *TaskUpdate {
-	tu.mutation.ClearAptAllowDowngrade()
-	return tu
+func (_u *TaskUpdate) ClearAptAllowDowngrade() *TaskUpdate {
+	_u.mutation.ClearAptAllowDowngrade()
+	return _u
 }
 
 // SetAptDeb sets the "apt_deb" field.
-func (tu *TaskUpdate) SetAptDeb(s string) *TaskUpdate {
-	tu.mutation.SetAptDeb(s)
-	return tu
+func (_u *TaskUpdate) SetAptDeb(v string) *TaskUpdate {
+	_u.mutation.SetAptDeb(v)
+	return _u
 }
 
 // SetNillableAptDeb sets the "apt_deb" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptDeb(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetAptDeb(*s)
+func (_u *TaskUpdate) SetNillableAptDeb(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetAptDeb(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptDeb clears the value of the "apt_deb" field.
-func (tu *TaskUpdate) ClearAptDeb() *TaskUpdate {
-	tu.mutation.ClearAptDeb()
-	return tu
+func (_u *TaskUpdate) ClearAptDeb() *TaskUpdate {
+	_u.mutation.ClearAptDeb()
+	return _u
 }
 
 // SetAptDpkgOptions sets the "apt_dpkg_options" field.
-func (tu *TaskUpdate) SetAptDpkgOptions(s string) *TaskUpdate {
-	tu.mutation.SetAptDpkgOptions(s)
-	return tu
+func (_u *TaskUpdate) SetAptDpkgOptions(v string) *TaskUpdate {
+	_u.mutation.SetAptDpkgOptions(v)
+	return _u
 }
 
 // SetNillableAptDpkgOptions sets the "apt_dpkg_options" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptDpkgOptions(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetAptDpkgOptions(*s)
+func (_u *TaskUpdate) SetNillableAptDpkgOptions(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetAptDpkgOptions(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptDpkgOptions clears the value of the "apt_dpkg_options" field.
-func (tu *TaskUpdate) ClearAptDpkgOptions() *TaskUpdate {
-	tu.mutation.ClearAptDpkgOptions()
-	return tu
+func (_u *TaskUpdate) ClearAptDpkgOptions() *TaskUpdate {
+	_u.mutation.ClearAptDpkgOptions()
+	return _u
 }
 
 // SetAptFailOnAutoremove sets the "apt_fail_on_autoremove" field.
-func (tu *TaskUpdate) SetAptFailOnAutoremove(b bool) *TaskUpdate {
-	tu.mutation.SetAptFailOnAutoremove(b)
-	return tu
+func (_u *TaskUpdate) SetAptFailOnAutoremove(v bool) *TaskUpdate {
+	_u.mutation.SetAptFailOnAutoremove(v)
+	return _u
 }
 
 // SetNillableAptFailOnAutoremove sets the "apt_fail_on_autoremove" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptFailOnAutoremove(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptFailOnAutoremove(*b)
+func (_u *TaskUpdate) SetNillableAptFailOnAutoremove(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptFailOnAutoremove(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptFailOnAutoremove clears the value of the "apt_fail_on_autoremove" field.
-func (tu *TaskUpdate) ClearAptFailOnAutoremove() *TaskUpdate {
-	tu.mutation.ClearAptFailOnAutoremove()
-	return tu
+func (_u *TaskUpdate) ClearAptFailOnAutoremove() *TaskUpdate {
+	_u.mutation.ClearAptFailOnAutoremove()
+	return _u
 }
 
 // SetAptForce sets the "apt_force" field.
-func (tu *TaskUpdate) SetAptForce(b bool) *TaskUpdate {
-	tu.mutation.SetAptForce(b)
-	return tu
+func (_u *TaskUpdate) SetAptForce(v bool) *TaskUpdate {
+	_u.mutation.SetAptForce(v)
+	return _u
 }
 
 // SetNillableAptForce sets the "apt_force" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptForce(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptForce(*b)
+func (_u *TaskUpdate) SetNillableAptForce(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptForce(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptForce clears the value of the "apt_force" field.
-func (tu *TaskUpdate) ClearAptForce() *TaskUpdate {
-	tu.mutation.ClearAptForce()
-	return tu
+func (_u *TaskUpdate) ClearAptForce() *TaskUpdate {
+	_u.mutation.ClearAptForce()
+	return _u
 }
 
 // SetAptInstallRecommends sets the "apt_install_recommends" field.
-func (tu *TaskUpdate) SetAptInstallRecommends(b bool) *TaskUpdate {
-	tu.mutation.SetAptInstallRecommends(b)
-	return tu
+func (_u *TaskUpdate) SetAptInstallRecommends(v bool) *TaskUpdate {
+	_u.mutation.SetAptInstallRecommends(v)
+	return _u
 }
 
 // SetNillableAptInstallRecommends sets the "apt_install_recommends" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptInstallRecommends(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptInstallRecommends(*b)
+func (_u *TaskUpdate) SetNillableAptInstallRecommends(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptInstallRecommends(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptInstallRecommends clears the value of the "apt_install_recommends" field.
-func (tu *TaskUpdate) ClearAptInstallRecommends() *TaskUpdate {
-	tu.mutation.ClearAptInstallRecommends()
-	return tu
+func (_u *TaskUpdate) ClearAptInstallRecommends() *TaskUpdate {
+	_u.mutation.ClearAptInstallRecommends()
+	return _u
 }
 
 // SetAptName sets the "apt_name" field.
-func (tu *TaskUpdate) SetAptName(s string) *TaskUpdate {
-	tu.mutation.SetAptName(s)
-	return tu
+func (_u *TaskUpdate) SetAptName(v string) *TaskUpdate {
+	_u.mutation.SetAptName(v)
+	return _u
 }
 
 // SetNillableAptName sets the "apt_name" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptName(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetAptName(*s)
+func (_u *TaskUpdate) SetNillableAptName(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetAptName(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptName clears the value of the "apt_name" field.
-func (tu *TaskUpdate) ClearAptName() *TaskUpdate {
-	tu.mutation.ClearAptName()
-	return tu
+func (_u *TaskUpdate) ClearAptName() *TaskUpdate {
+	_u.mutation.ClearAptName()
+	return _u
 }
 
 // SetAptOnlyUpgrade sets the "apt_only_upgrade" field.
-func (tu *TaskUpdate) SetAptOnlyUpgrade(b bool) *TaskUpdate {
-	tu.mutation.SetAptOnlyUpgrade(b)
-	return tu
+func (_u *TaskUpdate) SetAptOnlyUpgrade(v bool) *TaskUpdate {
+	_u.mutation.SetAptOnlyUpgrade(v)
+	return _u
 }
 
 // SetNillableAptOnlyUpgrade sets the "apt_only_upgrade" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptOnlyUpgrade(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptOnlyUpgrade(*b)
+func (_u *TaskUpdate) SetNillableAptOnlyUpgrade(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptOnlyUpgrade(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptOnlyUpgrade clears the value of the "apt_only_upgrade" field.
-func (tu *TaskUpdate) ClearAptOnlyUpgrade() *TaskUpdate {
-	tu.mutation.ClearAptOnlyUpgrade()
-	return tu
+func (_u *TaskUpdate) ClearAptOnlyUpgrade() *TaskUpdate {
+	_u.mutation.ClearAptOnlyUpgrade()
+	return _u
 }
 
 // SetAptPurge sets the "apt_purge" field.
-func (tu *TaskUpdate) SetAptPurge(b bool) *TaskUpdate {
-	tu.mutation.SetAptPurge(b)
-	return tu
+func (_u *TaskUpdate) SetAptPurge(v bool) *TaskUpdate {
+	_u.mutation.SetAptPurge(v)
+	return _u
 }
 
 // SetNillableAptPurge sets the "apt_purge" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptPurge(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptPurge(*b)
+func (_u *TaskUpdate) SetNillableAptPurge(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptPurge(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptPurge clears the value of the "apt_purge" field.
-func (tu *TaskUpdate) ClearAptPurge() *TaskUpdate {
-	tu.mutation.ClearAptPurge()
-	return tu
+func (_u *TaskUpdate) ClearAptPurge() *TaskUpdate {
+	_u.mutation.ClearAptPurge()
+	return _u
 }
 
 // SetAptUpdateCache sets the "apt_update_cache" field.
-func (tu *TaskUpdate) SetAptUpdateCache(b bool) *TaskUpdate {
-	tu.mutation.SetAptUpdateCache(b)
-	return tu
+func (_u *TaskUpdate) SetAptUpdateCache(v bool) *TaskUpdate {
+	_u.mutation.SetAptUpdateCache(v)
+	return _u
 }
 
 // SetNillableAptUpdateCache sets the "apt_update_cache" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptUpdateCache(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetAptUpdateCache(*b)
+func (_u *TaskUpdate) SetNillableAptUpdateCache(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetAptUpdateCache(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptUpdateCache clears the value of the "apt_update_cache" field.
-func (tu *TaskUpdate) ClearAptUpdateCache() *TaskUpdate {
-	tu.mutation.ClearAptUpdateCache()
-	return tu
+func (_u *TaskUpdate) ClearAptUpdateCache() *TaskUpdate {
+	_u.mutation.ClearAptUpdateCache()
+	return _u
 }
 
 // SetAptUpgradeType sets the "apt_upgrade_type" field.
-func (tu *TaskUpdate) SetAptUpgradeType(tut task.AptUpgradeType) *TaskUpdate {
-	tu.mutation.SetAptUpgradeType(tut)
-	return tu
+func (_u *TaskUpdate) SetAptUpgradeType(v task.AptUpgradeType) *TaskUpdate {
+	_u.mutation.SetAptUpgradeType(v)
+	return _u
 }
 
 // SetNillableAptUpgradeType sets the "apt_upgrade_type" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableAptUpgradeType(tut *task.AptUpgradeType) *TaskUpdate {
-	if tut != nil {
-		tu.SetAptUpgradeType(*tut)
+func (_u *TaskUpdate) SetNillableAptUpgradeType(v *task.AptUpgradeType) *TaskUpdate {
+	if v != nil {
+		_u.SetAptUpgradeType(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearAptUpgradeType clears the value of the "apt_upgrade_type" field.
-func (tu *TaskUpdate) ClearAptUpgradeType() *TaskUpdate {
-	tu.mutation.ClearAptUpgradeType()
-	return tu
+func (_u *TaskUpdate) ClearAptUpgradeType() *TaskUpdate {
+	_u.mutation.ClearAptUpgradeType()
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (tu *TaskUpdate) SetVersion(i int) *TaskUpdate {
-	tu.mutation.ResetVersion()
-	tu.mutation.SetVersion(i)
-	return tu
+func (_u *TaskUpdate) SetVersion(v int) *TaskUpdate {
+	_u.mutation.ResetVersion()
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableVersion(i *int) *TaskUpdate {
-	if i != nil {
-		tu.SetVersion(*i)
+func (_u *TaskUpdate) SetNillableVersion(v *int) *TaskUpdate {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return tu
+	return _u
 }
 
-// AddVersion adds i to the "version" field.
-func (tu *TaskUpdate) AddVersion(i int) *TaskUpdate {
-	tu.mutation.AddVersion(i)
-	return tu
+// AddVersion adds value to the "version" field.
+func (_u *TaskUpdate) AddVersion(v int) *TaskUpdate {
+	_u.mutation.AddVersion(v)
+	return _u
 }
 
 // ClearVersion clears the value of the "version" field.
-func (tu *TaskUpdate) ClearVersion() *TaskUpdate {
-	tu.mutation.ClearVersion()
-	return tu
+func (_u *TaskUpdate) ClearVersion() *TaskUpdate {
+	_u.mutation.ClearVersion()
+	return _u
 }
 
 // SetTenant sets the "tenant" field.
-func (tu *TaskUpdate) SetTenant(i int) *TaskUpdate {
-	tu.mutation.ResetTenant()
-	tu.mutation.SetTenant(i)
-	return tu
+func (_u *TaskUpdate) SetTenant(v int) *TaskUpdate {
+	_u.mutation.ResetTenant()
+	_u.mutation.SetTenant(v)
+	return _u
 }
 
 // SetNillableTenant sets the "tenant" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableTenant(i *int) *TaskUpdate {
-	if i != nil {
-		tu.SetTenant(*i)
+func (_u *TaskUpdate) SetNillableTenant(v *int) *TaskUpdate {
+	if v != nil {
+		_u.SetTenant(*v)
 	}
-	return tu
+	return _u
 }
 
-// AddTenant adds i to the "tenant" field.
-func (tu *TaskUpdate) AddTenant(i int) *TaskUpdate {
-	tu.mutation.AddTenant(i)
-	return tu
+// AddTenant adds value to the "tenant" field.
+func (_u *TaskUpdate) AddTenant(v int) *TaskUpdate {
+	_u.mutation.AddTenant(v)
+	return _u
 }
 
 // ClearTenant clears the value of the "tenant" field.
-func (tu *TaskUpdate) ClearTenant() *TaskUpdate {
-	tu.mutation.ClearTenant()
-	return tu
+func (_u *TaskUpdate) ClearTenant() *TaskUpdate {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // SetNetbirdGroups sets the "netbird_groups" field.
-func (tu *TaskUpdate) SetNetbirdGroups(s string) *TaskUpdate {
-	tu.mutation.SetNetbirdGroups(s)
-	return tu
+func (_u *TaskUpdate) SetNetbirdGroups(v string) *TaskUpdate {
+	_u.mutation.SetNetbirdGroups(v)
+	return _u
 }
 
 // SetNillableNetbirdGroups sets the "netbird_groups" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableNetbirdGroups(s *string) *TaskUpdate {
-	if s != nil {
-		tu.SetNetbirdGroups(*s)
+func (_u *TaskUpdate) SetNillableNetbirdGroups(v *string) *TaskUpdate {
+	if v != nil {
+		_u.SetNetbirdGroups(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearNetbirdGroups clears the value of the "netbird_groups" field.
-func (tu *TaskUpdate) ClearNetbirdGroups() *TaskUpdate {
-	tu.mutation.ClearNetbirdGroups()
-	return tu
+func (_u *TaskUpdate) ClearNetbirdGroups() *TaskUpdate {
+	_u.mutation.ClearNetbirdGroups()
+	return _u
 }
 
 // SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
-func (tu *TaskUpdate) SetNetbirdAllowExtraDNSLabels(b bool) *TaskUpdate {
-	tu.mutation.SetNetbirdAllowExtraDNSLabels(b)
-	return tu
+func (_u *TaskUpdate) SetNetbirdAllowExtraDNSLabels(v bool) *TaskUpdate {
+	_u.mutation.SetNetbirdAllowExtraDNSLabels(v)
+	return _u
 }
 
 // SetNillableNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableNetbirdAllowExtraDNSLabels(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetNetbirdAllowExtraDNSLabels(*b)
+func (_u *TaskUpdate) SetNillableNetbirdAllowExtraDNSLabels(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetNetbirdAllowExtraDNSLabels(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
-func (tu *TaskUpdate) ClearNetbirdAllowExtraDNSLabels() *TaskUpdate {
-	tu.mutation.ClearNetbirdAllowExtraDNSLabels()
-	return tu
+func (_u *TaskUpdate) ClearNetbirdAllowExtraDNSLabels() *TaskUpdate {
+	_u.mutation.ClearNetbirdAllowExtraDNSLabels()
+	return _u
 }
 
 // SetIgnoreErrors sets the "ignore_errors" field.
-func (tu *TaskUpdate) SetIgnoreErrors(b bool) *TaskUpdate {
-	tu.mutation.SetIgnoreErrors(b)
-	return tu
+func (_u *TaskUpdate) SetIgnoreErrors(v bool) *TaskUpdate {
+	_u.mutation.SetIgnoreErrors(v)
+	return _u
 }
 
 // SetNillableIgnoreErrors sets the "ignore_errors" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableIgnoreErrors(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetIgnoreErrors(*b)
+func (_u *TaskUpdate) SetNillableIgnoreErrors(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetIgnoreErrors(*v)
 	}
-	return tu
+	return _u
 }
 
 // ClearIgnoreErrors clears the value of the "ignore_errors" field.
-func (tu *TaskUpdate) ClearIgnoreErrors() *TaskUpdate {
-	tu.mutation.ClearIgnoreErrors()
-	return tu
+func (_u *TaskUpdate) ClearIgnoreErrors() *TaskUpdate {
+	_u.mutation.ClearIgnoreErrors()
+	return _u
 }
 
 // SetDisabled sets the "disabled" field.
-func (tu *TaskUpdate) SetDisabled(b bool) *TaskUpdate {
-	tu.mutation.SetDisabled(b)
-	return tu
+func (_u *TaskUpdate) SetDisabled(v bool) *TaskUpdate {
+	_u.mutation.SetDisabled(v)
+	return _u
 }
 
 // SetNillableDisabled sets the "disabled" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableDisabled(b *bool) *TaskUpdate {
-	if b != nil {
-		tu.SetDisabled(*b)
+func (_u *TaskUpdate) SetNillableDisabled(v *bool) *TaskUpdate {
+	if v != nil {
+		_u.SetDisabled(*v)
 	}
-	return tu
+	return _u
 }
 
 // SetOrder sets the "order" field.
-func (tu *TaskUpdate) SetOrder(i int) *TaskUpdate {
-	tu.mutation.ResetOrder()
-	tu.mutation.SetOrder(i)
-	return tu
+func (_u *TaskUpdate) SetOrder(v int) *TaskUpdate {
+	_u.mutation.ResetOrder()
+	_u.mutation.SetOrder(v)
+	return _u
 }
 
 // SetNillableOrder sets the "order" field if the given value is not nil.
-func (tu *TaskUpdate) SetNillableOrder(i *int) *TaskUpdate {
-	if i != nil {
-		tu.SetOrder(*i)
+func (_u *TaskUpdate) SetNillableOrder(v *int) *TaskUpdate {
+	if v != nil {
+		_u.SetOrder(*v)
 	}
-	return tu
+	return _u
 }
 
-// AddOrder adds i to the "order" field.
-func (tu *TaskUpdate) AddOrder(i int) *TaskUpdate {
-	tu.mutation.AddOrder(i)
-	return tu
+// AddOrder adds value to the "order" field.
+func (_u *TaskUpdate) AddOrder(v int) *TaskUpdate {
+	_u.mutation.AddOrder(v)
+	return _u
 }
 
 // ClearOrder clears the value of the "order" field.
-func (tu *TaskUpdate) ClearOrder() *TaskUpdate {
-	tu.mutation.ClearOrder()
-	return tu
+func (_u *TaskUpdate) ClearOrder() *TaskUpdate {
+	_u.mutation.ClearOrder()
+	return _u
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (tu *TaskUpdate) AddTagIDs(ids ...int) *TaskUpdate {
-	tu.mutation.AddTagIDs(ids...)
-	return tu
+func (_u *TaskUpdate) AddTagIDs(ids ...int) *TaskUpdate {
+	_u.mutation.AddTagIDs(ids...)
+	return _u
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (tu *TaskUpdate) AddTags(t ...*Tag) *TaskUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdate) AddTags(v ...*Tag) *TaskUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tu.AddTagIDs(ids...)
+	return _u.AddTagIDs(ids...)
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
-func (tu *TaskUpdate) SetProfileID(id int) *TaskUpdate {
-	tu.mutation.SetProfileID(id)
-	return tu
+func (_u *TaskUpdate) SetProfileID(id int) *TaskUpdate {
+	_u.mutation.SetProfileID(id)
+	return _u
 }
 
 // SetNillableProfileID sets the "profile" edge to the Profile entity by ID if the given value is not nil.
-func (tu *TaskUpdate) SetNillableProfileID(id *int) *TaskUpdate {
+func (_u *TaskUpdate) SetNillableProfileID(id *int) *TaskUpdate {
 	if id != nil {
-		tu = tu.SetProfileID(*id)
+		_u = _u.SetProfileID(*id)
 	}
-	return tu
+	return _u
 }
 
 // SetProfile sets the "profile" edge to the Profile entity.
-func (tu *TaskUpdate) SetProfile(p *Profile) *TaskUpdate {
-	return tu.SetProfileID(p.ID)
+func (_u *TaskUpdate) SetProfile(v *Profile) *TaskUpdate {
+	return _u.SetProfileID(v.ID)
 }
 
 // AddReportIDs adds the "reports" edge to the TaskReport entity by IDs.
-func (tu *TaskUpdate) AddReportIDs(ids ...int) *TaskUpdate {
-	tu.mutation.AddReportIDs(ids...)
-	return tu
+func (_u *TaskUpdate) AddReportIDs(ids ...int) *TaskUpdate {
+	_u.mutation.AddReportIDs(ids...)
+	return _u
 }
 
 // AddReports adds the "reports" edges to the TaskReport entity.
-func (tu *TaskUpdate) AddReports(t ...*TaskReport) *TaskUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdate) AddReports(v ...*TaskReport) *TaskUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tu.AddReportIDs(ids...)
+	return _u.AddReportIDs(ids...)
 }
 
 // Mutation returns the TaskMutation object of the builder.
-func (tu *TaskUpdate) Mutation() *TaskMutation {
-	return tu.mutation
+func (_u *TaskUpdate) Mutation() *TaskMutation {
+	return _u.mutation
 }
 
 // ClearTags clears all "tags" edges to the Tag entity.
-func (tu *TaskUpdate) ClearTags() *TaskUpdate {
-	tu.mutation.ClearTags()
-	return tu
+func (_u *TaskUpdate) ClearTags() *TaskUpdate {
+	_u.mutation.ClearTags()
+	return _u
 }
 
 // RemoveTagIDs removes the "tags" edge to Tag entities by IDs.
-func (tu *TaskUpdate) RemoveTagIDs(ids ...int) *TaskUpdate {
-	tu.mutation.RemoveTagIDs(ids...)
-	return tu
+func (_u *TaskUpdate) RemoveTagIDs(ids ...int) *TaskUpdate {
+	_u.mutation.RemoveTagIDs(ids...)
+	return _u
 }
 
 // RemoveTags removes "tags" edges to Tag entities.
-func (tu *TaskUpdate) RemoveTags(t ...*Tag) *TaskUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdate) RemoveTags(v ...*Tag) *TaskUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tu.RemoveTagIDs(ids...)
+	return _u.RemoveTagIDs(ids...)
 }
 
 // ClearProfile clears the "profile" edge to the Profile entity.
-func (tu *TaskUpdate) ClearProfile() *TaskUpdate {
-	tu.mutation.ClearProfile()
-	return tu
+func (_u *TaskUpdate) ClearProfile() *TaskUpdate {
+	_u.mutation.ClearProfile()
+	return _u
 }
 
 // ClearReports clears all "reports" edges to the TaskReport entity.
-func (tu *TaskUpdate) ClearReports() *TaskUpdate {
-	tu.mutation.ClearReports()
-	return tu
+func (_u *TaskUpdate) ClearReports() *TaskUpdate {
+	_u.mutation.ClearReports()
+	return _u
 }
 
 // RemoveReportIDs removes the "reports" edge to TaskReport entities by IDs.
-func (tu *TaskUpdate) RemoveReportIDs(ids ...int) *TaskUpdate {
-	tu.mutation.RemoveReportIDs(ids...)
-	return tu
+func (_u *TaskUpdate) RemoveReportIDs(ids ...int) *TaskUpdate {
+	_u.mutation.RemoveReportIDs(ids...)
+	return _u
 }
 
 // RemoveReports removes "reports" edges to TaskReport entities.
-func (tu *TaskUpdate) RemoveReports(t ...*TaskReport) *TaskUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdate) RemoveReports(v ...*TaskReport) *TaskUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tu.RemoveReportIDs(ids...)
+	return _u.RemoveReportIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (tu *TaskUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, tu.sqlSave, tu.mutation, tu.hooks)
+func (_u *TaskUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tu *TaskUpdate) SaveX(ctx context.Context) int {
-	affected, err := tu.Save(ctx)
+func (_u *TaskUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1972,51 +1972,51 @@ func (tu *TaskUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (tu *TaskUpdate) Exec(ctx context.Context) error {
-	_, err := tu.Save(ctx)
+func (_u *TaskUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tu *TaskUpdate) ExecX(ctx context.Context) {
-	if err := tu.Exec(ctx); err != nil {
+func (_u *TaskUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tu *TaskUpdate) check() error {
-	if v, ok := tu.mutation.Name(); ok {
+func (_u *TaskUpdate) check() error {
+	if v, ok := _u.mutation.Name(); ok {
 		if err := task.NameValidator(v); err != nil {
 			return &ValidationError{Name: "name", err: fmt.Errorf(`ent: validator failed for field "Task.name": %w`, err)}
 		}
 	}
-	if v, ok := tu.mutation.GetType(); ok {
+	if v, ok := _u.mutation.GetType(); ok {
 		if err := task.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Task.type": %w`, err)}
 		}
 	}
-	if v, ok := tu.mutation.RegistryKeyValueType(); ok {
+	if v, ok := _u.mutation.RegistryKeyValueType(); ok {
 		if err := task.RegistryKeyValueTypeValidator(v); err != nil {
 			return &ValidationError{Name: "registry_key_value_type", err: fmt.Errorf(`ent: validator failed for field "Task.registry_key_value_type": %w`, err)}
 		}
 	}
-	if v, ok := tu.mutation.MsiFileHashAlg(); ok {
+	if v, ok := _u.mutation.MsiFileHashAlg(); ok {
 		if err := task.MsiFileHashAlgValidator(v); err != nil {
 			return &ValidationError{Name: "msi_file_hash_alg", err: fmt.Errorf(`ent: validator failed for field "Task.msi_file_hash_alg": %w`, err)}
 		}
 	}
-	if v, ok := tu.mutation.ScriptRun(); ok {
+	if v, ok := _u.mutation.ScriptRun(); ok {
 		if err := task.ScriptRunValidator(v); err != nil {
 			return &ValidationError{Name: "script_run", err: fmt.Errorf(`ent: validator failed for field "Task.script_run": %w`, err)}
 		}
 	}
-	if v, ok := tu.mutation.AgentType(); ok {
+	if v, ok := _u.mutation.AgentType(); ok {
 		if err := task.AgentTypeValidator(v); err != nil {
 			return &ValidationError{Name: "agent_type", err: fmt.Errorf(`ent: validator failed for field "Task.agent_type": %w`, err)}
 		}
 	}
-	if v, ok := tu.mutation.AptUpgradeType(); ok {
+	if v, ok := _u.mutation.AptUpgradeType(); ok {
 		if err := task.AptUpgradeTypeValidator(v); err != nil {
 			return &ValidationError{Name: "apt_upgrade_type", err: fmt.Errorf(`ent: validator failed for field "Task.apt_upgrade_type": %w`, err)}
 		}
@@ -2025,570 +2025,570 @@ func (tu *TaskUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tu *TaskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskUpdate {
-	tu.modifiers = append(tu.modifiers, modifiers...)
-	return tu
+func (_u *TaskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := tu.check(); err != nil {
-		return n, err
+func (_u *TaskUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(task.Table, task.Columns, sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt))
-	if ps := tu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tu.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(task.FieldName, field.TypeString, value)
 	}
-	if value, ok := tu.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(task.FieldType, field.TypeEnum, value)
 	}
-	if value, ok := tu.mutation.PackageID(); ok {
+	if value, ok := _u.mutation.PackageID(); ok {
 		_spec.SetField(task.FieldPackageID, field.TypeString, value)
 	}
-	if tu.mutation.PackageIDCleared() {
+	if _u.mutation.PackageIDCleared() {
 		_spec.ClearField(task.FieldPackageID, field.TypeString)
 	}
-	if value, ok := tu.mutation.PackageName(); ok {
+	if value, ok := _u.mutation.PackageName(); ok {
 		_spec.SetField(task.FieldPackageName, field.TypeString, value)
 	}
-	if tu.mutation.PackageNameCleared() {
+	if _u.mutation.PackageNameCleared() {
 		_spec.ClearField(task.FieldPackageName, field.TypeString)
 	}
-	if value, ok := tu.mutation.PackageLatest(); ok {
+	if value, ok := _u.mutation.PackageLatest(); ok {
 		_spec.SetField(task.FieldPackageLatest, field.TypeBool, value)
 	}
-	if tu.mutation.PackageLatestCleared() {
+	if _u.mutation.PackageLatestCleared() {
 		_spec.ClearField(task.FieldPackageLatest, field.TypeBool)
 	}
-	if value, ok := tu.mutation.RegistryKey(); ok {
+	if value, ok := _u.mutation.RegistryKey(); ok {
 		_spec.SetField(task.FieldRegistryKey, field.TypeString, value)
 	}
-	if tu.mutation.RegistryKeyCleared() {
+	if _u.mutation.RegistryKeyCleared() {
 		_spec.ClearField(task.FieldRegistryKey, field.TypeString)
 	}
-	if value, ok := tu.mutation.RegistryKeyValueName(); ok {
+	if value, ok := _u.mutation.RegistryKeyValueName(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueName, field.TypeString, value)
 	}
-	if tu.mutation.RegistryKeyValueNameCleared() {
+	if _u.mutation.RegistryKeyValueNameCleared() {
 		_spec.ClearField(task.FieldRegistryKeyValueName, field.TypeString)
 	}
-	if value, ok := tu.mutation.RegistryKeyValueType(); ok {
+	if value, ok := _u.mutation.RegistryKeyValueType(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueType, field.TypeEnum, value)
 	}
-	if tu.mutation.RegistryKeyValueTypeCleared() {
+	if _u.mutation.RegistryKeyValueTypeCleared() {
 		_spec.ClearField(task.FieldRegistryKeyValueType, field.TypeEnum)
 	}
-	if value, ok := tu.mutation.RegistryKeyValueData(); ok {
+	if value, ok := _u.mutation.RegistryKeyValueData(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueData, field.TypeString, value)
 	}
-	if tu.mutation.RegistryKeyValueDataCleared() {
+	if _u.mutation.RegistryKeyValueDataCleared() {
 		_spec.ClearField(task.FieldRegistryKeyValueData, field.TypeString)
 	}
-	if value, ok := tu.mutation.RegistryHex(); ok {
+	if value, ok := _u.mutation.RegistryHex(); ok {
 		_spec.SetField(task.FieldRegistryHex, field.TypeBool, value)
 	}
-	if tu.mutation.RegistryHexCleared() {
+	if _u.mutation.RegistryHexCleared() {
 		_spec.ClearField(task.FieldRegistryHex, field.TypeBool)
 	}
-	if value, ok := tu.mutation.RegistryForce(); ok {
+	if value, ok := _u.mutation.RegistryForce(); ok {
 		_spec.SetField(task.FieldRegistryForce, field.TypeBool, value)
 	}
-	if tu.mutation.RegistryForceCleared() {
+	if _u.mutation.RegistryForceCleared() {
 		_spec.ClearField(task.FieldRegistryForce, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserUsername(); ok {
+	if value, ok := _u.mutation.LocalUserUsername(); ok {
 		_spec.SetField(task.FieldLocalUserUsername, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserUsernameCleared() {
+	if _u.mutation.LocalUserUsernameCleared() {
 		_spec.ClearField(task.FieldLocalUserUsername, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserDescription(); ok {
+	if value, ok := _u.mutation.LocalUserDescription(); ok {
 		_spec.SetField(task.FieldLocalUserDescription, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserDescriptionCleared() {
+	if _u.mutation.LocalUserDescriptionCleared() {
 		_spec.ClearField(task.FieldLocalUserDescription, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserDisable(); ok {
+	if value, ok := _u.mutation.LocalUserDisable(); ok {
 		_spec.SetField(task.FieldLocalUserDisable, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserDisableCleared() {
+	if _u.mutation.LocalUserDisableCleared() {
 		_spec.ClearField(task.FieldLocalUserDisable, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserFullname(); ok {
+	if value, ok := _u.mutation.LocalUserFullname(); ok {
 		_spec.SetField(task.FieldLocalUserFullname, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserFullnameCleared() {
+	if _u.mutation.LocalUserFullnameCleared() {
 		_spec.ClearField(task.FieldLocalUserFullname, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserPassword(); ok {
+	if value, ok := _u.mutation.LocalUserPassword(); ok {
 		_spec.SetField(task.FieldLocalUserPassword, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserPasswordCleared() {
+	if _u.mutation.LocalUserPasswordCleared() {
 		_spec.ClearField(task.FieldLocalUserPassword, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordChangeNotAllowed(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordChangeNotAllowed(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordChangeNotAllowed, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserPasswordChangeNotAllowedCleared() {
+	if _u.mutation.LocalUserPasswordChangeNotAllowedCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordChangeNotAllowed, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordChangeRequired(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordChangeRequired(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordChangeRequired, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserPasswordChangeRequiredCleared() {
+	if _u.mutation.LocalUserPasswordChangeRequiredCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordChangeRequired, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordNeverExpires(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordNeverExpires(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordNeverExpires, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserPasswordNeverExpiresCleared() {
+	if _u.mutation.LocalUserPasswordNeverExpiresCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordNeverExpires, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserAppend(); ok {
+	if value, ok := _u.mutation.LocalUserAppend(); ok {
 		_spec.SetField(task.FieldLocalUserAppend, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserAppendCleared() {
+	if _u.mutation.LocalUserAppendCleared() {
 		_spec.ClearField(task.FieldLocalUserAppend, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserCreateHome(); ok {
+	if value, ok := _u.mutation.LocalUserCreateHome(); ok {
 		_spec.SetField(task.FieldLocalUserCreateHome, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserCreateHomeCleared() {
+	if _u.mutation.LocalUserCreateHomeCleared() {
 		_spec.ClearField(task.FieldLocalUserCreateHome, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserExpires(); ok {
+	if value, ok := _u.mutation.LocalUserExpires(); ok {
 		_spec.SetField(task.FieldLocalUserExpires, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserExpiresCleared() {
+	if _u.mutation.LocalUserExpiresCleared() {
 		_spec.ClearField(task.FieldLocalUserExpires, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserForce(); ok {
+	if value, ok := _u.mutation.LocalUserForce(); ok {
 		_spec.SetField(task.FieldLocalUserForce, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserForceCleared() {
+	if _u.mutation.LocalUserForceCleared() {
 		_spec.ClearField(task.FieldLocalUserForce, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserGenerateSSHKey(); ok {
+	if value, ok := _u.mutation.LocalUserGenerateSSHKey(); ok {
 		_spec.SetField(task.FieldLocalUserGenerateSSHKey, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserGenerateSSHKeyCleared() {
+	if _u.mutation.LocalUserGenerateSSHKeyCleared() {
 		_spec.ClearField(task.FieldLocalUserGenerateSSHKey, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserGroup(); ok {
+	if value, ok := _u.mutation.LocalUserGroup(); ok {
 		_spec.SetField(task.FieldLocalUserGroup, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserGroupCleared() {
+	if _u.mutation.LocalUserGroupCleared() {
 		_spec.ClearField(task.FieldLocalUserGroup, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserGroups(); ok {
+	if value, ok := _u.mutation.LocalUserGroups(); ok {
 		_spec.SetField(task.FieldLocalUserGroups, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserGroupsCleared() {
+	if _u.mutation.LocalUserGroupsCleared() {
 		_spec.ClearField(task.FieldLocalUserGroups, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserHome(); ok {
+	if value, ok := _u.mutation.LocalUserHome(); ok {
 		_spec.SetField(task.FieldLocalUserHome, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserHomeCleared() {
+	if _u.mutation.LocalUserHomeCleared() {
 		_spec.ClearField(task.FieldLocalUserHome, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserMoveHome(); ok {
+	if value, ok := _u.mutation.LocalUserMoveHome(); ok {
 		_spec.SetField(task.FieldLocalUserMoveHome, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserMoveHomeCleared() {
+	if _u.mutation.LocalUserMoveHomeCleared() {
 		_spec.ClearField(task.FieldLocalUserMoveHome, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserNonunique(); ok {
+	if value, ok := _u.mutation.LocalUserNonunique(); ok {
 		_spec.SetField(task.FieldLocalUserNonunique, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserNonuniqueCleared() {
+	if _u.mutation.LocalUserNonuniqueCleared() {
 		_spec.ClearField(task.FieldLocalUserNonunique, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordExpireAccountDisable(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireAccountDisable(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireAccountDisable, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserPasswordExpireAccountDisableCleared() {
+	if _u.mutation.LocalUserPasswordExpireAccountDisableCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireAccountDisable, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordExpireMax(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireMax(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireMax, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserPasswordExpireMaxCleared() {
+	if _u.mutation.LocalUserPasswordExpireMaxCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireMax, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordExpireMin(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireMin(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireMin, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserPasswordExpireMinCleared() {
+	if _u.mutation.LocalUserPasswordExpireMinCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireMin, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordExpireWarn(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireWarn(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireWarn, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserPasswordExpireWarnCleared() {
+	if _u.mutation.LocalUserPasswordExpireWarnCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireWarn, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserPasswordLock(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordLock(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordLock, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserPasswordLockCleared() {
+	if _u.mutation.LocalUserPasswordLockCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordLock, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserSeuser(); ok {
+	if value, ok := _u.mutation.LocalUserSeuser(); ok {
 		_spec.SetField(task.FieldLocalUserSeuser, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSeuserCleared() {
+	if _u.mutation.LocalUserSeuserCleared() {
 		_spec.ClearField(task.FieldLocalUserSeuser, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserShell(); ok {
+	if value, ok := _u.mutation.LocalUserShell(); ok {
 		_spec.SetField(task.FieldLocalUserShell, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserShellCleared() {
+	if _u.mutation.LocalUserShellCleared() {
 		_spec.ClearField(task.FieldLocalUserShell, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSkeleton(); ok {
+	if value, ok := _u.mutation.LocalUserSkeleton(); ok {
 		_spec.SetField(task.FieldLocalUserSkeleton, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSkeletonCleared() {
+	if _u.mutation.LocalUserSkeletonCleared() {
 		_spec.ClearField(task.FieldLocalUserSkeleton, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSystem(); ok {
+	if value, ok := _u.mutation.LocalUserSystem(); ok {
 		_spec.SetField(task.FieldLocalUserSystem, field.TypeBool, value)
 	}
-	if tu.mutation.LocalUserSystemCleared() {
+	if _u.mutation.LocalUserSystemCleared() {
 		_spec.ClearField(task.FieldLocalUserSystem, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalUserID(); ok {
+	if value, ok := _u.mutation.LocalUserID(); ok {
 		_spec.SetField(task.FieldLocalUserID, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserIDCleared() {
+	if _u.mutation.LocalUserIDCleared() {
 		_spec.ClearField(task.FieldLocalUserID, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserIDMax(); ok {
+	if value, ok := _u.mutation.LocalUserIDMax(); ok {
 		_spec.SetField(task.FieldLocalUserIDMax, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserIDMaxCleared() {
+	if _u.mutation.LocalUserIDMaxCleared() {
 		_spec.ClearField(task.FieldLocalUserIDMax, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserIDMin(); ok {
+	if value, ok := _u.mutation.LocalUserIDMin(); ok {
 		_spec.SetField(task.FieldLocalUserIDMin, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserIDMinCleared() {
+	if _u.mutation.LocalUserIDMinCleared() {
 		_spec.ClearField(task.FieldLocalUserIDMin, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSSHKeyBits(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyBits(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyBits, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSSHKeyBitsCleared() {
+	if _u.mutation.LocalUserSSHKeyBitsCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyBits, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSSHKeyComment(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyComment(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyComment, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSSHKeyCommentCleared() {
+	if _u.mutation.LocalUserSSHKeyCommentCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyComment, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSSHKeyFile(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyFile(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyFile, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSSHKeyFileCleared() {
+	if _u.mutation.LocalUserSSHKeyFileCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyFile, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSSHKeyPassphrase(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyPassphrase(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyPassphrase, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSSHKeyPassphraseCleared() {
+	if _u.mutation.LocalUserSSHKeyPassphraseCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyPassphrase, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserSSHKeyType(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyType(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyType, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserSSHKeyTypeCleared() {
+	if _u.mutation.LocalUserSSHKeyTypeCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyType, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalUserUmask(); ok {
+	if value, ok := _u.mutation.LocalUserUmask(); ok {
 		_spec.SetField(task.FieldLocalUserUmask, field.TypeString, value)
 	}
-	if tu.mutation.LocalUserUmaskCleared() {
+	if _u.mutation.LocalUserUmaskCleared() {
 		_spec.ClearField(task.FieldLocalUserUmask, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalGroupID(); ok {
+	if value, ok := _u.mutation.LocalGroupID(); ok {
 		_spec.SetField(task.FieldLocalGroupID, field.TypeString, value)
 	}
-	if tu.mutation.LocalGroupIDCleared() {
+	if _u.mutation.LocalGroupIDCleared() {
 		_spec.ClearField(task.FieldLocalGroupID, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalGroupName(); ok {
+	if value, ok := _u.mutation.LocalGroupName(); ok {
 		_spec.SetField(task.FieldLocalGroupName, field.TypeString, value)
 	}
-	if tu.mutation.LocalGroupNameCleared() {
+	if _u.mutation.LocalGroupNameCleared() {
 		_spec.ClearField(task.FieldLocalGroupName, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalGroupDescription(); ok {
+	if value, ok := _u.mutation.LocalGroupDescription(); ok {
 		_spec.SetField(task.FieldLocalGroupDescription, field.TypeString, value)
 	}
-	if tu.mutation.LocalGroupDescriptionCleared() {
+	if _u.mutation.LocalGroupDescriptionCleared() {
 		_spec.ClearField(task.FieldLocalGroupDescription, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalGroupSystem(); ok {
+	if value, ok := _u.mutation.LocalGroupSystem(); ok {
 		_spec.SetField(task.FieldLocalGroupSystem, field.TypeBool, value)
 	}
-	if tu.mutation.LocalGroupSystemCleared() {
+	if _u.mutation.LocalGroupSystemCleared() {
 		_spec.ClearField(task.FieldLocalGroupSystem, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalGroupForce(); ok {
+	if value, ok := _u.mutation.LocalGroupForce(); ok {
 		_spec.SetField(task.FieldLocalGroupForce, field.TypeBool, value)
 	}
-	if tu.mutation.LocalGroupForceCleared() {
+	if _u.mutation.LocalGroupForceCleared() {
 		_spec.ClearField(task.FieldLocalGroupForce, field.TypeBool)
 	}
-	if value, ok := tu.mutation.LocalGroupMembers(); ok {
+	if value, ok := _u.mutation.LocalGroupMembers(); ok {
 		_spec.SetField(task.FieldLocalGroupMembers, field.TypeString, value)
 	}
-	if tu.mutation.LocalGroupMembersCleared() {
+	if _u.mutation.LocalGroupMembersCleared() {
 		_spec.ClearField(task.FieldLocalGroupMembers, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalGroupMembersToInclude(); ok {
+	if value, ok := _u.mutation.LocalGroupMembersToInclude(); ok {
 		_spec.SetField(task.FieldLocalGroupMembersToInclude, field.TypeString, value)
 	}
-	if tu.mutation.LocalGroupMembersToIncludeCleared() {
+	if _u.mutation.LocalGroupMembersToIncludeCleared() {
 		_spec.ClearField(task.FieldLocalGroupMembersToInclude, field.TypeString)
 	}
-	if value, ok := tu.mutation.LocalGroupMembersToExclude(); ok {
+	if value, ok := _u.mutation.LocalGroupMembersToExclude(); ok {
 		_spec.SetField(task.FieldLocalGroupMembersToExclude, field.TypeString, value)
 	}
-	if tu.mutation.LocalGroupMembersToExcludeCleared() {
+	if _u.mutation.LocalGroupMembersToExcludeCleared() {
 		_spec.ClearField(task.FieldLocalGroupMembersToExclude, field.TypeString)
 	}
-	if value, ok := tu.mutation.MsiProductid(); ok {
+	if value, ok := _u.mutation.MsiProductid(); ok {
 		_spec.SetField(task.FieldMsiProductid, field.TypeString, value)
 	}
-	if tu.mutation.MsiProductidCleared() {
+	if _u.mutation.MsiProductidCleared() {
 		_spec.ClearField(task.FieldMsiProductid, field.TypeString)
 	}
-	if value, ok := tu.mutation.MsiPath(); ok {
+	if value, ok := _u.mutation.MsiPath(); ok {
 		_spec.SetField(task.FieldMsiPath, field.TypeString, value)
 	}
-	if tu.mutation.MsiPathCleared() {
+	if _u.mutation.MsiPathCleared() {
 		_spec.ClearField(task.FieldMsiPath, field.TypeString)
 	}
-	if value, ok := tu.mutation.MsiArguments(); ok {
+	if value, ok := _u.mutation.MsiArguments(); ok {
 		_spec.SetField(task.FieldMsiArguments, field.TypeString, value)
 	}
-	if tu.mutation.MsiArgumentsCleared() {
+	if _u.mutation.MsiArgumentsCleared() {
 		_spec.ClearField(task.FieldMsiArguments, field.TypeString)
 	}
-	if value, ok := tu.mutation.MsiFileHash(); ok {
+	if value, ok := _u.mutation.MsiFileHash(); ok {
 		_spec.SetField(task.FieldMsiFileHash, field.TypeString, value)
 	}
-	if tu.mutation.MsiFileHashCleared() {
+	if _u.mutation.MsiFileHashCleared() {
 		_spec.ClearField(task.FieldMsiFileHash, field.TypeString)
 	}
-	if value, ok := tu.mutation.MsiFileHashAlg(); ok {
+	if value, ok := _u.mutation.MsiFileHashAlg(); ok {
 		_spec.SetField(task.FieldMsiFileHashAlg, field.TypeEnum, value)
 	}
-	if tu.mutation.MsiFileHashAlgCleared() {
+	if _u.mutation.MsiFileHashAlgCleared() {
 		_spec.ClearField(task.FieldMsiFileHashAlg, field.TypeEnum)
 	}
-	if value, ok := tu.mutation.MsiLogPath(); ok {
+	if value, ok := _u.mutation.MsiLogPath(); ok {
 		_spec.SetField(task.FieldMsiLogPath, field.TypeString, value)
 	}
-	if tu.mutation.MsiLogPathCleared() {
+	if _u.mutation.MsiLogPathCleared() {
 		_spec.ClearField(task.FieldMsiLogPath, field.TypeString)
 	}
-	if value, ok := tu.mutation.Script(); ok {
+	if value, ok := _u.mutation.Script(); ok {
 		_spec.SetField(task.FieldScript, field.TypeString, value)
 	}
-	if tu.mutation.ScriptCleared() {
+	if _u.mutation.ScriptCleared() {
 		_spec.ClearField(task.FieldScript, field.TypeString)
 	}
-	if value, ok := tu.mutation.ScriptExecutable(); ok {
+	if value, ok := _u.mutation.ScriptExecutable(); ok {
 		_spec.SetField(task.FieldScriptExecutable, field.TypeString, value)
 	}
-	if tu.mutation.ScriptExecutableCleared() {
+	if _u.mutation.ScriptExecutableCleared() {
 		_spec.ClearField(task.FieldScriptExecutable, field.TypeString)
 	}
-	if value, ok := tu.mutation.ScriptCreates(); ok {
+	if value, ok := _u.mutation.ScriptCreates(); ok {
 		_spec.SetField(task.FieldScriptCreates, field.TypeString, value)
 	}
-	if tu.mutation.ScriptCreatesCleared() {
+	if _u.mutation.ScriptCreatesCleared() {
 		_spec.ClearField(task.FieldScriptCreates, field.TypeString)
 	}
-	if value, ok := tu.mutation.ScriptRun(); ok {
+	if value, ok := _u.mutation.ScriptRun(); ok {
 		_spec.SetField(task.FieldScriptRun, field.TypeEnum, value)
 	}
-	if tu.mutation.ScriptRunCleared() {
+	if _u.mutation.ScriptRunCleared() {
 		_spec.ClearField(task.FieldScriptRun, field.TypeEnum)
 	}
-	if value, ok := tu.mutation.AgentType(); ok {
+	if value, ok := _u.mutation.AgentType(); ok {
 		_spec.SetField(task.FieldAgentType, field.TypeEnum, value)
 	}
-	if tu.mutation.AgentTypeCleared() {
+	if _u.mutation.AgentTypeCleared() {
 		_spec.ClearField(task.FieldAgentType, field.TypeEnum)
 	}
-	if value, ok := tu.mutation.When(); ok {
+	if value, ok := _u.mutation.When(); ok {
 		_spec.SetField(task.FieldWhen, field.TypeTime, value)
 	}
-	if tu.mutation.WhenCleared() {
+	if _u.mutation.WhenCleared() {
 		_spec.ClearField(task.FieldWhen, field.TypeTime)
 	}
-	if value, ok := tu.mutation.BrewUpdate(); ok {
+	if value, ok := _u.mutation.BrewUpdate(); ok {
 		_spec.SetField(task.FieldBrewUpdate, field.TypeBool, value)
 	}
-	if tu.mutation.BrewUpdateCleared() {
+	if _u.mutation.BrewUpdateCleared() {
 		_spec.ClearField(task.FieldBrewUpdate, field.TypeBool)
 	}
-	if value, ok := tu.mutation.BrewUpgradeAll(); ok {
+	if value, ok := _u.mutation.BrewUpgradeAll(); ok {
 		_spec.SetField(task.FieldBrewUpgradeAll, field.TypeBool, value)
 	}
-	if tu.mutation.BrewUpgradeAllCleared() {
+	if _u.mutation.BrewUpgradeAllCleared() {
 		_spec.ClearField(task.FieldBrewUpgradeAll, field.TypeBool)
 	}
-	if value, ok := tu.mutation.BrewUpgradeOptions(); ok {
+	if value, ok := _u.mutation.BrewUpgradeOptions(); ok {
 		_spec.SetField(task.FieldBrewUpgradeOptions, field.TypeString, value)
 	}
-	if tu.mutation.BrewUpgradeOptionsCleared() {
+	if _u.mutation.BrewUpgradeOptionsCleared() {
 		_spec.ClearField(task.FieldBrewUpgradeOptions, field.TypeString)
 	}
-	if value, ok := tu.mutation.BrewInstallOptions(); ok {
+	if value, ok := _u.mutation.BrewInstallOptions(); ok {
 		_spec.SetField(task.FieldBrewInstallOptions, field.TypeString, value)
 	}
-	if tu.mutation.BrewInstallOptionsCleared() {
+	if _u.mutation.BrewInstallOptionsCleared() {
 		_spec.ClearField(task.FieldBrewInstallOptions, field.TypeString)
 	}
-	if value, ok := tu.mutation.BrewGreedy(); ok {
+	if value, ok := _u.mutation.BrewGreedy(); ok {
 		_spec.SetField(task.FieldBrewGreedy, field.TypeBool, value)
 	}
-	if tu.mutation.BrewGreedyCleared() {
+	if _u.mutation.BrewGreedyCleared() {
 		_spec.ClearField(task.FieldBrewGreedy, field.TypeBool)
 	}
-	if value, ok := tu.mutation.PackageVersion(); ok {
+	if value, ok := _u.mutation.PackageVersion(); ok {
 		_spec.SetField(task.FieldPackageVersion, field.TypeString, value)
 	}
-	if tu.mutation.PackageVersionCleared() {
+	if _u.mutation.PackageVersionCleared() {
 		_spec.ClearField(task.FieldPackageVersion, field.TypeString)
 	}
-	if value, ok := tu.mutation.AptAllowDowngrade(); ok {
+	if value, ok := _u.mutation.AptAllowDowngrade(); ok {
 		_spec.SetField(task.FieldAptAllowDowngrade, field.TypeBool, value)
 	}
-	if tu.mutation.AptAllowDowngradeCleared() {
+	if _u.mutation.AptAllowDowngradeCleared() {
 		_spec.ClearField(task.FieldAptAllowDowngrade, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptDeb(); ok {
+	if value, ok := _u.mutation.AptDeb(); ok {
 		_spec.SetField(task.FieldAptDeb, field.TypeString, value)
 	}
-	if tu.mutation.AptDebCleared() {
+	if _u.mutation.AptDebCleared() {
 		_spec.ClearField(task.FieldAptDeb, field.TypeString)
 	}
-	if value, ok := tu.mutation.AptDpkgOptions(); ok {
+	if value, ok := _u.mutation.AptDpkgOptions(); ok {
 		_spec.SetField(task.FieldAptDpkgOptions, field.TypeString, value)
 	}
-	if tu.mutation.AptDpkgOptionsCleared() {
+	if _u.mutation.AptDpkgOptionsCleared() {
 		_spec.ClearField(task.FieldAptDpkgOptions, field.TypeString)
 	}
-	if value, ok := tu.mutation.AptFailOnAutoremove(); ok {
+	if value, ok := _u.mutation.AptFailOnAutoremove(); ok {
 		_spec.SetField(task.FieldAptFailOnAutoremove, field.TypeBool, value)
 	}
-	if tu.mutation.AptFailOnAutoremoveCleared() {
+	if _u.mutation.AptFailOnAutoremoveCleared() {
 		_spec.ClearField(task.FieldAptFailOnAutoremove, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptForce(); ok {
+	if value, ok := _u.mutation.AptForce(); ok {
 		_spec.SetField(task.FieldAptForce, field.TypeBool, value)
 	}
-	if tu.mutation.AptForceCleared() {
+	if _u.mutation.AptForceCleared() {
 		_spec.ClearField(task.FieldAptForce, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptInstallRecommends(); ok {
+	if value, ok := _u.mutation.AptInstallRecommends(); ok {
 		_spec.SetField(task.FieldAptInstallRecommends, field.TypeBool, value)
 	}
-	if tu.mutation.AptInstallRecommendsCleared() {
+	if _u.mutation.AptInstallRecommendsCleared() {
 		_spec.ClearField(task.FieldAptInstallRecommends, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptName(); ok {
+	if value, ok := _u.mutation.AptName(); ok {
 		_spec.SetField(task.FieldAptName, field.TypeString, value)
 	}
-	if tu.mutation.AptNameCleared() {
+	if _u.mutation.AptNameCleared() {
 		_spec.ClearField(task.FieldAptName, field.TypeString)
 	}
-	if value, ok := tu.mutation.AptOnlyUpgrade(); ok {
+	if value, ok := _u.mutation.AptOnlyUpgrade(); ok {
 		_spec.SetField(task.FieldAptOnlyUpgrade, field.TypeBool, value)
 	}
-	if tu.mutation.AptOnlyUpgradeCleared() {
+	if _u.mutation.AptOnlyUpgradeCleared() {
 		_spec.ClearField(task.FieldAptOnlyUpgrade, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptPurge(); ok {
+	if value, ok := _u.mutation.AptPurge(); ok {
 		_spec.SetField(task.FieldAptPurge, field.TypeBool, value)
 	}
-	if tu.mutation.AptPurgeCleared() {
+	if _u.mutation.AptPurgeCleared() {
 		_spec.ClearField(task.FieldAptPurge, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptUpdateCache(); ok {
+	if value, ok := _u.mutation.AptUpdateCache(); ok {
 		_spec.SetField(task.FieldAptUpdateCache, field.TypeBool, value)
 	}
-	if tu.mutation.AptUpdateCacheCleared() {
+	if _u.mutation.AptUpdateCacheCleared() {
 		_spec.ClearField(task.FieldAptUpdateCache, field.TypeBool)
 	}
-	if value, ok := tu.mutation.AptUpgradeType(); ok {
+	if value, ok := _u.mutation.AptUpgradeType(); ok {
 		_spec.SetField(task.FieldAptUpgradeType, field.TypeEnum, value)
 	}
-	if tu.mutation.AptUpgradeTypeCleared() {
+	if _u.mutation.AptUpgradeTypeCleared() {
 		_spec.ClearField(task.FieldAptUpgradeType, field.TypeEnum)
 	}
-	if value, ok := tu.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(task.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := tu.mutation.AddedVersion(); ok {
+	if value, ok := _u.mutation.AddedVersion(); ok {
 		_spec.AddField(task.FieldVersion, field.TypeInt, value)
 	}
-	if tu.mutation.VersionCleared() {
+	if _u.mutation.VersionCleared() {
 		_spec.ClearField(task.FieldVersion, field.TypeInt)
 	}
-	if value, ok := tu.mutation.Tenant(); ok {
+	if value, ok := _u.mutation.Tenant(); ok {
 		_spec.SetField(task.FieldTenant, field.TypeInt, value)
 	}
-	if value, ok := tu.mutation.AddedTenant(); ok {
+	if value, ok := _u.mutation.AddedTenant(); ok {
 		_spec.AddField(task.FieldTenant, field.TypeInt, value)
 	}
-	if tu.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		_spec.ClearField(task.FieldTenant, field.TypeInt)
 	}
-	if value, ok := tu.mutation.NetbirdGroups(); ok {
+	if value, ok := _u.mutation.NetbirdGroups(); ok {
 		_spec.SetField(task.FieldNetbirdGroups, field.TypeString, value)
 	}
-	if tu.mutation.NetbirdGroupsCleared() {
+	if _u.mutation.NetbirdGroupsCleared() {
 		_spec.ClearField(task.FieldNetbirdGroups, field.TypeString)
 	}
-	if value, ok := tu.mutation.NetbirdAllowExtraDNSLabels(); ok {
+	if value, ok := _u.mutation.NetbirdAllowExtraDNSLabels(); ok {
 		_spec.SetField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool, value)
 	}
-	if tu.mutation.NetbirdAllowExtraDNSLabelsCleared() {
+	if _u.mutation.NetbirdAllowExtraDNSLabelsCleared() {
 		_spec.ClearField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool)
 	}
-	if value, ok := tu.mutation.IgnoreErrors(); ok {
+	if value, ok := _u.mutation.IgnoreErrors(); ok {
 		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
 	}
-	if tu.mutation.IgnoreErrorsCleared() {
+	if _u.mutation.IgnoreErrorsCleared() {
 		_spec.ClearField(task.FieldIgnoreErrors, field.TypeBool)
 	}
-	if value, ok := tu.mutation.Disabled(); ok {
+	if value, ok := _u.mutation.Disabled(); ok {
 		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
 	}
-	if value, ok := tu.mutation.Order(); ok {
+	if value, ok := _u.mutation.Order(); ok {
 		_spec.SetField(task.FieldOrder, field.TypeInt, value)
 	}
-	if value, ok := tu.mutation.AddedOrder(); ok {
+	if value, ok := _u.mutation.AddedOrder(); ok {
 		_spec.AddField(task.FieldOrder, field.TypeInt, value)
 	}
-	if tu.mutation.OrderCleared() {
+	if _u.mutation.OrderCleared() {
 		_spec.ClearField(task.FieldOrder, field.TypeInt)
 	}
-	if tu.mutation.TagsCleared() {
+	if _u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2601,7 +2601,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.RemovedTagsIDs(); len(nodes) > 0 && !tu.mutation.TagsCleared() {
+	if nodes := _u.mutation.RemovedTagsIDs(); len(nodes) > 0 && !_u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2617,7 +2617,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2633,7 +2633,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tu.mutation.ProfileCleared() {
+	if _u.mutation.ProfileCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2646,7 +2646,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.ProfileIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2662,7 +2662,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tu.mutation.ReportsCleared() {
+	if _u.mutation.ReportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2675,7 +2675,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.RemovedReportsIDs(); len(nodes) > 0 && !tu.mutation.ReportsCleared() {
+	if nodes := _u.mutation.RemovedReportsIDs(); len(nodes) > 0 && !_u.mutation.ReportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2691,7 +2691,7 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tu.mutation.ReportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ReportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2707,8 +2707,8 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(tu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{task.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -2716,8 +2716,8 @@ func (tu *TaskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	tu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // TaskUpdateOne is the builder for updating a single Task entity.
@@ -2730,1951 +2730,1951 @@ type TaskUpdateOne struct {
 }
 
 // SetName sets the "name" field.
-func (tuo *TaskUpdateOne) SetName(s string) *TaskUpdateOne {
-	tuo.mutation.SetName(s)
-	return tuo
+func (_u *TaskUpdateOne) SetName(v string) *TaskUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableName(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetName(*s)
+func (_u *TaskUpdateOne) SetNillableName(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return tuo
+	return _u
 }
 
 // SetType sets the "type" field.
-func (tuo *TaskUpdateOne) SetType(t task.Type) *TaskUpdateOne {
-	tuo.mutation.SetType(t)
-	return tuo
+func (_u *TaskUpdateOne) SetType(v task.Type) *TaskUpdateOne {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableType(t *task.Type) *TaskUpdateOne {
-	if t != nil {
-		tuo.SetType(*t)
+func (_u *TaskUpdateOne) SetNillableType(v *task.Type) *TaskUpdateOne {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return tuo
+	return _u
 }
 
 // SetPackageID sets the "package_id" field.
-func (tuo *TaskUpdateOne) SetPackageID(s string) *TaskUpdateOne {
-	tuo.mutation.SetPackageID(s)
-	return tuo
+func (_u *TaskUpdateOne) SetPackageID(v string) *TaskUpdateOne {
+	_u.mutation.SetPackageID(v)
+	return _u
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillablePackageID(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetPackageID(*s)
+func (_u *TaskUpdateOne) SetNillablePackageID(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetPackageID(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearPackageID clears the value of the "package_id" field.
-func (tuo *TaskUpdateOne) ClearPackageID() *TaskUpdateOne {
-	tuo.mutation.ClearPackageID()
-	return tuo
+func (_u *TaskUpdateOne) ClearPackageID() *TaskUpdateOne {
+	_u.mutation.ClearPackageID()
+	return _u
 }
 
 // SetPackageName sets the "package_name" field.
-func (tuo *TaskUpdateOne) SetPackageName(s string) *TaskUpdateOne {
-	tuo.mutation.SetPackageName(s)
-	return tuo
+func (_u *TaskUpdateOne) SetPackageName(v string) *TaskUpdateOne {
+	_u.mutation.SetPackageName(v)
+	return _u
 }
 
 // SetNillablePackageName sets the "package_name" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillablePackageName(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetPackageName(*s)
+func (_u *TaskUpdateOne) SetNillablePackageName(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetPackageName(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearPackageName clears the value of the "package_name" field.
-func (tuo *TaskUpdateOne) ClearPackageName() *TaskUpdateOne {
-	tuo.mutation.ClearPackageName()
-	return tuo
+func (_u *TaskUpdateOne) ClearPackageName() *TaskUpdateOne {
+	_u.mutation.ClearPackageName()
+	return _u
 }
 
 // SetPackageLatest sets the "package_latest" field.
-func (tuo *TaskUpdateOne) SetPackageLatest(b bool) *TaskUpdateOne {
-	tuo.mutation.SetPackageLatest(b)
-	return tuo
+func (_u *TaskUpdateOne) SetPackageLatest(v bool) *TaskUpdateOne {
+	_u.mutation.SetPackageLatest(v)
+	return _u
 }
 
 // SetNillablePackageLatest sets the "package_latest" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillablePackageLatest(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetPackageLatest(*b)
+func (_u *TaskUpdateOne) SetNillablePackageLatest(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetPackageLatest(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearPackageLatest clears the value of the "package_latest" field.
-func (tuo *TaskUpdateOne) ClearPackageLatest() *TaskUpdateOne {
-	tuo.mutation.ClearPackageLatest()
-	return tuo
+func (_u *TaskUpdateOne) ClearPackageLatest() *TaskUpdateOne {
+	_u.mutation.ClearPackageLatest()
+	return _u
 }
 
 // SetRegistryKey sets the "registry_key" field.
-func (tuo *TaskUpdateOne) SetRegistryKey(s string) *TaskUpdateOne {
-	tuo.mutation.SetRegistryKey(s)
-	return tuo
+func (_u *TaskUpdateOne) SetRegistryKey(v string) *TaskUpdateOne {
+	_u.mutation.SetRegistryKey(v)
+	return _u
 }
 
 // SetNillableRegistryKey sets the "registry_key" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableRegistryKey(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetRegistryKey(*s)
+func (_u *TaskUpdateOne) SetNillableRegistryKey(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetRegistryKey(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearRegistryKey clears the value of the "registry_key" field.
-func (tuo *TaskUpdateOne) ClearRegistryKey() *TaskUpdateOne {
-	tuo.mutation.ClearRegistryKey()
-	return tuo
+func (_u *TaskUpdateOne) ClearRegistryKey() *TaskUpdateOne {
+	_u.mutation.ClearRegistryKey()
+	return _u
 }
 
 // SetRegistryKeyValueName sets the "registry_key_value_name" field.
-func (tuo *TaskUpdateOne) SetRegistryKeyValueName(s string) *TaskUpdateOne {
-	tuo.mutation.SetRegistryKeyValueName(s)
-	return tuo
+func (_u *TaskUpdateOne) SetRegistryKeyValueName(v string) *TaskUpdateOne {
+	_u.mutation.SetRegistryKeyValueName(v)
+	return _u
 }
 
 // SetNillableRegistryKeyValueName sets the "registry_key_value_name" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableRegistryKeyValueName(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetRegistryKeyValueName(*s)
+func (_u *TaskUpdateOne) SetNillableRegistryKeyValueName(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetRegistryKeyValueName(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearRegistryKeyValueName clears the value of the "registry_key_value_name" field.
-func (tuo *TaskUpdateOne) ClearRegistryKeyValueName() *TaskUpdateOne {
-	tuo.mutation.ClearRegistryKeyValueName()
-	return tuo
+func (_u *TaskUpdateOne) ClearRegistryKeyValueName() *TaskUpdateOne {
+	_u.mutation.ClearRegistryKeyValueName()
+	return _u
 }
 
 // SetRegistryKeyValueType sets the "registry_key_value_type" field.
-func (tuo *TaskUpdateOne) SetRegistryKeyValueType(tkvt task.RegistryKeyValueType) *TaskUpdateOne {
-	tuo.mutation.SetRegistryKeyValueType(tkvt)
-	return tuo
+func (_u *TaskUpdateOne) SetRegistryKeyValueType(v task.RegistryKeyValueType) *TaskUpdateOne {
+	_u.mutation.SetRegistryKeyValueType(v)
+	return _u
 }
 
 // SetNillableRegistryKeyValueType sets the "registry_key_value_type" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableRegistryKeyValueType(tkvt *task.RegistryKeyValueType) *TaskUpdateOne {
-	if tkvt != nil {
-		tuo.SetRegistryKeyValueType(*tkvt)
+func (_u *TaskUpdateOne) SetNillableRegistryKeyValueType(v *task.RegistryKeyValueType) *TaskUpdateOne {
+	if v != nil {
+		_u.SetRegistryKeyValueType(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearRegistryKeyValueType clears the value of the "registry_key_value_type" field.
-func (tuo *TaskUpdateOne) ClearRegistryKeyValueType() *TaskUpdateOne {
-	tuo.mutation.ClearRegistryKeyValueType()
-	return tuo
+func (_u *TaskUpdateOne) ClearRegistryKeyValueType() *TaskUpdateOne {
+	_u.mutation.ClearRegistryKeyValueType()
+	return _u
 }
 
 // SetRegistryKeyValueData sets the "registry_key_value_data" field.
-func (tuo *TaskUpdateOne) SetRegistryKeyValueData(s string) *TaskUpdateOne {
-	tuo.mutation.SetRegistryKeyValueData(s)
-	return tuo
+func (_u *TaskUpdateOne) SetRegistryKeyValueData(v string) *TaskUpdateOne {
+	_u.mutation.SetRegistryKeyValueData(v)
+	return _u
 }
 
 // SetNillableRegistryKeyValueData sets the "registry_key_value_data" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableRegistryKeyValueData(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetRegistryKeyValueData(*s)
+func (_u *TaskUpdateOne) SetNillableRegistryKeyValueData(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetRegistryKeyValueData(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearRegistryKeyValueData clears the value of the "registry_key_value_data" field.
-func (tuo *TaskUpdateOne) ClearRegistryKeyValueData() *TaskUpdateOne {
-	tuo.mutation.ClearRegistryKeyValueData()
-	return tuo
+func (_u *TaskUpdateOne) ClearRegistryKeyValueData() *TaskUpdateOne {
+	_u.mutation.ClearRegistryKeyValueData()
+	return _u
 }
 
 // SetRegistryHex sets the "registry_hex" field.
-func (tuo *TaskUpdateOne) SetRegistryHex(b bool) *TaskUpdateOne {
-	tuo.mutation.SetRegistryHex(b)
-	return tuo
+func (_u *TaskUpdateOne) SetRegistryHex(v bool) *TaskUpdateOne {
+	_u.mutation.SetRegistryHex(v)
+	return _u
 }
 
 // SetNillableRegistryHex sets the "registry_hex" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableRegistryHex(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetRegistryHex(*b)
+func (_u *TaskUpdateOne) SetNillableRegistryHex(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetRegistryHex(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearRegistryHex clears the value of the "registry_hex" field.
-func (tuo *TaskUpdateOne) ClearRegistryHex() *TaskUpdateOne {
-	tuo.mutation.ClearRegistryHex()
-	return tuo
+func (_u *TaskUpdateOne) ClearRegistryHex() *TaskUpdateOne {
+	_u.mutation.ClearRegistryHex()
+	return _u
 }
 
 // SetRegistryForce sets the "registry_force" field.
-func (tuo *TaskUpdateOne) SetRegistryForce(b bool) *TaskUpdateOne {
-	tuo.mutation.SetRegistryForce(b)
-	return tuo
+func (_u *TaskUpdateOne) SetRegistryForce(v bool) *TaskUpdateOne {
+	_u.mutation.SetRegistryForce(v)
+	return _u
 }
 
 // SetNillableRegistryForce sets the "registry_force" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableRegistryForce(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetRegistryForce(*b)
+func (_u *TaskUpdateOne) SetNillableRegistryForce(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetRegistryForce(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearRegistryForce clears the value of the "registry_force" field.
-func (tuo *TaskUpdateOne) ClearRegistryForce() *TaskUpdateOne {
-	tuo.mutation.ClearRegistryForce()
-	return tuo
+func (_u *TaskUpdateOne) ClearRegistryForce() *TaskUpdateOne {
+	_u.mutation.ClearRegistryForce()
+	return _u
 }
 
 // SetLocalUserUsername sets the "local_user_username" field.
-func (tuo *TaskUpdateOne) SetLocalUserUsername(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserUsername(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserUsername(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserUsername(v)
+	return _u
 }
 
 // SetNillableLocalUserUsername sets the "local_user_username" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserUsername(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserUsername(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserUsername(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserUsername(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserUsername clears the value of the "local_user_username" field.
-func (tuo *TaskUpdateOne) ClearLocalUserUsername() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserUsername()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserUsername() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserUsername()
+	return _u
 }
 
 // SetLocalUserDescription sets the "local_user_description" field.
-func (tuo *TaskUpdateOne) SetLocalUserDescription(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserDescription(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserDescription(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserDescription(v)
+	return _u
 }
 
 // SetNillableLocalUserDescription sets the "local_user_description" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserDescription(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserDescription(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserDescription(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserDescription(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserDescription clears the value of the "local_user_description" field.
-func (tuo *TaskUpdateOne) ClearLocalUserDescription() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserDescription()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserDescription() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserDescription()
+	return _u
 }
 
 // SetLocalUserDisable sets the "local_user_disable" field.
-func (tuo *TaskUpdateOne) SetLocalUserDisable(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserDisable(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserDisable(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserDisable(v)
+	return _u
 }
 
 // SetNillableLocalUserDisable sets the "local_user_disable" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserDisable(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserDisable(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserDisable(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserDisable(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserDisable clears the value of the "local_user_disable" field.
-func (tuo *TaskUpdateOne) ClearLocalUserDisable() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserDisable()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserDisable() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserDisable()
+	return _u
 }
 
 // SetLocalUserFullname sets the "local_user_fullname" field.
-func (tuo *TaskUpdateOne) SetLocalUserFullname(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserFullname(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserFullname(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserFullname(v)
+	return _u
 }
 
 // SetNillableLocalUserFullname sets the "local_user_fullname" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserFullname(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserFullname(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserFullname(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserFullname(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserFullname clears the value of the "local_user_fullname" field.
-func (tuo *TaskUpdateOne) ClearLocalUserFullname() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserFullname()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserFullname() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserFullname()
+	return _u
 }
 
 // SetLocalUserPassword sets the "local_user_password" field.
-func (tuo *TaskUpdateOne) SetLocalUserPassword(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPassword(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPassword(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPassword(v)
+	return _u
 }
 
 // SetNillableLocalUserPassword sets the "local_user_password" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPassword(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserPassword(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserPassword(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPassword(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPassword clears the value of the "local_user_password" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPassword() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPassword()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPassword() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPassword()
+	return _u
 }
 
 // SetLocalUserPasswordChangeNotAllowed sets the "local_user_password_change_not_allowed" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordChangeNotAllowed(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordChangeNotAllowed(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordChangeNotAllowed(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordChangeNotAllowed(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordChangeNotAllowed sets the "local_user_password_change_not_allowed" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordChangeNotAllowed(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserPasswordChangeNotAllowed(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordChangeNotAllowed(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordChangeNotAllowed(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordChangeNotAllowed clears the value of the "local_user_password_change_not_allowed" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordChangeNotAllowed() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordChangeNotAllowed()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordChangeNotAllowed() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordChangeNotAllowed()
+	return _u
 }
 
 // SetLocalUserPasswordChangeRequired sets the "local_user_password_change_required" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordChangeRequired(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordChangeRequired(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordChangeRequired(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordChangeRequired(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordChangeRequired sets the "local_user_password_change_required" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordChangeRequired(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserPasswordChangeRequired(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordChangeRequired(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordChangeRequired(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordChangeRequired clears the value of the "local_user_password_change_required" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordChangeRequired() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordChangeRequired()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordChangeRequired() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordChangeRequired()
+	return _u
 }
 
 // SetLocalUserPasswordNeverExpires sets the "local_user_password_never_expires" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordNeverExpires(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordNeverExpires(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordNeverExpires(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordNeverExpires(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordNeverExpires sets the "local_user_password_never_expires" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordNeverExpires(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserPasswordNeverExpires(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordNeverExpires(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordNeverExpires(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordNeverExpires clears the value of the "local_user_password_never_expires" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordNeverExpires() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordNeverExpires()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordNeverExpires() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordNeverExpires()
+	return _u
 }
 
 // SetLocalUserAppend sets the "local_user_append" field.
-func (tuo *TaskUpdateOne) SetLocalUserAppend(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserAppend(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserAppend(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserAppend(v)
+	return _u
 }
 
 // SetNillableLocalUserAppend sets the "local_user_append" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserAppend(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserAppend(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserAppend(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserAppend(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserAppend clears the value of the "local_user_append" field.
-func (tuo *TaskUpdateOne) ClearLocalUserAppend() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserAppend()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserAppend() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserAppend()
+	return _u
 }
 
 // SetLocalUserCreateHome sets the "local_user_create_home" field.
-func (tuo *TaskUpdateOne) SetLocalUserCreateHome(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserCreateHome(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserCreateHome(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserCreateHome(v)
+	return _u
 }
 
 // SetNillableLocalUserCreateHome sets the "local_user_create_home" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserCreateHome(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserCreateHome(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserCreateHome(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserCreateHome(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserCreateHome clears the value of the "local_user_create_home" field.
-func (tuo *TaskUpdateOne) ClearLocalUserCreateHome() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserCreateHome()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserCreateHome() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserCreateHome()
+	return _u
 }
 
 // SetLocalUserExpires sets the "local_user_expires" field.
-func (tuo *TaskUpdateOne) SetLocalUserExpires(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserExpires(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserExpires(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserExpires(v)
+	return _u
 }
 
 // SetNillableLocalUserExpires sets the "local_user_expires" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserExpires(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserExpires(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserExpires(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserExpires(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserExpires clears the value of the "local_user_expires" field.
-func (tuo *TaskUpdateOne) ClearLocalUserExpires() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserExpires()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserExpires() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserExpires()
+	return _u
 }
 
 // SetLocalUserForce sets the "local_user_force" field.
-func (tuo *TaskUpdateOne) SetLocalUserForce(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserForce(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserForce(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserForce(v)
+	return _u
 }
 
 // SetNillableLocalUserForce sets the "local_user_force" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserForce(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserForce(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserForce(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserForce(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserForce clears the value of the "local_user_force" field.
-func (tuo *TaskUpdateOne) ClearLocalUserForce() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserForce()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserForce() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserForce()
+	return _u
 }
 
 // SetLocalUserGenerateSSHKey sets the "local_user_generate_ssh_key" field.
-func (tuo *TaskUpdateOne) SetLocalUserGenerateSSHKey(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserGenerateSSHKey(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserGenerateSSHKey(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserGenerateSSHKey(v)
+	return _u
 }
 
 // SetNillableLocalUserGenerateSSHKey sets the "local_user_generate_ssh_key" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserGenerateSSHKey(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserGenerateSSHKey(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserGenerateSSHKey(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserGenerateSSHKey(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserGenerateSSHKey clears the value of the "local_user_generate_ssh_key" field.
-func (tuo *TaskUpdateOne) ClearLocalUserGenerateSSHKey() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserGenerateSSHKey()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserGenerateSSHKey() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserGenerateSSHKey()
+	return _u
 }
 
 // SetLocalUserGroup sets the "local_user_group" field.
-func (tuo *TaskUpdateOne) SetLocalUserGroup(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserGroup(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserGroup(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserGroup(v)
+	return _u
 }
 
 // SetNillableLocalUserGroup sets the "local_user_group" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserGroup(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserGroup(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserGroup(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserGroup(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserGroup clears the value of the "local_user_group" field.
-func (tuo *TaskUpdateOne) ClearLocalUserGroup() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserGroup()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserGroup() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserGroup()
+	return _u
 }
 
 // SetLocalUserGroups sets the "local_user_groups" field.
-func (tuo *TaskUpdateOne) SetLocalUserGroups(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserGroups(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserGroups(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserGroups(v)
+	return _u
 }
 
 // SetNillableLocalUserGroups sets the "local_user_groups" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserGroups(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserGroups(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserGroups(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserGroups(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserGroups clears the value of the "local_user_groups" field.
-func (tuo *TaskUpdateOne) ClearLocalUserGroups() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserGroups()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserGroups() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserGroups()
+	return _u
 }
 
 // SetLocalUserHome sets the "local_user_home" field.
-func (tuo *TaskUpdateOne) SetLocalUserHome(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserHome(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserHome(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserHome(v)
+	return _u
 }
 
 // SetNillableLocalUserHome sets the "local_user_home" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserHome(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserHome(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserHome(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserHome(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserHome clears the value of the "local_user_home" field.
-func (tuo *TaskUpdateOne) ClearLocalUserHome() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserHome()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserHome() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserHome()
+	return _u
 }
 
 // SetLocalUserMoveHome sets the "local_user_move_home" field.
-func (tuo *TaskUpdateOne) SetLocalUserMoveHome(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserMoveHome(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserMoveHome(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserMoveHome(v)
+	return _u
 }
 
 // SetNillableLocalUserMoveHome sets the "local_user_move_home" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserMoveHome(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserMoveHome(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserMoveHome(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserMoveHome(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserMoveHome clears the value of the "local_user_move_home" field.
-func (tuo *TaskUpdateOne) ClearLocalUserMoveHome() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserMoveHome()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserMoveHome() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserMoveHome()
+	return _u
 }
 
 // SetLocalUserNonunique sets the "local_user_nonunique" field.
-func (tuo *TaskUpdateOne) SetLocalUserNonunique(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserNonunique(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserNonunique(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserNonunique(v)
+	return _u
 }
 
 // SetNillableLocalUserNonunique sets the "local_user_nonunique" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserNonunique(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserNonunique(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserNonunique(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserNonunique(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserNonunique clears the value of the "local_user_nonunique" field.
-func (tuo *TaskUpdateOne) ClearLocalUserNonunique() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserNonunique()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserNonunique() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserNonunique()
+	return _u
 }
 
 // SetLocalUserPasswordExpireAccountDisable sets the "local_user_password_expire_account_disable" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordExpireAccountDisable(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordExpireAccountDisable(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordExpireAccountDisable(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordExpireAccountDisable(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireAccountDisable sets the "local_user_password_expire_account_disable" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordExpireAccountDisable(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserPasswordExpireAccountDisable(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordExpireAccountDisable(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireAccountDisable(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordExpireAccountDisable clears the value of the "local_user_password_expire_account_disable" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordExpireAccountDisable() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordExpireAccountDisable()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordExpireAccountDisable() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordExpireAccountDisable()
+	return _u
 }
 
 // SetLocalUserPasswordExpireMax sets the "local_user_password_expire_max" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordExpireMax(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordExpireMax(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordExpireMax(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordExpireMax(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireMax sets the "local_user_password_expire_max" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordExpireMax(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserPasswordExpireMax(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordExpireMax(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireMax(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordExpireMax clears the value of the "local_user_password_expire_max" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordExpireMax() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordExpireMax()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordExpireMax() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordExpireMax()
+	return _u
 }
 
 // SetLocalUserPasswordExpireMin sets the "local_user_password_expire_min" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordExpireMin(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordExpireMin(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordExpireMin(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordExpireMin(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireMin sets the "local_user_password_expire_min" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordExpireMin(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserPasswordExpireMin(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordExpireMin(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireMin(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordExpireMin clears the value of the "local_user_password_expire_min" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordExpireMin() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordExpireMin()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordExpireMin() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordExpireMin()
+	return _u
 }
 
 // SetLocalUserPasswordExpireWarn sets the "local_user_password_expire_warn" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordExpireWarn(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordExpireWarn(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordExpireWarn(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordExpireWarn(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordExpireWarn sets the "local_user_password_expire_warn" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordExpireWarn(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserPasswordExpireWarn(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordExpireWarn(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordExpireWarn(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordExpireWarn clears the value of the "local_user_password_expire_warn" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordExpireWarn() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordExpireWarn()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordExpireWarn() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordExpireWarn()
+	return _u
 }
 
 // SetLocalUserPasswordLock sets the "local_user_password_lock" field.
-func (tuo *TaskUpdateOne) SetLocalUserPasswordLock(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserPasswordLock(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserPasswordLock(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserPasswordLock(v)
+	return _u
 }
 
 // SetNillableLocalUserPasswordLock sets the "local_user_password_lock" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserPasswordLock(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserPasswordLock(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserPasswordLock(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserPasswordLock(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserPasswordLock clears the value of the "local_user_password_lock" field.
-func (tuo *TaskUpdateOne) ClearLocalUserPasswordLock() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserPasswordLock()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserPasswordLock() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserPasswordLock()
+	return _u
 }
 
 // SetLocalUserSeuser sets the "local_user_seuser" field.
-func (tuo *TaskUpdateOne) SetLocalUserSeuser(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSeuser(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSeuser(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSeuser(v)
+	return _u
 }
 
 // SetNillableLocalUserSeuser sets the "local_user_seuser" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSeuser(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSeuser(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSeuser(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSeuser(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSeuser clears the value of the "local_user_seuser" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSeuser() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSeuser()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSeuser() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSeuser()
+	return _u
 }
 
 // SetLocalUserShell sets the "local_user_shell" field.
-func (tuo *TaskUpdateOne) SetLocalUserShell(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserShell(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserShell(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserShell(v)
+	return _u
 }
 
 // SetNillableLocalUserShell sets the "local_user_shell" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserShell(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserShell(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserShell(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserShell(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserShell clears the value of the "local_user_shell" field.
-func (tuo *TaskUpdateOne) ClearLocalUserShell() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserShell()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserShell() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserShell()
+	return _u
 }
 
 // SetLocalUserSkeleton sets the "local_user_skeleton" field.
-func (tuo *TaskUpdateOne) SetLocalUserSkeleton(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSkeleton(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSkeleton(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSkeleton(v)
+	return _u
 }
 
 // SetNillableLocalUserSkeleton sets the "local_user_skeleton" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSkeleton(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSkeleton(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSkeleton(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSkeleton(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSkeleton clears the value of the "local_user_skeleton" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSkeleton() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSkeleton()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSkeleton() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSkeleton()
+	return _u
 }
 
 // SetLocalUserSystem sets the "local_user_system" field.
-func (tuo *TaskUpdateOne) SetLocalUserSystem(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSystem(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSystem(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSystem(v)
+	return _u
 }
 
 // SetNillableLocalUserSystem sets the "local_user_system" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSystem(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalUserSystem(*b)
+func (_u *TaskUpdateOne) SetNillableLocalUserSystem(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSystem(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSystem clears the value of the "local_user_system" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSystem() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSystem()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSystem() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSystem()
+	return _u
 }
 
 // SetLocalUserID sets the "local_user_id" field.
-func (tuo *TaskUpdateOne) SetLocalUserID(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserID(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserID(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserID(v)
+	return _u
 }
 
 // SetNillableLocalUserID sets the "local_user_id" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserID(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserID(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserID(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserID(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserID clears the value of the "local_user_id" field.
-func (tuo *TaskUpdateOne) ClearLocalUserID() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserID()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserID() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserID()
+	return _u
 }
 
 // SetLocalUserIDMax sets the "local_user_id_max" field.
-func (tuo *TaskUpdateOne) SetLocalUserIDMax(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserIDMax(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserIDMax(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserIDMax(v)
+	return _u
 }
 
 // SetNillableLocalUserIDMax sets the "local_user_id_max" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserIDMax(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserIDMax(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserIDMax(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserIDMax(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserIDMax clears the value of the "local_user_id_max" field.
-func (tuo *TaskUpdateOne) ClearLocalUserIDMax() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserIDMax()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserIDMax() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserIDMax()
+	return _u
 }
 
 // SetLocalUserIDMin sets the "local_user_id_min" field.
-func (tuo *TaskUpdateOne) SetLocalUserIDMin(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserIDMin(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserIDMin(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserIDMin(v)
+	return _u
 }
 
 // SetNillableLocalUserIDMin sets the "local_user_id_min" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserIDMin(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserIDMin(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserIDMin(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserIDMin(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserIDMin clears the value of the "local_user_id_min" field.
-func (tuo *TaskUpdateOne) ClearLocalUserIDMin() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserIDMin()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserIDMin() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserIDMin()
+	return _u
 }
 
 // SetLocalUserSSHKeyBits sets the "local_user_ssh_key_bits" field.
-func (tuo *TaskUpdateOne) SetLocalUserSSHKeyBits(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSSHKeyBits(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSSHKeyBits(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSSHKeyBits(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyBits sets the "local_user_ssh_key_bits" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSSHKeyBits(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSSHKeyBits(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSSHKeyBits(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSSHKeyBits(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSSHKeyBits clears the value of the "local_user_ssh_key_bits" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSSHKeyBits() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSSHKeyBits()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSSHKeyBits() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSSHKeyBits()
+	return _u
 }
 
 // SetLocalUserSSHKeyComment sets the "local_user_ssh_key_comment" field.
-func (tuo *TaskUpdateOne) SetLocalUserSSHKeyComment(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSSHKeyComment(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSSHKeyComment(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSSHKeyComment(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyComment sets the "local_user_ssh_key_comment" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSSHKeyComment(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSSHKeyComment(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSSHKeyComment(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSSHKeyComment(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSSHKeyComment clears the value of the "local_user_ssh_key_comment" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSSHKeyComment() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSSHKeyComment()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSSHKeyComment() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSSHKeyComment()
+	return _u
 }
 
 // SetLocalUserSSHKeyFile sets the "local_user_ssh_key_file" field.
-func (tuo *TaskUpdateOne) SetLocalUserSSHKeyFile(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSSHKeyFile(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSSHKeyFile(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSSHKeyFile(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyFile sets the "local_user_ssh_key_file" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSSHKeyFile(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSSHKeyFile(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSSHKeyFile(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSSHKeyFile(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSSHKeyFile clears the value of the "local_user_ssh_key_file" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSSHKeyFile() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSSHKeyFile()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSSHKeyFile() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSSHKeyFile()
+	return _u
 }
 
 // SetLocalUserSSHKeyPassphrase sets the "local_user_ssh_key_passphrase" field.
-func (tuo *TaskUpdateOne) SetLocalUserSSHKeyPassphrase(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSSHKeyPassphrase(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSSHKeyPassphrase(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSSHKeyPassphrase(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyPassphrase sets the "local_user_ssh_key_passphrase" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSSHKeyPassphrase(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSSHKeyPassphrase(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSSHKeyPassphrase(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSSHKeyPassphrase(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSSHKeyPassphrase clears the value of the "local_user_ssh_key_passphrase" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSSHKeyPassphrase() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSSHKeyPassphrase()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSSHKeyPassphrase() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSSHKeyPassphrase()
+	return _u
 }
 
 // SetLocalUserSSHKeyType sets the "local_user_ssh_key_type" field.
-func (tuo *TaskUpdateOne) SetLocalUserSSHKeyType(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserSSHKeyType(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserSSHKeyType(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserSSHKeyType(v)
+	return _u
 }
 
 // SetNillableLocalUserSSHKeyType sets the "local_user_ssh_key_type" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserSSHKeyType(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserSSHKeyType(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserSSHKeyType(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserSSHKeyType(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserSSHKeyType clears the value of the "local_user_ssh_key_type" field.
-func (tuo *TaskUpdateOne) ClearLocalUserSSHKeyType() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserSSHKeyType()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserSSHKeyType() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserSSHKeyType()
+	return _u
 }
 
 // SetLocalUserUmask sets the "local_user_umask" field.
-func (tuo *TaskUpdateOne) SetLocalUserUmask(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalUserUmask(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalUserUmask(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalUserUmask(v)
+	return _u
 }
 
 // SetNillableLocalUserUmask sets the "local_user_umask" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalUserUmask(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalUserUmask(*s)
+func (_u *TaskUpdateOne) SetNillableLocalUserUmask(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalUserUmask(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalUserUmask clears the value of the "local_user_umask" field.
-func (tuo *TaskUpdateOne) ClearLocalUserUmask() *TaskUpdateOne {
-	tuo.mutation.ClearLocalUserUmask()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalUserUmask() *TaskUpdateOne {
+	_u.mutation.ClearLocalUserUmask()
+	return _u
 }
 
 // SetLocalGroupID sets the "local_group_id" field.
-func (tuo *TaskUpdateOne) SetLocalGroupID(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupID(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupID(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupID(v)
+	return _u
 }
 
 // SetNillableLocalGroupID sets the "local_group_id" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupID(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalGroupID(*s)
+func (_u *TaskUpdateOne) SetNillableLocalGroupID(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupID(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupID clears the value of the "local_group_id" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupID() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupID()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupID() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupID()
+	return _u
 }
 
 // SetLocalGroupName sets the "local_group_name" field.
-func (tuo *TaskUpdateOne) SetLocalGroupName(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupName(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupName(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupName(v)
+	return _u
 }
 
 // SetNillableLocalGroupName sets the "local_group_name" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupName(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalGroupName(*s)
+func (_u *TaskUpdateOne) SetNillableLocalGroupName(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupName(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupName clears the value of the "local_group_name" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupName() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupName()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupName() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupName()
+	return _u
 }
 
 // SetLocalGroupDescription sets the "local_group_description" field.
-func (tuo *TaskUpdateOne) SetLocalGroupDescription(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupDescription(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupDescription(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupDescription(v)
+	return _u
 }
 
 // SetNillableLocalGroupDescription sets the "local_group_description" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupDescription(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalGroupDescription(*s)
+func (_u *TaskUpdateOne) SetNillableLocalGroupDescription(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupDescription(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupDescription clears the value of the "local_group_description" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupDescription() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupDescription()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupDescription() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupDescription()
+	return _u
 }
 
 // SetLocalGroupSystem sets the "local_group_system" field.
-func (tuo *TaskUpdateOne) SetLocalGroupSystem(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupSystem(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupSystem(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupSystem(v)
+	return _u
 }
 
 // SetNillableLocalGroupSystem sets the "local_group_system" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupSystem(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalGroupSystem(*b)
+func (_u *TaskUpdateOne) SetNillableLocalGroupSystem(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupSystem(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupSystem clears the value of the "local_group_system" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupSystem() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupSystem()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupSystem() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupSystem()
+	return _u
 }
 
 // SetLocalGroupForce sets the "local_group_force" field.
-func (tuo *TaskUpdateOne) SetLocalGroupForce(b bool) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupForce(b)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupForce(v bool) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupForce(v)
+	return _u
 }
 
 // SetNillableLocalGroupForce sets the "local_group_force" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupForce(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetLocalGroupForce(*b)
+func (_u *TaskUpdateOne) SetNillableLocalGroupForce(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupForce(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupForce clears the value of the "local_group_force" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupForce() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupForce()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupForce() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupForce()
+	return _u
 }
 
 // SetLocalGroupMembers sets the "local_group_members" field.
-func (tuo *TaskUpdateOne) SetLocalGroupMembers(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupMembers(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupMembers(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupMembers(v)
+	return _u
 }
 
 // SetNillableLocalGroupMembers sets the "local_group_members" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupMembers(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalGroupMembers(*s)
+func (_u *TaskUpdateOne) SetNillableLocalGroupMembers(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupMembers(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupMembers clears the value of the "local_group_members" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupMembers() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupMembers()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupMembers() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupMembers()
+	return _u
 }
 
 // SetLocalGroupMembersToInclude sets the "local_group_members_to_include" field.
-func (tuo *TaskUpdateOne) SetLocalGroupMembersToInclude(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupMembersToInclude(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupMembersToInclude(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupMembersToInclude(v)
+	return _u
 }
 
 // SetNillableLocalGroupMembersToInclude sets the "local_group_members_to_include" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupMembersToInclude(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalGroupMembersToInclude(*s)
+func (_u *TaskUpdateOne) SetNillableLocalGroupMembersToInclude(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupMembersToInclude(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupMembersToInclude clears the value of the "local_group_members_to_include" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupMembersToInclude() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupMembersToInclude()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupMembersToInclude() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupMembersToInclude()
+	return _u
 }
 
 // SetLocalGroupMembersToExclude sets the "local_group_members_to_exclude" field.
-func (tuo *TaskUpdateOne) SetLocalGroupMembersToExclude(s string) *TaskUpdateOne {
-	tuo.mutation.SetLocalGroupMembersToExclude(s)
-	return tuo
+func (_u *TaskUpdateOne) SetLocalGroupMembersToExclude(v string) *TaskUpdateOne {
+	_u.mutation.SetLocalGroupMembersToExclude(v)
+	return _u
 }
 
 // SetNillableLocalGroupMembersToExclude sets the "local_group_members_to_exclude" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableLocalGroupMembersToExclude(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetLocalGroupMembersToExclude(*s)
+func (_u *TaskUpdateOne) SetNillableLocalGroupMembersToExclude(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetLocalGroupMembersToExclude(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearLocalGroupMembersToExclude clears the value of the "local_group_members_to_exclude" field.
-func (tuo *TaskUpdateOne) ClearLocalGroupMembersToExclude() *TaskUpdateOne {
-	tuo.mutation.ClearLocalGroupMembersToExclude()
-	return tuo
+func (_u *TaskUpdateOne) ClearLocalGroupMembersToExclude() *TaskUpdateOne {
+	_u.mutation.ClearLocalGroupMembersToExclude()
+	return _u
 }
 
 // SetMsiProductid sets the "msi_productid" field.
-func (tuo *TaskUpdateOne) SetMsiProductid(s string) *TaskUpdateOne {
-	tuo.mutation.SetMsiProductid(s)
-	return tuo
+func (_u *TaskUpdateOne) SetMsiProductid(v string) *TaskUpdateOne {
+	_u.mutation.SetMsiProductid(v)
+	return _u
 }
 
 // SetNillableMsiProductid sets the "msi_productid" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableMsiProductid(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetMsiProductid(*s)
+func (_u *TaskUpdateOne) SetNillableMsiProductid(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetMsiProductid(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearMsiProductid clears the value of the "msi_productid" field.
-func (tuo *TaskUpdateOne) ClearMsiProductid() *TaskUpdateOne {
-	tuo.mutation.ClearMsiProductid()
-	return tuo
+func (_u *TaskUpdateOne) ClearMsiProductid() *TaskUpdateOne {
+	_u.mutation.ClearMsiProductid()
+	return _u
 }
 
 // SetMsiPath sets the "msi_path" field.
-func (tuo *TaskUpdateOne) SetMsiPath(s string) *TaskUpdateOne {
-	tuo.mutation.SetMsiPath(s)
-	return tuo
+func (_u *TaskUpdateOne) SetMsiPath(v string) *TaskUpdateOne {
+	_u.mutation.SetMsiPath(v)
+	return _u
 }
 
 // SetNillableMsiPath sets the "msi_path" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableMsiPath(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetMsiPath(*s)
+func (_u *TaskUpdateOne) SetNillableMsiPath(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetMsiPath(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearMsiPath clears the value of the "msi_path" field.
-func (tuo *TaskUpdateOne) ClearMsiPath() *TaskUpdateOne {
-	tuo.mutation.ClearMsiPath()
-	return tuo
+func (_u *TaskUpdateOne) ClearMsiPath() *TaskUpdateOne {
+	_u.mutation.ClearMsiPath()
+	return _u
 }
 
 // SetMsiArguments sets the "msi_arguments" field.
-func (tuo *TaskUpdateOne) SetMsiArguments(s string) *TaskUpdateOne {
-	tuo.mutation.SetMsiArguments(s)
-	return tuo
+func (_u *TaskUpdateOne) SetMsiArguments(v string) *TaskUpdateOne {
+	_u.mutation.SetMsiArguments(v)
+	return _u
 }
 
 // SetNillableMsiArguments sets the "msi_arguments" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableMsiArguments(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetMsiArguments(*s)
+func (_u *TaskUpdateOne) SetNillableMsiArguments(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetMsiArguments(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearMsiArguments clears the value of the "msi_arguments" field.
-func (tuo *TaskUpdateOne) ClearMsiArguments() *TaskUpdateOne {
-	tuo.mutation.ClearMsiArguments()
-	return tuo
+func (_u *TaskUpdateOne) ClearMsiArguments() *TaskUpdateOne {
+	_u.mutation.ClearMsiArguments()
+	return _u
 }
 
 // SetMsiFileHash sets the "msi_file_hash" field.
-func (tuo *TaskUpdateOne) SetMsiFileHash(s string) *TaskUpdateOne {
-	tuo.mutation.SetMsiFileHash(s)
-	return tuo
+func (_u *TaskUpdateOne) SetMsiFileHash(v string) *TaskUpdateOne {
+	_u.mutation.SetMsiFileHash(v)
+	return _u
 }
 
 // SetNillableMsiFileHash sets the "msi_file_hash" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableMsiFileHash(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetMsiFileHash(*s)
+func (_u *TaskUpdateOne) SetNillableMsiFileHash(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetMsiFileHash(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearMsiFileHash clears the value of the "msi_file_hash" field.
-func (tuo *TaskUpdateOne) ClearMsiFileHash() *TaskUpdateOne {
-	tuo.mutation.ClearMsiFileHash()
-	return tuo
+func (_u *TaskUpdateOne) ClearMsiFileHash() *TaskUpdateOne {
+	_u.mutation.ClearMsiFileHash()
+	return _u
 }
 
 // SetMsiFileHashAlg sets the "msi_file_hash_alg" field.
-func (tuo *TaskUpdateOne) SetMsiFileHashAlg(tfha task.MsiFileHashAlg) *TaskUpdateOne {
-	tuo.mutation.SetMsiFileHashAlg(tfha)
-	return tuo
+func (_u *TaskUpdateOne) SetMsiFileHashAlg(v task.MsiFileHashAlg) *TaskUpdateOne {
+	_u.mutation.SetMsiFileHashAlg(v)
+	return _u
 }
 
 // SetNillableMsiFileHashAlg sets the "msi_file_hash_alg" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableMsiFileHashAlg(tfha *task.MsiFileHashAlg) *TaskUpdateOne {
-	if tfha != nil {
-		tuo.SetMsiFileHashAlg(*tfha)
+func (_u *TaskUpdateOne) SetNillableMsiFileHashAlg(v *task.MsiFileHashAlg) *TaskUpdateOne {
+	if v != nil {
+		_u.SetMsiFileHashAlg(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearMsiFileHashAlg clears the value of the "msi_file_hash_alg" field.
-func (tuo *TaskUpdateOne) ClearMsiFileHashAlg() *TaskUpdateOne {
-	tuo.mutation.ClearMsiFileHashAlg()
-	return tuo
+func (_u *TaskUpdateOne) ClearMsiFileHashAlg() *TaskUpdateOne {
+	_u.mutation.ClearMsiFileHashAlg()
+	return _u
 }
 
 // SetMsiLogPath sets the "msi_log_path" field.
-func (tuo *TaskUpdateOne) SetMsiLogPath(s string) *TaskUpdateOne {
-	tuo.mutation.SetMsiLogPath(s)
-	return tuo
+func (_u *TaskUpdateOne) SetMsiLogPath(v string) *TaskUpdateOne {
+	_u.mutation.SetMsiLogPath(v)
+	return _u
 }
 
 // SetNillableMsiLogPath sets the "msi_log_path" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableMsiLogPath(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetMsiLogPath(*s)
+func (_u *TaskUpdateOne) SetNillableMsiLogPath(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetMsiLogPath(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearMsiLogPath clears the value of the "msi_log_path" field.
-func (tuo *TaskUpdateOne) ClearMsiLogPath() *TaskUpdateOne {
-	tuo.mutation.ClearMsiLogPath()
-	return tuo
+func (_u *TaskUpdateOne) ClearMsiLogPath() *TaskUpdateOne {
+	_u.mutation.ClearMsiLogPath()
+	return _u
 }
 
 // SetScript sets the "script" field.
-func (tuo *TaskUpdateOne) SetScript(s string) *TaskUpdateOne {
-	tuo.mutation.SetScript(s)
-	return tuo
+func (_u *TaskUpdateOne) SetScript(v string) *TaskUpdateOne {
+	_u.mutation.SetScript(v)
+	return _u
 }
 
 // SetNillableScript sets the "script" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableScript(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetScript(*s)
+func (_u *TaskUpdateOne) SetNillableScript(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetScript(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearScript clears the value of the "script" field.
-func (tuo *TaskUpdateOne) ClearScript() *TaskUpdateOne {
-	tuo.mutation.ClearScript()
-	return tuo
+func (_u *TaskUpdateOne) ClearScript() *TaskUpdateOne {
+	_u.mutation.ClearScript()
+	return _u
 }
 
 // SetScriptExecutable sets the "script_executable" field.
-func (tuo *TaskUpdateOne) SetScriptExecutable(s string) *TaskUpdateOne {
-	tuo.mutation.SetScriptExecutable(s)
-	return tuo
+func (_u *TaskUpdateOne) SetScriptExecutable(v string) *TaskUpdateOne {
+	_u.mutation.SetScriptExecutable(v)
+	return _u
 }
 
 // SetNillableScriptExecutable sets the "script_executable" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableScriptExecutable(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetScriptExecutable(*s)
+func (_u *TaskUpdateOne) SetNillableScriptExecutable(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetScriptExecutable(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearScriptExecutable clears the value of the "script_executable" field.
-func (tuo *TaskUpdateOne) ClearScriptExecutable() *TaskUpdateOne {
-	tuo.mutation.ClearScriptExecutable()
-	return tuo
+func (_u *TaskUpdateOne) ClearScriptExecutable() *TaskUpdateOne {
+	_u.mutation.ClearScriptExecutable()
+	return _u
 }
 
 // SetScriptCreates sets the "script_creates" field.
-func (tuo *TaskUpdateOne) SetScriptCreates(s string) *TaskUpdateOne {
-	tuo.mutation.SetScriptCreates(s)
-	return tuo
+func (_u *TaskUpdateOne) SetScriptCreates(v string) *TaskUpdateOne {
+	_u.mutation.SetScriptCreates(v)
+	return _u
 }
 
 // SetNillableScriptCreates sets the "script_creates" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableScriptCreates(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetScriptCreates(*s)
+func (_u *TaskUpdateOne) SetNillableScriptCreates(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetScriptCreates(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearScriptCreates clears the value of the "script_creates" field.
-func (tuo *TaskUpdateOne) ClearScriptCreates() *TaskUpdateOne {
-	tuo.mutation.ClearScriptCreates()
-	return tuo
+func (_u *TaskUpdateOne) ClearScriptCreates() *TaskUpdateOne {
+	_u.mutation.ClearScriptCreates()
+	return _u
 }
 
 // SetScriptRun sets the "script_run" field.
-func (tuo *TaskUpdateOne) SetScriptRun(tr task.ScriptRun) *TaskUpdateOne {
-	tuo.mutation.SetScriptRun(tr)
-	return tuo
+func (_u *TaskUpdateOne) SetScriptRun(v task.ScriptRun) *TaskUpdateOne {
+	_u.mutation.SetScriptRun(v)
+	return _u
 }
 
 // SetNillableScriptRun sets the "script_run" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableScriptRun(tr *task.ScriptRun) *TaskUpdateOne {
-	if tr != nil {
-		tuo.SetScriptRun(*tr)
+func (_u *TaskUpdateOne) SetNillableScriptRun(v *task.ScriptRun) *TaskUpdateOne {
+	if v != nil {
+		_u.SetScriptRun(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearScriptRun clears the value of the "script_run" field.
-func (tuo *TaskUpdateOne) ClearScriptRun() *TaskUpdateOne {
-	tuo.mutation.ClearScriptRun()
-	return tuo
+func (_u *TaskUpdateOne) ClearScriptRun() *TaskUpdateOne {
+	_u.mutation.ClearScriptRun()
+	return _u
 }
 
 // SetAgentType sets the "agent_type" field.
-func (tuo *TaskUpdateOne) SetAgentType(tt task.AgentType) *TaskUpdateOne {
-	tuo.mutation.SetAgentType(tt)
-	return tuo
+func (_u *TaskUpdateOne) SetAgentType(v task.AgentType) *TaskUpdateOne {
+	_u.mutation.SetAgentType(v)
+	return _u
 }
 
 // SetNillableAgentType sets the "agent_type" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAgentType(tt *task.AgentType) *TaskUpdateOne {
-	if tt != nil {
-		tuo.SetAgentType(*tt)
+func (_u *TaskUpdateOne) SetNillableAgentType(v *task.AgentType) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAgentType(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAgentType clears the value of the "agent_type" field.
-func (tuo *TaskUpdateOne) ClearAgentType() *TaskUpdateOne {
-	tuo.mutation.ClearAgentType()
-	return tuo
+func (_u *TaskUpdateOne) ClearAgentType() *TaskUpdateOne {
+	_u.mutation.ClearAgentType()
+	return _u
 }
 
 // SetWhen sets the "when" field.
-func (tuo *TaskUpdateOne) SetWhen(t time.Time) *TaskUpdateOne {
-	tuo.mutation.SetWhen(t)
-	return tuo
+func (_u *TaskUpdateOne) SetWhen(v time.Time) *TaskUpdateOne {
+	_u.mutation.SetWhen(v)
+	return _u
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableWhen(t *time.Time) *TaskUpdateOne {
-	if t != nil {
-		tuo.SetWhen(*t)
+func (_u *TaskUpdateOne) SetNillableWhen(v *time.Time) *TaskUpdateOne {
+	if v != nil {
+		_u.SetWhen(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearWhen clears the value of the "when" field.
-func (tuo *TaskUpdateOne) ClearWhen() *TaskUpdateOne {
-	tuo.mutation.ClearWhen()
-	return tuo
+func (_u *TaskUpdateOne) ClearWhen() *TaskUpdateOne {
+	_u.mutation.ClearWhen()
+	return _u
 }
 
 // SetBrewUpdate sets the "brew_update" field.
-func (tuo *TaskUpdateOne) SetBrewUpdate(b bool) *TaskUpdateOne {
-	tuo.mutation.SetBrewUpdate(b)
-	return tuo
+func (_u *TaskUpdateOne) SetBrewUpdate(v bool) *TaskUpdateOne {
+	_u.mutation.SetBrewUpdate(v)
+	return _u
 }
 
 // SetNillableBrewUpdate sets the "brew_update" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableBrewUpdate(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetBrewUpdate(*b)
+func (_u *TaskUpdateOne) SetNillableBrewUpdate(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetBrewUpdate(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearBrewUpdate clears the value of the "brew_update" field.
-func (tuo *TaskUpdateOne) ClearBrewUpdate() *TaskUpdateOne {
-	tuo.mutation.ClearBrewUpdate()
-	return tuo
+func (_u *TaskUpdateOne) ClearBrewUpdate() *TaskUpdateOne {
+	_u.mutation.ClearBrewUpdate()
+	return _u
 }
 
 // SetBrewUpgradeAll sets the "brew_upgrade_all" field.
-func (tuo *TaskUpdateOne) SetBrewUpgradeAll(b bool) *TaskUpdateOne {
-	tuo.mutation.SetBrewUpgradeAll(b)
-	return tuo
+func (_u *TaskUpdateOne) SetBrewUpgradeAll(v bool) *TaskUpdateOne {
+	_u.mutation.SetBrewUpgradeAll(v)
+	return _u
 }
 
 // SetNillableBrewUpgradeAll sets the "brew_upgrade_all" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableBrewUpgradeAll(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetBrewUpgradeAll(*b)
+func (_u *TaskUpdateOne) SetNillableBrewUpgradeAll(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetBrewUpgradeAll(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearBrewUpgradeAll clears the value of the "brew_upgrade_all" field.
-func (tuo *TaskUpdateOne) ClearBrewUpgradeAll() *TaskUpdateOne {
-	tuo.mutation.ClearBrewUpgradeAll()
-	return tuo
+func (_u *TaskUpdateOne) ClearBrewUpgradeAll() *TaskUpdateOne {
+	_u.mutation.ClearBrewUpgradeAll()
+	return _u
 }
 
 // SetBrewUpgradeOptions sets the "brew_upgrade_options" field.
-func (tuo *TaskUpdateOne) SetBrewUpgradeOptions(s string) *TaskUpdateOne {
-	tuo.mutation.SetBrewUpgradeOptions(s)
-	return tuo
+func (_u *TaskUpdateOne) SetBrewUpgradeOptions(v string) *TaskUpdateOne {
+	_u.mutation.SetBrewUpgradeOptions(v)
+	return _u
 }
 
 // SetNillableBrewUpgradeOptions sets the "brew_upgrade_options" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableBrewUpgradeOptions(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetBrewUpgradeOptions(*s)
+func (_u *TaskUpdateOne) SetNillableBrewUpgradeOptions(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetBrewUpgradeOptions(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearBrewUpgradeOptions clears the value of the "brew_upgrade_options" field.
-func (tuo *TaskUpdateOne) ClearBrewUpgradeOptions() *TaskUpdateOne {
-	tuo.mutation.ClearBrewUpgradeOptions()
-	return tuo
+func (_u *TaskUpdateOne) ClearBrewUpgradeOptions() *TaskUpdateOne {
+	_u.mutation.ClearBrewUpgradeOptions()
+	return _u
 }
 
 // SetBrewInstallOptions sets the "brew_install_options" field.
-func (tuo *TaskUpdateOne) SetBrewInstallOptions(s string) *TaskUpdateOne {
-	tuo.mutation.SetBrewInstallOptions(s)
-	return tuo
+func (_u *TaskUpdateOne) SetBrewInstallOptions(v string) *TaskUpdateOne {
+	_u.mutation.SetBrewInstallOptions(v)
+	return _u
 }
 
 // SetNillableBrewInstallOptions sets the "brew_install_options" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableBrewInstallOptions(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetBrewInstallOptions(*s)
+func (_u *TaskUpdateOne) SetNillableBrewInstallOptions(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetBrewInstallOptions(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearBrewInstallOptions clears the value of the "brew_install_options" field.
-func (tuo *TaskUpdateOne) ClearBrewInstallOptions() *TaskUpdateOne {
-	tuo.mutation.ClearBrewInstallOptions()
-	return tuo
+func (_u *TaskUpdateOne) ClearBrewInstallOptions() *TaskUpdateOne {
+	_u.mutation.ClearBrewInstallOptions()
+	return _u
 }
 
 // SetBrewGreedy sets the "brew_greedy" field.
-func (tuo *TaskUpdateOne) SetBrewGreedy(b bool) *TaskUpdateOne {
-	tuo.mutation.SetBrewGreedy(b)
-	return tuo
+func (_u *TaskUpdateOne) SetBrewGreedy(v bool) *TaskUpdateOne {
+	_u.mutation.SetBrewGreedy(v)
+	return _u
 }
 
 // SetNillableBrewGreedy sets the "brew_greedy" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableBrewGreedy(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetBrewGreedy(*b)
+func (_u *TaskUpdateOne) SetNillableBrewGreedy(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetBrewGreedy(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearBrewGreedy clears the value of the "brew_greedy" field.
-func (tuo *TaskUpdateOne) ClearBrewGreedy() *TaskUpdateOne {
-	tuo.mutation.ClearBrewGreedy()
-	return tuo
+func (_u *TaskUpdateOne) ClearBrewGreedy() *TaskUpdateOne {
+	_u.mutation.ClearBrewGreedy()
+	return _u
 }
 
 // SetPackageVersion sets the "package_version" field.
-func (tuo *TaskUpdateOne) SetPackageVersion(s string) *TaskUpdateOne {
-	tuo.mutation.SetPackageVersion(s)
-	return tuo
+func (_u *TaskUpdateOne) SetPackageVersion(v string) *TaskUpdateOne {
+	_u.mutation.SetPackageVersion(v)
+	return _u
 }
 
 // SetNillablePackageVersion sets the "package_version" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillablePackageVersion(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetPackageVersion(*s)
+func (_u *TaskUpdateOne) SetNillablePackageVersion(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetPackageVersion(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearPackageVersion clears the value of the "package_version" field.
-func (tuo *TaskUpdateOne) ClearPackageVersion() *TaskUpdateOne {
-	tuo.mutation.ClearPackageVersion()
-	return tuo
+func (_u *TaskUpdateOne) ClearPackageVersion() *TaskUpdateOne {
+	_u.mutation.ClearPackageVersion()
+	return _u
 }
 
 // SetAptAllowDowngrade sets the "apt_allow_downgrade" field.
-func (tuo *TaskUpdateOne) SetAptAllowDowngrade(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptAllowDowngrade(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptAllowDowngrade(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptAllowDowngrade(v)
+	return _u
 }
 
 // SetNillableAptAllowDowngrade sets the "apt_allow_downgrade" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptAllowDowngrade(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptAllowDowngrade(*b)
+func (_u *TaskUpdateOne) SetNillableAptAllowDowngrade(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptAllowDowngrade(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptAllowDowngrade clears the value of the "apt_allow_downgrade" field.
-func (tuo *TaskUpdateOne) ClearAptAllowDowngrade() *TaskUpdateOne {
-	tuo.mutation.ClearAptAllowDowngrade()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptAllowDowngrade() *TaskUpdateOne {
+	_u.mutation.ClearAptAllowDowngrade()
+	return _u
 }
 
 // SetAptDeb sets the "apt_deb" field.
-func (tuo *TaskUpdateOne) SetAptDeb(s string) *TaskUpdateOne {
-	tuo.mutation.SetAptDeb(s)
-	return tuo
+func (_u *TaskUpdateOne) SetAptDeb(v string) *TaskUpdateOne {
+	_u.mutation.SetAptDeb(v)
+	return _u
 }
 
 // SetNillableAptDeb sets the "apt_deb" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptDeb(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetAptDeb(*s)
+func (_u *TaskUpdateOne) SetNillableAptDeb(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptDeb(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptDeb clears the value of the "apt_deb" field.
-func (tuo *TaskUpdateOne) ClearAptDeb() *TaskUpdateOne {
-	tuo.mutation.ClearAptDeb()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptDeb() *TaskUpdateOne {
+	_u.mutation.ClearAptDeb()
+	return _u
 }
 
 // SetAptDpkgOptions sets the "apt_dpkg_options" field.
-func (tuo *TaskUpdateOne) SetAptDpkgOptions(s string) *TaskUpdateOne {
-	tuo.mutation.SetAptDpkgOptions(s)
-	return tuo
+func (_u *TaskUpdateOne) SetAptDpkgOptions(v string) *TaskUpdateOne {
+	_u.mutation.SetAptDpkgOptions(v)
+	return _u
 }
 
 // SetNillableAptDpkgOptions sets the "apt_dpkg_options" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptDpkgOptions(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetAptDpkgOptions(*s)
+func (_u *TaskUpdateOne) SetNillableAptDpkgOptions(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptDpkgOptions(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptDpkgOptions clears the value of the "apt_dpkg_options" field.
-func (tuo *TaskUpdateOne) ClearAptDpkgOptions() *TaskUpdateOne {
-	tuo.mutation.ClearAptDpkgOptions()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptDpkgOptions() *TaskUpdateOne {
+	_u.mutation.ClearAptDpkgOptions()
+	return _u
 }
 
 // SetAptFailOnAutoremove sets the "apt_fail_on_autoremove" field.
-func (tuo *TaskUpdateOne) SetAptFailOnAutoremove(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptFailOnAutoremove(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptFailOnAutoremove(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptFailOnAutoremove(v)
+	return _u
 }
 
 // SetNillableAptFailOnAutoremove sets the "apt_fail_on_autoremove" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptFailOnAutoremove(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptFailOnAutoremove(*b)
+func (_u *TaskUpdateOne) SetNillableAptFailOnAutoremove(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptFailOnAutoremove(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptFailOnAutoremove clears the value of the "apt_fail_on_autoremove" field.
-func (tuo *TaskUpdateOne) ClearAptFailOnAutoremove() *TaskUpdateOne {
-	tuo.mutation.ClearAptFailOnAutoremove()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptFailOnAutoremove() *TaskUpdateOne {
+	_u.mutation.ClearAptFailOnAutoremove()
+	return _u
 }
 
 // SetAptForce sets the "apt_force" field.
-func (tuo *TaskUpdateOne) SetAptForce(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptForce(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptForce(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptForce(v)
+	return _u
 }
 
 // SetNillableAptForce sets the "apt_force" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptForce(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptForce(*b)
+func (_u *TaskUpdateOne) SetNillableAptForce(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptForce(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptForce clears the value of the "apt_force" field.
-func (tuo *TaskUpdateOne) ClearAptForce() *TaskUpdateOne {
-	tuo.mutation.ClearAptForce()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptForce() *TaskUpdateOne {
+	_u.mutation.ClearAptForce()
+	return _u
 }
 
 // SetAptInstallRecommends sets the "apt_install_recommends" field.
-func (tuo *TaskUpdateOne) SetAptInstallRecommends(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptInstallRecommends(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptInstallRecommends(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptInstallRecommends(v)
+	return _u
 }
 
 // SetNillableAptInstallRecommends sets the "apt_install_recommends" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptInstallRecommends(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptInstallRecommends(*b)
+func (_u *TaskUpdateOne) SetNillableAptInstallRecommends(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptInstallRecommends(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptInstallRecommends clears the value of the "apt_install_recommends" field.
-func (tuo *TaskUpdateOne) ClearAptInstallRecommends() *TaskUpdateOne {
-	tuo.mutation.ClearAptInstallRecommends()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptInstallRecommends() *TaskUpdateOne {
+	_u.mutation.ClearAptInstallRecommends()
+	return _u
 }
 
 // SetAptName sets the "apt_name" field.
-func (tuo *TaskUpdateOne) SetAptName(s string) *TaskUpdateOne {
-	tuo.mutation.SetAptName(s)
-	return tuo
+func (_u *TaskUpdateOne) SetAptName(v string) *TaskUpdateOne {
+	_u.mutation.SetAptName(v)
+	return _u
 }
 
 // SetNillableAptName sets the "apt_name" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptName(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetAptName(*s)
+func (_u *TaskUpdateOne) SetNillableAptName(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptName(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptName clears the value of the "apt_name" field.
-func (tuo *TaskUpdateOne) ClearAptName() *TaskUpdateOne {
-	tuo.mutation.ClearAptName()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptName() *TaskUpdateOne {
+	_u.mutation.ClearAptName()
+	return _u
 }
 
 // SetAptOnlyUpgrade sets the "apt_only_upgrade" field.
-func (tuo *TaskUpdateOne) SetAptOnlyUpgrade(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptOnlyUpgrade(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptOnlyUpgrade(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptOnlyUpgrade(v)
+	return _u
 }
 
 // SetNillableAptOnlyUpgrade sets the "apt_only_upgrade" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptOnlyUpgrade(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptOnlyUpgrade(*b)
+func (_u *TaskUpdateOne) SetNillableAptOnlyUpgrade(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptOnlyUpgrade(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptOnlyUpgrade clears the value of the "apt_only_upgrade" field.
-func (tuo *TaskUpdateOne) ClearAptOnlyUpgrade() *TaskUpdateOne {
-	tuo.mutation.ClearAptOnlyUpgrade()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptOnlyUpgrade() *TaskUpdateOne {
+	_u.mutation.ClearAptOnlyUpgrade()
+	return _u
 }
 
 // SetAptPurge sets the "apt_purge" field.
-func (tuo *TaskUpdateOne) SetAptPurge(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptPurge(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptPurge(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptPurge(v)
+	return _u
 }
 
 // SetNillableAptPurge sets the "apt_purge" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptPurge(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptPurge(*b)
+func (_u *TaskUpdateOne) SetNillableAptPurge(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptPurge(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptPurge clears the value of the "apt_purge" field.
-func (tuo *TaskUpdateOne) ClearAptPurge() *TaskUpdateOne {
-	tuo.mutation.ClearAptPurge()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptPurge() *TaskUpdateOne {
+	_u.mutation.ClearAptPurge()
+	return _u
 }
 
 // SetAptUpdateCache sets the "apt_update_cache" field.
-func (tuo *TaskUpdateOne) SetAptUpdateCache(b bool) *TaskUpdateOne {
-	tuo.mutation.SetAptUpdateCache(b)
-	return tuo
+func (_u *TaskUpdateOne) SetAptUpdateCache(v bool) *TaskUpdateOne {
+	_u.mutation.SetAptUpdateCache(v)
+	return _u
 }
 
 // SetNillableAptUpdateCache sets the "apt_update_cache" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptUpdateCache(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetAptUpdateCache(*b)
+func (_u *TaskUpdateOne) SetNillableAptUpdateCache(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptUpdateCache(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptUpdateCache clears the value of the "apt_update_cache" field.
-func (tuo *TaskUpdateOne) ClearAptUpdateCache() *TaskUpdateOne {
-	tuo.mutation.ClearAptUpdateCache()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptUpdateCache() *TaskUpdateOne {
+	_u.mutation.ClearAptUpdateCache()
+	return _u
 }
 
 // SetAptUpgradeType sets the "apt_upgrade_type" field.
-func (tuo *TaskUpdateOne) SetAptUpgradeType(tut task.AptUpgradeType) *TaskUpdateOne {
-	tuo.mutation.SetAptUpgradeType(tut)
-	return tuo
+func (_u *TaskUpdateOne) SetAptUpgradeType(v task.AptUpgradeType) *TaskUpdateOne {
+	_u.mutation.SetAptUpgradeType(v)
+	return _u
 }
 
 // SetNillableAptUpgradeType sets the "apt_upgrade_type" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableAptUpgradeType(tut *task.AptUpgradeType) *TaskUpdateOne {
-	if tut != nil {
-		tuo.SetAptUpgradeType(*tut)
+func (_u *TaskUpdateOne) SetNillableAptUpgradeType(v *task.AptUpgradeType) *TaskUpdateOne {
+	if v != nil {
+		_u.SetAptUpgradeType(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearAptUpgradeType clears the value of the "apt_upgrade_type" field.
-func (tuo *TaskUpdateOne) ClearAptUpgradeType() *TaskUpdateOne {
-	tuo.mutation.ClearAptUpgradeType()
-	return tuo
+func (_u *TaskUpdateOne) ClearAptUpgradeType() *TaskUpdateOne {
+	_u.mutation.ClearAptUpgradeType()
+	return _u
 }
 
 // SetVersion sets the "version" field.
-func (tuo *TaskUpdateOne) SetVersion(i int) *TaskUpdateOne {
-	tuo.mutation.ResetVersion()
-	tuo.mutation.SetVersion(i)
-	return tuo
+func (_u *TaskUpdateOne) SetVersion(v int) *TaskUpdateOne {
+	_u.mutation.ResetVersion()
+	_u.mutation.SetVersion(v)
+	return _u
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableVersion(i *int) *TaskUpdateOne {
-	if i != nil {
-		tuo.SetVersion(*i)
+func (_u *TaskUpdateOne) SetNillableVersion(v *int) *TaskUpdateOne {
+	if v != nil {
+		_u.SetVersion(*v)
 	}
-	return tuo
+	return _u
 }
 
-// AddVersion adds i to the "version" field.
-func (tuo *TaskUpdateOne) AddVersion(i int) *TaskUpdateOne {
-	tuo.mutation.AddVersion(i)
-	return tuo
+// AddVersion adds value to the "version" field.
+func (_u *TaskUpdateOne) AddVersion(v int) *TaskUpdateOne {
+	_u.mutation.AddVersion(v)
+	return _u
 }
 
 // ClearVersion clears the value of the "version" field.
-func (tuo *TaskUpdateOne) ClearVersion() *TaskUpdateOne {
-	tuo.mutation.ClearVersion()
-	return tuo
+func (_u *TaskUpdateOne) ClearVersion() *TaskUpdateOne {
+	_u.mutation.ClearVersion()
+	return _u
 }
 
 // SetTenant sets the "tenant" field.
-func (tuo *TaskUpdateOne) SetTenant(i int) *TaskUpdateOne {
-	tuo.mutation.ResetTenant()
-	tuo.mutation.SetTenant(i)
-	return tuo
+func (_u *TaskUpdateOne) SetTenant(v int) *TaskUpdateOne {
+	_u.mutation.ResetTenant()
+	_u.mutation.SetTenant(v)
+	return _u
 }
 
 // SetNillableTenant sets the "tenant" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableTenant(i *int) *TaskUpdateOne {
-	if i != nil {
-		tuo.SetTenant(*i)
+func (_u *TaskUpdateOne) SetNillableTenant(v *int) *TaskUpdateOne {
+	if v != nil {
+		_u.SetTenant(*v)
 	}
-	return tuo
+	return _u
 }
 
-// AddTenant adds i to the "tenant" field.
-func (tuo *TaskUpdateOne) AddTenant(i int) *TaskUpdateOne {
-	tuo.mutation.AddTenant(i)
-	return tuo
+// AddTenant adds value to the "tenant" field.
+func (_u *TaskUpdateOne) AddTenant(v int) *TaskUpdateOne {
+	_u.mutation.AddTenant(v)
+	return _u
 }
 
 // ClearTenant clears the value of the "tenant" field.
-func (tuo *TaskUpdateOne) ClearTenant() *TaskUpdateOne {
-	tuo.mutation.ClearTenant()
-	return tuo
+func (_u *TaskUpdateOne) ClearTenant() *TaskUpdateOne {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // SetNetbirdGroups sets the "netbird_groups" field.
-func (tuo *TaskUpdateOne) SetNetbirdGroups(s string) *TaskUpdateOne {
-	tuo.mutation.SetNetbirdGroups(s)
-	return tuo
+func (_u *TaskUpdateOne) SetNetbirdGroups(v string) *TaskUpdateOne {
+	_u.mutation.SetNetbirdGroups(v)
+	return _u
 }
 
 // SetNillableNetbirdGroups sets the "netbird_groups" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableNetbirdGroups(s *string) *TaskUpdateOne {
-	if s != nil {
-		tuo.SetNetbirdGroups(*s)
+func (_u *TaskUpdateOne) SetNillableNetbirdGroups(v *string) *TaskUpdateOne {
+	if v != nil {
+		_u.SetNetbirdGroups(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearNetbirdGroups clears the value of the "netbird_groups" field.
-func (tuo *TaskUpdateOne) ClearNetbirdGroups() *TaskUpdateOne {
-	tuo.mutation.ClearNetbirdGroups()
-	return tuo
+func (_u *TaskUpdateOne) ClearNetbirdGroups() *TaskUpdateOne {
+	_u.mutation.ClearNetbirdGroups()
+	return _u
 }
 
 // SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
-func (tuo *TaskUpdateOne) SetNetbirdAllowExtraDNSLabels(b bool) *TaskUpdateOne {
-	tuo.mutation.SetNetbirdAllowExtraDNSLabels(b)
-	return tuo
+func (_u *TaskUpdateOne) SetNetbirdAllowExtraDNSLabels(v bool) *TaskUpdateOne {
+	_u.mutation.SetNetbirdAllowExtraDNSLabels(v)
+	return _u
 }
 
 // SetNillableNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableNetbirdAllowExtraDNSLabels(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetNetbirdAllowExtraDNSLabels(*b)
+func (_u *TaskUpdateOne) SetNillableNetbirdAllowExtraDNSLabels(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetNetbirdAllowExtraDNSLabels(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearNetbirdAllowExtraDNSLabels clears the value of the "netbird_allow_extra_dns_labels" field.
-func (tuo *TaskUpdateOne) ClearNetbirdAllowExtraDNSLabels() *TaskUpdateOne {
-	tuo.mutation.ClearNetbirdAllowExtraDNSLabels()
-	return tuo
+func (_u *TaskUpdateOne) ClearNetbirdAllowExtraDNSLabels() *TaskUpdateOne {
+	_u.mutation.ClearNetbirdAllowExtraDNSLabels()
+	return _u
 }
 
 // SetIgnoreErrors sets the "ignore_errors" field.
-func (tuo *TaskUpdateOne) SetIgnoreErrors(b bool) *TaskUpdateOne {
-	tuo.mutation.SetIgnoreErrors(b)
-	return tuo
+func (_u *TaskUpdateOne) SetIgnoreErrors(v bool) *TaskUpdateOne {
+	_u.mutation.SetIgnoreErrors(v)
+	return _u
 }
 
 // SetNillableIgnoreErrors sets the "ignore_errors" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableIgnoreErrors(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetIgnoreErrors(*b)
+func (_u *TaskUpdateOne) SetNillableIgnoreErrors(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetIgnoreErrors(*v)
 	}
-	return tuo
+	return _u
 }
 
 // ClearIgnoreErrors clears the value of the "ignore_errors" field.
-func (tuo *TaskUpdateOne) ClearIgnoreErrors() *TaskUpdateOne {
-	tuo.mutation.ClearIgnoreErrors()
-	return tuo
+func (_u *TaskUpdateOne) ClearIgnoreErrors() *TaskUpdateOne {
+	_u.mutation.ClearIgnoreErrors()
+	return _u
 }
 
 // SetDisabled sets the "disabled" field.
-func (tuo *TaskUpdateOne) SetDisabled(b bool) *TaskUpdateOne {
-	tuo.mutation.SetDisabled(b)
-	return tuo
+func (_u *TaskUpdateOne) SetDisabled(v bool) *TaskUpdateOne {
+	_u.mutation.SetDisabled(v)
+	return _u
 }
 
 // SetNillableDisabled sets the "disabled" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableDisabled(b *bool) *TaskUpdateOne {
-	if b != nil {
-		tuo.SetDisabled(*b)
+func (_u *TaskUpdateOne) SetNillableDisabled(v *bool) *TaskUpdateOne {
+	if v != nil {
+		_u.SetDisabled(*v)
 	}
-	return tuo
+	return _u
 }
 
 // SetOrder sets the "order" field.
-func (tuo *TaskUpdateOne) SetOrder(i int) *TaskUpdateOne {
-	tuo.mutation.ResetOrder()
-	tuo.mutation.SetOrder(i)
-	return tuo
+func (_u *TaskUpdateOne) SetOrder(v int) *TaskUpdateOne {
+	_u.mutation.ResetOrder()
+	_u.mutation.SetOrder(v)
+	return _u
 }
 
 // SetNillableOrder sets the "order" field if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableOrder(i *int) *TaskUpdateOne {
-	if i != nil {
-		tuo.SetOrder(*i)
+func (_u *TaskUpdateOne) SetNillableOrder(v *int) *TaskUpdateOne {
+	if v != nil {
+		_u.SetOrder(*v)
 	}
-	return tuo
+	return _u
 }
 
-// AddOrder adds i to the "order" field.
-func (tuo *TaskUpdateOne) AddOrder(i int) *TaskUpdateOne {
-	tuo.mutation.AddOrder(i)
-	return tuo
+// AddOrder adds value to the "order" field.
+func (_u *TaskUpdateOne) AddOrder(v int) *TaskUpdateOne {
+	_u.mutation.AddOrder(v)
+	return _u
 }
 
 // ClearOrder clears the value of the "order" field.
-func (tuo *TaskUpdateOne) ClearOrder() *TaskUpdateOne {
-	tuo.mutation.ClearOrder()
-	return tuo
+func (_u *TaskUpdateOne) ClearOrder() *TaskUpdateOne {
+	_u.mutation.ClearOrder()
+	return _u
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (tuo *TaskUpdateOne) AddTagIDs(ids ...int) *TaskUpdateOne {
-	tuo.mutation.AddTagIDs(ids...)
-	return tuo
+func (_u *TaskUpdateOne) AddTagIDs(ids ...int) *TaskUpdateOne {
+	_u.mutation.AddTagIDs(ids...)
+	return _u
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (tuo *TaskUpdateOne) AddTags(t ...*Tag) *TaskUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdateOne) AddTags(v ...*Tag) *TaskUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tuo.AddTagIDs(ids...)
+	return _u.AddTagIDs(ids...)
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
-func (tuo *TaskUpdateOne) SetProfileID(id int) *TaskUpdateOne {
-	tuo.mutation.SetProfileID(id)
-	return tuo
+func (_u *TaskUpdateOne) SetProfileID(id int) *TaskUpdateOne {
+	_u.mutation.SetProfileID(id)
+	return _u
 }
 
 // SetNillableProfileID sets the "profile" edge to the Profile entity by ID if the given value is not nil.
-func (tuo *TaskUpdateOne) SetNillableProfileID(id *int) *TaskUpdateOne {
+func (_u *TaskUpdateOne) SetNillableProfileID(id *int) *TaskUpdateOne {
 	if id != nil {
-		tuo = tuo.SetProfileID(*id)
+		_u = _u.SetProfileID(*id)
 	}
-	return tuo
+	return _u
 }
 
 // SetProfile sets the "profile" edge to the Profile entity.
-func (tuo *TaskUpdateOne) SetProfile(p *Profile) *TaskUpdateOne {
-	return tuo.SetProfileID(p.ID)
+func (_u *TaskUpdateOne) SetProfile(v *Profile) *TaskUpdateOne {
+	return _u.SetProfileID(v.ID)
 }
 
 // AddReportIDs adds the "reports" edge to the TaskReport entity by IDs.
-func (tuo *TaskUpdateOne) AddReportIDs(ids ...int) *TaskUpdateOne {
-	tuo.mutation.AddReportIDs(ids...)
-	return tuo
+func (_u *TaskUpdateOne) AddReportIDs(ids ...int) *TaskUpdateOne {
+	_u.mutation.AddReportIDs(ids...)
+	return _u
 }
 
 // AddReports adds the "reports" edges to the TaskReport entity.
-func (tuo *TaskUpdateOne) AddReports(t ...*TaskReport) *TaskUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdateOne) AddReports(v ...*TaskReport) *TaskUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tuo.AddReportIDs(ids...)
+	return _u.AddReportIDs(ids...)
 }
 
 // Mutation returns the TaskMutation object of the builder.
-func (tuo *TaskUpdateOne) Mutation() *TaskMutation {
-	return tuo.mutation
+func (_u *TaskUpdateOne) Mutation() *TaskMutation {
+	return _u.mutation
 }
 
 // ClearTags clears all "tags" edges to the Tag entity.
-func (tuo *TaskUpdateOne) ClearTags() *TaskUpdateOne {
-	tuo.mutation.ClearTags()
-	return tuo
+func (_u *TaskUpdateOne) ClearTags() *TaskUpdateOne {
+	_u.mutation.ClearTags()
+	return _u
 }
 
 // RemoveTagIDs removes the "tags" edge to Tag entities by IDs.
-func (tuo *TaskUpdateOne) RemoveTagIDs(ids ...int) *TaskUpdateOne {
-	tuo.mutation.RemoveTagIDs(ids...)
-	return tuo
+func (_u *TaskUpdateOne) RemoveTagIDs(ids ...int) *TaskUpdateOne {
+	_u.mutation.RemoveTagIDs(ids...)
+	return _u
 }
 
 // RemoveTags removes "tags" edges to Tag entities.
-func (tuo *TaskUpdateOne) RemoveTags(t ...*Tag) *TaskUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdateOne) RemoveTags(v ...*Tag) *TaskUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tuo.RemoveTagIDs(ids...)
+	return _u.RemoveTagIDs(ids...)
 }
 
 // ClearProfile clears the "profile" edge to the Profile entity.
-func (tuo *TaskUpdateOne) ClearProfile() *TaskUpdateOne {
-	tuo.mutation.ClearProfile()
-	return tuo
+func (_u *TaskUpdateOne) ClearProfile() *TaskUpdateOne {
+	_u.mutation.ClearProfile()
+	return _u
 }
 
 // ClearReports clears all "reports" edges to the TaskReport entity.
-func (tuo *TaskUpdateOne) ClearReports() *TaskUpdateOne {
-	tuo.mutation.ClearReports()
-	return tuo
+func (_u *TaskUpdateOne) ClearReports() *TaskUpdateOne {
+	_u.mutation.ClearReports()
+	return _u
 }
 
 // RemoveReportIDs removes the "reports" edge to TaskReport entities by IDs.
-func (tuo *TaskUpdateOne) RemoveReportIDs(ids ...int) *TaskUpdateOne {
-	tuo.mutation.RemoveReportIDs(ids...)
-	return tuo
+func (_u *TaskUpdateOne) RemoveReportIDs(ids ...int) *TaskUpdateOne {
+	_u.mutation.RemoveReportIDs(ids...)
+	return _u
 }
 
 // RemoveReports removes "reports" edges to TaskReport entities.
-func (tuo *TaskUpdateOne) RemoveReports(t ...*TaskReport) *TaskUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *TaskUpdateOne) RemoveReports(v ...*TaskReport) *TaskUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tuo.RemoveReportIDs(ids...)
+	return _u.RemoveReportIDs(ids...)
 }
 
 // Where appends a list predicates to the TaskUpdate builder.
-func (tuo *TaskUpdateOne) Where(ps ...predicate.Task) *TaskUpdateOne {
-	tuo.mutation.Where(ps...)
-	return tuo
+func (_u *TaskUpdateOne) Where(ps ...predicate.Task) *TaskUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (tuo *TaskUpdateOne) Select(field string, fields ...string) *TaskUpdateOne {
-	tuo.fields = append([]string{field}, fields...)
-	return tuo
+func (_u *TaskUpdateOne) Select(field string, fields ...string) *TaskUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Task entity.
-func (tuo *TaskUpdateOne) Save(ctx context.Context) (*Task, error) {
-	return withHooks(ctx, tuo.sqlSave, tuo.mutation, tuo.hooks)
+func (_u *TaskUpdateOne) Save(ctx context.Context) (*Task, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tuo *TaskUpdateOne) SaveX(ctx context.Context) *Task {
-	node, err := tuo.Save(ctx)
+func (_u *TaskUpdateOne) SaveX(ctx context.Context) *Task {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -4682,51 +4682,51 @@ func (tuo *TaskUpdateOne) SaveX(ctx context.Context) *Task {
 }
 
 // Exec executes the query on the entity.
-func (tuo *TaskUpdateOne) Exec(ctx context.Context) error {
-	_, err := tuo.Save(ctx)
+func (_u *TaskUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tuo *TaskUpdateOne) ExecX(ctx context.Context) {
-	if err := tuo.Exec(ctx); err != nil {
+func (_u *TaskUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tuo *TaskUpdateOne) check() error {
-	if v, ok := tuo.mutation.Name(); ok {
+func (_u *TaskUpdateOne) check() error {
+	if v, ok := _u.mutation.Name(); ok {
 		if err := task.NameValidator(v); err != nil {
 			return &ValidationError{Name: "name", err: fmt.Errorf(`ent: validator failed for field "Task.name": %w`, err)}
 		}
 	}
-	if v, ok := tuo.mutation.GetType(); ok {
+	if v, ok := _u.mutation.GetType(); ok {
 		if err := task.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Task.type": %w`, err)}
 		}
 	}
-	if v, ok := tuo.mutation.RegistryKeyValueType(); ok {
+	if v, ok := _u.mutation.RegistryKeyValueType(); ok {
 		if err := task.RegistryKeyValueTypeValidator(v); err != nil {
 			return &ValidationError{Name: "registry_key_value_type", err: fmt.Errorf(`ent: validator failed for field "Task.registry_key_value_type": %w`, err)}
 		}
 	}
-	if v, ok := tuo.mutation.MsiFileHashAlg(); ok {
+	if v, ok := _u.mutation.MsiFileHashAlg(); ok {
 		if err := task.MsiFileHashAlgValidator(v); err != nil {
 			return &ValidationError{Name: "msi_file_hash_alg", err: fmt.Errorf(`ent: validator failed for field "Task.msi_file_hash_alg": %w`, err)}
 		}
 	}
-	if v, ok := tuo.mutation.ScriptRun(); ok {
+	if v, ok := _u.mutation.ScriptRun(); ok {
 		if err := task.ScriptRunValidator(v); err != nil {
 			return &ValidationError{Name: "script_run", err: fmt.Errorf(`ent: validator failed for field "Task.script_run": %w`, err)}
 		}
 	}
-	if v, ok := tuo.mutation.AgentType(); ok {
+	if v, ok := _u.mutation.AgentType(); ok {
 		if err := task.AgentTypeValidator(v); err != nil {
 			return &ValidationError{Name: "agent_type", err: fmt.Errorf(`ent: validator failed for field "Task.agent_type": %w`, err)}
 		}
 	}
-	if v, ok := tuo.mutation.AptUpgradeType(); ok {
+	if v, ok := _u.mutation.AptUpgradeType(); ok {
 		if err := task.AptUpgradeTypeValidator(v); err != nil {
 			return &ValidationError{Name: "apt_upgrade_type", err: fmt.Errorf(`ent: validator failed for field "Task.apt_upgrade_type": %w`, err)}
 		}
@@ -4735,22 +4735,22 @@ func (tuo *TaskUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tuo *TaskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskUpdateOne {
-	tuo.modifiers = append(tuo.modifiers, modifiers...)
-	return tuo
+func (_u *TaskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) {
-	if err := tuo.check(); err != nil {
+func (_u *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(task.Table, task.Columns, sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt))
-	id, ok := tuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Task.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := tuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, task.FieldID)
 		for _, f := range fields {
@@ -4762,560 +4762,560 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 			}
 		}
 	}
-	if ps := tuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tuo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(task.FieldName, field.TypeString, value)
 	}
-	if value, ok := tuo.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(task.FieldType, field.TypeEnum, value)
 	}
-	if value, ok := tuo.mutation.PackageID(); ok {
+	if value, ok := _u.mutation.PackageID(); ok {
 		_spec.SetField(task.FieldPackageID, field.TypeString, value)
 	}
-	if tuo.mutation.PackageIDCleared() {
+	if _u.mutation.PackageIDCleared() {
 		_spec.ClearField(task.FieldPackageID, field.TypeString)
 	}
-	if value, ok := tuo.mutation.PackageName(); ok {
+	if value, ok := _u.mutation.PackageName(); ok {
 		_spec.SetField(task.FieldPackageName, field.TypeString, value)
 	}
-	if tuo.mutation.PackageNameCleared() {
+	if _u.mutation.PackageNameCleared() {
 		_spec.ClearField(task.FieldPackageName, field.TypeString)
 	}
-	if value, ok := tuo.mutation.PackageLatest(); ok {
+	if value, ok := _u.mutation.PackageLatest(); ok {
 		_spec.SetField(task.FieldPackageLatest, field.TypeBool, value)
 	}
-	if tuo.mutation.PackageLatestCleared() {
+	if _u.mutation.PackageLatestCleared() {
 		_spec.ClearField(task.FieldPackageLatest, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.RegistryKey(); ok {
+	if value, ok := _u.mutation.RegistryKey(); ok {
 		_spec.SetField(task.FieldRegistryKey, field.TypeString, value)
 	}
-	if tuo.mutation.RegistryKeyCleared() {
+	if _u.mutation.RegistryKeyCleared() {
 		_spec.ClearField(task.FieldRegistryKey, field.TypeString)
 	}
-	if value, ok := tuo.mutation.RegistryKeyValueName(); ok {
+	if value, ok := _u.mutation.RegistryKeyValueName(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueName, field.TypeString, value)
 	}
-	if tuo.mutation.RegistryKeyValueNameCleared() {
+	if _u.mutation.RegistryKeyValueNameCleared() {
 		_spec.ClearField(task.FieldRegistryKeyValueName, field.TypeString)
 	}
-	if value, ok := tuo.mutation.RegistryKeyValueType(); ok {
+	if value, ok := _u.mutation.RegistryKeyValueType(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueType, field.TypeEnum, value)
 	}
-	if tuo.mutation.RegistryKeyValueTypeCleared() {
+	if _u.mutation.RegistryKeyValueTypeCleared() {
 		_spec.ClearField(task.FieldRegistryKeyValueType, field.TypeEnum)
 	}
-	if value, ok := tuo.mutation.RegistryKeyValueData(); ok {
+	if value, ok := _u.mutation.RegistryKeyValueData(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueData, field.TypeString, value)
 	}
-	if tuo.mutation.RegistryKeyValueDataCleared() {
+	if _u.mutation.RegistryKeyValueDataCleared() {
 		_spec.ClearField(task.FieldRegistryKeyValueData, field.TypeString)
 	}
-	if value, ok := tuo.mutation.RegistryHex(); ok {
+	if value, ok := _u.mutation.RegistryHex(); ok {
 		_spec.SetField(task.FieldRegistryHex, field.TypeBool, value)
 	}
-	if tuo.mutation.RegistryHexCleared() {
+	if _u.mutation.RegistryHexCleared() {
 		_spec.ClearField(task.FieldRegistryHex, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.RegistryForce(); ok {
+	if value, ok := _u.mutation.RegistryForce(); ok {
 		_spec.SetField(task.FieldRegistryForce, field.TypeBool, value)
 	}
-	if tuo.mutation.RegistryForceCleared() {
+	if _u.mutation.RegistryForceCleared() {
 		_spec.ClearField(task.FieldRegistryForce, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserUsername(); ok {
+	if value, ok := _u.mutation.LocalUserUsername(); ok {
 		_spec.SetField(task.FieldLocalUserUsername, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserUsernameCleared() {
+	if _u.mutation.LocalUserUsernameCleared() {
 		_spec.ClearField(task.FieldLocalUserUsername, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserDescription(); ok {
+	if value, ok := _u.mutation.LocalUserDescription(); ok {
 		_spec.SetField(task.FieldLocalUserDescription, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserDescriptionCleared() {
+	if _u.mutation.LocalUserDescriptionCleared() {
 		_spec.ClearField(task.FieldLocalUserDescription, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserDisable(); ok {
+	if value, ok := _u.mutation.LocalUserDisable(); ok {
 		_spec.SetField(task.FieldLocalUserDisable, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserDisableCleared() {
+	if _u.mutation.LocalUserDisableCleared() {
 		_spec.ClearField(task.FieldLocalUserDisable, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserFullname(); ok {
+	if value, ok := _u.mutation.LocalUserFullname(); ok {
 		_spec.SetField(task.FieldLocalUserFullname, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserFullnameCleared() {
+	if _u.mutation.LocalUserFullnameCleared() {
 		_spec.ClearField(task.FieldLocalUserFullname, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserPassword(); ok {
+	if value, ok := _u.mutation.LocalUserPassword(); ok {
 		_spec.SetField(task.FieldLocalUserPassword, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserPasswordCleared() {
+	if _u.mutation.LocalUserPasswordCleared() {
 		_spec.ClearField(task.FieldLocalUserPassword, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordChangeNotAllowed(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordChangeNotAllowed(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordChangeNotAllowed, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserPasswordChangeNotAllowedCleared() {
+	if _u.mutation.LocalUserPasswordChangeNotAllowedCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordChangeNotAllowed, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordChangeRequired(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordChangeRequired(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordChangeRequired, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserPasswordChangeRequiredCleared() {
+	if _u.mutation.LocalUserPasswordChangeRequiredCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordChangeRequired, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordNeverExpires(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordNeverExpires(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordNeverExpires, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserPasswordNeverExpiresCleared() {
+	if _u.mutation.LocalUserPasswordNeverExpiresCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordNeverExpires, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserAppend(); ok {
+	if value, ok := _u.mutation.LocalUserAppend(); ok {
 		_spec.SetField(task.FieldLocalUserAppend, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserAppendCleared() {
+	if _u.mutation.LocalUserAppendCleared() {
 		_spec.ClearField(task.FieldLocalUserAppend, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserCreateHome(); ok {
+	if value, ok := _u.mutation.LocalUserCreateHome(); ok {
 		_spec.SetField(task.FieldLocalUserCreateHome, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserCreateHomeCleared() {
+	if _u.mutation.LocalUserCreateHomeCleared() {
 		_spec.ClearField(task.FieldLocalUserCreateHome, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserExpires(); ok {
+	if value, ok := _u.mutation.LocalUserExpires(); ok {
 		_spec.SetField(task.FieldLocalUserExpires, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserExpiresCleared() {
+	if _u.mutation.LocalUserExpiresCleared() {
 		_spec.ClearField(task.FieldLocalUserExpires, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserForce(); ok {
+	if value, ok := _u.mutation.LocalUserForce(); ok {
 		_spec.SetField(task.FieldLocalUserForce, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserForceCleared() {
+	if _u.mutation.LocalUserForceCleared() {
 		_spec.ClearField(task.FieldLocalUserForce, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserGenerateSSHKey(); ok {
+	if value, ok := _u.mutation.LocalUserGenerateSSHKey(); ok {
 		_spec.SetField(task.FieldLocalUserGenerateSSHKey, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserGenerateSSHKeyCleared() {
+	if _u.mutation.LocalUserGenerateSSHKeyCleared() {
 		_spec.ClearField(task.FieldLocalUserGenerateSSHKey, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserGroup(); ok {
+	if value, ok := _u.mutation.LocalUserGroup(); ok {
 		_spec.SetField(task.FieldLocalUserGroup, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserGroupCleared() {
+	if _u.mutation.LocalUserGroupCleared() {
 		_spec.ClearField(task.FieldLocalUserGroup, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserGroups(); ok {
+	if value, ok := _u.mutation.LocalUserGroups(); ok {
 		_spec.SetField(task.FieldLocalUserGroups, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserGroupsCleared() {
+	if _u.mutation.LocalUserGroupsCleared() {
 		_spec.ClearField(task.FieldLocalUserGroups, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserHome(); ok {
+	if value, ok := _u.mutation.LocalUserHome(); ok {
 		_spec.SetField(task.FieldLocalUserHome, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserHomeCleared() {
+	if _u.mutation.LocalUserHomeCleared() {
 		_spec.ClearField(task.FieldLocalUserHome, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserMoveHome(); ok {
+	if value, ok := _u.mutation.LocalUserMoveHome(); ok {
 		_spec.SetField(task.FieldLocalUserMoveHome, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserMoveHomeCleared() {
+	if _u.mutation.LocalUserMoveHomeCleared() {
 		_spec.ClearField(task.FieldLocalUserMoveHome, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserNonunique(); ok {
+	if value, ok := _u.mutation.LocalUserNonunique(); ok {
 		_spec.SetField(task.FieldLocalUserNonunique, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserNonuniqueCleared() {
+	if _u.mutation.LocalUserNonuniqueCleared() {
 		_spec.ClearField(task.FieldLocalUserNonunique, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordExpireAccountDisable(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireAccountDisable(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireAccountDisable, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserPasswordExpireAccountDisableCleared() {
+	if _u.mutation.LocalUserPasswordExpireAccountDisableCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireAccountDisable, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordExpireMax(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireMax(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireMax, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserPasswordExpireMaxCleared() {
+	if _u.mutation.LocalUserPasswordExpireMaxCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireMax, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordExpireMin(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireMin(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireMin, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserPasswordExpireMinCleared() {
+	if _u.mutation.LocalUserPasswordExpireMinCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireMin, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordExpireWarn(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordExpireWarn(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireWarn, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserPasswordExpireWarnCleared() {
+	if _u.mutation.LocalUserPasswordExpireWarnCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordExpireWarn, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserPasswordLock(); ok {
+	if value, ok := _u.mutation.LocalUserPasswordLock(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordLock, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserPasswordLockCleared() {
+	if _u.mutation.LocalUserPasswordLockCleared() {
 		_spec.ClearField(task.FieldLocalUserPasswordLock, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserSeuser(); ok {
+	if value, ok := _u.mutation.LocalUserSeuser(); ok {
 		_spec.SetField(task.FieldLocalUserSeuser, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSeuserCleared() {
+	if _u.mutation.LocalUserSeuserCleared() {
 		_spec.ClearField(task.FieldLocalUserSeuser, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserShell(); ok {
+	if value, ok := _u.mutation.LocalUserShell(); ok {
 		_spec.SetField(task.FieldLocalUserShell, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserShellCleared() {
+	if _u.mutation.LocalUserShellCleared() {
 		_spec.ClearField(task.FieldLocalUserShell, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSkeleton(); ok {
+	if value, ok := _u.mutation.LocalUserSkeleton(); ok {
 		_spec.SetField(task.FieldLocalUserSkeleton, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSkeletonCleared() {
+	if _u.mutation.LocalUserSkeletonCleared() {
 		_spec.ClearField(task.FieldLocalUserSkeleton, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSystem(); ok {
+	if value, ok := _u.mutation.LocalUserSystem(); ok {
 		_spec.SetField(task.FieldLocalUserSystem, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalUserSystemCleared() {
+	if _u.mutation.LocalUserSystemCleared() {
 		_spec.ClearField(task.FieldLocalUserSystem, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalUserID(); ok {
+	if value, ok := _u.mutation.LocalUserID(); ok {
 		_spec.SetField(task.FieldLocalUserID, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserIDCleared() {
+	if _u.mutation.LocalUserIDCleared() {
 		_spec.ClearField(task.FieldLocalUserID, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserIDMax(); ok {
+	if value, ok := _u.mutation.LocalUserIDMax(); ok {
 		_spec.SetField(task.FieldLocalUserIDMax, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserIDMaxCleared() {
+	if _u.mutation.LocalUserIDMaxCleared() {
 		_spec.ClearField(task.FieldLocalUserIDMax, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserIDMin(); ok {
+	if value, ok := _u.mutation.LocalUserIDMin(); ok {
 		_spec.SetField(task.FieldLocalUserIDMin, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserIDMinCleared() {
+	if _u.mutation.LocalUserIDMinCleared() {
 		_spec.ClearField(task.FieldLocalUserIDMin, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSSHKeyBits(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyBits(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyBits, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSSHKeyBitsCleared() {
+	if _u.mutation.LocalUserSSHKeyBitsCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyBits, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSSHKeyComment(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyComment(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyComment, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSSHKeyCommentCleared() {
+	if _u.mutation.LocalUserSSHKeyCommentCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyComment, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSSHKeyFile(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyFile(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyFile, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSSHKeyFileCleared() {
+	if _u.mutation.LocalUserSSHKeyFileCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyFile, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSSHKeyPassphrase(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyPassphrase(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyPassphrase, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSSHKeyPassphraseCleared() {
+	if _u.mutation.LocalUserSSHKeyPassphraseCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyPassphrase, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserSSHKeyType(); ok {
+	if value, ok := _u.mutation.LocalUserSSHKeyType(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyType, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserSSHKeyTypeCleared() {
+	if _u.mutation.LocalUserSSHKeyTypeCleared() {
 		_spec.ClearField(task.FieldLocalUserSSHKeyType, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalUserUmask(); ok {
+	if value, ok := _u.mutation.LocalUserUmask(); ok {
 		_spec.SetField(task.FieldLocalUserUmask, field.TypeString, value)
 	}
-	if tuo.mutation.LocalUserUmaskCleared() {
+	if _u.mutation.LocalUserUmaskCleared() {
 		_spec.ClearField(task.FieldLocalUserUmask, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalGroupID(); ok {
+	if value, ok := _u.mutation.LocalGroupID(); ok {
 		_spec.SetField(task.FieldLocalGroupID, field.TypeString, value)
 	}
-	if tuo.mutation.LocalGroupIDCleared() {
+	if _u.mutation.LocalGroupIDCleared() {
 		_spec.ClearField(task.FieldLocalGroupID, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalGroupName(); ok {
+	if value, ok := _u.mutation.LocalGroupName(); ok {
 		_spec.SetField(task.FieldLocalGroupName, field.TypeString, value)
 	}
-	if tuo.mutation.LocalGroupNameCleared() {
+	if _u.mutation.LocalGroupNameCleared() {
 		_spec.ClearField(task.FieldLocalGroupName, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalGroupDescription(); ok {
+	if value, ok := _u.mutation.LocalGroupDescription(); ok {
 		_spec.SetField(task.FieldLocalGroupDescription, field.TypeString, value)
 	}
-	if tuo.mutation.LocalGroupDescriptionCleared() {
+	if _u.mutation.LocalGroupDescriptionCleared() {
 		_spec.ClearField(task.FieldLocalGroupDescription, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalGroupSystem(); ok {
+	if value, ok := _u.mutation.LocalGroupSystem(); ok {
 		_spec.SetField(task.FieldLocalGroupSystem, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalGroupSystemCleared() {
+	if _u.mutation.LocalGroupSystemCleared() {
 		_spec.ClearField(task.FieldLocalGroupSystem, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalGroupForce(); ok {
+	if value, ok := _u.mutation.LocalGroupForce(); ok {
 		_spec.SetField(task.FieldLocalGroupForce, field.TypeBool, value)
 	}
-	if tuo.mutation.LocalGroupForceCleared() {
+	if _u.mutation.LocalGroupForceCleared() {
 		_spec.ClearField(task.FieldLocalGroupForce, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.LocalGroupMembers(); ok {
+	if value, ok := _u.mutation.LocalGroupMembers(); ok {
 		_spec.SetField(task.FieldLocalGroupMembers, field.TypeString, value)
 	}
-	if tuo.mutation.LocalGroupMembersCleared() {
+	if _u.mutation.LocalGroupMembersCleared() {
 		_spec.ClearField(task.FieldLocalGroupMembers, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalGroupMembersToInclude(); ok {
+	if value, ok := _u.mutation.LocalGroupMembersToInclude(); ok {
 		_spec.SetField(task.FieldLocalGroupMembersToInclude, field.TypeString, value)
 	}
-	if tuo.mutation.LocalGroupMembersToIncludeCleared() {
+	if _u.mutation.LocalGroupMembersToIncludeCleared() {
 		_spec.ClearField(task.FieldLocalGroupMembersToInclude, field.TypeString)
 	}
-	if value, ok := tuo.mutation.LocalGroupMembersToExclude(); ok {
+	if value, ok := _u.mutation.LocalGroupMembersToExclude(); ok {
 		_spec.SetField(task.FieldLocalGroupMembersToExclude, field.TypeString, value)
 	}
-	if tuo.mutation.LocalGroupMembersToExcludeCleared() {
+	if _u.mutation.LocalGroupMembersToExcludeCleared() {
 		_spec.ClearField(task.FieldLocalGroupMembersToExclude, field.TypeString)
 	}
-	if value, ok := tuo.mutation.MsiProductid(); ok {
+	if value, ok := _u.mutation.MsiProductid(); ok {
 		_spec.SetField(task.FieldMsiProductid, field.TypeString, value)
 	}
-	if tuo.mutation.MsiProductidCleared() {
+	if _u.mutation.MsiProductidCleared() {
 		_spec.ClearField(task.FieldMsiProductid, field.TypeString)
 	}
-	if value, ok := tuo.mutation.MsiPath(); ok {
+	if value, ok := _u.mutation.MsiPath(); ok {
 		_spec.SetField(task.FieldMsiPath, field.TypeString, value)
 	}
-	if tuo.mutation.MsiPathCleared() {
+	if _u.mutation.MsiPathCleared() {
 		_spec.ClearField(task.FieldMsiPath, field.TypeString)
 	}
-	if value, ok := tuo.mutation.MsiArguments(); ok {
+	if value, ok := _u.mutation.MsiArguments(); ok {
 		_spec.SetField(task.FieldMsiArguments, field.TypeString, value)
 	}
-	if tuo.mutation.MsiArgumentsCleared() {
+	if _u.mutation.MsiArgumentsCleared() {
 		_spec.ClearField(task.FieldMsiArguments, field.TypeString)
 	}
-	if value, ok := tuo.mutation.MsiFileHash(); ok {
+	if value, ok := _u.mutation.MsiFileHash(); ok {
 		_spec.SetField(task.FieldMsiFileHash, field.TypeString, value)
 	}
-	if tuo.mutation.MsiFileHashCleared() {
+	if _u.mutation.MsiFileHashCleared() {
 		_spec.ClearField(task.FieldMsiFileHash, field.TypeString)
 	}
-	if value, ok := tuo.mutation.MsiFileHashAlg(); ok {
+	if value, ok := _u.mutation.MsiFileHashAlg(); ok {
 		_spec.SetField(task.FieldMsiFileHashAlg, field.TypeEnum, value)
 	}
-	if tuo.mutation.MsiFileHashAlgCleared() {
+	if _u.mutation.MsiFileHashAlgCleared() {
 		_spec.ClearField(task.FieldMsiFileHashAlg, field.TypeEnum)
 	}
-	if value, ok := tuo.mutation.MsiLogPath(); ok {
+	if value, ok := _u.mutation.MsiLogPath(); ok {
 		_spec.SetField(task.FieldMsiLogPath, field.TypeString, value)
 	}
-	if tuo.mutation.MsiLogPathCleared() {
+	if _u.mutation.MsiLogPathCleared() {
 		_spec.ClearField(task.FieldMsiLogPath, field.TypeString)
 	}
-	if value, ok := tuo.mutation.Script(); ok {
+	if value, ok := _u.mutation.Script(); ok {
 		_spec.SetField(task.FieldScript, field.TypeString, value)
 	}
-	if tuo.mutation.ScriptCleared() {
+	if _u.mutation.ScriptCleared() {
 		_spec.ClearField(task.FieldScript, field.TypeString)
 	}
-	if value, ok := tuo.mutation.ScriptExecutable(); ok {
+	if value, ok := _u.mutation.ScriptExecutable(); ok {
 		_spec.SetField(task.FieldScriptExecutable, field.TypeString, value)
 	}
-	if tuo.mutation.ScriptExecutableCleared() {
+	if _u.mutation.ScriptExecutableCleared() {
 		_spec.ClearField(task.FieldScriptExecutable, field.TypeString)
 	}
-	if value, ok := tuo.mutation.ScriptCreates(); ok {
+	if value, ok := _u.mutation.ScriptCreates(); ok {
 		_spec.SetField(task.FieldScriptCreates, field.TypeString, value)
 	}
-	if tuo.mutation.ScriptCreatesCleared() {
+	if _u.mutation.ScriptCreatesCleared() {
 		_spec.ClearField(task.FieldScriptCreates, field.TypeString)
 	}
-	if value, ok := tuo.mutation.ScriptRun(); ok {
+	if value, ok := _u.mutation.ScriptRun(); ok {
 		_spec.SetField(task.FieldScriptRun, field.TypeEnum, value)
 	}
-	if tuo.mutation.ScriptRunCleared() {
+	if _u.mutation.ScriptRunCleared() {
 		_spec.ClearField(task.FieldScriptRun, field.TypeEnum)
 	}
-	if value, ok := tuo.mutation.AgentType(); ok {
+	if value, ok := _u.mutation.AgentType(); ok {
 		_spec.SetField(task.FieldAgentType, field.TypeEnum, value)
 	}
-	if tuo.mutation.AgentTypeCleared() {
+	if _u.mutation.AgentTypeCleared() {
 		_spec.ClearField(task.FieldAgentType, field.TypeEnum)
 	}
-	if value, ok := tuo.mutation.When(); ok {
+	if value, ok := _u.mutation.When(); ok {
 		_spec.SetField(task.FieldWhen, field.TypeTime, value)
 	}
-	if tuo.mutation.WhenCleared() {
+	if _u.mutation.WhenCleared() {
 		_spec.ClearField(task.FieldWhen, field.TypeTime)
 	}
-	if value, ok := tuo.mutation.BrewUpdate(); ok {
+	if value, ok := _u.mutation.BrewUpdate(); ok {
 		_spec.SetField(task.FieldBrewUpdate, field.TypeBool, value)
 	}
-	if tuo.mutation.BrewUpdateCleared() {
+	if _u.mutation.BrewUpdateCleared() {
 		_spec.ClearField(task.FieldBrewUpdate, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.BrewUpgradeAll(); ok {
+	if value, ok := _u.mutation.BrewUpgradeAll(); ok {
 		_spec.SetField(task.FieldBrewUpgradeAll, field.TypeBool, value)
 	}
-	if tuo.mutation.BrewUpgradeAllCleared() {
+	if _u.mutation.BrewUpgradeAllCleared() {
 		_spec.ClearField(task.FieldBrewUpgradeAll, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.BrewUpgradeOptions(); ok {
+	if value, ok := _u.mutation.BrewUpgradeOptions(); ok {
 		_spec.SetField(task.FieldBrewUpgradeOptions, field.TypeString, value)
 	}
-	if tuo.mutation.BrewUpgradeOptionsCleared() {
+	if _u.mutation.BrewUpgradeOptionsCleared() {
 		_spec.ClearField(task.FieldBrewUpgradeOptions, field.TypeString)
 	}
-	if value, ok := tuo.mutation.BrewInstallOptions(); ok {
+	if value, ok := _u.mutation.BrewInstallOptions(); ok {
 		_spec.SetField(task.FieldBrewInstallOptions, field.TypeString, value)
 	}
-	if tuo.mutation.BrewInstallOptionsCleared() {
+	if _u.mutation.BrewInstallOptionsCleared() {
 		_spec.ClearField(task.FieldBrewInstallOptions, field.TypeString)
 	}
-	if value, ok := tuo.mutation.BrewGreedy(); ok {
+	if value, ok := _u.mutation.BrewGreedy(); ok {
 		_spec.SetField(task.FieldBrewGreedy, field.TypeBool, value)
 	}
-	if tuo.mutation.BrewGreedyCleared() {
+	if _u.mutation.BrewGreedyCleared() {
 		_spec.ClearField(task.FieldBrewGreedy, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.PackageVersion(); ok {
+	if value, ok := _u.mutation.PackageVersion(); ok {
 		_spec.SetField(task.FieldPackageVersion, field.TypeString, value)
 	}
-	if tuo.mutation.PackageVersionCleared() {
+	if _u.mutation.PackageVersionCleared() {
 		_spec.ClearField(task.FieldPackageVersion, field.TypeString)
 	}
-	if value, ok := tuo.mutation.AptAllowDowngrade(); ok {
+	if value, ok := _u.mutation.AptAllowDowngrade(); ok {
 		_spec.SetField(task.FieldAptAllowDowngrade, field.TypeBool, value)
 	}
-	if tuo.mutation.AptAllowDowngradeCleared() {
+	if _u.mutation.AptAllowDowngradeCleared() {
 		_spec.ClearField(task.FieldAptAllowDowngrade, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptDeb(); ok {
+	if value, ok := _u.mutation.AptDeb(); ok {
 		_spec.SetField(task.FieldAptDeb, field.TypeString, value)
 	}
-	if tuo.mutation.AptDebCleared() {
+	if _u.mutation.AptDebCleared() {
 		_spec.ClearField(task.FieldAptDeb, field.TypeString)
 	}
-	if value, ok := tuo.mutation.AptDpkgOptions(); ok {
+	if value, ok := _u.mutation.AptDpkgOptions(); ok {
 		_spec.SetField(task.FieldAptDpkgOptions, field.TypeString, value)
 	}
-	if tuo.mutation.AptDpkgOptionsCleared() {
+	if _u.mutation.AptDpkgOptionsCleared() {
 		_spec.ClearField(task.FieldAptDpkgOptions, field.TypeString)
 	}
-	if value, ok := tuo.mutation.AptFailOnAutoremove(); ok {
+	if value, ok := _u.mutation.AptFailOnAutoremove(); ok {
 		_spec.SetField(task.FieldAptFailOnAutoremove, field.TypeBool, value)
 	}
-	if tuo.mutation.AptFailOnAutoremoveCleared() {
+	if _u.mutation.AptFailOnAutoremoveCleared() {
 		_spec.ClearField(task.FieldAptFailOnAutoremove, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptForce(); ok {
+	if value, ok := _u.mutation.AptForce(); ok {
 		_spec.SetField(task.FieldAptForce, field.TypeBool, value)
 	}
-	if tuo.mutation.AptForceCleared() {
+	if _u.mutation.AptForceCleared() {
 		_spec.ClearField(task.FieldAptForce, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptInstallRecommends(); ok {
+	if value, ok := _u.mutation.AptInstallRecommends(); ok {
 		_spec.SetField(task.FieldAptInstallRecommends, field.TypeBool, value)
 	}
-	if tuo.mutation.AptInstallRecommendsCleared() {
+	if _u.mutation.AptInstallRecommendsCleared() {
 		_spec.ClearField(task.FieldAptInstallRecommends, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptName(); ok {
+	if value, ok := _u.mutation.AptName(); ok {
 		_spec.SetField(task.FieldAptName, field.TypeString, value)
 	}
-	if tuo.mutation.AptNameCleared() {
+	if _u.mutation.AptNameCleared() {
 		_spec.ClearField(task.FieldAptName, field.TypeString)
 	}
-	if value, ok := tuo.mutation.AptOnlyUpgrade(); ok {
+	if value, ok := _u.mutation.AptOnlyUpgrade(); ok {
 		_spec.SetField(task.FieldAptOnlyUpgrade, field.TypeBool, value)
 	}
-	if tuo.mutation.AptOnlyUpgradeCleared() {
+	if _u.mutation.AptOnlyUpgradeCleared() {
 		_spec.ClearField(task.FieldAptOnlyUpgrade, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptPurge(); ok {
+	if value, ok := _u.mutation.AptPurge(); ok {
 		_spec.SetField(task.FieldAptPurge, field.TypeBool, value)
 	}
-	if tuo.mutation.AptPurgeCleared() {
+	if _u.mutation.AptPurgeCleared() {
 		_spec.ClearField(task.FieldAptPurge, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptUpdateCache(); ok {
+	if value, ok := _u.mutation.AptUpdateCache(); ok {
 		_spec.SetField(task.FieldAptUpdateCache, field.TypeBool, value)
 	}
-	if tuo.mutation.AptUpdateCacheCleared() {
+	if _u.mutation.AptUpdateCacheCleared() {
 		_spec.ClearField(task.FieldAptUpdateCache, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.AptUpgradeType(); ok {
+	if value, ok := _u.mutation.AptUpgradeType(); ok {
 		_spec.SetField(task.FieldAptUpgradeType, field.TypeEnum, value)
 	}
-	if tuo.mutation.AptUpgradeTypeCleared() {
+	if _u.mutation.AptUpgradeTypeCleared() {
 		_spec.ClearField(task.FieldAptUpgradeType, field.TypeEnum)
 	}
-	if value, ok := tuo.mutation.Version(); ok {
+	if value, ok := _u.mutation.Version(); ok {
 		_spec.SetField(task.FieldVersion, field.TypeInt, value)
 	}
-	if value, ok := tuo.mutation.AddedVersion(); ok {
+	if value, ok := _u.mutation.AddedVersion(); ok {
 		_spec.AddField(task.FieldVersion, field.TypeInt, value)
 	}
-	if tuo.mutation.VersionCleared() {
+	if _u.mutation.VersionCleared() {
 		_spec.ClearField(task.FieldVersion, field.TypeInt)
 	}
-	if value, ok := tuo.mutation.Tenant(); ok {
+	if value, ok := _u.mutation.Tenant(); ok {
 		_spec.SetField(task.FieldTenant, field.TypeInt, value)
 	}
-	if value, ok := tuo.mutation.AddedTenant(); ok {
+	if value, ok := _u.mutation.AddedTenant(); ok {
 		_spec.AddField(task.FieldTenant, field.TypeInt, value)
 	}
-	if tuo.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		_spec.ClearField(task.FieldTenant, field.TypeInt)
 	}
-	if value, ok := tuo.mutation.NetbirdGroups(); ok {
+	if value, ok := _u.mutation.NetbirdGroups(); ok {
 		_spec.SetField(task.FieldNetbirdGroups, field.TypeString, value)
 	}
-	if tuo.mutation.NetbirdGroupsCleared() {
+	if _u.mutation.NetbirdGroupsCleared() {
 		_spec.ClearField(task.FieldNetbirdGroups, field.TypeString)
 	}
-	if value, ok := tuo.mutation.NetbirdAllowExtraDNSLabels(); ok {
+	if value, ok := _u.mutation.NetbirdAllowExtraDNSLabels(); ok {
 		_spec.SetField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool, value)
 	}
-	if tuo.mutation.NetbirdAllowExtraDNSLabelsCleared() {
+	if _u.mutation.NetbirdAllowExtraDNSLabelsCleared() {
 		_spec.ClearField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.IgnoreErrors(); ok {
+	if value, ok := _u.mutation.IgnoreErrors(); ok {
 		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
 	}
-	if tuo.mutation.IgnoreErrorsCleared() {
+	if _u.mutation.IgnoreErrorsCleared() {
 		_spec.ClearField(task.FieldIgnoreErrors, field.TypeBool)
 	}
-	if value, ok := tuo.mutation.Disabled(); ok {
+	if value, ok := _u.mutation.Disabled(); ok {
 		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
 	}
-	if value, ok := tuo.mutation.Order(); ok {
+	if value, ok := _u.mutation.Order(); ok {
 		_spec.SetField(task.FieldOrder, field.TypeInt, value)
 	}
-	if value, ok := tuo.mutation.AddedOrder(); ok {
+	if value, ok := _u.mutation.AddedOrder(); ok {
 		_spec.AddField(task.FieldOrder, field.TypeInt, value)
 	}
-	if tuo.mutation.OrderCleared() {
+	if _u.mutation.OrderCleared() {
 		_spec.ClearField(task.FieldOrder, field.TypeInt)
 	}
-	if tuo.mutation.TagsCleared() {
+	if _u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -5328,7 +5328,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.RemovedTagsIDs(); len(nodes) > 0 && !tuo.mutation.TagsCleared() {
+	if nodes := _u.mutation.RemovedTagsIDs(); len(nodes) > 0 && !_u.mutation.TagsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -5344,7 +5344,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -5360,7 +5360,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tuo.mutation.ProfileCleared() {
+	if _u.mutation.ProfileCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -5373,7 +5373,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.ProfileIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -5389,7 +5389,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tuo.mutation.ReportsCleared() {
+	if _u.mutation.ReportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -5402,7 +5402,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.RemovedReportsIDs(); len(nodes) > 0 && !tuo.mutation.ReportsCleared() {
+	if nodes := _u.mutation.RemovedReportsIDs(); len(nodes) > 0 && !_u.mutation.ReportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -5418,7 +5418,7 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tuo.mutation.ReportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ReportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -5434,11 +5434,11 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(tuo.modifiers...)
-	_node = &Task{config: tuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Task{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, tuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{task.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -5446,6 +5446,6 @@ func (tuo *TaskUpdateOne) sqlSave(ctx context.Context) (_node *Task, err error) 
 		}
 		return nil, err
 	}
-	tuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

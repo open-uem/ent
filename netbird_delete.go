@@ -20,56 +20,56 @@ type NetbirdDelete struct {
 }
 
 // Where appends a list predicates to the NetbirdDelete builder.
-func (nd *NetbirdDelete) Where(ps ...predicate.Netbird) *NetbirdDelete {
-	nd.mutation.Where(ps...)
-	return nd
+func (_d *NetbirdDelete) Where(ps ...predicate.Netbird) *NetbirdDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (nd *NetbirdDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, nd.sqlExec, nd.mutation, nd.hooks)
+func (_d *NetbirdDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nd *NetbirdDelete) ExecX(ctx context.Context) int {
-	n, err := nd.Exec(ctx)
+func (_d *NetbirdDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (nd *NetbirdDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *NetbirdDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(netbird.Table, sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt))
-	if ps := nd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, nd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	nd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // NetbirdDeleteOne is the builder for deleting a single Netbird entity.
 type NetbirdDeleteOne struct {
-	nd *NetbirdDelete
+	_d *NetbirdDelete
 }
 
 // Where appends a list predicates to the NetbirdDelete builder.
-func (ndo *NetbirdDeleteOne) Where(ps ...predicate.Netbird) *NetbirdDeleteOne {
-	ndo.nd.mutation.Where(ps...)
-	return ndo
+func (_d *NetbirdDeleteOne) Where(ps ...predicate.Netbird) *NetbirdDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (ndo *NetbirdDeleteOne) Exec(ctx context.Context) error {
-	n, err := ndo.nd.Exec(ctx)
+func (_d *NetbirdDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (ndo *NetbirdDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ndo *NetbirdDeleteOne) ExecX(ctx context.Context) {
-	if err := ndo.Exec(ctx); err != nil {
+func (_d *NetbirdDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

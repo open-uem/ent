@@ -73,7 +73,7 @@ func (*Update) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Update fields.
-func (u *Update) assignValues(columns []string, values []any) error {
+func (_m *Update) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -84,34 +84,34 @@ func (u *Update) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			u.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case update.FieldTitle:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field title", values[i])
 			} else if value.Valid {
-				u.Title = value.String
+				_m.Title = value.String
 			}
 		case update.FieldDate:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field date", values[i])
 			} else if value.Valid {
-				u.Date = value.Time
+				_m.Date = value.Time
 			}
 		case update.FieldSupportURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field support_url", values[i])
 			} else if value.Valid {
-				u.SupportURL = value.String
+				_m.SupportURL = value.String
 			}
 		case update.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_updates", values[i])
 			} else if value.Valid {
-				u.agent_updates = new(string)
-				*u.agent_updates = value.String
+				_m.agent_updates = new(string)
+				*_m.agent_updates = value.String
 			}
 		default:
-			u.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -119,46 +119,46 @@ func (u *Update) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Update.
 // This includes values selected through modifiers, order, etc.
-func (u *Update) Value(name string) (ent.Value, error) {
-	return u.selectValues.Get(name)
+func (_m *Update) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Update entity.
-func (u *Update) QueryOwner() *AgentQuery {
-	return NewUpdateClient(u.config).QueryOwner(u)
+func (_m *Update) QueryOwner() *AgentQuery {
+	return NewUpdateClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Update.
 // Note that you need to call Update.Unwrap() before calling this method if this Update
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (u *Update) Update() *UpdateUpdateOne {
-	return NewUpdateClient(u.config).UpdateOne(u)
+func (_m *Update) Update() *UpdateUpdateOne {
+	return NewUpdateClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Update entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (u *Update) Unwrap() *Update {
-	_tx, ok := u.config.driver.(*txDriver)
+func (_m *Update) Unwrap() *Update {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Update is not a transactional entity")
 	}
-	u.config.driver = _tx.drv
-	return u
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (u *Update) String() string {
+func (_m *Update) String() string {
 	var builder strings.Builder
 	builder.WriteString("Update(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", u.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("title=")
-	builder.WriteString(u.Title)
+	builder.WriteString(_m.Title)
 	builder.WriteString(", ")
 	builder.WriteString("date=")
-	builder.WriteString(u.Date.Format(time.ANSIC))
+	builder.WriteString(_m.Date.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("support_url=")
-	builder.WriteString(u.SupportURL)
+	builder.WriteString(_m.SupportURL)
 	builder.WriteByte(')')
 	return builder.String()
 }

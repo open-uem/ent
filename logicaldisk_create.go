@@ -23,120 +23,120 @@ type LogicalDiskCreate struct {
 }
 
 // SetLabel sets the "label" field.
-func (ldc *LogicalDiskCreate) SetLabel(s string) *LogicalDiskCreate {
-	ldc.mutation.SetLabel(s)
-	return ldc
+func (_c *LogicalDiskCreate) SetLabel(v string) *LogicalDiskCreate {
+	_c.mutation.SetLabel(v)
+	return _c
 }
 
 // SetFilesystem sets the "filesystem" field.
-func (ldc *LogicalDiskCreate) SetFilesystem(s string) *LogicalDiskCreate {
-	ldc.mutation.SetFilesystem(s)
-	return ldc
+func (_c *LogicalDiskCreate) SetFilesystem(v string) *LogicalDiskCreate {
+	_c.mutation.SetFilesystem(v)
+	return _c
 }
 
 // SetNillableFilesystem sets the "filesystem" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableFilesystem(s *string) *LogicalDiskCreate {
-	if s != nil {
-		ldc.SetFilesystem(*s)
+func (_c *LogicalDiskCreate) SetNillableFilesystem(v *string) *LogicalDiskCreate {
+	if v != nil {
+		_c.SetFilesystem(*v)
 	}
-	return ldc
+	return _c
 }
 
 // SetUsage sets the "usage" field.
-func (ldc *LogicalDiskCreate) SetUsage(i int8) *LogicalDiskCreate {
-	ldc.mutation.SetUsage(i)
-	return ldc
+func (_c *LogicalDiskCreate) SetUsage(v int8) *LogicalDiskCreate {
+	_c.mutation.SetUsage(v)
+	return _c
 }
 
 // SetNillableUsage sets the "usage" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableUsage(i *int8) *LogicalDiskCreate {
-	if i != nil {
-		ldc.SetUsage(*i)
+func (_c *LogicalDiskCreate) SetNillableUsage(v *int8) *LogicalDiskCreate {
+	if v != nil {
+		_c.SetUsage(*v)
 	}
-	return ldc
+	return _c
 }
 
 // SetSizeInUnits sets the "size_in_units" field.
-func (ldc *LogicalDiskCreate) SetSizeInUnits(s string) *LogicalDiskCreate {
-	ldc.mutation.SetSizeInUnits(s)
-	return ldc
+func (_c *LogicalDiskCreate) SetSizeInUnits(v string) *LogicalDiskCreate {
+	_c.mutation.SetSizeInUnits(v)
+	return _c
 }
 
 // SetNillableSizeInUnits sets the "size_in_units" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableSizeInUnits(s *string) *LogicalDiskCreate {
-	if s != nil {
-		ldc.SetSizeInUnits(*s)
+func (_c *LogicalDiskCreate) SetNillableSizeInUnits(v *string) *LogicalDiskCreate {
+	if v != nil {
+		_c.SetSizeInUnits(*v)
 	}
-	return ldc
+	return _c
 }
 
 // SetRemainingSpaceInUnits sets the "remaining_space_in_units" field.
-func (ldc *LogicalDiskCreate) SetRemainingSpaceInUnits(s string) *LogicalDiskCreate {
-	ldc.mutation.SetRemainingSpaceInUnits(s)
-	return ldc
+func (_c *LogicalDiskCreate) SetRemainingSpaceInUnits(v string) *LogicalDiskCreate {
+	_c.mutation.SetRemainingSpaceInUnits(v)
+	return _c
 }
 
 // SetNillableRemainingSpaceInUnits sets the "remaining_space_in_units" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableRemainingSpaceInUnits(s *string) *LogicalDiskCreate {
-	if s != nil {
-		ldc.SetRemainingSpaceInUnits(*s)
+func (_c *LogicalDiskCreate) SetNillableRemainingSpaceInUnits(v *string) *LogicalDiskCreate {
+	if v != nil {
+		_c.SetRemainingSpaceInUnits(*v)
 	}
-	return ldc
+	return _c
 }
 
 // SetVolumeName sets the "volume_name" field.
-func (ldc *LogicalDiskCreate) SetVolumeName(s string) *LogicalDiskCreate {
-	ldc.mutation.SetVolumeName(s)
-	return ldc
+func (_c *LogicalDiskCreate) SetVolumeName(v string) *LogicalDiskCreate {
+	_c.mutation.SetVolumeName(v)
+	return _c
 }
 
 // SetNillableVolumeName sets the "volume_name" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableVolumeName(s *string) *LogicalDiskCreate {
-	if s != nil {
-		ldc.SetVolumeName(*s)
+func (_c *LogicalDiskCreate) SetNillableVolumeName(v *string) *LogicalDiskCreate {
+	if v != nil {
+		_c.SetVolumeName(*v)
 	}
-	return ldc
+	return _c
 }
 
 // SetBitlockerStatus sets the "bitlocker_status" field.
-func (ldc *LogicalDiskCreate) SetBitlockerStatus(s string) *LogicalDiskCreate {
-	ldc.mutation.SetBitlockerStatus(s)
-	return ldc
+func (_c *LogicalDiskCreate) SetBitlockerStatus(v string) *LogicalDiskCreate {
+	_c.mutation.SetBitlockerStatus(v)
+	return _c
 }
 
 // SetNillableBitlockerStatus sets the "bitlocker_status" field if the given value is not nil.
-func (ldc *LogicalDiskCreate) SetNillableBitlockerStatus(s *string) *LogicalDiskCreate {
-	if s != nil {
-		ldc.SetBitlockerStatus(*s)
+func (_c *LogicalDiskCreate) SetNillableBitlockerStatus(v *string) *LogicalDiskCreate {
+	if v != nil {
+		_c.SetBitlockerStatus(*v)
 	}
-	return ldc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
-	ldc.mutation.SetOwnerID(id)
-	return ldc
+func (_c *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (ldc *LogicalDiskCreate) SetOwner(a *Agent) *LogicalDiskCreate {
-	return ldc.SetOwnerID(a.ID)
+func (_c *LogicalDiskCreate) SetOwner(v *Agent) *LogicalDiskCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the LogicalDiskMutation object of the builder.
-func (ldc *LogicalDiskCreate) Mutation() *LogicalDiskMutation {
-	return ldc.mutation
+func (_c *LogicalDiskCreate) Mutation() *LogicalDiskMutation {
+	return _c.mutation
 }
 
 // Save creates the LogicalDisk in the database.
-func (ldc *LogicalDiskCreate) Save(ctx context.Context) (*LogicalDisk, error) {
-	ldc.defaults()
-	return withHooks(ctx, ldc.sqlSave, ldc.mutation, ldc.hooks)
+func (_c *LogicalDiskCreate) Save(ctx context.Context) (*LogicalDisk, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (ldc *LogicalDiskCreate) SaveX(ctx context.Context) *LogicalDisk {
-	v, err := ldc.Save(ctx)
+func (_c *LogicalDiskCreate) SaveX(ctx context.Context) *LogicalDisk {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -144,46 +144,46 @@ func (ldc *LogicalDiskCreate) SaveX(ctx context.Context) *LogicalDisk {
 }
 
 // Exec executes the query.
-func (ldc *LogicalDiskCreate) Exec(ctx context.Context) error {
-	_, err := ldc.Save(ctx)
+func (_c *LogicalDiskCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ldc *LogicalDiskCreate) ExecX(ctx context.Context) {
-	if err := ldc.Exec(ctx); err != nil {
+func (_c *LogicalDiskCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (ldc *LogicalDiskCreate) defaults() {
-	if _, ok := ldc.mutation.Usage(); !ok {
+func (_c *LogicalDiskCreate) defaults() {
+	if _, ok := _c.mutation.Usage(); !ok {
 		v := logicaldisk.DefaultUsage
-		ldc.mutation.SetUsage(v)
+		_c.mutation.SetUsage(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ldc *LogicalDiskCreate) check() error {
-	if _, ok := ldc.mutation.Label(); !ok {
+func (_c *LogicalDiskCreate) check() error {
+	if _, ok := _c.mutation.Label(); !ok {
 		return &ValidationError{Name: "label", err: errors.New(`ent: missing required field "LogicalDisk.label"`)}
 	}
-	if _, ok := ldc.mutation.Usage(); !ok {
+	if _, ok := _c.mutation.Usage(); !ok {
 		return &ValidationError{Name: "usage", err: errors.New(`ent: missing required field "LogicalDisk.usage"`)}
 	}
-	if len(ldc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "LogicalDisk.owner"`)}
 	}
 	return nil
 }
 
-func (ldc *LogicalDiskCreate) sqlSave(ctx context.Context) (*LogicalDisk, error) {
-	if err := ldc.check(); err != nil {
+func (_c *LogicalDiskCreate) sqlSave(ctx context.Context) (*LogicalDisk, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := ldc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, ldc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -191,46 +191,46 @@ func (ldc *LogicalDiskCreate) sqlSave(ctx context.Context) (*LogicalDisk, error)
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	ldc.mutation.id = &_node.ID
-	ldc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) {
+func (_c *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) {
 	var (
-		_node = &LogicalDisk{config: ldc.config}
+		_node = &LogicalDisk{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(logicaldisk.Table, sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = ldc.conflict
-	if value, ok := ldc.mutation.Label(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Label(); ok {
 		_spec.SetField(logicaldisk.FieldLabel, field.TypeString, value)
 		_node.Label = value
 	}
-	if value, ok := ldc.mutation.Filesystem(); ok {
+	if value, ok := _c.mutation.Filesystem(); ok {
 		_spec.SetField(logicaldisk.FieldFilesystem, field.TypeString, value)
 		_node.Filesystem = value
 	}
-	if value, ok := ldc.mutation.Usage(); ok {
+	if value, ok := _c.mutation.Usage(); ok {
 		_spec.SetField(logicaldisk.FieldUsage, field.TypeInt8, value)
 		_node.Usage = value
 	}
-	if value, ok := ldc.mutation.SizeInUnits(); ok {
+	if value, ok := _c.mutation.SizeInUnits(); ok {
 		_spec.SetField(logicaldisk.FieldSizeInUnits, field.TypeString, value)
 		_node.SizeInUnits = value
 	}
-	if value, ok := ldc.mutation.RemainingSpaceInUnits(); ok {
+	if value, ok := _c.mutation.RemainingSpaceInUnits(); ok {
 		_spec.SetField(logicaldisk.FieldRemainingSpaceInUnits, field.TypeString, value)
 		_node.RemainingSpaceInUnits = value
 	}
-	if value, ok := ldc.mutation.VolumeName(); ok {
+	if value, ok := _c.mutation.VolumeName(); ok {
 		_spec.SetField(logicaldisk.FieldVolumeName, field.TypeString, value)
 		_node.VolumeName = value
 	}
-	if value, ok := ldc.mutation.BitlockerStatus(); ok {
+	if value, ok := _c.mutation.BitlockerStatus(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerStatus, field.TypeString, value)
 		_node.BitlockerStatus = value
 	}
-	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -266,10 +266,10 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 //			SetLabel(v+v).
 //		}).
 //		Exec(ctx)
-func (ldc *LogicalDiskCreate) OnConflict(opts ...sql.ConflictOption) *LogicalDiskUpsertOne {
-	ldc.conflict = opts
+func (_c *LogicalDiskCreate) OnConflict(opts ...sql.ConflictOption) *LogicalDiskUpsertOne {
+	_c.conflict = opts
 	return &LogicalDiskUpsertOne{
-		create: ldc,
+		create: _c,
 	}
 }
 
@@ -279,10 +279,10 @@ func (ldc *LogicalDiskCreate) OnConflict(opts ...sql.ConflictOption) *LogicalDis
 //	client.LogicalDisk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ldc *LogicalDiskCreate) OnConflictColumns(columns ...string) *LogicalDiskUpsertOne {
-	ldc.conflict = append(ldc.conflict, sql.ConflictColumns(columns...))
+func (_c *LogicalDiskCreate) OnConflictColumns(columns ...string) *LogicalDiskUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &LogicalDiskUpsertOne{
-		create: ldc,
+		create: _c,
 	}
 }
 
@@ -641,16 +641,16 @@ type LogicalDiskCreateBulk struct {
 }
 
 // Save creates the LogicalDisk entities in the database.
-func (ldcb *LogicalDiskCreateBulk) Save(ctx context.Context) ([]*LogicalDisk, error) {
-	if ldcb.err != nil {
-		return nil, ldcb.err
+func (_c *LogicalDiskCreateBulk) Save(ctx context.Context) ([]*LogicalDisk, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(ldcb.builders))
-	nodes := make([]*LogicalDisk, len(ldcb.builders))
-	mutators := make([]Mutator, len(ldcb.builders))
-	for i := range ldcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*LogicalDisk, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := ldcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*LogicalDiskMutation)
@@ -664,12 +664,12 @@ func (ldcb *LogicalDiskCreateBulk) Save(ctx context.Context) ([]*LogicalDisk, er
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, ldcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = ldcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, ldcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -693,7 +693,7 @@ func (ldcb *LogicalDiskCreateBulk) Save(ctx context.Context) ([]*LogicalDisk, er
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, ldcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -701,8 +701,8 @@ func (ldcb *LogicalDiskCreateBulk) Save(ctx context.Context) ([]*LogicalDisk, er
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ldcb *LogicalDiskCreateBulk) SaveX(ctx context.Context) []*LogicalDisk {
-	v, err := ldcb.Save(ctx)
+func (_c *LogicalDiskCreateBulk) SaveX(ctx context.Context) []*LogicalDisk {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -710,14 +710,14 @@ func (ldcb *LogicalDiskCreateBulk) SaveX(ctx context.Context) []*LogicalDisk {
 }
 
 // Exec executes the query.
-func (ldcb *LogicalDiskCreateBulk) Exec(ctx context.Context) error {
-	_, err := ldcb.Save(ctx)
+func (_c *LogicalDiskCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ldcb *LogicalDiskCreateBulk) ExecX(ctx context.Context) {
-	if err := ldcb.Exec(ctx); err != nil {
+func (_c *LogicalDiskCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -737,10 +737,10 @@ func (ldcb *LogicalDiskCreateBulk) ExecX(ctx context.Context) {
 //			SetLabel(v+v).
 //		}).
 //		Exec(ctx)
-func (ldcb *LogicalDiskCreateBulk) OnConflict(opts ...sql.ConflictOption) *LogicalDiskUpsertBulk {
-	ldcb.conflict = opts
+func (_c *LogicalDiskCreateBulk) OnConflict(opts ...sql.ConflictOption) *LogicalDiskUpsertBulk {
+	_c.conflict = opts
 	return &LogicalDiskUpsertBulk{
-		create: ldcb,
+		create: _c,
 	}
 }
 
@@ -750,10 +750,10 @@ func (ldcb *LogicalDiskCreateBulk) OnConflict(opts ...sql.ConflictOption) *Logic
 //	client.LogicalDisk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ldcb *LogicalDiskCreateBulk) OnConflictColumns(columns ...string) *LogicalDiskUpsertBulk {
-	ldcb.conflict = append(ldcb.conflict, sql.ConflictColumns(columns...))
+func (_c *LogicalDiskCreateBulk) OnConflictColumns(columns ...string) *LogicalDiskUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &LogicalDiskUpsertBulk{
-		create: ldcb,
+		create: _c,
 	}
 }
 

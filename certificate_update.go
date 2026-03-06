@@ -24,98 +24,98 @@ type CertificateUpdate struct {
 }
 
 // Where appends a list predicates to the CertificateUpdate builder.
-func (cu *CertificateUpdate) Where(ps ...predicate.Certificate) *CertificateUpdate {
-	cu.mutation.Where(ps...)
-	return cu
+func (_u *CertificateUpdate) Where(ps ...predicate.Certificate) *CertificateUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetType sets the "type" field.
-func (cu *CertificateUpdate) SetType(c certificate.Type) *CertificateUpdate {
-	cu.mutation.SetType(c)
-	return cu
+func (_u *CertificateUpdate) SetType(v certificate.Type) *CertificateUpdate {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (cu *CertificateUpdate) SetNillableType(c *certificate.Type) *CertificateUpdate {
-	if c != nil {
-		cu.SetType(*c)
+func (_u *CertificateUpdate) SetNillableType(v *certificate.Type) *CertificateUpdate {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return cu
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (cu *CertificateUpdate) SetDescription(s string) *CertificateUpdate {
-	cu.mutation.SetDescription(s)
-	return cu
+func (_u *CertificateUpdate) SetDescription(v string) *CertificateUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (cu *CertificateUpdate) SetNillableDescription(s *string) *CertificateUpdate {
-	if s != nil {
-		cu.SetDescription(*s)
+func (_u *CertificateUpdate) SetNillableDescription(v *string) *CertificateUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (cu *CertificateUpdate) ClearDescription() *CertificateUpdate {
-	cu.mutation.ClearDescription()
-	return cu
+func (_u *CertificateUpdate) ClearDescription() *CertificateUpdate {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // SetExpiry sets the "expiry" field.
-func (cu *CertificateUpdate) SetExpiry(t time.Time) *CertificateUpdate {
-	cu.mutation.SetExpiry(t)
-	return cu
+func (_u *CertificateUpdate) SetExpiry(v time.Time) *CertificateUpdate {
+	_u.mutation.SetExpiry(v)
+	return _u
 }
 
 // SetNillableExpiry sets the "expiry" field if the given value is not nil.
-func (cu *CertificateUpdate) SetNillableExpiry(t *time.Time) *CertificateUpdate {
-	if t != nil {
-		cu.SetExpiry(*t)
+func (_u *CertificateUpdate) SetNillableExpiry(v *time.Time) *CertificateUpdate {
+	if v != nil {
+		_u.SetExpiry(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearExpiry clears the value of the "expiry" field.
-func (cu *CertificateUpdate) ClearExpiry() *CertificateUpdate {
-	cu.mutation.ClearExpiry()
-	return cu
+func (_u *CertificateUpdate) ClearExpiry() *CertificateUpdate {
+	_u.mutation.ClearExpiry()
+	return _u
 }
 
 // SetUID sets the "uid" field.
-func (cu *CertificateUpdate) SetUID(s string) *CertificateUpdate {
-	cu.mutation.SetUID(s)
-	return cu
+func (_u *CertificateUpdate) SetUID(v string) *CertificateUpdate {
+	_u.mutation.SetUID(v)
+	return _u
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (cu *CertificateUpdate) SetNillableUID(s *string) *CertificateUpdate {
-	if s != nil {
-		cu.SetUID(*s)
+func (_u *CertificateUpdate) SetNillableUID(v *string) *CertificateUpdate {
+	if v != nil {
+		_u.SetUID(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearUID clears the value of the "uid" field.
-func (cu *CertificateUpdate) ClearUID() *CertificateUpdate {
-	cu.mutation.ClearUID()
-	return cu
+func (_u *CertificateUpdate) ClearUID() *CertificateUpdate {
+	_u.mutation.ClearUID()
+	return _u
 }
 
 // Mutation returns the CertificateMutation object of the builder.
-func (cu *CertificateUpdate) Mutation() *CertificateMutation {
-	return cu.mutation
+func (_u *CertificateUpdate) Mutation() *CertificateMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (cu *CertificateUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
+func (_u *CertificateUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (cu *CertificateUpdate) SaveX(ctx context.Context) int {
-	affected, err := cu.Save(ctx)
+func (_u *CertificateUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -123,21 +123,21 @@ func (cu *CertificateUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (cu *CertificateUpdate) Exec(ctx context.Context) error {
-	_, err := cu.Save(ctx)
+func (_u *CertificateUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cu *CertificateUpdate) ExecX(ctx context.Context) {
-	if err := cu.Exec(ctx); err != nil {
+func (_u *CertificateUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cu *CertificateUpdate) check() error {
-	if v, ok := cu.mutation.GetType(); ok {
+func (_u *CertificateUpdate) check() error {
+	if v, ok := _u.mutation.GetType(); ok {
 		if err := certificate.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Certificate.type": %w`, err)}
 		}
@@ -146,46 +146,46 @@ func (cu *CertificateUpdate) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (cu *CertificateUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CertificateUpdate {
-	cu.modifiers = append(cu.modifiers, modifiers...)
-	return cu
+func (_u *CertificateUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CertificateUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (cu *CertificateUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := cu.check(); err != nil {
-		return n, err
+func (_u *CertificateUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(certificate.Table, certificate.Columns, sqlgraph.NewFieldSpec(certificate.FieldID, field.TypeInt64))
-	if ps := cu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := cu.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(certificate.FieldType, field.TypeEnum, value)
 	}
-	if value, ok := cu.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(certificate.FieldDescription, field.TypeString, value)
 	}
-	if cu.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(certificate.FieldDescription, field.TypeString)
 	}
-	if value, ok := cu.mutation.Expiry(); ok {
+	if value, ok := _u.mutation.Expiry(); ok {
 		_spec.SetField(certificate.FieldExpiry, field.TypeTime, value)
 	}
-	if cu.mutation.ExpiryCleared() {
+	if _u.mutation.ExpiryCleared() {
 		_spec.ClearField(certificate.FieldExpiry, field.TypeTime)
 	}
-	if value, ok := cu.mutation.UID(); ok {
+	if value, ok := _u.mutation.UID(); ok {
 		_spec.SetField(certificate.FieldUID, field.TypeString, value)
 	}
-	if cu.mutation.UIDCleared() {
+	if _u.mutation.UIDCleared() {
 		_spec.ClearField(certificate.FieldUID, field.TypeString)
 	}
-	_spec.AddModifiers(cu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{certificate.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -193,8 +193,8 @@ func (cu *CertificateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	cu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // CertificateUpdateOne is the builder for updating a single Certificate entity.
@@ -207,105 +207,105 @@ type CertificateUpdateOne struct {
 }
 
 // SetType sets the "type" field.
-func (cuo *CertificateUpdateOne) SetType(c certificate.Type) *CertificateUpdateOne {
-	cuo.mutation.SetType(c)
-	return cuo
+func (_u *CertificateUpdateOne) SetType(v certificate.Type) *CertificateUpdateOne {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (cuo *CertificateUpdateOne) SetNillableType(c *certificate.Type) *CertificateUpdateOne {
-	if c != nil {
-		cuo.SetType(*c)
+func (_u *CertificateUpdateOne) SetNillableType(v *certificate.Type) *CertificateUpdateOne {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return cuo
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (cuo *CertificateUpdateOne) SetDescription(s string) *CertificateUpdateOne {
-	cuo.mutation.SetDescription(s)
-	return cuo
+func (_u *CertificateUpdateOne) SetDescription(v string) *CertificateUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (cuo *CertificateUpdateOne) SetNillableDescription(s *string) *CertificateUpdateOne {
-	if s != nil {
-		cuo.SetDescription(*s)
+func (_u *CertificateUpdateOne) SetNillableDescription(v *string) *CertificateUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (cuo *CertificateUpdateOne) ClearDescription() *CertificateUpdateOne {
-	cuo.mutation.ClearDescription()
-	return cuo
+func (_u *CertificateUpdateOne) ClearDescription() *CertificateUpdateOne {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // SetExpiry sets the "expiry" field.
-func (cuo *CertificateUpdateOne) SetExpiry(t time.Time) *CertificateUpdateOne {
-	cuo.mutation.SetExpiry(t)
-	return cuo
+func (_u *CertificateUpdateOne) SetExpiry(v time.Time) *CertificateUpdateOne {
+	_u.mutation.SetExpiry(v)
+	return _u
 }
 
 // SetNillableExpiry sets the "expiry" field if the given value is not nil.
-func (cuo *CertificateUpdateOne) SetNillableExpiry(t *time.Time) *CertificateUpdateOne {
-	if t != nil {
-		cuo.SetExpiry(*t)
+func (_u *CertificateUpdateOne) SetNillableExpiry(v *time.Time) *CertificateUpdateOne {
+	if v != nil {
+		_u.SetExpiry(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearExpiry clears the value of the "expiry" field.
-func (cuo *CertificateUpdateOne) ClearExpiry() *CertificateUpdateOne {
-	cuo.mutation.ClearExpiry()
-	return cuo
+func (_u *CertificateUpdateOne) ClearExpiry() *CertificateUpdateOne {
+	_u.mutation.ClearExpiry()
+	return _u
 }
 
 // SetUID sets the "uid" field.
-func (cuo *CertificateUpdateOne) SetUID(s string) *CertificateUpdateOne {
-	cuo.mutation.SetUID(s)
-	return cuo
+func (_u *CertificateUpdateOne) SetUID(v string) *CertificateUpdateOne {
+	_u.mutation.SetUID(v)
+	return _u
 }
 
 // SetNillableUID sets the "uid" field if the given value is not nil.
-func (cuo *CertificateUpdateOne) SetNillableUID(s *string) *CertificateUpdateOne {
-	if s != nil {
-		cuo.SetUID(*s)
+func (_u *CertificateUpdateOne) SetNillableUID(v *string) *CertificateUpdateOne {
+	if v != nil {
+		_u.SetUID(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearUID clears the value of the "uid" field.
-func (cuo *CertificateUpdateOne) ClearUID() *CertificateUpdateOne {
-	cuo.mutation.ClearUID()
-	return cuo
+func (_u *CertificateUpdateOne) ClearUID() *CertificateUpdateOne {
+	_u.mutation.ClearUID()
+	return _u
 }
 
 // Mutation returns the CertificateMutation object of the builder.
-func (cuo *CertificateUpdateOne) Mutation() *CertificateMutation {
-	return cuo.mutation
+func (_u *CertificateUpdateOne) Mutation() *CertificateMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the CertificateUpdate builder.
-func (cuo *CertificateUpdateOne) Where(ps ...predicate.Certificate) *CertificateUpdateOne {
-	cuo.mutation.Where(ps...)
-	return cuo
+func (_u *CertificateUpdateOne) Where(ps ...predicate.Certificate) *CertificateUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (cuo *CertificateUpdateOne) Select(field string, fields ...string) *CertificateUpdateOne {
-	cuo.fields = append([]string{field}, fields...)
-	return cuo
+func (_u *CertificateUpdateOne) Select(field string, fields ...string) *CertificateUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Certificate entity.
-func (cuo *CertificateUpdateOne) Save(ctx context.Context) (*Certificate, error) {
-	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
+func (_u *CertificateUpdateOne) Save(ctx context.Context) (*Certificate, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (cuo *CertificateUpdateOne) SaveX(ctx context.Context) *Certificate {
-	node, err := cuo.Save(ctx)
+func (_u *CertificateUpdateOne) SaveX(ctx context.Context) *Certificate {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -313,21 +313,21 @@ func (cuo *CertificateUpdateOne) SaveX(ctx context.Context) *Certificate {
 }
 
 // Exec executes the query on the entity.
-func (cuo *CertificateUpdateOne) Exec(ctx context.Context) error {
-	_, err := cuo.Save(ctx)
+func (_u *CertificateUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cuo *CertificateUpdateOne) ExecX(ctx context.Context) {
-	if err := cuo.Exec(ctx); err != nil {
+func (_u *CertificateUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cuo *CertificateUpdateOne) check() error {
-	if v, ok := cuo.mutation.GetType(); ok {
+func (_u *CertificateUpdateOne) check() error {
+	if v, ok := _u.mutation.GetType(); ok {
 		if err := certificate.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Certificate.type": %w`, err)}
 		}
@@ -336,22 +336,22 @@ func (cuo *CertificateUpdateOne) check() error {
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (cuo *CertificateUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CertificateUpdateOne {
-	cuo.modifiers = append(cuo.modifiers, modifiers...)
-	return cuo
+func (_u *CertificateUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *CertificateUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (cuo *CertificateUpdateOne) sqlSave(ctx context.Context) (_node *Certificate, err error) {
-	if err := cuo.check(); err != nil {
+func (_u *CertificateUpdateOne) sqlSave(ctx context.Context) (_node *Certificate, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(certificate.Table, certificate.Columns, sqlgraph.NewFieldSpec(certificate.FieldID, field.TypeInt64))
-	id, ok := cuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Certificate.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := cuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, certificate.FieldID)
 		for _, f := range fields {
@@ -363,39 +363,39 @@ func (cuo *CertificateUpdateOne) sqlSave(ctx context.Context) (_node *Certificat
 			}
 		}
 	}
-	if ps := cuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := cuo.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(certificate.FieldType, field.TypeEnum, value)
 	}
-	if value, ok := cuo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(certificate.FieldDescription, field.TypeString, value)
 	}
-	if cuo.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(certificate.FieldDescription, field.TypeString)
 	}
-	if value, ok := cuo.mutation.Expiry(); ok {
+	if value, ok := _u.mutation.Expiry(); ok {
 		_spec.SetField(certificate.FieldExpiry, field.TypeTime, value)
 	}
-	if cuo.mutation.ExpiryCleared() {
+	if _u.mutation.ExpiryCleared() {
 		_spec.ClearField(certificate.FieldExpiry, field.TypeTime)
 	}
-	if value, ok := cuo.mutation.UID(); ok {
+	if value, ok := _u.mutation.UID(); ok {
 		_spec.SetField(certificate.FieldUID, field.TypeString, value)
 	}
-	if cuo.mutation.UIDCleared() {
+	if _u.mutation.UIDCleared() {
 		_spec.ClearField(certificate.FieldUID, field.TypeString)
 	}
-	_spec.AddModifiers(cuo.modifiers...)
-	_node = &Certificate{config: cuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Certificate{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{certificate.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -403,6 +403,6 @@ func (cuo *CertificateUpdateOne) sqlSave(ctx context.Context) (_node *Certificat
 		}
 		return nil, err
 	}
-	cuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

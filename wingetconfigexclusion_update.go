@@ -25,75 +25,75 @@ type WingetConfigExclusionUpdate struct {
 }
 
 // Where appends a list predicates to the WingetConfigExclusionUpdate builder.
-func (wceu *WingetConfigExclusionUpdate) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionUpdate {
-	wceu.mutation.Where(ps...)
-	return wceu
+func (_u *WingetConfigExclusionUpdate) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetPackageID sets the "package_id" field.
-func (wceu *WingetConfigExclusionUpdate) SetPackageID(s string) *WingetConfigExclusionUpdate {
-	wceu.mutation.SetPackageID(s)
-	return wceu
+func (_u *WingetConfigExclusionUpdate) SetPackageID(v string) *WingetConfigExclusionUpdate {
+	_u.mutation.SetPackageID(v)
+	return _u
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (wceu *WingetConfigExclusionUpdate) SetNillablePackageID(s *string) *WingetConfigExclusionUpdate {
-	if s != nil {
-		wceu.SetPackageID(*s)
+func (_u *WingetConfigExclusionUpdate) SetNillablePackageID(v *string) *WingetConfigExclusionUpdate {
+	if v != nil {
+		_u.SetPackageID(*v)
 	}
-	return wceu
+	return _u
 }
 
 // SetWhen sets the "when" field.
-func (wceu *WingetConfigExclusionUpdate) SetWhen(t time.Time) *WingetConfigExclusionUpdate {
-	wceu.mutation.SetWhen(t)
-	return wceu
+func (_u *WingetConfigExclusionUpdate) SetWhen(v time.Time) *WingetConfigExclusionUpdate {
+	_u.mutation.SetWhen(v)
+	return _u
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (wceu *WingetConfigExclusionUpdate) SetNillableWhen(t *time.Time) *WingetConfigExclusionUpdate {
-	if t != nil {
-		wceu.SetWhen(*t)
+func (_u *WingetConfigExclusionUpdate) SetNillableWhen(v *time.Time) *WingetConfigExclusionUpdate {
+	if v != nil {
+		_u.SetWhen(*v)
 	}
-	return wceu
+	return _u
 }
 
 // ClearWhen clears the value of the "when" field.
-func (wceu *WingetConfigExclusionUpdate) ClearWhen() *WingetConfigExclusionUpdate {
-	wceu.mutation.ClearWhen()
-	return wceu
+func (_u *WingetConfigExclusionUpdate) ClearWhen() *WingetConfigExclusionUpdate {
+	_u.mutation.ClearWhen()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (wceu *WingetConfigExclusionUpdate) SetOwnerID(id string) *WingetConfigExclusionUpdate {
-	wceu.mutation.SetOwnerID(id)
-	return wceu
+func (_u *WingetConfigExclusionUpdate) SetOwnerID(id string) *WingetConfigExclusionUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (wceu *WingetConfigExclusionUpdate) SetOwner(a *Agent) *WingetConfigExclusionUpdate {
-	return wceu.SetOwnerID(a.ID)
+func (_u *WingetConfigExclusionUpdate) SetOwner(v *Agent) *WingetConfigExclusionUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the WingetConfigExclusionMutation object of the builder.
-func (wceu *WingetConfigExclusionUpdate) Mutation() *WingetConfigExclusionMutation {
-	return wceu.mutation
+func (_u *WingetConfigExclusionUpdate) Mutation() *WingetConfigExclusionMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (wceu *WingetConfigExclusionUpdate) ClearOwner() *WingetConfigExclusionUpdate {
-	wceu.mutation.ClearOwner()
-	return wceu
+func (_u *WingetConfigExclusionUpdate) ClearOwner() *WingetConfigExclusionUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (wceu *WingetConfigExclusionUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, wceu.sqlSave, wceu.mutation, wceu.hooks)
+func (_u *WingetConfigExclusionUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (wceu *WingetConfigExclusionUpdate) SaveX(ctx context.Context) int {
-	affected, err := wceu.Save(ctx)
+func (_u *WingetConfigExclusionUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -101,54 +101,54 @@ func (wceu *WingetConfigExclusionUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (wceu *WingetConfigExclusionUpdate) Exec(ctx context.Context) error {
-	_, err := wceu.Save(ctx)
+func (_u *WingetConfigExclusionUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wceu *WingetConfigExclusionUpdate) ExecX(ctx context.Context) {
-	if err := wceu.Exec(ctx); err != nil {
+func (_u *WingetConfigExclusionUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (wceu *WingetConfigExclusionUpdate) check() error {
-	if wceu.mutation.OwnerCleared() && len(wceu.mutation.OwnerIDs()) > 0 {
+func (_u *WingetConfigExclusionUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "WingetConfigExclusion.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (wceu *WingetConfigExclusionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WingetConfigExclusionUpdate {
-	wceu.modifiers = append(wceu.modifiers, modifiers...)
-	return wceu
+func (_u *WingetConfigExclusionUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WingetConfigExclusionUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (wceu *WingetConfigExclusionUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := wceu.check(); err != nil {
-		return n, err
+func (_u *WingetConfigExclusionUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(wingetconfigexclusion.Table, wingetconfigexclusion.Columns, sqlgraph.NewFieldSpec(wingetconfigexclusion.FieldID, field.TypeInt))
-	if ps := wceu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := wceu.mutation.PackageID(); ok {
+	if value, ok := _u.mutation.PackageID(); ok {
 		_spec.SetField(wingetconfigexclusion.FieldPackageID, field.TypeString, value)
 	}
-	if value, ok := wceu.mutation.When(); ok {
+	if value, ok := _u.mutation.When(); ok {
 		_spec.SetField(wingetconfigexclusion.FieldWhen, field.TypeTime, value)
 	}
-	if wceu.mutation.WhenCleared() {
+	if _u.mutation.WhenCleared() {
 		_spec.ClearField(wingetconfigexclusion.FieldWhen, field.TypeTime)
 	}
-	if wceu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -161,7 +161,7 @@ func (wceu *WingetConfigExclusionUpdate) sqlSave(ctx context.Context) (n int, er
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wceu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -177,8 +177,8 @@ func (wceu *WingetConfigExclusionUpdate) sqlSave(ctx context.Context) (n int, er
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(wceu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, wceu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{wingetconfigexclusion.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -186,8 +186,8 @@ func (wceu *WingetConfigExclusionUpdate) sqlSave(ctx context.Context) (n int, er
 		}
 		return 0, err
 	}
-	wceu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // WingetConfigExclusionUpdateOne is the builder for updating a single WingetConfigExclusion entity.
@@ -200,82 +200,82 @@ type WingetConfigExclusionUpdateOne struct {
 }
 
 // SetPackageID sets the "package_id" field.
-func (wceuo *WingetConfigExclusionUpdateOne) SetPackageID(s string) *WingetConfigExclusionUpdateOne {
-	wceuo.mutation.SetPackageID(s)
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) SetPackageID(v string) *WingetConfigExclusionUpdateOne {
+	_u.mutation.SetPackageID(v)
+	return _u
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (wceuo *WingetConfigExclusionUpdateOne) SetNillablePackageID(s *string) *WingetConfigExclusionUpdateOne {
-	if s != nil {
-		wceuo.SetPackageID(*s)
+func (_u *WingetConfigExclusionUpdateOne) SetNillablePackageID(v *string) *WingetConfigExclusionUpdateOne {
+	if v != nil {
+		_u.SetPackageID(*v)
 	}
-	return wceuo
+	return _u
 }
 
 // SetWhen sets the "when" field.
-func (wceuo *WingetConfigExclusionUpdateOne) SetWhen(t time.Time) *WingetConfigExclusionUpdateOne {
-	wceuo.mutation.SetWhen(t)
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) SetWhen(v time.Time) *WingetConfigExclusionUpdateOne {
+	_u.mutation.SetWhen(v)
+	return _u
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (wceuo *WingetConfigExclusionUpdateOne) SetNillableWhen(t *time.Time) *WingetConfigExclusionUpdateOne {
-	if t != nil {
-		wceuo.SetWhen(*t)
+func (_u *WingetConfigExclusionUpdateOne) SetNillableWhen(v *time.Time) *WingetConfigExclusionUpdateOne {
+	if v != nil {
+		_u.SetWhen(*v)
 	}
-	return wceuo
+	return _u
 }
 
 // ClearWhen clears the value of the "when" field.
-func (wceuo *WingetConfigExclusionUpdateOne) ClearWhen() *WingetConfigExclusionUpdateOne {
-	wceuo.mutation.ClearWhen()
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) ClearWhen() *WingetConfigExclusionUpdateOne {
+	_u.mutation.ClearWhen()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (wceuo *WingetConfigExclusionUpdateOne) SetOwnerID(id string) *WingetConfigExclusionUpdateOne {
-	wceuo.mutation.SetOwnerID(id)
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) SetOwnerID(id string) *WingetConfigExclusionUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (wceuo *WingetConfigExclusionUpdateOne) SetOwner(a *Agent) *WingetConfigExclusionUpdateOne {
-	return wceuo.SetOwnerID(a.ID)
+func (_u *WingetConfigExclusionUpdateOne) SetOwner(v *Agent) *WingetConfigExclusionUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the WingetConfigExclusionMutation object of the builder.
-func (wceuo *WingetConfigExclusionUpdateOne) Mutation() *WingetConfigExclusionMutation {
-	return wceuo.mutation
+func (_u *WingetConfigExclusionUpdateOne) Mutation() *WingetConfigExclusionMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (wceuo *WingetConfigExclusionUpdateOne) ClearOwner() *WingetConfigExclusionUpdateOne {
-	wceuo.mutation.ClearOwner()
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) ClearOwner() *WingetConfigExclusionUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the WingetConfigExclusionUpdate builder.
-func (wceuo *WingetConfigExclusionUpdateOne) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionUpdateOne {
-	wceuo.mutation.Where(ps...)
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (wceuo *WingetConfigExclusionUpdateOne) Select(field string, fields ...string) *WingetConfigExclusionUpdateOne {
-	wceuo.fields = append([]string{field}, fields...)
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) Select(field string, fields ...string) *WingetConfigExclusionUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated WingetConfigExclusion entity.
-func (wceuo *WingetConfigExclusionUpdateOne) Save(ctx context.Context) (*WingetConfigExclusion, error) {
-	return withHooks(ctx, wceuo.sqlSave, wceuo.mutation, wceuo.hooks)
+func (_u *WingetConfigExclusionUpdateOne) Save(ctx context.Context) (*WingetConfigExclusion, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (wceuo *WingetConfigExclusionUpdateOne) SaveX(ctx context.Context) *WingetConfigExclusion {
-	node, err := wceuo.Save(ctx)
+func (_u *WingetConfigExclusionUpdateOne) SaveX(ctx context.Context) *WingetConfigExclusion {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -283,43 +283,43 @@ func (wceuo *WingetConfigExclusionUpdateOne) SaveX(ctx context.Context) *WingetC
 }
 
 // Exec executes the query on the entity.
-func (wceuo *WingetConfigExclusionUpdateOne) Exec(ctx context.Context) error {
-	_, err := wceuo.Save(ctx)
+func (_u *WingetConfigExclusionUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wceuo *WingetConfigExclusionUpdateOne) ExecX(ctx context.Context) {
-	if err := wceuo.Exec(ctx); err != nil {
+func (_u *WingetConfigExclusionUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (wceuo *WingetConfigExclusionUpdateOne) check() error {
-	if wceuo.mutation.OwnerCleared() && len(wceuo.mutation.OwnerIDs()) > 0 {
+func (_u *WingetConfigExclusionUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "WingetConfigExclusion.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (wceuo *WingetConfigExclusionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WingetConfigExclusionUpdateOne {
-	wceuo.modifiers = append(wceuo.modifiers, modifiers...)
-	return wceuo
+func (_u *WingetConfigExclusionUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *WingetConfigExclusionUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (wceuo *WingetConfigExclusionUpdateOne) sqlSave(ctx context.Context) (_node *WingetConfigExclusion, err error) {
-	if err := wceuo.check(); err != nil {
+func (_u *WingetConfigExclusionUpdateOne) sqlSave(ctx context.Context) (_node *WingetConfigExclusion, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(wingetconfigexclusion.Table, wingetconfigexclusion.Columns, sqlgraph.NewFieldSpec(wingetconfigexclusion.FieldID, field.TypeInt))
-	id, ok := wceuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "WingetConfigExclusion.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := wceuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, wingetconfigexclusion.FieldID)
 		for _, f := range fields {
@@ -331,23 +331,23 @@ func (wceuo *WingetConfigExclusionUpdateOne) sqlSave(ctx context.Context) (_node
 			}
 		}
 	}
-	if ps := wceuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := wceuo.mutation.PackageID(); ok {
+	if value, ok := _u.mutation.PackageID(); ok {
 		_spec.SetField(wingetconfigexclusion.FieldPackageID, field.TypeString, value)
 	}
-	if value, ok := wceuo.mutation.When(); ok {
+	if value, ok := _u.mutation.When(); ok {
 		_spec.SetField(wingetconfigexclusion.FieldWhen, field.TypeTime, value)
 	}
-	if wceuo.mutation.WhenCleared() {
+	if _u.mutation.WhenCleared() {
 		_spec.ClearField(wingetconfigexclusion.FieldWhen, field.TypeTime)
 	}
-	if wceuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -360,7 +360,7 @@ func (wceuo *WingetConfigExclusionUpdateOne) sqlSave(ctx context.Context) (_node
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := wceuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -376,11 +376,11 @@ func (wceuo *WingetConfigExclusionUpdateOne) sqlSave(ctx context.Context) (_node
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(wceuo.modifiers...)
-	_node = &WingetConfigExclusion{config: wceuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &WingetConfigExclusion{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, wceuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{wingetconfigexclusion.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -388,6 +388,6 @@ func (wceuo *WingetConfigExclusionUpdateOne) sqlSave(ctx context.Context) (_node
 		}
 		return nil, err
 	}
-	wceuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -48,7 +48,7 @@ func (*Certificate) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Certificate fields.
-func (c *Certificate) assignValues(columns []string, values []any) error {
+func (_m *Certificate) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -59,33 +59,33 @@ func (c *Certificate) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			c.ID = int64(value.Int64)
+			_m.ID = int64(value.Int64)
 		case certificate.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				c.Type = certificate.Type(value.String)
+				_m.Type = certificate.Type(value.String)
 			}
 		case certificate.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				c.Description = value.String
+				_m.Description = value.String
 			}
 		case certificate.FieldExpiry:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field expiry", values[i])
 			} else if value.Valid {
-				c.Expiry = value.Time
+				_m.Expiry = value.Time
 			}
 		case certificate.FieldUID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field uid", values[i])
 			} else if value.Valid {
-				c.UID = value.String
+				_m.UID = value.String
 			}
 		default:
-			c.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -93,44 +93,44 @@ func (c *Certificate) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Certificate.
 // This includes values selected through modifiers, order, etc.
-func (c *Certificate) Value(name string) (ent.Value, error) {
-	return c.selectValues.Get(name)
+func (_m *Certificate) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Certificate.
 // Note that you need to call Certificate.Unwrap() before calling this method if this Certificate
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (c *Certificate) Update() *CertificateUpdateOne {
-	return NewCertificateClient(c.config).UpdateOne(c)
+func (_m *Certificate) Update() *CertificateUpdateOne {
+	return NewCertificateClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Certificate entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (c *Certificate) Unwrap() *Certificate {
-	_tx, ok := c.config.driver.(*txDriver)
+func (_m *Certificate) Unwrap() *Certificate {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Certificate is not a transactional entity")
 	}
-	c.config.driver = _tx.drv
-	return c
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (c *Certificate) String() string {
+func (_m *Certificate) String() string {
 	var builder strings.Builder
 	builder.WriteString("Certificate(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", c.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("type=")
-	builder.WriteString(fmt.Sprintf("%v", c.Type))
+	builder.WriteString(fmt.Sprintf("%v", _m.Type))
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(c.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("expiry=")
-	builder.WriteString(c.Expiry.Format(time.ANSIC))
+	builder.WriteString(_m.Expiry.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("uid=")
-	builder.WriteString(c.UID)
+	builder.WriteString(_m.UID)
 	builder.WriteByte(')')
 	return builder.String()
 }

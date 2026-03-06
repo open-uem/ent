@@ -29,40 +29,40 @@ type ServerQuery struct {
 }
 
 // Where adds a new predicate for the ServerQuery builder.
-func (sq *ServerQuery) Where(ps ...predicate.Server) *ServerQuery {
-	sq.predicates = append(sq.predicates, ps...)
-	return sq
+func (_q *ServerQuery) Where(ps ...predicate.Server) *ServerQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (sq *ServerQuery) Limit(limit int) *ServerQuery {
-	sq.ctx.Limit = &limit
-	return sq
+func (_q *ServerQuery) Limit(limit int) *ServerQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (sq *ServerQuery) Offset(offset int) *ServerQuery {
-	sq.ctx.Offset = &offset
-	return sq
+func (_q *ServerQuery) Offset(offset int) *ServerQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (sq *ServerQuery) Unique(unique bool) *ServerQuery {
-	sq.ctx.Unique = &unique
-	return sq
+func (_q *ServerQuery) Unique(unique bool) *ServerQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (sq *ServerQuery) Order(o ...server.OrderOption) *ServerQuery {
-	sq.order = append(sq.order, o...)
-	return sq
+func (_q *ServerQuery) Order(o ...server.OrderOption) *ServerQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // First returns the first Server entity from the query.
 // Returns a *NotFoundError when no Server was found.
-func (sq *ServerQuery) First(ctx context.Context) (*Server, error) {
-	nodes, err := sq.Limit(1).All(setContextOp(ctx, sq.ctx, ent.OpQueryFirst))
+func (_q *ServerQuery) First(ctx context.Context) (*Server, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -73,8 +73,8 @@ func (sq *ServerQuery) First(ctx context.Context) (*Server, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (sq *ServerQuery) FirstX(ctx context.Context) *Server {
-	node, err := sq.First(ctx)
+func (_q *ServerQuery) FirstX(ctx context.Context) *Server {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -83,9 +83,9 @@ func (sq *ServerQuery) FirstX(ctx context.Context) *Server {
 
 // FirstID returns the first Server ID from the query.
 // Returns a *NotFoundError when no Server ID was found.
-func (sq *ServerQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *ServerQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = sq.Limit(1).IDs(setContextOp(ctx, sq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -96,8 +96,8 @@ func (sq *ServerQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (sq *ServerQuery) FirstIDX(ctx context.Context) int {
-	id, err := sq.FirstID(ctx)
+func (_q *ServerQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -107,8 +107,8 @@ func (sq *ServerQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single Server entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Server entity is found.
 // Returns a *NotFoundError when no Server entities are found.
-func (sq *ServerQuery) Only(ctx context.Context) (*Server, error) {
-	nodes, err := sq.Limit(2).All(setContextOp(ctx, sq.ctx, ent.OpQueryOnly))
+func (_q *ServerQuery) Only(ctx context.Context) (*Server, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -123,8 +123,8 @@ func (sq *ServerQuery) Only(ctx context.Context) (*Server, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (sq *ServerQuery) OnlyX(ctx context.Context) *Server {
-	node, err := sq.Only(ctx)
+func (_q *ServerQuery) OnlyX(ctx context.Context) *Server {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -134,9 +134,9 @@ func (sq *ServerQuery) OnlyX(ctx context.Context) *Server {
 // OnlyID is like Only, but returns the only Server ID in the query.
 // Returns a *NotSingularError when more than one Server ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (sq *ServerQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *ServerQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = sq.Limit(2).IDs(setContextOp(ctx, sq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -151,8 +151,8 @@ func (sq *ServerQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (sq *ServerQuery) OnlyIDX(ctx context.Context) int {
-	id, err := sq.OnlyID(ctx)
+func (_q *ServerQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -160,18 +160,18 @@ func (sq *ServerQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of Servers.
-func (sq *ServerQuery) All(ctx context.Context) ([]*Server, error) {
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryAll)
-	if err := sq.prepareQuery(ctx); err != nil {
+func (_q *ServerQuery) All(ctx context.Context) ([]*Server, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Server, *ServerQuery]()
-	return withInterceptors[[]*Server](ctx, sq, qr, sq.inters)
+	return withInterceptors[[]*Server](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (sq *ServerQuery) AllX(ctx context.Context) []*Server {
-	nodes, err := sq.All(ctx)
+func (_q *ServerQuery) AllX(ctx context.Context) []*Server {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -179,20 +179,20 @@ func (sq *ServerQuery) AllX(ctx context.Context) []*Server {
 }
 
 // IDs executes the query and returns a list of Server IDs.
-func (sq *ServerQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if sq.ctx.Unique == nil && sq.path != nil {
-		sq.Unique(true)
+func (_q *ServerQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryIDs)
-	if err = sq.Select(server.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(server.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (sq *ServerQuery) IDsX(ctx context.Context) []int {
-	ids, err := sq.IDs(ctx)
+func (_q *ServerQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -200,17 +200,17 @@ func (sq *ServerQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (sq *ServerQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryCount)
-	if err := sq.prepareQuery(ctx); err != nil {
+func (_q *ServerQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, sq, querierCount[*ServerQuery](), sq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*ServerQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (sq *ServerQuery) CountX(ctx context.Context) int {
-	count, err := sq.Count(ctx)
+func (_q *ServerQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -218,9 +218,9 @@ func (sq *ServerQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (sq *ServerQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, sq.ctx, ent.OpQueryExist)
-	switch _, err := sq.FirstID(ctx); {
+func (_q *ServerQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -231,8 +231,8 @@ func (sq *ServerQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (sq *ServerQuery) ExistX(ctx context.Context) bool {
-	exist, err := sq.Exist(ctx)
+func (_q *ServerQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -241,20 +241,20 @@ func (sq *ServerQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the ServerQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (sq *ServerQuery) Clone() *ServerQuery {
-	if sq == nil {
+func (_q *ServerQuery) Clone() *ServerQuery {
+	if _q == nil {
 		return nil
 	}
 	return &ServerQuery{
-		config:     sq.config,
-		ctx:        sq.ctx.Clone(),
-		order:      append([]server.OrderOption{}, sq.order...),
-		inters:     append([]Interceptor{}, sq.inters...),
-		predicates: append([]predicate.Server{}, sq.predicates...),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]server.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.Server{}, _q.predicates...),
 		// clone intermediate query.
-		sql:       sq.sql.Clone(),
-		path:      sq.path,
-		modifiers: append([]func(*sql.Selector){}, sq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
@@ -272,10 +272,10 @@ func (sq *ServerQuery) Clone() *ServerQuery {
 //		GroupBy(server.FieldHostname).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (sq *ServerQuery) GroupBy(field string, fields ...string) *ServerGroupBy {
-	sq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &ServerGroupBy{build: sq}
-	grbuild.flds = &sq.ctx.Fields
+func (_q *ServerQuery) GroupBy(field string, fields ...string) *ServerGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &ServerGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = server.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -293,65 +293,65 @@ func (sq *ServerQuery) GroupBy(field string, fields ...string) *ServerGroupBy {
 //	client.Server.Query().
 //		Select(server.FieldHostname).
 //		Scan(ctx, &v)
-func (sq *ServerQuery) Select(fields ...string) *ServerSelect {
-	sq.ctx.Fields = append(sq.ctx.Fields, fields...)
-	sbuild := &ServerSelect{ServerQuery: sq}
+func (_q *ServerQuery) Select(fields ...string) *ServerSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &ServerSelect{ServerQuery: _q}
 	sbuild.label = server.Label
-	sbuild.flds, sbuild.scan = &sq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a ServerSelect configured with the given aggregations.
-func (sq *ServerQuery) Aggregate(fns ...AggregateFunc) *ServerSelect {
-	return sq.Select().Aggregate(fns...)
+func (_q *ServerQuery) Aggregate(fns ...AggregateFunc) *ServerSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (sq *ServerQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range sq.inters {
+func (_q *ServerQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, sq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range sq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !server.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if sq.path != nil {
-		prev, err := sq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		sq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (sq *ServerQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Server, error) {
+func (_q *ServerQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Server, error) {
 	var (
 		nodes = []*Server{}
-		_spec = sq.querySpec()
+		_spec = _q.querySpec()
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
 		return (*Server).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Server{config: sq.config}
+		node := &Server{config: _q.config}
 		nodes = append(nodes, node)
 		return node.assignValues(columns, values)
 	}
-	if len(sq.modifiers) > 0 {
-		_spec.Modifiers = sq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, sq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
@@ -360,27 +360,27 @@ func (sq *ServerQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Serve
 	return nodes, nil
 }
 
-func (sq *ServerQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := sq.querySpec()
-	if len(sq.modifiers) > 0 {
-		_spec.Modifiers = sq.modifiers
+func (_q *ServerQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = sq.ctx.Fields
-	if len(sq.ctx.Fields) > 0 {
-		_spec.Unique = sq.ctx.Unique != nil && *sq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, sq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (sq *ServerQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *ServerQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(server.Table, server.Columns, sqlgraph.NewFieldSpec(server.FieldID, field.TypeInt))
-	_spec.From = sq.sql
-	if unique := sq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if sq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := sq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, server.FieldID)
 		for i := range fields {
@@ -389,20 +389,20 @@ func (sq *ServerQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := sq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := sq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := sq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := sq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -412,45 +412,45 @@ func (sq *ServerQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (sq *ServerQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(sq.driver.Dialect())
+func (_q *ServerQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(server.Table)
-	columns := sq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = server.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if sq.sql != nil {
-		selector = sq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if sq.ctx.Unique != nil && *sq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range sq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range sq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range sq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := sq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := sq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (sq *ServerQuery) Modify(modifiers ...func(s *sql.Selector)) *ServerSelect {
-	sq.modifiers = append(sq.modifiers, modifiers...)
-	return sq.Select()
+func (_q *ServerQuery) Modify(modifiers ...func(s *sql.Selector)) *ServerSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // ServerGroupBy is the group-by builder for Server entities.
@@ -460,41 +460,41 @@ type ServerGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (sgb *ServerGroupBy) Aggregate(fns ...AggregateFunc) *ServerGroupBy {
-	sgb.fns = append(sgb.fns, fns...)
-	return sgb
+func (_g *ServerGroupBy) Aggregate(fns ...AggregateFunc) *ServerGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (sgb *ServerGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, sgb.build.ctx, ent.OpQueryGroupBy)
-	if err := sgb.build.prepareQuery(ctx); err != nil {
+func (_g *ServerGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*ServerQuery, *ServerGroupBy](ctx, sgb.build, sgb, sgb.build.inters, v)
+	return scanWithInterceptors[*ServerQuery, *ServerGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (sgb *ServerGroupBy) sqlScan(ctx context.Context, root *ServerQuery, v any) error {
+func (_g *ServerGroupBy) sqlScan(ctx context.Context, root *ServerQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(sgb.fns))
-	for _, fn := range sgb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*sgb.flds)+len(sgb.fns))
-		for _, f := range *sgb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*sgb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := sgb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -508,27 +508,27 @@ type ServerSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (ss *ServerSelect) Aggregate(fns ...AggregateFunc) *ServerSelect {
-	ss.fns = append(ss.fns, fns...)
-	return ss
+func (_s *ServerSelect) Aggregate(fns ...AggregateFunc) *ServerSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ss *ServerSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ss.ctx, ent.OpQuerySelect)
-	if err := ss.prepareQuery(ctx); err != nil {
+func (_s *ServerSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*ServerQuery, *ServerSelect](ctx, ss.ServerQuery, ss, ss.inters, v)
+	return scanWithInterceptors[*ServerQuery, *ServerSelect](ctx, _s.ServerQuery, _s, _s.inters, v)
 }
 
-func (ss *ServerSelect) sqlScan(ctx context.Context, root *ServerQuery, v any) error {
+func (_s *ServerSelect) sqlScan(ctx context.Context, root *ServerQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(ss.fns))
-	for _, fn := range ss.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*ss.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -536,7 +536,7 @@ func (ss *ServerSelect) sqlScan(ctx context.Context, root *ServerQuery, v any) e
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ss.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -544,7 +544,7 @@ func (ss *ServerSelect) sqlScan(ctx context.Context, root *ServerQuery, v any) e
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (ss *ServerSelect) Modify(modifiers ...func(s *sql.Selector)) *ServerSelect {
-	ss.modifiers = append(ss.modifiers, modifiers...)
-	return ss
+func (_s *ServerSelect) Modify(modifiers ...func(s *sql.Selector)) *ServerSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

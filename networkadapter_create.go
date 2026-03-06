@@ -24,166 +24,166 @@ type NetworkAdapterCreate struct {
 }
 
 // SetName sets the "name" field.
-func (nac *NetworkAdapterCreate) SetName(s string) *NetworkAdapterCreate {
-	nac.mutation.SetName(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetName(v string) *NetworkAdapterCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetMACAddress sets the "mac_address" field.
-func (nac *NetworkAdapterCreate) SetMACAddress(s string) *NetworkAdapterCreate {
-	nac.mutation.SetMACAddress(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetMACAddress(v string) *NetworkAdapterCreate {
+	_c.mutation.SetMACAddress(v)
+	return _c
 }
 
 // SetAddresses sets the "addresses" field.
-func (nac *NetworkAdapterCreate) SetAddresses(s string) *NetworkAdapterCreate {
-	nac.mutation.SetAddresses(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetAddresses(v string) *NetworkAdapterCreate {
+	_c.mutation.SetAddresses(v)
+	return _c
 }
 
 // SetSubnet sets the "subnet" field.
-func (nac *NetworkAdapterCreate) SetSubnet(s string) *NetworkAdapterCreate {
-	nac.mutation.SetSubnet(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetSubnet(v string) *NetworkAdapterCreate {
+	_c.mutation.SetSubnet(v)
+	return _c
 }
 
 // SetNillableSubnet sets the "subnet" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableSubnet(s *string) *NetworkAdapterCreate {
-	if s != nil {
-		nac.SetSubnet(*s)
+func (_c *NetworkAdapterCreate) SetNillableSubnet(v *string) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetSubnet(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetDefaultGateway sets the "default_gateway" field.
-func (nac *NetworkAdapterCreate) SetDefaultGateway(s string) *NetworkAdapterCreate {
-	nac.mutation.SetDefaultGateway(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetDefaultGateway(v string) *NetworkAdapterCreate {
+	_c.mutation.SetDefaultGateway(v)
+	return _c
 }
 
 // SetNillableDefaultGateway sets the "default_gateway" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableDefaultGateway(s *string) *NetworkAdapterCreate {
-	if s != nil {
-		nac.SetDefaultGateway(*s)
+func (_c *NetworkAdapterCreate) SetNillableDefaultGateway(v *string) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetDefaultGateway(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetDNSServers sets the "dns_servers" field.
-func (nac *NetworkAdapterCreate) SetDNSServers(s string) *NetworkAdapterCreate {
-	nac.mutation.SetDNSServers(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetDNSServers(v string) *NetworkAdapterCreate {
+	_c.mutation.SetDNSServers(v)
+	return _c
 }
 
 // SetNillableDNSServers sets the "dns_servers" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableDNSServers(s *string) *NetworkAdapterCreate {
-	if s != nil {
-		nac.SetDNSServers(*s)
+func (_c *NetworkAdapterCreate) SetNillableDNSServers(v *string) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetDNSServers(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetDNSDomain sets the "dns_domain" field.
-func (nac *NetworkAdapterCreate) SetDNSDomain(s string) *NetworkAdapterCreate {
-	nac.mutation.SetDNSDomain(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetDNSDomain(v string) *NetworkAdapterCreate {
+	_c.mutation.SetDNSDomain(v)
+	return _c
 }
 
 // SetNillableDNSDomain sets the "dns_domain" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableDNSDomain(s *string) *NetworkAdapterCreate {
-	if s != nil {
-		nac.SetDNSDomain(*s)
+func (_c *NetworkAdapterCreate) SetNillableDNSDomain(v *string) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetDNSDomain(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetDhcpEnabled sets the "dhcp_enabled" field.
-func (nac *NetworkAdapterCreate) SetDhcpEnabled(b bool) *NetworkAdapterCreate {
-	nac.mutation.SetDhcpEnabled(b)
-	return nac
+func (_c *NetworkAdapterCreate) SetDhcpEnabled(v bool) *NetworkAdapterCreate {
+	_c.mutation.SetDhcpEnabled(v)
+	return _c
 }
 
 // SetNillableDhcpEnabled sets the "dhcp_enabled" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableDhcpEnabled(b *bool) *NetworkAdapterCreate {
-	if b != nil {
-		nac.SetDhcpEnabled(*b)
+func (_c *NetworkAdapterCreate) SetNillableDhcpEnabled(v *bool) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetDhcpEnabled(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetDhcpLeaseObtained sets the "dhcp_lease_obtained" field.
-func (nac *NetworkAdapterCreate) SetDhcpLeaseObtained(t time.Time) *NetworkAdapterCreate {
-	nac.mutation.SetDhcpLeaseObtained(t)
-	return nac
+func (_c *NetworkAdapterCreate) SetDhcpLeaseObtained(v time.Time) *NetworkAdapterCreate {
+	_c.mutation.SetDhcpLeaseObtained(v)
+	return _c
 }
 
 // SetNillableDhcpLeaseObtained sets the "dhcp_lease_obtained" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableDhcpLeaseObtained(t *time.Time) *NetworkAdapterCreate {
-	if t != nil {
-		nac.SetDhcpLeaseObtained(*t)
+func (_c *NetworkAdapterCreate) SetNillableDhcpLeaseObtained(v *time.Time) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetDhcpLeaseObtained(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetDhcpLeaseExpired sets the "dhcp_lease_expired" field.
-func (nac *NetworkAdapterCreate) SetDhcpLeaseExpired(t time.Time) *NetworkAdapterCreate {
-	nac.mutation.SetDhcpLeaseExpired(t)
-	return nac
+func (_c *NetworkAdapterCreate) SetDhcpLeaseExpired(v time.Time) *NetworkAdapterCreate {
+	_c.mutation.SetDhcpLeaseExpired(v)
+	return _c
 }
 
 // SetNillableDhcpLeaseExpired sets the "dhcp_lease_expired" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableDhcpLeaseExpired(t *time.Time) *NetworkAdapterCreate {
-	if t != nil {
-		nac.SetDhcpLeaseExpired(*t)
+func (_c *NetworkAdapterCreate) SetNillableDhcpLeaseExpired(v *time.Time) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetDhcpLeaseExpired(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetSpeed sets the "speed" field.
-func (nac *NetworkAdapterCreate) SetSpeed(s string) *NetworkAdapterCreate {
-	nac.mutation.SetSpeed(s)
-	return nac
+func (_c *NetworkAdapterCreate) SetSpeed(v string) *NetworkAdapterCreate {
+	_c.mutation.SetSpeed(v)
+	return _c
 }
 
 // SetVirtual sets the "virtual" field.
-func (nac *NetworkAdapterCreate) SetVirtual(b bool) *NetworkAdapterCreate {
-	nac.mutation.SetVirtual(b)
-	return nac
+func (_c *NetworkAdapterCreate) SetVirtual(v bool) *NetworkAdapterCreate {
+	_c.mutation.SetVirtual(v)
+	return _c
 }
 
 // SetNillableVirtual sets the "virtual" field if the given value is not nil.
-func (nac *NetworkAdapterCreate) SetNillableVirtual(b *bool) *NetworkAdapterCreate {
-	if b != nil {
-		nac.SetVirtual(*b)
+func (_c *NetworkAdapterCreate) SetNillableVirtual(v *bool) *NetworkAdapterCreate {
+	if v != nil {
+		_c.SetVirtual(*v)
 	}
-	return nac
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (nac *NetworkAdapterCreate) SetOwnerID(id string) *NetworkAdapterCreate {
-	nac.mutation.SetOwnerID(id)
-	return nac
+func (_c *NetworkAdapterCreate) SetOwnerID(id string) *NetworkAdapterCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (nac *NetworkAdapterCreate) SetOwner(a *Agent) *NetworkAdapterCreate {
-	return nac.SetOwnerID(a.ID)
+func (_c *NetworkAdapterCreate) SetOwner(v *Agent) *NetworkAdapterCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the NetworkAdapterMutation object of the builder.
-func (nac *NetworkAdapterCreate) Mutation() *NetworkAdapterMutation {
-	return nac.mutation
+func (_c *NetworkAdapterCreate) Mutation() *NetworkAdapterMutation {
+	return _c.mutation
 }
 
 // Save creates the NetworkAdapter in the database.
-func (nac *NetworkAdapterCreate) Save(ctx context.Context) (*NetworkAdapter, error) {
-	nac.defaults()
-	return withHooks(ctx, nac.sqlSave, nac.mutation, nac.hooks)
+func (_c *NetworkAdapterCreate) Save(ctx context.Context) (*NetworkAdapter, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (nac *NetworkAdapterCreate) SaveX(ctx context.Context) *NetworkAdapter {
-	v, err := nac.Save(ctx)
+func (_c *NetworkAdapterCreate) SaveX(ctx context.Context) *NetworkAdapter {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -191,52 +191,52 @@ func (nac *NetworkAdapterCreate) SaveX(ctx context.Context) *NetworkAdapter {
 }
 
 // Exec executes the query.
-func (nac *NetworkAdapterCreate) Exec(ctx context.Context) error {
-	_, err := nac.Save(ctx)
+func (_c *NetworkAdapterCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nac *NetworkAdapterCreate) ExecX(ctx context.Context) {
-	if err := nac.Exec(ctx); err != nil {
+func (_c *NetworkAdapterCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (nac *NetworkAdapterCreate) defaults() {
-	if _, ok := nac.mutation.Virtual(); !ok {
+func (_c *NetworkAdapterCreate) defaults() {
+	if _, ok := _c.mutation.Virtual(); !ok {
 		v := networkadapter.DefaultVirtual
-		nac.mutation.SetVirtual(v)
+		_c.mutation.SetVirtual(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (nac *NetworkAdapterCreate) check() error {
-	if _, ok := nac.mutation.Name(); !ok {
+func (_c *NetworkAdapterCreate) check() error {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "NetworkAdapter.name"`)}
 	}
-	if _, ok := nac.mutation.MACAddress(); !ok {
+	if _, ok := _c.mutation.MACAddress(); !ok {
 		return &ValidationError{Name: "mac_address", err: errors.New(`ent: missing required field "NetworkAdapter.mac_address"`)}
 	}
-	if _, ok := nac.mutation.Addresses(); !ok {
+	if _, ok := _c.mutation.Addresses(); !ok {
 		return &ValidationError{Name: "addresses", err: errors.New(`ent: missing required field "NetworkAdapter.addresses"`)}
 	}
-	if _, ok := nac.mutation.Speed(); !ok {
+	if _, ok := _c.mutation.Speed(); !ok {
 		return &ValidationError{Name: "speed", err: errors.New(`ent: missing required field "NetworkAdapter.speed"`)}
 	}
-	if len(nac.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "NetworkAdapter.owner"`)}
 	}
 	return nil
 }
 
-func (nac *NetworkAdapterCreate) sqlSave(ctx context.Context) (*NetworkAdapter, error) {
-	if err := nac.check(); err != nil {
+func (_c *NetworkAdapterCreate) sqlSave(ctx context.Context) (*NetworkAdapter, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := nac.createSpec()
-	if err := sqlgraph.CreateNode(ctx, nac.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -244,66 +244,66 @@ func (nac *NetworkAdapterCreate) sqlSave(ctx context.Context) (*NetworkAdapter, 
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	nac.mutation.id = &_node.ID
-	nac.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (nac *NetworkAdapterCreate) createSpec() (*NetworkAdapter, *sqlgraph.CreateSpec) {
+func (_c *NetworkAdapterCreate) createSpec() (*NetworkAdapter, *sqlgraph.CreateSpec) {
 	var (
-		_node = &NetworkAdapter{config: nac.config}
+		_node = &NetworkAdapter{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(networkadapter.Table, sqlgraph.NewFieldSpec(networkadapter.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = nac.conflict
-	if value, ok := nac.mutation.Name(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(networkadapter.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := nac.mutation.MACAddress(); ok {
+	if value, ok := _c.mutation.MACAddress(); ok {
 		_spec.SetField(networkadapter.FieldMACAddress, field.TypeString, value)
 		_node.MACAddress = value
 	}
-	if value, ok := nac.mutation.Addresses(); ok {
+	if value, ok := _c.mutation.Addresses(); ok {
 		_spec.SetField(networkadapter.FieldAddresses, field.TypeString, value)
 		_node.Addresses = value
 	}
-	if value, ok := nac.mutation.Subnet(); ok {
+	if value, ok := _c.mutation.Subnet(); ok {
 		_spec.SetField(networkadapter.FieldSubnet, field.TypeString, value)
 		_node.Subnet = value
 	}
-	if value, ok := nac.mutation.DefaultGateway(); ok {
+	if value, ok := _c.mutation.DefaultGateway(); ok {
 		_spec.SetField(networkadapter.FieldDefaultGateway, field.TypeString, value)
 		_node.DefaultGateway = value
 	}
-	if value, ok := nac.mutation.DNSServers(); ok {
+	if value, ok := _c.mutation.DNSServers(); ok {
 		_spec.SetField(networkadapter.FieldDNSServers, field.TypeString, value)
 		_node.DNSServers = value
 	}
-	if value, ok := nac.mutation.DNSDomain(); ok {
+	if value, ok := _c.mutation.DNSDomain(); ok {
 		_spec.SetField(networkadapter.FieldDNSDomain, field.TypeString, value)
 		_node.DNSDomain = value
 	}
-	if value, ok := nac.mutation.DhcpEnabled(); ok {
+	if value, ok := _c.mutation.DhcpEnabled(); ok {
 		_spec.SetField(networkadapter.FieldDhcpEnabled, field.TypeBool, value)
 		_node.DhcpEnabled = value
 	}
-	if value, ok := nac.mutation.DhcpLeaseObtained(); ok {
+	if value, ok := _c.mutation.DhcpLeaseObtained(); ok {
 		_spec.SetField(networkadapter.FieldDhcpLeaseObtained, field.TypeTime, value)
 		_node.DhcpLeaseObtained = value
 	}
-	if value, ok := nac.mutation.DhcpLeaseExpired(); ok {
+	if value, ok := _c.mutation.DhcpLeaseExpired(); ok {
 		_spec.SetField(networkadapter.FieldDhcpLeaseExpired, field.TypeTime, value)
 		_node.DhcpLeaseExpired = value
 	}
-	if value, ok := nac.mutation.Speed(); ok {
+	if value, ok := _c.mutation.Speed(); ok {
 		_spec.SetField(networkadapter.FieldSpeed, field.TypeString, value)
 		_node.Speed = value
 	}
-	if value, ok := nac.mutation.Virtual(); ok {
+	if value, ok := _c.mutation.Virtual(); ok {
 		_spec.SetField(networkadapter.FieldVirtual, field.TypeBool, value)
 		_node.Virtual = value
 	}
-	if nodes := nac.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -339,10 +339,10 @@ func (nac *NetworkAdapterCreate) createSpec() (*NetworkAdapter, *sqlgraph.Create
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (nac *NetworkAdapterCreate) OnConflict(opts ...sql.ConflictOption) *NetworkAdapterUpsertOne {
-	nac.conflict = opts
+func (_c *NetworkAdapterCreate) OnConflict(opts ...sql.ConflictOption) *NetworkAdapterUpsertOne {
+	_c.conflict = opts
 	return &NetworkAdapterUpsertOne{
-		create: nac,
+		create: _c,
 	}
 }
 
@@ -352,10 +352,10 @@ func (nac *NetworkAdapterCreate) OnConflict(opts ...sql.ConflictOption) *Network
 //	client.NetworkAdapter.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (nac *NetworkAdapterCreate) OnConflictColumns(columns ...string) *NetworkAdapterUpsertOne {
-	nac.conflict = append(nac.conflict, sql.ConflictColumns(columns...))
+func (_c *NetworkAdapterCreate) OnConflictColumns(columns ...string) *NetworkAdapterUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &NetworkAdapterUpsertOne{
-		create: nac,
+		create: _c,
 	}
 }
 
@@ -870,16 +870,16 @@ type NetworkAdapterCreateBulk struct {
 }
 
 // Save creates the NetworkAdapter entities in the database.
-func (nacb *NetworkAdapterCreateBulk) Save(ctx context.Context) ([]*NetworkAdapter, error) {
-	if nacb.err != nil {
-		return nil, nacb.err
+func (_c *NetworkAdapterCreateBulk) Save(ctx context.Context) ([]*NetworkAdapter, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(nacb.builders))
-	nodes := make([]*NetworkAdapter, len(nacb.builders))
-	mutators := make([]Mutator, len(nacb.builders))
-	for i := range nacb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*NetworkAdapter, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := nacb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*NetworkAdapterMutation)
@@ -893,12 +893,12 @@ func (nacb *NetworkAdapterCreateBulk) Save(ctx context.Context) ([]*NetworkAdapt
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, nacb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = nacb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, nacb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -922,7 +922,7 @@ func (nacb *NetworkAdapterCreateBulk) Save(ctx context.Context) ([]*NetworkAdapt
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, nacb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -930,8 +930,8 @@ func (nacb *NetworkAdapterCreateBulk) Save(ctx context.Context) ([]*NetworkAdapt
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nacb *NetworkAdapterCreateBulk) SaveX(ctx context.Context) []*NetworkAdapter {
-	v, err := nacb.Save(ctx)
+func (_c *NetworkAdapterCreateBulk) SaveX(ctx context.Context) []*NetworkAdapter {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -939,14 +939,14 @@ func (nacb *NetworkAdapterCreateBulk) SaveX(ctx context.Context) []*NetworkAdapt
 }
 
 // Exec executes the query.
-func (nacb *NetworkAdapterCreateBulk) Exec(ctx context.Context) error {
-	_, err := nacb.Save(ctx)
+func (_c *NetworkAdapterCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nacb *NetworkAdapterCreateBulk) ExecX(ctx context.Context) {
-	if err := nacb.Exec(ctx); err != nil {
+func (_c *NetworkAdapterCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -966,10 +966,10 @@ func (nacb *NetworkAdapterCreateBulk) ExecX(ctx context.Context) {
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (nacb *NetworkAdapterCreateBulk) OnConflict(opts ...sql.ConflictOption) *NetworkAdapterUpsertBulk {
-	nacb.conflict = opts
+func (_c *NetworkAdapterCreateBulk) OnConflict(opts ...sql.ConflictOption) *NetworkAdapterUpsertBulk {
+	_c.conflict = opts
 	return &NetworkAdapterUpsertBulk{
-		create: nacb,
+		create: _c,
 	}
 }
 
@@ -979,10 +979,10 @@ func (nacb *NetworkAdapterCreateBulk) OnConflict(opts ...sql.ConflictOption) *Ne
 //	client.NetworkAdapter.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (nacb *NetworkAdapterCreateBulk) OnConflictColumns(columns ...string) *NetworkAdapterUpsertBulk {
-	nacb.conflict = append(nacb.conflict, sql.ConflictColumns(columns...))
+func (_c *NetworkAdapterCreateBulk) OnConflictColumns(columns ...string) *NetworkAdapterUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &NetworkAdapterUpsertBulk{
-		create: nacb,
+		create: _c,
 	}
 }
 

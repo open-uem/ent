@@ -70,7 +70,7 @@ func (*RecoveryCode) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the RecoveryCode fields.
-func (rc *RecoveryCode) assignValues(columns []string, values []any) error {
+func (_m *RecoveryCode) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -81,28 +81,28 @@ func (rc *RecoveryCode) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			rc.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case recoverycode.FieldCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field code", values[i])
 			} else if value.Valid {
-				rc.Code = value.String
+				_m.Code = value.String
 			}
 		case recoverycode.FieldUsed:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field used", values[i])
 			} else if value.Valid {
-				rc.Used = value.Bool
+				_m.Used = value.Bool
 			}
 		case recoverycode.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field user_recoverycodes", values[i])
 			} else if value.Valid {
-				rc.user_recoverycodes = new(string)
-				*rc.user_recoverycodes = value.String
+				_m.user_recoverycodes = new(string)
+				*_m.user_recoverycodes = value.String
 			}
 		default:
-			rc.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -110,43 +110,43 @@ func (rc *RecoveryCode) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the RecoveryCode.
 // This includes values selected through modifiers, order, etc.
-func (rc *RecoveryCode) Value(name string) (ent.Value, error) {
-	return rc.selectValues.Get(name)
+func (_m *RecoveryCode) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryUser queries the "user" edge of the RecoveryCode entity.
-func (rc *RecoveryCode) QueryUser() *UserQuery {
-	return NewRecoveryCodeClient(rc.config).QueryUser(rc)
+func (_m *RecoveryCode) QueryUser() *UserQuery {
+	return NewRecoveryCodeClient(_m.config).QueryUser(_m)
 }
 
 // Update returns a builder for updating this RecoveryCode.
 // Note that you need to call RecoveryCode.Unwrap() before calling this method if this RecoveryCode
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (rc *RecoveryCode) Update() *RecoveryCodeUpdateOne {
-	return NewRecoveryCodeClient(rc.config).UpdateOne(rc)
+func (_m *RecoveryCode) Update() *RecoveryCodeUpdateOne {
+	return NewRecoveryCodeClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the RecoveryCode entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (rc *RecoveryCode) Unwrap() *RecoveryCode {
-	_tx, ok := rc.config.driver.(*txDriver)
+func (_m *RecoveryCode) Unwrap() *RecoveryCode {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: RecoveryCode is not a transactional entity")
 	}
-	rc.config.driver = _tx.drv
-	return rc
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (rc *RecoveryCode) String() string {
+func (_m *RecoveryCode) String() string {
 	var builder strings.Builder
 	builder.WriteString("RecoveryCode(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", rc.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("code=")
-	builder.WriteString(rc.Code)
+	builder.WriteString(_m.Code)
 	builder.WriteString(", ")
 	builder.WriteString("used=")
-	builder.WriteString(fmt.Sprintf("%v", rc.Used))
+	builder.WriteString(fmt.Sprintf("%v", _m.Used))
 	builder.WriteByte(')')
 	return builder.String()
 }

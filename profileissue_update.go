@@ -27,143 +27,143 @@ type ProfileIssueUpdate struct {
 }
 
 // Where appends a list predicates to the ProfileIssueUpdate builder.
-func (piu *ProfileIssueUpdate) Where(ps ...predicate.ProfileIssue) *ProfileIssueUpdate {
-	piu.mutation.Where(ps...)
-	return piu
+func (_u *ProfileIssueUpdate) Where(ps ...predicate.ProfileIssue) *ProfileIssueUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetError sets the "error" field.
-func (piu *ProfileIssueUpdate) SetError(s string) *ProfileIssueUpdate {
-	piu.mutation.SetError(s)
-	return piu
+func (_u *ProfileIssueUpdate) SetError(v string) *ProfileIssueUpdate {
+	_u.mutation.SetError(v)
+	return _u
 }
 
 // SetNillableError sets the "error" field if the given value is not nil.
-func (piu *ProfileIssueUpdate) SetNillableError(s *string) *ProfileIssueUpdate {
-	if s != nil {
-		piu.SetError(*s)
+func (_u *ProfileIssueUpdate) SetNillableError(v *string) *ProfileIssueUpdate {
+	if v != nil {
+		_u.SetError(*v)
 	}
-	return piu
+	return _u
 }
 
 // ClearError clears the value of the "error" field.
-func (piu *ProfileIssueUpdate) ClearError() *ProfileIssueUpdate {
-	piu.mutation.ClearError()
-	return piu
+func (_u *ProfileIssueUpdate) ClearError() *ProfileIssueUpdate {
+	_u.mutation.ClearError()
+	return _u
 }
 
 // SetWhen sets the "when" field.
-func (piu *ProfileIssueUpdate) SetWhen(t time.Time) *ProfileIssueUpdate {
-	piu.mutation.SetWhen(t)
-	return piu
+func (_u *ProfileIssueUpdate) SetWhen(v time.Time) *ProfileIssueUpdate {
+	_u.mutation.SetWhen(v)
+	return _u
 }
 
 // ClearWhen clears the value of the "when" field.
-func (piu *ProfileIssueUpdate) ClearWhen() *ProfileIssueUpdate {
-	piu.mutation.ClearWhen()
-	return piu
+func (_u *ProfileIssueUpdate) ClearWhen() *ProfileIssueUpdate {
+	_u.mutation.ClearWhen()
+	return _u
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
-func (piu *ProfileIssueUpdate) SetProfileID(id int) *ProfileIssueUpdate {
-	piu.mutation.SetProfileID(id)
-	return piu
+func (_u *ProfileIssueUpdate) SetProfileID(id int) *ProfileIssueUpdate {
+	_u.mutation.SetProfileID(id)
+	return _u
 }
 
 // SetNillableProfileID sets the "profile" edge to the Profile entity by ID if the given value is not nil.
-func (piu *ProfileIssueUpdate) SetNillableProfileID(id *int) *ProfileIssueUpdate {
+func (_u *ProfileIssueUpdate) SetNillableProfileID(id *int) *ProfileIssueUpdate {
 	if id != nil {
-		piu = piu.SetProfileID(*id)
+		_u = _u.SetProfileID(*id)
 	}
-	return piu
+	return _u
 }
 
 // SetProfile sets the "profile" edge to the Profile entity.
-func (piu *ProfileIssueUpdate) SetProfile(p *Profile) *ProfileIssueUpdate {
-	return piu.SetProfileID(p.ID)
+func (_u *ProfileIssueUpdate) SetProfile(v *Profile) *ProfileIssueUpdate {
+	return _u.SetProfileID(v.ID)
 }
 
 // SetAgentsID sets the "agents" edge to the Agent entity by ID.
-func (piu *ProfileIssueUpdate) SetAgentsID(id string) *ProfileIssueUpdate {
-	piu.mutation.SetAgentsID(id)
-	return piu
+func (_u *ProfileIssueUpdate) SetAgentsID(id string) *ProfileIssueUpdate {
+	_u.mutation.SetAgentsID(id)
+	return _u
 }
 
 // SetNillableAgentsID sets the "agents" edge to the Agent entity by ID if the given value is not nil.
-func (piu *ProfileIssueUpdate) SetNillableAgentsID(id *string) *ProfileIssueUpdate {
+func (_u *ProfileIssueUpdate) SetNillableAgentsID(id *string) *ProfileIssueUpdate {
 	if id != nil {
-		piu = piu.SetAgentsID(*id)
+		_u = _u.SetAgentsID(*id)
 	}
-	return piu
+	return _u
 }
 
 // SetAgents sets the "agents" edge to the Agent entity.
-func (piu *ProfileIssueUpdate) SetAgents(a *Agent) *ProfileIssueUpdate {
-	return piu.SetAgentsID(a.ID)
+func (_u *ProfileIssueUpdate) SetAgents(v *Agent) *ProfileIssueUpdate {
+	return _u.SetAgentsID(v.ID)
 }
 
 // AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
-func (piu *ProfileIssueUpdate) AddTasksreportIDs(ids ...int) *ProfileIssueUpdate {
-	piu.mutation.AddTasksreportIDs(ids...)
-	return piu
+func (_u *ProfileIssueUpdate) AddTasksreportIDs(ids ...int) *ProfileIssueUpdate {
+	_u.mutation.AddTasksreportIDs(ids...)
+	return _u
 }
 
 // AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
-func (piu *ProfileIssueUpdate) AddTasksreports(t ...*TaskReport) *ProfileIssueUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ProfileIssueUpdate) AddTasksreports(v ...*TaskReport) *ProfileIssueUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return piu.AddTasksreportIDs(ids...)
+	return _u.AddTasksreportIDs(ids...)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
-func (piu *ProfileIssueUpdate) Mutation() *ProfileIssueMutation {
-	return piu.mutation
+func (_u *ProfileIssueUpdate) Mutation() *ProfileIssueMutation {
+	return _u.mutation
 }
 
 // ClearProfile clears the "profile" edge to the Profile entity.
-func (piu *ProfileIssueUpdate) ClearProfile() *ProfileIssueUpdate {
-	piu.mutation.ClearProfile()
-	return piu
+func (_u *ProfileIssueUpdate) ClearProfile() *ProfileIssueUpdate {
+	_u.mutation.ClearProfile()
+	return _u
 }
 
 // ClearAgents clears the "agents" edge to the Agent entity.
-func (piu *ProfileIssueUpdate) ClearAgents() *ProfileIssueUpdate {
-	piu.mutation.ClearAgents()
-	return piu
+func (_u *ProfileIssueUpdate) ClearAgents() *ProfileIssueUpdate {
+	_u.mutation.ClearAgents()
+	return _u
 }
 
 // ClearTasksreports clears all "tasksreports" edges to the TaskReport entity.
-func (piu *ProfileIssueUpdate) ClearTasksreports() *ProfileIssueUpdate {
-	piu.mutation.ClearTasksreports()
-	return piu
+func (_u *ProfileIssueUpdate) ClearTasksreports() *ProfileIssueUpdate {
+	_u.mutation.ClearTasksreports()
+	return _u
 }
 
 // RemoveTasksreportIDs removes the "tasksreports" edge to TaskReport entities by IDs.
-func (piu *ProfileIssueUpdate) RemoveTasksreportIDs(ids ...int) *ProfileIssueUpdate {
-	piu.mutation.RemoveTasksreportIDs(ids...)
-	return piu
+func (_u *ProfileIssueUpdate) RemoveTasksreportIDs(ids ...int) *ProfileIssueUpdate {
+	_u.mutation.RemoveTasksreportIDs(ids...)
+	return _u
 }
 
 // RemoveTasksreports removes "tasksreports" edges to TaskReport entities.
-func (piu *ProfileIssueUpdate) RemoveTasksreports(t ...*TaskReport) *ProfileIssueUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ProfileIssueUpdate) RemoveTasksreports(v ...*TaskReport) *ProfileIssueUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return piu.RemoveTasksreportIDs(ids...)
+	return _u.RemoveTasksreportIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (piu *ProfileIssueUpdate) Save(ctx context.Context) (int, error) {
-	piu.defaults()
-	return withHooks(ctx, piu.sqlSave, piu.mutation, piu.hooks)
+func (_u *ProfileIssueUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (piu *ProfileIssueUpdate) SaveX(ctx context.Context) int {
-	affected, err := piu.Save(ctx)
+func (_u *ProfileIssueUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -171,54 +171,54 @@ func (piu *ProfileIssueUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (piu *ProfileIssueUpdate) Exec(ctx context.Context) error {
-	_, err := piu.Save(ctx)
+func (_u *ProfileIssueUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (piu *ProfileIssueUpdate) ExecX(ctx context.Context) {
-	if err := piu.Exec(ctx); err != nil {
+func (_u *ProfileIssueUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (piu *ProfileIssueUpdate) defaults() {
-	if _, ok := piu.mutation.When(); !ok && !piu.mutation.WhenCleared() {
+func (_u *ProfileIssueUpdate) defaults() {
+	if _, ok := _u.mutation.When(); !ok && !_u.mutation.WhenCleared() {
 		v := profileissue.UpdateDefaultWhen()
-		piu.mutation.SetWhen(v)
+		_u.mutation.SetWhen(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (piu *ProfileIssueUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ProfileIssueUpdate {
-	piu.modifiers = append(piu.modifiers, modifiers...)
-	return piu
+func (_u *ProfileIssueUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ProfileIssueUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *ProfileIssueUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(profileissue.Table, profileissue.Columns, sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt))
-	if ps := piu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := piu.mutation.Error(); ok {
+	if value, ok := _u.mutation.Error(); ok {
 		_spec.SetField(profileissue.FieldError, field.TypeString, value)
 	}
-	if piu.mutation.ErrorCleared() {
+	if _u.mutation.ErrorCleared() {
 		_spec.ClearField(profileissue.FieldError, field.TypeString)
 	}
-	if value, ok := piu.mutation.When(); ok {
+	if value, ok := _u.mutation.When(); ok {
 		_spec.SetField(profileissue.FieldWhen, field.TypeTime, value)
 	}
-	if piu.mutation.WhenCleared() {
+	if _u.mutation.WhenCleared() {
 		_spec.ClearField(profileissue.FieldWhen, field.TypeTime)
 	}
-	if piu.mutation.ProfileCleared() {
+	if _u.mutation.ProfileCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -231,7 +231,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piu.mutation.ProfileIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -247,7 +247,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if piu.mutation.AgentsCleared() {
+	if _u.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -260,7 +260,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piu.mutation.AgentsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -276,7 +276,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if piu.mutation.TasksreportsCleared() {
+	if _u.mutation.TasksreportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -289,7 +289,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piu.mutation.RemovedTasksreportsIDs(); len(nodes) > 0 && !piu.mutation.TasksreportsCleared() {
+	if nodes := _u.mutation.RemovedTasksreportsIDs(); len(nodes) > 0 && !_u.mutation.TasksreportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -305,7 +305,7 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piu.mutation.TasksreportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TasksreportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -321,8 +321,8 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(piu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, piu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{profileissue.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -330,8 +330,8 @@ func (piu *ProfileIssueUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	piu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // ProfileIssueUpdateOne is the builder for updating a single ProfileIssue entity.
@@ -344,150 +344,150 @@ type ProfileIssueUpdateOne struct {
 }
 
 // SetError sets the "error" field.
-func (piuo *ProfileIssueUpdateOne) SetError(s string) *ProfileIssueUpdateOne {
-	piuo.mutation.SetError(s)
-	return piuo
+func (_u *ProfileIssueUpdateOne) SetError(v string) *ProfileIssueUpdateOne {
+	_u.mutation.SetError(v)
+	return _u
 }
 
 // SetNillableError sets the "error" field if the given value is not nil.
-func (piuo *ProfileIssueUpdateOne) SetNillableError(s *string) *ProfileIssueUpdateOne {
-	if s != nil {
-		piuo.SetError(*s)
+func (_u *ProfileIssueUpdateOne) SetNillableError(v *string) *ProfileIssueUpdateOne {
+	if v != nil {
+		_u.SetError(*v)
 	}
-	return piuo
+	return _u
 }
 
 // ClearError clears the value of the "error" field.
-func (piuo *ProfileIssueUpdateOne) ClearError() *ProfileIssueUpdateOne {
-	piuo.mutation.ClearError()
-	return piuo
+func (_u *ProfileIssueUpdateOne) ClearError() *ProfileIssueUpdateOne {
+	_u.mutation.ClearError()
+	return _u
 }
 
 // SetWhen sets the "when" field.
-func (piuo *ProfileIssueUpdateOne) SetWhen(t time.Time) *ProfileIssueUpdateOne {
-	piuo.mutation.SetWhen(t)
-	return piuo
+func (_u *ProfileIssueUpdateOne) SetWhen(v time.Time) *ProfileIssueUpdateOne {
+	_u.mutation.SetWhen(v)
+	return _u
 }
 
 // ClearWhen clears the value of the "when" field.
-func (piuo *ProfileIssueUpdateOne) ClearWhen() *ProfileIssueUpdateOne {
-	piuo.mutation.ClearWhen()
-	return piuo
+func (_u *ProfileIssueUpdateOne) ClearWhen() *ProfileIssueUpdateOne {
+	_u.mutation.ClearWhen()
+	return _u
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
-func (piuo *ProfileIssueUpdateOne) SetProfileID(id int) *ProfileIssueUpdateOne {
-	piuo.mutation.SetProfileID(id)
-	return piuo
+func (_u *ProfileIssueUpdateOne) SetProfileID(id int) *ProfileIssueUpdateOne {
+	_u.mutation.SetProfileID(id)
+	return _u
 }
 
 // SetNillableProfileID sets the "profile" edge to the Profile entity by ID if the given value is not nil.
-func (piuo *ProfileIssueUpdateOne) SetNillableProfileID(id *int) *ProfileIssueUpdateOne {
+func (_u *ProfileIssueUpdateOne) SetNillableProfileID(id *int) *ProfileIssueUpdateOne {
 	if id != nil {
-		piuo = piuo.SetProfileID(*id)
+		_u = _u.SetProfileID(*id)
 	}
-	return piuo
+	return _u
 }
 
 // SetProfile sets the "profile" edge to the Profile entity.
-func (piuo *ProfileIssueUpdateOne) SetProfile(p *Profile) *ProfileIssueUpdateOne {
-	return piuo.SetProfileID(p.ID)
+func (_u *ProfileIssueUpdateOne) SetProfile(v *Profile) *ProfileIssueUpdateOne {
+	return _u.SetProfileID(v.ID)
 }
 
 // SetAgentsID sets the "agents" edge to the Agent entity by ID.
-func (piuo *ProfileIssueUpdateOne) SetAgentsID(id string) *ProfileIssueUpdateOne {
-	piuo.mutation.SetAgentsID(id)
-	return piuo
+func (_u *ProfileIssueUpdateOne) SetAgentsID(id string) *ProfileIssueUpdateOne {
+	_u.mutation.SetAgentsID(id)
+	return _u
 }
 
 // SetNillableAgentsID sets the "agents" edge to the Agent entity by ID if the given value is not nil.
-func (piuo *ProfileIssueUpdateOne) SetNillableAgentsID(id *string) *ProfileIssueUpdateOne {
+func (_u *ProfileIssueUpdateOne) SetNillableAgentsID(id *string) *ProfileIssueUpdateOne {
 	if id != nil {
-		piuo = piuo.SetAgentsID(*id)
+		_u = _u.SetAgentsID(*id)
 	}
-	return piuo
+	return _u
 }
 
 // SetAgents sets the "agents" edge to the Agent entity.
-func (piuo *ProfileIssueUpdateOne) SetAgents(a *Agent) *ProfileIssueUpdateOne {
-	return piuo.SetAgentsID(a.ID)
+func (_u *ProfileIssueUpdateOne) SetAgents(v *Agent) *ProfileIssueUpdateOne {
+	return _u.SetAgentsID(v.ID)
 }
 
 // AddTasksreportIDs adds the "tasksreports" edge to the TaskReport entity by IDs.
-func (piuo *ProfileIssueUpdateOne) AddTasksreportIDs(ids ...int) *ProfileIssueUpdateOne {
-	piuo.mutation.AddTasksreportIDs(ids...)
-	return piuo
+func (_u *ProfileIssueUpdateOne) AddTasksreportIDs(ids ...int) *ProfileIssueUpdateOne {
+	_u.mutation.AddTasksreportIDs(ids...)
+	return _u
 }
 
 // AddTasksreports adds the "tasksreports" edges to the TaskReport entity.
-func (piuo *ProfileIssueUpdateOne) AddTasksreports(t ...*TaskReport) *ProfileIssueUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ProfileIssueUpdateOne) AddTasksreports(v ...*TaskReport) *ProfileIssueUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return piuo.AddTasksreportIDs(ids...)
+	return _u.AddTasksreportIDs(ids...)
 }
 
 // Mutation returns the ProfileIssueMutation object of the builder.
-func (piuo *ProfileIssueUpdateOne) Mutation() *ProfileIssueMutation {
-	return piuo.mutation
+func (_u *ProfileIssueUpdateOne) Mutation() *ProfileIssueMutation {
+	return _u.mutation
 }
 
 // ClearProfile clears the "profile" edge to the Profile entity.
-func (piuo *ProfileIssueUpdateOne) ClearProfile() *ProfileIssueUpdateOne {
-	piuo.mutation.ClearProfile()
-	return piuo
+func (_u *ProfileIssueUpdateOne) ClearProfile() *ProfileIssueUpdateOne {
+	_u.mutation.ClearProfile()
+	return _u
 }
 
 // ClearAgents clears the "agents" edge to the Agent entity.
-func (piuo *ProfileIssueUpdateOne) ClearAgents() *ProfileIssueUpdateOne {
-	piuo.mutation.ClearAgents()
-	return piuo
+func (_u *ProfileIssueUpdateOne) ClearAgents() *ProfileIssueUpdateOne {
+	_u.mutation.ClearAgents()
+	return _u
 }
 
 // ClearTasksreports clears all "tasksreports" edges to the TaskReport entity.
-func (piuo *ProfileIssueUpdateOne) ClearTasksreports() *ProfileIssueUpdateOne {
-	piuo.mutation.ClearTasksreports()
-	return piuo
+func (_u *ProfileIssueUpdateOne) ClearTasksreports() *ProfileIssueUpdateOne {
+	_u.mutation.ClearTasksreports()
+	return _u
 }
 
 // RemoveTasksreportIDs removes the "tasksreports" edge to TaskReport entities by IDs.
-func (piuo *ProfileIssueUpdateOne) RemoveTasksreportIDs(ids ...int) *ProfileIssueUpdateOne {
-	piuo.mutation.RemoveTasksreportIDs(ids...)
-	return piuo
+func (_u *ProfileIssueUpdateOne) RemoveTasksreportIDs(ids ...int) *ProfileIssueUpdateOne {
+	_u.mutation.RemoveTasksreportIDs(ids...)
+	return _u
 }
 
 // RemoveTasksreports removes "tasksreports" edges to TaskReport entities.
-func (piuo *ProfileIssueUpdateOne) RemoveTasksreports(t ...*TaskReport) *ProfileIssueUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *ProfileIssueUpdateOne) RemoveTasksreports(v ...*TaskReport) *ProfileIssueUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return piuo.RemoveTasksreportIDs(ids...)
+	return _u.RemoveTasksreportIDs(ids...)
 }
 
 // Where appends a list predicates to the ProfileIssueUpdate builder.
-func (piuo *ProfileIssueUpdateOne) Where(ps ...predicate.ProfileIssue) *ProfileIssueUpdateOne {
-	piuo.mutation.Where(ps...)
-	return piuo
+func (_u *ProfileIssueUpdateOne) Where(ps ...predicate.ProfileIssue) *ProfileIssueUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (piuo *ProfileIssueUpdateOne) Select(field string, fields ...string) *ProfileIssueUpdateOne {
-	piuo.fields = append([]string{field}, fields...)
-	return piuo
+func (_u *ProfileIssueUpdateOne) Select(field string, fields ...string) *ProfileIssueUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated ProfileIssue entity.
-func (piuo *ProfileIssueUpdateOne) Save(ctx context.Context) (*ProfileIssue, error) {
-	piuo.defaults()
-	return withHooks(ctx, piuo.sqlSave, piuo.mutation, piuo.hooks)
+func (_u *ProfileIssueUpdateOne) Save(ctx context.Context) (*ProfileIssue, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (piuo *ProfileIssueUpdateOne) SaveX(ctx context.Context) *ProfileIssue {
-	node, err := piuo.Save(ctx)
+func (_u *ProfileIssueUpdateOne) SaveX(ctx context.Context) *ProfileIssue {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -495,40 +495,40 @@ func (piuo *ProfileIssueUpdateOne) SaveX(ctx context.Context) *ProfileIssue {
 }
 
 // Exec executes the query on the entity.
-func (piuo *ProfileIssueUpdateOne) Exec(ctx context.Context) error {
-	_, err := piuo.Save(ctx)
+func (_u *ProfileIssueUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (piuo *ProfileIssueUpdateOne) ExecX(ctx context.Context) {
-	if err := piuo.Exec(ctx); err != nil {
+func (_u *ProfileIssueUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (piuo *ProfileIssueUpdateOne) defaults() {
-	if _, ok := piuo.mutation.When(); !ok && !piuo.mutation.WhenCleared() {
+func (_u *ProfileIssueUpdateOne) defaults() {
+	if _, ok := _u.mutation.When(); !ok && !_u.mutation.WhenCleared() {
 		v := profileissue.UpdateDefaultWhen()
-		piuo.mutation.SetWhen(v)
+		_u.mutation.SetWhen(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (piuo *ProfileIssueUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ProfileIssueUpdateOne {
-	piuo.modifiers = append(piuo.modifiers, modifiers...)
-	return piuo
+func (_u *ProfileIssueUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ProfileIssueUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileIssue, err error) {
+func (_u *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileIssue, err error) {
 	_spec := sqlgraph.NewUpdateSpec(profileissue.Table, profileissue.Columns, sqlgraph.NewFieldSpec(profileissue.FieldID, field.TypeInt))
-	id, ok := piuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "ProfileIssue.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := piuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, profileissue.FieldID)
 		for _, f := range fields {
@@ -540,26 +540,26 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 			}
 		}
 	}
-	if ps := piuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := piuo.mutation.Error(); ok {
+	if value, ok := _u.mutation.Error(); ok {
 		_spec.SetField(profileissue.FieldError, field.TypeString, value)
 	}
-	if piuo.mutation.ErrorCleared() {
+	if _u.mutation.ErrorCleared() {
 		_spec.ClearField(profileissue.FieldError, field.TypeString)
 	}
-	if value, ok := piuo.mutation.When(); ok {
+	if value, ok := _u.mutation.When(); ok {
 		_spec.SetField(profileissue.FieldWhen, field.TypeTime, value)
 	}
-	if piuo.mutation.WhenCleared() {
+	if _u.mutation.WhenCleared() {
 		_spec.ClearField(profileissue.FieldWhen, field.TypeTime)
 	}
-	if piuo.mutation.ProfileCleared() {
+	if _u.mutation.ProfileCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -572,7 +572,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piuo.mutation.ProfileIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -588,7 +588,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if piuo.mutation.AgentsCleared() {
+	if _u.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -601,7 +601,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piuo.mutation.AgentsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -617,7 +617,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if piuo.mutation.TasksreportsCleared() {
+	if _u.mutation.TasksreportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -630,7 +630,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piuo.mutation.RemovedTasksreportsIDs(); len(nodes) > 0 && !piuo.mutation.TasksreportsCleared() {
+	if nodes := _u.mutation.RemovedTasksreportsIDs(); len(nodes) > 0 && !_u.mutation.TasksreportsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -646,7 +646,7 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := piuo.mutation.TasksreportsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TasksreportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -662,11 +662,11 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(piuo.modifiers...)
-	_node = &ProfileIssue{config: piuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &ProfileIssue{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, piuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{profileissue.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -674,6 +674,6 @@ func (piuo *ProfileIssueUpdateOne) sqlSave(ctx context.Context) (_node *ProfileI
 		}
 		return nil, err
 	}
-	piuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

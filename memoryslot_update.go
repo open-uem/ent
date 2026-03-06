@@ -24,181 +24,181 @@ type MemorySlotUpdate struct {
 }
 
 // Where appends a list predicates to the MemorySlotUpdate builder.
-func (msu *MemorySlotUpdate) Where(ps ...predicate.MemorySlot) *MemorySlotUpdate {
-	msu.mutation.Where(ps...)
-	return msu
+func (_u *MemorySlotUpdate) Where(ps ...predicate.MemorySlot) *MemorySlotUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetSlot sets the "slot" field.
-func (msu *MemorySlotUpdate) SetSlot(s string) *MemorySlotUpdate {
-	msu.mutation.SetSlot(s)
-	return msu
+func (_u *MemorySlotUpdate) SetSlot(v string) *MemorySlotUpdate {
+	_u.mutation.SetSlot(v)
+	return _u
 }
 
 // SetNillableSlot sets the "slot" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillableSlot(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetSlot(*s)
+func (_u *MemorySlotUpdate) SetNillableSlot(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetSlot(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearSlot clears the value of the "slot" field.
-func (msu *MemorySlotUpdate) ClearSlot() *MemorySlotUpdate {
-	msu.mutation.ClearSlot()
-	return msu
+func (_u *MemorySlotUpdate) ClearSlot() *MemorySlotUpdate {
+	_u.mutation.ClearSlot()
+	return _u
 }
 
 // SetSize sets the "size" field.
-func (msu *MemorySlotUpdate) SetSize(s string) *MemorySlotUpdate {
-	msu.mutation.SetSize(s)
-	return msu
+func (_u *MemorySlotUpdate) SetSize(v string) *MemorySlotUpdate {
+	_u.mutation.SetSize(v)
+	return _u
 }
 
 // SetNillableSize sets the "size" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillableSize(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetSize(*s)
+func (_u *MemorySlotUpdate) SetNillableSize(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetSize(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearSize clears the value of the "size" field.
-func (msu *MemorySlotUpdate) ClearSize() *MemorySlotUpdate {
-	msu.mutation.ClearSize()
-	return msu
+func (_u *MemorySlotUpdate) ClearSize() *MemorySlotUpdate {
+	_u.mutation.ClearSize()
+	return _u
 }
 
 // SetType sets the "type" field.
-func (msu *MemorySlotUpdate) SetType(s string) *MemorySlotUpdate {
-	msu.mutation.SetType(s)
-	return msu
+func (_u *MemorySlotUpdate) SetType(v string) *MemorySlotUpdate {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillableType(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetType(*s)
+func (_u *MemorySlotUpdate) SetNillableType(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearType clears the value of the "type" field.
-func (msu *MemorySlotUpdate) ClearType() *MemorySlotUpdate {
-	msu.mutation.ClearType()
-	return msu
+func (_u *MemorySlotUpdate) ClearType() *MemorySlotUpdate {
+	_u.mutation.ClearType()
+	return _u
 }
 
 // SetSerialNumber sets the "serial_number" field.
-func (msu *MemorySlotUpdate) SetSerialNumber(s string) *MemorySlotUpdate {
-	msu.mutation.SetSerialNumber(s)
-	return msu
+func (_u *MemorySlotUpdate) SetSerialNumber(v string) *MemorySlotUpdate {
+	_u.mutation.SetSerialNumber(v)
+	return _u
 }
 
 // SetNillableSerialNumber sets the "serial_number" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillableSerialNumber(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetSerialNumber(*s)
+func (_u *MemorySlotUpdate) SetNillableSerialNumber(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetSerialNumber(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearSerialNumber clears the value of the "serial_number" field.
-func (msu *MemorySlotUpdate) ClearSerialNumber() *MemorySlotUpdate {
-	msu.mutation.ClearSerialNumber()
-	return msu
+func (_u *MemorySlotUpdate) ClearSerialNumber() *MemorySlotUpdate {
+	_u.mutation.ClearSerialNumber()
+	return _u
 }
 
 // SetPartNumber sets the "part_number" field.
-func (msu *MemorySlotUpdate) SetPartNumber(s string) *MemorySlotUpdate {
-	msu.mutation.SetPartNumber(s)
-	return msu
+func (_u *MemorySlotUpdate) SetPartNumber(v string) *MemorySlotUpdate {
+	_u.mutation.SetPartNumber(v)
+	return _u
 }
 
 // SetNillablePartNumber sets the "part_number" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillablePartNumber(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetPartNumber(*s)
+func (_u *MemorySlotUpdate) SetNillablePartNumber(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetPartNumber(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearPartNumber clears the value of the "part_number" field.
-func (msu *MemorySlotUpdate) ClearPartNumber() *MemorySlotUpdate {
-	msu.mutation.ClearPartNumber()
-	return msu
+func (_u *MemorySlotUpdate) ClearPartNumber() *MemorySlotUpdate {
+	_u.mutation.ClearPartNumber()
+	return _u
 }
 
 // SetSpeed sets the "speed" field.
-func (msu *MemorySlotUpdate) SetSpeed(s string) *MemorySlotUpdate {
-	msu.mutation.SetSpeed(s)
-	return msu
+func (_u *MemorySlotUpdate) SetSpeed(v string) *MemorySlotUpdate {
+	_u.mutation.SetSpeed(v)
+	return _u
 }
 
 // SetNillableSpeed sets the "speed" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillableSpeed(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetSpeed(*s)
+func (_u *MemorySlotUpdate) SetNillableSpeed(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetSpeed(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearSpeed clears the value of the "speed" field.
-func (msu *MemorySlotUpdate) ClearSpeed() *MemorySlotUpdate {
-	msu.mutation.ClearSpeed()
-	return msu
+func (_u *MemorySlotUpdate) ClearSpeed() *MemorySlotUpdate {
+	_u.mutation.ClearSpeed()
+	return _u
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (msu *MemorySlotUpdate) SetManufacturer(s string) *MemorySlotUpdate {
-	msu.mutation.SetManufacturer(s)
-	return msu
+func (_u *MemorySlotUpdate) SetManufacturer(v string) *MemorySlotUpdate {
+	_u.mutation.SetManufacturer(v)
+	return _u
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (msu *MemorySlotUpdate) SetNillableManufacturer(s *string) *MemorySlotUpdate {
-	if s != nil {
-		msu.SetManufacturer(*s)
+func (_u *MemorySlotUpdate) SetNillableManufacturer(v *string) *MemorySlotUpdate {
+	if v != nil {
+		_u.SetManufacturer(*v)
 	}
-	return msu
+	return _u
 }
 
 // ClearManufacturer clears the value of the "manufacturer" field.
-func (msu *MemorySlotUpdate) ClearManufacturer() *MemorySlotUpdate {
-	msu.mutation.ClearManufacturer()
-	return msu
+func (_u *MemorySlotUpdate) ClearManufacturer() *MemorySlotUpdate {
+	_u.mutation.ClearManufacturer()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (msu *MemorySlotUpdate) SetOwnerID(id string) *MemorySlotUpdate {
-	msu.mutation.SetOwnerID(id)
-	return msu
+func (_u *MemorySlotUpdate) SetOwnerID(id string) *MemorySlotUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (msu *MemorySlotUpdate) SetOwner(a *Agent) *MemorySlotUpdate {
-	return msu.SetOwnerID(a.ID)
+func (_u *MemorySlotUpdate) SetOwner(v *Agent) *MemorySlotUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the MemorySlotMutation object of the builder.
-func (msu *MemorySlotUpdate) Mutation() *MemorySlotMutation {
-	return msu.mutation
+func (_u *MemorySlotUpdate) Mutation() *MemorySlotMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (msu *MemorySlotUpdate) ClearOwner() *MemorySlotUpdate {
-	msu.mutation.ClearOwner()
-	return msu
+func (_u *MemorySlotUpdate) ClearOwner() *MemorySlotUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (msu *MemorySlotUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, msu.sqlSave, msu.mutation, msu.hooks)
+func (_u *MemorySlotUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (msu *MemorySlotUpdate) SaveX(ctx context.Context) int {
-	affected, err := msu.Save(ctx)
+func (_u *MemorySlotUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -206,87 +206,87 @@ func (msu *MemorySlotUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (msu *MemorySlotUpdate) Exec(ctx context.Context) error {
-	_, err := msu.Save(ctx)
+func (_u *MemorySlotUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (msu *MemorySlotUpdate) ExecX(ctx context.Context) {
-	if err := msu.Exec(ctx); err != nil {
+func (_u *MemorySlotUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (msu *MemorySlotUpdate) check() error {
-	if msu.mutation.OwnerCleared() && len(msu.mutation.OwnerIDs()) > 0 {
+func (_u *MemorySlotUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "MemorySlot.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (msu *MemorySlotUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MemorySlotUpdate {
-	msu.modifiers = append(msu.modifiers, modifiers...)
-	return msu
+func (_u *MemorySlotUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MemorySlotUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (msu *MemorySlotUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := msu.check(); err != nil {
-		return n, err
+func (_u *MemorySlotUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(memoryslot.Table, memoryslot.Columns, sqlgraph.NewFieldSpec(memoryslot.FieldID, field.TypeInt))
-	if ps := msu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := msu.mutation.Slot(); ok {
+	if value, ok := _u.mutation.Slot(); ok {
 		_spec.SetField(memoryslot.FieldSlot, field.TypeString, value)
 	}
-	if msu.mutation.SlotCleared() {
+	if _u.mutation.SlotCleared() {
 		_spec.ClearField(memoryslot.FieldSlot, field.TypeString)
 	}
-	if value, ok := msu.mutation.Size(); ok {
+	if value, ok := _u.mutation.Size(); ok {
 		_spec.SetField(memoryslot.FieldSize, field.TypeString, value)
 	}
-	if msu.mutation.SizeCleared() {
+	if _u.mutation.SizeCleared() {
 		_spec.ClearField(memoryslot.FieldSize, field.TypeString)
 	}
-	if value, ok := msu.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(memoryslot.FieldType, field.TypeString, value)
 	}
-	if msu.mutation.TypeCleared() {
+	if _u.mutation.TypeCleared() {
 		_spec.ClearField(memoryslot.FieldType, field.TypeString)
 	}
-	if value, ok := msu.mutation.SerialNumber(); ok {
+	if value, ok := _u.mutation.SerialNumber(); ok {
 		_spec.SetField(memoryslot.FieldSerialNumber, field.TypeString, value)
 	}
-	if msu.mutation.SerialNumberCleared() {
+	if _u.mutation.SerialNumberCleared() {
 		_spec.ClearField(memoryslot.FieldSerialNumber, field.TypeString)
 	}
-	if value, ok := msu.mutation.PartNumber(); ok {
+	if value, ok := _u.mutation.PartNumber(); ok {
 		_spec.SetField(memoryslot.FieldPartNumber, field.TypeString, value)
 	}
-	if msu.mutation.PartNumberCleared() {
+	if _u.mutation.PartNumberCleared() {
 		_spec.ClearField(memoryslot.FieldPartNumber, field.TypeString)
 	}
-	if value, ok := msu.mutation.Speed(); ok {
+	if value, ok := _u.mutation.Speed(); ok {
 		_spec.SetField(memoryslot.FieldSpeed, field.TypeString, value)
 	}
-	if msu.mutation.SpeedCleared() {
+	if _u.mutation.SpeedCleared() {
 		_spec.ClearField(memoryslot.FieldSpeed, field.TypeString)
 	}
-	if value, ok := msu.mutation.Manufacturer(); ok {
+	if value, ok := _u.mutation.Manufacturer(); ok {
 		_spec.SetField(memoryslot.FieldManufacturer, field.TypeString, value)
 	}
-	if msu.mutation.ManufacturerCleared() {
+	if _u.mutation.ManufacturerCleared() {
 		_spec.ClearField(memoryslot.FieldManufacturer, field.TypeString)
 	}
-	if msu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -299,7 +299,7 @@ func (msu *MemorySlotUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := msu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -315,8 +315,8 @@ func (msu *MemorySlotUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(msu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, msu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{memoryslot.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -324,8 +324,8 @@ func (msu *MemorySlotUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	msu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // MemorySlotUpdateOne is the builder for updating a single MemorySlot entity.
@@ -338,188 +338,188 @@ type MemorySlotUpdateOne struct {
 }
 
 // SetSlot sets the "slot" field.
-func (msuo *MemorySlotUpdateOne) SetSlot(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetSlot(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetSlot(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetSlot(v)
+	return _u
 }
 
 // SetNillableSlot sets the "slot" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillableSlot(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetSlot(*s)
+func (_u *MemorySlotUpdateOne) SetNillableSlot(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetSlot(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearSlot clears the value of the "slot" field.
-func (msuo *MemorySlotUpdateOne) ClearSlot() *MemorySlotUpdateOne {
-	msuo.mutation.ClearSlot()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearSlot() *MemorySlotUpdateOne {
+	_u.mutation.ClearSlot()
+	return _u
 }
 
 // SetSize sets the "size" field.
-func (msuo *MemorySlotUpdateOne) SetSize(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetSize(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetSize(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetSize(v)
+	return _u
 }
 
 // SetNillableSize sets the "size" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillableSize(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetSize(*s)
+func (_u *MemorySlotUpdateOne) SetNillableSize(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetSize(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearSize clears the value of the "size" field.
-func (msuo *MemorySlotUpdateOne) ClearSize() *MemorySlotUpdateOne {
-	msuo.mutation.ClearSize()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearSize() *MemorySlotUpdateOne {
+	_u.mutation.ClearSize()
+	return _u
 }
 
 // SetType sets the "type" field.
-func (msuo *MemorySlotUpdateOne) SetType(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetType(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetType(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetType(v)
+	return _u
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillableType(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetType(*s)
+func (_u *MemorySlotUpdateOne) SetNillableType(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetType(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearType clears the value of the "type" field.
-func (msuo *MemorySlotUpdateOne) ClearType() *MemorySlotUpdateOne {
-	msuo.mutation.ClearType()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearType() *MemorySlotUpdateOne {
+	_u.mutation.ClearType()
+	return _u
 }
 
 // SetSerialNumber sets the "serial_number" field.
-func (msuo *MemorySlotUpdateOne) SetSerialNumber(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetSerialNumber(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetSerialNumber(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetSerialNumber(v)
+	return _u
 }
 
 // SetNillableSerialNumber sets the "serial_number" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillableSerialNumber(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetSerialNumber(*s)
+func (_u *MemorySlotUpdateOne) SetNillableSerialNumber(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetSerialNumber(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearSerialNumber clears the value of the "serial_number" field.
-func (msuo *MemorySlotUpdateOne) ClearSerialNumber() *MemorySlotUpdateOne {
-	msuo.mutation.ClearSerialNumber()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearSerialNumber() *MemorySlotUpdateOne {
+	_u.mutation.ClearSerialNumber()
+	return _u
 }
 
 // SetPartNumber sets the "part_number" field.
-func (msuo *MemorySlotUpdateOne) SetPartNumber(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetPartNumber(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetPartNumber(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetPartNumber(v)
+	return _u
 }
 
 // SetNillablePartNumber sets the "part_number" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillablePartNumber(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetPartNumber(*s)
+func (_u *MemorySlotUpdateOne) SetNillablePartNumber(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetPartNumber(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearPartNumber clears the value of the "part_number" field.
-func (msuo *MemorySlotUpdateOne) ClearPartNumber() *MemorySlotUpdateOne {
-	msuo.mutation.ClearPartNumber()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearPartNumber() *MemorySlotUpdateOne {
+	_u.mutation.ClearPartNumber()
+	return _u
 }
 
 // SetSpeed sets the "speed" field.
-func (msuo *MemorySlotUpdateOne) SetSpeed(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetSpeed(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetSpeed(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetSpeed(v)
+	return _u
 }
 
 // SetNillableSpeed sets the "speed" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillableSpeed(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetSpeed(*s)
+func (_u *MemorySlotUpdateOne) SetNillableSpeed(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetSpeed(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearSpeed clears the value of the "speed" field.
-func (msuo *MemorySlotUpdateOne) ClearSpeed() *MemorySlotUpdateOne {
-	msuo.mutation.ClearSpeed()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearSpeed() *MemorySlotUpdateOne {
+	_u.mutation.ClearSpeed()
+	return _u
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (msuo *MemorySlotUpdateOne) SetManufacturer(s string) *MemorySlotUpdateOne {
-	msuo.mutation.SetManufacturer(s)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetManufacturer(v string) *MemorySlotUpdateOne {
+	_u.mutation.SetManufacturer(v)
+	return _u
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (msuo *MemorySlotUpdateOne) SetNillableManufacturer(s *string) *MemorySlotUpdateOne {
-	if s != nil {
-		msuo.SetManufacturer(*s)
+func (_u *MemorySlotUpdateOne) SetNillableManufacturer(v *string) *MemorySlotUpdateOne {
+	if v != nil {
+		_u.SetManufacturer(*v)
 	}
-	return msuo
+	return _u
 }
 
 // ClearManufacturer clears the value of the "manufacturer" field.
-func (msuo *MemorySlotUpdateOne) ClearManufacturer() *MemorySlotUpdateOne {
-	msuo.mutation.ClearManufacturer()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearManufacturer() *MemorySlotUpdateOne {
+	_u.mutation.ClearManufacturer()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (msuo *MemorySlotUpdateOne) SetOwnerID(id string) *MemorySlotUpdateOne {
-	msuo.mutation.SetOwnerID(id)
-	return msuo
+func (_u *MemorySlotUpdateOne) SetOwnerID(id string) *MemorySlotUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (msuo *MemorySlotUpdateOne) SetOwner(a *Agent) *MemorySlotUpdateOne {
-	return msuo.SetOwnerID(a.ID)
+func (_u *MemorySlotUpdateOne) SetOwner(v *Agent) *MemorySlotUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the MemorySlotMutation object of the builder.
-func (msuo *MemorySlotUpdateOne) Mutation() *MemorySlotMutation {
-	return msuo.mutation
+func (_u *MemorySlotUpdateOne) Mutation() *MemorySlotMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (msuo *MemorySlotUpdateOne) ClearOwner() *MemorySlotUpdateOne {
-	msuo.mutation.ClearOwner()
-	return msuo
+func (_u *MemorySlotUpdateOne) ClearOwner() *MemorySlotUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the MemorySlotUpdate builder.
-func (msuo *MemorySlotUpdateOne) Where(ps ...predicate.MemorySlot) *MemorySlotUpdateOne {
-	msuo.mutation.Where(ps...)
-	return msuo
+func (_u *MemorySlotUpdateOne) Where(ps ...predicate.MemorySlot) *MemorySlotUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (msuo *MemorySlotUpdateOne) Select(field string, fields ...string) *MemorySlotUpdateOne {
-	msuo.fields = append([]string{field}, fields...)
-	return msuo
+func (_u *MemorySlotUpdateOne) Select(field string, fields ...string) *MemorySlotUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated MemorySlot entity.
-func (msuo *MemorySlotUpdateOne) Save(ctx context.Context) (*MemorySlot, error) {
-	return withHooks(ctx, msuo.sqlSave, msuo.mutation, msuo.hooks)
+func (_u *MemorySlotUpdateOne) Save(ctx context.Context) (*MemorySlot, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (msuo *MemorySlotUpdateOne) SaveX(ctx context.Context) *MemorySlot {
-	node, err := msuo.Save(ctx)
+func (_u *MemorySlotUpdateOne) SaveX(ctx context.Context) *MemorySlot {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -527,43 +527,43 @@ func (msuo *MemorySlotUpdateOne) SaveX(ctx context.Context) *MemorySlot {
 }
 
 // Exec executes the query on the entity.
-func (msuo *MemorySlotUpdateOne) Exec(ctx context.Context) error {
-	_, err := msuo.Save(ctx)
+func (_u *MemorySlotUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (msuo *MemorySlotUpdateOne) ExecX(ctx context.Context) {
-	if err := msuo.Exec(ctx); err != nil {
+func (_u *MemorySlotUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (msuo *MemorySlotUpdateOne) check() error {
-	if msuo.mutation.OwnerCleared() && len(msuo.mutation.OwnerIDs()) > 0 {
+func (_u *MemorySlotUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "MemorySlot.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (msuo *MemorySlotUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MemorySlotUpdateOne {
-	msuo.modifiers = append(msuo.modifiers, modifiers...)
-	return msuo
+func (_u *MemorySlotUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MemorySlotUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (msuo *MemorySlotUpdateOne) sqlSave(ctx context.Context) (_node *MemorySlot, err error) {
-	if err := msuo.check(); err != nil {
+func (_u *MemorySlotUpdateOne) sqlSave(ctx context.Context) (_node *MemorySlot, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(memoryslot.Table, memoryslot.Columns, sqlgraph.NewFieldSpec(memoryslot.FieldID, field.TypeInt))
-	id, ok := msuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "MemorySlot.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := msuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, memoryslot.FieldID)
 		for _, f := range fields {
@@ -575,56 +575,56 @@ func (msuo *MemorySlotUpdateOne) sqlSave(ctx context.Context) (_node *MemorySlot
 			}
 		}
 	}
-	if ps := msuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := msuo.mutation.Slot(); ok {
+	if value, ok := _u.mutation.Slot(); ok {
 		_spec.SetField(memoryslot.FieldSlot, field.TypeString, value)
 	}
-	if msuo.mutation.SlotCleared() {
+	if _u.mutation.SlotCleared() {
 		_spec.ClearField(memoryslot.FieldSlot, field.TypeString)
 	}
-	if value, ok := msuo.mutation.Size(); ok {
+	if value, ok := _u.mutation.Size(); ok {
 		_spec.SetField(memoryslot.FieldSize, field.TypeString, value)
 	}
-	if msuo.mutation.SizeCleared() {
+	if _u.mutation.SizeCleared() {
 		_spec.ClearField(memoryslot.FieldSize, field.TypeString)
 	}
-	if value, ok := msuo.mutation.GetType(); ok {
+	if value, ok := _u.mutation.GetType(); ok {
 		_spec.SetField(memoryslot.FieldType, field.TypeString, value)
 	}
-	if msuo.mutation.TypeCleared() {
+	if _u.mutation.TypeCleared() {
 		_spec.ClearField(memoryslot.FieldType, field.TypeString)
 	}
-	if value, ok := msuo.mutation.SerialNumber(); ok {
+	if value, ok := _u.mutation.SerialNumber(); ok {
 		_spec.SetField(memoryslot.FieldSerialNumber, field.TypeString, value)
 	}
-	if msuo.mutation.SerialNumberCleared() {
+	if _u.mutation.SerialNumberCleared() {
 		_spec.ClearField(memoryslot.FieldSerialNumber, field.TypeString)
 	}
-	if value, ok := msuo.mutation.PartNumber(); ok {
+	if value, ok := _u.mutation.PartNumber(); ok {
 		_spec.SetField(memoryslot.FieldPartNumber, field.TypeString, value)
 	}
-	if msuo.mutation.PartNumberCleared() {
+	if _u.mutation.PartNumberCleared() {
 		_spec.ClearField(memoryslot.FieldPartNumber, field.TypeString)
 	}
-	if value, ok := msuo.mutation.Speed(); ok {
+	if value, ok := _u.mutation.Speed(); ok {
 		_spec.SetField(memoryslot.FieldSpeed, field.TypeString, value)
 	}
-	if msuo.mutation.SpeedCleared() {
+	if _u.mutation.SpeedCleared() {
 		_spec.ClearField(memoryslot.FieldSpeed, field.TypeString)
 	}
-	if value, ok := msuo.mutation.Manufacturer(); ok {
+	if value, ok := _u.mutation.Manufacturer(); ok {
 		_spec.SetField(memoryslot.FieldManufacturer, field.TypeString, value)
 	}
-	if msuo.mutation.ManufacturerCleared() {
+	if _u.mutation.ManufacturerCleared() {
 		_spec.ClearField(memoryslot.FieldManufacturer, field.TypeString)
 	}
-	if msuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -637,7 +637,7 @@ func (msuo *MemorySlotUpdateOne) sqlSave(ctx context.Context) (_node *MemorySlot
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := msuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -653,11 +653,11 @@ func (msuo *MemorySlotUpdateOne) sqlSave(ctx context.Context) (_node *MemorySlot
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(msuo.modifiers...)
-	_node = &MemorySlot{config: msuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &MemorySlot{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, msuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{memoryslot.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -665,6 +665,6 @@ func (msuo *MemorySlotUpdateOne) sqlSave(ctx context.Context) (_node *MemorySlot
 		}
 		return nil, err
 	}
-	msuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -25,89 +25,89 @@ type UpdateUpdate struct {
 }
 
 // Where appends a list predicates to the UpdateUpdate builder.
-func (uu *UpdateUpdate) Where(ps ...predicate.Update) *UpdateUpdate {
-	uu.mutation.Where(ps...)
-	return uu
+func (_u *UpdateUpdate) Where(ps ...predicate.Update) *UpdateUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetTitle sets the "title" field.
-func (uu *UpdateUpdate) SetTitle(s string) *UpdateUpdate {
-	uu.mutation.SetTitle(s)
-	return uu
+func (_u *UpdateUpdate) SetTitle(v string) *UpdateUpdate {
+	_u.mutation.SetTitle(v)
+	return _u
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (uu *UpdateUpdate) SetNillableTitle(s *string) *UpdateUpdate {
-	if s != nil {
-		uu.SetTitle(*s)
+func (_u *UpdateUpdate) SetNillableTitle(v *string) *UpdateUpdate {
+	if v != nil {
+		_u.SetTitle(*v)
 	}
-	return uu
+	return _u
 }
 
 // SetDate sets the "date" field.
-func (uu *UpdateUpdate) SetDate(t time.Time) *UpdateUpdate {
-	uu.mutation.SetDate(t)
-	return uu
+func (_u *UpdateUpdate) SetDate(v time.Time) *UpdateUpdate {
+	_u.mutation.SetDate(v)
+	return _u
 }
 
 // SetNillableDate sets the "date" field if the given value is not nil.
-func (uu *UpdateUpdate) SetNillableDate(t *time.Time) *UpdateUpdate {
-	if t != nil {
-		uu.SetDate(*t)
+func (_u *UpdateUpdate) SetNillableDate(v *time.Time) *UpdateUpdate {
+	if v != nil {
+		_u.SetDate(*v)
 	}
-	return uu
+	return _u
 }
 
 // SetSupportURL sets the "support_url" field.
-func (uu *UpdateUpdate) SetSupportURL(s string) *UpdateUpdate {
-	uu.mutation.SetSupportURL(s)
-	return uu
+func (_u *UpdateUpdate) SetSupportURL(v string) *UpdateUpdate {
+	_u.mutation.SetSupportURL(v)
+	return _u
 }
 
 // SetNillableSupportURL sets the "support_url" field if the given value is not nil.
-func (uu *UpdateUpdate) SetNillableSupportURL(s *string) *UpdateUpdate {
-	if s != nil {
-		uu.SetSupportURL(*s)
+func (_u *UpdateUpdate) SetNillableSupportURL(v *string) *UpdateUpdate {
+	if v != nil {
+		_u.SetSupportURL(*v)
 	}
-	return uu
+	return _u
 }
 
 // ClearSupportURL clears the value of the "support_url" field.
-func (uu *UpdateUpdate) ClearSupportURL() *UpdateUpdate {
-	uu.mutation.ClearSupportURL()
-	return uu
+func (_u *UpdateUpdate) ClearSupportURL() *UpdateUpdate {
+	_u.mutation.ClearSupportURL()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (uu *UpdateUpdate) SetOwnerID(id string) *UpdateUpdate {
-	uu.mutation.SetOwnerID(id)
-	return uu
+func (_u *UpdateUpdate) SetOwnerID(id string) *UpdateUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (uu *UpdateUpdate) SetOwner(a *Agent) *UpdateUpdate {
-	return uu.SetOwnerID(a.ID)
+func (_u *UpdateUpdate) SetOwner(v *Agent) *UpdateUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the UpdateMutation object of the builder.
-func (uu *UpdateUpdate) Mutation() *UpdateMutation {
-	return uu.mutation
+func (_u *UpdateUpdate) Mutation() *UpdateMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (uu *UpdateUpdate) ClearOwner() *UpdateUpdate {
-	uu.mutation.ClearOwner()
-	return uu
+func (_u *UpdateUpdate) ClearOwner() *UpdateUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (uu *UpdateUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, uu.sqlSave, uu.mutation, uu.hooks)
+func (_u *UpdateUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (uu *UpdateUpdate) SaveX(ctx context.Context) int {
-	affected, err := uu.Save(ctx)
+func (_u *UpdateUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -115,57 +115,57 @@ func (uu *UpdateUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (uu *UpdateUpdate) Exec(ctx context.Context) error {
-	_, err := uu.Save(ctx)
+func (_u *UpdateUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (uu *UpdateUpdate) ExecX(ctx context.Context) {
-	if err := uu.Exec(ctx); err != nil {
+func (_u *UpdateUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (uu *UpdateUpdate) check() error {
-	if uu.mutation.OwnerCleared() && len(uu.mutation.OwnerIDs()) > 0 {
+func (_u *UpdateUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Update.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (uu *UpdateUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UpdateUpdate {
-	uu.modifiers = append(uu.modifiers, modifiers...)
-	return uu
+func (_u *UpdateUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UpdateUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (uu *UpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := uu.check(); err != nil {
-		return n, err
+func (_u *UpdateUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(update.Table, update.Columns, sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt))
-	if ps := uu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := uu.mutation.Title(); ok {
+	if value, ok := _u.mutation.Title(); ok {
 		_spec.SetField(update.FieldTitle, field.TypeString, value)
 	}
-	if value, ok := uu.mutation.Date(); ok {
+	if value, ok := _u.mutation.Date(); ok {
 		_spec.SetField(update.FieldDate, field.TypeTime, value)
 	}
-	if value, ok := uu.mutation.SupportURL(); ok {
+	if value, ok := _u.mutation.SupportURL(); ok {
 		_spec.SetField(update.FieldSupportURL, field.TypeString, value)
 	}
-	if uu.mutation.SupportURLCleared() {
+	if _u.mutation.SupportURLCleared() {
 		_spec.ClearField(update.FieldSupportURL, field.TypeString)
 	}
-	if uu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -178,7 +178,7 @@ func (uu *UpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := uu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -194,8 +194,8 @@ func (uu *UpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(uu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, uu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{update.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -203,8 +203,8 @@ func (uu *UpdateUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	uu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // UpdateUpdateOne is the builder for updating a single Update entity.
@@ -217,96 +217,96 @@ type UpdateUpdateOne struct {
 }
 
 // SetTitle sets the "title" field.
-func (uuo *UpdateUpdateOne) SetTitle(s string) *UpdateUpdateOne {
-	uuo.mutation.SetTitle(s)
-	return uuo
+func (_u *UpdateUpdateOne) SetTitle(v string) *UpdateUpdateOne {
+	_u.mutation.SetTitle(v)
+	return _u
 }
 
 // SetNillableTitle sets the "title" field if the given value is not nil.
-func (uuo *UpdateUpdateOne) SetNillableTitle(s *string) *UpdateUpdateOne {
-	if s != nil {
-		uuo.SetTitle(*s)
+func (_u *UpdateUpdateOne) SetNillableTitle(v *string) *UpdateUpdateOne {
+	if v != nil {
+		_u.SetTitle(*v)
 	}
-	return uuo
+	return _u
 }
 
 // SetDate sets the "date" field.
-func (uuo *UpdateUpdateOne) SetDate(t time.Time) *UpdateUpdateOne {
-	uuo.mutation.SetDate(t)
-	return uuo
+func (_u *UpdateUpdateOne) SetDate(v time.Time) *UpdateUpdateOne {
+	_u.mutation.SetDate(v)
+	return _u
 }
 
 // SetNillableDate sets the "date" field if the given value is not nil.
-func (uuo *UpdateUpdateOne) SetNillableDate(t *time.Time) *UpdateUpdateOne {
-	if t != nil {
-		uuo.SetDate(*t)
+func (_u *UpdateUpdateOne) SetNillableDate(v *time.Time) *UpdateUpdateOne {
+	if v != nil {
+		_u.SetDate(*v)
 	}
-	return uuo
+	return _u
 }
 
 // SetSupportURL sets the "support_url" field.
-func (uuo *UpdateUpdateOne) SetSupportURL(s string) *UpdateUpdateOne {
-	uuo.mutation.SetSupportURL(s)
-	return uuo
+func (_u *UpdateUpdateOne) SetSupportURL(v string) *UpdateUpdateOne {
+	_u.mutation.SetSupportURL(v)
+	return _u
 }
 
 // SetNillableSupportURL sets the "support_url" field if the given value is not nil.
-func (uuo *UpdateUpdateOne) SetNillableSupportURL(s *string) *UpdateUpdateOne {
-	if s != nil {
-		uuo.SetSupportURL(*s)
+func (_u *UpdateUpdateOne) SetNillableSupportURL(v *string) *UpdateUpdateOne {
+	if v != nil {
+		_u.SetSupportURL(*v)
 	}
-	return uuo
+	return _u
 }
 
 // ClearSupportURL clears the value of the "support_url" field.
-func (uuo *UpdateUpdateOne) ClearSupportURL() *UpdateUpdateOne {
-	uuo.mutation.ClearSupportURL()
-	return uuo
+func (_u *UpdateUpdateOne) ClearSupportURL() *UpdateUpdateOne {
+	_u.mutation.ClearSupportURL()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (uuo *UpdateUpdateOne) SetOwnerID(id string) *UpdateUpdateOne {
-	uuo.mutation.SetOwnerID(id)
-	return uuo
+func (_u *UpdateUpdateOne) SetOwnerID(id string) *UpdateUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (uuo *UpdateUpdateOne) SetOwner(a *Agent) *UpdateUpdateOne {
-	return uuo.SetOwnerID(a.ID)
+func (_u *UpdateUpdateOne) SetOwner(v *Agent) *UpdateUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the UpdateMutation object of the builder.
-func (uuo *UpdateUpdateOne) Mutation() *UpdateMutation {
-	return uuo.mutation
+func (_u *UpdateUpdateOne) Mutation() *UpdateMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (uuo *UpdateUpdateOne) ClearOwner() *UpdateUpdateOne {
-	uuo.mutation.ClearOwner()
-	return uuo
+func (_u *UpdateUpdateOne) ClearOwner() *UpdateUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the UpdateUpdate builder.
-func (uuo *UpdateUpdateOne) Where(ps ...predicate.Update) *UpdateUpdateOne {
-	uuo.mutation.Where(ps...)
-	return uuo
+func (_u *UpdateUpdateOne) Where(ps ...predicate.Update) *UpdateUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (uuo *UpdateUpdateOne) Select(field string, fields ...string) *UpdateUpdateOne {
-	uuo.fields = append([]string{field}, fields...)
-	return uuo
+func (_u *UpdateUpdateOne) Select(field string, fields ...string) *UpdateUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Update entity.
-func (uuo *UpdateUpdateOne) Save(ctx context.Context) (*Update, error) {
-	return withHooks(ctx, uuo.sqlSave, uuo.mutation, uuo.hooks)
+func (_u *UpdateUpdateOne) Save(ctx context.Context) (*Update, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (uuo *UpdateUpdateOne) SaveX(ctx context.Context) *Update {
-	node, err := uuo.Save(ctx)
+func (_u *UpdateUpdateOne) SaveX(ctx context.Context) *Update {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -314,43 +314,43 @@ func (uuo *UpdateUpdateOne) SaveX(ctx context.Context) *Update {
 }
 
 // Exec executes the query on the entity.
-func (uuo *UpdateUpdateOne) Exec(ctx context.Context) error {
-	_, err := uuo.Save(ctx)
+func (_u *UpdateUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (uuo *UpdateUpdateOne) ExecX(ctx context.Context) {
-	if err := uuo.Exec(ctx); err != nil {
+func (_u *UpdateUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (uuo *UpdateUpdateOne) check() error {
-	if uuo.mutation.OwnerCleared() && len(uuo.mutation.OwnerIDs()) > 0 {
+func (_u *UpdateUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Update.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (uuo *UpdateUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UpdateUpdateOne {
-	uuo.modifiers = append(uuo.modifiers, modifiers...)
-	return uuo
+func (_u *UpdateUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UpdateUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (uuo *UpdateUpdateOne) sqlSave(ctx context.Context) (_node *Update, err error) {
-	if err := uuo.check(); err != nil {
+func (_u *UpdateUpdateOne) sqlSave(ctx context.Context) (_node *Update, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(update.Table, update.Columns, sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt))
-	id, ok := uuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Update.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := uuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, update.FieldID)
 		for _, f := range fields {
@@ -362,26 +362,26 @@ func (uuo *UpdateUpdateOne) sqlSave(ctx context.Context) (_node *Update, err err
 			}
 		}
 	}
-	if ps := uuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := uuo.mutation.Title(); ok {
+	if value, ok := _u.mutation.Title(); ok {
 		_spec.SetField(update.FieldTitle, field.TypeString, value)
 	}
-	if value, ok := uuo.mutation.Date(); ok {
+	if value, ok := _u.mutation.Date(); ok {
 		_spec.SetField(update.FieldDate, field.TypeTime, value)
 	}
-	if value, ok := uuo.mutation.SupportURL(); ok {
+	if value, ok := _u.mutation.SupportURL(); ok {
 		_spec.SetField(update.FieldSupportURL, field.TypeString, value)
 	}
-	if uuo.mutation.SupportURLCleared() {
+	if _u.mutation.SupportURLCleared() {
 		_spec.ClearField(update.FieldSupportURL, field.TypeString)
 	}
-	if uuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -394,7 +394,7 @@ func (uuo *UpdateUpdateOne) sqlSave(ctx context.Context) (_node *Update, err err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := uuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -410,11 +410,11 @@ func (uuo *UpdateUpdateOne) sqlSave(ctx context.Context) (_node *Update, err err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(uuo.modifiers...)
-	_node = &Update{config: uuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Update{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, uuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{update.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -422,6 +422,6 @@ func (uuo *UpdateUpdateOne) sqlSave(ctx context.Context) (_node *Update, err err
 		}
 		return nil, err
 	}
-	uuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

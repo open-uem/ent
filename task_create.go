@@ -26,1326 +26,1326 @@ type TaskCreate struct {
 }
 
 // SetName sets the "name" field.
-func (tc *TaskCreate) SetName(s string) *TaskCreate {
-	tc.mutation.SetName(s)
-	return tc
+func (_c *TaskCreate) SetName(v string) *TaskCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetType sets the "type" field.
-func (tc *TaskCreate) SetType(t task.Type) *TaskCreate {
-	tc.mutation.SetType(t)
-	return tc
+func (_c *TaskCreate) SetType(v task.Type) *TaskCreate {
+	_c.mutation.SetType(v)
+	return _c
 }
 
 // SetPackageID sets the "package_id" field.
-func (tc *TaskCreate) SetPackageID(s string) *TaskCreate {
-	tc.mutation.SetPackageID(s)
-	return tc
+func (_c *TaskCreate) SetPackageID(v string) *TaskCreate {
+	_c.mutation.SetPackageID(v)
+	return _c
 }
 
 // SetNillablePackageID sets the "package_id" field if the given value is not nil.
-func (tc *TaskCreate) SetNillablePackageID(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetPackageID(*s)
+func (_c *TaskCreate) SetNillablePackageID(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetPackageID(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetPackageName sets the "package_name" field.
-func (tc *TaskCreate) SetPackageName(s string) *TaskCreate {
-	tc.mutation.SetPackageName(s)
-	return tc
+func (_c *TaskCreate) SetPackageName(v string) *TaskCreate {
+	_c.mutation.SetPackageName(v)
+	return _c
 }
 
 // SetNillablePackageName sets the "package_name" field if the given value is not nil.
-func (tc *TaskCreate) SetNillablePackageName(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetPackageName(*s)
+func (_c *TaskCreate) SetNillablePackageName(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetPackageName(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetPackageLatest sets the "package_latest" field.
-func (tc *TaskCreate) SetPackageLatest(b bool) *TaskCreate {
-	tc.mutation.SetPackageLatest(b)
-	return tc
+func (_c *TaskCreate) SetPackageLatest(v bool) *TaskCreate {
+	_c.mutation.SetPackageLatest(v)
+	return _c
 }
 
 // SetNillablePackageLatest sets the "package_latest" field if the given value is not nil.
-func (tc *TaskCreate) SetNillablePackageLatest(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetPackageLatest(*b)
+func (_c *TaskCreate) SetNillablePackageLatest(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetPackageLatest(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetRegistryKey sets the "registry_key" field.
-func (tc *TaskCreate) SetRegistryKey(s string) *TaskCreate {
-	tc.mutation.SetRegistryKey(s)
-	return tc
+func (_c *TaskCreate) SetRegistryKey(v string) *TaskCreate {
+	_c.mutation.SetRegistryKey(v)
+	return _c
 }
 
 // SetNillableRegistryKey sets the "registry_key" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableRegistryKey(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetRegistryKey(*s)
+func (_c *TaskCreate) SetNillableRegistryKey(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetRegistryKey(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetRegistryKeyValueName sets the "registry_key_value_name" field.
-func (tc *TaskCreate) SetRegistryKeyValueName(s string) *TaskCreate {
-	tc.mutation.SetRegistryKeyValueName(s)
-	return tc
+func (_c *TaskCreate) SetRegistryKeyValueName(v string) *TaskCreate {
+	_c.mutation.SetRegistryKeyValueName(v)
+	return _c
 }
 
 // SetNillableRegistryKeyValueName sets the "registry_key_value_name" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableRegistryKeyValueName(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetRegistryKeyValueName(*s)
+func (_c *TaskCreate) SetNillableRegistryKeyValueName(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetRegistryKeyValueName(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetRegistryKeyValueType sets the "registry_key_value_type" field.
-func (tc *TaskCreate) SetRegistryKeyValueType(tkvt task.RegistryKeyValueType) *TaskCreate {
-	tc.mutation.SetRegistryKeyValueType(tkvt)
-	return tc
+func (_c *TaskCreate) SetRegistryKeyValueType(v task.RegistryKeyValueType) *TaskCreate {
+	_c.mutation.SetRegistryKeyValueType(v)
+	return _c
 }
 
 // SetNillableRegistryKeyValueType sets the "registry_key_value_type" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableRegistryKeyValueType(tkvt *task.RegistryKeyValueType) *TaskCreate {
-	if tkvt != nil {
-		tc.SetRegistryKeyValueType(*tkvt)
+func (_c *TaskCreate) SetNillableRegistryKeyValueType(v *task.RegistryKeyValueType) *TaskCreate {
+	if v != nil {
+		_c.SetRegistryKeyValueType(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetRegistryKeyValueData sets the "registry_key_value_data" field.
-func (tc *TaskCreate) SetRegistryKeyValueData(s string) *TaskCreate {
-	tc.mutation.SetRegistryKeyValueData(s)
-	return tc
+func (_c *TaskCreate) SetRegistryKeyValueData(v string) *TaskCreate {
+	_c.mutation.SetRegistryKeyValueData(v)
+	return _c
 }
 
 // SetNillableRegistryKeyValueData sets the "registry_key_value_data" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableRegistryKeyValueData(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetRegistryKeyValueData(*s)
+func (_c *TaskCreate) SetNillableRegistryKeyValueData(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetRegistryKeyValueData(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetRegistryHex sets the "registry_hex" field.
-func (tc *TaskCreate) SetRegistryHex(b bool) *TaskCreate {
-	tc.mutation.SetRegistryHex(b)
-	return tc
+func (_c *TaskCreate) SetRegistryHex(v bool) *TaskCreate {
+	_c.mutation.SetRegistryHex(v)
+	return _c
 }
 
 // SetNillableRegistryHex sets the "registry_hex" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableRegistryHex(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetRegistryHex(*b)
+func (_c *TaskCreate) SetNillableRegistryHex(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetRegistryHex(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetRegistryForce sets the "registry_force" field.
-func (tc *TaskCreate) SetRegistryForce(b bool) *TaskCreate {
-	tc.mutation.SetRegistryForce(b)
-	return tc
+func (_c *TaskCreate) SetRegistryForce(v bool) *TaskCreate {
+	_c.mutation.SetRegistryForce(v)
+	return _c
 }
 
 // SetNillableRegistryForce sets the "registry_force" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableRegistryForce(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetRegistryForce(*b)
+func (_c *TaskCreate) SetNillableRegistryForce(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetRegistryForce(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserUsername sets the "local_user_username" field.
-func (tc *TaskCreate) SetLocalUserUsername(s string) *TaskCreate {
-	tc.mutation.SetLocalUserUsername(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserUsername(v string) *TaskCreate {
+	_c.mutation.SetLocalUserUsername(v)
+	return _c
 }
 
 // SetNillableLocalUserUsername sets the "local_user_username" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserUsername(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserUsername(*s)
+func (_c *TaskCreate) SetNillableLocalUserUsername(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserUsername(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserDescription sets the "local_user_description" field.
-func (tc *TaskCreate) SetLocalUserDescription(s string) *TaskCreate {
-	tc.mutation.SetLocalUserDescription(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserDescription(v string) *TaskCreate {
+	_c.mutation.SetLocalUserDescription(v)
+	return _c
 }
 
 // SetNillableLocalUserDescription sets the "local_user_description" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserDescription(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserDescription(*s)
+func (_c *TaskCreate) SetNillableLocalUserDescription(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserDescription(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserDisable sets the "local_user_disable" field.
-func (tc *TaskCreate) SetLocalUserDisable(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserDisable(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserDisable(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserDisable(v)
+	return _c
 }
 
 // SetNillableLocalUserDisable sets the "local_user_disable" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserDisable(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserDisable(*b)
+func (_c *TaskCreate) SetNillableLocalUserDisable(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserDisable(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserFullname sets the "local_user_fullname" field.
-func (tc *TaskCreate) SetLocalUserFullname(s string) *TaskCreate {
-	tc.mutation.SetLocalUserFullname(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserFullname(v string) *TaskCreate {
+	_c.mutation.SetLocalUserFullname(v)
+	return _c
 }
 
 // SetNillableLocalUserFullname sets the "local_user_fullname" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserFullname(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserFullname(*s)
+func (_c *TaskCreate) SetNillableLocalUserFullname(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserFullname(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPassword sets the "local_user_password" field.
-func (tc *TaskCreate) SetLocalUserPassword(s string) *TaskCreate {
-	tc.mutation.SetLocalUserPassword(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserPassword(v string) *TaskCreate {
+	_c.mutation.SetLocalUserPassword(v)
+	return _c
 }
 
 // SetNillableLocalUserPassword sets the "local_user_password" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPassword(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserPassword(*s)
+func (_c *TaskCreate) SetNillableLocalUserPassword(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPassword(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordChangeNotAllowed sets the "local_user_password_change_not_allowed" field.
-func (tc *TaskCreate) SetLocalUserPasswordChangeNotAllowed(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordChangeNotAllowed(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordChangeNotAllowed(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordChangeNotAllowed(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordChangeNotAllowed sets the "local_user_password_change_not_allowed" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordChangeNotAllowed(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserPasswordChangeNotAllowed(*b)
+func (_c *TaskCreate) SetNillableLocalUserPasswordChangeNotAllowed(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordChangeNotAllowed(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordChangeRequired sets the "local_user_password_change_required" field.
-func (tc *TaskCreate) SetLocalUserPasswordChangeRequired(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordChangeRequired(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordChangeRequired(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordChangeRequired(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordChangeRequired sets the "local_user_password_change_required" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordChangeRequired(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserPasswordChangeRequired(*b)
+func (_c *TaskCreate) SetNillableLocalUserPasswordChangeRequired(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordChangeRequired(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordNeverExpires sets the "local_user_password_never_expires" field.
-func (tc *TaskCreate) SetLocalUserPasswordNeverExpires(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordNeverExpires(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordNeverExpires(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordNeverExpires(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordNeverExpires sets the "local_user_password_never_expires" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordNeverExpires(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserPasswordNeverExpires(*b)
+func (_c *TaskCreate) SetNillableLocalUserPasswordNeverExpires(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordNeverExpires(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserAppend sets the "local_user_append" field.
-func (tc *TaskCreate) SetLocalUserAppend(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserAppend(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserAppend(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserAppend(v)
+	return _c
 }
 
 // SetNillableLocalUserAppend sets the "local_user_append" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserAppend(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserAppend(*b)
+func (_c *TaskCreate) SetNillableLocalUserAppend(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserAppend(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserCreateHome sets the "local_user_create_home" field.
-func (tc *TaskCreate) SetLocalUserCreateHome(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserCreateHome(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserCreateHome(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserCreateHome(v)
+	return _c
 }
 
 // SetNillableLocalUserCreateHome sets the "local_user_create_home" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserCreateHome(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserCreateHome(*b)
+func (_c *TaskCreate) SetNillableLocalUserCreateHome(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserCreateHome(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserExpires sets the "local_user_expires" field.
-func (tc *TaskCreate) SetLocalUserExpires(s string) *TaskCreate {
-	tc.mutation.SetLocalUserExpires(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserExpires(v string) *TaskCreate {
+	_c.mutation.SetLocalUserExpires(v)
+	return _c
 }
 
 // SetNillableLocalUserExpires sets the "local_user_expires" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserExpires(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserExpires(*s)
+func (_c *TaskCreate) SetNillableLocalUserExpires(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserExpires(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserForce sets the "local_user_force" field.
-func (tc *TaskCreate) SetLocalUserForce(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserForce(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserForce(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserForce(v)
+	return _c
 }
 
 // SetNillableLocalUserForce sets the "local_user_force" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserForce(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserForce(*b)
+func (_c *TaskCreate) SetNillableLocalUserForce(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserForce(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserGenerateSSHKey sets the "local_user_generate_ssh_key" field.
-func (tc *TaskCreate) SetLocalUserGenerateSSHKey(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserGenerateSSHKey(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserGenerateSSHKey(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserGenerateSSHKey(v)
+	return _c
 }
 
 // SetNillableLocalUserGenerateSSHKey sets the "local_user_generate_ssh_key" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserGenerateSSHKey(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserGenerateSSHKey(*b)
+func (_c *TaskCreate) SetNillableLocalUserGenerateSSHKey(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserGenerateSSHKey(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserGroup sets the "local_user_group" field.
-func (tc *TaskCreate) SetLocalUserGroup(s string) *TaskCreate {
-	tc.mutation.SetLocalUserGroup(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserGroup(v string) *TaskCreate {
+	_c.mutation.SetLocalUserGroup(v)
+	return _c
 }
 
 // SetNillableLocalUserGroup sets the "local_user_group" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserGroup(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserGroup(*s)
+func (_c *TaskCreate) SetNillableLocalUserGroup(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserGroup(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserGroups sets the "local_user_groups" field.
-func (tc *TaskCreate) SetLocalUserGroups(s string) *TaskCreate {
-	tc.mutation.SetLocalUserGroups(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserGroups(v string) *TaskCreate {
+	_c.mutation.SetLocalUserGroups(v)
+	return _c
 }
 
 // SetNillableLocalUserGroups sets the "local_user_groups" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserGroups(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserGroups(*s)
+func (_c *TaskCreate) SetNillableLocalUserGroups(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserGroups(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserHome sets the "local_user_home" field.
-func (tc *TaskCreate) SetLocalUserHome(s string) *TaskCreate {
-	tc.mutation.SetLocalUserHome(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserHome(v string) *TaskCreate {
+	_c.mutation.SetLocalUserHome(v)
+	return _c
 }
 
 // SetNillableLocalUserHome sets the "local_user_home" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserHome(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserHome(*s)
+func (_c *TaskCreate) SetNillableLocalUserHome(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserHome(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserMoveHome sets the "local_user_move_home" field.
-func (tc *TaskCreate) SetLocalUserMoveHome(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserMoveHome(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserMoveHome(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserMoveHome(v)
+	return _c
 }
 
 // SetNillableLocalUserMoveHome sets the "local_user_move_home" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserMoveHome(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserMoveHome(*b)
+func (_c *TaskCreate) SetNillableLocalUserMoveHome(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserMoveHome(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserNonunique sets the "local_user_nonunique" field.
-func (tc *TaskCreate) SetLocalUserNonunique(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserNonunique(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserNonunique(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserNonunique(v)
+	return _c
 }
 
 // SetNillableLocalUserNonunique sets the "local_user_nonunique" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserNonunique(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserNonunique(*b)
+func (_c *TaskCreate) SetNillableLocalUserNonunique(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserNonunique(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordExpireAccountDisable sets the "local_user_password_expire_account_disable" field.
-func (tc *TaskCreate) SetLocalUserPasswordExpireAccountDisable(s string) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordExpireAccountDisable(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordExpireAccountDisable(v string) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordExpireAccountDisable(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordExpireAccountDisable sets the "local_user_password_expire_account_disable" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordExpireAccountDisable(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserPasswordExpireAccountDisable(*s)
+func (_c *TaskCreate) SetNillableLocalUserPasswordExpireAccountDisable(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordExpireAccountDisable(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordExpireMax sets the "local_user_password_expire_max" field.
-func (tc *TaskCreate) SetLocalUserPasswordExpireMax(s string) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordExpireMax(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordExpireMax(v string) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordExpireMax(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordExpireMax sets the "local_user_password_expire_max" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordExpireMax(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserPasswordExpireMax(*s)
+func (_c *TaskCreate) SetNillableLocalUserPasswordExpireMax(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordExpireMax(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordExpireMin sets the "local_user_password_expire_min" field.
-func (tc *TaskCreate) SetLocalUserPasswordExpireMin(s string) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordExpireMin(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordExpireMin(v string) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordExpireMin(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordExpireMin sets the "local_user_password_expire_min" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordExpireMin(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserPasswordExpireMin(*s)
+func (_c *TaskCreate) SetNillableLocalUserPasswordExpireMin(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordExpireMin(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordExpireWarn sets the "local_user_password_expire_warn" field.
-func (tc *TaskCreate) SetLocalUserPasswordExpireWarn(s string) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordExpireWarn(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordExpireWarn(v string) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordExpireWarn(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordExpireWarn sets the "local_user_password_expire_warn" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordExpireWarn(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserPasswordExpireWarn(*s)
+func (_c *TaskCreate) SetNillableLocalUserPasswordExpireWarn(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordExpireWarn(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserPasswordLock sets the "local_user_password_lock" field.
-func (tc *TaskCreate) SetLocalUserPasswordLock(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserPasswordLock(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserPasswordLock(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserPasswordLock(v)
+	return _c
 }
 
 // SetNillableLocalUserPasswordLock sets the "local_user_password_lock" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserPasswordLock(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserPasswordLock(*b)
+func (_c *TaskCreate) SetNillableLocalUserPasswordLock(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserPasswordLock(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSeuser sets the "local_user_seuser" field.
-func (tc *TaskCreate) SetLocalUserSeuser(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSeuser(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSeuser(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSeuser(v)
+	return _c
 }
 
 // SetNillableLocalUserSeuser sets the "local_user_seuser" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSeuser(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSeuser(*s)
+func (_c *TaskCreate) SetNillableLocalUserSeuser(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSeuser(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserShell sets the "local_user_shell" field.
-func (tc *TaskCreate) SetLocalUserShell(s string) *TaskCreate {
-	tc.mutation.SetLocalUserShell(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserShell(v string) *TaskCreate {
+	_c.mutation.SetLocalUserShell(v)
+	return _c
 }
 
 // SetNillableLocalUserShell sets the "local_user_shell" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserShell(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserShell(*s)
+func (_c *TaskCreate) SetNillableLocalUserShell(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserShell(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSkeleton sets the "local_user_skeleton" field.
-func (tc *TaskCreate) SetLocalUserSkeleton(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSkeleton(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSkeleton(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSkeleton(v)
+	return _c
 }
 
 // SetNillableLocalUserSkeleton sets the "local_user_skeleton" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSkeleton(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSkeleton(*s)
+func (_c *TaskCreate) SetNillableLocalUserSkeleton(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSkeleton(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSystem sets the "local_user_system" field.
-func (tc *TaskCreate) SetLocalUserSystem(b bool) *TaskCreate {
-	tc.mutation.SetLocalUserSystem(b)
-	return tc
+func (_c *TaskCreate) SetLocalUserSystem(v bool) *TaskCreate {
+	_c.mutation.SetLocalUserSystem(v)
+	return _c
 }
 
 // SetNillableLocalUserSystem sets the "local_user_system" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSystem(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalUserSystem(*b)
+func (_c *TaskCreate) SetNillableLocalUserSystem(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSystem(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserID sets the "local_user_id" field.
-func (tc *TaskCreate) SetLocalUserID(s string) *TaskCreate {
-	tc.mutation.SetLocalUserID(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserID(v string) *TaskCreate {
+	_c.mutation.SetLocalUserID(v)
+	return _c
 }
 
 // SetNillableLocalUserID sets the "local_user_id" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserID(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserID(*s)
+func (_c *TaskCreate) SetNillableLocalUserID(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserID(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserIDMax sets the "local_user_id_max" field.
-func (tc *TaskCreate) SetLocalUserIDMax(s string) *TaskCreate {
-	tc.mutation.SetLocalUserIDMax(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserIDMax(v string) *TaskCreate {
+	_c.mutation.SetLocalUserIDMax(v)
+	return _c
 }
 
 // SetNillableLocalUserIDMax sets the "local_user_id_max" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserIDMax(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserIDMax(*s)
+func (_c *TaskCreate) SetNillableLocalUserIDMax(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserIDMax(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserIDMin sets the "local_user_id_min" field.
-func (tc *TaskCreate) SetLocalUserIDMin(s string) *TaskCreate {
-	tc.mutation.SetLocalUserIDMin(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserIDMin(v string) *TaskCreate {
+	_c.mutation.SetLocalUserIDMin(v)
+	return _c
 }
 
 // SetNillableLocalUserIDMin sets the "local_user_id_min" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserIDMin(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserIDMin(*s)
+func (_c *TaskCreate) SetNillableLocalUserIDMin(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserIDMin(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSSHKeyBits sets the "local_user_ssh_key_bits" field.
-func (tc *TaskCreate) SetLocalUserSSHKeyBits(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSSHKeyBits(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSSHKeyBits(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSSHKeyBits(v)
+	return _c
 }
 
 // SetNillableLocalUserSSHKeyBits sets the "local_user_ssh_key_bits" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSSHKeyBits(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSSHKeyBits(*s)
+func (_c *TaskCreate) SetNillableLocalUserSSHKeyBits(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSSHKeyBits(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSSHKeyComment sets the "local_user_ssh_key_comment" field.
-func (tc *TaskCreate) SetLocalUserSSHKeyComment(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSSHKeyComment(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSSHKeyComment(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSSHKeyComment(v)
+	return _c
 }
 
 // SetNillableLocalUserSSHKeyComment sets the "local_user_ssh_key_comment" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSSHKeyComment(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSSHKeyComment(*s)
+func (_c *TaskCreate) SetNillableLocalUserSSHKeyComment(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSSHKeyComment(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSSHKeyFile sets the "local_user_ssh_key_file" field.
-func (tc *TaskCreate) SetLocalUserSSHKeyFile(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSSHKeyFile(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSSHKeyFile(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSSHKeyFile(v)
+	return _c
 }
 
 // SetNillableLocalUserSSHKeyFile sets the "local_user_ssh_key_file" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSSHKeyFile(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSSHKeyFile(*s)
+func (_c *TaskCreate) SetNillableLocalUserSSHKeyFile(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSSHKeyFile(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSSHKeyPassphrase sets the "local_user_ssh_key_passphrase" field.
-func (tc *TaskCreate) SetLocalUserSSHKeyPassphrase(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSSHKeyPassphrase(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSSHKeyPassphrase(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSSHKeyPassphrase(v)
+	return _c
 }
 
 // SetNillableLocalUserSSHKeyPassphrase sets the "local_user_ssh_key_passphrase" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSSHKeyPassphrase(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSSHKeyPassphrase(*s)
+func (_c *TaskCreate) SetNillableLocalUserSSHKeyPassphrase(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSSHKeyPassphrase(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserSSHKeyType sets the "local_user_ssh_key_type" field.
-func (tc *TaskCreate) SetLocalUserSSHKeyType(s string) *TaskCreate {
-	tc.mutation.SetLocalUserSSHKeyType(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserSSHKeyType(v string) *TaskCreate {
+	_c.mutation.SetLocalUserSSHKeyType(v)
+	return _c
 }
 
 // SetNillableLocalUserSSHKeyType sets the "local_user_ssh_key_type" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserSSHKeyType(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserSSHKeyType(*s)
+func (_c *TaskCreate) SetNillableLocalUserSSHKeyType(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserSSHKeyType(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalUserUmask sets the "local_user_umask" field.
-func (tc *TaskCreate) SetLocalUserUmask(s string) *TaskCreate {
-	tc.mutation.SetLocalUserUmask(s)
-	return tc
+func (_c *TaskCreate) SetLocalUserUmask(v string) *TaskCreate {
+	_c.mutation.SetLocalUserUmask(v)
+	return _c
 }
 
 // SetNillableLocalUserUmask sets the "local_user_umask" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalUserUmask(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalUserUmask(*s)
+func (_c *TaskCreate) SetNillableLocalUserUmask(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalUserUmask(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupID sets the "local_group_id" field.
-func (tc *TaskCreate) SetLocalGroupID(s string) *TaskCreate {
-	tc.mutation.SetLocalGroupID(s)
-	return tc
+func (_c *TaskCreate) SetLocalGroupID(v string) *TaskCreate {
+	_c.mutation.SetLocalGroupID(v)
+	return _c
 }
 
 // SetNillableLocalGroupID sets the "local_group_id" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupID(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalGroupID(*s)
+func (_c *TaskCreate) SetNillableLocalGroupID(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupID(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupName sets the "local_group_name" field.
-func (tc *TaskCreate) SetLocalGroupName(s string) *TaskCreate {
-	tc.mutation.SetLocalGroupName(s)
-	return tc
+func (_c *TaskCreate) SetLocalGroupName(v string) *TaskCreate {
+	_c.mutation.SetLocalGroupName(v)
+	return _c
 }
 
 // SetNillableLocalGroupName sets the "local_group_name" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupName(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalGroupName(*s)
+func (_c *TaskCreate) SetNillableLocalGroupName(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupName(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupDescription sets the "local_group_description" field.
-func (tc *TaskCreate) SetLocalGroupDescription(s string) *TaskCreate {
-	tc.mutation.SetLocalGroupDescription(s)
-	return tc
+func (_c *TaskCreate) SetLocalGroupDescription(v string) *TaskCreate {
+	_c.mutation.SetLocalGroupDescription(v)
+	return _c
 }
 
 // SetNillableLocalGroupDescription sets the "local_group_description" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupDescription(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalGroupDescription(*s)
+func (_c *TaskCreate) SetNillableLocalGroupDescription(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupDescription(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupSystem sets the "local_group_system" field.
-func (tc *TaskCreate) SetLocalGroupSystem(b bool) *TaskCreate {
-	tc.mutation.SetLocalGroupSystem(b)
-	return tc
+func (_c *TaskCreate) SetLocalGroupSystem(v bool) *TaskCreate {
+	_c.mutation.SetLocalGroupSystem(v)
+	return _c
 }
 
 // SetNillableLocalGroupSystem sets the "local_group_system" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupSystem(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalGroupSystem(*b)
+func (_c *TaskCreate) SetNillableLocalGroupSystem(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupSystem(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupForce sets the "local_group_force" field.
-func (tc *TaskCreate) SetLocalGroupForce(b bool) *TaskCreate {
-	tc.mutation.SetLocalGroupForce(b)
-	return tc
+func (_c *TaskCreate) SetLocalGroupForce(v bool) *TaskCreate {
+	_c.mutation.SetLocalGroupForce(v)
+	return _c
 }
 
 // SetNillableLocalGroupForce sets the "local_group_force" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupForce(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetLocalGroupForce(*b)
+func (_c *TaskCreate) SetNillableLocalGroupForce(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupForce(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupMembers sets the "local_group_members" field.
-func (tc *TaskCreate) SetLocalGroupMembers(s string) *TaskCreate {
-	tc.mutation.SetLocalGroupMembers(s)
-	return tc
+func (_c *TaskCreate) SetLocalGroupMembers(v string) *TaskCreate {
+	_c.mutation.SetLocalGroupMembers(v)
+	return _c
 }
 
 // SetNillableLocalGroupMembers sets the "local_group_members" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupMembers(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalGroupMembers(*s)
+func (_c *TaskCreate) SetNillableLocalGroupMembers(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupMembers(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupMembersToInclude sets the "local_group_members_to_include" field.
-func (tc *TaskCreate) SetLocalGroupMembersToInclude(s string) *TaskCreate {
-	tc.mutation.SetLocalGroupMembersToInclude(s)
-	return tc
+func (_c *TaskCreate) SetLocalGroupMembersToInclude(v string) *TaskCreate {
+	_c.mutation.SetLocalGroupMembersToInclude(v)
+	return _c
 }
 
 // SetNillableLocalGroupMembersToInclude sets the "local_group_members_to_include" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupMembersToInclude(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalGroupMembersToInclude(*s)
+func (_c *TaskCreate) SetNillableLocalGroupMembersToInclude(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupMembersToInclude(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetLocalGroupMembersToExclude sets the "local_group_members_to_exclude" field.
-func (tc *TaskCreate) SetLocalGroupMembersToExclude(s string) *TaskCreate {
-	tc.mutation.SetLocalGroupMembersToExclude(s)
-	return tc
+func (_c *TaskCreate) SetLocalGroupMembersToExclude(v string) *TaskCreate {
+	_c.mutation.SetLocalGroupMembersToExclude(v)
+	return _c
 }
 
 // SetNillableLocalGroupMembersToExclude sets the "local_group_members_to_exclude" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableLocalGroupMembersToExclude(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetLocalGroupMembersToExclude(*s)
+func (_c *TaskCreate) SetNillableLocalGroupMembersToExclude(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetLocalGroupMembersToExclude(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetMsiProductid sets the "msi_productid" field.
-func (tc *TaskCreate) SetMsiProductid(s string) *TaskCreate {
-	tc.mutation.SetMsiProductid(s)
-	return tc
+func (_c *TaskCreate) SetMsiProductid(v string) *TaskCreate {
+	_c.mutation.SetMsiProductid(v)
+	return _c
 }
 
 // SetNillableMsiProductid sets the "msi_productid" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableMsiProductid(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetMsiProductid(*s)
+func (_c *TaskCreate) SetNillableMsiProductid(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetMsiProductid(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetMsiPath sets the "msi_path" field.
-func (tc *TaskCreate) SetMsiPath(s string) *TaskCreate {
-	tc.mutation.SetMsiPath(s)
-	return tc
+func (_c *TaskCreate) SetMsiPath(v string) *TaskCreate {
+	_c.mutation.SetMsiPath(v)
+	return _c
 }
 
 // SetNillableMsiPath sets the "msi_path" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableMsiPath(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetMsiPath(*s)
+func (_c *TaskCreate) SetNillableMsiPath(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetMsiPath(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetMsiArguments sets the "msi_arguments" field.
-func (tc *TaskCreate) SetMsiArguments(s string) *TaskCreate {
-	tc.mutation.SetMsiArguments(s)
-	return tc
+func (_c *TaskCreate) SetMsiArguments(v string) *TaskCreate {
+	_c.mutation.SetMsiArguments(v)
+	return _c
 }
 
 // SetNillableMsiArguments sets the "msi_arguments" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableMsiArguments(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetMsiArguments(*s)
+func (_c *TaskCreate) SetNillableMsiArguments(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetMsiArguments(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetMsiFileHash sets the "msi_file_hash" field.
-func (tc *TaskCreate) SetMsiFileHash(s string) *TaskCreate {
-	tc.mutation.SetMsiFileHash(s)
-	return tc
+func (_c *TaskCreate) SetMsiFileHash(v string) *TaskCreate {
+	_c.mutation.SetMsiFileHash(v)
+	return _c
 }
 
 // SetNillableMsiFileHash sets the "msi_file_hash" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableMsiFileHash(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetMsiFileHash(*s)
+func (_c *TaskCreate) SetNillableMsiFileHash(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetMsiFileHash(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetMsiFileHashAlg sets the "msi_file_hash_alg" field.
-func (tc *TaskCreate) SetMsiFileHashAlg(tfha task.MsiFileHashAlg) *TaskCreate {
-	tc.mutation.SetMsiFileHashAlg(tfha)
-	return tc
+func (_c *TaskCreate) SetMsiFileHashAlg(v task.MsiFileHashAlg) *TaskCreate {
+	_c.mutation.SetMsiFileHashAlg(v)
+	return _c
 }
 
 // SetNillableMsiFileHashAlg sets the "msi_file_hash_alg" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableMsiFileHashAlg(tfha *task.MsiFileHashAlg) *TaskCreate {
-	if tfha != nil {
-		tc.SetMsiFileHashAlg(*tfha)
+func (_c *TaskCreate) SetNillableMsiFileHashAlg(v *task.MsiFileHashAlg) *TaskCreate {
+	if v != nil {
+		_c.SetMsiFileHashAlg(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetMsiLogPath sets the "msi_log_path" field.
-func (tc *TaskCreate) SetMsiLogPath(s string) *TaskCreate {
-	tc.mutation.SetMsiLogPath(s)
-	return tc
+func (_c *TaskCreate) SetMsiLogPath(v string) *TaskCreate {
+	_c.mutation.SetMsiLogPath(v)
+	return _c
 }
 
 // SetNillableMsiLogPath sets the "msi_log_path" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableMsiLogPath(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetMsiLogPath(*s)
+func (_c *TaskCreate) SetNillableMsiLogPath(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetMsiLogPath(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetScript sets the "script" field.
-func (tc *TaskCreate) SetScript(s string) *TaskCreate {
-	tc.mutation.SetScript(s)
-	return tc
+func (_c *TaskCreate) SetScript(v string) *TaskCreate {
+	_c.mutation.SetScript(v)
+	return _c
 }
 
 // SetNillableScript sets the "script" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableScript(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetScript(*s)
+func (_c *TaskCreate) SetNillableScript(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetScript(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetScriptExecutable sets the "script_executable" field.
-func (tc *TaskCreate) SetScriptExecutable(s string) *TaskCreate {
-	tc.mutation.SetScriptExecutable(s)
-	return tc
+func (_c *TaskCreate) SetScriptExecutable(v string) *TaskCreate {
+	_c.mutation.SetScriptExecutable(v)
+	return _c
 }
 
 // SetNillableScriptExecutable sets the "script_executable" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableScriptExecutable(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetScriptExecutable(*s)
+func (_c *TaskCreate) SetNillableScriptExecutable(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetScriptExecutable(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetScriptCreates sets the "script_creates" field.
-func (tc *TaskCreate) SetScriptCreates(s string) *TaskCreate {
-	tc.mutation.SetScriptCreates(s)
-	return tc
+func (_c *TaskCreate) SetScriptCreates(v string) *TaskCreate {
+	_c.mutation.SetScriptCreates(v)
+	return _c
 }
 
 // SetNillableScriptCreates sets the "script_creates" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableScriptCreates(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetScriptCreates(*s)
+func (_c *TaskCreate) SetNillableScriptCreates(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetScriptCreates(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetScriptRun sets the "script_run" field.
-func (tc *TaskCreate) SetScriptRun(tr task.ScriptRun) *TaskCreate {
-	tc.mutation.SetScriptRun(tr)
-	return tc
+func (_c *TaskCreate) SetScriptRun(v task.ScriptRun) *TaskCreate {
+	_c.mutation.SetScriptRun(v)
+	return _c
 }
 
 // SetNillableScriptRun sets the "script_run" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableScriptRun(tr *task.ScriptRun) *TaskCreate {
-	if tr != nil {
-		tc.SetScriptRun(*tr)
+func (_c *TaskCreate) SetNillableScriptRun(v *task.ScriptRun) *TaskCreate {
+	if v != nil {
+		_c.SetScriptRun(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAgentType sets the "agent_type" field.
-func (tc *TaskCreate) SetAgentType(tt task.AgentType) *TaskCreate {
-	tc.mutation.SetAgentType(tt)
-	return tc
+func (_c *TaskCreate) SetAgentType(v task.AgentType) *TaskCreate {
+	_c.mutation.SetAgentType(v)
+	return _c
 }
 
 // SetNillableAgentType sets the "agent_type" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAgentType(tt *task.AgentType) *TaskCreate {
-	if tt != nil {
-		tc.SetAgentType(*tt)
+func (_c *TaskCreate) SetNillableAgentType(v *task.AgentType) *TaskCreate {
+	if v != nil {
+		_c.SetAgentType(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetWhen sets the "when" field.
-func (tc *TaskCreate) SetWhen(t time.Time) *TaskCreate {
-	tc.mutation.SetWhen(t)
-	return tc
+func (_c *TaskCreate) SetWhen(v time.Time) *TaskCreate {
+	_c.mutation.SetWhen(v)
+	return _c
 }
 
 // SetNillableWhen sets the "when" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableWhen(t *time.Time) *TaskCreate {
-	if t != nil {
-		tc.SetWhen(*t)
+func (_c *TaskCreate) SetNillableWhen(v *time.Time) *TaskCreate {
+	if v != nil {
+		_c.SetWhen(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetBrewUpdate sets the "brew_update" field.
-func (tc *TaskCreate) SetBrewUpdate(b bool) *TaskCreate {
-	tc.mutation.SetBrewUpdate(b)
-	return tc
+func (_c *TaskCreate) SetBrewUpdate(v bool) *TaskCreate {
+	_c.mutation.SetBrewUpdate(v)
+	return _c
 }
 
 // SetNillableBrewUpdate sets the "brew_update" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableBrewUpdate(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetBrewUpdate(*b)
+func (_c *TaskCreate) SetNillableBrewUpdate(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetBrewUpdate(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetBrewUpgradeAll sets the "brew_upgrade_all" field.
-func (tc *TaskCreate) SetBrewUpgradeAll(b bool) *TaskCreate {
-	tc.mutation.SetBrewUpgradeAll(b)
-	return tc
+func (_c *TaskCreate) SetBrewUpgradeAll(v bool) *TaskCreate {
+	_c.mutation.SetBrewUpgradeAll(v)
+	return _c
 }
 
 // SetNillableBrewUpgradeAll sets the "brew_upgrade_all" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableBrewUpgradeAll(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetBrewUpgradeAll(*b)
+func (_c *TaskCreate) SetNillableBrewUpgradeAll(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetBrewUpgradeAll(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetBrewUpgradeOptions sets the "brew_upgrade_options" field.
-func (tc *TaskCreate) SetBrewUpgradeOptions(s string) *TaskCreate {
-	tc.mutation.SetBrewUpgradeOptions(s)
-	return tc
+func (_c *TaskCreate) SetBrewUpgradeOptions(v string) *TaskCreate {
+	_c.mutation.SetBrewUpgradeOptions(v)
+	return _c
 }
 
 // SetNillableBrewUpgradeOptions sets the "brew_upgrade_options" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableBrewUpgradeOptions(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetBrewUpgradeOptions(*s)
+func (_c *TaskCreate) SetNillableBrewUpgradeOptions(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetBrewUpgradeOptions(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetBrewInstallOptions sets the "brew_install_options" field.
-func (tc *TaskCreate) SetBrewInstallOptions(s string) *TaskCreate {
-	tc.mutation.SetBrewInstallOptions(s)
-	return tc
+func (_c *TaskCreate) SetBrewInstallOptions(v string) *TaskCreate {
+	_c.mutation.SetBrewInstallOptions(v)
+	return _c
 }
 
 // SetNillableBrewInstallOptions sets the "brew_install_options" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableBrewInstallOptions(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetBrewInstallOptions(*s)
+func (_c *TaskCreate) SetNillableBrewInstallOptions(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetBrewInstallOptions(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetBrewGreedy sets the "brew_greedy" field.
-func (tc *TaskCreate) SetBrewGreedy(b bool) *TaskCreate {
-	tc.mutation.SetBrewGreedy(b)
-	return tc
+func (_c *TaskCreate) SetBrewGreedy(v bool) *TaskCreate {
+	_c.mutation.SetBrewGreedy(v)
+	return _c
 }
 
 // SetNillableBrewGreedy sets the "brew_greedy" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableBrewGreedy(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetBrewGreedy(*b)
+func (_c *TaskCreate) SetNillableBrewGreedy(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetBrewGreedy(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetPackageVersion sets the "package_version" field.
-func (tc *TaskCreate) SetPackageVersion(s string) *TaskCreate {
-	tc.mutation.SetPackageVersion(s)
-	return tc
+func (_c *TaskCreate) SetPackageVersion(v string) *TaskCreate {
+	_c.mutation.SetPackageVersion(v)
+	return _c
 }
 
 // SetNillablePackageVersion sets the "package_version" field if the given value is not nil.
-func (tc *TaskCreate) SetNillablePackageVersion(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetPackageVersion(*s)
+func (_c *TaskCreate) SetNillablePackageVersion(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetPackageVersion(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptAllowDowngrade sets the "apt_allow_downgrade" field.
-func (tc *TaskCreate) SetAptAllowDowngrade(b bool) *TaskCreate {
-	tc.mutation.SetAptAllowDowngrade(b)
-	return tc
+func (_c *TaskCreate) SetAptAllowDowngrade(v bool) *TaskCreate {
+	_c.mutation.SetAptAllowDowngrade(v)
+	return _c
 }
 
 // SetNillableAptAllowDowngrade sets the "apt_allow_downgrade" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptAllowDowngrade(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptAllowDowngrade(*b)
+func (_c *TaskCreate) SetNillableAptAllowDowngrade(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptAllowDowngrade(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptDeb sets the "apt_deb" field.
-func (tc *TaskCreate) SetAptDeb(s string) *TaskCreate {
-	tc.mutation.SetAptDeb(s)
-	return tc
+func (_c *TaskCreate) SetAptDeb(v string) *TaskCreate {
+	_c.mutation.SetAptDeb(v)
+	return _c
 }
 
 // SetNillableAptDeb sets the "apt_deb" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptDeb(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetAptDeb(*s)
+func (_c *TaskCreate) SetNillableAptDeb(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetAptDeb(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptDpkgOptions sets the "apt_dpkg_options" field.
-func (tc *TaskCreate) SetAptDpkgOptions(s string) *TaskCreate {
-	tc.mutation.SetAptDpkgOptions(s)
-	return tc
+func (_c *TaskCreate) SetAptDpkgOptions(v string) *TaskCreate {
+	_c.mutation.SetAptDpkgOptions(v)
+	return _c
 }
 
 // SetNillableAptDpkgOptions sets the "apt_dpkg_options" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptDpkgOptions(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetAptDpkgOptions(*s)
+func (_c *TaskCreate) SetNillableAptDpkgOptions(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetAptDpkgOptions(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptFailOnAutoremove sets the "apt_fail_on_autoremove" field.
-func (tc *TaskCreate) SetAptFailOnAutoremove(b bool) *TaskCreate {
-	tc.mutation.SetAptFailOnAutoremove(b)
-	return tc
+func (_c *TaskCreate) SetAptFailOnAutoremove(v bool) *TaskCreate {
+	_c.mutation.SetAptFailOnAutoremove(v)
+	return _c
 }
 
 // SetNillableAptFailOnAutoremove sets the "apt_fail_on_autoremove" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptFailOnAutoremove(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptFailOnAutoremove(*b)
+func (_c *TaskCreate) SetNillableAptFailOnAutoremove(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptFailOnAutoremove(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptForce sets the "apt_force" field.
-func (tc *TaskCreate) SetAptForce(b bool) *TaskCreate {
-	tc.mutation.SetAptForce(b)
-	return tc
+func (_c *TaskCreate) SetAptForce(v bool) *TaskCreate {
+	_c.mutation.SetAptForce(v)
+	return _c
 }
 
 // SetNillableAptForce sets the "apt_force" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptForce(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptForce(*b)
+func (_c *TaskCreate) SetNillableAptForce(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptForce(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptInstallRecommends sets the "apt_install_recommends" field.
-func (tc *TaskCreate) SetAptInstallRecommends(b bool) *TaskCreate {
-	tc.mutation.SetAptInstallRecommends(b)
-	return tc
+func (_c *TaskCreate) SetAptInstallRecommends(v bool) *TaskCreate {
+	_c.mutation.SetAptInstallRecommends(v)
+	return _c
 }
 
 // SetNillableAptInstallRecommends sets the "apt_install_recommends" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptInstallRecommends(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptInstallRecommends(*b)
+func (_c *TaskCreate) SetNillableAptInstallRecommends(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptInstallRecommends(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptName sets the "apt_name" field.
-func (tc *TaskCreate) SetAptName(s string) *TaskCreate {
-	tc.mutation.SetAptName(s)
-	return tc
+func (_c *TaskCreate) SetAptName(v string) *TaskCreate {
+	_c.mutation.SetAptName(v)
+	return _c
 }
 
 // SetNillableAptName sets the "apt_name" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptName(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetAptName(*s)
+func (_c *TaskCreate) SetNillableAptName(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetAptName(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptOnlyUpgrade sets the "apt_only_upgrade" field.
-func (tc *TaskCreate) SetAptOnlyUpgrade(b bool) *TaskCreate {
-	tc.mutation.SetAptOnlyUpgrade(b)
-	return tc
+func (_c *TaskCreate) SetAptOnlyUpgrade(v bool) *TaskCreate {
+	_c.mutation.SetAptOnlyUpgrade(v)
+	return _c
 }
 
 // SetNillableAptOnlyUpgrade sets the "apt_only_upgrade" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptOnlyUpgrade(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptOnlyUpgrade(*b)
+func (_c *TaskCreate) SetNillableAptOnlyUpgrade(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptOnlyUpgrade(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptPurge sets the "apt_purge" field.
-func (tc *TaskCreate) SetAptPurge(b bool) *TaskCreate {
-	tc.mutation.SetAptPurge(b)
-	return tc
+func (_c *TaskCreate) SetAptPurge(v bool) *TaskCreate {
+	_c.mutation.SetAptPurge(v)
+	return _c
 }
 
 // SetNillableAptPurge sets the "apt_purge" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptPurge(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptPurge(*b)
+func (_c *TaskCreate) SetNillableAptPurge(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptPurge(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptUpdateCache sets the "apt_update_cache" field.
-func (tc *TaskCreate) SetAptUpdateCache(b bool) *TaskCreate {
-	tc.mutation.SetAptUpdateCache(b)
-	return tc
+func (_c *TaskCreate) SetAptUpdateCache(v bool) *TaskCreate {
+	_c.mutation.SetAptUpdateCache(v)
+	return _c
 }
 
 // SetNillableAptUpdateCache sets the "apt_update_cache" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptUpdateCache(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetAptUpdateCache(*b)
+func (_c *TaskCreate) SetNillableAptUpdateCache(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetAptUpdateCache(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetAptUpgradeType sets the "apt_upgrade_type" field.
-func (tc *TaskCreate) SetAptUpgradeType(tut task.AptUpgradeType) *TaskCreate {
-	tc.mutation.SetAptUpgradeType(tut)
-	return tc
+func (_c *TaskCreate) SetAptUpgradeType(v task.AptUpgradeType) *TaskCreate {
+	_c.mutation.SetAptUpgradeType(v)
+	return _c
 }
 
 // SetNillableAptUpgradeType sets the "apt_upgrade_type" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableAptUpgradeType(tut *task.AptUpgradeType) *TaskCreate {
-	if tut != nil {
-		tc.SetAptUpgradeType(*tut)
+func (_c *TaskCreate) SetNillableAptUpgradeType(v *task.AptUpgradeType) *TaskCreate {
+	if v != nil {
+		_c.SetAptUpgradeType(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetVersion sets the "version" field.
-func (tc *TaskCreate) SetVersion(i int) *TaskCreate {
-	tc.mutation.SetVersion(i)
-	return tc
+func (_c *TaskCreate) SetVersion(v int) *TaskCreate {
+	_c.mutation.SetVersion(v)
+	return _c
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableVersion(i *int) *TaskCreate {
-	if i != nil {
-		tc.SetVersion(*i)
+func (_c *TaskCreate) SetNillableVersion(v *int) *TaskCreate {
+	if v != nil {
+		_c.SetVersion(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetTenant sets the "tenant" field.
-func (tc *TaskCreate) SetTenant(i int) *TaskCreate {
-	tc.mutation.SetTenant(i)
-	return tc
+func (_c *TaskCreate) SetTenant(v int) *TaskCreate {
+	_c.mutation.SetTenant(v)
+	return _c
 }
 
 // SetNillableTenant sets the "tenant" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableTenant(i *int) *TaskCreate {
-	if i != nil {
-		tc.SetTenant(*i)
+func (_c *TaskCreate) SetNillableTenant(v *int) *TaskCreate {
+	if v != nil {
+		_c.SetTenant(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetNetbirdGroups sets the "netbird_groups" field.
-func (tc *TaskCreate) SetNetbirdGroups(s string) *TaskCreate {
-	tc.mutation.SetNetbirdGroups(s)
-	return tc
+func (_c *TaskCreate) SetNetbirdGroups(v string) *TaskCreate {
+	_c.mutation.SetNetbirdGroups(v)
+	return _c
 }
 
 // SetNillableNetbirdGroups sets the "netbird_groups" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableNetbirdGroups(s *string) *TaskCreate {
-	if s != nil {
-		tc.SetNetbirdGroups(*s)
+func (_c *TaskCreate) SetNillableNetbirdGroups(v *string) *TaskCreate {
+	if v != nil {
+		_c.SetNetbirdGroups(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field.
-func (tc *TaskCreate) SetNetbirdAllowExtraDNSLabels(b bool) *TaskCreate {
-	tc.mutation.SetNetbirdAllowExtraDNSLabels(b)
-	return tc
+func (_c *TaskCreate) SetNetbirdAllowExtraDNSLabels(v bool) *TaskCreate {
+	_c.mutation.SetNetbirdAllowExtraDNSLabels(v)
+	return _c
 }
 
 // SetNillableNetbirdAllowExtraDNSLabels sets the "netbird_allow_extra_dns_labels" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableNetbirdAllowExtraDNSLabels(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetNetbirdAllowExtraDNSLabels(*b)
+func (_c *TaskCreate) SetNillableNetbirdAllowExtraDNSLabels(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetNetbirdAllowExtraDNSLabels(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetIgnoreErrors sets the "ignore_errors" field.
-func (tc *TaskCreate) SetIgnoreErrors(b bool) *TaskCreate {
-	tc.mutation.SetIgnoreErrors(b)
-	return tc
+func (_c *TaskCreate) SetIgnoreErrors(v bool) *TaskCreate {
+	_c.mutation.SetIgnoreErrors(v)
+	return _c
 }
 
 // SetNillableIgnoreErrors sets the "ignore_errors" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableIgnoreErrors(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetIgnoreErrors(*b)
+func (_c *TaskCreate) SetNillableIgnoreErrors(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetIgnoreErrors(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetDisabled sets the "disabled" field.
-func (tc *TaskCreate) SetDisabled(b bool) *TaskCreate {
-	tc.mutation.SetDisabled(b)
-	return tc
+func (_c *TaskCreate) SetDisabled(v bool) *TaskCreate {
+	_c.mutation.SetDisabled(v)
+	return _c
 }
 
 // SetNillableDisabled sets the "disabled" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableDisabled(b *bool) *TaskCreate {
-	if b != nil {
-		tc.SetDisabled(*b)
+func (_c *TaskCreate) SetNillableDisabled(v *bool) *TaskCreate {
+	if v != nil {
+		_c.SetDisabled(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetOrder sets the "order" field.
-func (tc *TaskCreate) SetOrder(i int) *TaskCreate {
-	tc.mutation.SetOrder(i)
-	return tc
+func (_c *TaskCreate) SetOrder(v int) *TaskCreate {
+	_c.mutation.SetOrder(v)
+	return _c
 }
 
 // SetNillableOrder sets the "order" field if the given value is not nil.
-func (tc *TaskCreate) SetNillableOrder(i *int) *TaskCreate {
-	if i != nil {
-		tc.SetOrder(*i)
+func (_c *TaskCreate) SetNillableOrder(v *int) *TaskCreate {
+	if v != nil {
+		_c.SetOrder(*v)
 	}
-	return tc
+	return _c
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (tc *TaskCreate) AddTagIDs(ids ...int) *TaskCreate {
-	tc.mutation.AddTagIDs(ids...)
-	return tc
+func (_c *TaskCreate) AddTagIDs(ids ...int) *TaskCreate {
+	_c.mutation.AddTagIDs(ids...)
+	return _c
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (tc *TaskCreate) AddTags(t ...*Tag) *TaskCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *TaskCreate) AddTags(v ...*Tag) *TaskCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddTagIDs(ids...)
+	return _c.AddTagIDs(ids...)
 }
 
 // SetProfileID sets the "profile" edge to the Profile entity by ID.
-func (tc *TaskCreate) SetProfileID(id int) *TaskCreate {
-	tc.mutation.SetProfileID(id)
-	return tc
+func (_c *TaskCreate) SetProfileID(id int) *TaskCreate {
+	_c.mutation.SetProfileID(id)
+	return _c
 }
 
 // SetNillableProfileID sets the "profile" edge to the Profile entity by ID if the given value is not nil.
-func (tc *TaskCreate) SetNillableProfileID(id *int) *TaskCreate {
+func (_c *TaskCreate) SetNillableProfileID(id *int) *TaskCreate {
 	if id != nil {
-		tc = tc.SetProfileID(*id)
+		_c = _c.SetProfileID(*id)
 	}
-	return tc
+	return _c
 }
 
 // SetProfile sets the "profile" edge to the Profile entity.
-func (tc *TaskCreate) SetProfile(p *Profile) *TaskCreate {
-	return tc.SetProfileID(p.ID)
+func (_c *TaskCreate) SetProfile(v *Profile) *TaskCreate {
+	return _c.SetProfileID(v.ID)
 }
 
 // AddReportIDs adds the "reports" edge to the TaskReport entity by IDs.
-func (tc *TaskCreate) AddReportIDs(ids ...int) *TaskCreate {
-	tc.mutation.AddReportIDs(ids...)
-	return tc
+func (_c *TaskCreate) AddReportIDs(ids ...int) *TaskCreate {
+	_c.mutation.AddReportIDs(ids...)
+	return _c
 }
 
 // AddReports adds the "reports" edges to the TaskReport entity.
-func (tc *TaskCreate) AddReports(t ...*TaskReport) *TaskCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *TaskCreate) AddReports(v ...*TaskReport) *TaskCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddReportIDs(ids...)
+	return _c.AddReportIDs(ids...)
 }
 
 // Mutation returns the TaskMutation object of the builder.
-func (tc *TaskCreate) Mutation() *TaskMutation {
-	return tc.mutation
+func (_c *TaskCreate) Mutation() *TaskMutation {
+	return _c.mutation
 }
 
 // Save creates the Task in the database.
-func (tc *TaskCreate) Save(ctx context.Context) (*Task, error) {
-	tc.defaults()
-	return withHooks(ctx, tc.sqlSave, tc.mutation, tc.hooks)
+func (_c *TaskCreate) Save(ctx context.Context) (*Task, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (tc *TaskCreate) SaveX(ctx context.Context) *Task {
-	v, err := tc.Save(ctx)
+func (_c *TaskCreate) SaveX(ctx context.Context) *Task {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1353,309 +1353,309 @@ func (tc *TaskCreate) SaveX(ctx context.Context) *Task {
 }
 
 // Exec executes the query.
-func (tc *TaskCreate) Exec(ctx context.Context) error {
-	_, err := tc.Save(ctx)
+func (_c *TaskCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tc *TaskCreate) ExecX(ctx context.Context) {
-	if err := tc.Exec(ctx); err != nil {
+func (_c *TaskCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (tc *TaskCreate) defaults() {
-	if _, ok := tc.mutation.PackageID(); !ok {
+func (_c *TaskCreate) defaults() {
+	if _, ok := _c.mutation.PackageID(); !ok {
 		v := task.DefaultPackageID
-		tc.mutation.SetPackageID(v)
+		_c.mutation.SetPackageID(v)
 	}
-	if _, ok := tc.mutation.PackageName(); !ok {
+	if _, ok := _c.mutation.PackageName(); !ok {
 		v := task.DefaultPackageName
-		tc.mutation.SetPackageName(v)
+		_c.mutation.SetPackageName(v)
 	}
-	if _, ok := tc.mutation.PackageLatest(); !ok {
+	if _, ok := _c.mutation.PackageLatest(); !ok {
 		v := task.DefaultPackageLatest
-		tc.mutation.SetPackageLatest(v)
+		_c.mutation.SetPackageLatest(v)
 	}
-	if _, ok := tc.mutation.RegistryKey(); !ok {
+	if _, ok := _c.mutation.RegistryKey(); !ok {
 		v := task.DefaultRegistryKey
-		tc.mutation.SetRegistryKey(v)
+		_c.mutation.SetRegistryKey(v)
 	}
-	if _, ok := tc.mutation.RegistryKeyValueName(); !ok {
+	if _, ok := _c.mutation.RegistryKeyValueName(); !ok {
 		v := task.DefaultRegistryKeyValueName
-		tc.mutation.SetRegistryKeyValueName(v)
+		_c.mutation.SetRegistryKeyValueName(v)
 	}
-	if _, ok := tc.mutation.RegistryKeyValueData(); !ok {
+	if _, ok := _c.mutation.RegistryKeyValueData(); !ok {
 		v := task.DefaultRegistryKeyValueData
-		tc.mutation.SetRegistryKeyValueData(v)
+		_c.mutation.SetRegistryKeyValueData(v)
 	}
-	if _, ok := tc.mutation.RegistryHex(); !ok {
+	if _, ok := _c.mutation.RegistryHex(); !ok {
 		v := task.DefaultRegistryHex
-		tc.mutation.SetRegistryHex(v)
+		_c.mutation.SetRegistryHex(v)
 	}
-	if _, ok := tc.mutation.RegistryForce(); !ok {
+	if _, ok := _c.mutation.RegistryForce(); !ok {
 		v := task.DefaultRegistryForce
-		tc.mutation.SetRegistryForce(v)
+		_c.mutation.SetRegistryForce(v)
 	}
-	if _, ok := tc.mutation.LocalUserUsername(); !ok {
+	if _, ok := _c.mutation.LocalUserUsername(); !ok {
 		v := task.DefaultLocalUserUsername
-		tc.mutation.SetLocalUserUsername(v)
+		_c.mutation.SetLocalUserUsername(v)
 	}
-	if _, ok := tc.mutation.LocalUserDescription(); !ok {
+	if _, ok := _c.mutation.LocalUserDescription(); !ok {
 		v := task.DefaultLocalUserDescription
-		tc.mutation.SetLocalUserDescription(v)
+		_c.mutation.SetLocalUserDescription(v)
 	}
-	if _, ok := tc.mutation.LocalUserDisable(); !ok {
+	if _, ok := _c.mutation.LocalUserDisable(); !ok {
 		v := task.DefaultLocalUserDisable
-		tc.mutation.SetLocalUserDisable(v)
+		_c.mutation.SetLocalUserDisable(v)
 	}
-	if _, ok := tc.mutation.LocalUserFullname(); !ok {
+	if _, ok := _c.mutation.LocalUserFullname(); !ok {
 		v := task.DefaultLocalUserFullname
-		tc.mutation.SetLocalUserFullname(v)
+		_c.mutation.SetLocalUserFullname(v)
 	}
-	if _, ok := tc.mutation.LocalUserPassword(); !ok {
+	if _, ok := _c.mutation.LocalUserPassword(); !ok {
 		v := task.DefaultLocalUserPassword
-		tc.mutation.SetLocalUserPassword(v)
+		_c.mutation.SetLocalUserPassword(v)
 	}
-	if _, ok := tc.mutation.LocalUserPasswordChangeNotAllowed(); !ok {
+	if _, ok := _c.mutation.LocalUserPasswordChangeNotAllowed(); !ok {
 		v := task.DefaultLocalUserPasswordChangeNotAllowed
-		tc.mutation.SetLocalUserPasswordChangeNotAllowed(v)
+		_c.mutation.SetLocalUserPasswordChangeNotAllowed(v)
 	}
-	if _, ok := tc.mutation.LocalUserPasswordChangeRequired(); !ok {
+	if _, ok := _c.mutation.LocalUserPasswordChangeRequired(); !ok {
 		v := task.DefaultLocalUserPasswordChangeRequired
-		tc.mutation.SetLocalUserPasswordChangeRequired(v)
+		_c.mutation.SetLocalUserPasswordChangeRequired(v)
 	}
-	if _, ok := tc.mutation.LocalUserPasswordNeverExpires(); !ok {
+	if _, ok := _c.mutation.LocalUserPasswordNeverExpires(); !ok {
 		v := task.DefaultLocalUserPasswordNeverExpires
-		tc.mutation.SetLocalUserPasswordNeverExpires(v)
+		_c.mutation.SetLocalUserPasswordNeverExpires(v)
 	}
-	if _, ok := tc.mutation.LocalUserAppend(); !ok {
+	if _, ok := _c.mutation.LocalUserAppend(); !ok {
 		v := task.DefaultLocalUserAppend
-		tc.mutation.SetLocalUserAppend(v)
+		_c.mutation.SetLocalUserAppend(v)
 	}
-	if _, ok := tc.mutation.LocalUserCreateHome(); !ok {
+	if _, ok := _c.mutation.LocalUserCreateHome(); !ok {
 		v := task.DefaultLocalUserCreateHome
-		tc.mutation.SetLocalUserCreateHome(v)
+		_c.mutation.SetLocalUserCreateHome(v)
 	}
-	if _, ok := tc.mutation.LocalUserForce(); !ok {
+	if _, ok := _c.mutation.LocalUserForce(); !ok {
 		v := task.DefaultLocalUserForce
-		tc.mutation.SetLocalUserForce(v)
+		_c.mutation.SetLocalUserForce(v)
 	}
-	if _, ok := tc.mutation.LocalUserGenerateSSHKey(); !ok {
+	if _, ok := _c.mutation.LocalUserGenerateSSHKey(); !ok {
 		v := task.DefaultLocalUserGenerateSSHKey
-		tc.mutation.SetLocalUserGenerateSSHKey(v)
+		_c.mutation.SetLocalUserGenerateSSHKey(v)
 	}
-	if _, ok := tc.mutation.LocalUserMoveHome(); !ok {
+	if _, ok := _c.mutation.LocalUserMoveHome(); !ok {
 		v := task.DefaultLocalUserMoveHome
-		tc.mutation.SetLocalUserMoveHome(v)
+		_c.mutation.SetLocalUserMoveHome(v)
 	}
-	if _, ok := tc.mutation.LocalUserNonunique(); !ok {
+	if _, ok := _c.mutation.LocalUserNonunique(); !ok {
 		v := task.DefaultLocalUserNonunique
-		tc.mutation.SetLocalUserNonunique(v)
+		_c.mutation.SetLocalUserNonunique(v)
 	}
-	if _, ok := tc.mutation.LocalUserPasswordLock(); !ok {
+	if _, ok := _c.mutation.LocalUserPasswordLock(); !ok {
 		v := task.DefaultLocalUserPasswordLock
-		tc.mutation.SetLocalUserPasswordLock(v)
+		_c.mutation.SetLocalUserPasswordLock(v)
 	}
-	if _, ok := tc.mutation.LocalUserSystem(); !ok {
+	if _, ok := _c.mutation.LocalUserSystem(); !ok {
 		v := task.DefaultLocalUserSystem
-		tc.mutation.SetLocalUserSystem(v)
+		_c.mutation.SetLocalUserSystem(v)
 	}
-	if _, ok := tc.mutation.LocalUserSSHKeyType(); !ok {
+	if _, ok := _c.mutation.LocalUserSSHKeyType(); !ok {
 		v := task.DefaultLocalUserSSHKeyType
-		tc.mutation.SetLocalUserSSHKeyType(v)
+		_c.mutation.SetLocalUserSSHKeyType(v)
 	}
-	if _, ok := tc.mutation.LocalGroupID(); !ok {
+	if _, ok := _c.mutation.LocalGroupID(); !ok {
 		v := task.DefaultLocalGroupID
-		tc.mutation.SetLocalGroupID(v)
+		_c.mutation.SetLocalGroupID(v)
 	}
-	if _, ok := tc.mutation.LocalGroupName(); !ok {
+	if _, ok := _c.mutation.LocalGroupName(); !ok {
 		v := task.DefaultLocalGroupName
-		tc.mutation.SetLocalGroupName(v)
+		_c.mutation.SetLocalGroupName(v)
 	}
-	if _, ok := tc.mutation.LocalGroupDescription(); !ok {
+	if _, ok := _c.mutation.LocalGroupDescription(); !ok {
 		v := task.DefaultLocalGroupDescription
-		tc.mutation.SetLocalGroupDescription(v)
+		_c.mutation.SetLocalGroupDescription(v)
 	}
-	if _, ok := tc.mutation.LocalGroupSystem(); !ok {
+	if _, ok := _c.mutation.LocalGroupSystem(); !ok {
 		v := task.DefaultLocalGroupSystem
-		tc.mutation.SetLocalGroupSystem(v)
+		_c.mutation.SetLocalGroupSystem(v)
 	}
-	if _, ok := tc.mutation.LocalGroupForce(); !ok {
+	if _, ok := _c.mutation.LocalGroupForce(); !ok {
 		v := task.DefaultLocalGroupForce
-		tc.mutation.SetLocalGroupForce(v)
+		_c.mutation.SetLocalGroupForce(v)
 	}
-	if _, ok := tc.mutation.LocalGroupMembers(); !ok {
+	if _, ok := _c.mutation.LocalGroupMembers(); !ok {
 		v := task.DefaultLocalGroupMembers
-		tc.mutation.SetLocalGroupMembers(v)
+		_c.mutation.SetLocalGroupMembers(v)
 	}
-	if _, ok := tc.mutation.LocalGroupMembersToInclude(); !ok {
+	if _, ok := _c.mutation.LocalGroupMembersToInclude(); !ok {
 		v := task.DefaultLocalGroupMembersToInclude
-		tc.mutation.SetLocalGroupMembersToInclude(v)
+		_c.mutation.SetLocalGroupMembersToInclude(v)
 	}
-	if _, ok := tc.mutation.LocalGroupMembersToExclude(); !ok {
+	if _, ok := _c.mutation.LocalGroupMembersToExclude(); !ok {
 		v := task.DefaultLocalGroupMembersToExclude
-		tc.mutation.SetLocalGroupMembersToExclude(v)
+		_c.mutation.SetLocalGroupMembersToExclude(v)
 	}
-	if _, ok := tc.mutation.MsiProductid(); !ok {
+	if _, ok := _c.mutation.MsiProductid(); !ok {
 		v := task.DefaultMsiProductid
-		tc.mutation.SetMsiProductid(v)
+		_c.mutation.SetMsiProductid(v)
 	}
-	if _, ok := tc.mutation.MsiPath(); !ok {
+	if _, ok := _c.mutation.MsiPath(); !ok {
 		v := task.DefaultMsiPath
-		tc.mutation.SetMsiPath(v)
+		_c.mutation.SetMsiPath(v)
 	}
-	if _, ok := tc.mutation.MsiArguments(); !ok {
+	if _, ok := _c.mutation.MsiArguments(); !ok {
 		v := task.DefaultMsiArguments
-		tc.mutation.SetMsiArguments(v)
+		_c.mutation.SetMsiArguments(v)
 	}
-	if _, ok := tc.mutation.MsiFileHash(); !ok {
+	if _, ok := _c.mutation.MsiFileHash(); !ok {
 		v := task.DefaultMsiFileHash
-		tc.mutation.SetMsiFileHash(v)
+		_c.mutation.SetMsiFileHash(v)
 	}
-	if _, ok := tc.mutation.MsiLogPath(); !ok {
+	if _, ok := _c.mutation.MsiLogPath(); !ok {
 		v := task.DefaultMsiLogPath
-		tc.mutation.SetMsiLogPath(v)
+		_c.mutation.SetMsiLogPath(v)
 	}
-	if _, ok := tc.mutation.Script(); !ok {
+	if _, ok := _c.mutation.Script(); !ok {
 		v := task.DefaultScript
-		tc.mutation.SetScript(v)
+		_c.mutation.SetScript(v)
 	}
-	if _, ok := tc.mutation.ScriptExecutable(); !ok {
+	if _, ok := _c.mutation.ScriptExecutable(); !ok {
 		v := task.DefaultScriptExecutable
-		tc.mutation.SetScriptExecutable(v)
+		_c.mutation.SetScriptExecutable(v)
 	}
-	if _, ok := tc.mutation.ScriptCreates(); !ok {
+	if _, ok := _c.mutation.ScriptCreates(); !ok {
 		v := task.DefaultScriptCreates
-		tc.mutation.SetScriptCreates(v)
+		_c.mutation.SetScriptCreates(v)
 	}
-	if _, ok := tc.mutation.AgentType(); !ok {
+	if _, ok := _c.mutation.AgentType(); !ok {
 		v := task.DefaultAgentType
-		tc.mutation.SetAgentType(v)
+		_c.mutation.SetAgentType(v)
 	}
-	if _, ok := tc.mutation.PackageVersion(); !ok {
+	if _, ok := _c.mutation.PackageVersion(); !ok {
 		v := task.DefaultPackageVersion
-		tc.mutation.SetPackageVersion(v)
+		_c.mutation.SetPackageVersion(v)
 	}
-	if _, ok := tc.mutation.AptAllowDowngrade(); !ok {
+	if _, ok := _c.mutation.AptAllowDowngrade(); !ok {
 		v := task.DefaultAptAllowDowngrade
-		tc.mutation.SetAptAllowDowngrade(v)
+		_c.mutation.SetAptAllowDowngrade(v)
 	}
-	if _, ok := tc.mutation.AptDeb(); !ok {
+	if _, ok := _c.mutation.AptDeb(); !ok {
 		v := task.DefaultAptDeb
-		tc.mutation.SetAptDeb(v)
+		_c.mutation.SetAptDeb(v)
 	}
-	if _, ok := tc.mutation.AptFailOnAutoremove(); !ok {
+	if _, ok := _c.mutation.AptFailOnAutoremove(); !ok {
 		v := task.DefaultAptFailOnAutoremove
-		tc.mutation.SetAptFailOnAutoremove(v)
+		_c.mutation.SetAptFailOnAutoremove(v)
 	}
-	if _, ok := tc.mutation.AptForce(); !ok {
+	if _, ok := _c.mutation.AptForce(); !ok {
 		v := task.DefaultAptForce
-		tc.mutation.SetAptForce(v)
+		_c.mutation.SetAptForce(v)
 	}
-	if _, ok := tc.mutation.AptName(); !ok {
+	if _, ok := _c.mutation.AptName(); !ok {
 		v := task.DefaultAptName
-		tc.mutation.SetAptName(v)
+		_c.mutation.SetAptName(v)
 	}
-	if _, ok := tc.mutation.AptOnlyUpgrade(); !ok {
+	if _, ok := _c.mutation.AptOnlyUpgrade(); !ok {
 		v := task.DefaultAptOnlyUpgrade
-		tc.mutation.SetAptOnlyUpgrade(v)
+		_c.mutation.SetAptOnlyUpgrade(v)
 	}
-	if _, ok := tc.mutation.AptPurge(); !ok {
+	if _, ok := _c.mutation.AptPurge(); !ok {
 		v := task.DefaultAptPurge
-		tc.mutation.SetAptPurge(v)
+		_c.mutation.SetAptPurge(v)
 	}
-	if _, ok := tc.mutation.AptUpdateCache(); !ok {
+	if _, ok := _c.mutation.AptUpdateCache(); !ok {
 		v := task.DefaultAptUpdateCache
-		tc.mutation.SetAptUpdateCache(v)
+		_c.mutation.SetAptUpdateCache(v)
 	}
-	if _, ok := tc.mutation.AptUpgradeType(); !ok {
+	if _, ok := _c.mutation.AptUpgradeType(); !ok {
 		v := task.DefaultAptUpgradeType
-		tc.mutation.SetAptUpgradeType(v)
+		_c.mutation.SetAptUpgradeType(v)
 	}
-	if _, ok := tc.mutation.Version(); !ok {
+	if _, ok := _c.mutation.Version(); !ok {
 		v := task.DefaultVersion
-		tc.mutation.SetVersion(v)
+		_c.mutation.SetVersion(v)
 	}
-	if _, ok := tc.mutation.NetbirdGroups(); !ok {
+	if _, ok := _c.mutation.NetbirdGroups(); !ok {
 		v := task.DefaultNetbirdGroups
-		tc.mutation.SetNetbirdGroups(v)
+		_c.mutation.SetNetbirdGroups(v)
 	}
-	if _, ok := tc.mutation.NetbirdAllowExtraDNSLabels(); !ok {
+	if _, ok := _c.mutation.NetbirdAllowExtraDNSLabels(); !ok {
 		v := task.DefaultNetbirdAllowExtraDNSLabels
-		tc.mutation.SetNetbirdAllowExtraDNSLabels(v)
+		_c.mutation.SetNetbirdAllowExtraDNSLabels(v)
 	}
-	if _, ok := tc.mutation.IgnoreErrors(); !ok {
+	if _, ok := _c.mutation.IgnoreErrors(); !ok {
 		v := task.DefaultIgnoreErrors
-		tc.mutation.SetIgnoreErrors(v)
+		_c.mutation.SetIgnoreErrors(v)
 	}
-	if _, ok := tc.mutation.Disabled(); !ok {
+	if _, ok := _c.mutation.Disabled(); !ok {
 		v := task.DefaultDisabled
-		tc.mutation.SetDisabled(v)
+		_c.mutation.SetDisabled(v)
 	}
-	if _, ok := tc.mutation.Order(); !ok {
+	if _, ok := _c.mutation.Order(); !ok {
 		v := task.DefaultOrder
-		tc.mutation.SetOrder(v)
+		_c.mutation.SetOrder(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tc *TaskCreate) check() error {
-	if _, ok := tc.mutation.Name(); !ok {
+func (_c *TaskCreate) check() error {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Task.name"`)}
 	}
-	if v, ok := tc.mutation.Name(); ok {
+	if v, ok := _c.mutation.Name(); ok {
 		if err := task.NameValidator(v); err != nil {
 			return &ValidationError{Name: "name", err: fmt.Errorf(`ent: validator failed for field "Task.name": %w`, err)}
 		}
 	}
-	if _, ok := tc.mutation.GetType(); !ok {
+	if _, ok := _c.mutation.GetType(); !ok {
 		return &ValidationError{Name: "type", err: errors.New(`ent: missing required field "Task.type"`)}
 	}
-	if v, ok := tc.mutation.GetType(); ok {
+	if v, ok := _c.mutation.GetType(); ok {
 		if err := task.TypeValidator(v); err != nil {
 			return &ValidationError{Name: "type", err: fmt.Errorf(`ent: validator failed for field "Task.type": %w`, err)}
 		}
 	}
-	if v, ok := tc.mutation.RegistryKeyValueType(); ok {
+	if v, ok := _c.mutation.RegistryKeyValueType(); ok {
 		if err := task.RegistryKeyValueTypeValidator(v); err != nil {
 			return &ValidationError{Name: "registry_key_value_type", err: fmt.Errorf(`ent: validator failed for field "Task.registry_key_value_type": %w`, err)}
 		}
 	}
-	if v, ok := tc.mutation.MsiFileHashAlg(); ok {
+	if v, ok := _c.mutation.MsiFileHashAlg(); ok {
 		if err := task.MsiFileHashAlgValidator(v); err != nil {
 			return &ValidationError{Name: "msi_file_hash_alg", err: fmt.Errorf(`ent: validator failed for field "Task.msi_file_hash_alg": %w`, err)}
 		}
 	}
-	if v, ok := tc.mutation.ScriptRun(); ok {
+	if v, ok := _c.mutation.ScriptRun(); ok {
 		if err := task.ScriptRunValidator(v); err != nil {
 			return &ValidationError{Name: "script_run", err: fmt.Errorf(`ent: validator failed for field "Task.script_run": %w`, err)}
 		}
 	}
-	if v, ok := tc.mutation.AgentType(); ok {
+	if v, ok := _c.mutation.AgentType(); ok {
 		if err := task.AgentTypeValidator(v); err != nil {
 			return &ValidationError{Name: "agent_type", err: fmt.Errorf(`ent: validator failed for field "Task.agent_type": %w`, err)}
 		}
 	}
-	if v, ok := tc.mutation.AptUpgradeType(); ok {
+	if v, ok := _c.mutation.AptUpgradeType(); ok {
 		if err := task.AptUpgradeTypeValidator(v); err != nil {
 			return &ValidationError{Name: "apt_upgrade_type", err: fmt.Errorf(`ent: validator failed for field "Task.apt_upgrade_type": %w`, err)}
 		}
 	}
-	if _, ok := tc.mutation.Disabled(); !ok {
+	if _, ok := _c.mutation.Disabled(); !ok {
 		return &ValidationError{Name: "disabled", err: errors.New(`ent: missing required field "Task.disabled"`)}
 	}
 	return nil
 }
 
-func (tc *TaskCreate) sqlSave(ctx context.Context) (*Task, error) {
-	if err := tc.check(); err != nil {
+func (_c *TaskCreate) sqlSave(ctx context.Context) (*Task, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := tc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, tc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -1663,382 +1663,382 @@ func (tc *TaskCreate) sqlSave(ctx context.Context) (*Task, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	tc.mutation.id = &_node.ID
-	tc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
+func (_c *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Task{config: tc.config}
+		_node = &Task{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(task.Table, sqlgraph.NewFieldSpec(task.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = tc.conflict
-	if value, ok := tc.mutation.Name(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(task.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := tc.mutation.GetType(); ok {
+	if value, ok := _c.mutation.GetType(); ok {
 		_spec.SetField(task.FieldType, field.TypeEnum, value)
 		_node.Type = value
 	}
-	if value, ok := tc.mutation.PackageID(); ok {
+	if value, ok := _c.mutation.PackageID(); ok {
 		_spec.SetField(task.FieldPackageID, field.TypeString, value)
 		_node.PackageID = value
 	}
-	if value, ok := tc.mutation.PackageName(); ok {
+	if value, ok := _c.mutation.PackageName(); ok {
 		_spec.SetField(task.FieldPackageName, field.TypeString, value)
 		_node.PackageName = value
 	}
-	if value, ok := tc.mutation.PackageLatest(); ok {
+	if value, ok := _c.mutation.PackageLatest(); ok {
 		_spec.SetField(task.FieldPackageLatest, field.TypeBool, value)
 		_node.PackageLatest = value
 	}
-	if value, ok := tc.mutation.RegistryKey(); ok {
+	if value, ok := _c.mutation.RegistryKey(); ok {
 		_spec.SetField(task.FieldRegistryKey, field.TypeString, value)
 		_node.RegistryKey = value
 	}
-	if value, ok := tc.mutation.RegistryKeyValueName(); ok {
+	if value, ok := _c.mutation.RegistryKeyValueName(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueName, field.TypeString, value)
 		_node.RegistryKeyValueName = value
 	}
-	if value, ok := tc.mutation.RegistryKeyValueType(); ok {
+	if value, ok := _c.mutation.RegistryKeyValueType(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueType, field.TypeEnum, value)
 		_node.RegistryKeyValueType = value
 	}
-	if value, ok := tc.mutation.RegistryKeyValueData(); ok {
+	if value, ok := _c.mutation.RegistryKeyValueData(); ok {
 		_spec.SetField(task.FieldRegistryKeyValueData, field.TypeString, value)
 		_node.RegistryKeyValueData = value
 	}
-	if value, ok := tc.mutation.RegistryHex(); ok {
+	if value, ok := _c.mutation.RegistryHex(); ok {
 		_spec.SetField(task.FieldRegistryHex, field.TypeBool, value)
 		_node.RegistryHex = value
 	}
-	if value, ok := tc.mutation.RegistryForce(); ok {
+	if value, ok := _c.mutation.RegistryForce(); ok {
 		_spec.SetField(task.FieldRegistryForce, field.TypeBool, value)
 		_node.RegistryForce = value
 	}
-	if value, ok := tc.mutation.LocalUserUsername(); ok {
+	if value, ok := _c.mutation.LocalUserUsername(); ok {
 		_spec.SetField(task.FieldLocalUserUsername, field.TypeString, value)
 		_node.LocalUserUsername = value
 	}
-	if value, ok := tc.mutation.LocalUserDescription(); ok {
+	if value, ok := _c.mutation.LocalUserDescription(); ok {
 		_spec.SetField(task.FieldLocalUserDescription, field.TypeString, value)
 		_node.LocalUserDescription = value
 	}
-	if value, ok := tc.mutation.LocalUserDisable(); ok {
+	if value, ok := _c.mutation.LocalUserDisable(); ok {
 		_spec.SetField(task.FieldLocalUserDisable, field.TypeBool, value)
 		_node.LocalUserDisable = value
 	}
-	if value, ok := tc.mutation.LocalUserFullname(); ok {
+	if value, ok := _c.mutation.LocalUserFullname(); ok {
 		_spec.SetField(task.FieldLocalUserFullname, field.TypeString, value)
 		_node.LocalUserFullname = value
 	}
-	if value, ok := tc.mutation.LocalUserPassword(); ok {
+	if value, ok := _c.mutation.LocalUserPassword(); ok {
 		_spec.SetField(task.FieldLocalUserPassword, field.TypeString, value)
 		_node.LocalUserPassword = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordChangeNotAllowed(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordChangeNotAllowed(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordChangeNotAllowed, field.TypeBool, value)
 		_node.LocalUserPasswordChangeNotAllowed = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordChangeRequired(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordChangeRequired(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordChangeRequired, field.TypeBool, value)
 		_node.LocalUserPasswordChangeRequired = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordNeverExpires(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordNeverExpires(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordNeverExpires, field.TypeBool, value)
 		_node.LocalUserPasswordNeverExpires = value
 	}
-	if value, ok := tc.mutation.LocalUserAppend(); ok {
+	if value, ok := _c.mutation.LocalUserAppend(); ok {
 		_spec.SetField(task.FieldLocalUserAppend, field.TypeBool, value)
 		_node.LocalUserAppend = value
 	}
-	if value, ok := tc.mutation.LocalUserCreateHome(); ok {
+	if value, ok := _c.mutation.LocalUserCreateHome(); ok {
 		_spec.SetField(task.FieldLocalUserCreateHome, field.TypeBool, value)
 		_node.LocalUserCreateHome = value
 	}
-	if value, ok := tc.mutation.LocalUserExpires(); ok {
+	if value, ok := _c.mutation.LocalUserExpires(); ok {
 		_spec.SetField(task.FieldLocalUserExpires, field.TypeString, value)
 		_node.LocalUserExpires = value
 	}
-	if value, ok := tc.mutation.LocalUserForce(); ok {
+	if value, ok := _c.mutation.LocalUserForce(); ok {
 		_spec.SetField(task.FieldLocalUserForce, field.TypeBool, value)
 		_node.LocalUserForce = value
 	}
-	if value, ok := tc.mutation.LocalUserGenerateSSHKey(); ok {
+	if value, ok := _c.mutation.LocalUserGenerateSSHKey(); ok {
 		_spec.SetField(task.FieldLocalUserGenerateSSHKey, field.TypeBool, value)
 		_node.LocalUserGenerateSSHKey = value
 	}
-	if value, ok := tc.mutation.LocalUserGroup(); ok {
+	if value, ok := _c.mutation.LocalUserGroup(); ok {
 		_spec.SetField(task.FieldLocalUserGroup, field.TypeString, value)
 		_node.LocalUserGroup = value
 	}
-	if value, ok := tc.mutation.LocalUserGroups(); ok {
+	if value, ok := _c.mutation.LocalUserGroups(); ok {
 		_spec.SetField(task.FieldLocalUserGroups, field.TypeString, value)
 		_node.LocalUserGroups = value
 	}
-	if value, ok := tc.mutation.LocalUserHome(); ok {
+	if value, ok := _c.mutation.LocalUserHome(); ok {
 		_spec.SetField(task.FieldLocalUserHome, field.TypeString, value)
 		_node.LocalUserHome = value
 	}
-	if value, ok := tc.mutation.LocalUserMoveHome(); ok {
+	if value, ok := _c.mutation.LocalUserMoveHome(); ok {
 		_spec.SetField(task.FieldLocalUserMoveHome, field.TypeBool, value)
 		_node.LocalUserMoveHome = value
 	}
-	if value, ok := tc.mutation.LocalUserNonunique(); ok {
+	if value, ok := _c.mutation.LocalUserNonunique(); ok {
 		_spec.SetField(task.FieldLocalUserNonunique, field.TypeBool, value)
 		_node.LocalUserNonunique = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordExpireAccountDisable(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordExpireAccountDisable(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireAccountDisable, field.TypeString, value)
 		_node.LocalUserPasswordExpireAccountDisable = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordExpireMax(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordExpireMax(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireMax, field.TypeString, value)
 		_node.LocalUserPasswordExpireMax = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordExpireMin(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordExpireMin(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireMin, field.TypeString, value)
 		_node.LocalUserPasswordExpireMin = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordExpireWarn(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordExpireWarn(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordExpireWarn, field.TypeString, value)
 		_node.LocalUserPasswordExpireWarn = value
 	}
-	if value, ok := tc.mutation.LocalUserPasswordLock(); ok {
+	if value, ok := _c.mutation.LocalUserPasswordLock(); ok {
 		_spec.SetField(task.FieldLocalUserPasswordLock, field.TypeBool, value)
 		_node.LocalUserPasswordLock = value
 	}
-	if value, ok := tc.mutation.LocalUserSeuser(); ok {
+	if value, ok := _c.mutation.LocalUserSeuser(); ok {
 		_spec.SetField(task.FieldLocalUserSeuser, field.TypeString, value)
 		_node.LocalUserSeuser = value
 	}
-	if value, ok := tc.mutation.LocalUserShell(); ok {
+	if value, ok := _c.mutation.LocalUserShell(); ok {
 		_spec.SetField(task.FieldLocalUserShell, field.TypeString, value)
 		_node.LocalUserShell = value
 	}
-	if value, ok := tc.mutation.LocalUserSkeleton(); ok {
+	if value, ok := _c.mutation.LocalUserSkeleton(); ok {
 		_spec.SetField(task.FieldLocalUserSkeleton, field.TypeString, value)
 		_node.LocalUserSkeleton = value
 	}
-	if value, ok := tc.mutation.LocalUserSystem(); ok {
+	if value, ok := _c.mutation.LocalUserSystem(); ok {
 		_spec.SetField(task.FieldLocalUserSystem, field.TypeBool, value)
 		_node.LocalUserSystem = value
 	}
-	if value, ok := tc.mutation.LocalUserID(); ok {
+	if value, ok := _c.mutation.LocalUserID(); ok {
 		_spec.SetField(task.FieldLocalUserID, field.TypeString, value)
 		_node.LocalUserID = value
 	}
-	if value, ok := tc.mutation.LocalUserIDMax(); ok {
+	if value, ok := _c.mutation.LocalUserIDMax(); ok {
 		_spec.SetField(task.FieldLocalUserIDMax, field.TypeString, value)
 		_node.LocalUserIDMax = value
 	}
-	if value, ok := tc.mutation.LocalUserIDMin(); ok {
+	if value, ok := _c.mutation.LocalUserIDMin(); ok {
 		_spec.SetField(task.FieldLocalUserIDMin, field.TypeString, value)
 		_node.LocalUserIDMin = value
 	}
-	if value, ok := tc.mutation.LocalUserSSHKeyBits(); ok {
+	if value, ok := _c.mutation.LocalUserSSHKeyBits(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyBits, field.TypeString, value)
 		_node.LocalUserSSHKeyBits = value
 	}
-	if value, ok := tc.mutation.LocalUserSSHKeyComment(); ok {
+	if value, ok := _c.mutation.LocalUserSSHKeyComment(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyComment, field.TypeString, value)
 		_node.LocalUserSSHKeyComment = value
 	}
-	if value, ok := tc.mutation.LocalUserSSHKeyFile(); ok {
+	if value, ok := _c.mutation.LocalUserSSHKeyFile(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyFile, field.TypeString, value)
 		_node.LocalUserSSHKeyFile = value
 	}
-	if value, ok := tc.mutation.LocalUserSSHKeyPassphrase(); ok {
+	if value, ok := _c.mutation.LocalUserSSHKeyPassphrase(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyPassphrase, field.TypeString, value)
 		_node.LocalUserSSHKeyPassphrase = value
 	}
-	if value, ok := tc.mutation.LocalUserSSHKeyType(); ok {
+	if value, ok := _c.mutation.LocalUserSSHKeyType(); ok {
 		_spec.SetField(task.FieldLocalUserSSHKeyType, field.TypeString, value)
 		_node.LocalUserSSHKeyType = value
 	}
-	if value, ok := tc.mutation.LocalUserUmask(); ok {
+	if value, ok := _c.mutation.LocalUserUmask(); ok {
 		_spec.SetField(task.FieldLocalUserUmask, field.TypeString, value)
 		_node.LocalUserUmask = value
 	}
-	if value, ok := tc.mutation.LocalGroupID(); ok {
+	if value, ok := _c.mutation.LocalGroupID(); ok {
 		_spec.SetField(task.FieldLocalGroupID, field.TypeString, value)
 		_node.LocalGroupID = value
 	}
-	if value, ok := tc.mutation.LocalGroupName(); ok {
+	if value, ok := _c.mutation.LocalGroupName(); ok {
 		_spec.SetField(task.FieldLocalGroupName, field.TypeString, value)
 		_node.LocalGroupName = value
 	}
-	if value, ok := tc.mutation.LocalGroupDescription(); ok {
+	if value, ok := _c.mutation.LocalGroupDescription(); ok {
 		_spec.SetField(task.FieldLocalGroupDescription, field.TypeString, value)
 		_node.LocalGroupDescription = value
 	}
-	if value, ok := tc.mutation.LocalGroupSystem(); ok {
+	if value, ok := _c.mutation.LocalGroupSystem(); ok {
 		_spec.SetField(task.FieldLocalGroupSystem, field.TypeBool, value)
 		_node.LocalGroupSystem = value
 	}
-	if value, ok := tc.mutation.LocalGroupForce(); ok {
+	if value, ok := _c.mutation.LocalGroupForce(); ok {
 		_spec.SetField(task.FieldLocalGroupForce, field.TypeBool, value)
 		_node.LocalGroupForce = value
 	}
-	if value, ok := tc.mutation.LocalGroupMembers(); ok {
+	if value, ok := _c.mutation.LocalGroupMembers(); ok {
 		_spec.SetField(task.FieldLocalGroupMembers, field.TypeString, value)
 		_node.LocalGroupMembers = value
 	}
-	if value, ok := tc.mutation.LocalGroupMembersToInclude(); ok {
+	if value, ok := _c.mutation.LocalGroupMembersToInclude(); ok {
 		_spec.SetField(task.FieldLocalGroupMembersToInclude, field.TypeString, value)
 		_node.LocalGroupMembersToInclude = value
 	}
-	if value, ok := tc.mutation.LocalGroupMembersToExclude(); ok {
+	if value, ok := _c.mutation.LocalGroupMembersToExclude(); ok {
 		_spec.SetField(task.FieldLocalGroupMembersToExclude, field.TypeString, value)
 		_node.LocalGroupMembersToExclude = value
 	}
-	if value, ok := tc.mutation.MsiProductid(); ok {
+	if value, ok := _c.mutation.MsiProductid(); ok {
 		_spec.SetField(task.FieldMsiProductid, field.TypeString, value)
 		_node.MsiProductid = value
 	}
-	if value, ok := tc.mutation.MsiPath(); ok {
+	if value, ok := _c.mutation.MsiPath(); ok {
 		_spec.SetField(task.FieldMsiPath, field.TypeString, value)
 		_node.MsiPath = value
 	}
-	if value, ok := tc.mutation.MsiArguments(); ok {
+	if value, ok := _c.mutation.MsiArguments(); ok {
 		_spec.SetField(task.FieldMsiArguments, field.TypeString, value)
 		_node.MsiArguments = value
 	}
-	if value, ok := tc.mutation.MsiFileHash(); ok {
+	if value, ok := _c.mutation.MsiFileHash(); ok {
 		_spec.SetField(task.FieldMsiFileHash, field.TypeString, value)
 		_node.MsiFileHash = value
 	}
-	if value, ok := tc.mutation.MsiFileHashAlg(); ok {
+	if value, ok := _c.mutation.MsiFileHashAlg(); ok {
 		_spec.SetField(task.FieldMsiFileHashAlg, field.TypeEnum, value)
 		_node.MsiFileHashAlg = value
 	}
-	if value, ok := tc.mutation.MsiLogPath(); ok {
+	if value, ok := _c.mutation.MsiLogPath(); ok {
 		_spec.SetField(task.FieldMsiLogPath, field.TypeString, value)
 		_node.MsiLogPath = value
 	}
-	if value, ok := tc.mutation.Script(); ok {
+	if value, ok := _c.mutation.Script(); ok {
 		_spec.SetField(task.FieldScript, field.TypeString, value)
 		_node.Script = value
 	}
-	if value, ok := tc.mutation.ScriptExecutable(); ok {
+	if value, ok := _c.mutation.ScriptExecutable(); ok {
 		_spec.SetField(task.FieldScriptExecutable, field.TypeString, value)
 		_node.ScriptExecutable = value
 	}
-	if value, ok := tc.mutation.ScriptCreates(); ok {
+	if value, ok := _c.mutation.ScriptCreates(); ok {
 		_spec.SetField(task.FieldScriptCreates, field.TypeString, value)
 		_node.ScriptCreates = value
 	}
-	if value, ok := tc.mutation.ScriptRun(); ok {
+	if value, ok := _c.mutation.ScriptRun(); ok {
 		_spec.SetField(task.FieldScriptRun, field.TypeEnum, value)
 		_node.ScriptRun = value
 	}
-	if value, ok := tc.mutation.AgentType(); ok {
+	if value, ok := _c.mutation.AgentType(); ok {
 		_spec.SetField(task.FieldAgentType, field.TypeEnum, value)
 		_node.AgentType = value
 	}
-	if value, ok := tc.mutation.When(); ok {
+	if value, ok := _c.mutation.When(); ok {
 		_spec.SetField(task.FieldWhen, field.TypeTime, value)
 		_node.When = value
 	}
-	if value, ok := tc.mutation.BrewUpdate(); ok {
+	if value, ok := _c.mutation.BrewUpdate(); ok {
 		_spec.SetField(task.FieldBrewUpdate, field.TypeBool, value)
 		_node.BrewUpdate = value
 	}
-	if value, ok := tc.mutation.BrewUpgradeAll(); ok {
+	if value, ok := _c.mutation.BrewUpgradeAll(); ok {
 		_spec.SetField(task.FieldBrewUpgradeAll, field.TypeBool, value)
 		_node.BrewUpgradeAll = value
 	}
-	if value, ok := tc.mutation.BrewUpgradeOptions(); ok {
+	if value, ok := _c.mutation.BrewUpgradeOptions(); ok {
 		_spec.SetField(task.FieldBrewUpgradeOptions, field.TypeString, value)
 		_node.BrewUpgradeOptions = value
 	}
-	if value, ok := tc.mutation.BrewInstallOptions(); ok {
+	if value, ok := _c.mutation.BrewInstallOptions(); ok {
 		_spec.SetField(task.FieldBrewInstallOptions, field.TypeString, value)
 		_node.BrewInstallOptions = value
 	}
-	if value, ok := tc.mutation.BrewGreedy(); ok {
+	if value, ok := _c.mutation.BrewGreedy(); ok {
 		_spec.SetField(task.FieldBrewGreedy, field.TypeBool, value)
 		_node.BrewGreedy = value
 	}
-	if value, ok := tc.mutation.PackageVersion(); ok {
+	if value, ok := _c.mutation.PackageVersion(); ok {
 		_spec.SetField(task.FieldPackageVersion, field.TypeString, value)
 		_node.PackageVersion = value
 	}
-	if value, ok := tc.mutation.AptAllowDowngrade(); ok {
+	if value, ok := _c.mutation.AptAllowDowngrade(); ok {
 		_spec.SetField(task.FieldAptAllowDowngrade, field.TypeBool, value)
 		_node.AptAllowDowngrade = value
 	}
-	if value, ok := tc.mutation.AptDeb(); ok {
+	if value, ok := _c.mutation.AptDeb(); ok {
 		_spec.SetField(task.FieldAptDeb, field.TypeString, value)
 		_node.AptDeb = value
 	}
-	if value, ok := tc.mutation.AptDpkgOptions(); ok {
+	if value, ok := _c.mutation.AptDpkgOptions(); ok {
 		_spec.SetField(task.FieldAptDpkgOptions, field.TypeString, value)
 		_node.AptDpkgOptions = value
 	}
-	if value, ok := tc.mutation.AptFailOnAutoremove(); ok {
+	if value, ok := _c.mutation.AptFailOnAutoremove(); ok {
 		_spec.SetField(task.FieldAptFailOnAutoremove, field.TypeBool, value)
 		_node.AptFailOnAutoremove = value
 	}
-	if value, ok := tc.mutation.AptForce(); ok {
+	if value, ok := _c.mutation.AptForce(); ok {
 		_spec.SetField(task.FieldAptForce, field.TypeBool, value)
 		_node.AptForce = value
 	}
-	if value, ok := tc.mutation.AptInstallRecommends(); ok {
+	if value, ok := _c.mutation.AptInstallRecommends(); ok {
 		_spec.SetField(task.FieldAptInstallRecommends, field.TypeBool, value)
 		_node.AptInstallRecommends = value
 	}
-	if value, ok := tc.mutation.AptName(); ok {
+	if value, ok := _c.mutation.AptName(); ok {
 		_spec.SetField(task.FieldAptName, field.TypeString, value)
 		_node.AptName = value
 	}
-	if value, ok := tc.mutation.AptOnlyUpgrade(); ok {
+	if value, ok := _c.mutation.AptOnlyUpgrade(); ok {
 		_spec.SetField(task.FieldAptOnlyUpgrade, field.TypeBool, value)
 		_node.AptOnlyUpgrade = value
 	}
-	if value, ok := tc.mutation.AptPurge(); ok {
+	if value, ok := _c.mutation.AptPurge(); ok {
 		_spec.SetField(task.FieldAptPurge, field.TypeBool, value)
 		_node.AptPurge = value
 	}
-	if value, ok := tc.mutation.AptUpdateCache(); ok {
+	if value, ok := _c.mutation.AptUpdateCache(); ok {
 		_spec.SetField(task.FieldAptUpdateCache, field.TypeBool, value)
 		_node.AptUpdateCache = value
 	}
-	if value, ok := tc.mutation.AptUpgradeType(); ok {
+	if value, ok := _c.mutation.AptUpgradeType(); ok {
 		_spec.SetField(task.FieldAptUpgradeType, field.TypeEnum, value)
 		_node.AptUpgradeType = value
 	}
-	if value, ok := tc.mutation.Version(); ok {
+	if value, ok := _c.mutation.Version(); ok {
 		_spec.SetField(task.FieldVersion, field.TypeInt, value)
 		_node.Version = value
 	}
-	if value, ok := tc.mutation.Tenant(); ok {
+	if value, ok := _c.mutation.Tenant(); ok {
 		_spec.SetField(task.FieldTenant, field.TypeInt, value)
 		_node.Tenant = value
 	}
-	if value, ok := tc.mutation.NetbirdGroups(); ok {
+	if value, ok := _c.mutation.NetbirdGroups(); ok {
 		_spec.SetField(task.FieldNetbirdGroups, field.TypeString, value)
 		_node.NetbirdGroups = value
 	}
-	if value, ok := tc.mutation.NetbirdAllowExtraDNSLabels(); ok {
+	if value, ok := _c.mutation.NetbirdAllowExtraDNSLabels(); ok {
 		_spec.SetField(task.FieldNetbirdAllowExtraDNSLabels, field.TypeBool, value)
 		_node.NetbirdAllowExtraDNSLabels = value
 	}
-	if value, ok := tc.mutation.IgnoreErrors(); ok {
+	if value, ok := _c.mutation.IgnoreErrors(); ok {
 		_spec.SetField(task.FieldIgnoreErrors, field.TypeBool, value)
 		_node.IgnoreErrors = value
 	}
-	if value, ok := tc.mutation.Disabled(); ok {
+	if value, ok := _c.mutation.Disabled(); ok {
 		_spec.SetField(task.FieldDisabled, field.TypeBool, value)
 		_node.Disabled = value
 	}
-	if value, ok := tc.mutation.Order(); ok {
+	if value, ok := _c.mutation.Order(); ok {
 		_spec.SetField(task.FieldOrder, field.TypeInt, value)
 		_node.Order = value
 	}
-	if nodes := tc.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2054,7 +2054,7 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.ProfileIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ProfileIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -2071,7 +2071,7 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 		_node.profile_tasks = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.ReportsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.ReportsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -2106,10 +2106,10 @@ func (tc *TaskCreate) createSpec() (*Task, *sqlgraph.CreateSpec) {
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (tc *TaskCreate) OnConflict(opts ...sql.ConflictOption) *TaskUpsertOne {
-	tc.conflict = opts
+func (_c *TaskCreate) OnConflict(opts ...sql.ConflictOption) *TaskUpsertOne {
+	_c.conflict = opts
 	return &TaskUpsertOne{
-		create: tc,
+		create: _c,
 	}
 }
 
@@ -2119,10 +2119,10 @@ func (tc *TaskCreate) OnConflict(opts ...sql.ConflictOption) *TaskUpsertOne {
 //	client.Task.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tc *TaskCreate) OnConflictColumns(columns ...string) *TaskUpsertOne {
-	tc.conflict = append(tc.conflict, sql.ConflictColumns(columns...))
+func (_c *TaskCreate) OnConflictColumns(columns ...string) *TaskUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TaskUpsertOne{
-		create: tc,
+		create: _c,
 	}
 }
 
@@ -5770,16 +5770,16 @@ type TaskCreateBulk struct {
 }
 
 // Save creates the Task entities in the database.
-func (tcb *TaskCreateBulk) Save(ctx context.Context) ([]*Task, error) {
-	if tcb.err != nil {
-		return nil, tcb.err
+func (_c *TaskCreateBulk) Save(ctx context.Context) ([]*Task, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(tcb.builders))
-	nodes := make([]*Task, len(tcb.builders))
-	mutators := make([]Mutator, len(tcb.builders))
-	for i := range tcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Task, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := tcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*TaskMutation)
@@ -5793,12 +5793,12 @@ func (tcb *TaskCreateBulk) Save(ctx context.Context) ([]*Task, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, tcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = tcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, tcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -5822,7 +5822,7 @@ func (tcb *TaskCreateBulk) Save(ctx context.Context) ([]*Task, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, tcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -5830,8 +5830,8 @@ func (tcb *TaskCreateBulk) Save(ctx context.Context) ([]*Task, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tcb *TaskCreateBulk) SaveX(ctx context.Context) []*Task {
-	v, err := tcb.Save(ctx)
+func (_c *TaskCreateBulk) SaveX(ctx context.Context) []*Task {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -5839,14 +5839,14 @@ func (tcb *TaskCreateBulk) SaveX(ctx context.Context) []*Task {
 }
 
 // Exec executes the query.
-func (tcb *TaskCreateBulk) Exec(ctx context.Context) error {
-	_, err := tcb.Save(ctx)
+func (_c *TaskCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tcb *TaskCreateBulk) ExecX(ctx context.Context) {
-	if err := tcb.Exec(ctx); err != nil {
+func (_c *TaskCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -5866,10 +5866,10 @@ func (tcb *TaskCreateBulk) ExecX(ctx context.Context) {
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (tcb *TaskCreateBulk) OnConflict(opts ...sql.ConflictOption) *TaskUpsertBulk {
-	tcb.conflict = opts
+func (_c *TaskCreateBulk) OnConflict(opts ...sql.ConflictOption) *TaskUpsertBulk {
+	_c.conflict = opts
 	return &TaskUpsertBulk{
-		create: tcb,
+		create: _c,
 	}
 }
 
@@ -5879,10 +5879,10 @@ func (tcb *TaskCreateBulk) OnConflict(opts ...sql.ConflictOption) *TaskUpsertBul
 //	client.Task.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tcb *TaskCreateBulk) OnConflictColumns(columns ...string) *TaskUpsertBulk {
-	tcb.conflict = append(tcb.conflict, sql.ConflictColumns(columns...))
+func (_c *TaskCreateBulk) OnConflictColumns(columns ...string) *TaskUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TaskUpsertBulk{
-		create: tcb,
+		create: _c,
 	}
 }
 

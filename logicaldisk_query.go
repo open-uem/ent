@@ -32,44 +32,44 @@ type LogicalDiskQuery struct {
 }
 
 // Where adds a new predicate for the LogicalDiskQuery builder.
-func (ldq *LogicalDiskQuery) Where(ps ...predicate.LogicalDisk) *LogicalDiskQuery {
-	ldq.predicates = append(ldq.predicates, ps...)
-	return ldq
+func (_q *LogicalDiskQuery) Where(ps ...predicate.LogicalDisk) *LogicalDiskQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (ldq *LogicalDiskQuery) Limit(limit int) *LogicalDiskQuery {
-	ldq.ctx.Limit = &limit
-	return ldq
+func (_q *LogicalDiskQuery) Limit(limit int) *LogicalDiskQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (ldq *LogicalDiskQuery) Offset(offset int) *LogicalDiskQuery {
-	ldq.ctx.Offset = &offset
-	return ldq
+func (_q *LogicalDiskQuery) Offset(offset int) *LogicalDiskQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (ldq *LogicalDiskQuery) Unique(unique bool) *LogicalDiskQuery {
-	ldq.ctx.Unique = &unique
-	return ldq
+func (_q *LogicalDiskQuery) Unique(unique bool) *LogicalDiskQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (ldq *LogicalDiskQuery) Order(o ...logicaldisk.OrderOption) *LogicalDiskQuery {
-	ldq.order = append(ldq.order, o...)
-	return ldq
+func (_q *LogicalDiskQuery) Order(o ...logicaldisk.OrderOption) *LogicalDiskQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (ldq *LogicalDiskQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: ldq.config}).Query()
+func (_q *LogicalDiskQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := ldq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := ldq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (ldq *LogicalDiskQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, logicaldisk.OwnerTable, logicaldisk.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(ldq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (ldq *LogicalDiskQuery) QueryOwner() *AgentQuery {
 
 // First returns the first LogicalDisk entity from the query.
 // Returns a *NotFoundError when no LogicalDisk was found.
-func (ldq *LogicalDiskQuery) First(ctx context.Context) (*LogicalDisk, error) {
-	nodes, err := ldq.Limit(1).All(setContextOp(ctx, ldq.ctx, ent.OpQueryFirst))
+func (_q *LogicalDiskQuery) First(ctx context.Context) (*LogicalDisk, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (ldq *LogicalDiskQuery) First(ctx context.Context) (*LogicalDisk, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) FirstX(ctx context.Context) *LogicalDisk {
-	node, err := ldq.First(ctx)
+func (_q *LogicalDiskQuery) FirstX(ctx context.Context) *LogicalDisk {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (ldq *LogicalDiskQuery) FirstX(ctx context.Context) *LogicalDisk {
 
 // FirstID returns the first LogicalDisk ID from the query.
 // Returns a *NotFoundError when no LogicalDisk ID was found.
-func (ldq *LogicalDiskQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *LogicalDiskQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = ldq.Limit(1).IDs(setContextOp(ctx, ldq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (ldq *LogicalDiskQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) FirstIDX(ctx context.Context) int {
-	id, err := ldq.FirstID(ctx)
+func (_q *LogicalDiskQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (ldq *LogicalDiskQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single LogicalDisk entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one LogicalDisk entity is found.
 // Returns a *NotFoundError when no LogicalDisk entities are found.
-func (ldq *LogicalDiskQuery) Only(ctx context.Context) (*LogicalDisk, error) {
-	nodes, err := ldq.Limit(2).All(setContextOp(ctx, ldq.ctx, ent.OpQueryOnly))
+func (_q *LogicalDiskQuery) Only(ctx context.Context) (*LogicalDisk, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (ldq *LogicalDiskQuery) Only(ctx context.Context) (*LogicalDisk, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) OnlyX(ctx context.Context) *LogicalDisk {
-	node, err := ldq.Only(ctx)
+func (_q *LogicalDiskQuery) OnlyX(ctx context.Context) *LogicalDisk {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (ldq *LogicalDiskQuery) OnlyX(ctx context.Context) *LogicalDisk {
 // OnlyID is like Only, but returns the only LogicalDisk ID in the query.
 // Returns a *NotSingularError when more than one LogicalDisk ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (ldq *LogicalDiskQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *LogicalDiskQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = ldq.Limit(2).IDs(setContextOp(ctx, ldq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (ldq *LogicalDiskQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) OnlyIDX(ctx context.Context) int {
-	id, err := ldq.OnlyID(ctx)
+func (_q *LogicalDiskQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (ldq *LogicalDiskQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of LogicalDisks.
-func (ldq *LogicalDiskQuery) All(ctx context.Context) ([]*LogicalDisk, error) {
-	ctx = setContextOp(ctx, ldq.ctx, ent.OpQueryAll)
-	if err := ldq.prepareQuery(ctx); err != nil {
+func (_q *LogicalDiskQuery) All(ctx context.Context) ([]*LogicalDisk, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*LogicalDisk, *LogicalDiskQuery]()
-	return withInterceptors[[]*LogicalDisk](ctx, ldq, qr, ldq.inters)
+	return withInterceptors[[]*LogicalDisk](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) AllX(ctx context.Context) []*LogicalDisk {
-	nodes, err := ldq.All(ctx)
+func (_q *LogicalDiskQuery) AllX(ctx context.Context) []*LogicalDisk {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (ldq *LogicalDiskQuery) AllX(ctx context.Context) []*LogicalDisk {
 }
 
 // IDs executes the query and returns a list of LogicalDisk IDs.
-func (ldq *LogicalDiskQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if ldq.ctx.Unique == nil && ldq.path != nil {
-		ldq.Unique(true)
+func (_q *LogicalDiskQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, ldq.ctx, ent.OpQueryIDs)
-	if err = ldq.Select(logicaldisk.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(logicaldisk.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) IDsX(ctx context.Context) []int {
-	ids, err := ldq.IDs(ctx)
+func (_q *LogicalDiskQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (ldq *LogicalDiskQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (ldq *LogicalDiskQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, ldq.ctx, ent.OpQueryCount)
-	if err := ldq.prepareQuery(ctx); err != nil {
+func (_q *LogicalDiskQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, ldq, querierCount[*LogicalDiskQuery](), ldq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*LogicalDiskQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) CountX(ctx context.Context) int {
-	count, err := ldq.Count(ctx)
+func (_q *LogicalDiskQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (ldq *LogicalDiskQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (ldq *LogicalDiskQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, ldq.ctx, ent.OpQueryExist)
-	switch _, err := ldq.FirstID(ctx); {
+func (_q *LogicalDiskQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (ldq *LogicalDiskQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (ldq *LogicalDiskQuery) ExistX(ctx context.Context) bool {
-	exist, err := ldq.Exist(ctx)
+func (_q *LogicalDiskQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (ldq *LogicalDiskQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the LogicalDiskQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (ldq *LogicalDiskQuery) Clone() *LogicalDiskQuery {
-	if ldq == nil {
+func (_q *LogicalDiskQuery) Clone() *LogicalDiskQuery {
+	if _q == nil {
 		return nil
 	}
 	return &LogicalDiskQuery{
-		config:     ldq.config,
-		ctx:        ldq.ctx.Clone(),
-		order:      append([]logicaldisk.OrderOption{}, ldq.order...),
-		inters:     append([]Interceptor{}, ldq.inters...),
-		predicates: append([]predicate.LogicalDisk{}, ldq.predicates...),
-		withOwner:  ldq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]logicaldisk.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.LogicalDisk{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       ldq.sql.Clone(),
-		path:      ldq.path,
-		modifiers: append([]func(*sql.Selector){}, ldq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (ldq *LogicalDiskQuery) WithOwner(opts ...func(*AgentQuery)) *LogicalDiskQuery {
-	query := (&AgentClient{config: ldq.config}).Query()
+func (_q *LogicalDiskQuery) WithOwner(opts ...func(*AgentQuery)) *LogicalDiskQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	ldq.withOwner = query
-	return ldq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (ldq *LogicalDiskQuery) WithOwner(opts ...func(*AgentQuery)) *LogicalDiskQu
 //		GroupBy(logicaldisk.FieldLabel).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (ldq *LogicalDiskQuery) GroupBy(field string, fields ...string) *LogicalDiskGroupBy {
-	ldq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &LogicalDiskGroupBy{build: ldq}
-	grbuild.flds = &ldq.ctx.Fields
+func (_q *LogicalDiskQuery) GroupBy(field string, fields ...string) *LogicalDiskGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &LogicalDiskGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = logicaldisk.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (ldq *LogicalDiskQuery) GroupBy(field string, fields ...string) *LogicalDis
 //	client.LogicalDisk.Query().
 //		Select(logicaldisk.FieldLabel).
 //		Scan(ctx, &v)
-func (ldq *LogicalDiskQuery) Select(fields ...string) *LogicalDiskSelect {
-	ldq.ctx.Fields = append(ldq.ctx.Fields, fields...)
-	sbuild := &LogicalDiskSelect{LogicalDiskQuery: ldq}
+func (_q *LogicalDiskQuery) Select(fields ...string) *LogicalDiskSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &LogicalDiskSelect{LogicalDiskQuery: _q}
 	sbuild.label = logicaldisk.Label
-	sbuild.flds, sbuild.scan = &ldq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a LogicalDiskSelect configured with the given aggregations.
-func (ldq *LogicalDiskQuery) Aggregate(fns ...AggregateFunc) *LogicalDiskSelect {
-	return ldq.Select().Aggregate(fns...)
+func (_q *LogicalDiskQuery) Aggregate(fns ...AggregateFunc) *LogicalDiskSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (ldq *LogicalDiskQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range ldq.inters {
+func (_q *LogicalDiskQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, ldq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range ldq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !logicaldisk.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if ldq.path != nil {
-		prev, err := ldq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		ldq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (ldq *LogicalDiskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*LogicalDisk, error) {
+func (_q *LogicalDiskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*LogicalDisk, error) {
 	var (
 		nodes       = []*LogicalDisk{}
-		withFKs     = ldq.withFKs
-		_spec       = ldq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			ldq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if ldq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (ldq *LogicalDiskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]
 		return (*LogicalDisk).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &LogicalDisk{config: ldq.config}
+		node := &LogicalDisk{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(ldq.modifiers) > 0 {
-		_spec.Modifiers = ldq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, ldq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := ldq.withOwner; query != nil {
-		if err := ldq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *LogicalDisk, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (ldq *LogicalDiskQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]
 	return nodes, nil
 }
 
-func (ldq *LogicalDiskQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*LogicalDisk, init func(*LogicalDisk), assign func(*LogicalDisk, *Agent)) error {
+func (_q *LogicalDiskQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*LogicalDisk, init func(*LogicalDisk), assign func(*LogicalDisk, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*LogicalDisk)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (ldq *LogicalDiskQuery) loadOwner(ctx context.Context, query *AgentQuery, n
 	return nil
 }
 
-func (ldq *LogicalDiskQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := ldq.querySpec()
-	if len(ldq.modifiers) > 0 {
-		_spec.Modifiers = ldq.modifiers
+func (_q *LogicalDiskQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = ldq.ctx.Fields
-	if len(ldq.ctx.Fields) > 0 {
-		_spec.Unique = ldq.ctx.Unique != nil && *ldq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, ldq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (ldq *LogicalDiskQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *LogicalDiskQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(logicaldisk.Table, logicaldisk.Columns, sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt))
-	_spec.From = ldq.sql
-	if unique := ldq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if ldq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := ldq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, logicaldisk.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (ldq *LogicalDiskQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := ldq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := ldq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := ldq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := ldq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (ldq *LogicalDiskQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (ldq *LogicalDiskQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(ldq.driver.Dialect())
+func (_q *LogicalDiskQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(logicaldisk.Table)
-	columns := ldq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = logicaldisk.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if ldq.sql != nil {
-		selector = ldq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if ldq.ctx.Unique != nil && *ldq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range ldq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range ldq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range ldq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := ldq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := ldq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (ldq *LogicalDiskQuery) Modify(modifiers ...func(s *sql.Selector)) *LogicalDiskSelect {
-	ldq.modifiers = append(ldq.modifiers, modifiers...)
-	return ldq.Select()
+func (_q *LogicalDiskQuery) Modify(modifiers ...func(s *sql.Selector)) *LogicalDiskSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // LogicalDiskGroupBy is the group-by builder for LogicalDisk entities.
@@ -547,41 +547,41 @@ type LogicalDiskGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (ldgb *LogicalDiskGroupBy) Aggregate(fns ...AggregateFunc) *LogicalDiskGroupBy {
-	ldgb.fns = append(ldgb.fns, fns...)
-	return ldgb
+func (_g *LogicalDiskGroupBy) Aggregate(fns ...AggregateFunc) *LogicalDiskGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ldgb *LogicalDiskGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ldgb.build.ctx, ent.OpQueryGroupBy)
-	if err := ldgb.build.prepareQuery(ctx); err != nil {
+func (_g *LogicalDiskGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*LogicalDiskQuery, *LogicalDiskGroupBy](ctx, ldgb.build, ldgb, ldgb.build.inters, v)
+	return scanWithInterceptors[*LogicalDiskQuery, *LogicalDiskGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (ldgb *LogicalDiskGroupBy) sqlScan(ctx context.Context, root *LogicalDiskQuery, v any) error {
+func (_g *LogicalDiskGroupBy) sqlScan(ctx context.Context, root *LogicalDiskQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(ldgb.fns))
-	for _, fn := range ldgb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*ldgb.flds)+len(ldgb.fns))
-		for _, f := range *ldgb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*ldgb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ldgb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type LogicalDiskSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (lds *LogicalDiskSelect) Aggregate(fns ...AggregateFunc) *LogicalDiskSelect {
-	lds.fns = append(lds.fns, fns...)
-	return lds
+func (_s *LogicalDiskSelect) Aggregate(fns ...AggregateFunc) *LogicalDiskSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (lds *LogicalDiskSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, lds.ctx, ent.OpQuerySelect)
-	if err := lds.prepareQuery(ctx); err != nil {
+func (_s *LogicalDiskSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*LogicalDiskQuery, *LogicalDiskSelect](ctx, lds.LogicalDiskQuery, lds, lds.inters, v)
+	return scanWithInterceptors[*LogicalDiskQuery, *LogicalDiskSelect](ctx, _s.LogicalDiskQuery, _s, _s.inters, v)
 }
 
-func (lds *LogicalDiskSelect) sqlScan(ctx context.Context, root *LogicalDiskQuery, v any) error {
+func (_s *LogicalDiskSelect) sqlScan(ctx context.Context, root *LogicalDiskQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(lds.fns))
-	for _, fn := range lds.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*lds.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (lds *LogicalDiskSelect) sqlScan(ctx context.Context, root *LogicalDiskQuer
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := lds.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (lds *LogicalDiskSelect) sqlScan(ctx context.Context, root *LogicalDiskQuer
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (lds *LogicalDiskSelect) Modify(modifiers ...func(s *sql.Selector)) *LogicalDiskSelect {
-	lds.modifiers = append(lds.modifiers, modifiers...)
-	return lds
+func (_s *LogicalDiskSelect) Modify(modifiers ...func(s *sql.Selector)) *LogicalDiskSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

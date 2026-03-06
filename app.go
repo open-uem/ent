@@ -72,7 +72,7 @@ func (*App) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the App fields.
-func (a *App) assignValues(columns []string, values []any) error {
+func (_m *App) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -83,40 +83,40 @@ func (a *App) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			a.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case app.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				a.Name = value.String
+				_m.Name = value.String
 			}
 		case app.FieldVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				a.Version = value.String
+				_m.Version = value.String
 			}
 		case app.FieldPublisher:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field publisher", values[i])
 			} else if value.Valid {
-				a.Publisher = value.String
+				_m.Publisher = value.String
 			}
 		case app.FieldInstallDate:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field install_date", values[i])
 			} else if value.Valid {
-				a.InstallDate = value.String
+				_m.InstallDate = value.String
 			}
 		case app.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_apps", values[i])
 			} else if value.Valid {
-				a.agent_apps = new(string)
-				*a.agent_apps = value.String
+				_m.agent_apps = new(string)
+				*_m.agent_apps = value.String
 			}
 		default:
-			a.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -124,49 +124,49 @@ func (a *App) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the App.
 // This includes values selected through modifiers, order, etc.
-func (a *App) Value(name string) (ent.Value, error) {
-	return a.selectValues.Get(name)
+func (_m *App) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the App entity.
-func (a *App) QueryOwner() *AgentQuery {
-	return NewAppClient(a.config).QueryOwner(a)
+func (_m *App) QueryOwner() *AgentQuery {
+	return NewAppClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this App.
 // Note that you need to call App.Unwrap() before calling this method if this App
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (a *App) Update() *AppUpdateOne {
-	return NewAppClient(a.config).UpdateOne(a)
+func (_m *App) Update() *AppUpdateOne {
+	return NewAppClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the App entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (a *App) Unwrap() *App {
-	_tx, ok := a.config.driver.(*txDriver)
+func (_m *App) Unwrap() *App {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: App is not a transactional entity")
 	}
-	a.config.driver = _tx.drv
-	return a
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (a *App) String() string {
+func (_m *App) String() string {
 	var builder strings.Builder
 	builder.WriteString("App(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(a.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(a.Version)
+	builder.WriteString(_m.Version)
 	builder.WriteString(", ")
 	builder.WriteString("publisher=")
-	builder.WriteString(a.Publisher)
+	builder.WriteString(_m.Publisher)
 	builder.WriteString(", ")
 	builder.WriteString("install_date=")
-	builder.WriteString(a.InstallDate)
+	builder.WriteString(_m.InstallDate)
 	builder.WriteByte(')')
 	return builder.String()
 }

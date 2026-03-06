@@ -20,56 +20,56 @@ type NetbirdSettingsDelete struct {
 }
 
 // Where appends a list predicates to the NetbirdSettingsDelete builder.
-func (nsd *NetbirdSettingsDelete) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsDelete {
-	nsd.mutation.Where(ps...)
-	return nsd
+func (_d *NetbirdSettingsDelete) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (nsd *NetbirdSettingsDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, nsd.sqlExec, nsd.mutation, nsd.hooks)
+func (_d *NetbirdSettingsDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nsd *NetbirdSettingsDelete) ExecX(ctx context.Context) int {
-	n, err := nsd.Exec(ctx)
+func (_d *NetbirdSettingsDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (nsd *NetbirdSettingsDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *NetbirdSettingsDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(netbirdsettings.Table, sqlgraph.NewFieldSpec(netbirdsettings.FieldID, field.TypeInt))
-	if ps := nsd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, nsd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	nsd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // NetbirdSettingsDeleteOne is the builder for deleting a single NetbirdSettings entity.
 type NetbirdSettingsDeleteOne struct {
-	nsd *NetbirdSettingsDelete
+	_d *NetbirdSettingsDelete
 }
 
 // Where appends a list predicates to the NetbirdSettingsDelete builder.
-func (nsdo *NetbirdSettingsDeleteOne) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsDeleteOne {
-	nsdo.nsd.mutation.Where(ps...)
-	return nsdo
+func (_d *NetbirdSettingsDeleteOne) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (nsdo *NetbirdSettingsDeleteOne) Exec(ctx context.Context) error {
-	n, err := nsdo.nsd.Exec(ctx)
+func (_d *NetbirdSettingsDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (nsdo *NetbirdSettingsDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nsdo *NetbirdSettingsDeleteOne) ExecX(ctx context.Context) {
-	if err := nsdo.Exec(ctx); err != nil {
+func (_d *NetbirdSettingsDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

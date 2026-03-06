@@ -27,214 +27,214 @@ type SiteUpdate struct {
 }
 
 // Where appends a list predicates to the SiteUpdate builder.
-func (su *SiteUpdate) Where(ps ...predicate.Site) *SiteUpdate {
-	su.mutation.Where(ps...)
-	return su
+func (_u *SiteUpdate) Where(ps ...predicate.Site) *SiteUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (su *SiteUpdate) SetDescription(s string) *SiteUpdate {
-	su.mutation.SetDescription(s)
-	return su
+func (_u *SiteUpdate) SetDescription(v string) *SiteUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (su *SiteUpdate) SetNillableDescription(s *string) *SiteUpdate {
-	if s != nil {
-		su.SetDescription(*s)
+func (_u *SiteUpdate) SetNillableDescription(v *string) *SiteUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (su *SiteUpdate) ClearDescription() *SiteUpdate {
-	su.mutation.ClearDescription()
-	return su
+func (_u *SiteUpdate) ClearDescription() *SiteUpdate {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (su *SiteUpdate) SetIsDefault(b bool) *SiteUpdate {
-	su.mutation.SetIsDefault(b)
-	return su
+func (_u *SiteUpdate) SetIsDefault(v bool) *SiteUpdate {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (su *SiteUpdate) SetNillableIsDefault(b *bool) *SiteUpdate {
-	if b != nil {
-		su.SetIsDefault(*b)
+func (_u *SiteUpdate) SetNillableIsDefault(v *bool) *SiteUpdate {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearIsDefault clears the value of the "is_default" field.
-func (su *SiteUpdate) ClearIsDefault() *SiteUpdate {
-	su.mutation.ClearIsDefault()
-	return su
+func (_u *SiteUpdate) ClearIsDefault() *SiteUpdate {
+	_u.mutation.ClearIsDefault()
+	return _u
 }
 
 // SetDomain sets the "domain" field.
-func (su *SiteUpdate) SetDomain(s string) *SiteUpdate {
-	su.mutation.SetDomain(s)
-	return su
+func (_u *SiteUpdate) SetDomain(v string) *SiteUpdate {
+	_u.mutation.SetDomain(v)
+	return _u
 }
 
 // SetNillableDomain sets the "domain" field if the given value is not nil.
-func (su *SiteUpdate) SetNillableDomain(s *string) *SiteUpdate {
-	if s != nil {
-		su.SetDomain(*s)
+func (_u *SiteUpdate) SetNillableDomain(v *string) *SiteUpdate {
+	if v != nil {
+		_u.SetDomain(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearDomain clears the value of the "domain" field.
-func (su *SiteUpdate) ClearDomain() *SiteUpdate {
-	su.mutation.ClearDomain()
-	return su
+func (_u *SiteUpdate) ClearDomain() *SiteUpdate {
+	_u.mutation.ClearDomain()
+	return _u
 }
 
 // SetCreated sets the "created" field.
-func (su *SiteUpdate) SetCreated(t time.Time) *SiteUpdate {
-	su.mutation.SetCreated(t)
-	return su
+func (_u *SiteUpdate) SetCreated(v time.Time) *SiteUpdate {
+	_u.mutation.SetCreated(v)
+	return _u
 }
 
 // SetNillableCreated sets the "created" field if the given value is not nil.
-func (su *SiteUpdate) SetNillableCreated(t *time.Time) *SiteUpdate {
-	if t != nil {
-		su.SetCreated(*t)
+func (_u *SiteUpdate) SetNillableCreated(v *time.Time) *SiteUpdate {
+	if v != nil {
+		_u.SetCreated(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearCreated clears the value of the "created" field.
-func (su *SiteUpdate) ClearCreated() *SiteUpdate {
-	su.mutation.ClearCreated()
-	return su
+func (_u *SiteUpdate) ClearCreated() *SiteUpdate {
+	_u.mutation.ClearCreated()
+	return _u
 }
 
 // SetModified sets the "modified" field.
-func (su *SiteUpdate) SetModified(t time.Time) *SiteUpdate {
-	su.mutation.SetModified(t)
-	return su
+func (_u *SiteUpdate) SetModified(v time.Time) *SiteUpdate {
+	_u.mutation.SetModified(v)
+	return _u
 }
 
 // ClearModified clears the value of the "modified" field.
-func (su *SiteUpdate) ClearModified() *SiteUpdate {
-	su.mutation.ClearModified()
-	return su
+func (_u *SiteUpdate) ClearModified() *SiteUpdate {
+	_u.mutation.ClearModified()
+	return _u
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (su *SiteUpdate) SetTenantID(id int) *SiteUpdate {
-	su.mutation.SetTenantID(id)
-	return su
+func (_u *SiteUpdate) SetTenantID(id int) *SiteUpdate {
+	_u.mutation.SetTenantID(id)
+	return _u
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (su *SiteUpdate) SetNillableTenantID(id *int) *SiteUpdate {
+func (_u *SiteUpdate) SetNillableTenantID(id *int) *SiteUpdate {
 	if id != nil {
-		su = su.SetTenantID(*id)
+		_u = _u.SetTenantID(*id)
 	}
-	return su
+	return _u
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (su *SiteUpdate) SetTenant(t *Tenant) *SiteUpdate {
-	return su.SetTenantID(t.ID)
+func (_u *SiteUpdate) SetTenant(v *Tenant) *SiteUpdate {
+	return _u.SetTenantID(v.ID)
 }
 
 // AddAgentIDs adds the "agents" edge to the Agent entity by IDs.
-func (su *SiteUpdate) AddAgentIDs(ids ...string) *SiteUpdate {
-	su.mutation.AddAgentIDs(ids...)
-	return su
+func (_u *SiteUpdate) AddAgentIDs(ids ...string) *SiteUpdate {
+	_u.mutation.AddAgentIDs(ids...)
+	return _u
 }
 
 // AddAgents adds the "agents" edges to the Agent entity.
-func (su *SiteUpdate) AddAgents(a ...*Agent) *SiteUpdate {
-	ids := make([]string, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *SiteUpdate) AddAgents(v ...*Agent) *SiteUpdate {
+	ids := make([]string, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return su.AddAgentIDs(ids...)
+	return _u.AddAgentIDs(ids...)
 }
 
 // AddProfileIDs adds the "profiles" edge to the Profile entity by IDs.
-func (su *SiteUpdate) AddProfileIDs(ids ...int) *SiteUpdate {
-	su.mutation.AddProfileIDs(ids...)
-	return su
+func (_u *SiteUpdate) AddProfileIDs(ids ...int) *SiteUpdate {
+	_u.mutation.AddProfileIDs(ids...)
+	return _u
 }
 
 // AddProfiles adds the "profiles" edges to the Profile entity.
-func (su *SiteUpdate) AddProfiles(p ...*Profile) *SiteUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *SiteUpdate) AddProfiles(v ...*Profile) *SiteUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return su.AddProfileIDs(ids...)
+	return _u.AddProfileIDs(ids...)
 }
 
 // Mutation returns the SiteMutation object of the builder.
-func (su *SiteUpdate) Mutation() *SiteMutation {
-	return su.mutation
+func (_u *SiteUpdate) Mutation() *SiteMutation {
+	return _u.mutation
 }
 
 // ClearTenant clears the "tenant" edge to the Tenant entity.
-func (su *SiteUpdate) ClearTenant() *SiteUpdate {
-	su.mutation.ClearTenant()
-	return su
+func (_u *SiteUpdate) ClearTenant() *SiteUpdate {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // ClearAgents clears all "agents" edges to the Agent entity.
-func (su *SiteUpdate) ClearAgents() *SiteUpdate {
-	su.mutation.ClearAgents()
-	return su
+func (_u *SiteUpdate) ClearAgents() *SiteUpdate {
+	_u.mutation.ClearAgents()
+	return _u
 }
 
 // RemoveAgentIDs removes the "agents" edge to Agent entities by IDs.
-func (su *SiteUpdate) RemoveAgentIDs(ids ...string) *SiteUpdate {
-	su.mutation.RemoveAgentIDs(ids...)
-	return su
+func (_u *SiteUpdate) RemoveAgentIDs(ids ...string) *SiteUpdate {
+	_u.mutation.RemoveAgentIDs(ids...)
+	return _u
 }
 
 // RemoveAgents removes "agents" edges to Agent entities.
-func (su *SiteUpdate) RemoveAgents(a ...*Agent) *SiteUpdate {
-	ids := make([]string, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *SiteUpdate) RemoveAgents(v ...*Agent) *SiteUpdate {
+	ids := make([]string, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return su.RemoveAgentIDs(ids...)
+	return _u.RemoveAgentIDs(ids...)
 }
 
 // ClearProfiles clears all "profiles" edges to the Profile entity.
-func (su *SiteUpdate) ClearProfiles() *SiteUpdate {
-	su.mutation.ClearProfiles()
-	return su
+func (_u *SiteUpdate) ClearProfiles() *SiteUpdate {
+	_u.mutation.ClearProfiles()
+	return _u
 }
 
 // RemoveProfileIDs removes the "profiles" edge to Profile entities by IDs.
-func (su *SiteUpdate) RemoveProfileIDs(ids ...int) *SiteUpdate {
-	su.mutation.RemoveProfileIDs(ids...)
-	return su
+func (_u *SiteUpdate) RemoveProfileIDs(ids ...int) *SiteUpdate {
+	_u.mutation.RemoveProfileIDs(ids...)
+	return _u
 }
 
 // RemoveProfiles removes "profiles" edges to Profile entities.
-func (su *SiteUpdate) RemoveProfiles(p ...*Profile) *SiteUpdate {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *SiteUpdate) RemoveProfiles(v ...*Profile) *SiteUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return su.RemoveProfileIDs(ids...)
+	return _u.RemoveProfileIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (su *SiteUpdate) Save(ctx context.Context) (int, error) {
-	su.defaults()
-	return withHooks(ctx, su.sqlSave, su.mutation, su.hooks)
+func (_u *SiteUpdate) Save(ctx context.Context) (int, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (su *SiteUpdate) SaveX(ctx context.Context) int {
-	affected, err := su.Save(ctx)
+func (_u *SiteUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -242,72 +242,72 @@ func (su *SiteUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (su *SiteUpdate) Exec(ctx context.Context) error {
-	_, err := su.Save(ctx)
+func (_u *SiteUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (su *SiteUpdate) ExecX(ctx context.Context) {
-	if err := su.Exec(ctx); err != nil {
+func (_u *SiteUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (su *SiteUpdate) defaults() {
-	if _, ok := su.mutation.Modified(); !ok && !su.mutation.ModifiedCleared() {
+func (_u *SiteUpdate) defaults() {
+	if _, ok := _u.mutation.Modified(); !ok && !_u.mutation.ModifiedCleared() {
 		v := site.UpdateDefaultModified()
-		su.mutation.SetModified(v)
+		_u.mutation.SetModified(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (su *SiteUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SiteUpdate {
-	su.modifiers = append(su.modifiers, modifiers...)
-	return su
+func (_u *SiteUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SiteUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *SiteUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(site.Table, site.Columns, sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt))
-	if ps := su.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := su.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(site.FieldDescription, field.TypeString, value)
 	}
-	if su.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(site.FieldDescription, field.TypeString)
 	}
-	if value, ok := su.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(site.FieldIsDefault, field.TypeBool, value)
 	}
-	if su.mutation.IsDefaultCleared() {
+	if _u.mutation.IsDefaultCleared() {
 		_spec.ClearField(site.FieldIsDefault, field.TypeBool)
 	}
-	if value, ok := su.mutation.Domain(); ok {
+	if value, ok := _u.mutation.Domain(); ok {
 		_spec.SetField(site.FieldDomain, field.TypeString, value)
 	}
-	if su.mutation.DomainCleared() {
+	if _u.mutation.DomainCleared() {
 		_spec.ClearField(site.FieldDomain, field.TypeString)
 	}
-	if value, ok := su.mutation.Created(); ok {
+	if value, ok := _u.mutation.Created(); ok {
 		_spec.SetField(site.FieldCreated, field.TypeTime, value)
 	}
-	if su.mutation.CreatedCleared() {
+	if _u.mutation.CreatedCleared() {
 		_spec.ClearField(site.FieldCreated, field.TypeTime)
 	}
-	if value, ok := su.mutation.Modified(); ok {
+	if value, ok := _u.mutation.Modified(); ok {
 		_spec.SetField(site.FieldModified, field.TypeTime, value)
 	}
-	if su.mutation.ModifiedCleared() {
+	if _u.mutation.ModifiedCleared() {
 		_spec.ClearField(site.FieldModified, field.TypeTime)
 	}
-	if su.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -320,7 +320,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -336,7 +336,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if su.mutation.AgentsCleared() {
+	if _u.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -349,7 +349,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.RemovedAgentsIDs(); len(nodes) > 0 && !su.mutation.AgentsCleared() {
+	if nodes := _u.mutation.RemovedAgentsIDs(); len(nodes) > 0 && !_u.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -365,7 +365,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.AgentsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -381,7 +381,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if su.mutation.ProfilesCleared() {
+	if _u.mutation.ProfilesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -394,7 +394,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.RemovedProfilesIDs(); len(nodes) > 0 && !su.mutation.ProfilesCleared() {
+	if nodes := _u.mutation.RemovedProfilesIDs(); len(nodes) > 0 && !_u.mutation.ProfilesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -410,7 +410,7 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.ProfilesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfilesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -426,8 +426,8 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(su.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, su.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{site.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -435,8 +435,8 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	su.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // SiteUpdateOne is the builder for updating a single Site entity.
@@ -449,221 +449,221 @@ type SiteUpdateOne struct {
 }
 
 // SetDescription sets the "description" field.
-func (suo *SiteUpdateOne) SetDescription(s string) *SiteUpdateOne {
-	suo.mutation.SetDescription(s)
-	return suo
+func (_u *SiteUpdateOne) SetDescription(v string) *SiteUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (suo *SiteUpdateOne) SetNillableDescription(s *string) *SiteUpdateOne {
-	if s != nil {
-		suo.SetDescription(*s)
+func (_u *SiteUpdateOne) SetNillableDescription(v *string) *SiteUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearDescription clears the value of the "description" field.
-func (suo *SiteUpdateOne) ClearDescription() *SiteUpdateOne {
-	suo.mutation.ClearDescription()
-	return suo
+func (_u *SiteUpdateOne) ClearDescription() *SiteUpdateOne {
+	_u.mutation.ClearDescription()
+	return _u
 }
 
 // SetIsDefault sets the "is_default" field.
-func (suo *SiteUpdateOne) SetIsDefault(b bool) *SiteUpdateOne {
-	suo.mutation.SetIsDefault(b)
-	return suo
+func (_u *SiteUpdateOne) SetIsDefault(v bool) *SiteUpdateOne {
+	_u.mutation.SetIsDefault(v)
+	return _u
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (suo *SiteUpdateOne) SetNillableIsDefault(b *bool) *SiteUpdateOne {
-	if b != nil {
-		suo.SetIsDefault(*b)
+func (_u *SiteUpdateOne) SetNillableIsDefault(v *bool) *SiteUpdateOne {
+	if v != nil {
+		_u.SetIsDefault(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearIsDefault clears the value of the "is_default" field.
-func (suo *SiteUpdateOne) ClearIsDefault() *SiteUpdateOne {
-	suo.mutation.ClearIsDefault()
-	return suo
+func (_u *SiteUpdateOne) ClearIsDefault() *SiteUpdateOne {
+	_u.mutation.ClearIsDefault()
+	return _u
 }
 
 // SetDomain sets the "domain" field.
-func (suo *SiteUpdateOne) SetDomain(s string) *SiteUpdateOne {
-	suo.mutation.SetDomain(s)
-	return suo
+func (_u *SiteUpdateOne) SetDomain(v string) *SiteUpdateOne {
+	_u.mutation.SetDomain(v)
+	return _u
 }
 
 // SetNillableDomain sets the "domain" field if the given value is not nil.
-func (suo *SiteUpdateOne) SetNillableDomain(s *string) *SiteUpdateOne {
-	if s != nil {
-		suo.SetDomain(*s)
+func (_u *SiteUpdateOne) SetNillableDomain(v *string) *SiteUpdateOne {
+	if v != nil {
+		_u.SetDomain(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearDomain clears the value of the "domain" field.
-func (suo *SiteUpdateOne) ClearDomain() *SiteUpdateOne {
-	suo.mutation.ClearDomain()
-	return suo
+func (_u *SiteUpdateOne) ClearDomain() *SiteUpdateOne {
+	_u.mutation.ClearDomain()
+	return _u
 }
 
 // SetCreated sets the "created" field.
-func (suo *SiteUpdateOne) SetCreated(t time.Time) *SiteUpdateOne {
-	suo.mutation.SetCreated(t)
-	return suo
+func (_u *SiteUpdateOne) SetCreated(v time.Time) *SiteUpdateOne {
+	_u.mutation.SetCreated(v)
+	return _u
 }
 
 // SetNillableCreated sets the "created" field if the given value is not nil.
-func (suo *SiteUpdateOne) SetNillableCreated(t *time.Time) *SiteUpdateOne {
-	if t != nil {
-		suo.SetCreated(*t)
+func (_u *SiteUpdateOne) SetNillableCreated(v *time.Time) *SiteUpdateOne {
+	if v != nil {
+		_u.SetCreated(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearCreated clears the value of the "created" field.
-func (suo *SiteUpdateOne) ClearCreated() *SiteUpdateOne {
-	suo.mutation.ClearCreated()
-	return suo
+func (_u *SiteUpdateOne) ClearCreated() *SiteUpdateOne {
+	_u.mutation.ClearCreated()
+	return _u
 }
 
 // SetModified sets the "modified" field.
-func (suo *SiteUpdateOne) SetModified(t time.Time) *SiteUpdateOne {
-	suo.mutation.SetModified(t)
-	return suo
+func (_u *SiteUpdateOne) SetModified(v time.Time) *SiteUpdateOne {
+	_u.mutation.SetModified(v)
+	return _u
 }
 
 // ClearModified clears the value of the "modified" field.
-func (suo *SiteUpdateOne) ClearModified() *SiteUpdateOne {
-	suo.mutation.ClearModified()
-	return suo
+func (_u *SiteUpdateOne) ClearModified() *SiteUpdateOne {
+	_u.mutation.ClearModified()
+	return _u
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (suo *SiteUpdateOne) SetTenantID(id int) *SiteUpdateOne {
-	suo.mutation.SetTenantID(id)
-	return suo
+func (_u *SiteUpdateOne) SetTenantID(id int) *SiteUpdateOne {
+	_u.mutation.SetTenantID(id)
+	return _u
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (suo *SiteUpdateOne) SetNillableTenantID(id *int) *SiteUpdateOne {
+func (_u *SiteUpdateOne) SetNillableTenantID(id *int) *SiteUpdateOne {
 	if id != nil {
-		suo = suo.SetTenantID(*id)
+		_u = _u.SetTenantID(*id)
 	}
-	return suo
+	return _u
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (suo *SiteUpdateOne) SetTenant(t *Tenant) *SiteUpdateOne {
-	return suo.SetTenantID(t.ID)
+func (_u *SiteUpdateOne) SetTenant(v *Tenant) *SiteUpdateOne {
+	return _u.SetTenantID(v.ID)
 }
 
 // AddAgentIDs adds the "agents" edge to the Agent entity by IDs.
-func (suo *SiteUpdateOne) AddAgentIDs(ids ...string) *SiteUpdateOne {
-	suo.mutation.AddAgentIDs(ids...)
-	return suo
+func (_u *SiteUpdateOne) AddAgentIDs(ids ...string) *SiteUpdateOne {
+	_u.mutation.AddAgentIDs(ids...)
+	return _u
 }
 
 // AddAgents adds the "agents" edges to the Agent entity.
-func (suo *SiteUpdateOne) AddAgents(a ...*Agent) *SiteUpdateOne {
-	ids := make([]string, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *SiteUpdateOne) AddAgents(v ...*Agent) *SiteUpdateOne {
+	ids := make([]string, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return suo.AddAgentIDs(ids...)
+	return _u.AddAgentIDs(ids...)
 }
 
 // AddProfileIDs adds the "profiles" edge to the Profile entity by IDs.
-func (suo *SiteUpdateOne) AddProfileIDs(ids ...int) *SiteUpdateOne {
-	suo.mutation.AddProfileIDs(ids...)
-	return suo
+func (_u *SiteUpdateOne) AddProfileIDs(ids ...int) *SiteUpdateOne {
+	_u.mutation.AddProfileIDs(ids...)
+	return _u
 }
 
 // AddProfiles adds the "profiles" edges to the Profile entity.
-func (suo *SiteUpdateOne) AddProfiles(p ...*Profile) *SiteUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *SiteUpdateOne) AddProfiles(v ...*Profile) *SiteUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return suo.AddProfileIDs(ids...)
+	return _u.AddProfileIDs(ids...)
 }
 
 // Mutation returns the SiteMutation object of the builder.
-func (suo *SiteUpdateOne) Mutation() *SiteMutation {
-	return suo.mutation
+func (_u *SiteUpdateOne) Mutation() *SiteMutation {
+	return _u.mutation
 }
 
 // ClearTenant clears the "tenant" edge to the Tenant entity.
-func (suo *SiteUpdateOne) ClearTenant() *SiteUpdateOne {
-	suo.mutation.ClearTenant()
-	return suo
+func (_u *SiteUpdateOne) ClearTenant() *SiteUpdateOne {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // ClearAgents clears all "agents" edges to the Agent entity.
-func (suo *SiteUpdateOne) ClearAgents() *SiteUpdateOne {
-	suo.mutation.ClearAgents()
-	return suo
+func (_u *SiteUpdateOne) ClearAgents() *SiteUpdateOne {
+	_u.mutation.ClearAgents()
+	return _u
 }
 
 // RemoveAgentIDs removes the "agents" edge to Agent entities by IDs.
-func (suo *SiteUpdateOne) RemoveAgentIDs(ids ...string) *SiteUpdateOne {
-	suo.mutation.RemoveAgentIDs(ids...)
-	return suo
+func (_u *SiteUpdateOne) RemoveAgentIDs(ids ...string) *SiteUpdateOne {
+	_u.mutation.RemoveAgentIDs(ids...)
+	return _u
 }
 
 // RemoveAgents removes "agents" edges to Agent entities.
-func (suo *SiteUpdateOne) RemoveAgents(a ...*Agent) *SiteUpdateOne {
-	ids := make([]string, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_u *SiteUpdateOne) RemoveAgents(v ...*Agent) *SiteUpdateOne {
+	ids := make([]string, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return suo.RemoveAgentIDs(ids...)
+	return _u.RemoveAgentIDs(ids...)
 }
 
 // ClearProfiles clears all "profiles" edges to the Profile entity.
-func (suo *SiteUpdateOne) ClearProfiles() *SiteUpdateOne {
-	suo.mutation.ClearProfiles()
-	return suo
+func (_u *SiteUpdateOne) ClearProfiles() *SiteUpdateOne {
+	_u.mutation.ClearProfiles()
+	return _u
 }
 
 // RemoveProfileIDs removes the "profiles" edge to Profile entities by IDs.
-func (suo *SiteUpdateOne) RemoveProfileIDs(ids ...int) *SiteUpdateOne {
-	suo.mutation.RemoveProfileIDs(ids...)
-	return suo
+func (_u *SiteUpdateOne) RemoveProfileIDs(ids ...int) *SiteUpdateOne {
+	_u.mutation.RemoveProfileIDs(ids...)
+	return _u
 }
 
 // RemoveProfiles removes "profiles" edges to Profile entities.
-func (suo *SiteUpdateOne) RemoveProfiles(p ...*Profile) *SiteUpdateOne {
-	ids := make([]int, len(p))
-	for i := range p {
-		ids[i] = p[i].ID
+func (_u *SiteUpdateOne) RemoveProfiles(v ...*Profile) *SiteUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return suo.RemoveProfileIDs(ids...)
+	return _u.RemoveProfileIDs(ids...)
 }
 
 // Where appends a list predicates to the SiteUpdate builder.
-func (suo *SiteUpdateOne) Where(ps ...predicate.Site) *SiteUpdateOne {
-	suo.mutation.Where(ps...)
-	return suo
+func (_u *SiteUpdateOne) Where(ps ...predicate.Site) *SiteUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (suo *SiteUpdateOne) Select(field string, fields ...string) *SiteUpdateOne {
-	suo.fields = append([]string{field}, fields...)
-	return suo
+func (_u *SiteUpdateOne) Select(field string, fields ...string) *SiteUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Site entity.
-func (suo *SiteUpdateOne) Save(ctx context.Context) (*Site, error) {
-	suo.defaults()
-	return withHooks(ctx, suo.sqlSave, suo.mutation, suo.hooks)
+func (_u *SiteUpdateOne) Save(ctx context.Context) (*Site, error) {
+	_u.defaults()
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (suo *SiteUpdateOne) SaveX(ctx context.Context) *Site {
-	node, err := suo.Save(ctx)
+func (_u *SiteUpdateOne) SaveX(ctx context.Context) *Site {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -671,40 +671,40 @@ func (suo *SiteUpdateOne) SaveX(ctx context.Context) *Site {
 }
 
 // Exec executes the query on the entity.
-func (suo *SiteUpdateOne) Exec(ctx context.Context) error {
-	_, err := suo.Save(ctx)
+func (_u *SiteUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suo *SiteUpdateOne) ExecX(ctx context.Context) {
-	if err := suo.Exec(ctx); err != nil {
+func (_u *SiteUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (suo *SiteUpdateOne) defaults() {
-	if _, ok := suo.mutation.Modified(); !ok && !suo.mutation.ModifiedCleared() {
+func (_u *SiteUpdateOne) defaults() {
+	if _, ok := _u.mutation.Modified(); !ok && !_u.mutation.ModifiedCleared() {
 		v := site.UpdateDefaultModified()
-		suo.mutation.SetModified(v)
+		_u.mutation.SetModified(v)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (suo *SiteUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SiteUpdateOne {
-	suo.modifiers = append(suo.modifiers, modifiers...)
-	return suo
+func (_u *SiteUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SiteUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) {
+func (_u *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) {
 	_spec := sqlgraph.NewUpdateSpec(site.Table, site.Columns, sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt))
-	id, ok := suo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Site.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := suo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, site.FieldID)
 		for _, f := range fields {
@@ -716,44 +716,44 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 			}
 		}
 	}
-	if ps := suo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := suo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(site.FieldDescription, field.TypeString, value)
 	}
-	if suo.mutation.DescriptionCleared() {
+	if _u.mutation.DescriptionCleared() {
 		_spec.ClearField(site.FieldDescription, field.TypeString)
 	}
-	if value, ok := suo.mutation.IsDefault(); ok {
+	if value, ok := _u.mutation.IsDefault(); ok {
 		_spec.SetField(site.FieldIsDefault, field.TypeBool, value)
 	}
-	if suo.mutation.IsDefaultCleared() {
+	if _u.mutation.IsDefaultCleared() {
 		_spec.ClearField(site.FieldIsDefault, field.TypeBool)
 	}
-	if value, ok := suo.mutation.Domain(); ok {
+	if value, ok := _u.mutation.Domain(); ok {
 		_spec.SetField(site.FieldDomain, field.TypeString, value)
 	}
-	if suo.mutation.DomainCleared() {
+	if _u.mutation.DomainCleared() {
 		_spec.ClearField(site.FieldDomain, field.TypeString)
 	}
-	if value, ok := suo.mutation.Created(); ok {
+	if value, ok := _u.mutation.Created(); ok {
 		_spec.SetField(site.FieldCreated, field.TypeTime, value)
 	}
-	if suo.mutation.CreatedCleared() {
+	if _u.mutation.CreatedCleared() {
 		_spec.ClearField(site.FieldCreated, field.TypeTime)
 	}
-	if value, ok := suo.mutation.Modified(); ok {
+	if value, ok := _u.mutation.Modified(); ok {
 		_spec.SetField(site.FieldModified, field.TypeTime, value)
 	}
-	if suo.mutation.ModifiedCleared() {
+	if _u.mutation.ModifiedCleared() {
 		_spec.ClearField(site.FieldModified, field.TypeTime)
 	}
-	if suo.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -766,7 +766,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -782,7 +782,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if suo.mutation.AgentsCleared() {
+	if _u.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -795,7 +795,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.RemovedAgentsIDs(); len(nodes) > 0 && !suo.mutation.AgentsCleared() {
+	if nodes := _u.mutation.RemovedAgentsIDs(); len(nodes) > 0 && !_u.mutation.AgentsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -811,7 +811,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.AgentsIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -827,7 +827,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if suo.mutation.ProfilesCleared() {
+	if _u.mutation.ProfilesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -840,7 +840,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.RemovedProfilesIDs(); len(nodes) > 0 && !suo.mutation.ProfilesCleared() {
+	if nodes := _u.mutation.RemovedProfilesIDs(); len(nodes) > 0 && !_u.mutation.ProfilesCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -856,7 +856,7 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.ProfilesIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfilesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -872,11 +872,11 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(suo.modifiers...)
-	_node = &Site{config: suo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Site{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, suo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{site.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -884,6 +884,6 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 		}
 		return nil, err
 	}
-	suo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

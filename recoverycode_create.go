@@ -23,58 +23,58 @@ type RecoveryCodeCreate struct {
 }
 
 // SetCode sets the "code" field.
-func (rcc *RecoveryCodeCreate) SetCode(s string) *RecoveryCodeCreate {
-	rcc.mutation.SetCode(s)
-	return rcc
+func (_c *RecoveryCodeCreate) SetCode(v string) *RecoveryCodeCreate {
+	_c.mutation.SetCode(v)
+	return _c
 }
 
 // SetUsed sets the "used" field.
-func (rcc *RecoveryCodeCreate) SetUsed(b bool) *RecoveryCodeCreate {
-	rcc.mutation.SetUsed(b)
-	return rcc
+func (_c *RecoveryCodeCreate) SetUsed(v bool) *RecoveryCodeCreate {
+	_c.mutation.SetUsed(v)
+	return _c
 }
 
 // SetNillableUsed sets the "used" field if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUsed(b *bool) *RecoveryCodeCreate {
-	if b != nil {
-		rcc.SetUsed(*b)
+func (_c *RecoveryCodeCreate) SetNillableUsed(v *bool) *RecoveryCodeCreate {
+	if v != nil {
+		_c.SetUsed(*v)
 	}
-	return rcc
+	return _c
 }
 
 // SetUserID sets the "user" edge to the User entity by ID.
-func (rcc *RecoveryCodeCreate) SetUserID(id string) *RecoveryCodeCreate {
-	rcc.mutation.SetUserID(id)
-	return rcc
+func (_c *RecoveryCodeCreate) SetUserID(id string) *RecoveryCodeCreate {
+	_c.mutation.SetUserID(id)
+	return _c
 }
 
 // SetNillableUserID sets the "user" edge to the User entity by ID if the given value is not nil.
-func (rcc *RecoveryCodeCreate) SetNillableUserID(id *string) *RecoveryCodeCreate {
+func (_c *RecoveryCodeCreate) SetNillableUserID(id *string) *RecoveryCodeCreate {
 	if id != nil {
-		rcc = rcc.SetUserID(*id)
+		_c = _c.SetUserID(*id)
 	}
-	return rcc
+	return _c
 }
 
 // SetUser sets the "user" edge to the User entity.
-func (rcc *RecoveryCodeCreate) SetUser(u *User) *RecoveryCodeCreate {
-	return rcc.SetUserID(u.ID)
+func (_c *RecoveryCodeCreate) SetUser(v *User) *RecoveryCodeCreate {
+	return _c.SetUserID(v.ID)
 }
 
 // Mutation returns the RecoveryCodeMutation object of the builder.
-func (rcc *RecoveryCodeCreate) Mutation() *RecoveryCodeMutation {
-	return rcc.mutation
+func (_c *RecoveryCodeCreate) Mutation() *RecoveryCodeMutation {
+	return _c.mutation
 }
 
 // Save creates the RecoveryCode in the database.
-func (rcc *RecoveryCodeCreate) Save(ctx context.Context) (*RecoveryCode, error) {
-	rcc.defaults()
-	return withHooks(ctx, rcc.sqlSave, rcc.mutation, rcc.hooks)
+func (_c *RecoveryCodeCreate) Save(ctx context.Context) (*RecoveryCode, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (rcc *RecoveryCodeCreate) SaveX(ctx context.Context) *RecoveryCode {
-	v, err := rcc.Save(ctx)
+func (_c *RecoveryCodeCreate) SaveX(ctx context.Context) *RecoveryCode {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -82,48 +82,48 @@ func (rcc *RecoveryCodeCreate) SaveX(ctx context.Context) *RecoveryCode {
 }
 
 // Exec executes the query.
-func (rcc *RecoveryCodeCreate) Exec(ctx context.Context) error {
-	_, err := rcc.Save(ctx)
+func (_c *RecoveryCodeCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcc *RecoveryCodeCreate) ExecX(ctx context.Context) {
-	if err := rcc.Exec(ctx); err != nil {
+func (_c *RecoveryCodeCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (rcc *RecoveryCodeCreate) defaults() {
-	if _, ok := rcc.mutation.Used(); !ok {
+func (_c *RecoveryCodeCreate) defaults() {
+	if _, ok := _c.mutation.Used(); !ok {
 		v := recoverycode.DefaultUsed
-		rcc.mutation.SetUsed(v)
+		_c.mutation.SetUsed(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rcc *RecoveryCodeCreate) check() error {
-	if _, ok := rcc.mutation.Code(); !ok {
+func (_c *RecoveryCodeCreate) check() error {
+	if _, ok := _c.mutation.Code(); !ok {
 		return &ValidationError{Name: "code", err: errors.New(`ent: missing required field "RecoveryCode.code"`)}
 	}
-	if v, ok := rcc.mutation.Code(); ok {
+	if v, ok := _c.mutation.Code(); ok {
 		if err := recoverycode.CodeValidator(v); err != nil {
 			return &ValidationError{Name: "code", err: fmt.Errorf(`ent: validator failed for field "RecoveryCode.code": %w`, err)}
 		}
 	}
-	if _, ok := rcc.mutation.Used(); !ok {
+	if _, ok := _c.mutation.Used(); !ok {
 		return &ValidationError{Name: "used", err: errors.New(`ent: missing required field "RecoveryCode.used"`)}
 	}
 	return nil
 }
 
-func (rcc *RecoveryCodeCreate) sqlSave(ctx context.Context) (*RecoveryCode, error) {
-	if err := rcc.check(); err != nil {
+func (_c *RecoveryCodeCreate) sqlSave(ctx context.Context) (*RecoveryCode, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := rcc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, rcc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -131,26 +131,26 @@ func (rcc *RecoveryCodeCreate) sqlSave(ctx context.Context) (*RecoveryCode, erro
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	rcc.mutation.id = &_node.ID
-	rcc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (rcc *RecoveryCodeCreate) createSpec() (*RecoveryCode, *sqlgraph.CreateSpec) {
+func (_c *RecoveryCodeCreate) createSpec() (*RecoveryCode, *sqlgraph.CreateSpec) {
 	var (
-		_node = &RecoveryCode{config: rcc.config}
+		_node = &RecoveryCode{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(recoverycode.Table, sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = rcc.conflict
-	if value, ok := rcc.mutation.Code(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Code(); ok {
 		_spec.SetField(recoverycode.FieldCode, field.TypeString, value)
 		_node.Code = value
 	}
-	if value, ok := rcc.mutation.Used(); ok {
+	if value, ok := _c.mutation.Used(); ok {
 		_spec.SetField(recoverycode.FieldUsed, field.TypeBool, value)
 		_node.Used = value
 	}
-	if nodes := rcc.mutation.UserIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.UserIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -186,10 +186,10 @@ func (rcc *RecoveryCodeCreate) createSpec() (*RecoveryCode, *sqlgraph.CreateSpec
 //			SetCode(v+v).
 //		}).
 //		Exec(ctx)
-func (rcc *RecoveryCodeCreate) OnConflict(opts ...sql.ConflictOption) *RecoveryCodeUpsertOne {
-	rcc.conflict = opts
+func (_c *RecoveryCodeCreate) OnConflict(opts ...sql.ConflictOption) *RecoveryCodeUpsertOne {
+	_c.conflict = opts
 	return &RecoveryCodeUpsertOne{
-		create: rcc,
+		create: _c,
 	}
 }
 
@@ -199,10 +199,10 @@ func (rcc *RecoveryCodeCreate) OnConflict(opts ...sql.ConflictOption) *RecoveryC
 //	client.RecoveryCode.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rcc *RecoveryCodeCreate) OnConflictColumns(columns ...string) *RecoveryCodeUpsertOne {
-	rcc.conflict = append(rcc.conflict, sql.ConflictColumns(columns...))
+func (_c *RecoveryCodeCreate) OnConflictColumns(columns ...string) *RecoveryCodeUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RecoveryCodeUpsertOne{
-		create: rcc,
+		create: _c,
 	}
 }
 
@@ -353,16 +353,16 @@ type RecoveryCodeCreateBulk struct {
 }
 
 // Save creates the RecoveryCode entities in the database.
-func (rccb *RecoveryCodeCreateBulk) Save(ctx context.Context) ([]*RecoveryCode, error) {
-	if rccb.err != nil {
-		return nil, rccb.err
+func (_c *RecoveryCodeCreateBulk) Save(ctx context.Context) ([]*RecoveryCode, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(rccb.builders))
-	nodes := make([]*RecoveryCode, len(rccb.builders))
-	mutators := make([]Mutator, len(rccb.builders))
-	for i := range rccb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*RecoveryCode, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := rccb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*RecoveryCodeMutation)
@@ -376,12 +376,12 @@ func (rccb *RecoveryCodeCreateBulk) Save(ctx context.Context) ([]*RecoveryCode, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, rccb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = rccb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, rccb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -405,7 +405,7 @@ func (rccb *RecoveryCodeCreateBulk) Save(ctx context.Context) ([]*RecoveryCode, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, rccb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -413,8 +413,8 @@ func (rccb *RecoveryCodeCreateBulk) Save(ctx context.Context) ([]*RecoveryCode, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rccb *RecoveryCodeCreateBulk) SaveX(ctx context.Context) []*RecoveryCode {
-	v, err := rccb.Save(ctx)
+func (_c *RecoveryCodeCreateBulk) SaveX(ctx context.Context) []*RecoveryCode {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -422,14 +422,14 @@ func (rccb *RecoveryCodeCreateBulk) SaveX(ctx context.Context) []*RecoveryCode {
 }
 
 // Exec executes the query.
-func (rccb *RecoveryCodeCreateBulk) Exec(ctx context.Context) error {
-	_, err := rccb.Save(ctx)
+func (_c *RecoveryCodeCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rccb *RecoveryCodeCreateBulk) ExecX(ctx context.Context) {
-	if err := rccb.Exec(ctx); err != nil {
+func (_c *RecoveryCodeCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -449,10 +449,10 @@ func (rccb *RecoveryCodeCreateBulk) ExecX(ctx context.Context) {
 //			SetCode(v+v).
 //		}).
 //		Exec(ctx)
-func (rccb *RecoveryCodeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RecoveryCodeUpsertBulk {
-	rccb.conflict = opts
+func (_c *RecoveryCodeCreateBulk) OnConflict(opts ...sql.ConflictOption) *RecoveryCodeUpsertBulk {
+	_c.conflict = opts
 	return &RecoveryCodeUpsertBulk{
-		create: rccb,
+		create: _c,
 	}
 }
 
@@ -462,10 +462,10 @@ func (rccb *RecoveryCodeCreateBulk) OnConflict(opts ...sql.ConflictOption) *Reco
 //	client.RecoveryCode.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rccb *RecoveryCodeCreateBulk) OnConflictColumns(columns ...string) *RecoveryCodeUpsertBulk {
-	rccb.conflict = append(rccb.conflict, sql.ConflictColumns(columns...))
+func (_c *RecoveryCodeCreateBulk) OnConflictColumns(columns ...string) *RecoveryCodeUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &RecoveryCodeUpsertBulk{
-		create: rccb,
+		create: _c,
 	}
 }
 

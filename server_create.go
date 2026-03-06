@@ -23,174 +23,174 @@ type ServerCreate struct {
 }
 
 // SetHostname sets the "hostname" field.
-func (sc *ServerCreate) SetHostname(s string) *ServerCreate {
-	sc.mutation.SetHostname(s)
-	return sc
+func (_c *ServerCreate) SetHostname(v string) *ServerCreate {
+	_c.mutation.SetHostname(v)
+	return _c
 }
 
 // SetArch sets the "arch" field.
-func (sc *ServerCreate) SetArch(s string) *ServerCreate {
-	sc.mutation.SetArch(s)
-	return sc
+func (_c *ServerCreate) SetArch(v string) *ServerCreate {
+	_c.mutation.SetArch(v)
+	return _c
 }
 
 // SetOs sets the "os" field.
-func (sc *ServerCreate) SetOs(s string) *ServerCreate {
-	sc.mutation.SetOs(s)
-	return sc
+func (_c *ServerCreate) SetOs(v string) *ServerCreate {
+	_c.mutation.SetOs(v)
+	return _c
 }
 
 // SetVersion sets the "version" field.
-func (sc *ServerCreate) SetVersion(s string) *ServerCreate {
-	sc.mutation.SetVersion(s)
-	return sc
+func (_c *ServerCreate) SetVersion(v string) *ServerCreate {
+	_c.mutation.SetVersion(v)
+	return _c
 }
 
 // SetChannel sets the "channel" field.
-func (sc *ServerCreate) SetChannel(s server.Channel) *ServerCreate {
-	sc.mutation.SetChannel(s)
-	return sc
+func (_c *ServerCreate) SetChannel(v server.Channel) *ServerCreate {
+	_c.mutation.SetChannel(v)
+	return _c
 }
 
 // SetUpdateStatus sets the "update_status" field.
-func (sc *ServerCreate) SetUpdateStatus(ss server.UpdateStatus) *ServerCreate {
-	sc.mutation.SetUpdateStatus(ss)
-	return sc
+func (_c *ServerCreate) SetUpdateStatus(v server.UpdateStatus) *ServerCreate {
+	_c.mutation.SetUpdateStatus(v)
+	return _c
 }
 
 // SetNillableUpdateStatus sets the "update_status" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableUpdateStatus(ss *server.UpdateStatus) *ServerCreate {
-	if ss != nil {
-		sc.SetUpdateStatus(*ss)
+func (_c *ServerCreate) SetNillableUpdateStatus(v *server.UpdateStatus) *ServerCreate {
+	if v != nil {
+		_c.SetUpdateStatus(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUpdateMessage sets the "update_message" field.
-func (sc *ServerCreate) SetUpdateMessage(s string) *ServerCreate {
-	sc.mutation.SetUpdateMessage(s)
-	return sc
+func (_c *ServerCreate) SetUpdateMessage(v string) *ServerCreate {
+	_c.mutation.SetUpdateMessage(v)
+	return _c
 }
 
 // SetNillableUpdateMessage sets the "update_message" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableUpdateMessage(s *string) *ServerCreate {
-	if s != nil {
-		sc.SetUpdateMessage(*s)
+func (_c *ServerCreate) SetNillableUpdateMessage(v *string) *ServerCreate {
+	if v != nil {
+		_c.SetUpdateMessage(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUpdateWhen sets the "update_when" field.
-func (sc *ServerCreate) SetUpdateWhen(t time.Time) *ServerCreate {
-	sc.mutation.SetUpdateWhen(t)
-	return sc
+func (_c *ServerCreate) SetUpdateWhen(v time.Time) *ServerCreate {
+	_c.mutation.SetUpdateWhen(v)
+	return _c
 }
 
 // SetNillableUpdateWhen sets the "update_when" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableUpdateWhen(t *time.Time) *ServerCreate {
-	if t != nil {
-		sc.SetUpdateWhen(*t)
+func (_c *ServerCreate) SetNillableUpdateWhen(v *time.Time) *ServerCreate {
+	if v != nil {
+		_c.SetUpdateWhen(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetNatsComponent sets the "nats_component" field.
-func (sc *ServerCreate) SetNatsComponent(b bool) *ServerCreate {
-	sc.mutation.SetNatsComponent(b)
-	return sc
+func (_c *ServerCreate) SetNatsComponent(v bool) *ServerCreate {
+	_c.mutation.SetNatsComponent(v)
+	return _c
 }
 
 // SetNillableNatsComponent sets the "nats_component" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableNatsComponent(b *bool) *ServerCreate {
-	if b != nil {
-		sc.SetNatsComponent(*b)
+func (_c *ServerCreate) SetNillableNatsComponent(v *bool) *ServerCreate {
+	if v != nil {
+		_c.SetNatsComponent(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetOcspComponent sets the "ocsp_component" field.
-func (sc *ServerCreate) SetOcspComponent(b bool) *ServerCreate {
-	sc.mutation.SetOcspComponent(b)
-	return sc
+func (_c *ServerCreate) SetOcspComponent(v bool) *ServerCreate {
+	_c.mutation.SetOcspComponent(v)
+	return _c
 }
 
 // SetNillableOcspComponent sets the "ocsp_component" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableOcspComponent(b *bool) *ServerCreate {
-	if b != nil {
-		sc.SetOcspComponent(*b)
+func (_c *ServerCreate) SetNillableOcspComponent(v *bool) *ServerCreate {
+	if v != nil {
+		_c.SetOcspComponent(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetConsoleComponent sets the "console_component" field.
-func (sc *ServerCreate) SetConsoleComponent(b bool) *ServerCreate {
-	sc.mutation.SetConsoleComponent(b)
-	return sc
+func (_c *ServerCreate) SetConsoleComponent(v bool) *ServerCreate {
+	_c.mutation.SetConsoleComponent(v)
+	return _c
 }
 
 // SetNillableConsoleComponent sets the "console_component" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableConsoleComponent(b *bool) *ServerCreate {
-	if b != nil {
-		sc.SetConsoleComponent(*b)
+func (_c *ServerCreate) SetNillableConsoleComponent(v *bool) *ServerCreate {
+	if v != nil {
+		_c.SetConsoleComponent(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetAgentWorkerComponent sets the "agent_worker_component" field.
-func (sc *ServerCreate) SetAgentWorkerComponent(b bool) *ServerCreate {
-	sc.mutation.SetAgentWorkerComponent(b)
-	return sc
+func (_c *ServerCreate) SetAgentWorkerComponent(v bool) *ServerCreate {
+	_c.mutation.SetAgentWorkerComponent(v)
+	return _c
 }
 
 // SetNillableAgentWorkerComponent sets the "agent_worker_component" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableAgentWorkerComponent(b *bool) *ServerCreate {
-	if b != nil {
-		sc.SetAgentWorkerComponent(*b)
+func (_c *ServerCreate) SetNillableAgentWorkerComponent(v *bool) *ServerCreate {
+	if v != nil {
+		_c.SetAgentWorkerComponent(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetNotificationWorkerComponent sets the "notification_worker_component" field.
-func (sc *ServerCreate) SetNotificationWorkerComponent(b bool) *ServerCreate {
-	sc.mutation.SetNotificationWorkerComponent(b)
-	return sc
+func (_c *ServerCreate) SetNotificationWorkerComponent(v bool) *ServerCreate {
+	_c.mutation.SetNotificationWorkerComponent(v)
+	return _c
 }
 
 // SetNillableNotificationWorkerComponent sets the "notification_worker_component" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableNotificationWorkerComponent(b *bool) *ServerCreate {
-	if b != nil {
-		sc.SetNotificationWorkerComponent(*b)
+func (_c *ServerCreate) SetNillableNotificationWorkerComponent(v *bool) *ServerCreate {
+	if v != nil {
+		_c.SetNotificationWorkerComponent(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetCertManagerWorkerComponent sets the "cert_manager_worker_component" field.
-func (sc *ServerCreate) SetCertManagerWorkerComponent(b bool) *ServerCreate {
-	sc.mutation.SetCertManagerWorkerComponent(b)
-	return sc
+func (_c *ServerCreate) SetCertManagerWorkerComponent(v bool) *ServerCreate {
+	_c.mutation.SetCertManagerWorkerComponent(v)
+	return _c
 }
 
 // SetNillableCertManagerWorkerComponent sets the "cert_manager_worker_component" field if the given value is not nil.
-func (sc *ServerCreate) SetNillableCertManagerWorkerComponent(b *bool) *ServerCreate {
-	if b != nil {
-		sc.SetCertManagerWorkerComponent(*b)
+func (_c *ServerCreate) SetNillableCertManagerWorkerComponent(v *bool) *ServerCreate {
+	if v != nil {
+		_c.SetCertManagerWorkerComponent(*v)
 	}
-	return sc
+	return _c
 }
 
 // Mutation returns the ServerMutation object of the builder.
-func (sc *ServerCreate) Mutation() *ServerMutation {
-	return sc.mutation
+func (_c *ServerCreate) Mutation() *ServerMutation {
+	return _c.mutation
 }
 
 // Save creates the Server in the database.
-func (sc *ServerCreate) Save(ctx context.Context) (*Server, error) {
-	return withHooks(ctx, sc.sqlSave, sc.mutation, sc.hooks)
+func (_c *ServerCreate) Save(ctx context.Context) (*Server, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (sc *ServerCreate) SaveX(ctx context.Context) *Server {
-	v, err := sc.Save(ctx)
+func (_c *ServerCreate) SaveX(ctx context.Context) *Server {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -198,41 +198,41 @@ func (sc *ServerCreate) SaveX(ctx context.Context) *Server {
 }
 
 // Exec executes the query.
-func (sc *ServerCreate) Exec(ctx context.Context) error {
-	_, err := sc.Save(ctx)
+func (_c *ServerCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (sc *ServerCreate) ExecX(ctx context.Context) {
-	if err := sc.Exec(ctx); err != nil {
+func (_c *ServerCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (sc *ServerCreate) check() error {
-	if _, ok := sc.mutation.Hostname(); !ok {
+func (_c *ServerCreate) check() error {
+	if _, ok := _c.mutation.Hostname(); !ok {
 		return &ValidationError{Name: "hostname", err: errors.New(`ent: missing required field "Server.hostname"`)}
 	}
-	if _, ok := sc.mutation.Arch(); !ok {
+	if _, ok := _c.mutation.Arch(); !ok {
 		return &ValidationError{Name: "arch", err: errors.New(`ent: missing required field "Server.arch"`)}
 	}
-	if _, ok := sc.mutation.Os(); !ok {
+	if _, ok := _c.mutation.Os(); !ok {
 		return &ValidationError{Name: "os", err: errors.New(`ent: missing required field "Server.os"`)}
 	}
-	if _, ok := sc.mutation.Version(); !ok {
+	if _, ok := _c.mutation.Version(); !ok {
 		return &ValidationError{Name: "version", err: errors.New(`ent: missing required field "Server.version"`)}
 	}
-	if _, ok := sc.mutation.Channel(); !ok {
+	if _, ok := _c.mutation.Channel(); !ok {
 		return &ValidationError{Name: "channel", err: errors.New(`ent: missing required field "Server.channel"`)}
 	}
-	if v, ok := sc.mutation.Channel(); ok {
+	if v, ok := _c.mutation.Channel(); ok {
 		if err := server.ChannelValidator(v); err != nil {
 			return &ValidationError{Name: "channel", err: fmt.Errorf(`ent: validator failed for field "Server.channel": %w`, err)}
 		}
 	}
-	if v, ok := sc.mutation.UpdateStatus(); ok {
+	if v, ok := _c.mutation.UpdateStatus(); ok {
 		if err := server.UpdateStatusValidator(v); err != nil {
 			return &ValidationError{Name: "update_status", err: fmt.Errorf(`ent: validator failed for field "Server.update_status": %w`, err)}
 		}
@@ -240,12 +240,12 @@ func (sc *ServerCreate) check() error {
 	return nil
 }
 
-func (sc *ServerCreate) sqlSave(ctx context.Context) (*Server, error) {
-	if err := sc.check(); err != nil {
+func (_c *ServerCreate) sqlSave(ctx context.Context) (*Server, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := sc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, sc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -253,70 +253,70 @@ func (sc *ServerCreate) sqlSave(ctx context.Context) (*Server, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	sc.mutation.id = &_node.ID
-	sc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (sc *ServerCreate) createSpec() (*Server, *sqlgraph.CreateSpec) {
+func (_c *ServerCreate) createSpec() (*Server, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Server{config: sc.config}
+		_node = &Server{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(server.Table, sqlgraph.NewFieldSpec(server.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = sc.conflict
-	if value, ok := sc.mutation.Hostname(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Hostname(); ok {
 		_spec.SetField(server.FieldHostname, field.TypeString, value)
 		_node.Hostname = value
 	}
-	if value, ok := sc.mutation.Arch(); ok {
+	if value, ok := _c.mutation.Arch(); ok {
 		_spec.SetField(server.FieldArch, field.TypeString, value)
 		_node.Arch = value
 	}
-	if value, ok := sc.mutation.Os(); ok {
+	if value, ok := _c.mutation.Os(); ok {
 		_spec.SetField(server.FieldOs, field.TypeString, value)
 		_node.Os = value
 	}
-	if value, ok := sc.mutation.Version(); ok {
+	if value, ok := _c.mutation.Version(); ok {
 		_spec.SetField(server.FieldVersion, field.TypeString, value)
 		_node.Version = value
 	}
-	if value, ok := sc.mutation.Channel(); ok {
+	if value, ok := _c.mutation.Channel(); ok {
 		_spec.SetField(server.FieldChannel, field.TypeEnum, value)
 		_node.Channel = value
 	}
-	if value, ok := sc.mutation.UpdateStatus(); ok {
+	if value, ok := _c.mutation.UpdateStatus(); ok {
 		_spec.SetField(server.FieldUpdateStatus, field.TypeEnum, value)
 		_node.UpdateStatus = value
 	}
-	if value, ok := sc.mutation.UpdateMessage(); ok {
+	if value, ok := _c.mutation.UpdateMessage(); ok {
 		_spec.SetField(server.FieldUpdateMessage, field.TypeString, value)
 		_node.UpdateMessage = value
 	}
-	if value, ok := sc.mutation.UpdateWhen(); ok {
+	if value, ok := _c.mutation.UpdateWhen(); ok {
 		_spec.SetField(server.FieldUpdateWhen, field.TypeTime, value)
 		_node.UpdateWhen = value
 	}
-	if value, ok := sc.mutation.NatsComponent(); ok {
+	if value, ok := _c.mutation.NatsComponent(); ok {
 		_spec.SetField(server.FieldNatsComponent, field.TypeBool, value)
 		_node.NatsComponent = value
 	}
-	if value, ok := sc.mutation.OcspComponent(); ok {
+	if value, ok := _c.mutation.OcspComponent(); ok {
 		_spec.SetField(server.FieldOcspComponent, field.TypeBool, value)
 		_node.OcspComponent = value
 	}
-	if value, ok := sc.mutation.ConsoleComponent(); ok {
+	if value, ok := _c.mutation.ConsoleComponent(); ok {
 		_spec.SetField(server.FieldConsoleComponent, field.TypeBool, value)
 		_node.ConsoleComponent = value
 	}
-	if value, ok := sc.mutation.AgentWorkerComponent(); ok {
+	if value, ok := _c.mutation.AgentWorkerComponent(); ok {
 		_spec.SetField(server.FieldAgentWorkerComponent, field.TypeBool, value)
 		_node.AgentWorkerComponent = value
 	}
-	if value, ok := sc.mutation.NotificationWorkerComponent(); ok {
+	if value, ok := _c.mutation.NotificationWorkerComponent(); ok {
 		_spec.SetField(server.FieldNotificationWorkerComponent, field.TypeBool, value)
 		_node.NotificationWorkerComponent = value
 	}
-	if value, ok := sc.mutation.CertManagerWorkerComponent(); ok {
+	if value, ok := _c.mutation.CertManagerWorkerComponent(); ok {
 		_spec.SetField(server.FieldCertManagerWorkerComponent, field.TypeBool, value)
 		_node.CertManagerWorkerComponent = value
 	}
@@ -339,10 +339,10 @@ func (sc *ServerCreate) createSpec() (*Server, *sqlgraph.CreateSpec) {
 //			SetHostname(v+v).
 //		}).
 //		Exec(ctx)
-func (sc *ServerCreate) OnConflict(opts ...sql.ConflictOption) *ServerUpsertOne {
-	sc.conflict = opts
+func (_c *ServerCreate) OnConflict(opts ...sql.ConflictOption) *ServerUpsertOne {
+	_c.conflict = opts
 	return &ServerUpsertOne{
-		create: sc,
+		create: _c,
 	}
 }
 
@@ -352,10 +352,10 @@ func (sc *ServerCreate) OnConflict(opts ...sql.ConflictOption) *ServerUpsertOne 
 //	client.Server.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (sc *ServerCreate) OnConflictColumns(columns ...string) *ServerUpsertOne {
-	sc.conflict = append(sc.conflict, sql.ConflictColumns(columns...))
+func (_c *ServerCreate) OnConflictColumns(columns ...string) *ServerUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ServerUpsertOne{
-		create: sc,
+		create: _c,
 	}
 }
 
@@ -935,16 +935,16 @@ type ServerCreateBulk struct {
 }
 
 // Save creates the Server entities in the database.
-func (scb *ServerCreateBulk) Save(ctx context.Context) ([]*Server, error) {
-	if scb.err != nil {
-		return nil, scb.err
+func (_c *ServerCreateBulk) Save(ctx context.Context) ([]*Server, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(scb.builders))
-	nodes := make([]*Server, len(scb.builders))
-	mutators := make([]Mutator, len(scb.builders))
-	for i := range scb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Server, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := scb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ServerMutation)
 				if !ok {
@@ -957,12 +957,12 @@ func (scb *ServerCreateBulk) Save(ctx context.Context) ([]*Server, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, scb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = scb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, scb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -986,7 +986,7 @@ func (scb *ServerCreateBulk) Save(ctx context.Context) ([]*Server, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, scb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -994,8 +994,8 @@ func (scb *ServerCreateBulk) Save(ctx context.Context) ([]*Server, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (scb *ServerCreateBulk) SaveX(ctx context.Context) []*Server {
-	v, err := scb.Save(ctx)
+func (_c *ServerCreateBulk) SaveX(ctx context.Context) []*Server {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -1003,14 +1003,14 @@ func (scb *ServerCreateBulk) SaveX(ctx context.Context) []*Server {
 }
 
 // Exec executes the query.
-func (scb *ServerCreateBulk) Exec(ctx context.Context) error {
-	_, err := scb.Save(ctx)
+func (_c *ServerCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (scb *ServerCreateBulk) ExecX(ctx context.Context) {
-	if err := scb.Exec(ctx); err != nil {
+func (_c *ServerCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -1030,10 +1030,10 @@ func (scb *ServerCreateBulk) ExecX(ctx context.Context) {
 //			SetHostname(v+v).
 //		}).
 //		Exec(ctx)
-func (scb *ServerCreateBulk) OnConflict(opts ...sql.ConflictOption) *ServerUpsertBulk {
-	scb.conflict = opts
+func (_c *ServerCreateBulk) OnConflict(opts ...sql.ConflictOption) *ServerUpsertBulk {
+	_c.conflict = opts
 	return &ServerUpsertBulk{
-		create: scb,
+		create: _c,
 	}
 }
 
@@ -1043,10 +1043,10 @@ func (scb *ServerCreateBulk) OnConflict(opts ...sql.ConflictOption) *ServerUpser
 //	client.Server.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (scb *ServerCreateBulk) OnConflictColumns(columns ...string) *ServerUpsertBulk {
-	scb.conflict = append(scb.conflict, sql.ConflictColumns(columns...))
+func (_c *ServerCreateBulk) OnConflictColumns(columns ...string) *ServerUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ServerUpsertBulk{
-		create: scb,
+		create: _c,
 	}
 }
 

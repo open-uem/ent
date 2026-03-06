@@ -32,44 +32,44 @@ type WingetConfigExclusionQuery struct {
 }
 
 // Where adds a new predicate for the WingetConfigExclusionQuery builder.
-func (wceq *WingetConfigExclusionQuery) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionQuery {
-	wceq.predicates = append(wceq.predicates, ps...)
-	return wceq
+func (_q *WingetConfigExclusionQuery) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (wceq *WingetConfigExclusionQuery) Limit(limit int) *WingetConfigExclusionQuery {
-	wceq.ctx.Limit = &limit
-	return wceq
+func (_q *WingetConfigExclusionQuery) Limit(limit int) *WingetConfigExclusionQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (wceq *WingetConfigExclusionQuery) Offset(offset int) *WingetConfigExclusionQuery {
-	wceq.ctx.Offset = &offset
-	return wceq
+func (_q *WingetConfigExclusionQuery) Offset(offset int) *WingetConfigExclusionQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (wceq *WingetConfigExclusionQuery) Unique(unique bool) *WingetConfigExclusionQuery {
-	wceq.ctx.Unique = &unique
-	return wceq
+func (_q *WingetConfigExclusionQuery) Unique(unique bool) *WingetConfigExclusionQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (wceq *WingetConfigExclusionQuery) Order(o ...wingetconfigexclusion.OrderOption) *WingetConfigExclusionQuery {
-	wceq.order = append(wceq.order, o...)
-	return wceq
+func (_q *WingetConfigExclusionQuery) Order(o ...wingetconfigexclusion.OrderOption) *WingetConfigExclusionQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (wceq *WingetConfigExclusionQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: wceq.config}).Query()
+func (_q *WingetConfigExclusionQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := wceq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := wceq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (wceq *WingetConfigExclusionQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, wingetconfigexclusion.OwnerTable, wingetconfigexclusion.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(wceq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (wceq *WingetConfigExclusionQuery) QueryOwner() *AgentQuery {
 
 // First returns the first WingetConfigExclusion entity from the query.
 // Returns a *NotFoundError when no WingetConfigExclusion was found.
-func (wceq *WingetConfigExclusionQuery) First(ctx context.Context) (*WingetConfigExclusion, error) {
-	nodes, err := wceq.Limit(1).All(setContextOp(ctx, wceq.ctx, ent.OpQueryFirst))
+func (_q *WingetConfigExclusionQuery) First(ctx context.Context) (*WingetConfigExclusion, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (wceq *WingetConfigExclusionQuery) First(ctx context.Context) (*WingetConfi
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) FirstX(ctx context.Context) *WingetConfigExclusion {
-	node, err := wceq.First(ctx)
+func (_q *WingetConfigExclusionQuery) FirstX(ctx context.Context) *WingetConfigExclusion {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (wceq *WingetConfigExclusionQuery) FirstX(ctx context.Context) *WingetConfi
 
 // FirstID returns the first WingetConfigExclusion ID from the query.
 // Returns a *NotFoundError when no WingetConfigExclusion ID was found.
-func (wceq *WingetConfigExclusionQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *WingetConfigExclusionQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = wceq.Limit(1).IDs(setContextOp(ctx, wceq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (wceq *WingetConfigExclusionQuery) FirstID(ctx context.Context) (id int, er
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) FirstIDX(ctx context.Context) int {
-	id, err := wceq.FirstID(ctx)
+func (_q *WingetConfigExclusionQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (wceq *WingetConfigExclusionQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single WingetConfigExclusion entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one WingetConfigExclusion entity is found.
 // Returns a *NotFoundError when no WingetConfigExclusion entities are found.
-func (wceq *WingetConfigExclusionQuery) Only(ctx context.Context) (*WingetConfigExclusion, error) {
-	nodes, err := wceq.Limit(2).All(setContextOp(ctx, wceq.ctx, ent.OpQueryOnly))
+func (_q *WingetConfigExclusionQuery) Only(ctx context.Context) (*WingetConfigExclusion, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (wceq *WingetConfigExclusionQuery) Only(ctx context.Context) (*WingetConfig
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) OnlyX(ctx context.Context) *WingetConfigExclusion {
-	node, err := wceq.Only(ctx)
+func (_q *WingetConfigExclusionQuery) OnlyX(ctx context.Context) *WingetConfigExclusion {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (wceq *WingetConfigExclusionQuery) OnlyX(ctx context.Context) *WingetConfig
 // OnlyID is like Only, but returns the only WingetConfigExclusion ID in the query.
 // Returns a *NotSingularError when more than one WingetConfigExclusion ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (wceq *WingetConfigExclusionQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *WingetConfigExclusionQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = wceq.Limit(2).IDs(setContextOp(ctx, wceq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (wceq *WingetConfigExclusionQuery) OnlyID(ctx context.Context) (id int, err
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) OnlyIDX(ctx context.Context) int {
-	id, err := wceq.OnlyID(ctx)
+func (_q *WingetConfigExclusionQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (wceq *WingetConfigExclusionQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of WingetConfigExclusions.
-func (wceq *WingetConfigExclusionQuery) All(ctx context.Context) ([]*WingetConfigExclusion, error) {
-	ctx = setContextOp(ctx, wceq.ctx, ent.OpQueryAll)
-	if err := wceq.prepareQuery(ctx); err != nil {
+func (_q *WingetConfigExclusionQuery) All(ctx context.Context) ([]*WingetConfigExclusion, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*WingetConfigExclusion, *WingetConfigExclusionQuery]()
-	return withInterceptors[[]*WingetConfigExclusion](ctx, wceq, qr, wceq.inters)
+	return withInterceptors[[]*WingetConfigExclusion](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) AllX(ctx context.Context) []*WingetConfigExclusion {
-	nodes, err := wceq.All(ctx)
+func (_q *WingetConfigExclusionQuery) AllX(ctx context.Context) []*WingetConfigExclusion {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (wceq *WingetConfigExclusionQuery) AllX(ctx context.Context) []*WingetConfi
 }
 
 // IDs executes the query and returns a list of WingetConfigExclusion IDs.
-func (wceq *WingetConfigExclusionQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if wceq.ctx.Unique == nil && wceq.path != nil {
-		wceq.Unique(true)
+func (_q *WingetConfigExclusionQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, wceq.ctx, ent.OpQueryIDs)
-	if err = wceq.Select(wingetconfigexclusion.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(wingetconfigexclusion.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) IDsX(ctx context.Context) []int {
-	ids, err := wceq.IDs(ctx)
+func (_q *WingetConfigExclusionQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (wceq *WingetConfigExclusionQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (wceq *WingetConfigExclusionQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, wceq.ctx, ent.OpQueryCount)
-	if err := wceq.prepareQuery(ctx); err != nil {
+func (_q *WingetConfigExclusionQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, wceq, querierCount[*WingetConfigExclusionQuery](), wceq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*WingetConfigExclusionQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) CountX(ctx context.Context) int {
-	count, err := wceq.Count(ctx)
+func (_q *WingetConfigExclusionQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (wceq *WingetConfigExclusionQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (wceq *WingetConfigExclusionQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, wceq.ctx, ent.OpQueryExist)
-	switch _, err := wceq.FirstID(ctx); {
+func (_q *WingetConfigExclusionQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (wceq *WingetConfigExclusionQuery) Exist(ctx context.Context) (bool, error)
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (wceq *WingetConfigExclusionQuery) ExistX(ctx context.Context) bool {
-	exist, err := wceq.Exist(ctx)
+func (_q *WingetConfigExclusionQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (wceq *WingetConfigExclusionQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the WingetConfigExclusionQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (wceq *WingetConfigExclusionQuery) Clone() *WingetConfigExclusionQuery {
-	if wceq == nil {
+func (_q *WingetConfigExclusionQuery) Clone() *WingetConfigExclusionQuery {
+	if _q == nil {
 		return nil
 	}
 	return &WingetConfigExclusionQuery{
-		config:     wceq.config,
-		ctx:        wceq.ctx.Clone(),
-		order:      append([]wingetconfigexclusion.OrderOption{}, wceq.order...),
-		inters:     append([]Interceptor{}, wceq.inters...),
-		predicates: append([]predicate.WingetConfigExclusion{}, wceq.predicates...),
-		withOwner:  wceq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]wingetconfigexclusion.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.WingetConfigExclusion{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       wceq.sql.Clone(),
-		path:      wceq.path,
-		modifiers: append([]func(*sql.Selector){}, wceq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (wceq *WingetConfigExclusionQuery) WithOwner(opts ...func(*AgentQuery)) *WingetConfigExclusionQuery {
-	query := (&AgentClient{config: wceq.config}).Query()
+func (_q *WingetConfigExclusionQuery) WithOwner(opts ...func(*AgentQuery)) *WingetConfigExclusionQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	wceq.withOwner = query
-	return wceq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (wceq *WingetConfigExclusionQuery) WithOwner(opts ...func(*AgentQuery)) *Wi
 //		GroupBy(wingetconfigexclusion.FieldPackageID).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (wceq *WingetConfigExclusionQuery) GroupBy(field string, fields ...string) *WingetConfigExclusionGroupBy {
-	wceq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &WingetConfigExclusionGroupBy{build: wceq}
-	grbuild.flds = &wceq.ctx.Fields
+func (_q *WingetConfigExclusionQuery) GroupBy(field string, fields ...string) *WingetConfigExclusionGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &WingetConfigExclusionGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = wingetconfigexclusion.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (wceq *WingetConfigExclusionQuery) GroupBy(field string, fields ...string) 
 //	client.WingetConfigExclusion.Query().
 //		Select(wingetconfigexclusion.FieldPackageID).
 //		Scan(ctx, &v)
-func (wceq *WingetConfigExclusionQuery) Select(fields ...string) *WingetConfigExclusionSelect {
-	wceq.ctx.Fields = append(wceq.ctx.Fields, fields...)
-	sbuild := &WingetConfigExclusionSelect{WingetConfigExclusionQuery: wceq}
+func (_q *WingetConfigExclusionQuery) Select(fields ...string) *WingetConfigExclusionSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &WingetConfigExclusionSelect{WingetConfigExclusionQuery: _q}
 	sbuild.label = wingetconfigexclusion.Label
-	sbuild.flds, sbuild.scan = &wceq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a WingetConfigExclusionSelect configured with the given aggregations.
-func (wceq *WingetConfigExclusionQuery) Aggregate(fns ...AggregateFunc) *WingetConfigExclusionSelect {
-	return wceq.Select().Aggregate(fns...)
+func (_q *WingetConfigExclusionQuery) Aggregate(fns ...AggregateFunc) *WingetConfigExclusionSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (wceq *WingetConfigExclusionQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range wceq.inters {
+func (_q *WingetConfigExclusionQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, wceq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range wceq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !wingetconfigexclusion.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if wceq.path != nil {
-		prev, err := wceq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		wceq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (wceq *WingetConfigExclusionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*WingetConfigExclusion, error) {
+func (_q *WingetConfigExclusionQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*WingetConfigExclusion, error) {
 	var (
 		nodes       = []*WingetConfigExclusion{}
-		withFKs     = wceq.withFKs
-		_spec       = wceq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			wceq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if wceq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (wceq *WingetConfigExclusionQuery) sqlAll(ctx context.Context, hooks ...que
 		return (*WingetConfigExclusion).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &WingetConfigExclusion{config: wceq.config}
+		node := &WingetConfigExclusion{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(wceq.modifiers) > 0 {
-		_spec.Modifiers = wceq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, wceq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := wceq.withOwner; query != nil {
-		if err := wceq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *WingetConfigExclusion, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (wceq *WingetConfigExclusionQuery) sqlAll(ctx context.Context, hooks ...que
 	return nodes, nil
 }
 
-func (wceq *WingetConfigExclusionQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*WingetConfigExclusion, init func(*WingetConfigExclusion), assign func(*WingetConfigExclusion, *Agent)) error {
+func (_q *WingetConfigExclusionQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*WingetConfigExclusion, init func(*WingetConfigExclusion), assign func(*WingetConfigExclusion, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*WingetConfigExclusion)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (wceq *WingetConfigExclusionQuery) loadOwner(ctx context.Context, query *Ag
 	return nil
 }
 
-func (wceq *WingetConfigExclusionQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := wceq.querySpec()
-	if len(wceq.modifiers) > 0 {
-		_spec.Modifiers = wceq.modifiers
+func (_q *WingetConfigExclusionQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = wceq.ctx.Fields
-	if len(wceq.ctx.Fields) > 0 {
-		_spec.Unique = wceq.ctx.Unique != nil && *wceq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, wceq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (wceq *WingetConfigExclusionQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *WingetConfigExclusionQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(wingetconfigexclusion.Table, wingetconfigexclusion.Columns, sqlgraph.NewFieldSpec(wingetconfigexclusion.FieldID, field.TypeInt))
-	_spec.From = wceq.sql
-	if unique := wceq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if wceq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := wceq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, wingetconfigexclusion.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (wceq *WingetConfigExclusionQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := wceq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := wceq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := wceq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := wceq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (wceq *WingetConfigExclusionQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (wceq *WingetConfigExclusionQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(wceq.driver.Dialect())
+func (_q *WingetConfigExclusionQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(wingetconfigexclusion.Table)
-	columns := wceq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = wingetconfigexclusion.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if wceq.sql != nil {
-		selector = wceq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if wceq.ctx.Unique != nil && *wceq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range wceq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range wceq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range wceq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := wceq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := wceq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (wceq *WingetConfigExclusionQuery) Modify(modifiers ...func(s *sql.Selector)) *WingetConfigExclusionSelect {
-	wceq.modifiers = append(wceq.modifiers, modifiers...)
-	return wceq.Select()
+func (_q *WingetConfigExclusionQuery) Modify(modifiers ...func(s *sql.Selector)) *WingetConfigExclusionSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // WingetConfigExclusionGroupBy is the group-by builder for WingetConfigExclusion entities.
@@ -547,41 +547,41 @@ type WingetConfigExclusionGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (wcegb *WingetConfigExclusionGroupBy) Aggregate(fns ...AggregateFunc) *WingetConfigExclusionGroupBy {
-	wcegb.fns = append(wcegb.fns, fns...)
-	return wcegb
+func (_g *WingetConfigExclusionGroupBy) Aggregate(fns ...AggregateFunc) *WingetConfigExclusionGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (wcegb *WingetConfigExclusionGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, wcegb.build.ctx, ent.OpQueryGroupBy)
-	if err := wcegb.build.prepareQuery(ctx); err != nil {
+func (_g *WingetConfigExclusionGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*WingetConfigExclusionQuery, *WingetConfigExclusionGroupBy](ctx, wcegb.build, wcegb, wcegb.build.inters, v)
+	return scanWithInterceptors[*WingetConfigExclusionQuery, *WingetConfigExclusionGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (wcegb *WingetConfigExclusionGroupBy) sqlScan(ctx context.Context, root *WingetConfigExclusionQuery, v any) error {
+func (_g *WingetConfigExclusionGroupBy) sqlScan(ctx context.Context, root *WingetConfigExclusionQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(wcegb.fns))
-	for _, fn := range wcegb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*wcegb.flds)+len(wcegb.fns))
-		for _, f := range *wcegb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*wcegb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := wcegb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type WingetConfigExclusionSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (wces *WingetConfigExclusionSelect) Aggregate(fns ...AggregateFunc) *WingetConfigExclusionSelect {
-	wces.fns = append(wces.fns, fns...)
-	return wces
+func (_s *WingetConfigExclusionSelect) Aggregate(fns ...AggregateFunc) *WingetConfigExclusionSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (wces *WingetConfigExclusionSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, wces.ctx, ent.OpQuerySelect)
-	if err := wces.prepareQuery(ctx); err != nil {
+func (_s *WingetConfigExclusionSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*WingetConfigExclusionQuery, *WingetConfigExclusionSelect](ctx, wces.WingetConfigExclusionQuery, wces, wces.inters, v)
+	return scanWithInterceptors[*WingetConfigExclusionQuery, *WingetConfigExclusionSelect](ctx, _s.WingetConfigExclusionQuery, _s, _s.inters, v)
 }
 
-func (wces *WingetConfigExclusionSelect) sqlScan(ctx context.Context, root *WingetConfigExclusionQuery, v any) error {
+func (_s *WingetConfigExclusionSelect) sqlScan(ctx context.Context, root *WingetConfigExclusionQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(wces.fns))
-	for _, fn := range wces.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*wces.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (wces *WingetConfigExclusionSelect) sqlScan(ctx context.Context, root *Wing
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := wces.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (wces *WingetConfigExclusionSelect) sqlScan(ctx context.Context, root *Wing
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (wces *WingetConfigExclusionSelect) Modify(modifiers ...func(s *sql.Selector)) *WingetConfigExclusionSelect {
-	wces.modifiers = append(wces.modifiers, modifiers...)
-	return wces
+func (_s *WingetConfigExclusionSelect) Modify(modifiers ...func(s *sql.Selector)) *WingetConfigExclusionSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

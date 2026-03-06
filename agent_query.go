@@ -73,44 +73,44 @@ type AgentQuery struct {
 }
 
 // Where adds a new predicate for the AgentQuery builder.
-func (aq *AgentQuery) Where(ps ...predicate.Agent) *AgentQuery {
-	aq.predicates = append(aq.predicates, ps...)
-	return aq
+func (_q *AgentQuery) Where(ps ...predicate.Agent) *AgentQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (aq *AgentQuery) Limit(limit int) *AgentQuery {
-	aq.ctx.Limit = &limit
-	return aq
+func (_q *AgentQuery) Limit(limit int) *AgentQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (aq *AgentQuery) Offset(offset int) *AgentQuery {
-	aq.ctx.Offset = &offset
-	return aq
+func (_q *AgentQuery) Offset(offset int) *AgentQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (aq *AgentQuery) Unique(unique bool) *AgentQuery {
-	aq.ctx.Unique = &unique
-	return aq
+func (_q *AgentQuery) Unique(unique bool) *AgentQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (aq *AgentQuery) Order(o ...agent.OrderOption) *AgentQuery {
-	aq.order = append(aq.order, o...)
-	return aq
+func (_q *AgentQuery) Order(o ...agent.OrderOption) *AgentQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryComputer chains the current query on the "computer" edge.
-func (aq *AgentQuery) QueryComputer() *ComputerQuery {
-	query := (&ComputerClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryComputer() *ComputerQuery {
+	query := (&ComputerClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -119,20 +119,20 @@ func (aq *AgentQuery) QueryComputer() *ComputerQuery {
 			sqlgraph.To(computer.Table, computer.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.ComputerTable, agent.ComputerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryOperatingsystem chains the current query on the "operatingsystem" edge.
-func (aq *AgentQuery) QueryOperatingsystem() *OperatingSystemQuery {
-	query := (&OperatingSystemClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryOperatingsystem() *OperatingSystemQuery {
+	query := (&OperatingSystemClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -141,20 +141,20 @@ func (aq *AgentQuery) QueryOperatingsystem() *OperatingSystemQuery {
 			sqlgraph.To(operatingsystem.Table, operatingsystem.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.OperatingsystemTable, agent.OperatingsystemColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QuerySystemupdate chains the current query on the "systemupdate" edge.
-func (aq *AgentQuery) QuerySystemupdate() *SystemUpdateQuery {
-	query := (&SystemUpdateClient{config: aq.config}).Query()
+func (_q *AgentQuery) QuerySystemupdate() *SystemUpdateQuery {
+	query := (&SystemUpdateClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -163,20 +163,20 @@ func (aq *AgentQuery) QuerySystemupdate() *SystemUpdateQuery {
 			sqlgraph.To(systemupdate.Table, systemupdate.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.SystemupdateTable, agent.SystemupdateColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryAntivirus chains the current query on the "antivirus" edge.
-func (aq *AgentQuery) QueryAntivirus() *AntivirusQuery {
-	query := (&AntivirusClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryAntivirus() *AntivirusQuery {
+	query := (&AntivirusClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -185,20 +185,20 @@ func (aq *AgentQuery) QueryAntivirus() *AntivirusQuery {
 			sqlgraph.To(antivirus.Table, antivirus.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.AntivirusTable, agent.AntivirusColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryLogicaldisks chains the current query on the "logicaldisks" edge.
-func (aq *AgentQuery) QueryLogicaldisks() *LogicalDiskQuery {
-	query := (&LogicalDiskClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryLogicaldisks() *LogicalDiskQuery {
+	query := (&LogicalDiskClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -207,20 +207,20 @@ func (aq *AgentQuery) QueryLogicaldisks() *LogicalDiskQuery {
 			sqlgraph.To(logicaldisk.Table, logicaldisk.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.LogicaldisksTable, agent.LogicaldisksColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryApps chains the current query on the "apps" edge.
-func (aq *AgentQuery) QueryApps() *AppQuery {
-	query := (&AppClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryApps() *AppQuery {
+	query := (&AppClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -229,20 +229,20 @@ func (aq *AgentQuery) QueryApps() *AppQuery {
 			sqlgraph.To(app.Table, app.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.AppsTable, agent.AppsColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryMonitors chains the current query on the "monitors" edge.
-func (aq *AgentQuery) QueryMonitors() *MonitorQuery {
-	query := (&MonitorClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryMonitors() *MonitorQuery {
+	query := (&MonitorClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -251,20 +251,20 @@ func (aq *AgentQuery) QueryMonitors() *MonitorQuery {
 			sqlgraph.To(monitor.Table, monitor.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.MonitorsTable, agent.MonitorsColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryShares chains the current query on the "shares" edge.
-func (aq *AgentQuery) QueryShares() *ShareQuery {
-	query := (&ShareClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryShares() *ShareQuery {
+	query := (&ShareClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -273,20 +273,20 @@ func (aq *AgentQuery) QueryShares() *ShareQuery {
 			sqlgraph.To(share.Table, share.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.SharesTable, agent.SharesColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryPrinters chains the current query on the "printers" edge.
-func (aq *AgentQuery) QueryPrinters() *PrinterQuery {
-	query := (&PrinterClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryPrinters() *PrinterQuery {
+	query := (&PrinterClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -295,20 +295,20 @@ func (aq *AgentQuery) QueryPrinters() *PrinterQuery {
 			sqlgraph.To(printer.Table, printer.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.PrintersTable, agent.PrintersColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryNetworkadapters chains the current query on the "networkadapters" edge.
-func (aq *AgentQuery) QueryNetworkadapters() *NetworkAdapterQuery {
-	query := (&NetworkAdapterClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryNetworkadapters() *NetworkAdapterQuery {
+	query := (&NetworkAdapterClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -317,20 +317,20 @@ func (aq *AgentQuery) QueryNetworkadapters() *NetworkAdapterQuery {
 			sqlgraph.To(networkadapter.Table, networkadapter.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.NetworkadaptersTable, agent.NetworkadaptersColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryDeployments chains the current query on the "deployments" edge.
-func (aq *AgentQuery) QueryDeployments() *DeploymentQuery {
-	query := (&DeploymentClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryDeployments() *DeploymentQuery {
+	query := (&DeploymentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -339,20 +339,20 @@ func (aq *AgentQuery) QueryDeployments() *DeploymentQuery {
 			sqlgraph.To(deployment.Table, deployment.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.DeploymentsTable, agent.DeploymentsColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryUpdates chains the current query on the "updates" edge.
-func (aq *AgentQuery) QueryUpdates() *UpdateQuery {
-	query := (&UpdateClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryUpdates() *UpdateQuery {
+	query := (&UpdateClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -361,20 +361,20 @@ func (aq *AgentQuery) QueryUpdates() *UpdateQuery {
 			sqlgraph.To(update.Table, update.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.UpdatesTable, agent.UpdatesColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryTags chains the current query on the "tags" edge.
-func (aq *AgentQuery) QueryTags() *TagQuery {
-	query := (&TagClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryTags() *TagQuery {
+	query := (&TagClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -383,20 +383,20 @@ func (aq *AgentQuery) QueryTags() *TagQuery {
 			sqlgraph.To(tag.Table, tag.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, agent.TagsTable, agent.TagsPrimaryKey...),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryMetadata chains the current query on the "metadata" edge.
-func (aq *AgentQuery) QueryMetadata() *MetadataQuery {
-	query := (&MetadataClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryMetadata() *MetadataQuery {
+	query := (&MetadataClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -405,20 +405,20 @@ func (aq *AgentQuery) QueryMetadata() *MetadataQuery {
 			sqlgraph.To(metadata.Table, metadata.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.MetadataTable, agent.MetadataColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryWingetcfgexclusions chains the current query on the "wingetcfgexclusions" edge.
-func (aq *AgentQuery) QueryWingetcfgexclusions() *WingetConfigExclusionQuery {
-	query := (&WingetConfigExclusionClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryWingetcfgexclusions() *WingetConfigExclusionQuery {
+	query := (&WingetConfigExclusionClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -427,20 +427,20 @@ func (aq *AgentQuery) QueryWingetcfgexclusions() *WingetConfigExclusionQuery {
 			sqlgraph.To(wingetconfigexclusion.Table, wingetconfigexclusion.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.WingetcfgexclusionsTable, agent.WingetcfgexclusionsColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryMemoryslots chains the current query on the "memoryslots" edge.
-func (aq *AgentQuery) QueryMemoryslots() *MemorySlotQuery {
-	query := (&MemorySlotClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryMemoryslots() *MemorySlotQuery {
+	query := (&MemorySlotClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -449,20 +449,20 @@ func (aq *AgentQuery) QueryMemoryslots() *MemorySlotQuery {
 			sqlgraph.To(memoryslot.Table, memoryslot.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.MemoryslotsTable, agent.MemoryslotsColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryRelease chains the current query on the "release" edge.
-func (aq *AgentQuery) QueryRelease() *ReleaseQuery {
-	query := (&ReleaseClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryRelease() *ReleaseQuery {
+	query := (&ReleaseClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -471,20 +471,20 @@ func (aq *AgentQuery) QueryRelease() *ReleaseQuery {
 			sqlgraph.To(release.Table, release.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, agent.ReleaseTable, agent.ReleaseColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryProfileissue chains the current query on the "profileissue" edge.
-func (aq *AgentQuery) QueryProfileissue() *ProfileIssueQuery {
-	query := (&ProfileIssueClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryProfileissue() *ProfileIssueQuery {
+	query := (&ProfileIssueClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -493,20 +493,20 @@ func (aq *AgentQuery) QueryProfileissue() *ProfileIssueQuery {
 			sqlgraph.To(profileissue.Table, profileissue.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, true, agent.ProfileissueTable, agent.ProfileissueColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QuerySite chains the current query on the "site" edge.
-func (aq *AgentQuery) QuerySite() *SiteQuery {
-	query := (&SiteClient{config: aq.config}).Query()
+func (_q *AgentQuery) QuerySite() *SiteQuery {
+	query := (&SiteClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -515,20 +515,20 @@ func (aq *AgentQuery) QuerySite() *SiteQuery {
 			sqlgraph.To(site.Table, site.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, true, agent.SiteTable, agent.SitePrimaryKey...),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryPhysicaldisks chains the current query on the "physicaldisks" edge.
-func (aq *AgentQuery) QueryPhysicaldisks() *PhysicalDiskQuery {
-	query := (&PhysicalDiskClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryPhysicaldisks() *PhysicalDiskQuery {
+	query := (&PhysicalDiskClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -537,20 +537,20 @@ func (aq *AgentQuery) QueryPhysicaldisks() *PhysicalDiskQuery {
 			sqlgraph.To(physicaldisk.Table, physicaldisk.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.PhysicaldisksTable, agent.PhysicaldisksColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
 }
 
 // QueryNetbird chains the current query on the "netbird" edge.
-func (aq *AgentQuery) QueryNetbird() *NetbirdQuery {
-	query := (&NetbirdClient{config: aq.config}).Query()
+func (_q *AgentQuery) QueryNetbird() *NetbirdQuery {
+	query := (&NetbirdClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := aq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := aq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -559,7 +559,7 @@ func (aq *AgentQuery) QueryNetbird() *NetbirdQuery {
 			sqlgraph.To(netbird.Table, netbird.FieldID),
 			sqlgraph.Edge(sqlgraph.O2O, false, agent.NetbirdTable, agent.NetbirdColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -567,8 +567,8 @@ func (aq *AgentQuery) QueryNetbird() *NetbirdQuery {
 
 // First returns the first Agent entity from the query.
 // Returns a *NotFoundError when no Agent was found.
-func (aq *AgentQuery) First(ctx context.Context) (*Agent, error) {
-	nodes, err := aq.Limit(1).All(setContextOp(ctx, aq.ctx, ent.OpQueryFirst))
+func (_q *AgentQuery) First(ctx context.Context) (*Agent, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -579,8 +579,8 @@ func (aq *AgentQuery) First(ctx context.Context) (*Agent, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (aq *AgentQuery) FirstX(ctx context.Context) *Agent {
-	node, err := aq.First(ctx)
+func (_q *AgentQuery) FirstX(ctx context.Context) *Agent {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -589,9 +589,9 @@ func (aq *AgentQuery) FirstX(ctx context.Context) *Agent {
 
 // FirstID returns the first Agent ID from the query.
 // Returns a *NotFoundError when no Agent ID was found.
-func (aq *AgentQuery) FirstID(ctx context.Context) (id string, err error) {
+func (_q *AgentQuery) FirstID(ctx context.Context) (id string, err error) {
 	var ids []string
-	if ids, err = aq.Limit(1).IDs(setContextOp(ctx, aq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -602,8 +602,8 @@ func (aq *AgentQuery) FirstID(ctx context.Context) (id string, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (aq *AgentQuery) FirstIDX(ctx context.Context) string {
-	id, err := aq.FirstID(ctx)
+func (_q *AgentQuery) FirstIDX(ctx context.Context) string {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -613,8 +613,8 @@ func (aq *AgentQuery) FirstIDX(ctx context.Context) string {
 // Only returns a single Agent entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Agent entity is found.
 // Returns a *NotFoundError when no Agent entities are found.
-func (aq *AgentQuery) Only(ctx context.Context) (*Agent, error) {
-	nodes, err := aq.Limit(2).All(setContextOp(ctx, aq.ctx, ent.OpQueryOnly))
+func (_q *AgentQuery) Only(ctx context.Context) (*Agent, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -629,8 +629,8 @@ func (aq *AgentQuery) Only(ctx context.Context) (*Agent, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (aq *AgentQuery) OnlyX(ctx context.Context) *Agent {
-	node, err := aq.Only(ctx)
+func (_q *AgentQuery) OnlyX(ctx context.Context) *Agent {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -640,9 +640,9 @@ func (aq *AgentQuery) OnlyX(ctx context.Context) *Agent {
 // OnlyID is like Only, but returns the only Agent ID in the query.
 // Returns a *NotSingularError when more than one Agent ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (aq *AgentQuery) OnlyID(ctx context.Context) (id string, err error) {
+func (_q *AgentQuery) OnlyID(ctx context.Context) (id string, err error) {
 	var ids []string
-	if ids, err = aq.Limit(2).IDs(setContextOp(ctx, aq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -657,8 +657,8 @@ func (aq *AgentQuery) OnlyID(ctx context.Context) (id string, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (aq *AgentQuery) OnlyIDX(ctx context.Context) string {
-	id, err := aq.OnlyID(ctx)
+func (_q *AgentQuery) OnlyIDX(ctx context.Context) string {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -666,18 +666,18 @@ func (aq *AgentQuery) OnlyIDX(ctx context.Context) string {
 }
 
 // All executes the query and returns a list of Agents.
-func (aq *AgentQuery) All(ctx context.Context) ([]*Agent, error) {
-	ctx = setContextOp(ctx, aq.ctx, ent.OpQueryAll)
-	if err := aq.prepareQuery(ctx); err != nil {
+func (_q *AgentQuery) All(ctx context.Context) ([]*Agent, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Agent, *AgentQuery]()
-	return withInterceptors[[]*Agent](ctx, aq, qr, aq.inters)
+	return withInterceptors[[]*Agent](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (aq *AgentQuery) AllX(ctx context.Context) []*Agent {
-	nodes, err := aq.All(ctx)
+func (_q *AgentQuery) AllX(ctx context.Context) []*Agent {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -685,20 +685,20 @@ func (aq *AgentQuery) AllX(ctx context.Context) []*Agent {
 }
 
 // IDs executes the query and returns a list of Agent IDs.
-func (aq *AgentQuery) IDs(ctx context.Context) (ids []string, err error) {
-	if aq.ctx.Unique == nil && aq.path != nil {
-		aq.Unique(true)
+func (_q *AgentQuery) IDs(ctx context.Context) (ids []string, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, aq.ctx, ent.OpQueryIDs)
-	if err = aq.Select(agent.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(agent.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (aq *AgentQuery) IDsX(ctx context.Context) []string {
-	ids, err := aq.IDs(ctx)
+func (_q *AgentQuery) IDsX(ctx context.Context) []string {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -706,17 +706,17 @@ func (aq *AgentQuery) IDsX(ctx context.Context) []string {
 }
 
 // Count returns the count of the given query.
-func (aq *AgentQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, aq.ctx, ent.OpQueryCount)
-	if err := aq.prepareQuery(ctx); err != nil {
+func (_q *AgentQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, aq, querierCount[*AgentQuery](), aq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*AgentQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (aq *AgentQuery) CountX(ctx context.Context) int {
-	count, err := aq.Count(ctx)
+func (_q *AgentQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -724,9 +724,9 @@ func (aq *AgentQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (aq *AgentQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, aq.ctx, ent.OpQueryExist)
-	switch _, err := aq.FirstID(ctx); {
+func (_q *AgentQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -737,8 +737,8 @@ func (aq *AgentQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (aq *AgentQuery) ExistX(ctx context.Context) bool {
-	exist, err := aq.Exist(ctx)
+func (_q *AgentQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -747,273 +747,273 @@ func (aq *AgentQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the AgentQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (aq *AgentQuery) Clone() *AgentQuery {
-	if aq == nil {
+func (_q *AgentQuery) Clone() *AgentQuery {
+	if _q == nil {
 		return nil
 	}
 	return &AgentQuery{
-		config:                  aq.config,
-		ctx:                     aq.ctx.Clone(),
-		order:                   append([]agent.OrderOption{}, aq.order...),
-		inters:                  append([]Interceptor{}, aq.inters...),
-		predicates:              append([]predicate.Agent{}, aq.predicates...),
-		withComputer:            aq.withComputer.Clone(),
-		withOperatingsystem:     aq.withOperatingsystem.Clone(),
-		withSystemupdate:        aq.withSystemupdate.Clone(),
-		withAntivirus:           aq.withAntivirus.Clone(),
-		withLogicaldisks:        aq.withLogicaldisks.Clone(),
-		withApps:                aq.withApps.Clone(),
-		withMonitors:            aq.withMonitors.Clone(),
-		withShares:              aq.withShares.Clone(),
-		withPrinters:            aq.withPrinters.Clone(),
-		withNetworkadapters:     aq.withNetworkadapters.Clone(),
-		withDeployments:         aq.withDeployments.Clone(),
-		withUpdates:             aq.withUpdates.Clone(),
-		withTags:                aq.withTags.Clone(),
-		withMetadata:            aq.withMetadata.Clone(),
-		withWingetcfgexclusions: aq.withWingetcfgexclusions.Clone(),
-		withMemoryslots:         aq.withMemoryslots.Clone(),
-		withRelease:             aq.withRelease.Clone(),
-		withProfileissue:        aq.withProfileissue.Clone(),
-		withSite:                aq.withSite.Clone(),
-		withPhysicaldisks:       aq.withPhysicaldisks.Clone(),
-		withNetbird:             aq.withNetbird.Clone(),
+		config:                  _q.config,
+		ctx:                     _q.ctx.Clone(),
+		order:                   append([]agent.OrderOption{}, _q.order...),
+		inters:                  append([]Interceptor{}, _q.inters...),
+		predicates:              append([]predicate.Agent{}, _q.predicates...),
+		withComputer:            _q.withComputer.Clone(),
+		withOperatingsystem:     _q.withOperatingsystem.Clone(),
+		withSystemupdate:        _q.withSystemupdate.Clone(),
+		withAntivirus:           _q.withAntivirus.Clone(),
+		withLogicaldisks:        _q.withLogicaldisks.Clone(),
+		withApps:                _q.withApps.Clone(),
+		withMonitors:            _q.withMonitors.Clone(),
+		withShares:              _q.withShares.Clone(),
+		withPrinters:            _q.withPrinters.Clone(),
+		withNetworkadapters:     _q.withNetworkadapters.Clone(),
+		withDeployments:         _q.withDeployments.Clone(),
+		withUpdates:             _q.withUpdates.Clone(),
+		withTags:                _q.withTags.Clone(),
+		withMetadata:            _q.withMetadata.Clone(),
+		withWingetcfgexclusions: _q.withWingetcfgexclusions.Clone(),
+		withMemoryslots:         _q.withMemoryslots.Clone(),
+		withRelease:             _q.withRelease.Clone(),
+		withProfileissue:        _q.withProfileissue.Clone(),
+		withSite:                _q.withSite.Clone(),
+		withPhysicaldisks:       _q.withPhysicaldisks.Clone(),
+		withNetbird:             _q.withNetbird.Clone(),
 		// clone intermediate query.
-		sql:       aq.sql.Clone(),
-		path:      aq.path,
-		modifiers: append([]func(*sql.Selector){}, aq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithComputer tells the query-builder to eager-load the nodes that are connected to
 // the "computer" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithComputer(opts ...func(*ComputerQuery)) *AgentQuery {
-	query := (&ComputerClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithComputer(opts ...func(*ComputerQuery)) *AgentQuery {
+	query := (&ComputerClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withComputer = query
-	return aq
+	_q.withComputer = query
+	return _q
 }
 
 // WithOperatingsystem tells the query-builder to eager-load the nodes that are connected to
 // the "operatingsystem" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithOperatingsystem(opts ...func(*OperatingSystemQuery)) *AgentQuery {
-	query := (&OperatingSystemClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithOperatingsystem(opts ...func(*OperatingSystemQuery)) *AgentQuery {
+	query := (&OperatingSystemClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withOperatingsystem = query
-	return aq
+	_q.withOperatingsystem = query
+	return _q
 }
 
 // WithSystemupdate tells the query-builder to eager-load the nodes that are connected to
 // the "systemupdate" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithSystemupdate(opts ...func(*SystemUpdateQuery)) *AgentQuery {
-	query := (&SystemUpdateClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithSystemupdate(opts ...func(*SystemUpdateQuery)) *AgentQuery {
+	query := (&SystemUpdateClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withSystemupdate = query
-	return aq
+	_q.withSystemupdate = query
+	return _q
 }
 
 // WithAntivirus tells the query-builder to eager-load the nodes that are connected to
 // the "antivirus" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithAntivirus(opts ...func(*AntivirusQuery)) *AgentQuery {
-	query := (&AntivirusClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithAntivirus(opts ...func(*AntivirusQuery)) *AgentQuery {
+	query := (&AntivirusClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withAntivirus = query
-	return aq
+	_q.withAntivirus = query
+	return _q
 }
 
 // WithLogicaldisks tells the query-builder to eager-load the nodes that are connected to
 // the "logicaldisks" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithLogicaldisks(opts ...func(*LogicalDiskQuery)) *AgentQuery {
-	query := (&LogicalDiskClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithLogicaldisks(opts ...func(*LogicalDiskQuery)) *AgentQuery {
+	query := (&LogicalDiskClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withLogicaldisks = query
-	return aq
+	_q.withLogicaldisks = query
+	return _q
 }
 
 // WithApps tells the query-builder to eager-load the nodes that are connected to
 // the "apps" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithApps(opts ...func(*AppQuery)) *AgentQuery {
-	query := (&AppClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithApps(opts ...func(*AppQuery)) *AgentQuery {
+	query := (&AppClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withApps = query
-	return aq
+	_q.withApps = query
+	return _q
 }
 
 // WithMonitors tells the query-builder to eager-load the nodes that are connected to
 // the "monitors" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithMonitors(opts ...func(*MonitorQuery)) *AgentQuery {
-	query := (&MonitorClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithMonitors(opts ...func(*MonitorQuery)) *AgentQuery {
+	query := (&MonitorClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withMonitors = query
-	return aq
+	_q.withMonitors = query
+	return _q
 }
 
 // WithShares tells the query-builder to eager-load the nodes that are connected to
 // the "shares" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithShares(opts ...func(*ShareQuery)) *AgentQuery {
-	query := (&ShareClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithShares(opts ...func(*ShareQuery)) *AgentQuery {
+	query := (&ShareClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withShares = query
-	return aq
+	_q.withShares = query
+	return _q
 }
 
 // WithPrinters tells the query-builder to eager-load the nodes that are connected to
 // the "printers" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithPrinters(opts ...func(*PrinterQuery)) *AgentQuery {
-	query := (&PrinterClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithPrinters(opts ...func(*PrinterQuery)) *AgentQuery {
+	query := (&PrinterClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withPrinters = query
-	return aq
+	_q.withPrinters = query
+	return _q
 }
 
 // WithNetworkadapters tells the query-builder to eager-load the nodes that are connected to
 // the "networkadapters" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithNetworkadapters(opts ...func(*NetworkAdapterQuery)) *AgentQuery {
-	query := (&NetworkAdapterClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithNetworkadapters(opts ...func(*NetworkAdapterQuery)) *AgentQuery {
+	query := (&NetworkAdapterClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withNetworkadapters = query
-	return aq
+	_q.withNetworkadapters = query
+	return _q
 }
 
 // WithDeployments tells the query-builder to eager-load the nodes that are connected to
 // the "deployments" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithDeployments(opts ...func(*DeploymentQuery)) *AgentQuery {
-	query := (&DeploymentClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithDeployments(opts ...func(*DeploymentQuery)) *AgentQuery {
+	query := (&DeploymentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withDeployments = query
-	return aq
+	_q.withDeployments = query
+	return _q
 }
 
 // WithUpdates tells the query-builder to eager-load the nodes that are connected to
 // the "updates" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithUpdates(opts ...func(*UpdateQuery)) *AgentQuery {
-	query := (&UpdateClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithUpdates(opts ...func(*UpdateQuery)) *AgentQuery {
+	query := (&UpdateClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withUpdates = query
-	return aq
+	_q.withUpdates = query
+	return _q
 }
 
 // WithTags tells the query-builder to eager-load the nodes that are connected to
 // the "tags" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithTags(opts ...func(*TagQuery)) *AgentQuery {
-	query := (&TagClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithTags(opts ...func(*TagQuery)) *AgentQuery {
+	query := (&TagClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withTags = query
-	return aq
+	_q.withTags = query
+	return _q
 }
 
 // WithMetadata tells the query-builder to eager-load the nodes that are connected to
 // the "metadata" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithMetadata(opts ...func(*MetadataQuery)) *AgentQuery {
-	query := (&MetadataClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithMetadata(opts ...func(*MetadataQuery)) *AgentQuery {
+	query := (&MetadataClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withMetadata = query
-	return aq
+	_q.withMetadata = query
+	return _q
 }
 
 // WithWingetcfgexclusions tells the query-builder to eager-load the nodes that are connected to
 // the "wingetcfgexclusions" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithWingetcfgexclusions(opts ...func(*WingetConfigExclusionQuery)) *AgentQuery {
-	query := (&WingetConfigExclusionClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithWingetcfgexclusions(opts ...func(*WingetConfigExclusionQuery)) *AgentQuery {
+	query := (&WingetConfigExclusionClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withWingetcfgexclusions = query
-	return aq
+	_q.withWingetcfgexclusions = query
+	return _q
 }
 
 // WithMemoryslots tells the query-builder to eager-load the nodes that are connected to
 // the "memoryslots" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithMemoryslots(opts ...func(*MemorySlotQuery)) *AgentQuery {
-	query := (&MemorySlotClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithMemoryslots(opts ...func(*MemorySlotQuery)) *AgentQuery {
+	query := (&MemorySlotClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withMemoryslots = query
-	return aq
+	_q.withMemoryslots = query
+	return _q
 }
 
 // WithRelease tells the query-builder to eager-load the nodes that are connected to
 // the "release" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithRelease(opts ...func(*ReleaseQuery)) *AgentQuery {
-	query := (&ReleaseClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithRelease(opts ...func(*ReleaseQuery)) *AgentQuery {
+	query := (&ReleaseClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withRelease = query
-	return aq
+	_q.withRelease = query
+	return _q
 }
 
 // WithProfileissue tells the query-builder to eager-load the nodes that are connected to
 // the "profileissue" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithProfileissue(opts ...func(*ProfileIssueQuery)) *AgentQuery {
-	query := (&ProfileIssueClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithProfileissue(opts ...func(*ProfileIssueQuery)) *AgentQuery {
+	query := (&ProfileIssueClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withProfileissue = query
-	return aq
+	_q.withProfileissue = query
+	return _q
 }
 
 // WithSite tells the query-builder to eager-load the nodes that are connected to
 // the "site" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithSite(opts ...func(*SiteQuery)) *AgentQuery {
-	query := (&SiteClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithSite(opts ...func(*SiteQuery)) *AgentQuery {
+	query := (&SiteClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withSite = query
-	return aq
+	_q.withSite = query
+	return _q
 }
 
 // WithPhysicaldisks tells the query-builder to eager-load the nodes that are connected to
 // the "physicaldisks" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithPhysicaldisks(opts ...func(*PhysicalDiskQuery)) *AgentQuery {
-	query := (&PhysicalDiskClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithPhysicaldisks(opts ...func(*PhysicalDiskQuery)) *AgentQuery {
+	query := (&PhysicalDiskClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withPhysicaldisks = query
-	return aq
+	_q.withPhysicaldisks = query
+	return _q
 }
 
 // WithNetbird tells the query-builder to eager-load the nodes that are connected to
 // the "netbird" edge. The optional arguments are used to configure the query builder of the edge.
-func (aq *AgentQuery) WithNetbird(opts ...func(*NetbirdQuery)) *AgentQuery {
-	query := (&NetbirdClient{config: aq.config}).Query()
+func (_q *AgentQuery) WithNetbird(opts ...func(*NetbirdQuery)) *AgentQuery {
+	query := (&NetbirdClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	aq.withNetbird = query
-	return aq
+	_q.withNetbird = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -1030,10 +1030,10 @@ func (aq *AgentQuery) WithNetbird(opts ...func(*NetbirdQuery)) *AgentQuery {
 //		GroupBy(agent.FieldOs).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (aq *AgentQuery) GroupBy(field string, fields ...string) *AgentGroupBy {
-	aq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &AgentGroupBy{build: aq}
-	grbuild.flds = &aq.ctx.Fields
+func (_q *AgentQuery) GroupBy(field string, fields ...string) *AgentGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &AgentGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = agent.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -1051,75 +1051,75 @@ func (aq *AgentQuery) GroupBy(field string, fields ...string) *AgentGroupBy {
 //	client.Agent.Query().
 //		Select(agent.FieldOs).
 //		Scan(ctx, &v)
-func (aq *AgentQuery) Select(fields ...string) *AgentSelect {
-	aq.ctx.Fields = append(aq.ctx.Fields, fields...)
-	sbuild := &AgentSelect{AgentQuery: aq}
+func (_q *AgentQuery) Select(fields ...string) *AgentSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &AgentSelect{AgentQuery: _q}
 	sbuild.label = agent.Label
-	sbuild.flds, sbuild.scan = &aq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a AgentSelect configured with the given aggregations.
-func (aq *AgentQuery) Aggregate(fns ...AggregateFunc) *AgentSelect {
-	return aq.Select().Aggregate(fns...)
+func (_q *AgentQuery) Aggregate(fns ...AggregateFunc) *AgentSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (aq *AgentQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range aq.inters {
+func (_q *AgentQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, aq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range aq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !agent.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if aq.path != nil {
-		prev, err := aq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		aq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent, error) {
+func (_q *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent, error) {
 	var (
 		nodes       = []*Agent{}
-		withFKs     = aq.withFKs
-		_spec       = aq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [21]bool{
-			aq.withComputer != nil,
-			aq.withOperatingsystem != nil,
-			aq.withSystemupdate != nil,
-			aq.withAntivirus != nil,
-			aq.withLogicaldisks != nil,
-			aq.withApps != nil,
-			aq.withMonitors != nil,
-			aq.withShares != nil,
-			aq.withPrinters != nil,
-			aq.withNetworkadapters != nil,
-			aq.withDeployments != nil,
-			aq.withUpdates != nil,
-			aq.withTags != nil,
-			aq.withMetadata != nil,
-			aq.withWingetcfgexclusions != nil,
-			aq.withMemoryslots != nil,
-			aq.withRelease != nil,
-			aq.withProfileissue != nil,
-			aq.withSite != nil,
-			aq.withPhysicaldisks != nil,
-			aq.withNetbird != nil,
+			_q.withComputer != nil,
+			_q.withOperatingsystem != nil,
+			_q.withSystemupdate != nil,
+			_q.withAntivirus != nil,
+			_q.withLogicaldisks != nil,
+			_q.withApps != nil,
+			_q.withMonitors != nil,
+			_q.withShares != nil,
+			_q.withPrinters != nil,
+			_q.withNetworkadapters != nil,
+			_q.withDeployments != nil,
+			_q.withUpdates != nil,
+			_q.withTags != nil,
+			_q.withMetadata != nil,
+			_q.withWingetcfgexclusions != nil,
+			_q.withMemoryslots != nil,
+			_q.withRelease != nil,
+			_q.withProfileissue != nil,
+			_q.withSite != nil,
+			_q.withPhysicaldisks != nil,
+			_q.withNetbird != nil,
 		}
 	)
-	if aq.withRelease != nil {
+	if _q.withRelease != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -1129,119 +1129,119 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		return (*Agent).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Agent{config: aq.config}
+		node := &Agent{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(aq.modifiers) > 0 {
-		_spec.Modifiers = aq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, aq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := aq.withComputer; query != nil {
-		if err := aq.loadComputer(ctx, query, nodes, nil,
+	if query := _q.withComputer; query != nil {
+		if err := _q.loadComputer(ctx, query, nodes, nil,
 			func(n *Agent, e *Computer) { n.Edges.Computer = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withOperatingsystem; query != nil {
-		if err := aq.loadOperatingsystem(ctx, query, nodes, nil,
+	if query := _q.withOperatingsystem; query != nil {
+		if err := _q.loadOperatingsystem(ctx, query, nodes, nil,
 			func(n *Agent, e *OperatingSystem) { n.Edges.Operatingsystem = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withSystemupdate; query != nil {
-		if err := aq.loadSystemupdate(ctx, query, nodes, nil,
+	if query := _q.withSystemupdate; query != nil {
+		if err := _q.loadSystemupdate(ctx, query, nodes, nil,
 			func(n *Agent, e *SystemUpdate) { n.Edges.Systemupdate = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withAntivirus; query != nil {
-		if err := aq.loadAntivirus(ctx, query, nodes, nil,
+	if query := _q.withAntivirus; query != nil {
+		if err := _q.loadAntivirus(ctx, query, nodes, nil,
 			func(n *Agent, e *Antivirus) { n.Edges.Antivirus = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withLogicaldisks; query != nil {
-		if err := aq.loadLogicaldisks(ctx, query, nodes,
+	if query := _q.withLogicaldisks; query != nil {
+		if err := _q.loadLogicaldisks(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Logicaldisks = []*LogicalDisk{} },
 			func(n *Agent, e *LogicalDisk) { n.Edges.Logicaldisks = append(n.Edges.Logicaldisks, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withApps; query != nil {
-		if err := aq.loadApps(ctx, query, nodes,
+	if query := _q.withApps; query != nil {
+		if err := _q.loadApps(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Apps = []*App{} },
 			func(n *Agent, e *App) { n.Edges.Apps = append(n.Edges.Apps, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withMonitors; query != nil {
-		if err := aq.loadMonitors(ctx, query, nodes,
+	if query := _q.withMonitors; query != nil {
+		if err := _q.loadMonitors(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Monitors = []*Monitor{} },
 			func(n *Agent, e *Monitor) { n.Edges.Monitors = append(n.Edges.Monitors, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withShares; query != nil {
-		if err := aq.loadShares(ctx, query, nodes,
+	if query := _q.withShares; query != nil {
+		if err := _q.loadShares(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Shares = []*Share{} },
 			func(n *Agent, e *Share) { n.Edges.Shares = append(n.Edges.Shares, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withPrinters; query != nil {
-		if err := aq.loadPrinters(ctx, query, nodes,
+	if query := _q.withPrinters; query != nil {
+		if err := _q.loadPrinters(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Printers = []*Printer{} },
 			func(n *Agent, e *Printer) { n.Edges.Printers = append(n.Edges.Printers, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withNetworkadapters; query != nil {
-		if err := aq.loadNetworkadapters(ctx, query, nodes,
+	if query := _q.withNetworkadapters; query != nil {
+		if err := _q.loadNetworkadapters(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Networkadapters = []*NetworkAdapter{} },
 			func(n *Agent, e *NetworkAdapter) { n.Edges.Networkadapters = append(n.Edges.Networkadapters, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withDeployments; query != nil {
-		if err := aq.loadDeployments(ctx, query, nodes,
+	if query := _q.withDeployments; query != nil {
+		if err := _q.loadDeployments(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Deployments = []*Deployment{} },
 			func(n *Agent, e *Deployment) { n.Edges.Deployments = append(n.Edges.Deployments, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withUpdates; query != nil {
-		if err := aq.loadUpdates(ctx, query, nodes,
+	if query := _q.withUpdates; query != nil {
+		if err := _q.loadUpdates(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Updates = []*Update{} },
 			func(n *Agent, e *Update) { n.Edges.Updates = append(n.Edges.Updates, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withTags; query != nil {
-		if err := aq.loadTags(ctx, query, nodes,
+	if query := _q.withTags; query != nil {
+		if err := _q.loadTags(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Tags = []*Tag{} },
 			func(n *Agent, e *Tag) { n.Edges.Tags = append(n.Edges.Tags, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withMetadata; query != nil {
-		if err := aq.loadMetadata(ctx, query, nodes,
+	if query := _q.withMetadata; query != nil {
+		if err := _q.loadMetadata(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Metadata = []*Metadata{} },
 			func(n *Agent, e *Metadata) { n.Edges.Metadata = append(n.Edges.Metadata, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withWingetcfgexclusions; query != nil {
-		if err := aq.loadWingetcfgexclusions(ctx, query, nodes,
+	if query := _q.withWingetcfgexclusions; query != nil {
+		if err := _q.loadWingetcfgexclusions(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Wingetcfgexclusions = []*WingetConfigExclusion{} },
 			func(n *Agent, e *WingetConfigExclusion) {
 				n.Edges.Wingetcfgexclusions = append(n.Edges.Wingetcfgexclusions, e)
@@ -1249,42 +1249,42 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 			return nil, err
 		}
 	}
-	if query := aq.withMemoryslots; query != nil {
-		if err := aq.loadMemoryslots(ctx, query, nodes,
+	if query := _q.withMemoryslots; query != nil {
+		if err := _q.loadMemoryslots(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Memoryslots = []*MemorySlot{} },
 			func(n *Agent, e *MemorySlot) { n.Edges.Memoryslots = append(n.Edges.Memoryslots, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withRelease; query != nil {
-		if err := aq.loadRelease(ctx, query, nodes, nil,
+	if query := _q.withRelease; query != nil {
+		if err := _q.loadRelease(ctx, query, nodes, nil,
 			func(n *Agent, e *Release) { n.Edges.Release = e }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withProfileissue; query != nil {
-		if err := aq.loadProfileissue(ctx, query, nodes,
+	if query := _q.withProfileissue; query != nil {
+		if err := _q.loadProfileissue(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Profileissue = []*ProfileIssue{} },
 			func(n *Agent, e *ProfileIssue) { n.Edges.Profileissue = append(n.Edges.Profileissue, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withSite; query != nil {
-		if err := aq.loadSite(ctx, query, nodes,
+	if query := _q.withSite; query != nil {
+		if err := _q.loadSite(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Site = []*Site{} },
 			func(n *Agent, e *Site) { n.Edges.Site = append(n.Edges.Site, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withPhysicaldisks; query != nil {
-		if err := aq.loadPhysicaldisks(ctx, query, nodes,
+	if query := _q.withPhysicaldisks; query != nil {
+		if err := _q.loadPhysicaldisks(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Physicaldisks = []*PhysicalDisk{} },
 			func(n *Agent, e *PhysicalDisk) { n.Edges.Physicaldisks = append(n.Edges.Physicaldisks, e) }); err != nil {
 			return nil, err
 		}
 	}
-	if query := aq.withNetbird; query != nil {
-		if err := aq.loadNetbird(ctx, query, nodes, nil,
+	if query := _q.withNetbird; query != nil {
+		if err := _q.loadNetbird(ctx, query, nodes, nil,
 			func(n *Agent, e *Netbird) { n.Edges.Netbird = e }); err != nil {
 			return nil, err
 		}
@@ -1292,7 +1292,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 	return nodes, nil
 }
 
-func (aq *AgentQuery) loadComputer(ctx context.Context, query *ComputerQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Computer)) error {
+func (_q *AgentQuery) loadComputer(ctx context.Context, query *ComputerQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Computer)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1320,7 +1320,7 @@ func (aq *AgentQuery) loadComputer(ctx context.Context, query *ComputerQuery, no
 	}
 	return nil
 }
-func (aq *AgentQuery) loadOperatingsystem(ctx context.Context, query *OperatingSystemQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *OperatingSystem)) error {
+func (_q *AgentQuery) loadOperatingsystem(ctx context.Context, query *OperatingSystemQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *OperatingSystem)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1348,7 +1348,7 @@ func (aq *AgentQuery) loadOperatingsystem(ctx context.Context, query *OperatingS
 	}
 	return nil
 }
-func (aq *AgentQuery) loadSystemupdate(ctx context.Context, query *SystemUpdateQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *SystemUpdate)) error {
+func (_q *AgentQuery) loadSystemupdate(ctx context.Context, query *SystemUpdateQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *SystemUpdate)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1376,7 +1376,7 @@ func (aq *AgentQuery) loadSystemupdate(ctx context.Context, query *SystemUpdateQ
 	}
 	return nil
 }
-func (aq *AgentQuery) loadAntivirus(ctx context.Context, query *AntivirusQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Antivirus)) error {
+func (_q *AgentQuery) loadAntivirus(ctx context.Context, query *AntivirusQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Antivirus)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1404,7 +1404,7 @@ func (aq *AgentQuery) loadAntivirus(ctx context.Context, query *AntivirusQuery, 
 	}
 	return nil
 }
-func (aq *AgentQuery) loadLogicaldisks(ctx context.Context, query *LogicalDiskQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *LogicalDisk)) error {
+func (_q *AgentQuery) loadLogicaldisks(ctx context.Context, query *LogicalDiskQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *LogicalDisk)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1435,7 +1435,7 @@ func (aq *AgentQuery) loadLogicaldisks(ctx context.Context, query *LogicalDiskQu
 	}
 	return nil
 }
-func (aq *AgentQuery) loadApps(ctx context.Context, query *AppQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *App)) error {
+func (_q *AgentQuery) loadApps(ctx context.Context, query *AppQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *App)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1466,7 +1466,7 @@ func (aq *AgentQuery) loadApps(ctx context.Context, query *AppQuery, nodes []*Ag
 	}
 	return nil
 }
-func (aq *AgentQuery) loadMonitors(ctx context.Context, query *MonitorQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Monitor)) error {
+func (_q *AgentQuery) loadMonitors(ctx context.Context, query *MonitorQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Monitor)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1497,7 +1497,7 @@ func (aq *AgentQuery) loadMonitors(ctx context.Context, query *MonitorQuery, nod
 	}
 	return nil
 }
-func (aq *AgentQuery) loadShares(ctx context.Context, query *ShareQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Share)) error {
+func (_q *AgentQuery) loadShares(ctx context.Context, query *ShareQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Share)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1528,7 +1528,7 @@ func (aq *AgentQuery) loadShares(ctx context.Context, query *ShareQuery, nodes [
 	}
 	return nil
 }
-func (aq *AgentQuery) loadPrinters(ctx context.Context, query *PrinterQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Printer)) error {
+func (_q *AgentQuery) loadPrinters(ctx context.Context, query *PrinterQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Printer)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1559,7 +1559,7 @@ func (aq *AgentQuery) loadPrinters(ctx context.Context, query *PrinterQuery, nod
 	}
 	return nil
 }
-func (aq *AgentQuery) loadNetworkadapters(ctx context.Context, query *NetworkAdapterQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *NetworkAdapter)) error {
+func (_q *AgentQuery) loadNetworkadapters(ctx context.Context, query *NetworkAdapterQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *NetworkAdapter)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1590,7 +1590,7 @@ func (aq *AgentQuery) loadNetworkadapters(ctx context.Context, query *NetworkAda
 	}
 	return nil
 }
-func (aq *AgentQuery) loadDeployments(ctx context.Context, query *DeploymentQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Deployment)) error {
+func (_q *AgentQuery) loadDeployments(ctx context.Context, query *DeploymentQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Deployment)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1621,7 +1621,7 @@ func (aq *AgentQuery) loadDeployments(ctx context.Context, query *DeploymentQuer
 	}
 	return nil
 }
-func (aq *AgentQuery) loadUpdates(ctx context.Context, query *UpdateQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Update)) error {
+func (_q *AgentQuery) loadUpdates(ctx context.Context, query *UpdateQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Update)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1652,7 +1652,7 @@ func (aq *AgentQuery) loadUpdates(ctx context.Context, query *UpdateQuery, nodes
 	}
 	return nil
 }
-func (aq *AgentQuery) loadTags(ctx context.Context, query *TagQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Tag)) error {
+func (_q *AgentQuery) loadTags(ctx context.Context, query *TagQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Tag)) error {
 	edgeIDs := make([]driver.Value, len(nodes))
 	byID := make(map[string]*Agent)
 	nids := make(map[int]map[*Agent]struct{})
@@ -1713,7 +1713,7 @@ func (aq *AgentQuery) loadTags(ctx context.Context, query *TagQuery, nodes []*Ag
 	}
 	return nil
 }
-func (aq *AgentQuery) loadMetadata(ctx context.Context, query *MetadataQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Metadata)) error {
+func (_q *AgentQuery) loadMetadata(ctx context.Context, query *MetadataQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Metadata)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1744,7 +1744,7 @@ func (aq *AgentQuery) loadMetadata(ctx context.Context, query *MetadataQuery, no
 	}
 	return nil
 }
-func (aq *AgentQuery) loadWingetcfgexclusions(ctx context.Context, query *WingetConfigExclusionQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *WingetConfigExclusion)) error {
+func (_q *AgentQuery) loadWingetcfgexclusions(ctx context.Context, query *WingetConfigExclusionQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *WingetConfigExclusion)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1775,7 +1775,7 @@ func (aq *AgentQuery) loadWingetcfgexclusions(ctx context.Context, query *Winget
 	}
 	return nil
 }
-func (aq *AgentQuery) loadMemoryslots(ctx context.Context, query *MemorySlotQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *MemorySlot)) error {
+func (_q *AgentQuery) loadMemoryslots(ctx context.Context, query *MemorySlotQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *MemorySlot)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1806,7 +1806,7 @@ func (aq *AgentQuery) loadMemoryslots(ctx context.Context, query *MemorySlotQuer
 	}
 	return nil
 }
-func (aq *AgentQuery) loadRelease(ctx context.Context, query *ReleaseQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Release)) error {
+func (_q *AgentQuery) loadRelease(ctx context.Context, query *ReleaseQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Release)) error {
 	ids := make([]int, 0, len(nodes))
 	nodeids := make(map[int][]*Agent)
 	for i := range nodes {
@@ -1838,7 +1838,7 @@ func (aq *AgentQuery) loadRelease(ctx context.Context, query *ReleaseQuery, node
 	}
 	return nil
 }
-func (aq *AgentQuery) loadProfileissue(ctx context.Context, query *ProfileIssueQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *ProfileIssue)) error {
+func (_q *AgentQuery) loadProfileissue(ctx context.Context, query *ProfileIssueQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *ProfileIssue)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1869,7 +1869,7 @@ func (aq *AgentQuery) loadProfileissue(ctx context.Context, query *ProfileIssueQ
 	}
 	return nil
 }
-func (aq *AgentQuery) loadSite(ctx context.Context, query *SiteQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Site)) error {
+func (_q *AgentQuery) loadSite(ctx context.Context, query *SiteQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Site)) error {
 	edgeIDs := make([]driver.Value, len(nodes))
 	byID := make(map[string]*Agent)
 	nids := make(map[int]map[*Agent]struct{})
@@ -1930,7 +1930,7 @@ func (aq *AgentQuery) loadSite(ctx context.Context, query *SiteQuery, nodes []*A
 	}
 	return nil
 }
-func (aq *AgentQuery) loadPhysicaldisks(ctx context.Context, query *PhysicalDiskQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *PhysicalDisk)) error {
+func (_q *AgentQuery) loadPhysicaldisks(ctx context.Context, query *PhysicalDiskQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *PhysicalDisk)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1961,7 +1961,7 @@ func (aq *AgentQuery) loadPhysicaldisks(ctx context.Context, query *PhysicalDisk
 	}
 	return nil
 }
-func (aq *AgentQuery) loadNetbird(ctx context.Context, query *NetbirdQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Netbird)) error {
+func (_q *AgentQuery) loadNetbird(ctx context.Context, query *NetbirdQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *Netbird)) error {
 	fks := make([]driver.Value, 0, len(nodes))
 	nodeids := make(map[string]*Agent)
 	for i := range nodes {
@@ -1990,27 +1990,27 @@ func (aq *AgentQuery) loadNetbird(ctx context.Context, query *NetbirdQuery, node
 	return nil
 }
 
-func (aq *AgentQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := aq.querySpec()
-	if len(aq.modifiers) > 0 {
-		_spec.Modifiers = aq.modifiers
+func (_q *AgentQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = aq.ctx.Fields
-	if len(aq.ctx.Fields) > 0 {
-		_spec.Unique = aq.ctx.Unique != nil && *aq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, aq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (aq *AgentQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *AgentQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(agent.Table, agent.Columns, sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString))
-	_spec.From = aq.sql
-	if unique := aq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if aq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := aq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, agent.FieldID)
 		for i := range fields {
@@ -2019,20 +2019,20 @@ func (aq *AgentQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := aq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := aq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := aq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := aq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -2042,45 +2042,45 @@ func (aq *AgentQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (aq *AgentQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(aq.driver.Dialect())
+func (_q *AgentQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(agent.Table)
-	columns := aq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = agent.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if aq.sql != nil {
-		selector = aq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if aq.ctx.Unique != nil && *aq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range aq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range aq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range aq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := aq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := aq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (aq *AgentQuery) Modify(modifiers ...func(s *sql.Selector)) *AgentSelect {
-	aq.modifiers = append(aq.modifiers, modifiers...)
-	return aq.Select()
+func (_q *AgentQuery) Modify(modifiers ...func(s *sql.Selector)) *AgentSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // AgentGroupBy is the group-by builder for Agent entities.
@@ -2090,41 +2090,41 @@ type AgentGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (agb *AgentGroupBy) Aggregate(fns ...AggregateFunc) *AgentGroupBy {
-	agb.fns = append(agb.fns, fns...)
-	return agb
+func (_g *AgentGroupBy) Aggregate(fns ...AggregateFunc) *AgentGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (agb *AgentGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, agb.build.ctx, ent.OpQueryGroupBy)
-	if err := agb.build.prepareQuery(ctx); err != nil {
+func (_g *AgentGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*AgentQuery, *AgentGroupBy](ctx, agb.build, agb, agb.build.inters, v)
+	return scanWithInterceptors[*AgentQuery, *AgentGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (agb *AgentGroupBy) sqlScan(ctx context.Context, root *AgentQuery, v any) error {
+func (_g *AgentGroupBy) sqlScan(ctx context.Context, root *AgentQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(agb.fns))
-	for _, fn := range agb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*agb.flds)+len(agb.fns))
-		for _, f := range *agb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*agb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := agb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -2138,27 +2138,27 @@ type AgentSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (as *AgentSelect) Aggregate(fns ...AggregateFunc) *AgentSelect {
-	as.fns = append(as.fns, fns...)
-	return as
+func (_s *AgentSelect) Aggregate(fns ...AggregateFunc) *AgentSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (as *AgentSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, as.ctx, ent.OpQuerySelect)
-	if err := as.prepareQuery(ctx); err != nil {
+func (_s *AgentSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*AgentQuery, *AgentSelect](ctx, as.AgentQuery, as, as.inters, v)
+	return scanWithInterceptors[*AgentQuery, *AgentSelect](ctx, _s.AgentQuery, _s, _s.inters, v)
 }
 
-func (as *AgentSelect) sqlScan(ctx context.Context, root *AgentQuery, v any) error {
+func (_s *AgentSelect) sqlScan(ctx context.Context, root *AgentQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(as.fns))
-	for _, fn := range as.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*as.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -2166,7 +2166,7 @@ func (as *AgentSelect) sqlScan(ctx context.Context, root *AgentQuery, v any) err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := as.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -2174,7 +2174,7 @@ func (as *AgentSelect) sqlScan(ctx context.Context, root *AgentQuery, v any) err
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (as *AgentSelect) Modify(modifiers ...func(s *sql.Selector)) *AgentSelect {
-	as.modifiers = append(as.modifiers, modifiers...)
-	return as
+func (_s *AgentSelect) Modify(modifiers ...func(s *sql.Selector)) *AgentSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

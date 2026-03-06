@@ -23,127 +23,127 @@ type MemorySlotCreate struct {
 }
 
 // SetSlot sets the "slot" field.
-func (msc *MemorySlotCreate) SetSlot(s string) *MemorySlotCreate {
-	msc.mutation.SetSlot(s)
-	return msc
+func (_c *MemorySlotCreate) SetSlot(v string) *MemorySlotCreate {
+	_c.mutation.SetSlot(v)
+	return _c
 }
 
 // SetNillableSlot sets the "slot" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillableSlot(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetSlot(*s)
+func (_c *MemorySlotCreate) SetNillableSlot(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetSlot(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetSize sets the "size" field.
-func (msc *MemorySlotCreate) SetSize(s string) *MemorySlotCreate {
-	msc.mutation.SetSize(s)
-	return msc
+func (_c *MemorySlotCreate) SetSize(v string) *MemorySlotCreate {
+	_c.mutation.SetSize(v)
+	return _c
 }
 
 // SetNillableSize sets the "size" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillableSize(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetSize(*s)
+func (_c *MemorySlotCreate) SetNillableSize(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetSize(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetType sets the "type" field.
-func (msc *MemorySlotCreate) SetType(s string) *MemorySlotCreate {
-	msc.mutation.SetType(s)
-	return msc
+func (_c *MemorySlotCreate) SetType(v string) *MemorySlotCreate {
+	_c.mutation.SetType(v)
+	return _c
 }
 
 // SetNillableType sets the "type" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillableType(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetType(*s)
+func (_c *MemorySlotCreate) SetNillableType(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetType(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetSerialNumber sets the "serial_number" field.
-func (msc *MemorySlotCreate) SetSerialNumber(s string) *MemorySlotCreate {
-	msc.mutation.SetSerialNumber(s)
-	return msc
+func (_c *MemorySlotCreate) SetSerialNumber(v string) *MemorySlotCreate {
+	_c.mutation.SetSerialNumber(v)
+	return _c
 }
 
 // SetNillableSerialNumber sets the "serial_number" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillableSerialNumber(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetSerialNumber(*s)
+func (_c *MemorySlotCreate) SetNillableSerialNumber(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetSerialNumber(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetPartNumber sets the "part_number" field.
-func (msc *MemorySlotCreate) SetPartNumber(s string) *MemorySlotCreate {
-	msc.mutation.SetPartNumber(s)
-	return msc
+func (_c *MemorySlotCreate) SetPartNumber(v string) *MemorySlotCreate {
+	_c.mutation.SetPartNumber(v)
+	return _c
 }
 
 // SetNillablePartNumber sets the "part_number" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillablePartNumber(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetPartNumber(*s)
+func (_c *MemorySlotCreate) SetNillablePartNumber(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetPartNumber(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetSpeed sets the "speed" field.
-func (msc *MemorySlotCreate) SetSpeed(s string) *MemorySlotCreate {
-	msc.mutation.SetSpeed(s)
-	return msc
+func (_c *MemorySlotCreate) SetSpeed(v string) *MemorySlotCreate {
+	_c.mutation.SetSpeed(v)
+	return _c
 }
 
 // SetNillableSpeed sets the "speed" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillableSpeed(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetSpeed(*s)
+func (_c *MemorySlotCreate) SetNillableSpeed(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetSpeed(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (msc *MemorySlotCreate) SetManufacturer(s string) *MemorySlotCreate {
-	msc.mutation.SetManufacturer(s)
-	return msc
+func (_c *MemorySlotCreate) SetManufacturer(v string) *MemorySlotCreate {
+	_c.mutation.SetManufacturer(v)
+	return _c
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (msc *MemorySlotCreate) SetNillableManufacturer(s *string) *MemorySlotCreate {
-	if s != nil {
-		msc.SetManufacturer(*s)
+func (_c *MemorySlotCreate) SetNillableManufacturer(v *string) *MemorySlotCreate {
+	if v != nil {
+		_c.SetManufacturer(*v)
 	}
-	return msc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (msc *MemorySlotCreate) SetOwnerID(id string) *MemorySlotCreate {
-	msc.mutation.SetOwnerID(id)
-	return msc
+func (_c *MemorySlotCreate) SetOwnerID(id string) *MemorySlotCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (msc *MemorySlotCreate) SetOwner(a *Agent) *MemorySlotCreate {
-	return msc.SetOwnerID(a.ID)
+func (_c *MemorySlotCreate) SetOwner(v *Agent) *MemorySlotCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the MemorySlotMutation object of the builder.
-func (msc *MemorySlotCreate) Mutation() *MemorySlotMutation {
-	return msc.mutation
+func (_c *MemorySlotCreate) Mutation() *MemorySlotMutation {
+	return _c.mutation
 }
 
 // Save creates the MemorySlot in the database.
-func (msc *MemorySlotCreate) Save(ctx context.Context) (*MemorySlot, error) {
-	return withHooks(ctx, msc.sqlSave, msc.mutation, msc.hooks)
+func (_c *MemorySlotCreate) Save(ctx context.Context) (*MemorySlot, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (msc *MemorySlotCreate) SaveX(ctx context.Context) *MemorySlot {
-	v, err := msc.Save(ctx)
+func (_c *MemorySlotCreate) SaveX(ctx context.Context) *MemorySlot {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -151,32 +151,32 @@ func (msc *MemorySlotCreate) SaveX(ctx context.Context) *MemorySlot {
 }
 
 // Exec executes the query.
-func (msc *MemorySlotCreate) Exec(ctx context.Context) error {
-	_, err := msc.Save(ctx)
+func (_c *MemorySlotCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (msc *MemorySlotCreate) ExecX(ctx context.Context) {
-	if err := msc.Exec(ctx); err != nil {
+func (_c *MemorySlotCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (msc *MemorySlotCreate) check() error {
-	if len(msc.mutation.OwnerIDs()) == 0 {
+func (_c *MemorySlotCreate) check() error {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "MemorySlot.owner"`)}
 	}
 	return nil
 }
 
-func (msc *MemorySlotCreate) sqlSave(ctx context.Context) (*MemorySlot, error) {
-	if err := msc.check(); err != nil {
+func (_c *MemorySlotCreate) sqlSave(ctx context.Context) (*MemorySlot, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := msc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, msc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -184,46 +184,46 @@ func (msc *MemorySlotCreate) sqlSave(ctx context.Context) (*MemorySlot, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	msc.mutation.id = &_node.ID
-	msc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (msc *MemorySlotCreate) createSpec() (*MemorySlot, *sqlgraph.CreateSpec) {
+func (_c *MemorySlotCreate) createSpec() (*MemorySlot, *sqlgraph.CreateSpec) {
 	var (
-		_node = &MemorySlot{config: msc.config}
+		_node = &MemorySlot{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(memoryslot.Table, sqlgraph.NewFieldSpec(memoryslot.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = msc.conflict
-	if value, ok := msc.mutation.Slot(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Slot(); ok {
 		_spec.SetField(memoryslot.FieldSlot, field.TypeString, value)
 		_node.Slot = value
 	}
-	if value, ok := msc.mutation.Size(); ok {
+	if value, ok := _c.mutation.Size(); ok {
 		_spec.SetField(memoryslot.FieldSize, field.TypeString, value)
 		_node.Size = value
 	}
-	if value, ok := msc.mutation.GetType(); ok {
+	if value, ok := _c.mutation.GetType(); ok {
 		_spec.SetField(memoryslot.FieldType, field.TypeString, value)
 		_node.Type = value
 	}
-	if value, ok := msc.mutation.SerialNumber(); ok {
+	if value, ok := _c.mutation.SerialNumber(); ok {
 		_spec.SetField(memoryslot.FieldSerialNumber, field.TypeString, value)
 		_node.SerialNumber = value
 	}
-	if value, ok := msc.mutation.PartNumber(); ok {
+	if value, ok := _c.mutation.PartNumber(); ok {
 		_spec.SetField(memoryslot.FieldPartNumber, field.TypeString, value)
 		_node.PartNumber = value
 	}
-	if value, ok := msc.mutation.Speed(); ok {
+	if value, ok := _c.mutation.Speed(); ok {
 		_spec.SetField(memoryslot.FieldSpeed, field.TypeString, value)
 		_node.Speed = value
 	}
-	if value, ok := msc.mutation.Manufacturer(); ok {
+	if value, ok := _c.mutation.Manufacturer(); ok {
 		_spec.SetField(memoryslot.FieldManufacturer, field.TypeString, value)
 		_node.Manufacturer = value
 	}
-	if nodes := msc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -259,10 +259,10 @@ func (msc *MemorySlotCreate) createSpec() (*MemorySlot, *sqlgraph.CreateSpec) {
 //			SetSlot(v+v).
 //		}).
 //		Exec(ctx)
-func (msc *MemorySlotCreate) OnConflict(opts ...sql.ConflictOption) *MemorySlotUpsertOne {
-	msc.conflict = opts
+func (_c *MemorySlotCreate) OnConflict(opts ...sql.ConflictOption) *MemorySlotUpsertOne {
+	_c.conflict = opts
 	return &MemorySlotUpsertOne{
-		create: msc,
+		create: _c,
 	}
 }
 
@@ -272,10 +272,10 @@ func (msc *MemorySlotCreate) OnConflict(opts ...sql.ConflictOption) *MemorySlotU
 //	client.MemorySlot.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (msc *MemorySlotCreate) OnConflictColumns(columns ...string) *MemorySlotUpsertOne {
-	msc.conflict = append(msc.conflict, sql.ConflictColumns(columns...))
+func (_c *MemorySlotCreate) OnConflictColumns(columns ...string) *MemorySlotUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &MemorySlotUpsertOne{
-		create: msc,
+		create: _c,
 	}
 }
 
@@ -647,16 +647,16 @@ type MemorySlotCreateBulk struct {
 }
 
 // Save creates the MemorySlot entities in the database.
-func (mscb *MemorySlotCreateBulk) Save(ctx context.Context) ([]*MemorySlot, error) {
-	if mscb.err != nil {
-		return nil, mscb.err
+func (_c *MemorySlotCreateBulk) Save(ctx context.Context) ([]*MemorySlot, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(mscb.builders))
-	nodes := make([]*MemorySlot, len(mscb.builders))
-	mutators := make([]Mutator, len(mscb.builders))
-	for i := range mscb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*MemorySlot, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := mscb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*MemorySlotMutation)
 				if !ok {
@@ -669,12 +669,12 @@ func (mscb *MemorySlotCreateBulk) Save(ctx context.Context) ([]*MemorySlot, erro
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, mscb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = mscb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, mscb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -698,7 +698,7 @@ func (mscb *MemorySlotCreateBulk) Save(ctx context.Context) ([]*MemorySlot, erro
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, mscb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -706,8 +706,8 @@ func (mscb *MemorySlotCreateBulk) Save(ctx context.Context) ([]*MemorySlot, erro
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (mscb *MemorySlotCreateBulk) SaveX(ctx context.Context) []*MemorySlot {
-	v, err := mscb.Save(ctx)
+func (_c *MemorySlotCreateBulk) SaveX(ctx context.Context) []*MemorySlot {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -715,14 +715,14 @@ func (mscb *MemorySlotCreateBulk) SaveX(ctx context.Context) []*MemorySlot {
 }
 
 // Exec executes the query.
-func (mscb *MemorySlotCreateBulk) Exec(ctx context.Context) error {
-	_, err := mscb.Save(ctx)
+func (_c *MemorySlotCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mscb *MemorySlotCreateBulk) ExecX(ctx context.Context) {
-	if err := mscb.Exec(ctx); err != nil {
+func (_c *MemorySlotCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -742,10 +742,10 @@ func (mscb *MemorySlotCreateBulk) ExecX(ctx context.Context) {
 //			SetSlot(v+v).
 //		}).
 //		Exec(ctx)
-func (mscb *MemorySlotCreateBulk) OnConflict(opts ...sql.ConflictOption) *MemorySlotUpsertBulk {
-	mscb.conflict = opts
+func (_c *MemorySlotCreateBulk) OnConflict(opts ...sql.ConflictOption) *MemorySlotUpsertBulk {
+	_c.conflict = opts
 	return &MemorySlotUpsertBulk{
-		create: mscb,
+		create: _c,
 	}
 }
 
@@ -755,10 +755,10 @@ func (mscb *MemorySlotCreateBulk) OnConflict(opts ...sql.ConflictOption) *Memory
 //	client.MemorySlot.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (mscb *MemorySlotCreateBulk) OnConflictColumns(columns ...string) *MemorySlotUpsertBulk {
-	mscb.conflict = append(mscb.conflict, sql.ConflictColumns(columns...))
+func (_c *MemorySlotCreateBulk) OnConflictColumns(columns ...string) *MemorySlotUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &MemorySlotUpsertBulk{
-		create: mscb,
+		create: _c,
 	}
 }
 

@@ -107,7 +107,7 @@ func (*Profile) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Profile fields.
-func (pr *Profile) assignValues(columns []string, values []any) error {
+func (_m *Profile) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -118,40 +118,40 @@ func (pr *Profile) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			pr.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case profile.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				pr.Name = value.String
+				_m.Name = value.String
 			}
 		case profile.FieldApplyToAll:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field apply_to_all", values[i])
 			} else if value.Valid {
-				pr.ApplyToAll = value.Bool
+				_m.ApplyToAll = value.Bool
 			}
 		case profile.FieldType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field type", values[i])
 			} else if value.Valid {
-				pr.Type = profile.Type(value.String)
+				_m.Type = profile.Type(value.String)
 			}
 		case profile.FieldDisabled:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field disabled", values[i])
 			} else if value.Valid {
-				pr.Disabled = value.Bool
+				_m.Disabled = value.Bool
 			}
 		case profile.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field site_profiles", value)
 			} else if value.Valid {
-				pr.site_profiles = new(int)
-				*pr.site_profiles = int(value.Int64)
+				_m.site_profiles = new(int)
+				*_m.site_profiles = int(value.Int64)
 			}
 		default:
-			pr.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -159,64 +159,64 @@ func (pr *Profile) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Profile.
 // This includes values selected through modifiers, order, etc.
-func (pr *Profile) Value(name string) (ent.Value, error) {
-	return pr.selectValues.Get(name)
+func (_m *Profile) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryTags queries the "tags" edge of the Profile entity.
-func (pr *Profile) QueryTags() *TagQuery {
-	return NewProfileClient(pr.config).QueryTags(pr)
+func (_m *Profile) QueryTags() *TagQuery {
+	return NewProfileClient(_m.config).QueryTags(_m)
 }
 
 // QueryTasks queries the "tasks" edge of the Profile entity.
-func (pr *Profile) QueryTasks() *TaskQuery {
-	return NewProfileClient(pr.config).QueryTasks(pr)
+func (_m *Profile) QueryTasks() *TaskQuery {
+	return NewProfileClient(_m.config).QueryTasks(_m)
 }
 
 // QueryIssues queries the "issues" edge of the Profile entity.
-func (pr *Profile) QueryIssues() *ProfileIssueQuery {
-	return NewProfileClient(pr.config).QueryIssues(pr)
+func (_m *Profile) QueryIssues() *ProfileIssueQuery {
+	return NewProfileClient(_m.config).QueryIssues(_m)
 }
 
 // QuerySite queries the "site" edge of the Profile entity.
-func (pr *Profile) QuerySite() *SiteQuery {
-	return NewProfileClient(pr.config).QuerySite(pr)
+func (_m *Profile) QuerySite() *SiteQuery {
+	return NewProfileClient(_m.config).QuerySite(_m)
 }
 
 // Update returns a builder for updating this Profile.
 // Note that you need to call Profile.Unwrap() before calling this method if this Profile
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (pr *Profile) Update() *ProfileUpdateOne {
-	return NewProfileClient(pr.config).UpdateOne(pr)
+func (_m *Profile) Update() *ProfileUpdateOne {
+	return NewProfileClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Profile entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (pr *Profile) Unwrap() *Profile {
-	_tx, ok := pr.config.driver.(*txDriver)
+func (_m *Profile) Unwrap() *Profile {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Profile is not a transactional entity")
 	}
-	pr.config.driver = _tx.drv
-	return pr
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (pr *Profile) String() string {
+func (_m *Profile) String() string {
 	var builder strings.Builder
 	builder.WriteString("Profile(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", pr.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(pr.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("apply_to_all=")
-	builder.WriteString(fmt.Sprintf("%v", pr.ApplyToAll))
+	builder.WriteString(fmt.Sprintf("%v", _m.ApplyToAll))
 	builder.WriteString(", ")
 	builder.WriteString("type=")
-	builder.WriteString(fmt.Sprintf("%v", pr.Type))
+	builder.WriteString(fmt.Sprintf("%v", _m.Type))
 	builder.WriteString(", ")
 	builder.WriteString("disabled=")
-	builder.WriteString(fmt.Sprintf("%v", pr.Disabled))
+	builder.WriteString(fmt.Sprintf("%v", _m.Disabled))
 	builder.WriteByte(')')
 	return builder.String()
 }

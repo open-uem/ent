@@ -23,99 +23,99 @@ type MonitorCreate struct {
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (mc *MonitorCreate) SetManufacturer(s string) *MonitorCreate {
-	mc.mutation.SetManufacturer(s)
-	return mc
+func (_c *MonitorCreate) SetManufacturer(v string) *MonitorCreate {
+	_c.mutation.SetManufacturer(v)
+	return _c
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (mc *MonitorCreate) SetNillableManufacturer(s *string) *MonitorCreate {
-	if s != nil {
-		mc.SetManufacturer(*s)
+func (_c *MonitorCreate) SetNillableManufacturer(v *string) *MonitorCreate {
+	if v != nil {
+		_c.SetManufacturer(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetModel sets the "model" field.
-func (mc *MonitorCreate) SetModel(s string) *MonitorCreate {
-	mc.mutation.SetModel(s)
-	return mc
+func (_c *MonitorCreate) SetModel(v string) *MonitorCreate {
+	_c.mutation.SetModel(v)
+	return _c
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (mc *MonitorCreate) SetNillableModel(s *string) *MonitorCreate {
-	if s != nil {
-		mc.SetModel(*s)
+func (_c *MonitorCreate) SetNillableModel(v *string) *MonitorCreate {
+	if v != nil {
+		_c.SetModel(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetSerial sets the "serial" field.
-func (mc *MonitorCreate) SetSerial(s string) *MonitorCreate {
-	mc.mutation.SetSerial(s)
-	return mc
+func (_c *MonitorCreate) SetSerial(v string) *MonitorCreate {
+	_c.mutation.SetSerial(v)
+	return _c
 }
 
 // SetNillableSerial sets the "serial" field if the given value is not nil.
-func (mc *MonitorCreate) SetNillableSerial(s *string) *MonitorCreate {
-	if s != nil {
-		mc.SetSerial(*s)
+func (_c *MonitorCreate) SetNillableSerial(v *string) *MonitorCreate {
+	if v != nil {
+		_c.SetSerial(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetWeekOfManufacture sets the "week_of_manufacture" field.
-func (mc *MonitorCreate) SetWeekOfManufacture(s string) *MonitorCreate {
-	mc.mutation.SetWeekOfManufacture(s)
-	return mc
+func (_c *MonitorCreate) SetWeekOfManufacture(v string) *MonitorCreate {
+	_c.mutation.SetWeekOfManufacture(v)
+	return _c
 }
 
 // SetNillableWeekOfManufacture sets the "week_of_manufacture" field if the given value is not nil.
-func (mc *MonitorCreate) SetNillableWeekOfManufacture(s *string) *MonitorCreate {
-	if s != nil {
-		mc.SetWeekOfManufacture(*s)
+func (_c *MonitorCreate) SetNillableWeekOfManufacture(v *string) *MonitorCreate {
+	if v != nil {
+		_c.SetWeekOfManufacture(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetYearOfManufacture sets the "year_of_manufacture" field.
-func (mc *MonitorCreate) SetYearOfManufacture(s string) *MonitorCreate {
-	mc.mutation.SetYearOfManufacture(s)
-	return mc
+func (_c *MonitorCreate) SetYearOfManufacture(v string) *MonitorCreate {
+	_c.mutation.SetYearOfManufacture(v)
+	return _c
 }
 
 // SetNillableYearOfManufacture sets the "year_of_manufacture" field if the given value is not nil.
-func (mc *MonitorCreate) SetNillableYearOfManufacture(s *string) *MonitorCreate {
-	if s != nil {
-		mc.SetYearOfManufacture(*s)
+func (_c *MonitorCreate) SetNillableYearOfManufacture(v *string) *MonitorCreate {
+	if v != nil {
+		_c.SetYearOfManufacture(*v)
 	}
-	return mc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (mc *MonitorCreate) SetOwnerID(id string) *MonitorCreate {
-	mc.mutation.SetOwnerID(id)
-	return mc
+func (_c *MonitorCreate) SetOwnerID(id string) *MonitorCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (mc *MonitorCreate) SetOwner(a *Agent) *MonitorCreate {
-	return mc.SetOwnerID(a.ID)
+func (_c *MonitorCreate) SetOwner(v *Agent) *MonitorCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the MonitorMutation object of the builder.
-func (mc *MonitorCreate) Mutation() *MonitorMutation {
-	return mc.mutation
+func (_c *MonitorCreate) Mutation() *MonitorMutation {
+	return _c.mutation
 }
 
 // Save creates the Monitor in the database.
-func (mc *MonitorCreate) Save(ctx context.Context) (*Monitor, error) {
-	return withHooks(ctx, mc.sqlSave, mc.mutation, mc.hooks)
+func (_c *MonitorCreate) Save(ctx context.Context) (*Monitor, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (mc *MonitorCreate) SaveX(ctx context.Context) *Monitor {
-	v, err := mc.Save(ctx)
+func (_c *MonitorCreate) SaveX(ctx context.Context) *Monitor {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -123,32 +123,32 @@ func (mc *MonitorCreate) SaveX(ctx context.Context) *Monitor {
 }
 
 // Exec executes the query.
-func (mc *MonitorCreate) Exec(ctx context.Context) error {
-	_, err := mc.Save(ctx)
+func (_c *MonitorCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mc *MonitorCreate) ExecX(ctx context.Context) {
-	if err := mc.Exec(ctx); err != nil {
+func (_c *MonitorCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (mc *MonitorCreate) check() error {
-	if len(mc.mutation.OwnerIDs()) == 0 {
+func (_c *MonitorCreate) check() error {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "Monitor.owner"`)}
 	}
 	return nil
 }
 
-func (mc *MonitorCreate) sqlSave(ctx context.Context) (*Monitor, error) {
-	if err := mc.check(); err != nil {
+func (_c *MonitorCreate) sqlSave(ctx context.Context) (*Monitor, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := mc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, mc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -156,38 +156,38 @@ func (mc *MonitorCreate) sqlSave(ctx context.Context) (*Monitor, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	mc.mutation.id = &_node.ID
-	mc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (mc *MonitorCreate) createSpec() (*Monitor, *sqlgraph.CreateSpec) {
+func (_c *MonitorCreate) createSpec() (*Monitor, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Monitor{config: mc.config}
+		_node = &Monitor{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(monitor.Table, sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = mc.conflict
-	if value, ok := mc.mutation.Manufacturer(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Manufacturer(); ok {
 		_spec.SetField(monitor.FieldManufacturer, field.TypeString, value)
 		_node.Manufacturer = value
 	}
-	if value, ok := mc.mutation.Model(); ok {
+	if value, ok := _c.mutation.Model(); ok {
 		_spec.SetField(monitor.FieldModel, field.TypeString, value)
 		_node.Model = value
 	}
-	if value, ok := mc.mutation.Serial(); ok {
+	if value, ok := _c.mutation.Serial(); ok {
 		_spec.SetField(monitor.FieldSerial, field.TypeString, value)
 		_node.Serial = value
 	}
-	if value, ok := mc.mutation.WeekOfManufacture(); ok {
+	if value, ok := _c.mutation.WeekOfManufacture(); ok {
 		_spec.SetField(monitor.FieldWeekOfManufacture, field.TypeString, value)
 		_node.WeekOfManufacture = value
 	}
-	if value, ok := mc.mutation.YearOfManufacture(); ok {
+	if value, ok := _c.mutation.YearOfManufacture(); ok {
 		_spec.SetField(monitor.FieldYearOfManufacture, field.TypeString, value)
 		_node.YearOfManufacture = value
 	}
-	if nodes := mc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -223,10 +223,10 @@ func (mc *MonitorCreate) createSpec() (*Monitor, *sqlgraph.CreateSpec) {
 //			SetManufacturer(v+v).
 //		}).
 //		Exec(ctx)
-func (mc *MonitorCreate) OnConflict(opts ...sql.ConflictOption) *MonitorUpsertOne {
-	mc.conflict = opts
+func (_c *MonitorCreate) OnConflict(opts ...sql.ConflictOption) *MonitorUpsertOne {
+	_c.conflict = opts
 	return &MonitorUpsertOne{
-		create: mc,
+		create: _c,
 	}
 }
 
@@ -236,10 +236,10 @@ func (mc *MonitorCreate) OnConflict(opts ...sql.ConflictOption) *MonitorUpsertOn
 //	client.Monitor.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (mc *MonitorCreate) OnConflictColumns(columns ...string) *MonitorUpsertOne {
-	mc.conflict = append(mc.conflict, sql.ConflictColumns(columns...))
+func (_c *MonitorCreate) OnConflictColumns(columns ...string) *MonitorUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &MonitorUpsertOne{
-		create: mc,
+		create: _c,
 	}
 }
 
@@ -533,16 +533,16 @@ type MonitorCreateBulk struct {
 }
 
 // Save creates the Monitor entities in the database.
-func (mcb *MonitorCreateBulk) Save(ctx context.Context) ([]*Monitor, error) {
-	if mcb.err != nil {
-		return nil, mcb.err
+func (_c *MonitorCreateBulk) Save(ctx context.Context) ([]*Monitor, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(mcb.builders))
-	nodes := make([]*Monitor, len(mcb.builders))
-	mutators := make([]Mutator, len(mcb.builders))
-	for i := range mcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Monitor, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := mcb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*MonitorMutation)
 				if !ok {
@@ -555,12 +555,12 @@ func (mcb *MonitorCreateBulk) Save(ctx context.Context) ([]*Monitor, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, mcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = mcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, mcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -584,7 +584,7 @@ func (mcb *MonitorCreateBulk) Save(ctx context.Context) ([]*Monitor, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, mcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -592,8 +592,8 @@ func (mcb *MonitorCreateBulk) Save(ctx context.Context) ([]*Monitor, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (mcb *MonitorCreateBulk) SaveX(ctx context.Context) []*Monitor {
-	v, err := mcb.Save(ctx)
+func (_c *MonitorCreateBulk) SaveX(ctx context.Context) []*Monitor {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -601,14 +601,14 @@ func (mcb *MonitorCreateBulk) SaveX(ctx context.Context) []*Monitor {
 }
 
 // Exec executes the query.
-func (mcb *MonitorCreateBulk) Exec(ctx context.Context) error {
-	_, err := mcb.Save(ctx)
+func (_c *MonitorCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mcb *MonitorCreateBulk) ExecX(ctx context.Context) {
-	if err := mcb.Exec(ctx); err != nil {
+func (_c *MonitorCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -628,10 +628,10 @@ func (mcb *MonitorCreateBulk) ExecX(ctx context.Context) {
 //			SetManufacturer(v+v).
 //		}).
 //		Exec(ctx)
-func (mcb *MonitorCreateBulk) OnConflict(opts ...sql.ConflictOption) *MonitorUpsertBulk {
-	mcb.conflict = opts
+func (_c *MonitorCreateBulk) OnConflict(opts ...sql.ConflictOption) *MonitorUpsertBulk {
+	_c.conflict = opts
 	return &MonitorUpsertBulk{
-		create: mcb,
+		create: _c,
 	}
 }
 
@@ -641,10 +641,10 @@ func (mcb *MonitorCreateBulk) OnConflict(opts ...sql.ConflictOption) *MonitorUps
 //	client.Monitor.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (mcb *MonitorCreateBulk) OnConflictColumns(columns ...string) *MonitorUpsertBulk {
-	mcb.conflict = append(mcb.conflict, sql.ConflictColumns(columns...))
+func (_c *MonitorCreateBulk) OnConflictColumns(columns ...string) *MonitorUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &MonitorUpsertBulk{
-		create: mcb,
+		create: _c,
 	}
 }
 

@@ -24,72 +24,72 @@ type OrgMetadataCreate struct {
 }
 
 // SetName sets the "name" field.
-func (omc *OrgMetadataCreate) SetName(s string) *OrgMetadataCreate {
-	omc.mutation.SetName(s)
-	return omc
+func (_c *OrgMetadataCreate) SetName(v string) *OrgMetadataCreate {
+	_c.mutation.SetName(v)
+	return _c
 }
 
 // SetDescription sets the "description" field.
-func (omc *OrgMetadataCreate) SetDescription(s string) *OrgMetadataCreate {
-	omc.mutation.SetDescription(s)
-	return omc
+func (_c *OrgMetadataCreate) SetDescription(v string) *OrgMetadataCreate {
+	_c.mutation.SetDescription(v)
+	return _c
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (omc *OrgMetadataCreate) SetNillableDescription(s *string) *OrgMetadataCreate {
-	if s != nil {
-		omc.SetDescription(*s)
+func (_c *OrgMetadataCreate) SetNillableDescription(v *string) *OrgMetadataCreate {
+	if v != nil {
+		_c.SetDescription(*v)
 	}
-	return omc
+	return _c
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the Metadata entity by IDs.
-func (omc *OrgMetadataCreate) AddMetadatumIDs(ids ...int) *OrgMetadataCreate {
-	omc.mutation.AddMetadatumIDs(ids...)
-	return omc
+func (_c *OrgMetadataCreate) AddMetadatumIDs(ids ...int) *OrgMetadataCreate {
+	_c.mutation.AddMetadatumIDs(ids...)
+	return _c
 }
 
 // AddMetadata adds the "metadata" edges to the Metadata entity.
-func (omc *OrgMetadataCreate) AddMetadata(m ...*Metadata) *OrgMetadataCreate {
-	ids := make([]int, len(m))
-	for i := range m {
-		ids[i] = m[i].ID
+func (_c *OrgMetadataCreate) AddMetadata(v ...*Metadata) *OrgMetadataCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return omc.AddMetadatumIDs(ids...)
+	return _c.AddMetadatumIDs(ids...)
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (omc *OrgMetadataCreate) SetTenantID(id int) *OrgMetadataCreate {
-	omc.mutation.SetTenantID(id)
-	return omc
+func (_c *OrgMetadataCreate) SetTenantID(id int) *OrgMetadataCreate {
+	_c.mutation.SetTenantID(id)
+	return _c
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (omc *OrgMetadataCreate) SetNillableTenantID(id *int) *OrgMetadataCreate {
+func (_c *OrgMetadataCreate) SetNillableTenantID(id *int) *OrgMetadataCreate {
 	if id != nil {
-		omc = omc.SetTenantID(*id)
+		_c = _c.SetTenantID(*id)
 	}
-	return omc
+	return _c
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (omc *OrgMetadataCreate) SetTenant(t *Tenant) *OrgMetadataCreate {
-	return omc.SetTenantID(t.ID)
+func (_c *OrgMetadataCreate) SetTenant(v *Tenant) *OrgMetadataCreate {
+	return _c.SetTenantID(v.ID)
 }
 
 // Mutation returns the OrgMetadataMutation object of the builder.
-func (omc *OrgMetadataCreate) Mutation() *OrgMetadataMutation {
-	return omc.mutation
+func (_c *OrgMetadataCreate) Mutation() *OrgMetadataMutation {
+	return _c.mutation
 }
 
 // Save creates the OrgMetadata in the database.
-func (omc *OrgMetadataCreate) Save(ctx context.Context) (*OrgMetadata, error) {
-	return withHooks(ctx, omc.sqlSave, omc.mutation, omc.hooks)
+func (_c *OrgMetadataCreate) Save(ctx context.Context) (*OrgMetadata, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (omc *OrgMetadataCreate) SaveX(ctx context.Context) *OrgMetadata {
-	v, err := omc.Save(ctx)
+func (_c *OrgMetadataCreate) SaveX(ctx context.Context) *OrgMetadata {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -97,24 +97,24 @@ func (omc *OrgMetadataCreate) SaveX(ctx context.Context) *OrgMetadata {
 }
 
 // Exec executes the query.
-func (omc *OrgMetadataCreate) Exec(ctx context.Context) error {
-	_, err := omc.Save(ctx)
+func (_c *OrgMetadataCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (omc *OrgMetadataCreate) ExecX(ctx context.Context) {
-	if err := omc.Exec(ctx); err != nil {
+func (_c *OrgMetadataCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (omc *OrgMetadataCreate) check() error {
-	if _, ok := omc.mutation.Name(); !ok {
+func (_c *OrgMetadataCreate) check() error {
+	if _, ok := _c.mutation.Name(); !ok {
 		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "OrgMetadata.name"`)}
 	}
-	if v, ok := omc.mutation.Name(); ok {
+	if v, ok := _c.mutation.Name(); ok {
 		if err := orgmetadata.NameValidator(v); err != nil {
 			return &ValidationError{Name: "name", err: fmt.Errorf(`ent: validator failed for field "OrgMetadata.name": %w`, err)}
 		}
@@ -122,12 +122,12 @@ func (omc *OrgMetadataCreate) check() error {
 	return nil
 }
 
-func (omc *OrgMetadataCreate) sqlSave(ctx context.Context) (*OrgMetadata, error) {
-	if err := omc.check(); err != nil {
+func (_c *OrgMetadataCreate) sqlSave(ctx context.Context) (*OrgMetadata, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := omc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, omc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -135,26 +135,26 @@ func (omc *OrgMetadataCreate) sqlSave(ctx context.Context) (*OrgMetadata, error)
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	omc.mutation.id = &_node.ID
-	omc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (omc *OrgMetadataCreate) createSpec() (*OrgMetadata, *sqlgraph.CreateSpec) {
+func (_c *OrgMetadataCreate) createSpec() (*OrgMetadata, *sqlgraph.CreateSpec) {
 	var (
-		_node = &OrgMetadata{config: omc.config}
+		_node = &OrgMetadata{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(orgmetadata.Table, sqlgraph.NewFieldSpec(orgmetadata.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = omc.conflict
-	if value, ok := omc.mutation.Name(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Name(); ok {
 		_spec.SetField(orgmetadata.FieldName, field.TypeString, value)
 		_node.Name = value
 	}
-	if value, ok := omc.mutation.Description(); ok {
+	if value, ok := _c.mutation.Description(); ok {
 		_spec.SetField(orgmetadata.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if nodes := omc.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -170,7 +170,7 @@ func (omc *OrgMetadataCreate) createSpec() (*OrgMetadata, *sqlgraph.CreateSpec) 
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := omc.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -206,10 +206,10 @@ func (omc *OrgMetadataCreate) createSpec() (*OrgMetadata, *sqlgraph.CreateSpec) 
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (omc *OrgMetadataCreate) OnConflict(opts ...sql.ConflictOption) *OrgMetadataUpsertOne {
-	omc.conflict = opts
+func (_c *OrgMetadataCreate) OnConflict(opts ...sql.ConflictOption) *OrgMetadataUpsertOne {
+	_c.conflict = opts
 	return &OrgMetadataUpsertOne{
-		create: omc,
+		create: _c,
 	}
 }
 
@@ -219,10 +219,10 @@ func (omc *OrgMetadataCreate) OnConflict(opts ...sql.ConflictOption) *OrgMetadat
 //	client.OrgMetadata.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (omc *OrgMetadataCreate) OnConflictColumns(columns ...string) *OrgMetadataUpsertOne {
-	omc.conflict = append(omc.conflict, sql.ConflictColumns(columns...))
+func (_c *OrgMetadataCreate) OnConflictColumns(columns ...string) *OrgMetadataUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &OrgMetadataUpsertOne{
-		create: omc,
+		create: _c,
 	}
 }
 
@@ -386,16 +386,16 @@ type OrgMetadataCreateBulk struct {
 }
 
 // Save creates the OrgMetadata entities in the database.
-func (omcb *OrgMetadataCreateBulk) Save(ctx context.Context) ([]*OrgMetadata, error) {
-	if omcb.err != nil {
-		return nil, omcb.err
+func (_c *OrgMetadataCreateBulk) Save(ctx context.Context) ([]*OrgMetadata, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(omcb.builders))
-	nodes := make([]*OrgMetadata, len(omcb.builders))
-	mutators := make([]Mutator, len(omcb.builders))
-	for i := range omcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*OrgMetadata, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := omcb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*OrgMetadataMutation)
 				if !ok {
@@ -408,12 +408,12 @@ func (omcb *OrgMetadataCreateBulk) Save(ctx context.Context) ([]*OrgMetadata, er
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, omcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = omcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, omcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -437,7 +437,7 @@ func (omcb *OrgMetadataCreateBulk) Save(ctx context.Context) ([]*OrgMetadata, er
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, omcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -445,8 +445,8 @@ func (omcb *OrgMetadataCreateBulk) Save(ctx context.Context) ([]*OrgMetadata, er
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (omcb *OrgMetadataCreateBulk) SaveX(ctx context.Context) []*OrgMetadata {
-	v, err := omcb.Save(ctx)
+func (_c *OrgMetadataCreateBulk) SaveX(ctx context.Context) []*OrgMetadata {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -454,14 +454,14 @@ func (omcb *OrgMetadataCreateBulk) SaveX(ctx context.Context) []*OrgMetadata {
 }
 
 // Exec executes the query.
-func (omcb *OrgMetadataCreateBulk) Exec(ctx context.Context) error {
-	_, err := omcb.Save(ctx)
+func (_c *OrgMetadataCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (omcb *OrgMetadataCreateBulk) ExecX(ctx context.Context) {
-	if err := omcb.Exec(ctx); err != nil {
+func (_c *OrgMetadataCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -481,10 +481,10 @@ func (omcb *OrgMetadataCreateBulk) ExecX(ctx context.Context) {
 //			SetName(v+v).
 //		}).
 //		Exec(ctx)
-func (omcb *OrgMetadataCreateBulk) OnConflict(opts ...sql.ConflictOption) *OrgMetadataUpsertBulk {
-	omcb.conflict = opts
+func (_c *OrgMetadataCreateBulk) OnConflict(opts ...sql.ConflictOption) *OrgMetadataUpsertBulk {
+	_c.conflict = opts
 	return &OrgMetadataUpsertBulk{
-		create: omcb,
+		create: _c,
 	}
 }
 
@@ -494,10 +494,10 @@ func (omcb *OrgMetadataCreateBulk) OnConflict(opts ...sql.ConflictOption) *OrgMe
 //	client.OrgMetadata.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (omcb *OrgMetadataCreateBulk) OnConflictColumns(columns ...string) *OrgMetadataUpsertBulk {
-	omcb.conflict = append(omcb.conflict, sql.ConflictColumns(columns...))
+func (_c *OrgMetadataCreateBulk) OnConflictColumns(columns ...string) *OrgMetadataUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &OrgMetadataUpsertBulk{
-		create: omcb,
+		create: _c,
 	}
 }
 

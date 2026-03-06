@@ -362,7 +362,7 @@ func (*Agent) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Agent fields.
-func (a *Agent) assignValues(columns []string, values []any) error {
+func (_m *Agent) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -372,197 +372,197 @@ func (a *Agent) assignValues(columns []string, values []any) error {
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field id", values[i])
 			} else if value.Valid {
-				a.ID = value.String
+				_m.ID = value.String
 			}
 		case agent.FieldOs:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field os", values[i])
 			} else if value.Valid {
-				a.Os = value.String
+				_m.Os = value.String
 			}
 		case agent.FieldHostname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hostname", values[i])
 			} else if value.Valid {
-				a.Hostname = value.String
+				_m.Hostname = value.String
 			}
 		case agent.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field ip", values[i])
 			} else if value.Valid {
-				a.IP = value.String
+				_m.IP = value.String
 			}
 		case agent.FieldMAC:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field mac", values[i])
 			} else if value.Valid {
-				a.MAC = value.String
+				_m.MAC = value.String
 			}
 		case agent.FieldFirstContact:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field first_contact", values[i])
 			} else if value.Valid {
-				a.FirstContact = value.Time
+				_m.FirstContact = value.Time
 			}
 		case agent.FieldLastContact:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field last_contact", values[i])
 			} else if value.Valid {
-				a.LastContact = value.Time
+				_m.LastContact = value.Time
 			}
 		case agent.FieldVnc:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field vnc", values[i])
 			} else if value.Valid {
-				a.Vnc = value.String
+				_m.Vnc = value.String
 			}
 		case agent.FieldNotes:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field notes", values[i])
 			} else if value.Valid {
-				a.Notes = value.String
+				_m.Notes = value.String
 			}
 		case agent.FieldUpdateTaskStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_task_status", values[i])
 			} else if value.Valid {
-				a.UpdateTaskStatus = value.String
+				_m.UpdateTaskStatus = value.String
 			}
 		case agent.FieldUpdateTaskDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_task_description", values[i])
 			} else if value.Valid {
-				a.UpdateTaskDescription = value.String
+				_m.UpdateTaskDescription = value.String
 			}
 		case agent.FieldUpdateTaskResult:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_task_result", values[i])
 			} else if value.Valid {
-				a.UpdateTaskResult = value.String
+				_m.UpdateTaskResult = value.String
 			}
 		case agent.FieldUpdateTaskExecution:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field update_task_execution", values[i])
 			} else if value.Valid {
-				a.UpdateTaskExecution = value.Time
+				_m.UpdateTaskExecution = value.Time
 			}
 		case agent.FieldUpdateTaskVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_task_version", values[i])
 			} else if value.Valid {
-				a.UpdateTaskVersion = value.String
+				_m.UpdateTaskVersion = value.String
 			}
 		case agent.FieldVncProxyPort:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field vnc_proxy_port", values[i])
 			} else if value.Valid {
-				a.VncProxyPort = value.String
+				_m.VncProxyPort = value.String
 			}
 		case agent.FieldSftpPort:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field sftp_port", values[i])
 			} else if value.Valid {
-				a.SftpPort = value.String
+				_m.SftpPort = value.String
 			}
 		case agent.FieldAgentStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_status", values[i])
 			} else if value.Valid {
-				a.AgentStatus = agent.AgentStatus(value.String)
+				_m.AgentStatus = agent.AgentStatus(value.String)
 			}
 		case agent.FieldCertificateReady:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field certificate_ready", values[i])
 			} else if value.Valid {
-				a.CertificateReady = value.Bool
+				_m.CertificateReady = value.Bool
 			}
 		case agent.FieldRestartRequired:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field restart_required", values[i])
 			} else if value.Valid {
-				a.RestartRequired = value.Bool
+				_m.RestartRequired = value.Bool
 			}
 		case agent.FieldIsRemote:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_remote", values[i])
 			} else if value.Valid {
-				a.IsRemote = value.Bool
+				_m.IsRemote = value.Bool
 			}
 		case agent.FieldDebugMode:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field debug_mode", values[i])
 			} else if value.Valid {
-				a.DebugMode = value.Bool
+				_m.DebugMode = value.Bool
 			}
 		case agent.FieldSftpService:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field sftp_service", values[i])
 			} else if value.Valid {
-				a.SftpService = value.Bool
+				_m.SftpService = value.Bool
 			}
 		case agent.FieldRemoteAssistance:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field remote_assistance", values[i])
 			} else if value.Valid {
-				a.RemoteAssistance = value.Bool
+				_m.RemoteAssistance = value.Bool
 			}
 		case agent.FieldSettingsModified:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field settings_modified", values[i])
 			} else if value.Valid {
-				a.SettingsModified = value.Time
+				_m.SettingsModified = value.Time
 			}
 		case agent.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				a.Description = value.String
+				_m.Description = value.String
 			}
 		case agent.FieldNickname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field nickname", values[i])
 			} else if value.Valid {
-				a.Nickname = value.String
+				_m.Nickname = value.String
 			}
 		case agent.FieldEndpointType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field endpoint_type", values[i])
 			} else if value.Valid {
-				a.EndpointType = agent.EndpointType(value.String)
+				_m.EndpointType = agent.EndpointType(value.String)
 			}
 		case agent.FieldHasRustdesk:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field has_rustdesk", values[i])
 			} else if value.Valid {
-				a.HasRustdesk = value.Bool
+				_m.HasRustdesk = value.Bool
 			}
 		case agent.FieldIsWayland:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_wayland", values[i])
 			} else if value.Valid {
-				a.IsWayland = value.Bool
+				_m.IsWayland = value.Bool
 			}
 		case agent.FieldIsFlatpakRustdesk:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_flatpak_rustdesk", values[i])
 			} else if value.Valid {
-				a.IsFlatpakRustdesk = value.Bool
+				_m.IsFlatpakRustdesk = value.Bool
 			}
 		case agent.FieldWan:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field wan", values[i])
 			} else if value.Valid {
-				a.Wan = value.String
+				_m.Wan = value.String
 			}
 		case agent.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field release_agents", value)
 			} else if value.Valid {
-				a.release_agents = new(int)
-				*a.release_agents = int(value.Int64)
+				_m.release_agents = new(int)
+				*_m.release_agents = int(value.Int64)
 			}
 		default:
-			a.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -570,227 +570,227 @@ func (a *Agent) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Agent.
 // This includes values selected through modifiers, order, etc.
-func (a *Agent) Value(name string) (ent.Value, error) {
-	return a.selectValues.Get(name)
+func (_m *Agent) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryComputer queries the "computer" edge of the Agent entity.
-func (a *Agent) QueryComputer() *ComputerQuery {
-	return NewAgentClient(a.config).QueryComputer(a)
+func (_m *Agent) QueryComputer() *ComputerQuery {
+	return NewAgentClient(_m.config).QueryComputer(_m)
 }
 
 // QueryOperatingsystem queries the "operatingsystem" edge of the Agent entity.
-func (a *Agent) QueryOperatingsystem() *OperatingSystemQuery {
-	return NewAgentClient(a.config).QueryOperatingsystem(a)
+func (_m *Agent) QueryOperatingsystem() *OperatingSystemQuery {
+	return NewAgentClient(_m.config).QueryOperatingsystem(_m)
 }
 
 // QuerySystemupdate queries the "systemupdate" edge of the Agent entity.
-func (a *Agent) QuerySystemupdate() *SystemUpdateQuery {
-	return NewAgentClient(a.config).QuerySystemupdate(a)
+func (_m *Agent) QuerySystemupdate() *SystemUpdateQuery {
+	return NewAgentClient(_m.config).QuerySystemupdate(_m)
 }
 
 // QueryAntivirus queries the "antivirus" edge of the Agent entity.
-func (a *Agent) QueryAntivirus() *AntivirusQuery {
-	return NewAgentClient(a.config).QueryAntivirus(a)
+func (_m *Agent) QueryAntivirus() *AntivirusQuery {
+	return NewAgentClient(_m.config).QueryAntivirus(_m)
 }
 
 // QueryLogicaldisks queries the "logicaldisks" edge of the Agent entity.
-func (a *Agent) QueryLogicaldisks() *LogicalDiskQuery {
-	return NewAgentClient(a.config).QueryLogicaldisks(a)
+func (_m *Agent) QueryLogicaldisks() *LogicalDiskQuery {
+	return NewAgentClient(_m.config).QueryLogicaldisks(_m)
 }
 
 // QueryApps queries the "apps" edge of the Agent entity.
-func (a *Agent) QueryApps() *AppQuery {
-	return NewAgentClient(a.config).QueryApps(a)
+func (_m *Agent) QueryApps() *AppQuery {
+	return NewAgentClient(_m.config).QueryApps(_m)
 }
 
 // QueryMonitors queries the "monitors" edge of the Agent entity.
-func (a *Agent) QueryMonitors() *MonitorQuery {
-	return NewAgentClient(a.config).QueryMonitors(a)
+func (_m *Agent) QueryMonitors() *MonitorQuery {
+	return NewAgentClient(_m.config).QueryMonitors(_m)
 }
 
 // QueryShares queries the "shares" edge of the Agent entity.
-func (a *Agent) QueryShares() *ShareQuery {
-	return NewAgentClient(a.config).QueryShares(a)
+func (_m *Agent) QueryShares() *ShareQuery {
+	return NewAgentClient(_m.config).QueryShares(_m)
 }
 
 // QueryPrinters queries the "printers" edge of the Agent entity.
-func (a *Agent) QueryPrinters() *PrinterQuery {
-	return NewAgentClient(a.config).QueryPrinters(a)
+func (_m *Agent) QueryPrinters() *PrinterQuery {
+	return NewAgentClient(_m.config).QueryPrinters(_m)
 }
 
 // QueryNetworkadapters queries the "networkadapters" edge of the Agent entity.
-func (a *Agent) QueryNetworkadapters() *NetworkAdapterQuery {
-	return NewAgentClient(a.config).QueryNetworkadapters(a)
+func (_m *Agent) QueryNetworkadapters() *NetworkAdapterQuery {
+	return NewAgentClient(_m.config).QueryNetworkadapters(_m)
 }
 
 // QueryDeployments queries the "deployments" edge of the Agent entity.
-func (a *Agent) QueryDeployments() *DeploymentQuery {
-	return NewAgentClient(a.config).QueryDeployments(a)
+func (_m *Agent) QueryDeployments() *DeploymentQuery {
+	return NewAgentClient(_m.config).QueryDeployments(_m)
 }
 
 // QueryUpdates queries the "updates" edge of the Agent entity.
-func (a *Agent) QueryUpdates() *UpdateQuery {
-	return NewAgentClient(a.config).QueryUpdates(a)
+func (_m *Agent) QueryUpdates() *UpdateQuery {
+	return NewAgentClient(_m.config).QueryUpdates(_m)
 }
 
 // QueryTags queries the "tags" edge of the Agent entity.
-func (a *Agent) QueryTags() *TagQuery {
-	return NewAgentClient(a.config).QueryTags(a)
+func (_m *Agent) QueryTags() *TagQuery {
+	return NewAgentClient(_m.config).QueryTags(_m)
 }
 
 // QueryMetadata queries the "metadata" edge of the Agent entity.
-func (a *Agent) QueryMetadata() *MetadataQuery {
-	return NewAgentClient(a.config).QueryMetadata(a)
+func (_m *Agent) QueryMetadata() *MetadataQuery {
+	return NewAgentClient(_m.config).QueryMetadata(_m)
 }
 
 // QueryWingetcfgexclusions queries the "wingetcfgexclusions" edge of the Agent entity.
-func (a *Agent) QueryWingetcfgexclusions() *WingetConfigExclusionQuery {
-	return NewAgentClient(a.config).QueryWingetcfgexclusions(a)
+func (_m *Agent) QueryWingetcfgexclusions() *WingetConfigExclusionQuery {
+	return NewAgentClient(_m.config).QueryWingetcfgexclusions(_m)
 }
 
 // QueryMemoryslots queries the "memoryslots" edge of the Agent entity.
-func (a *Agent) QueryMemoryslots() *MemorySlotQuery {
-	return NewAgentClient(a.config).QueryMemoryslots(a)
+func (_m *Agent) QueryMemoryslots() *MemorySlotQuery {
+	return NewAgentClient(_m.config).QueryMemoryslots(_m)
 }
 
 // QueryRelease queries the "release" edge of the Agent entity.
-func (a *Agent) QueryRelease() *ReleaseQuery {
-	return NewAgentClient(a.config).QueryRelease(a)
+func (_m *Agent) QueryRelease() *ReleaseQuery {
+	return NewAgentClient(_m.config).QueryRelease(_m)
 }
 
 // QueryProfileissue queries the "profileissue" edge of the Agent entity.
-func (a *Agent) QueryProfileissue() *ProfileIssueQuery {
-	return NewAgentClient(a.config).QueryProfileissue(a)
+func (_m *Agent) QueryProfileissue() *ProfileIssueQuery {
+	return NewAgentClient(_m.config).QueryProfileissue(_m)
 }
 
 // QuerySite queries the "site" edge of the Agent entity.
-func (a *Agent) QuerySite() *SiteQuery {
-	return NewAgentClient(a.config).QuerySite(a)
+func (_m *Agent) QuerySite() *SiteQuery {
+	return NewAgentClient(_m.config).QuerySite(_m)
 }
 
 // QueryPhysicaldisks queries the "physicaldisks" edge of the Agent entity.
-func (a *Agent) QueryPhysicaldisks() *PhysicalDiskQuery {
-	return NewAgentClient(a.config).QueryPhysicaldisks(a)
+func (_m *Agent) QueryPhysicaldisks() *PhysicalDiskQuery {
+	return NewAgentClient(_m.config).QueryPhysicaldisks(_m)
 }
 
 // QueryNetbird queries the "netbird" edge of the Agent entity.
-func (a *Agent) QueryNetbird() *NetbirdQuery {
-	return NewAgentClient(a.config).QueryNetbird(a)
+func (_m *Agent) QueryNetbird() *NetbirdQuery {
+	return NewAgentClient(_m.config).QueryNetbird(_m)
 }
 
 // Update returns a builder for updating this Agent.
 // Note that you need to call Agent.Unwrap() before calling this method if this Agent
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (a *Agent) Update() *AgentUpdateOne {
-	return NewAgentClient(a.config).UpdateOne(a)
+func (_m *Agent) Update() *AgentUpdateOne {
+	return NewAgentClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Agent entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (a *Agent) Unwrap() *Agent {
-	_tx, ok := a.config.driver.(*txDriver)
+func (_m *Agent) Unwrap() *Agent {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Agent is not a transactional entity")
 	}
-	a.config.driver = _tx.drv
-	return a
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (a *Agent) String() string {
+func (_m *Agent) String() string {
 	var builder strings.Builder
 	builder.WriteString("Agent(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", a.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("os=")
-	builder.WriteString(a.Os)
+	builder.WriteString(_m.Os)
 	builder.WriteString(", ")
 	builder.WriteString("hostname=")
-	builder.WriteString(a.Hostname)
+	builder.WriteString(_m.Hostname)
 	builder.WriteString(", ")
 	builder.WriteString("ip=")
-	builder.WriteString(a.IP)
+	builder.WriteString(_m.IP)
 	builder.WriteString(", ")
 	builder.WriteString("mac=")
-	builder.WriteString(a.MAC)
+	builder.WriteString(_m.MAC)
 	builder.WriteString(", ")
 	builder.WriteString("first_contact=")
-	builder.WriteString(a.FirstContact.Format(time.ANSIC))
+	builder.WriteString(_m.FirstContact.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("last_contact=")
-	builder.WriteString(a.LastContact.Format(time.ANSIC))
+	builder.WriteString(_m.LastContact.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("vnc=")
-	builder.WriteString(a.Vnc)
+	builder.WriteString(_m.Vnc)
 	builder.WriteString(", ")
 	builder.WriteString("notes=")
-	builder.WriteString(a.Notes)
+	builder.WriteString(_m.Notes)
 	builder.WriteString(", ")
 	builder.WriteString("update_task_status=")
-	builder.WriteString(a.UpdateTaskStatus)
+	builder.WriteString(_m.UpdateTaskStatus)
 	builder.WriteString(", ")
 	builder.WriteString("update_task_description=")
-	builder.WriteString(a.UpdateTaskDescription)
+	builder.WriteString(_m.UpdateTaskDescription)
 	builder.WriteString(", ")
 	builder.WriteString("update_task_result=")
-	builder.WriteString(a.UpdateTaskResult)
+	builder.WriteString(_m.UpdateTaskResult)
 	builder.WriteString(", ")
 	builder.WriteString("update_task_execution=")
-	builder.WriteString(a.UpdateTaskExecution.Format(time.ANSIC))
+	builder.WriteString(_m.UpdateTaskExecution.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("update_task_version=")
-	builder.WriteString(a.UpdateTaskVersion)
+	builder.WriteString(_m.UpdateTaskVersion)
 	builder.WriteString(", ")
 	builder.WriteString("vnc_proxy_port=")
-	builder.WriteString(a.VncProxyPort)
+	builder.WriteString(_m.VncProxyPort)
 	builder.WriteString(", ")
 	builder.WriteString("sftp_port=")
-	builder.WriteString(a.SftpPort)
+	builder.WriteString(_m.SftpPort)
 	builder.WriteString(", ")
 	builder.WriteString("agent_status=")
-	builder.WriteString(fmt.Sprintf("%v", a.AgentStatus))
+	builder.WriteString(fmt.Sprintf("%v", _m.AgentStatus))
 	builder.WriteString(", ")
 	builder.WriteString("certificate_ready=")
-	builder.WriteString(fmt.Sprintf("%v", a.CertificateReady))
+	builder.WriteString(fmt.Sprintf("%v", _m.CertificateReady))
 	builder.WriteString(", ")
 	builder.WriteString("restart_required=")
-	builder.WriteString(fmt.Sprintf("%v", a.RestartRequired))
+	builder.WriteString(fmt.Sprintf("%v", _m.RestartRequired))
 	builder.WriteString(", ")
 	builder.WriteString("is_remote=")
-	builder.WriteString(fmt.Sprintf("%v", a.IsRemote))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsRemote))
 	builder.WriteString(", ")
 	builder.WriteString("debug_mode=")
-	builder.WriteString(fmt.Sprintf("%v", a.DebugMode))
+	builder.WriteString(fmt.Sprintf("%v", _m.DebugMode))
 	builder.WriteString(", ")
 	builder.WriteString("sftp_service=")
-	builder.WriteString(fmt.Sprintf("%v", a.SftpService))
+	builder.WriteString(fmt.Sprintf("%v", _m.SftpService))
 	builder.WriteString(", ")
 	builder.WriteString("remote_assistance=")
-	builder.WriteString(fmt.Sprintf("%v", a.RemoteAssistance))
+	builder.WriteString(fmt.Sprintf("%v", _m.RemoteAssistance))
 	builder.WriteString(", ")
 	builder.WriteString("settings_modified=")
-	builder.WriteString(a.SettingsModified.Format(time.ANSIC))
+	builder.WriteString(_m.SettingsModified.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(a.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("nickname=")
-	builder.WriteString(a.Nickname)
+	builder.WriteString(_m.Nickname)
 	builder.WriteString(", ")
 	builder.WriteString("endpoint_type=")
-	builder.WriteString(fmt.Sprintf("%v", a.EndpointType))
+	builder.WriteString(fmt.Sprintf("%v", _m.EndpointType))
 	builder.WriteString(", ")
 	builder.WriteString("has_rustdesk=")
-	builder.WriteString(fmt.Sprintf("%v", a.HasRustdesk))
+	builder.WriteString(fmt.Sprintf("%v", _m.HasRustdesk))
 	builder.WriteString(", ")
 	builder.WriteString("is_wayland=")
-	builder.WriteString(fmt.Sprintf("%v", a.IsWayland))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsWayland))
 	builder.WriteString(", ")
 	builder.WriteString("is_flatpak_rustdesk=")
-	builder.WriteString(fmt.Sprintf("%v", a.IsFlatpakRustdesk))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsFlatpakRustdesk))
 	builder.WriteString(", ")
 	builder.WriteString("wan=")
-	builder.WriteString(a.Wan)
+	builder.WriteString(_m.Wan)
 	builder.WriteByte(')')
 	return builder.String()
 }

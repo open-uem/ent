@@ -160,7 +160,7 @@ func (*Settings) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Settings fields.
-func (s *Settings) assignValues(columns []string, values []any) error {
+func (_m *Settings) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -171,245 +171,245 @@ func (s *Settings) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			s.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case settings.FieldLanguage:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field language", values[i])
 			} else if value.Valid {
-				s.Language = value.String
+				_m.Language = value.String
 			}
 		case settings.FieldOrganization:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field organization", values[i])
 			} else if value.Valid {
-				s.Organization = value.String
+				_m.Organization = value.String
 			}
 		case settings.FieldPostalAddress:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field postal_address", values[i])
 			} else if value.Valid {
-				s.PostalAddress = value.String
+				_m.PostalAddress = value.String
 			}
 		case settings.FieldPostalCode:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field postal_code", values[i])
 			} else if value.Valid {
-				s.PostalCode = value.String
+				_m.PostalCode = value.String
 			}
 		case settings.FieldLocality:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field locality", values[i])
 			} else if value.Valid {
-				s.Locality = value.String
+				_m.Locality = value.String
 			}
 		case settings.FieldProvince:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field province", values[i])
 			} else if value.Valid {
-				s.Province = value.String
+				_m.Province = value.String
 			}
 		case settings.FieldState:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field state", values[i])
 			} else if value.Valid {
-				s.State = value.String
+				_m.State = value.String
 			}
 		case settings.FieldCountry:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field country", values[i])
 			} else if value.Valid {
-				s.Country = value.String
+				_m.Country = value.String
 			}
 		case settings.FieldSMTPServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_server", values[i])
 			} else if value.Valid {
-				s.SMTPServer = value.String
+				_m.SMTPServer = value.String
 			}
 		case settings.FieldSMTPPort:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_port", values[i])
 			} else if value.Valid {
-				s.SMTPPort = int(value.Int64)
+				_m.SMTPPort = int(value.Int64)
 			}
 		case settings.FieldSMTPUser:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_user", values[i])
 			} else if value.Valid {
-				s.SMTPUser = value.String
+				_m.SMTPUser = value.String
 			}
 		case settings.FieldSMTPPassword:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_password", values[i])
 			} else if value.Valid {
-				s.SMTPPassword = value.String
+				_m.SMTPPassword = value.String
 			}
 		case settings.FieldSMTPAuth:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_auth", values[i])
 			} else if value.Valid {
-				s.SMTPAuth = value.String
+				_m.SMTPAuth = value.String
 			}
 		case settings.FieldSMTPTLS:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_tls", values[i])
 			} else if value.Valid {
-				s.SMTPTLS = value.Bool
+				_m.SMTPTLS = value.Bool
 			}
 		case settings.FieldSMTPStarttls:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field smtp_starttls", values[i])
 			} else if value.Valid {
-				s.SMTPStarttls = value.Bool
+				_m.SMTPStarttls = value.Bool
 			}
 		case settings.FieldNatsServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field nats_server", values[i])
 			} else if value.Valid {
-				s.NatsServer = value.String
+				_m.NatsServer = value.String
 			}
 		case settings.FieldNatsPort:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field nats_port", values[i])
 			} else if value.Valid {
-				s.NatsPort = value.String
+				_m.NatsPort = value.String
 			}
 		case settings.FieldMessageFrom:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field message_from", values[i])
 			} else if value.Valid {
-				s.MessageFrom = value.String
+				_m.MessageFrom = value.String
 			}
 		case settings.FieldMaxUploadSize:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field max_upload_size", values[i])
 			} else if value.Valid {
-				s.MaxUploadSize = value.String
+				_m.MaxUploadSize = value.String
 			}
 		case settings.FieldUserCertYearsValid:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field user_cert_years_valid", values[i])
 			} else if value.Valid {
-				s.UserCertYearsValid = int(value.Int64)
+				_m.UserCertYearsValid = int(value.Int64)
 			}
 		case settings.FieldNatsRequestTimeoutSeconds:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field nats_request_timeout_seconds", values[i])
 			} else if value.Valid {
-				s.NatsRequestTimeoutSeconds = int(value.Int64)
+				_m.NatsRequestTimeoutSeconds = int(value.Int64)
 			}
 		case settings.FieldRefreshTimeInMinutes:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field refresh_time_in_minutes", values[i])
 			} else if value.Valid {
-				s.RefreshTimeInMinutes = int(value.Int64)
+				_m.RefreshTimeInMinutes = int(value.Int64)
 			}
 		case settings.FieldSessionLifetimeInMinutes:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field session_lifetime_in_minutes", values[i])
 			} else if value.Valid {
-				s.SessionLifetimeInMinutes = int(value.Int64)
+				_m.SessionLifetimeInMinutes = int(value.Int64)
 			}
 		case settings.FieldUpdateChannel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_channel", values[i])
 			} else if value.Valid {
-				s.UpdateChannel = value.String
+				_m.UpdateChannel = value.String
 			}
 		case settings.FieldCreated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created", values[i])
 			} else if value.Valid {
-				s.Created = value.Time
+				_m.Created = value.Time
 			}
 		case settings.FieldModified:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field modified", values[i])
 			} else if value.Valid {
-				s.Modified = value.Time
+				_m.Modified = value.Time
 			}
 		case settings.FieldAgentReportFrequenceInMinutes:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_report_frequence_in_minutes", values[i])
 			} else if value.Valid {
-				s.AgentReportFrequenceInMinutes = int(value.Int64)
+				_m.AgentReportFrequenceInMinutes = int(value.Int64)
 			}
 		case settings.FieldRequestVncPin:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field request_vnc_pin", values[i])
 			} else if value.Valid {
-				s.RequestVncPin = value.Bool
+				_m.RequestVncPin = value.Bool
 			}
 		case settings.FieldProfilesApplicationFrequenceInMinutes:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field profiles_application_frequence_in_minutes", values[i])
 			} else if value.Valid {
-				s.ProfilesApplicationFrequenceInMinutes = int(value.Int64)
+				_m.ProfilesApplicationFrequenceInMinutes = int(value.Int64)
 			}
 		case settings.FieldUseWinget:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_winget", values[i])
 			} else if value.Valid {
-				s.UseWinget = value.Bool
+				_m.UseWinget = value.Bool
 			}
 		case settings.FieldUseFlatpak:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_flatpak", values[i])
 			} else if value.Valid {
-				s.UseFlatpak = value.Bool
+				_m.UseFlatpak = value.Bool
 			}
 		case settings.FieldUseBrew:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field use_brew", values[i])
 			} else if value.Valid {
-				s.UseBrew = value.Bool
+				_m.UseBrew = value.Bool
 			}
 		case settings.FieldDisableSftp:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field disable_sftp", values[i])
 			} else if value.Valid {
-				s.DisableSftp = value.Bool
+				_m.DisableSftp = value.Bool
 			}
 		case settings.FieldDisableRemoteAssistance:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field disable_remote_assistance", values[i])
 			} else if value.Valid {
-				s.DisableRemoteAssistance = value.Bool
+				_m.DisableRemoteAssistance = value.Bool
 			}
 		case settings.FieldDetectRemoteAgents:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field detect_remote_agents", values[i])
 			} else if value.Valid {
-				s.DetectRemoteAgents = value.Bool
+				_m.DetectRemoteAgents = value.Bool
 			}
 		case settings.FieldAutoAdmitAgents:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field auto_admit_agents", values[i])
 			} else if value.Valid {
-				s.AutoAdmitAgents = value.Bool
+				_m.AutoAdmitAgents = value.Bool
 			}
 		case settings.FieldDefaultItemsPerPage:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field default_items_per_page", values[i])
 			} else if value.Valid {
-				s.DefaultItemsPerPage = int(value.Int64)
+				_m.DefaultItemsPerPage = int(value.Int64)
 			}
 		case settings.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field settings_tag", value)
 			} else if value.Valid {
-				s.settings_tag = new(int)
-				*s.settings_tag = int(value.Int64)
+				_m.settings_tag = new(int)
+				*_m.settings_tag = int(value.Int64)
 			}
 		case settings.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field tenant_settings", value)
 			} else if value.Valid {
-				s.tenant_settings = new(int)
-				*s.tenant_settings = int(value.Int64)
+				_m.tenant_settings = new(int)
+				*_m.tenant_settings = int(value.Int64)
 			}
 		default:
-			s.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -417,153 +417,153 @@ func (s *Settings) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Settings.
 // This includes values selected through modifiers, order, etc.
-func (s *Settings) Value(name string) (ent.Value, error) {
-	return s.selectValues.Get(name)
+func (_m *Settings) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryTag queries the "tag" edge of the Settings entity.
-func (s *Settings) QueryTag() *TagQuery {
-	return NewSettingsClient(s.config).QueryTag(s)
+func (_m *Settings) QueryTag() *TagQuery {
+	return NewSettingsClient(_m.config).QueryTag(_m)
 }
 
 // QueryTenant queries the "tenant" edge of the Settings entity.
-func (s *Settings) QueryTenant() *TenantQuery {
-	return NewSettingsClient(s.config).QueryTenant(s)
+func (_m *Settings) QueryTenant() *TenantQuery {
+	return NewSettingsClient(_m.config).QueryTenant(_m)
 }
 
 // Update returns a builder for updating this Settings.
 // Note that you need to call Settings.Unwrap() before calling this method if this Settings
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (s *Settings) Update() *SettingsUpdateOne {
-	return NewSettingsClient(s.config).UpdateOne(s)
+func (_m *Settings) Update() *SettingsUpdateOne {
+	return NewSettingsClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Settings entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (s *Settings) Unwrap() *Settings {
-	_tx, ok := s.config.driver.(*txDriver)
+func (_m *Settings) Unwrap() *Settings {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Settings is not a transactional entity")
 	}
-	s.config.driver = _tx.drv
-	return s
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (s *Settings) String() string {
+func (_m *Settings) String() string {
 	var builder strings.Builder
 	builder.WriteString("Settings(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", s.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("language=")
-	builder.WriteString(s.Language)
+	builder.WriteString(_m.Language)
 	builder.WriteString(", ")
 	builder.WriteString("organization=")
-	builder.WriteString(s.Organization)
+	builder.WriteString(_m.Organization)
 	builder.WriteString(", ")
 	builder.WriteString("postal_address=")
-	builder.WriteString(s.PostalAddress)
+	builder.WriteString(_m.PostalAddress)
 	builder.WriteString(", ")
 	builder.WriteString("postal_code=")
-	builder.WriteString(s.PostalCode)
+	builder.WriteString(_m.PostalCode)
 	builder.WriteString(", ")
 	builder.WriteString("locality=")
-	builder.WriteString(s.Locality)
+	builder.WriteString(_m.Locality)
 	builder.WriteString(", ")
 	builder.WriteString("province=")
-	builder.WriteString(s.Province)
+	builder.WriteString(_m.Province)
 	builder.WriteString(", ")
 	builder.WriteString("state=")
-	builder.WriteString(s.State)
+	builder.WriteString(_m.State)
 	builder.WriteString(", ")
 	builder.WriteString("country=")
-	builder.WriteString(s.Country)
+	builder.WriteString(_m.Country)
 	builder.WriteString(", ")
 	builder.WriteString("smtp_server=")
-	builder.WriteString(s.SMTPServer)
+	builder.WriteString(_m.SMTPServer)
 	builder.WriteString(", ")
 	builder.WriteString("smtp_port=")
-	builder.WriteString(fmt.Sprintf("%v", s.SMTPPort))
+	builder.WriteString(fmt.Sprintf("%v", _m.SMTPPort))
 	builder.WriteString(", ")
 	builder.WriteString("smtp_user=")
-	builder.WriteString(s.SMTPUser)
+	builder.WriteString(_m.SMTPUser)
 	builder.WriteString(", ")
 	builder.WriteString("smtp_password=")
-	builder.WriteString(s.SMTPPassword)
+	builder.WriteString(_m.SMTPPassword)
 	builder.WriteString(", ")
 	builder.WriteString("smtp_auth=")
-	builder.WriteString(s.SMTPAuth)
+	builder.WriteString(_m.SMTPAuth)
 	builder.WriteString(", ")
 	builder.WriteString("smtp_tls=")
-	builder.WriteString(fmt.Sprintf("%v", s.SMTPTLS))
+	builder.WriteString(fmt.Sprintf("%v", _m.SMTPTLS))
 	builder.WriteString(", ")
 	builder.WriteString("smtp_starttls=")
-	builder.WriteString(fmt.Sprintf("%v", s.SMTPStarttls))
+	builder.WriteString(fmt.Sprintf("%v", _m.SMTPStarttls))
 	builder.WriteString(", ")
 	builder.WriteString("nats_server=")
-	builder.WriteString(s.NatsServer)
+	builder.WriteString(_m.NatsServer)
 	builder.WriteString(", ")
 	builder.WriteString("nats_port=")
-	builder.WriteString(s.NatsPort)
+	builder.WriteString(_m.NatsPort)
 	builder.WriteString(", ")
 	builder.WriteString("message_from=")
-	builder.WriteString(s.MessageFrom)
+	builder.WriteString(_m.MessageFrom)
 	builder.WriteString(", ")
 	builder.WriteString("max_upload_size=")
-	builder.WriteString(s.MaxUploadSize)
+	builder.WriteString(_m.MaxUploadSize)
 	builder.WriteString(", ")
 	builder.WriteString("user_cert_years_valid=")
-	builder.WriteString(fmt.Sprintf("%v", s.UserCertYearsValid))
+	builder.WriteString(fmt.Sprintf("%v", _m.UserCertYearsValid))
 	builder.WriteString(", ")
 	builder.WriteString("nats_request_timeout_seconds=")
-	builder.WriteString(fmt.Sprintf("%v", s.NatsRequestTimeoutSeconds))
+	builder.WriteString(fmt.Sprintf("%v", _m.NatsRequestTimeoutSeconds))
 	builder.WriteString(", ")
 	builder.WriteString("refresh_time_in_minutes=")
-	builder.WriteString(fmt.Sprintf("%v", s.RefreshTimeInMinutes))
+	builder.WriteString(fmt.Sprintf("%v", _m.RefreshTimeInMinutes))
 	builder.WriteString(", ")
 	builder.WriteString("session_lifetime_in_minutes=")
-	builder.WriteString(fmt.Sprintf("%v", s.SessionLifetimeInMinutes))
+	builder.WriteString(fmt.Sprintf("%v", _m.SessionLifetimeInMinutes))
 	builder.WriteString(", ")
 	builder.WriteString("update_channel=")
-	builder.WriteString(s.UpdateChannel)
+	builder.WriteString(_m.UpdateChannel)
 	builder.WriteString(", ")
 	builder.WriteString("created=")
-	builder.WriteString(s.Created.Format(time.ANSIC))
+	builder.WriteString(_m.Created.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("modified=")
-	builder.WriteString(s.Modified.Format(time.ANSIC))
+	builder.WriteString(_m.Modified.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("agent_report_frequence_in_minutes=")
-	builder.WriteString(fmt.Sprintf("%v", s.AgentReportFrequenceInMinutes))
+	builder.WriteString(fmt.Sprintf("%v", _m.AgentReportFrequenceInMinutes))
 	builder.WriteString(", ")
 	builder.WriteString("request_vnc_pin=")
-	builder.WriteString(fmt.Sprintf("%v", s.RequestVncPin))
+	builder.WriteString(fmt.Sprintf("%v", _m.RequestVncPin))
 	builder.WriteString(", ")
 	builder.WriteString("profiles_application_frequence_in_minutes=")
-	builder.WriteString(fmt.Sprintf("%v", s.ProfilesApplicationFrequenceInMinutes))
+	builder.WriteString(fmt.Sprintf("%v", _m.ProfilesApplicationFrequenceInMinutes))
 	builder.WriteString(", ")
 	builder.WriteString("use_winget=")
-	builder.WriteString(fmt.Sprintf("%v", s.UseWinget))
+	builder.WriteString(fmt.Sprintf("%v", _m.UseWinget))
 	builder.WriteString(", ")
 	builder.WriteString("use_flatpak=")
-	builder.WriteString(fmt.Sprintf("%v", s.UseFlatpak))
+	builder.WriteString(fmt.Sprintf("%v", _m.UseFlatpak))
 	builder.WriteString(", ")
 	builder.WriteString("use_brew=")
-	builder.WriteString(fmt.Sprintf("%v", s.UseBrew))
+	builder.WriteString(fmt.Sprintf("%v", _m.UseBrew))
 	builder.WriteString(", ")
 	builder.WriteString("disable_sftp=")
-	builder.WriteString(fmt.Sprintf("%v", s.DisableSftp))
+	builder.WriteString(fmt.Sprintf("%v", _m.DisableSftp))
 	builder.WriteString(", ")
 	builder.WriteString("disable_remote_assistance=")
-	builder.WriteString(fmt.Sprintf("%v", s.DisableRemoteAssistance))
+	builder.WriteString(fmt.Sprintf("%v", _m.DisableRemoteAssistance))
 	builder.WriteString(", ")
 	builder.WriteString("detect_remote_agents=")
-	builder.WriteString(fmt.Sprintf("%v", s.DetectRemoteAgents))
+	builder.WriteString(fmt.Sprintf("%v", _m.DetectRemoteAgents))
 	builder.WriteString(", ")
 	builder.WriteString("auto_admit_agents=")
-	builder.WriteString(fmt.Sprintf("%v", s.AutoAdmitAgents))
+	builder.WriteString(fmt.Sprintf("%v", _m.AutoAdmitAgents))
 	builder.WriteString(", ")
 	builder.WriteString("default_items_per_page=")
-	builder.WriteString(fmt.Sprintf("%v", s.DefaultItemsPerPage))
+	builder.WriteString(fmt.Sprintf("%v", _m.DefaultItemsPerPage))
 	builder.WriteByte(')')
 	return builder.String()
 }

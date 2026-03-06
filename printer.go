@@ -76,7 +76,7 @@ func (*Printer) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Printer fields.
-func (pr *Printer) assignValues(columns []string, values []any) error {
+func (_m *Printer) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -87,46 +87,46 @@ func (pr *Printer) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			pr.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case printer.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				pr.Name = value.String
+				_m.Name = value.String
 			}
 		case printer.FieldPort:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field port", values[i])
 			} else if value.Valid {
-				pr.Port = value.String
+				_m.Port = value.String
 			}
 		case printer.FieldIsDefault:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_default", values[i])
 			} else if value.Valid {
-				pr.IsDefault = value.Bool
+				_m.IsDefault = value.Bool
 			}
 		case printer.FieldIsNetwork:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_network", values[i])
 			} else if value.Valid {
-				pr.IsNetwork = value.Bool
+				_m.IsNetwork = value.Bool
 			}
 		case printer.FieldIsShared:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_shared", values[i])
 			} else if value.Valid {
-				pr.IsShared = value.Bool
+				_m.IsShared = value.Bool
 			}
 		case printer.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_printers", values[i])
 			} else if value.Valid {
-				pr.agent_printers = new(string)
-				*pr.agent_printers = value.String
+				_m.agent_printers = new(string)
+				*_m.agent_printers = value.String
 			}
 		default:
-			pr.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -134,52 +134,52 @@ func (pr *Printer) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Printer.
 // This includes values selected through modifiers, order, etc.
-func (pr *Printer) Value(name string) (ent.Value, error) {
-	return pr.selectValues.Get(name)
+func (_m *Printer) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Printer entity.
-func (pr *Printer) QueryOwner() *AgentQuery {
-	return NewPrinterClient(pr.config).QueryOwner(pr)
+func (_m *Printer) QueryOwner() *AgentQuery {
+	return NewPrinterClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Printer.
 // Note that you need to call Printer.Unwrap() before calling this method if this Printer
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (pr *Printer) Update() *PrinterUpdateOne {
-	return NewPrinterClient(pr.config).UpdateOne(pr)
+func (_m *Printer) Update() *PrinterUpdateOne {
+	return NewPrinterClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Printer entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (pr *Printer) Unwrap() *Printer {
-	_tx, ok := pr.config.driver.(*txDriver)
+func (_m *Printer) Unwrap() *Printer {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Printer is not a transactional entity")
 	}
-	pr.config.driver = _tx.drv
-	return pr
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (pr *Printer) String() string {
+func (_m *Printer) String() string {
 	var builder strings.Builder
 	builder.WriteString("Printer(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", pr.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("name=")
-	builder.WriteString(pr.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("port=")
-	builder.WriteString(pr.Port)
+	builder.WriteString(_m.Port)
 	builder.WriteString(", ")
 	builder.WriteString("is_default=")
-	builder.WriteString(fmt.Sprintf("%v", pr.IsDefault))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsDefault))
 	builder.WriteString(", ")
 	builder.WriteString("is_network=")
-	builder.WriteString(fmt.Sprintf("%v", pr.IsNetwork))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsNetwork))
 	builder.WriteString(", ")
 	builder.WriteString("is_shared=")
-	builder.WriteString(fmt.Sprintf("%v", pr.IsShared))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsShared))
 	builder.WriteByte(')')
 	return builder.String()
 }

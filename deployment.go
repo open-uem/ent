@@ -85,7 +85,7 @@ func (*Deployment) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Deployment fields.
-func (d *Deployment) assignValues(columns []string, values []any) error {
+func (_m *Deployment) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -96,64 +96,64 @@ func (d *Deployment) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			d.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case deployment.FieldPackageID:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field package_id", values[i])
 			} else if value.Valid {
-				d.PackageID = value.String
+				_m.PackageID = value.String
 			}
 		case deployment.FieldName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field name", values[i])
 			} else if value.Valid {
-				d.Name = value.String
+				_m.Name = value.String
 			}
 		case deployment.FieldVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				d.Version = value.String
+				_m.Version = value.String
 			}
 		case deployment.FieldInstalled:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field installed", values[i])
 			} else if value.Valid {
-				d.Installed = value.Time
+				_m.Installed = value.Time
 			}
 		case deployment.FieldUpdated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field updated", values[i])
 			} else if value.Valid {
-				d.Updated = value.Time
+				_m.Updated = value.Time
 			}
 		case deployment.FieldFailed:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field failed", values[i])
 			} else if value.Valid {
-				d.Failed = value.Bool
+				_m.Failed = value.Bool
 			}
 		case deployment.FieldByProfile:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field by_profile", values[i])
 			} else if value.Valid {
-				d.ByProfile = value.Bool
+				_m.ByProfile = value.Bool
 			}
 		case deployment.FieldMoreInfo:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field more_info", values[i])
 			} else if value.Valid {
-				d.MoreInfo = value.String
+				_m.MoreInfo = value.String
 			}
 		case deployment.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_deployments", values[i])
 			} else if value.Valid {
-				d.agent_deployments = new(string)
-				*d.agent_deployments = value.String
+				_m.agent_deployments = new(string)
+				*_m.agent_deployments = value.String
 			}
 		default:
-			d.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -161,61 +161,61 @@ func (d *Deployment) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Deployment.
 // This includes values selected through modifiers, order, etc.
-func (d *Deployment) Value(name string) (ent.Value, error) {
-	return d.selectValues.Get(name)
+func (_m *Deployment) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Deployment entity.
-func (d *Deployment) QueryOwner() *AgentQuery {
-	return NewDeploymentClient(d.config).QueryOwner(d)
+func (_m *Deployment) QueryOwner() *AgentQuery {
+	return NewDeploymentClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Deployment.
 // Note that you need to call Deployment.Unwrap() before calling this method if this Deployment
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (d *Deployment) Update() *DeploymentUpdateOne {
-	return NewDeploymentClient(d.config).UpdateOne(d)
+func (_m *Deployment) Update() *DeploymentUpdateOne {
+	return NewDeploymentClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Deployment entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (d *Deployment) Unwrap() *Deployment {
-	_tx, ok := d.config.driver.(*txDriver)
+func (_m *Deployment) Unwrap() *Deployment {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Deployment is not a transactional entity")
 	}
-	d.config.driver = _tx.drv
-	return d
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (d *Deployment) String() string {
+func (_m *Deployment) String() string {
 	var builder strings.Builder
 	builder.WriteString("Deployment(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", d.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("package_id=")
-	builder.WriteString(d.PackageID)
+	builder.WriteString(_m.PackageID)
 	builder.WriteString(", ")
 	builder.WriteString("name=")
-	builder.WriteString(d.Name)
+	builder.WriteString(_m.Name)
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(d.Version)
+	builder.WriteString(_m.Version)
 	builder.WriteString(", ")
 	builder.WriteString("installed=")
-	builder.WriteString(d.Installed.Format(time.ANSIC))
+	builder.WriteString(_m.Installed.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("updated=")
-	builder.WriteString(d.Updated.Format(time.ANSIC))
+	builder.WriteString(_m.Updated.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("failed=")
-	builder.WriteString(fmt.Sprintf("%v", d.Failed))
+	builder.WriteString(fmt.Sprintf("%v", _m.Failed))
 	builder.WriteString(", ")
 	builder.WriteString("by_profile=")
-	builder.WriteString(fmt.Sprintf("%v", d.ByProfile))
+	builder.WriteString(fmt.Sprintf("%v", _m.ByProfile))
 	builder.WriteString(", ")
 	builder.WriteString("more_info=")
-	builder.WriteString(d.MoreInfo)
+	builder.WriteString(_m.MoreInfo)
 	builder.WriteByte(')')
 	return builder.String()
 }

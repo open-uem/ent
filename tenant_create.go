@@ -29,173 +29,173 @@ type TenantCreate struct {
 }
 
 // SetDescription sets the "description" field.
-func (tc *TenantCreate) SetDescription(s string) *TenantCreate {
-	tc.mutation.SetDescription(s)
-	return tc
+func (_c *TenantCreate) SetDescription(v string) *TenantCreate {
+	_c.mutation.SetDescription(v)
+	return _c
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (tc *TenantCreate) SetNillableDescription(s *string) *TenantCreate {
-	if s != nil {
-		tc.SetDescription(*s)
+func (_c *TenantCreate) SetNillableDescription(v *string) *TenantCreate {
+	if v != nil {
+		_c.SetDescription(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetIsDefault sets the "is_default" field.
-func (tc *TenantCreate) SetIsDefault(b bool) *TenantCreate {
-	tc.mutation.SetIsDefault(b)
-	return tc
+func (_c *TenantCreate) SetIsDefault(v bool) *TenantCreate {
+	_c.mutation.SetIsDefault(v)
+	return _c
 }
 
 // SetNillableIsDefault sets the "is_default" field if the given value is not nil.
-func (tc *TenantCreate) SetNillableIsDefault(b *bool) *TenantCreate {
-	if b != nil {
-		tc.SetIsDefault(*b)
+func (_c *TenantCreate) SetNillableIsDefault(v *bool) *TenantCreate {
+	if v != nil {
+		_c.SetIsDefault(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetCreated sets the "created" field.
-func (tc *TenantCreate) SetCreated(t time.Time) *TenantCreate {
-	tc.mutation.SetCreated(t)
-	return tc
+func (_c *TenantCreate) SetCreated(v time.Time) *TenantCreate {
+	_c.mutation.SetCreated(v)
+	return _c
 }
 
 // SetNillableCreated sets the "created" field if the given value is not nil.
-func (tc *TenantCreate) SetNillableCreated(t *time.Time) *TenantCreate {
-	if t != nil {
-		tc.SetCreated(*t)
+func (_c *TenantCreate) SetNillableCreated(v *time.Time) *TenantCreate {
+	if v != nil {
+		_c.SetCreated(*v)
 	}
-	return tc
+	return _c
 }
 
 // SetModified sets the "modified" field.
-func (tc *TenantCreate) SetModified(t time.Time) *TenantCreate {
-	tc.mutation.SetModified(t)
-	return tc
+func (_c *TenantCreate) SetModified(v time.Time) *TenantCreate {
+	_c.mutation.SetModified(v)
+	return _c
 }
 
 // SetNillableModified sets the "modified" field if the given value is not nil.
-func (tc *TenantCreate) SetNillableModified(t *time.Time) *TenantCreate {
-	if t != nil {
-		tc.SetModified(*t)
+func (_c *TenantCreate) SetNillableModified(v *time.Time) *TenantCreate {
+	if v != nil {
+		_c.SetModified(*v)
 	}
-	return tc
+	return _c
 }
 
 // AddSiteIDs adds the "sites" edge to the Site entity by IDs.
-func (tc *TenantCreate) AddSiteIDs(ids ...int) *TenantCreate {
-	tc.mutation.AddSiteIDs(ids...)
-	return tc
+func (_c *TenantCreate) AddSiteIDs(ids ...int) *TenantCreate {
+	_c.mutation.AddSiteIDs(ids...)
+	return _c
 }
 
 // AddSites adds the "sites" edges to the Site entity.
-func (tc *TenantCreate) AddSites(s ...*Site) *TenantCreate {
-	ids := make([]int, len(s))
-	for i := range s {
-		ids[i] = s[i].ID
+func (_c *TenantCreate) AddSites(v ...*Site) *TenantCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddSiteIDs(ids...)
+	return _c.AddSiteIDs(ids...)
 }
 
 // SetSettingsID sets the "settings" edge to the Settings entity by ID.
-func (tc *TenantCreate) SetSettingsID(id int) *TenantCreate {
-	tc.mutation.SetSettingsID(id)
-	return tc
+func (_c *TenantCreate) SetSettingsID(id int) *TenantCreate {
+	_c.mutation.SetSettingsID(id)
+	return _c
 }
 
 // SetNillableSettingsID sets the "settings" edge to the Settings entity by ID if the given value is not nil.
-func (tc *TenantCreate) SetNillableSettingsID(id *int) *TenantCreate {
+func (_c *TenantCreate) SetNillableSettingsID(id *int) *TenantCreate {
 	if id != nil {
-		tc = tc.SetSettingsID(*id)
+		_c = _c.SetSettingsID(*id)
 	}
-	return tc
+	return _c
 }
 
 // SetSettings sets the "settings" edge to the Settings entity.
-func (tc *TenantCreate) SetSettings(s *Settings) *TenantCreate {
-	return tc.SetSettingsID(s.ID)
+func (_c *TenantCreate) SetSettings(v *Settings) *TenantCreate {
+	return _c.SetSettingsID(v.ID)
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
-func (tc *TenantCreate) AddTagIDs(ids ...int) *TenantCreate {
-	tc.mutation.AddTagIDs(ids...)
-	return tc
+func (_c *TenantCreate) AddTagIDs(ids ...int) *TenantCreate {
+	_c.mutation.AddTagIDs(ids...)
+	return _c
 }
 
 // AddTags adds the "tags" edges to the Tag entity.
-func (tc *TenantCreate) AddTags(t ...*Tag) *TenantCreate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_c *TenantCreate) AddTags(v ...*Tag) *TenantCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddTagIDs(ids...)
+	return _c.AddTagIDs(ids...)
 }
 
 // AddMetadatumIDs adds the "metadata" edge to the OrgMetadata entity by IDs.
-func (tc *TenantCreate) AddMetadatumIDs(ids ...int) *TenantCreate {
-	tc.mutation.AddMetadatumIDs(ids...)
-	return tc
+func (_c *TenantCreate) AddMetadatumIDs(ids ...int) *TenantCreate {
+	_c.mutation.AddMetadatumIDs(ids...)
+	return _c
 }
 
 // AddMetadata adds the "metadata" edges to the OrgMetadata entity.
-func (tc *TenantCreate) AddMetadata(o ...*OrgMetadata) *TenantCreate {
-	ids := make([]int, len(o))
-	for i := range o {
-		ids[i] = o[i].ID
+func (_c *TenantCreate) AddMetadata(v ...*OrgMetadata) *TenantCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddMetadatumIDs(ids...)
+	return _c.AddMetadatumIDs(ids...)
 }
 
 // AddRustdeskIDs adds the "rustdesk" edge to the Rustdesk entity by IDs.
-func (tc *TenantCreate) AddRustdeskIDs(ids ...int) *TenantCreate {
-	tc.mutation.AddRustdeskIDs(ids...)
-	return tc
+func (_c *TenantCreate) AddRustdeskIDs(ids ...int) *TenantCreate {
+	_c.mutation.AddRustdeskIDs(ids...)
+	return _c
 }
 
 // AddRustdesk adds the "rustdesk" edges to the Rustdesk entity.
-func (tc *TenantCreate) AddRustdesk(r ...*Rustdesk) *TenantCreate {
-	ids := make([]int, len(r))
-	for i := range r {
-		ids[i] = r[i].ID
+func (_c *TenantCreate) AddRustdesk(v ...*Rustdesk) *TenantCreate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return tc.AddRustdeskIDs(ids...)
+	return _c.AddRustdeskIDs(ids...)
 }
 
 // SetNetbirdID sets the "netbird" edge to the NetbirdSettings entity by ID.
-func (tc *TenantCreate) SetNetbirdID(id int) *TenantCreate {
-	tc.mutation.SetNetbirdID(id)
-	return tc
+func (_c *TenantCreate) SetNetbirdID(id int) *TenantCreate {
+	_c.mutation.SetNetbirdID(id)
+	return _c
 }
 
 // SetNillableNetbirdID sets the "netbird" edge to the NetbirdSettings entity by ID if the given value is not nil.
-func (tc *TenantCreate) SetNillableNetbirdID(id *int) *TenantCreate {
+func (_c *TenantCreate) SetNillableNetbirdID(id *int) *TenantCreate {
 	if id != nil {
-		tc = tc.SetNetbirdID(*id)
+		_c = _c.SetNetbirdID(*id)
 	}
-	return tc
+	return _c
 }
 
 // SetNetbird sets the "netbird" edge to the NetbirdSettings entity.
-func (tc *TenantCreate) SetNetbird(n *NetbirdSettings) *TenantCreate {
-	return tc.SetNetbirdID(n.ID)
+func (_c *TenantCreate) SetNetbird(v *NetbirdSettings) *TenantCreate {
+	return _c.SetNetbirdID(v.ID)
 }
 
 // Mutation returns the TenantMutation object of the builder.
-func (tc *TenantCreate) Mutation() *TenantMutation {
-	return tc.mutation
+func (_c *TenantCreate) Mutation() *TenantMutation {
+	return _c.mutation
 }
 
 // Save creates the Tenant in the database.
-func (tc *TenantCreate) Save(ctx context.Context) (*Tenant, error) {
-	tc.defaults()
-	return withHooks(ctx, tc.sqlSave, tc.mutation, tc.hooks)
+func (_c *TenantCreate) Save(ctx context.Context) (*Tenant, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (tc *TenantCreate) SaveX(ctx context.Context) *Tenant {
-	v, err := tc.Save(ctx)
+func (_c *TenantCreate) SaveX(ctx context.Context) *Tenant {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -203,41 +203,41 @@ func (tc *TenantCreate) SaveX(ctx context.Context) *Tenant {
 }
 
 // Exec executes the query.
-func (tc *TenantCreate) Exec(ctx context.Context) error {
-	_, err := tc.Save(ctx)
+func (_c *TenantCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tc *TenantCreate) ExecX(ctx context.Context) {
-	if err := tc.Exec(ctx); err != nil {
+func (_c *TenantCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (tc *TenantCreate) defaults() {
-	if _, ok := tc.mutation.Created(); !ok {
+func (_c *TenantCreate) defaults() {
+	if _, ok := _c.mutation.Created(); !ok {
 		v := tenant.DefaultCreated()
-		tc.mutation.SetCreated(v)
+		_c.mutation.SetCreated(v)
 	}
-	if _, ok := tc.mutation.Modified(); !ok {
+	if _, ok := _c.mutation.Modified(); !ok {
 		v := tenant.DefaultModified()
-		tc.mutation.SetModified(v)
+		_c.mutation.SetModified(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (tc *TenantCreate) check() error {
+func (_c *TenantCreate) check() error {
 	return nil
 }
 
-func (tc *TenantCreate) sqlSave(ctx context.Context) (*Tenant, error) {
-	if err := tc.check(); err != nil {
+func (_c *TenantCreate) sqlSave(ctx context.Context) (*Tenant, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := tc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, tc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -245,34 +245,34 @@ func (tc *TenantCreate) sqlSave(ctx context.Context) (*Tenant, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	tc.mutation.id = &_node.ID
-	tc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
+func (_c *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Tenant{config: tc.config}
+		_node = &Tenant{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(tenant.Table, sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = tc.conflict
-	if value, ok := tc.mutation.Description(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Description(); ok {
 		_spec.SetField(tenant.FieldDescription, field.TypeString, value)
 		_node.Description = value
 	}
-	if value, ok := tc.mutation.IsDefault(); ok {
+	if value, ok := _c.mutation.IsDefault(); ok {
 		_spec.SetField(tenant.FieldIsDefault, field.TypeBool, value)
 		_node.IsDefault = value
 	}
-	if value, ok := tc.mutation.Created(); ok {
+	if value, ok := _c.mutation.Created(); ok {
 		_spec.SetField(tenant.FieldCreated, field.TypeTime, value)
 		_node.Created = value
 	}
-	if value, ok := tc.mutation.Modified(); ok {
+	if value, ok := _c.mutation.Modified(); ok {
 		_spec.SetField(tenant.FieldModified, field.TypeTime, value)
 		_node.Modified = value
 	}
-	if nodes := tc.mutation.SitesIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SitesIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -288,7 +288,7 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.SettingsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.SettingsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: false,
@@ -304,7 +304,7 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.TagsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TagsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -320,7 +320,7 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.MetadataIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.MetadataIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -336,7 +336,7 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.RustdeskIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.RustdeskIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2M,
 			Inverse: false,
@@ -352,7 +352,7 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := tc.mutation.NetbirdIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.NetbirdIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -388,10 +388,10 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 //			SetDescription(v+v).
 //		}).
 //		Exec(ctx)
-func (tc *TenantCreate) OnConflict(opts ...sql.ConflictOption) *TenantUpsertOne {
-	tc.conflict = opts
+func (_c *TenantCreate) OnConflict(opts ...sql.ConflictOption) *TenantUpsertOne {
+	_c.conflict = opts
 	return &TenantUpsertOne{
-		create: tc,
+		create: _c,
 	}
 }
 
@@ -401,10 +401,10 @@ func (tc *TenantCreate) OnConflict(opts ...sql.ConflictOption) *TenantUpsertOne 
 //	client.Tenant.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tc *TenantCreate) OnConflictColumns(columns ...string) *TenantUpsertOne {
-	tc.conflict = append(tc.conflict, sql.ConflictColumns(columns...))
+func (_c *TenantCreate) OnConflictColumns(columns ...string) *TenantUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TenantUpsertOne{
-		create: tc,
+		create: _c,
 	}
 }
 
@@ -659,16 +659,16 @@ type TenantCreateBulk struct {
 }
 
 // Save creates the Tenant entities in the database.
-func (tcb *TenantCreateBulk) Save(ctx context.Context) ([]*Tenant, error) {
-	if tcb.err != nil {
-		return nil, tcb.err
+func (_c *TenantCreateBulk) Save(ctx context.Context) ([]*Tenant, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(tcb.builders))
-	nodes := make([]*Tenant, len(tcb.builders))
-	mutators := make([]Mutator, len(tcb.builders))
-	for i := range tcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Tenant, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := tcb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*TenantMutation)
@@ -682,12 +682,12 @@ func (tcb *TenantCreateBulk) Save(ctx context.Context) ([]*Tenant, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, tcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = tcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, tcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -711,7 +711,7 @@ func (tcb *TenantCreateBulk) Save(ctx context.Context) ([]*Tenant, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, tcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -719,8 +719,8 @@ func (tcb *TenantCreateBulk) Save(ctx context.Context) ([]*Tenant, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tcb *TenantCreateBulk) SaveX(ctx context.Context) []*Tenant {
-	v, err := tcb.Save(ctx)
+func (_c *TenantCreateBulk) SaveX(ctx context.Context) []*Tenant {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -728,14 +728,14 @@ func (tcb *TenantCreateBulk) SaveX(ctx context.Context) []*Tenant {
 }
 
 // Exec executes the query.
-func (tcb *TenantCreateBulk) Exec(ctx context.Context) error {
-	_, err := tcb.Save(ctx)
+func (_c *TenantCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tcb *TenantCreateBulk) ExecX(ctx context.Context) {
-	if err := tcb.Exec(ctx); err != nil {
+func (_c *TenantCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -755,10 +755,10 @@ func (tcb *TenantCreateBulk) ExecX(ctx context.Context) {
 //			SetDescription(v+v).
 //		}).
 //		Exec(ctx)
-func (tcb *TenantCreateBulk) OnConflict(opts ...sql.ConflictOption) *TenantUpsertBulk {
-	tcb.conflict = opts
+func (_c *TenantCreateBulk) OnConflict(opts ...sql.ConflictOption) *TenantUpsertBulk {
+	_c.conflict = opts
 	return &TenantUpsertBulk{
-		create: tcb,
+		create: _c,
 	}
 }
 
@@ -768,10 +768,10 @@ func (tcb *TenantCreateBulk) OnConflict(opts ...sql.ConflictOption) *TenantUpser
 //	client.Tenant.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (tcb *TenantCreateBulk) OnConflictColumns(columns ...string) *TenantUpsertBulk {
-	tcb.conflict = append(tcb.conflict, sql.ConflictColumns(columns...))
+func (_c *TenantCreateBulk) OnConflictColumns(columns ...string) *TenantUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &TenantUpsertBulk{
-		create: tcb,
+		create: _c,
 	}
 }
 

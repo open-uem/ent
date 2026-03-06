@@ -85,7 +85,7 @@ func (*Release) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Release fields.
-func (r *Release) assignValues(columns []string, values []any) error {
+func (_m *Release) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -96,75 +96,75 @@ func (r *Release) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			r.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case release.FieldReleaseType:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field release_type", values[i])
 			} else if value.Valid {
-				r.ReleaseType = release.ReleaseType(value.String)
+				_m.ReleaseType = release.ReleaseType(value.String)
 			}
 		case release.FieldVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				r.Version = value.String
+				_m.Version = value.String
 			}
 		case release.FieldChannel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field channel", values[i])
 			} else if value.Valid {
-				r.Channel = value.String
+				_m.Channel = value.String
 			}
 		case release.FieldSummary:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field summary", values[i])
 			} else if value.Valid {
-				r.Summary = value.String
+				_m.Summary = value.String
 			}
 		case release.FieldReleaseNotes:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field release_notes", values[i])
 			} else if value.Valid {
-				r.ReleaseNotes = value.String
+				_m.ReleaseNotes = value.String
 			}
 		case release.FieldFileURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field file_url", values[i])
 			} else if value.Valid {
-				r.FileURL = value.String
+				_m.FileURL = value.String
 			}
 		case release.FieldChecksum:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field checksum", values[i])
 			} else if value.Valid {
-				r.Checksum = value.String
+				_m.Checksum = value.String
 			}
 		case release.FieldIsCritical:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_critical", values[i])
 			} else if value.Valid {
-				r.IsCritical = value.Bool
+				_m.IsCritical = value.Bool
 			}
 		case release.FieldReleaseDate:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field release_date", values[i])
 			} else if value.Valid {
-				r.ReleaseDate = value.Time
+				_m.ReleaseDate = value.Time
 			}
 		case release.FieldOs:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field os", values[i])
 			} else if value.Valid {
-				r.Os = value.String
+				_m.Os = value.String
 			}
 		case release.FieldArch:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field arch", values[i])
 			} else if value.Valid {
-				r.Arch = value.String
+				_m.Arch = value.String
 			}
 		default:
-			r.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -172,70 +172,70 @@ func (r *Release) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Release.
 // This includes values selected through modifiers, order, etc.
-func (r *Release) Value(name string) (ent.Value, error) {
-	return r.selectValues.Get(name)
+func (_m *Release) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryAgents queries the "agents" edge of the Release entity.
-func (r *Release) QueryAgents() *AgentQuery {
-	return NewReleaseClient(r.config).QueryAgents(r)
+func (_m *Release) QueryAgents() *AgentQuery {
+	return NewReleaseClient(_m.config).QueryAgents(_m)
 }
 
 // Update returns a builder for updating this Release.
 // Note that you need to call Release.Unwrap() before calling this method if this Release
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (r *Release) Update() *ReleaseUpdateOne {
-	return NewReleaseClient(r.config).UpdateOne(r)
+func (_m *Release) Update() *ReleaseUpdateOne {
+	return NewReleaseClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Release entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (r *Release) Unwrap() *Release {
-	_tx, ok := r.config.driver.(*txDriver)
+func (_m *Release) Unwrap() *Release {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Release is not a transactional entity")
 	}
-	r.config.driver = _tx.drv
-	return r
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (r *Release) String() string {
+func (_m *Release) String() string {
 	var builder strings.Builder
 	builder.WriteString("Release(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", r.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("release_type=")
-	builder.WriteString(fmt.Sprintf("%v", r.ReleaseType))
+	builder.WriteString(fmt.Sprintf("%v", _m.ReleaseType))
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(r.Version)
+	builder.WriteString(_m.Version)
 	builder.WriteString(", ")
 	builder.WriteString("channel=")
-	builder.WriteString(r.Channel)
+	builder.WriteString(_m.Channel)
 	builder.WriteString(", ")
 	builder.WriteString("summary=")
-	builder.WriteString(r.Summary)
+	builder.WriteString(_m.Summary)
 	builder.WriteString(", ")
 	builder.WriteString("release_notes=")
-	builder.WriteString(r.ReleaseNotes)
+	builder.WriteString(_m.ReleaseNotes)
 	builder.WriteString(", ")
 	builder.WriteString("file_url=")
-	builder.WriteString(r.FileURL)
+	builder.WriteString(_m.FileURL)
 	builder.WriteString(", ")
 	builder.WriteString("checksum=")
-	builder.WriteString(r.Checksum)
+	builder.WriteString(_m.Checksum)
 	builder.WriteString(", ")
 	builder.WriteString("is_critical=")
-	builder.WriteString(fmt.Sprintf("%v", r.IsCritical))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsCritical))
 	builder.WriteString(", ")
 	builder.WriteString("release_date=")
-	builder.WriteString(r.ReleaseDate.Format(time.ANSIC))
+	builder.WriteString(_m.ReleaseDate.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("os=")
-	builder.WriteString(r.Os)
+	builder.WriteString(_m.Os)
 	builder.WriteString(", ")
 	builder.WriteString("arch=")
-	builder.WriteString(r.Arch)
+	builder.WriteString(_m.Arch)
 	builder.WriteByte(')')
 	return builder.String()
 }

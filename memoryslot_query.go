@@ -32,44 +32,44 @@ type MemorySlotQuery struct {
 }
 
 // Where adds a new predicate for the MemorySlotQuery builder.
-func (msq *MemorySlotQuery) Where(ps ...predicate.MemorySlot) *MemorySlotQuery {
-	msq.predicates = append(msq.predicates, ps...)
-	return msq
+func (_q *MemorySlotQuery) Where(ps ...predicate.MemorySlot) *MemorySlotQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (msq *MemorySlotQuery) Limit(limit int) *MemorySlotQuery {
-	msq.ctx.Limit = &limit
-	return msq
+func (_q *MemorySlotQuery) Limit(limit int) *MemorySlotQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (msq *MemorySlotQuery) Offset(offset int) *MemorySlotQuery {
-	msq.ctx.Offset = &offset
-	return msq
+func (_q *MemorySlotQuery) Offset(offset int) *MemorySlotQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (msq *MemorySlotQuery) Unique(unique bool) *MemorySlotQuery {
-	msq.ctx.Unique = &unique
-	return msq
+func (_q *MemorySlotQuery) Unique(unique bool) *MemorySlotQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (msq *MemorySlotQuery) Order(o ...memoryslot.OrderOption) *MemorySlotQuery {
-	msq.order = append(msq.order, o...)
-	return msq
+func (_q *MemorySlotQuery) Order(o ...memoryslot.OrderOption) *MemorySlotQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (msq *MemorySlotQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: msq.config}).Query()
+func (_q *MemorySlotQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := msq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := msq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (msq *MemorySlotQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, memoryslot.OwnerTable, memoryslot.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(msq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (msq *MemorySlotQuery) QueryOwner() *AgentQuery {
 
 // First returns the first MemorySlot entity from the query.
 // Returns a *NotFoundError when no MemorySlot was found.
-func (msq *MemorySlotQuery) First(ctx context.Context) (*MemorySlot, error) {
-	nodes, err := msq.Limit(1).All(setContextOp(ctx, msq.ctx, ent.OpQueryFirst))
+func (_q *MemorySlotQuery) First(ctx context.Context) (*MemorySlot, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (msq *MemorySlotQuery) First(ctx context.Context) (*MemorySlot, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (msq *MemorySlotQuery) FirstX(ctx context.Context) *MemorySlot {
-	node, err := msq.First(ctx)
+func (_q *MemorySlotQuery) FirstX(ctx context.Context) *MemorySlot {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (msq *MemorySlotQuery) FirstX(ctx context.Context) *MemorySlot {
 
 // FirstID returns the first MemorySlot ID from the query.
 // Returns a *NotFoundError when no MemorySlot ID was found.
-func (msq *MemorySlotQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *MemorySlotQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = msq.Limit(1).IDs(setContextOp(ctx, msq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (msq *MemorySlotQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (msq *MemorySlotQuery) FirstIDX(ctx context.Context) int {
-	id, err := msq.FirstID(ctx)
+func (_q *MemorySlotQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (msq *MemorySlotQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single MemorySlot entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one MemorySlot entity is found.
 // Returns a *NotFoundError when no MemorySlot entities are found.
-func (msq *MemorySlotQuery) Only(ctx context.Context) (*MemorySlot, error) {
-	nodes, err := msq.Limit(2).All(setContextOp(ctx, msq.ctx, ent.OpQueryOnly))
+func (_q *MemorySlotQuery) Only(ctx context.Context) (*MemorySlot, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (msq *MemorySlotQuery) Only(ctx context.Context) (*MemorySlot, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (msq *MemorySlotQuery) OnlyX(ctx context.Context) *MemorySlot {
-	node, err := msq.Only(ctx)
+func (_q *MemorySlotQuery) OnlyX(ctx context.Context) *MemorySlot {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (msq *MemorySlotQuery) OnlyX(ctx context.Context) *MemorySlot {
 // OnlyID is like Only, but returns the only MemorySlot ID in the query.
 // Returns a *NotSingularError when more than one MemorySlot ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (msq *MemorySlotQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *MemorySlotQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = msq.Limit(2).IDs(setContextOp(ctx, msq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (msq *MemorySlotQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (msq *MemorySlotQuery) OnlyIDX(ctx context.Context) int {
-	id, err := msq.OnlyID(ctx)
+func (_q *MemorySlotQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (msq *MemorySlotQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of MemorySlots.
-func (msq *MemorySlotQuery) All(ctx context.Context) ([]*MemorySlot, error) {
-	ctx = setContextOp(ctx, msq.ctx, ent.OpQueryAll)
-	if err := msq.prepareQuery(ctx); err != nil {
+func (_q *MemorySlotQuery) All(ctx context.Context) ([]*MemorySlot, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*MemorySlot, *MemorySlotQuery]()
-	return withInterceptors[[]*MemorySlot](ctx, msq, qr, msq.inters)
+	return withInterceptors[[]*MemorySlot](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (msq *MemorySlotQuery) AllX(ctx context.Context) []*MemorySlot {
-	nodes, err := msq.All(ctx)
+func (_q *MemorySlotQuery) AllX(ctx context.Context) []*MemorySlot {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (msq *MemorySlotQuery) AllX(ctx context.Context) []*MemorySlot {
 }
 
 // IDs executes the query and returns a list of MemorySlot IDs.
-func (msq *MemorySlotQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if msq.ctx.Unique == nil && msq.path != nil {
-		msq.Unique(true)
+func (_q *MemorySlotQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, msq.ctx, ent.OpQueryIDs)
-	if err = msq.Select(memoryslot.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(memoryslot.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (msq *MemorySlotQuery) IDsX(ctx context.Context) []int {
-	ids, err := msq.IDs(ctx)
+func (_q *MemorySlotQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (msq *MemorySlotQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (msq *MemorySlotQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, msq.ctx, ent.OpQueryCount)
-	if err := msq.prepareQuery(ctx); err != nil {
+func (_q *MemorySlotQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, msq, querierCount[*MemorySlotQuery](), msq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*MemorySlotQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (msq *MemorySlotQuery) CountX(ctx context.Context) int {
-	count, err := msq.Count(ctx)
+func (_q *MemorySlotQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (msq *MemorySlotQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (msq *MemorySlotQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, msq.ctx, ent.OpQueryExist)
-	switch _, err := msq.FirstID(ctx); {
+func (_q *MemorySlotQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (msq *MemorySlotQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (msq *MemorySlotQuery) ExistX(ctx context.Context) bool {
-	exist, err := msq.Exist(ctx)
+func (_q *MemorySlotQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (msq *MemorySlotQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the MemorySlotQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (msq *MemorySlotQuery) Clone() *MemorySlotQuery {
-	if msq == nil {
+func (_q *MemorySlotQuery) Clone() *MemorySlotQuery {
+	if _q == nil {
 		return nil
 	}
 	return &MemorySlotQuery{
-		config:     msq.config,
-		ctx:        msq.ctx.Clone(),
-		order:      append([]memoryslot.OrderOption{}, msq.order...),
-		inters:     append([]Interceptor{}, msq.inters...),
-		predicates: append([]predicate.MemorySlot{}, msq.predicates...),
-		withOwner:  msq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]memoryslot.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.MemorySlot{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       msq.sql.Clone(),
-		path:      msq.path,
-		modifiers: append([]func(*sql.Selector){}, msq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (msq *MemorySlotQuery) WithOwner(opts ...func(*AgentQuery)) *MemorySlotQuery {
-	query := (&AgentClient{config: msq.config}).Query()
+func (_q *MemorySlotQuery) WithOwner(opts ...func(*AgentQuery)) *MemorySlotQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	msq.withOwner = query
-	return msq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (msq *MemorySlotQuery) WithOwner(opts ...func(*AgentQuery)) *MemorySlotQuer
 //		GroupBy(memoryslot.FieldSlot).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (msq *MemorySlotQuery) GroupBy(field string, fields ...string) *MemorySlotGroupBy {
-	msq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &MemorySlotGroupBy{build: msq}
-	grbuild.flds = &msq.ctx.Fields
+func (_q *MemorySlotQuery) GroupBy(field string, fields ...string) *MemorySlotGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &MemorySlotGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = memoryslot.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (msq *MemorySlotQuery) GroupBy(field string, fields ...string) *MemorySlotG
 //	client.MemorySlot.Query().
 //		Select(memoryslot.FieldSlot).
 //		Scan(ctx, &v)
-func (msq *MemorySlotQuery) Select(fields ...string) *MemorySlotSelect {
-	msq.ctx.Fields = append(msq.ctx.Fields, fields...)
-	sbuild := &MemorySlotSelect{MemorySlotQuery: msq}
+func (_q *MemorySlotQuery) Select(fields ...string) *MemorySlotSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &MemorySlotSelect{MemorySlotQuery: _q}
 	sbuild.label = memoryslot.Label
-	sbuild.flds, sbuild.scan = &msq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a MemorySlotSelect configured with the given aggregations.
-func (msq *MemorySlotQuery) Aggregate(fns ...AggregateFunc) *MemorySlotSelect {
-	return msq.Select().Aggregate(fns...)
+func (_q *MemorySlotQuery) Aggregate(fns ...AggregateFunc) *MemorySlotSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (msq *MemorySlotQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range msq.inters {
+func (_q *MemorySlotQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, msq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range msq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !memoryslot.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if msq.path != nil {
-		prev, err := msq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		msq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (msq *MemorySlotQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*MemorySlot, error) {
+func (_q *MemorySlotQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*MemorySlot, error) {
 	var (
 		nodes       = []*MemorySlot{}
-		withFKs     = msq.withFKs
-		_spec       = msq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			msq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if msq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (msq *MemorySlotQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 		return (*MemorySlot).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &MemorySlot{config: msq.config}
+		node := &MemorySlot{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(msq.modifiers) > 0 {
-		_spec.Modifiers = msq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, msq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := msq.withOwner; query != nil {
-		if err := msq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *MemorySlot, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (msq *MemorySlotQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*
 	return nodes, nil
 }
 
-func (msq *MemorySlotQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*MemorySlot, init func(*MemorySlot), assign func(*MemorySlot, *Agent)) error {
+func (_q *MemorySlotQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*MemorySlot, init func(*MemorySlot), assign func(*MemorySlot, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*MemorySlot)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (msq *MemorySlotQuery) loadOwner(ctx context.Context, query *AgentQuery, no
 	return nil
 }
 
-func (msq *MemorySlotQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := msq.querySpec()
-	if len(msq.modifiers) > 0 {
-		_spec.Modifiers = msq.modifiers
+func (_q *MemorySlotQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = msq.ctx.Fields
-	if len(msq.ctx.Fields) > 0 {
-		_spec.Unique = msq.ctx.Unique != nil && *msq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, msq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (msq *MemorySlotQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *MemorySlotQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(memoryslot.Table, memoryslot.Columns, sqlgraph.NewFieldSpec(memoryslot.FieldID, field.TypeInt))
-	_spec.From = msq.sql
-	if unique := msq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if msq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := msq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, memoryslot.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (msq *MemorySlotQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := msq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := msq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := msq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := msq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (msq *MemorySlotQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (msq *MemorySlotQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(msq.driver.Dialect())
+func (_q *MemorySlotQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(memoryslot.Table)
-	columns := msq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = memoryslot.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if msq.sql != nil {
-		selector = msq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if msq.ctx.Unique != nil && *msq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range msq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range msq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range msq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := msq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := msq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (msq *MemorySlotQuery) Modify(modifiers ...func(s *sql.Selector)) *MemorySlotSelect {
-	msq.modifiers = append(msq.modifiers, modifiers...)
-	return msq.Select()
+func (_q *MemorySlotQuery) Modify(modifiers ...func(s *sql.Selector)) *MemorySlotSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // MemorySlotGroupBy is the group-by builder for MemorySlot entities.
@@ -547,41 +547,41 @@ type MemorySlotGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (msgb *MemorySlotGroupBy) Aggregate(fns ...AggregateFunc) *MemorySlotGroupBy {
-	msgb.fns = append(msgb.fns, fns...)
-	return msgb
+func (_g *MemorySlotGroupBy) Aggregate(fns ...AggregateFunc) *MemorySlotGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (msgb *MemorySlotGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, msgb.build.ctx, ent.OpQueryGroupBy)
-	if err := msgb.build.prepareQuery(ctx); err != nil {
+func (_g *MemorySlotGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*MemorySlotQuery, *MemorySlotGroupBy](ctx, msgb.build, msgb, msgb.build.inters, v)
+	return scanWithInterceptors[*MemorySlotQuery, *MemorySlotGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (msgb *MemorySlotGroupBy) sqlScan(ctx context.Context, root *MemorySlotQuery, v any) error {
+func (_g *MemorySlotGroupBy) sqlScan(ctx context.Context, root *MemorySlotQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(msgb.fns))
-	for _, fn := range msgb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*msgb.flds)+len(msgb.fns))
-		for _, f := range *msgb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*msgb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := msgb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type MemorySlotSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (mss *MemorySlotSelect) Aggregate(fns ...AggregateFunc) *MemorySlotSelect {
-	mss.fns = append(mss.fns, fns...)
-	return mss
+func (_s *MemorySlotSelect) Aggregate(fns ...AggregateFunc) *MemorySlotSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (mss *MemorySlotSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, mss.ctx, ent.OpQuerySelect)
-	if err := mss.prepareQuery(ctx); err != nil {
+func (_s *MemorySlotSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*MemorySlotQuery, *MemorySlotSelect](ctx, mss.MemorySlotQuery, mss, mss.inters, v)
+	return scanWithInterceptors[*MemorySlotQuery, *MemorySlotSelect](ctx, _s.MemorySlotQuery, _s, _s.inters, v)
 }
 
-func (mss *MemorySlotSelect) sqlScan(ctx context.Context, root *MemorySlotQuery, v any) error {
+func (_s *MemorySlotSelect) sqlScan(ctx context.Context, root *MemorySlotQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(mss.fns))
-	for _, fn := range mss.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*mss.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (mss *MemorySlotSelect) sqlScan(ctx context.Context, root *MemorySlotQuery,
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := mss.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (mss *MemorySlotSelect) sqlScan(ctx context.Context, root *MemorySlotQuery,
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (mss *MemorySlotSelect) Modify(modifiers ...func(s *sql.Selector)) *MemorySlotSelect {
-	mss.modifiers = append(mss.modifiers, modifiers...)
-	return mss
+func (_s *MemorySlotSelect) Modify(modifiers ...func(s *sql.Selector)) *MemorySlotSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }

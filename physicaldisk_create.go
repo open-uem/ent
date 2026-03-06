@@ -23,77 +23,77 @@ type PhysicalDiskCreate struct {
 }
 
 // SetDeviceID sets the "device_id" field.
-func (pdc *PhysicalDiskCreate) SetDeviceID(s string) *PhysicalDiskCreate {
-	pdc.mutation.SetDeviceID(s)
-	return pdc
+func (_c *PhysicalDiskCreate) SetDeviceID(v string) *PhysicalDiskCreate {
+	_c.mutation.SetDeviceID(v)
+	return _c
 }
 
 // SetModel sets the "model" field.
-func (pdc *PhysicalDiskCreate) SetModel(s string) *PhysicalDiskCreate {
-	pdc.mutation.SetModel(s)
-	return pdc
+func (_c *PhysicalDiskCreate) SetModel(v string) *PhysicalDiskCreate {
+	_c.mutation.SetModel(v)
+	return _c
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (pdc *PhysicalDiskCreate) SetNillableModel(s *string) *PhysicalDiskCreate {
-	if s != nil {
-		pdc.SetModel(*s)
+func (_c *PhysicalDiskCreate) SetNillableModel(v *string) *PhysicalDiskCreate {
+	if v != nil {
+		_c.SetModel(*v)
 	}
-	return pdc
+	return _c
 }
 
 // SetSerialNumber sets the "serial_number" field.
-func (pdc *PhysicalDiskCreate) SetSerialNumber(s string) *PhysicalDiskCreate {
-	pdc.mutation.SetSerialNumber(s)
-	return pdc
+func (_c *PhysicalDiskCreate) SetSerialNumber(v string) *PhysicalDiskCreate {
+	_c.mutation.SetSerialNumber(v)
+	return _c
 }
 
 // SetNillableSerialNumber sets the "serial_number" field if the given value is not nil.
-func (pdc *PhysicalDiskCreate) SetNillableSerialNumber(s *string) *PhysicalDiskCreate {
-	if s != nil {
-		pdc.SetSerialNumber(*s)
+func (_c *PhysicalDiskCreate) SetNillableSerialNumber(v *string) *PhysicalDiskCreate {
+	if v != nil {
+		_c.SetSerialNumber(*v)
 	}
-	return pdc
+	return _c
 }
 
 // SetSizeInUnits sets the "size_in_units" field.
-func (pdc *PhysicalDiskCreate) SetSizeInUnits(s string) *PhysicalDiskCreate {
-	pdc.mutation.SetSizeInUnits(s)
-	return pdc
+func (_c *PhysicalDiskCreate) SetSizeInUnits(v string) *PhysicalDiskCreate {
+	_c.mutation.SetSizeInUnits(v)
+	return _c
 }
 
 // SetNillableSizeInUnits sets the "size_in_units" field if the given value is not nil.
-func (pdc *PhysicalDiskCreate) SetNillableSizeInUnits(s *string) *PhysicalDiskCreate {
-	if s != nil {
-		pdc.SetSizeInUnits(*s)
+func (_c *PhysicalDiskCreate) SetNillableSizeInUnits(v *string) *PhysicalDiskCreate {
+	if v != nil {
+		_c.SetSizeInUnits(*v)
 	}
-	return pdc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (pdc *PhysicalDiskCreate) SetOwnerID(id string) *PhysicalDiskCreate {
-	pdc.mutation.SetOwnerID(id)
-	return pdc
+func (_c *PhysicalDiskCreate) SetOwnerID(id string) *PhysicalDiskCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (pdc *PhysicalDiskCreate) SetOwner(a *Agent) *PhysicalDiskCreate {
-	return pdc.SetOwnerID(a.ID)
+func (_c *PhysicalDiskCreate) SetOwner(v *Agent) *PhysicalDiskCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the PhysicalDiskMutation object of the builder.
-func (pdc *PhysicalDiskCreate) Mutation() *PhysicalDiskMutation {
-	return pdc.mutation
+func (_c *PhysicalDiskCreate) Mutation() *PhysicalDiskMutation {
+	return _c.mutation
 }
 
 // Save creates the PhysicalDisk in the database.
-func (pdc *PhysicalDiskCreate) Save(ctx context.Context) (*PhysicalDisk, error) {
-	return withHooks(ctx, pdc.sqlSave, pdc.mutation, pdc.hooks)
+func (_c *PhysicalDiskCreate) Save(ctx context.Context) (*PhysicalDisk, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (pdc *PhysicalDiskCreate) SaveX(ctx context.Context) *PhysicalDisk {
-	v, err := pdc.Save(ctx)
+func (_c *PhysicalDiskCreate) SaveX(ctx context.Context) *PhysicalDisk {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -101,35 +101,35 @@ func (pdc *PhysicalDiskCreate) SaveX(ctx context.Context) *PhysicalDisk {
 }
 
 // Exec executes the query.
-func (pdc *PhysicalDiskCreate) Exec(ctx context.Context) error {
-	_, err := pdc.Save(ctx)
+func (_c *PhysicalDiskCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pdc *PhysicalDiskCreate) ExecX(ctx context.Context) {
-	if err := pdc.Exec(ctx); err != nil {
+func (_c *PhysicalDiskCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (pdc *PhysicalDiskCreate) check() error {
-	if _, ok := pdc.mutation.DeviceID(); !ok {
+func (_c *PhysicalDiskCreate) check() error {
+	if _, ok := _c.mutation.DeviceID(); !ok {
 		return &ValidationError{Name: "device_id", err: errors.New(`ent: missing required field "PhysicalDisk.device_id"`)}
 	}
-	if len(pdc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "PhysicalDisk.owner"`)}
 	}
 	return nil
 }
 
-func (pdc *PhysicalDiskCreate) sqlSave(ctx context.Context) (*PhysicalDisk, error) {
-	if err := pdc.check(); err != nil {
+func (_c *PhysicalDiskCreate) sqlSave(ctx context.Context) (*PhysicalDisk, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := pdc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, pdc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -137,34 +137,34 @@ func (pdc *PhysicalDiskCreate) sqlSave(ctx context.Context) (*PhysicalDisk, erro
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	pdc.mutation.id = &_node.ID
-	pdc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (pdc *PhysicalDiskCreate) createSpec() (*PhysicalDisk, *sqlgraph.CreateSpec) {
+func (_c *PhysicalDiskCreate) createSpec() (*PhysicalDisk, *sqlgraph.CreateSpec) {
 	var (
-		_node = &PhysicalDisk{config: pdc.config}
+		_node = &PhysicalDisk{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(physicaldisk.Table, sqlgraph.NewFieldSpec(physicaldisk.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = pdc.conflict
-	if value, ok := pdc.mutation.DeviceID(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.DeviceID(); ok {
 		_spec.SetField(physicaldisk.FieldDeviceID, field.TypeString, value)
 		_node.DeviceID = value
 	}
-	if value, ok := pdc.mutation.Model(); ok {
+	if value, ok := _c.mutation.Model(); ok {
 		_spec.SetField(physicaldisk.FieldModel, field.TypeString, value)
 		_node.Model = value
 	}
-	if value, ok := pdc.mutation.SerialNumber(); ok {
+	if value, ok := _c.mutation.SerialNumber(); ok {
 		_spec.SetField(physicaldisk.FieldSerialNumber, field.TypeString, value)
 		_node.SerialNumber = value
 	}
-	if value, ok := pdc.mutation.SizeInUnits(); ok {
+	if value, ok := _c.mutation.SizeInUnits(); ok {
 		_spec.SetField(physicaldisk.FieldSizeInUnits, field.TypeString, value)
 		_node.SizeInUnits = value
 	}
-	if nodes := pdc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -200,10 +200,10 @@ func (pdc *PhysicalDiskCreate) createSpec() (*PhysicalDisk, *sqlgraph.CreateSpec
 //			SetDeviceID(v+v).
 //		}).
 //		Exec(ctx)
-func (pdc *PhysicalDiskCreate) OnConflict(opts ...sql.ConflictOption) *PhysicalDiskUpsertOne {
-	pdc.conflict = opts
+func (_c *PhysicalDiskCreate) OnConflict(opts ...sql.ConflictOption) *PhysicalDiskUpsertOne {
+	_c.conflict = opts
 	return &PhysicalDiskUpsertOne{
-		create: pdc,
+		create: _c,
 	}
 }
 
@@ -213,10 +213,10 @@ func (pdc *PhysicalDiskCreate) OnConflict(opts ...sql.ConflictOption) *PhysicalD
 //	client.PhysicalDisk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (pdc *PhysicalDiskCreate) OnConflictColumns(columns ...string) *PhysicalDiskUpsertOne {
-	pdc.conflict = append(pdc.conflict, sql.ConflictColumns(columns...))
+func (_c *PhysicalDiskCreate) OnConflictColumns(columns ...string) *PhysicalDiskUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &PhysicalDiskUpsertOne{
-		create: pdc,
+		create: _c,
 	}
 }
 
@@ -458,16 +458,16 @@ type PhysicalDiskCreateBulk struct {
 }
 
 // Save creates the PhysicalDisk entities in the database.
-func (pdcb *PhysicalDiskCreateBulk) Save(ctx context.Context) ([]*PhysicalDisk, error) {
-	if pdcb.err != nil {
-		return nil, pdcb.err
+func (_c *PhysicalDiskCreateBulk) Save(ctx context.Context) ([]*PhysicalDisk, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(pdcb.builders))
-	nodes := make([]*PhysicalDisk, len(pdcb.builders))
-	mutators := make([]Mutator, len(pdcb.builders))
-	for i := range pdcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*PhysicalDisk, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := pdcb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*PhysicalDiskMutation)
 				if !ok {
@@ -480,12 +480,12 @@ func (pdcb *PhysicalDiskCreateBulk) Save(ctx context.Context) ([]*PhysicalDisk, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, pdcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = pdcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, pdcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -509,7 +509,7 @@ func (pdcb *PhysicalDiskCreateBulk) Save(ctx context.Context) ([]*PhysicalDisk, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, pdcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -517,8 +517,8 @@ func (pdcb *PhysicalDiskCreateBulk) Save(ctx context.Context) ([]*PhysicalDisk, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (pdcb *PhysicalDiskCreateBulk) SaveX(ctx context.Context) []*PhysicalDisk {
-	v, err := pdcb.Save(ctx)
+func (_c *PhysicalDiskCreateBulk) SaveX(ctx context.Context) []*PhysicalDisk {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -526,14 +526,14 @@ func (pdcb *PhysicalDiskCreateBulk) SaveX(ctx context.Context) []*PhysicalDisk {
 }
 
 // Exec executes the query.
-func (pdcb *PhysicalDiskCreateBulk) Exec(ctx context.Context) error {
-	_, err := pdcb.Save(ctx)
+func (_c *PhysicalDiskCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (pdcb *PhysicalDiskCreateBulk) ExecX(ctx context.Context) {
-	if err := pdcb.Exec(ctx); err != nil {
+func (_c *PhysicalDiskCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -553,10 +553,10 @@ func (pdcb *PhysicalDiskCreateBulk) ExecX(ctx context.Context) {
 //			SetDeviceID(v+v).
 //		}).
 //		Exec(ctx)
-func (pdcb *PhysicalDiskCreateBulk) OnConflict(opts ...sql.ConflictOption) *PhysicalDiskUpsertBulk {
-	pdcb.conflict = opts
+func (_c *PhysicalDiskCreateBulk) OnConflict(opts ...sql.ConflictOption) *PhysicalDiskUpsertBulk {
+	_c.conflict = opts
 	return &PhysicalDiskUpsertBulk{
-		create: pdcb,
+		create: _c,
 	}
 }
 
@@ -566,10 +566,10 @@ func (pdcb *PhysicalDiskCreateBulk) OnConflict(opts ...sql.ConflictOption) *Phys
 //	client.PhysicalDisk.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (pdcb *PhysicalDiskCreateBulk) OnConflictColumns(columns ...string) *PhysicalDiskUpsertBulk {
-	pdcb.conflict = append(pdcb.conflict, sql.ConflictColumns(columns...))
+func (_c *PhysicalDiskCreateBulk) OnConflictColumns(columns ...string) *PhysicalDiskUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &PhysicalDiskUpsertBulk{
-		create: pdcb,
+		create: _c,
 	}
 }
 

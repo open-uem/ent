@@ -25,575 +25,575 @@ type SettingsCreate struct {
 }
 
 // SetLanguage sets the "language" field.
-func (sc *SettingsCreate) SetLanguage(s string) *SettingsCreate {
-	sc.mutation.SetLanguage(s)
-	return sc
+func (_c *SettingsCreate) SetLanguage(v string) *SettingsCreate {
+	_c.mutation.SetLanguage(v)
+	return _c
 }
 
 // SetNillableLanguage sets the "language" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableLanguage(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetLanguage(*s)
+func (_c *SettingsCreate) SetNillableLanguage(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetLanguage(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetOrganization sets the "organization" field.
-func (sc *SettingsCreate) SetOrganization(s string) *SettingsCreate {
-	sc.mutation.SetOrganization(s)
-	return sc
+func (_c *SettingsCreate) SetOrganization(v string) *SettingsCreate {
+	_c.mutation.SetOrganization(v)
+	return _c
 }
 
 // SetNillableOrganization sets the "organization" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableOrganization(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetOrganization(*s)
+func (_c *SettingsCreate) SetNillableOrganization(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetOrganization(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetPostalAddress sets the "postal_address" field.
-func (sc *SettingsCreate) SetPostalAddress(s string) *SettingsCreate {
-	sc.mutation.SetPostalAddress(s)
-	return sc
+func (_c *SettingsCreate) SetPostalAddress(v string) *SettingsCreate {
+	_c.mutation.SetPostalAddress(v)
+	return _c
 }
 
 // SetNillablePostalAddress sets the "postal_address" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillablePostalAddress(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetPostalAddress(*s)
+func (_c *SettingsCreate) SetNillablePostalAddress(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetPostalAddress(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetPostalCode sets the "postal_code" field.
-func (sc *SettingsCreate) SetPostalCode(s string) *SettingsCreate {
-	sc.mutation.SetPostalCode(s)
-	return sc
+func (_c *SettingsCreate) SetPostalCode(v string) *SettingsCreate {
+	_c.mutation.SetPostalCode(v)
+	return _c
 }
 
 // SetNillablePostalCode sets the "postal_code" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillablePostalCode(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetPostalCode(*s)
+func (_c *SettingsCreate) SetNillablePostalCode(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetPostalCode(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetLocality sets the "locality" field.
-func (sc *SettingsCreate) SetLocality(s string) *SettingsCreate {
-	sc.mutation.SetLocality(s)
-	return sc
+func (_c *SettingsCreate) SetLocality(v string) *SettingsCreate {
+	_c.mutation.SetLocality(v)
+	return _c
 }
 
 // SetNillableLocality sets the "locality" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableLocality(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetLocality(*s)
+func (_c *SettingsCreate) SetNillableLocality(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetLocality(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetProvince sets the "province" field.
-func (sc *SettingsCreate) SetProvince(s string) *SettingsCreate {
-	sc.mutation.SetProvince(s)
-	return sc
+func (_c *SettingsCreate) SetProvince(v string) *SettingsCreate {
+	_c.mutation.SetProvince(v)
+	return _c
 }
 
 // SetNillableProvince sets the "province" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableProvince(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetProvince(*s)
+func (_c *SettingsCreate) SetNillableProvince(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetProvince(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetState sets the "state" field.
-func (sc *SettingsCreate) SetState(s string) *SettingsCreate {
-	sc.mutation.SetState(s)
-	return sc
+func (_c *SettingsCreate) SetState(v string) *SettingsCreate {
+	_c.mutation.SetState(v)
+	return _c
 }
 
 // SetNillableState sets the "state" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableState(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetState(*s)
+func (_c *SettingsCreate) SetNillableState(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetState(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetCountry sets the "country" field.
-func (sc *SettingsCreate) SetCountry(s string) *SettingsCreate {
-	sc.mutation.SetCountry(s)
-	return sc
+func (_c *SettingsCreate) SetCountry(v string) *SettingsCreate {
+	_c.mutation.SetCountry(v)
+	return _c
 }
 
 // SetNillableCountry sets the "country" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableCountry(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetCountry(*s)
+func (_c *SettingsCreate) SetNillableCountry(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetCountry(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPServer sets the "smtp_server" field.
-func (sc *SettingsCreate) SetSMTPServer(s string) *SettingsCreate {
-	sc.mutation.SetSMTPServer(s)
-	return sc
+func (_c *SettingsCreate) SetSMTPServer(v string) *SettingsCreate {
+	_c.mutation.SetSMTPServer(v)
+	return _c
 }
 
 // SetNillableSMTPServer sets the "smtp_server" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPServer(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetSMTPServer(*s)
+func (_c *SettingsCreate) SetNillableSMTPServer(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPServer(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPPort sets the "smtp_port" field.
-func (sc *SettingsCreate) SetSMTPPort(i int) *SettingsCreate {
-	sc.mutation.SetSMTPPort(i)
-	return sc
+func (_c *SettingsCreate) SetSMTPPort(v int) *SettingsCreate {
+	_c.mutation.SetSMTPPort(v)
+	return _c
 }
 
 // SetNillableSMTPPort sets the "smtp_port" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPPort(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetSMTPPort(*i)
+func (_c *SettingsCreate) SetNillableSMTPPort(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPPort(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPUser sets the "smtp_user" field.
-func (sc *SettingsCreate) SetSMTPUser(s string) *SettingsCreate {
-	sc.mutation.SetSMTPUser(s)
-	return sc
+func (_c *SettingsCreate) SetSMTPUser(v string) *SettingsCreate {
+	_c.mutation.SetSMTPUser(v)
+	return _c
 }
 
 // SetNillableSMTPUser sets the "smtp_user" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPUser(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetSMTPUser(*s)
+func (_c *SettingsCreate) SetNillableSMTPUser(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPUser(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPPassword sets the "smtp_password" field.
-func (sc *SettingsCreate) SetSMTPPassword(s string) *SettingsCreate {
-	sc.mutation.SetSMTPPassword(s)
-	return sc
+func (_c *SettingsCreate) SetSMTPPassword(v string) *SettingsCreate {
+	_c.mutation.SetSMTPPassword(v)
+	return _c
 }
 
 // SetNillableSMTPPassword sets the "smtp_password" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPPassword(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetSMTPPassword(*s)
+func (_c *SettingsCreate) SetNillableSMTPPassword(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPPassword(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPAuth sets the "smtp_auth" field.
-func (sc *SettingsCreate) SetSMTPAuth(s string) *SettingsCreate {
-	sc.mutation.SetSMTPAuth(s)
-	return sc
+func (_c *SettingsCreate) SetSMTPAuth(v string) *SettingsCreate {
+	_c.mutation.SetSMTPAuth(v)
+	return _c
 }
 
 // SetNillableSMTPAuth sets the "smtp_auth" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPAuth(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetSMTPAuth(*s)
+func (_c *SettingsCreate) SetNillableSMTPAuth(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPAuth(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPTLS sets the "smtp_tls" field.
-func (sc *SettingsCreate) SetSMTPTLS(b bool) *SettingsCreate {
-	sc.mutation.SetSMTPTLS(b)
-	return sc
+func (_c *SettingsCreate) SetSMTPTLS(v bool) *SettingsCreate {
+	_c.mutation.SetSMTPTLS(v)
+	return _c
 }
 
 // SetNillableSMTPTLS sets the "smtp_tls" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPTLS(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetSMTPTLS(*b)
+func (_c *SettingsCreate) SetNillableSMTPTLS(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPTLS(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSMTPStarttls sets the "smtp_starttls" field.
-func (sc *SettingsCreate) SetSMTPStarttls(b bool) *SettingsCreate {
-	sc.mutation.SetSMTPStarttls(b)
-	return sc
+func (_c *SettingsCreate) SetSMTPStarttls(v bool) *SettingsCreate {
+	_c.mutation.SetSMTPStarttls(v)
+	return _c
 }
 
 // SetNillableSMTPStarttls sets the "smtp_starttls" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPStarttls(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetSMTPStarttls(*b)
+func (_c *SettingsCreate) SetNillableSMTPStarttls(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetSMTPStarttls(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetNatsServer sets the "nats_server" field.
-func (sc *SettingsCreate) SetNatsServer(s string) *SettingsCreate {
-	sc.mutation.SetNatsServer(s)
-	return sc
+func (_c *SettingsCreate) SetNatsServer(v string) *SettingsCreate {
+	_c.mutation.SetNatsServer(v)
+	return _c
 }
 
 // SetNillableNatsServer sets the "nats_server" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableNatsServer(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetNatsServer(*s)
+func (_c *SettingsCreate) SetNillableNatsServer(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetNatsServer(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetNatsPort sets the "nats_port" field.
-func (sc *SettingsCreate) SetNatsPort(s string) *SettingsCreate {
-	sc.mutation.SetNatsPort(s)
-	return sc
+func (_c *SettingsCreate) SetNatsPort(v string) *SettingsCreate {
+	_c.mutation.SetNatsPort(v)
+	return _c
 }
 
 // SetNillableNatsPort sets the "nats_port" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableNatsPort(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetNatsPort(*s)
+func (_c *SettingsCreate) SetNillableNatsPort(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetNatsPort(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetMessageFrom sets the "message_from" field.
-func (sc *SettingsCreate) SetMessageFrom(s string) *SettingsCreate {
-	sc.mutation.SetMessageFrom(s)
-	return sc
+func (_c *SettingsCreate) SetMessageFrom(v string) *SettingsCreate {
+	_c.mutation.SetMessageFrom(v)
+	return _c
 }
 
 // SetNillableMessageFrom sets the "message_from" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableMessageFrom(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetMessageFrom(*s)
+func (_c *SettingsCreate) SetNillableMessageFrom(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetMessageFrom(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetMaxUploadSize sets the "max_upload_size" field.
-func (sc *SettingsCreate) SetMaxUploadSize(s string) *SettingsCreate {
-	sc.mutation.SetMaxUploadSize(s)
-	return sc
+func (_c *SettingsCreate) SetMaxUploadSize(v string) *SettingsCreate {
+	_c.mutation.SetMaxUploadSize(v)
+	return _c
 }
 
 // SetNillableMaxUploadSize sets the "max_upload_size" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableMaxUploadSize(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetMaxUploadSize(*s)
+func (_c *SettingsCreate) SetNillableMaxUploadSize(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetMaxUploadSize(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUserCertYearsValid sets the "user_cert_years_valid" field.
-func (sc *SettingsCreate) SetUserCertYearsValid(i int) *SettingsCreate {
-	sc.mutation.SetUserCertYearsValid(i)
-	return sc
+func (_c *SettingsCreate) SetUserCertYearsValid(v int) *SettingsCreate {
+	_c.mutation.SetUserCertYearsValid(v)
+	return _c
 }
 
 // SetNillableUserCertYearsValid sets the "user_cert_years_valid" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableUserCertYearsValid(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetUserCertYearsValid(*i)
+func (_c *SettingsCreate) SetNillableUserCertYearsValid(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetUserCertYearsValid(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetNatsRequestTimeoutSeconds sets the "nats_request_timeout_seconds" field.
-func (sc *SettingsCreate) SetNatsRequestTimeoutSeconds(i int) *SettingsCreate {
-	sc.mutation.SetNatsRequestTimeoutSeconds(i)
-	return sc
+func (_c *SettingsCreate) SetNatsRequestTimeoutSeconds(v int) *SettingsCreate {
+	_c.mutation.SetNatsRequestTimeoutSeconds(v)
+	return _c
 }
 
 // SetNillableNatsRequestTimeoutSeconds sets the "nats_request_timeout_seconds" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableNatsRequestTimeoutSeconds(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetNatsRequestTimeoutSeconds(*i)
+func (_c *SettingsCreate) SetNillableNatsRequestTimeoutSeconds(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetNatsRequestTimeoutSeconds(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetRefreshTimeInMinutes sets the "refresh_time_in_minutes" field.
-func (sc *SettingsCreate) SetRefreshTimeInMinutes(i int) *SettingsCreate {
-	sc.mutation.SetRefreshTimeInMinutes(i)
-	return sc
+func (_c *SettingsCreate) SetRefreshTimeInMinutes(v int) *SettingsCreate {
+	_c.mutation.SetRefreshTimeInMinutes(v)
+	return _c
 }
 
 // SetNillableRefreshTimeInMinutes sets the "refresh_time_in_minutes" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableRefreshTimeInMinutes(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetRefreshTimeInMinutes(*i)
+func (_c *SettingsCreate) SetNillableRefreshTimeInMinutes(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetRefreshTimeInMinutes(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetSessionLifetimeInMinutes sets the "session_lifetime_in_minutes" field.
-func (sc *SettingsCreate) SetSessionLifetimeInMinutes(i int) *SettingsCreate {
-	sc.mutation.SetSessionLifetimeInMinutes(i)
-	return sc
+func (_c *SettingsCreate) SetSessionLifetimeInMinutes(v int) *SettingsCreate {
+	_c.mutation.SetSessionLifetimeInMinutes(v)
+	return _c
 }
 
 // SetNillableSessionLifetimeInMinutes sets the "session_lifetime_in_minutes" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSessionLifetimeInMinutes(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetSessionLifetimeInMinutes(*i)
+func (_c *SettingsCreate) SetNillableSessionLifetimeInMinutes(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetSessionLifetimeInMinutes(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUpdateChannel sets the "update_channel" field.
-func (sc *SettingsCreate) SetUpdateChannel(s string) *SettingsCreate {
-	sc.mutation.SetUpdateChannel(s)
-	return sc
+func (_c *SettingsCreate) SetUpdateChannel(v string) *SettingsCreate {
+	_c.mutation.SetUpdateChannel(v)
+	return _c
 }
 
 // SetNillableUpdateChannel sets the "update_channel" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableUpdateChannel(s *string) *SettingsCreate {
-	if s != nil {
-		sc.SetUpdateChannel(*s)
+func (_c *SettingsCreate) SetNillableUpdateChannel(v *string) *SettingsCreate {
+	if v != nil {
+		_c.SetUpdateChannel(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetCreated sets the "created" field.
-func (sc *SettingsCreate) SetCreated(t time.Time) *SettingsCreate {
-	sc.mutation.SetCreated(t)
-	return sc
+func (_c *SettingsCreate) SetCreated(v time.Time) *SettingsCreate {
+	_c.mutation.SetCreated(v)
+	return _c
 }
 
 // SetNillableCreated sets the "created" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableCreated(t *time.Time) *SettingsCreate {
-	if t != nil {
-		sc.SetCreated(*t)
+func (_c *SettingsCreate) SetNillableCreated(v *time.Time) *SettingsCreate {
+	if v != nil {
+		_c.SetCreated(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetModified sets the "modified" field.
-func (sc *SettingsCreate) SetModified(t time.Time) *SettingsCreate {
-	sc.mutation.SetModified(t)
-	return sc
+func (_c *SettingsCreate) SetModified(v time.Time) *SettingsCreate {
+	_c.mutation.SetModified(v)
+	return _c
 }
 
 // SetNillableModified sets the "modified" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableModified(t *time.Time) *SettingsCreate {
-	if t != nil {
-		sc.SetModified(*t)
+func (_c *SettingsCreate) SetNillableModified(v *time.Time) *SettingsCreate {
+	if v != nil {
+		_c.SetModified(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetAgentReportFrequenceInMinutes sets the "agent_report_frequence_in_minutes" field.
-func (sc *SettingsCreate) SetAgentReportFrequenceInMinutes(i int) *SettingsCreate {
-	sc.mutation.SetAgentReportFrequenceInMinutes(i)
-	return sc
+func (_c *SettingsCreate) SetAgentReportFrequenceInMinutes(v int) *SettingsCreate {
+	_c.mutation.SetAgentReportFrequenceInMinutes(v)
+	return _c
 }
 
 // SetNillableAgentReportFrequenceInMinutes sets the "agent_report_frequence_in_minutes" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableAgentReportFrequenceInMinutes(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetAgentReportFrequenceInMinutes(*i)
+func (_c *SettingsCreate) SetNillableAgentReportFrequenceInMinutes(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetAgentReportFrequenceInMinutes(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetRequestVncPin sets the "request_vnc_pin" field.
-func (sc *SettingsCreate) SetRequestVncPin(b bool) *SettingsCreate {
-	sc.mutation.SetRequestVncPin(b)
-	return sc
+func (_c *SettingsCreate) SetRequestVncPin(v bool) *SettingsCreate {
+	_c.mutation.SetRequestVncPin(v)
+	return _c
 }
 
 // SetNillableRequestVncPin sets the "request_vnc_pin" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableRequestVncPin(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetRequestVncPin(*b)
+func (_c *SettingsCreate) SetNillableRequestVncPin(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetRequestVncPin(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetProfilesApplicationFrequenceInMinutes sets the "profiles_application_frequence_in_minutes" field.
-func (sc *SettingsCreate) SetProfilesApplicationFrequenceInMinutes(i int) *SettingsCreate {
-	sc.mutation.SetProfilesApplicationFrequenceInMinutes(i)
-	return sc
+func (_c *SettingsCreate) SetProfilesApplicationFrequenceInMinutes(v int) *SettingsCreate {
+	_c.mutation.SetProfilesApplicationFrequenceInMinutes(v)
+	return _c
 }
 
 // SetNillableProfilesApplicationFrequenceInMinutes sets the "profiles_application_frequence_in_minutes" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableProfilesApplicationFrequenceInMinutes(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetProfilesApplicationFrequenceInMinutes(*i)
+func (_c *SettingsCreate) SetNillableProfilesApplicationFrequenceInMinutes(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetProfilesApplicationFrequenceInMinutes(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUseWinget sets the "use_winget" field.
-func (sc *SettingsCreate) SetUseWinget(b bool) *SettingsCreate {
-	sc.mutation.SetUseWinget(b)
-	return sc
+func (_c *SettingsCreate) SetUseWinget(v bool) *SettingsCreate {
+	_c.mutation.SetUseWinget(v)
+	return _c
 }
 
 // SetNillableUseWinget sets the "use_winget" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableUseWinget(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetUseWinget(*b)
+func (_c *SettingsCreate) SetNillableUseWinget(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetUseWinget(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUseFlatpak sets the "use_flatpak" field.
-func (sc *SettingsCreate) SetUseFlatpak(b bool) *SettingsCreate {
-	sc.mutation.SetUseFlatpak(b)
-	return sc
+func (_c *SettingsCreate) SetUseFlatpak(v bool) *SettingsCreate {
+	_c.mutation.SetUseFlatpak(v)
+	return _c
 }
 
 // SetNillableUseFlatpak sets the "use_flatpak" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableUseFlatpak(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetUseFlatpak(*b)
+func (_c *SettingsCreate) SetNillableUseFlatpak(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetUseFlatpak(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetUseBrew sets the "use_brew" field.
-func (sc *SettingsCreate) SetUseBrew(b bool) *SettingsCreate {
-	sc.mutation.SetUseBrew(b)
-	return sc
+func (_c *SettingsCreate) SetUseBrew(v bool) *SettingsCreate {
+	_c.mutation.SetUseBrew(v)
+	return _c
 }
 
 // SetNillableUseBrew sets the "use_brew" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableUseBrew(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetUseBrew(*b)
+func (_c *SettingsCreate) SetNillableUseBrew(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetUseBrew(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetDisableSftp sets the "disable_sftp" field.
-func (sc *SettingsCreate) SetDisableSftp(b bool) *SettingsCreate {
-	sc.mutation.SetDisableSftp(b)
-	return sc
+func (_c *SettingsCreate) SetDisableSftp(v bool) *SettingsCreate {
+	_c.mutation.SetDisableSftp(v)
+	return _c
 }
 
 // SetNillableDisableSftp sets the "disable_sftp" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableDisableSftp(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetDisableSftp(*b)
+func (_c *SettingsCreate) SetNillableDisableSftp(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetDisableSftp(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetDisableRemoteAssistance sets the "disable_remote_assistance" field.
-func (sc *SettingsCreate) SetDisableRemoteAssistance(b bool) *SettingsCreate {
-	sc.mutation.SetDisableRemoteAssistance(b)
-	return sc
+func (_c *SettingsCreate) SetDisableRemoteAssistance(v bool) *SettingsCreate {
+	_c.mutation.SetDisableRemoteAssistance(v)
+	return _c
 }
 
 // SetNillableDisableRemoteAssistance sets the "disable_remote_assistance" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableDisableRemoteAssistance(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetDisableRemoteAssistance(*b)
+func (_c *SettingsCreate) SetNillableDisableRemoteAssistance(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetDisableRemoteAssistance(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetDetectRemoteAgents sets the "detect_remote_agents" field.
-func (sc *SettingsCreate) SetDetectRemoteAgents(b bool) *SettingsCreate {
-	sc.mutation.SetDetectRemoteAgents(b)
-	return sc
+func (_c *SettingsCreate) SetDetectRemoteAgents(v bool) *SettingsCreate {
+	_c.mutation.SetDetectRemoteAgents(v)
+	return _c
 }
 
 // SetNillableDetectRemoteAgents sets the "detect_remote_agents" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableDetectRemoteAgents(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetDetectRemoteAgents(*b)
+func (_c *SettingsCreate) SetNillableDetectRemoteAgents(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetDetectRemoteAgents(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetAutoAdmitAgents sets the "auto_admit_agents" field.
-func (sc *SettingsCreate) SetAutoAdmitAgents(b bool) *SettingsCreate {
-	sc.mutation.SetAutoAdmitAgents(b)
-	return sc
+func (_c *SettingsCreate) SetAutoAdmitAgents(v bool) *SettingsCreate {
+	_c.mutation.SetAutoAdmitAgents(v)
+	return _c
 }
 
 // SetNillableAutoAdmitAgents sets the "auto_admit_agents" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableAutoAdmitAgents(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetAutoAdmitAgents(*b)
+func (_c *SettingsCreate) SetNillableAutoAdmitAgents(v *bool) *SettingsCreate {
+	if v != nil {
+		_c.SetAutoAdmitAgents(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetDefaultItemsPerPage sets the "default_items_per_page" field.
-func (sc *SettingsCreate) SetDefaultItemsPerPage(i int) *SettingsCreate {
-	sc.mutation.SetDefaultItemsPerPage(i)
-	return sc
+func (_c *SettingsCreate) SetDefaultItemsPerPage(v int) *SettingsCreate {
+	_c.mutation.SetDefaultItemsPerPage(v)
+	return _c
 }
 
 // SetNillableDefaultItemsPerPage sets the "default_items_per_page" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableDefaultItemsPerPage(i *int) *SettingsCreate {
-	if i != nil {
-		sc.SetDefaultItemsPerPage(*i)
+func (_c *SettingsCreate) SetNillableDefaultItemsPerPage(v *int) *SettingsCreate {
+	if v != nil {
+		_c.SetDefaultItemsPerPage(*v)
 	}
-	return sc
+	return _c
 }
 
 // SetTagID sets the "tag" edge to the Tag entity by ID.
-func (sc *SettingsCreate) SetTagID(id int) *SettingsCreate {
-	sc.mutation.SetTagID(id)
-	return sc
+func (_c *SettingsCreate) SetTagID(id int) *SettingsCreate {
+	_c.mutation.SetTagID(id)
+	return _c
 }
 
 // SetNillableTagID sets the "tag" edge to the Tag entity by ID if the given value is not nil.
-func (sc *SettingsCreate) SetNillableTagID(id *int) *SettingsCreate {
+func (_c *SettingsCreate) SetNillableTagID(id *int) *SettingsCreate {
 	if id != nil {
-		sc = sc.SetTagID(*id)
+		_c = _c.SetTagID(*id)
 	}
-	return sc
+	return _c
 }
 
 // SetTag sets the "tag" edge to the Tag entity.
-func (sc *SettingsCreate) SetTag(t *Tag) *SettingsCreate {
-	return sc.SetTagID(t.ID)
+func (_c *SettingsCreate) SetTag(v *Tag) *SettingsCreate {
+	return _c.SetTagID(v.ID)
 }
 
 // SetTenantID sets the "tenant" edge to the Tenant entity by ID.
-func (sc *SettingsCreate) SetTenantID(id int) *SettingsCreate {
-	sc.mutation.SetTenantID(id)
-	return sc
+func (_c *SettingsCreate) SetTenantID(id int) *SettingsCreate {
+	_c.mutation.SetTenantID(id)
+	return _c
 }
 
 // SetNillableTenantID sets the "tenant" edge to the Tenant entity by ID if the given value is not nil.
-func (sc *SettingsCreate) SetNillableTenantID(id *int) *SettingsCreate {
+func (_c *SettingsCreate) SetNillableTenantID(id *int) *SettingsCreate {
 	if id != nil {
-		sc = sc.SetTenantID(*id)
+		_c = _c.SetTenantID(*id)
 	}
-	return sc
+	return _c
 }
 
 // SetTenant sets the "tenant" edge to the Tenant entity.
-func (sc *SettingsCreate) SetTenant(t *Tenant) *SettingsCreate {
-	return sc.SetTenantID(t.ID)
+func (_c *SettingsCreate) SetTenant(v *Tenant) *SettingsCreate {
+	return _c.SetTenantID(v.ID)
 }
 
 // Mutation returns the SettingsMutation object of the builder.
-func (sc *SettingsCreate) Mutation() *SettingsMutation {
-	return sc.mutation
+func (_c *SettingsCreate) Mutation() *SettingsMutation {
+	return _c.mutation
 }
 
 // Save creates the Settings in the database.
-func (sc *SettingsCreate) Save(ctx context.Context) (*Settings, error) {
-	sc.defaults()
-	return withHooks(ctx, sc.sqlSave, sc.mutation, sc.hooks)
+func (_c *SettingsCreate) Save(ctx context.Context) (*Settings, error) {
+	_c.defaults()
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (sc *SettingsCreate) SaveX(ctx context.Context) *Settings {
-	v, err := sc.Save(ctx)
+func (_c *SettingsCreate) SaveX(ctx context.Context) *Settings {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -601,129 +601,129 @@ func (sc *SettingsCreate) SaveX(ctx context.Context) *Settings {
 }
 
 // Exec executes the query.
-func (sc *SettingsCreate) Exec(ctx context.Context) error {
-	_, err := sc.Save(ctx)
+func (_c *SettingsCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (sc *SettingsCreate) ExecX(ctx context.Context) {
-	if err := sc.Exec(ctx); err != nil {
+func (_c *SettingsCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // defaults sets the default values of the builder before save.
-func (sc *SettingsCreate) defaults() {
-	if _, ok := sc.mutation.Country(); !ok {
+func (_c *SettingsCreate) defaults() {
+	if _, ok := _c.mutation.Country(); !ok {
 		v := settings.DefaultCountry
-		sc.mutation.SetCountry(v)
+		_c.mutation.SetCountry(v)
 	}
-	if _, ok := sc.mutation.SMTPPort(); !ok {
+	if _, ok := _c.mutation.SMTPPort(); !ok {
 		v := settings.DefaultSMTPPort
-		sc.mutation.SetSMTPPort(v)
+		_c.mutation.SetSMTPPort(v)
 	}
-	if _, ok := sc.mutation.SMTPAuth(); !ok {
+	if _, ok := _c.mutation.SMTPAuth(); !ok {
 		v := settings.DefaultSMTPAuth
-		sc.mutation.SetSMTPAuth(v)
+		_c.mutation.SetSMTPAuth(v)
 	}
-	if _, ok := sc.mutation.SMTPTLS(); !ok {
+	if _, ok := _c.mutation.SMTPTLS(); !ok {
 		v := settings.DefaultSMTPTLS
-		sc.mutation.SetSMTPTLS(v)
+		_c.mutation.SetSMTPTLS(v)
 	}
-	if _, ok := sc.mutation.SMTPStarttls(); !ok {
+	if _, ok := _c.mutation.SMTPStarttls(); !ok {
 		v := settings.DefaultSMTPStarttls
-		sc.mutation.SetSMTPStarttls(v)
+		_c.mutation.SetSMTPStarttls(v)
 	}
-	if _, ok := sc.mutation.MaxUploadSize(); !ok {
+	if _, ok := _c.mutation.MaxUploadSize(); !ok {
 		v := settings.DefaultMaxUploadSize
-		sc.mutation.SetMaxUploadSize(v)
+		_c.mutation.SetMaxUploadSize(v)
 	}
-	if _, ok := sc.mutation.UserCertYearsValid(); !ok {
+	if _, ok := _c.mutation.UserCertYearsValid(); !ok {
 		v := settings.DefaultUserCertYearsValid
-		sc.mutation.SetUserCertYearsValid(v)
+		_c.mutation.SetUserCertYearsValid(v)
 	}
-	if _, ok := sc.mutation.NatsRequestTimeoutSeconds(); !ok {
+	if _, ok := _c.mutation.NatsRequestTimeoutSeconds(); !ok {
 		v := settings.DefaultNatsRequestTimeoutSeconds
-		sc.mutation.SetNatsRequestTimeoutSeconds(v)
+		_c.mutation.SetNatsRequestTimeoutSeconds(v)
 	}
-	if _, ok := sc.mutation.RefreshTimeInMinutes(); !ok {
+	if _, ok := _c.mutation.RefreshTimeInMinutes(); !ok {
 		v := settings.DefaultRefreshTimeInMinutes
-		sc.mutation.SetRefreshTimeInMinutes(v)
+		_c.mutation.SetRefreshTimeInMinutes(v)
 	}
-	if _, ok := sc.mutation.SessionLifetimeInMinutes(); !ok {
+	if _, ok := _c.mutation.SessionLifetimeInMinutes(); !ok {
 		v := settings.DefaultSessionLifetimeInMinutes
-		sc.mutation.SetSessionLifetimeInMinutes(v)
+		_c.mutation.SetSessionLifetimeInMinutes(v)
 	}
-	if _, ok := sc.mutation.UpdateChannel(); !ok {
+	if _, ok := _c.mutation.UpdateChannel(); !ok {
 		v := settings.DefaultUpdateChannel
-		sc.mutation.SetUpdateChannel(v)
+		_c.mutation.SetUpdateChannel(v)
 	}
-	if _, ok := sc.mutation.Created(); !ok {
+	if _, ok := _c.mutation.Created(); !ok {
 		v := settings.DefaultCreated()
-		sc.mutation.SetCreated(v)
+		_c.mutation.SetCreated(v)
 	}
-	if _, ok := sc.mutation.Modified(); !ok {
+	if _, ok := _c.mutation.Modified(); !ok {
 		v := settings.DefaultModified()
-		sc.mutation.SetModified(v)
+		_c.mutation.SetModified(v)
 	}
-	if _, ok := sc.mutation.AgentReportFrequenceInMinutes(); !ok {
+	if _, ok := _c.mutation.AgentReportFrequenceInMinutes(); !ok {
 		v := settings.DefaultAgentReportFrequenceInMinutes
-		sc.mutation.SetAgentReportFrequenceInMinutes(v)
+		_c.mutation.SetAgentReportFrequenceInMinutes(v)
 	}
-	if _, ok := sc.mutation.RequestVncPin(); !ok {
+	if _, ok := _c.mutation.RequestVncPin(); !ok {
 		v := settings.DefaultRequestVncPin
-		sc.mutation.SetRequestVncPin(v)
+		_c.mutation.SetRequestVncPin(v)
 	}
-	if _, ok := sc.mutation.ProfilesApplicationFrequenceInMinutes(); !ok {
+	if _, ok := _c.mutation.ProfilesApplicationFrequenceInMinutes(); !ok {
 		v := settings.DefaultProfilesApplicationFrequenceInMinutes
-		sc.mutation.SetProfilesApplicationFrequenceInMinutes(v)
+		_c.mutation.SetProfilesApplicationFrequenceInMinutes(v)
 	}
-	if _, ok := sc.mutation.UseWinget(); !ok {
+	if _, ok := _c.mutation.UseWinget(); !ok {
 		v := settings.DefaultUseWinget
-		sc.mutation.SetUseWinget(v)
+		_c.mutation.SetUseWinget(v)
 	}
-	if _, ok := sc.mutation.UseFlatpak(); !ok {
+	if _, ok := _c.mutation.UseFlatpak(); !ok {
 		v := settings.DefaultUseFlatpak
-		sc.mutation.SetUseFlatpak(v)
+		_c.mutation.SetUseFlatpak(v)
 	}
-	if _, ok := sc.mutation.UseBrew(); !ok {
+	if _, ok := _c.mutation.UseBrew(); !ok {
 		v := settings.DefaultUseBrew
-		sc.mutation.SetUseBrew(v)
+		_c.mutation.SetUseBrew(v)
 	}
-	if _, ok := sc.mutation.DisableSftp(); !ok {
+	if _, ok := _c.mutation.DisableSftp(); !ok {
 		v := settings.DefaultDisableSftp
-		sc.mutation.SetDisableSftp(v)
+		_c.mutation.SetDisableSftp(v)
 	}
-	if _, ok := sc.mutation.DisableRemoteAssistance(); !ok {
+	if _, ok := _c.mutation.DisableRemoteAssistance(); !ok {
 		v := settings.DefaultDisableRemoteAssistance
-		sc.mutation.SetDisableRemoteAssistance(v)
+		_c.mutation.SetDisableRemoteAssistance(v)
 	}
-	if _, ok := sc.mutation.DetectRemoteAgents(); !ok {
+	if _, ok := _c.mutation.DetectRemoteAgents(); !ok {
 		v := settings.DefaultDetectRemoteAgents
-		sc.mutation.SetDetectRemoteAgents(v)
+		_c.mutation.SetDetectRemoteAgents(v)
 	}
-	if _, ok := sc.mutation.AutoAdmitAgents(); !ok {
+	if _, ok := _c.mutation.AutoAdmitAgents(); !ok {
 		v := settings.DefaultAutoAdmitAgents
-		sc.mutation.SetAutoAdmitAgents(v)
+		_c.mutation.SetAutoAdmitAgents(v)
 	}
-	if _, ok := sc.mutation.DefaultItemsPerPage(); !ok {
+	if _, ok := _c.mutation.DefaultItemsPerPage(); !ok {
 		v := settings.DefaultDefaultItemsPerPage
-		sc.mutation.SetDefaultItemsPerPage(v)
+		_c.mutation.SetDefaultItemsPerPage(v)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (sc *SettingsCreate) check() error {
+func (_c *SettingsCreate) check() error {
 	return nil
 }
 
-func (sc *SettingsCreate) sqlSave(ctx context.Context) (*Settings, error) {
-	if err := sc.check(); err != nil {
+func (_c *SettingsCreate) sqlSave(ctx context.Context) (*Settings, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := sc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, sc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -731,166 +731,166 @@ func (sc *SettingsCreate) sqlSave(ctx context.Context) (*Settings, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	sc.mutation.id = &_node.ID
-	sc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
+func (_c *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Settings{config: sc.config}
+		_node = &Settings{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(settings.Table, sqlgraph.NewFieldSpec(settings.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = sc.conflict
-	if value, ok := sc.mutation.Language(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Language(); ok {
 		_spec.SetField(settings.FieldLanguage, field.TypeString, value)
 		_node.Language = value
 	}
-	if value, ok := sc.mutation.Organization(); ok {
+	if value, ok := _c.mutation.Organization(); ok {
 		_spec.SetField(settings.FieldOrganization, field.TypeString, value)
 		_node.Organization = value
 	}
-	if value, ok := sc.mutation.PostalAddress(); ok {
+	if value, ok := _c.mutation.PostalAddress(); ok {
 		_spec.SetField(settings.FieldPostalAddress, field.TypeString, value)
 		_node.PostalAddress = value
 	}
-	if value, ok := sc.mutation.PostalCode(); ok {
+	if value, ok := _c.mutation.PostalCode(); ok {
 		_spec.SetField(settings.FieldPostalCode, field.TypeString, value)
 		_node.PostalCode = value
 	}
-	if value, ok := sc.mutation.Locality(); ok {
+	if value, ok := _c.mutation.Locality(); ok {
 		_spec.SetField(settings.FieldLocality, field.TypeString, value)
 		_node.Locality = value
 	}
-	if value, ok := sc.mutation.Province(); ok {
+	if value, ok := _c.mutation.Province(); ok {
 		_spec.SetField(settings.FieldProvince, field.TypeString, value)
 		_node.Province = value
 	}
-	if value, ok := sc.mutation.State(); ok {
+	if value, ok := _c.mutation.State(); ok {
 		_spec.SetField(settings.FieldState, field.TypeString, value)
 		_node.State = value
 	}
-	if value, ok := sc.mutation.Country(); ok {
+	if value, ok := _c.mutation.Country(); ok {
 		_spec.SetField(settings.FieldCountry, field.TypeString, value)
 		_node.Country = value
 	}
-	if value, ok := sc.mutation.SMTPServer(); ok {
+	if value, ok := _c.mutation.SMTPServer(); ok {
 		_spec.SetField(settings.FieldSMTPServer, field.TypeString, value)
 		_node.SMTPServer = value
 	}
-	if value, ok := sc.mutation.SMTPPort(); ok {
+	if value, ok := _c.mutation.SMTPPort(); ok {
 		_spec.SetField(settings.FieldSMTPPort, field.TypeInt, value)
 		_node.SMTPPort = value
 	}
-	if value, ok := sc.mutation.SMTPUser(); ok {
+	if value, ok := _c.mutation.SMTPUser(); ok {
 		_spec.SetField(settings.FieldSMTPUser, field.TypeString, value)
 		_node.SMTPUser = value
 	}
-	if value, ok := sc.mutation.SMTPPassword(); ok {
+	if value, ok := _c.mutation.SMTPPassword(); ok {
 		_spec.SetField(settings.FieldSMTPPassword, field.TypeString, value)
 		_node.SMTPPassword = value
 	}
-	if value, ok := sc.mutation.SMTPAuth(); ok {
+	if value, ok := _c.mutation.SMTPAuth(); ok {
 		_spec.SetField(settings.FieldSMTPAuth, field.TypeString, value)
 		_node.SMTPAuth = value
 	}
-	if value, ok := sc.mutation.SMTPTLS(); ok {
+	if value, ok := _c.mutation.SMTPTLS(); ok {
 		_spec.SetField(settings.FieldSMTPTLS, field.TypeBool, value)
 		_node.SMTPTLS = value
 	}
-	if value, ok := sc.mutation.SMTPStarttls(); ok {
+	if value, ok := _c.mutation.SMTPStarttls(); ok {
 		_spec.SetField(settings.FieldSMTPStarttls, field.TypeBool, value)
 		_node.SMTPStarttls = value
 	}
-	if value, ok := sc.mutation.NatsServer(); ok {
+	if value, ok := _c.mutation.NatsServer(); ok {
 		_spec.SetField(settings.FieldNatsServer, field.TypeString, value)
 		_node.NatsServer = value
 	}
-	if value, ok := sc.mutation.NatsPort(); ok {
+	if value, ok := _c.mutation.NatsPort(); ok {
 		_spec.SetField(settings.FieldNatsPort, field.TypeString, value)
 		_node.NatsPort = value
 	}
-	if value, ok := sc.mutation.MessageFrom(); ok {
+	if value, ok := _c.mutation.MessageFrom(); ok {
 		_spec.SetField(settings.FieldMessageFrom, field.TypeString, value)
 		_node.MessageFrom = value
 	}
-	if value, ok := sc.mutation.MaxUploadSize(); ok {
+	if value, ok := _c.mutation.MaxUploadSize(); ok {
 		_spec.SetField(settings.FieldMaxUploadSize, field.TypeString, value)
 		_node.MaxUploadSize = value
 	}
-	if value, ok := sc.mutation.UserCertYearsValid(); ok {
+	if value, ok := _c.mutation.UserCertYearsValid(); ok {
 		_spec.SetField(settings.FieldUserCertYearsValid, field.TypeInt, value)
 		_node.UserCertYearsValid = value
 	}
-	if value, ok := sc.mutation.NatsRequestTimeoutSeconds(); ok {
+	if value, ok := _c.mutation.NatsRequestTimeoutSeconds(); ok {
 		_spec.SetField(settings.FieldNatsRequestTimeoutSeconds, field.TypeInt, value)
 		_node.NatsRequestTimeoutSeconds = value
 	}
-	if value, ok := sc.mutation.RefreshTimeInMinutes(); ok {
+	if value, ok := _c.mutation.RefreshTimeInMinutes(); ok {
 		_spec.SetField(settings.FieldRefreshTimeInMinutes, field.TypeInt, value)
 		_node.RefreshTimeInMinutes = value
 	}
-	if value, ok := sc.mutation.SessionLifetimeInMinutes(); ok {
+	if value, ok := _c.mutation.SessionLifetimeInMinutes(); ok {
 		_spec.SetField(settings.FieldSessionLifetimeInMinutes, field.TypeInt, value)
 		_node.SessionLifetimeInMinutes = value
 	}
-	if value, ok := sc.mutation.UpdateChannel(); ok {
+	if value, ok := _c.mutation.UpdateChannel(); ok {
 		_spec.SetField(settings.FieldUpdateChannel, field.TypeString, value)
 		_node.UpdateChannel = value
 	}
-	if value, ok := sc.mutation.Created(); ok {
+	if value, ok := _c.mutation.Created(); ok {
 		_spec.SetField(settings.FieldCreated, field.TypeTime, value)
 		_node.Created = value
 	}
-	if value, ok := sc.mutation.Modified(); ok {
+	if value, ok := _c.mutation.Modified(); ok {
 		_spec.SetField(settings.FieldModified, field.TypeTime, value)
 		_node.Modified = value
 	}
-	if value, ok := sc.mutation.AgentReportFrequenceInMinutes(); ok {
+	if value, ok := _c.mutation.AgentReportFrequenceInMinutes(); ok {
 		_spec.SetField(settings.FieldAgentReportFrequenceInMinutes, field.TypeInt, value)
 		_node.AgentReportFrequenceInMinutes = value
 	}
-	if value, ok := sc.mutation.RequestVncPin(); ok {
+	if value, ok := _c.mutation.RequestVncPin(); ok {
 		_spec.SetField(settings.FieldRequestVncPin, field.TypeBool, value)
 		_node.RequestVncPin = value
 	}
-	if value, ok := sc.mutation.ProfilesApplicationFrequenceInMinutes(); ok {
+	if value, ok := _c.mutation.ProfilesApplicationFrequenceInMinutes(); ok {
 		_spec.SetField(settings.FieldProfilesApplicationFrequenceInMinutes, field.TypeInt, value)
 		_node.ProfilesApplicationFrequenceInMinutes = value
 	}
-	if value, ok := sc.mutation.UseWinget(); ok {
+	if value, ok := _c.mutation.UseWinget(); ok {
 		_spec.SetField(settings.FieldUseWinget, field.TypeBool, value)
 		_node.UseWinget = value
 	}
-	if value, ok := sc.mutation.UseFlatpak(); ok {
+	if value, ok := _c.mutation.UseFlatpak(); ok {
 		_spec.SetField(settings.FieldUseFlatpak, field.TypeBool, value)
 		_node.UseFlatpak = value
 	}
-	if value, ok := sc.mutation.UseBrew(); ok {
+	if value, ok := _c.mutation.UseBrew(); ok {
 		_spec.SetField(settings.FieldUseBrew, field.TypeBool, value)
 		_node.UseBrew = value
 	}
-	if value, ok := sc.mutation.DisableSftp(); ok {
+	if value, ok := _c.mutation.DisableSftp(); ok {
 		_spec.SetField(settings.FieldDisableSftp, field.TypeBool, value)
 		_node.DisableSftp = value
 	}
-	if value, ok := sc.mutation.DisableRemoteAssistance(); ok {
+	if value, ok := _c.mutation.DisableRemoteAssistance(); ok {
 		_spec.SetField(settings.FieldDisableRemoteAssistance, field.TypeBool, value)
 		_node.DisableRemoteAssistance = value
 	}
-	if value, ok := sc.mutation.DetectRemoteAgents(); ok {
+	if value, ok := _c.mutation.DetectRemoteAgents(); ok {
 		_spec.SetField(settings.FieldDetectRemoteAgents, field.TypeBool, value)
 		_node.DetectRemoteAgents = value
 	}
-	if value, ok := sc.mutation.AutoAdmitAgents(); ok {
+	if value, ok := _c.mutation.AutoAdmitAgents(); ok {
 		_spec.SetField(settings.FieldAutoAdmitAgents, field.TypeBool, value)
 		_node.AutoAdmitAgents = value
 	}
-	if value, ok := sc.mutation.DefaultItemsPerPage(); ok {
+	if value, ok := _c.mutation.DefaultItemsPerPage(); ok {
 		_spec.SetField(settings.FieldDefaultItemsPerPage, field.TypeInt, value)
 		_node.DefaultItemsPerPage = value
 	}
-	if nodes := sc.mutation.TagIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TagIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: false,
@@ -907,7 +907,7 @@ func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 		_node.settings_tag = &nodes[0]
 		_spec.Edges = append(_spec.Edges, edge)
 	}
-	if nodes := sc.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -943,10 +943,10 @@ func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 //			SetLanguage(v+v).
 //		}).
 //		Exec(ctx)
-func (sc *SettingsCreate) OnConflict(opts ...sql.ConflictOption) *SettingsUpsertOne {
-	sc.conflict = opts
+func (_c *SettingsCreate) OnConflict(opts ...sql.ConflictOption) *SettingsUpsertOne {
+	_c.conflict = opts
 	return &SettingsUpsertOne{
-		create: sc,
+		create: _c,
 	}
 }
 
@@ -956,10 +956,10 @@ func (sc *SettingsCreate) OnConflict(opts ...sql.ConflictOption) *SettingsUpsert
 //	client.Settings.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (sc *SettingsCreate) OnConflictColumns(columns ...string) *SettingsUpsertOne {
-	sc.conflict = append(sc.conflict, sql.ConflictColumns(columns...))
+func (_c *SettingsCreate) OnConflictColumns(columns ...string) *SettingsUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &SettingsUpsertOne{
-		create: sc,
+		create: _c,
 	}
 }
 
@@ -2605,16 +2605,16 @@ type SettingsCreateBulk struct {
 }
 
 // Save creates the Settings entities in the database.
-func (scb *SettingsCreateBulk) Save(ctx context.Context) ([]*Settings, error) {
-	if scb.err != nil {
-		return nil, scb.err
+func (_c *SettingsCreateBulk) Save(ctx context.Context) ([]*Settings, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(scb.builders))
-	nodes := make([]*Settings, len(scb.builders))
-	mutators := make([]Mutator, len(scb.builders))
-	for i := range scb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Settings, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := scb.builders[i]
+			builder := _c.builders[i]
 			builder.defaults()
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SettingsMutation)
@@ -2628,12 +2628,12 @@ func (scb *SettingsCreateBulk) Save(ctx context.Context) ([]*Settings, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, scb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = scb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, scb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -2657,7 +2657,7 @@ func (scb *SettingsCreateBulk) Save(ctx context.Context) ([]*Settings, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, scb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -2665,8 +2665,8 @@ func (scb *SettingsCreateBulk) Save(ctx context.Context) ([]*Settings, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (scb *SettingsCreateBulk) SaveX(ctx context.Context) []*Settings {
-	v, err := scb.Save(ctx)
+func (_c *SettingsCreateBulk) SaveX(ctx context.Context) []*Settings {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -2674,14 +2674,14 @@ func (scb *SettingsCreateBulk) SaveX(ctx context.Context) []*Settings {
 }
 
 // Exec executes the query.
-func (scb *SettingsCreateBulk) Exec(ctx context.Context) error {
-	_, err := scb.Save(ctx)
+func (_c *SettingsCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (scb *SettingsCreateBulk) ExecX(ctx context.Context) {
-	if err := scb.Exec(ctx); err != nil {
+func (_c *SettingsCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -2701,10 +2701,10 @@ func (scb *SettingsCreateBulk) ExecX(ctx context.Context) {
 //			SetLanguage(v+v).
 //		}).
 //		Exec(ctx)
-func (scb *SettingsCreateBulk) OnConflict(opts ...sql.ConflictOption) *SettingsUpsertBulk {
-	scb.conflict = opts
+func (_c *SettingsCreateBulk) OnConflict(opts ...sql.ConflictOption) *SettingsUpsertBulk {
+	_c.conflict = opts
 	return &SettingsUpsertBulk{
-		create: scb,
+		create: _c,
 	}
 }
 
@@ -2714,10 +2714,10 @@ func (scb *SettingsCreateBulk) OnConflict(opts ...sql.ConflictOption) *SettingsU
 //	client.Settings.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (scb *SettingsCreateBulk) OnConflictColumns(columns ...string) *SettingsUpsertBulk {
-	scb.conflict = append(scb.conflict, sql.ConflictColumns(columns...))
+func (_c *SettingsCreateBulk) OnConflictColumns(columns ...string) *SettingsUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &SettingsUpsertBulk{
-		create: scb,
+		create: _c,
 	}
 }
 

@@ -62,7 +62,7 @@ func (*NetbirdSettings) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the NetbirdSettings fields.
-func (ns *NetbirdSettings) assignValues(columns []string, values []any) error {
+func (_m *NetbirdSettings) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -73,21 +73,21 @@ func (ns *NetbirdSettings) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			ns.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case netbirdsettings.FieldManagementURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field management_url", values[i])
 			} else if value.Valid {
-				ns.ManagementURL = value.String
+				_m.ManagementURL = value.String
 			}
 		case netbirdsettings.FieldAccessToken:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field access_token", values[i])
 			} else if value.Valid {
-				ns.AccessToken = value.String
+				_m.AccessToken = value.String
 			}
 		default:
-			ns.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -95,43 +95,43 @@ func (ns *NetbirdSettings) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the NetbirdSettings.
 // This includes values selected through modifiers, order, etc.
-func (ns *NetbirdSettings) Value(name string) (ent.Value, error) {
-	return ns.selectValues.Get(name)
+func (_m *NetbirdSettings) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryTenant queries the "tenant" edge of the NetbirdSettings entity.
-func (ns *NetbirdSettings) QueryTenant() *TenantQuery {
-	return NewNetbirdSettingsClient(ns.config).QueryTenant(ns)
+func (_m *NetbirdSettings) QueryTenant() *TenantQuery {
+	return NewNetbirdSettingsClient(_m.config).QueryTenant(_m)
 }
 
 // Update returns a builder for updating this NetbirdSettings.
 // Note that you need to call NetbirdSettings.Unwrap() before calling this method if this NetbirdSettings
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (ns *NetbirdSettings) Update() *NetbirdSettingsUpdateOne {
-	return NewNetbirdSettingsClient(ns.config).UpdateOne(ns)
+func (_m *NetbirdSettings) Update() *NetbirdSettingsUpdateOne {
+	return NewNetbirdSettingsClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the NetbirdSettings entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (ns *NetbirdSettings) Unwrap() *NetbirdSettings {
-	_tx, ok := ns.config.driver.(*txDriver)
+func (_m *NetbirdSettings) Unwrap() *NetbirdSettings {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: NetbirdSettings is not a transactional entity")
 	}
-	ns.config.driver = _tx.drv
-	return ns
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (ns *NetbirdSettings) String() string {
+func (_m *NetbirdSettings) String() string {
 	var builder strings.Builder
 	builder.WriteString("NetbirdSettings(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", ns.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("management_url=")
-	builder.WriteString(ns.ManagementURL)
+	builder.WriteString(_m.ManagementURL)
 	builder.WriteString(", ")
 	builder.WriteString("access_token=")
-	builder.WriteString(ns.AccessToken)
+	builder.WriteString(_m.AccessToken)
 	builder.WriteByte(')')
 	return builder.String()
 }

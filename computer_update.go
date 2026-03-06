@@ -24,195 +24,195 @@ type ComputerUpdate struct {
 }
 
 // Where appends a list predicates to the ComputerUpdate builder.
-func (cu *ComputerUpdate) Where(ps ...predicate.Computer) *ComputerUpdate {
-	cu.mutation.Where(ps...)
-	return cu
+func (_u *ComputerUpdate) Where(ps ...predicate.Computer) *ComputerUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (cu *ComputerUpdate) SetManufacturer(s string) *ComputerUpdate {
-	cu.mutation.SetManufacturer(s)
-	return cu
+func (_u *ComputerUpdate) SetManufacturer(v string) *ComputerUpdate {
+	_u.mutation.SetManufacturer(v)
+	return _u
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableManufacturer(s *string) *ComputerUpdate {
-	if s != nil {
-		cu.SetManufacturer(*s)
+func (_u *ComputerUpdate) SetNillableManufacturer(v *string) *ComputerUpdate {
+	if v != nil {
+		_u.SetManufacturer(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearManufacturer clears the value of the "manufacturer" field.
-func (cu *ComputerUpdate) ClearManufacturer() *ComputerUpdate {
-	cu.mutation.ClearManufacturer()
-	return cu
+func (_u *ComputerUpdate) ClearManufacturer() *ComputerUpdate {
+	_u.mutation.ClearManufacturer()
+	return _u
 }
 
 // SetModel sets the "model" field.
-func (cu *ComputerUpdate) SetModel(s string) *ComputerUpdate {
-	cu.mutation.SetModel(s)
-	return cu
+func (_u *ComputerUpdate) SetModel(v string) *ComputerUpdate {
+	_u.mutation.SetModel(v)
+	return _u
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableModel(s *string) *ComputerUpdate {
-	if s != nil {
-		cu.SetModel(*s)
+func (_u *ComputerUpdate) SetNillableModel(v *string) *ComputerUpdate {
+	if v != nil {
+		_u.SetModel(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearModel clears the value of the "model" field.
-func (cu *ComputerUpdate) ClearModel() *ComputerUpdate {
-	cu.mutation.ClearModel()
-	return cu
+func (_u *ComputerUpdate) ClearModel() *ComputerUpdate {
+	_u.mutation.ClearModel()
+	return _u
 }
 
 // SetSerial sets the "serial" field.
-func (cu *ComputerUpdate) SetSerial(s string) *ComputerUpdate {
-	cu.mutation.SetSerial(s)
-	return cu
+func (_u *ComputerUpdate) SetSerial(v string) *ComputerUpdate {
+	_u.mutation.SetSerial(v)
+	return _u
 }
 
 // SetNillableSerial sets the "serial" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableSerial(s *string) *ComputerUpdate {
-	if s != nil {
-		cu.SetSerial(*s)
+func (_u *ComputerUpdate) SetNillableSerial(v *string) *ComputerUpdate {
+	if v != nil {
+		_u.SetSerial(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearSerial clears the value of the "serial" field.
-func (cu *ComputerUpdate) ClearSerial() *ComputerUpdate {
-	cu.mutation.ClearSerial()
-	return cu
+func (_u *ComputerUpdate) ClearSerial() *ComputerUpdate {
+	_u.mutation.ClearSerial()
+	return _u
 }
 
 // SetMemory sets the "memory" field.
-func (cu *ComputerUpdate) SetMemory(u uint64) *ComputerUpdate {
-	cu.mutation.ResetMemory()
-	cu.mutation.SetMemory(u)
-	return cu
+func (_u *ComputerUpdate) SetMemory(v uint64) *ComputerUpdate {
+	_u.mutation.ResetMemory()
+	_u.mutation.SetMemory(v)
+	return _u
 }
 
 // SetNillableMemory sets the "memory" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableMemory(u *uint64) *ComputerUpdate {
-	if u != nil {
-		cu.SetMemory(*u)
+func (_u *ComputerUpdate) SetNillableMemory(v *uint64) *ComputerUpdate {
+	if v != nil {
+		_u.SetMemory(*v)
 	}
-	return cu
+	return _u
 }
 
-// AddMemory adds u to the "memory" field.
-func (cu *ComputerUpdate) AddMemory(u int64) *ComputerUpdate {
-	cu.mutation.AddMemory(u)
-	return cu
+// AddMemory adds value to the "memory" field.
+func (_u *ComputerUpdate) AddMemory(v int64) *ComputerUpdate {
+	_u.mutation.AddMemory(v)
+	return _u
 }
 
 // ClearMemory clears the value of the "memory" field.
-func (cu *ComputerUpdate) ClearMemory() *ComputerUpdate {
-	cu.mutation.ClearMemory()
-	return cu
+func (_u *ComputerUpdate) ClearMemory() *ComputerUpdate {
+	_u.mutation.ClearMemory()
+	return _u
 }
 
 // SetProcessor sets the "processor" field.
-func (cu *ComputerUpdate) SetProcessor(s string) *ComputerUpdate {
-	cu.mutation.SetProcessor(s)
-	return cu
+func (_u *ComputerUpdate) SetProcessor(v string) *ComputerUpdate {
+	_u.mutation.SetProcessor(v)
+	return _u
 }
 
 // SetNillableProcessor sets the "processor" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableProcessor(s *string) *ComputerUpdate {
-	if s != nil {
-		cu.SetProcessor(*s)
+func (_u *ComputerUpdate) SetNillableProcessor(v *string) *ComputerUpdate {
+	if v != nil {
+		_u.SetProcessor(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearProcessor clears the value of the "processor" field.
-func (cu *ComputerUpdate) ClearProcessor() *ComputerUpdate {
-	cu.mutation.ClearProcessor()
-	return cu
+func (_u *ComputerUpdate) ClearProcessor() *ComputerUpdate {
+	_u.mutation.ClearProcessor()
+	return _u
 }
 
 // SetProcessorCores sets the "processor_cores" field.
-func (cu *ComputerUpdate) SetProcessorCores(i int64) *ComputerUpdate {
-	cu.mutation.ResetProcessorCores()
-	cu.mutation.SetProcessorCores(i)
-	return cu
+func (_u *ComputerUpdate) SetProcessorCores(v int64) *ComputerUpdate {
+	_u.mutation.ResetProcessorCores()
+	_u.mutation.SetProcessorCores(v)
+	return _u
 }
 
 // SetNillableProcessorCores sets the "processor_cores" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableProcessorCores(i *int64) *ComputerUpdate {
-	if i != nil {
-		cu.SetProcessorCores(*i)
+func (_u *ComputerUpdate) SetNillableProcessorCores(v *int64) *ComputerUpdate {
+	if v != nil {
+		_u.SetProcessorCores(*v)
 	}
-	return cu
+	return _u
 }
 
-// AddProcessorCores adds i to the "processor_cores" field.
-func (cu *ComputerUpdate) AddProcessorCores(i int64) *ComputerUpdate {
-	cu.mutation.AddProcessorCores(i)
-	return cu
+// AddProcessorCores adds value to the "processor_cores" field.
+func (_u *ComputerUpdate) AddProcessorCores(v int64) *ComputerUpdate {
+	_u.mutation.AddProcessorCores(v)
+	return _u
 }
 
 // ClearProcessorCores clears the value of the "processor_cores" field.
-func (cu *ComputerUpdate) ClearProcessorCores() *ComputerUpdate {
-	cu.mutation.ClearProcessorCores()
-	return cu
+func (_u *ComputerUpdate) ClearProcessorCores() *ComputerUpdate {
+	_u.mutation.ClearProcessorCores()
+	return _u
 }
 
 // SetProcessorArch sets the "processor_arch" field.
-func (cu *ComputerUpdate) SetProcessorArch(s string) *ComputerUpdate {
-	cu.mutation.SetProcessorArch(s)
-	return cu
+func (_u *ComputerUpdate) SetProcessorArch(v string) *ComputerUpdate {
+	_u.mutation.SetProcessorArch(v)
+	return _u
 }
 
 // SetNillableProcessorArch sets the "processor_arch" field if the given value is not nil.
-func (cu *ComputerUpdate) SetNillableProcessorArch(s *string) *ComputerUpdate {
-	if s != nil {
-		cu.SetProcessorArch(*s)
+func (_u *ComputerUpdate) SetNillableProcessorArch(v *string) *ComputerUpdate {
+	if v != nil {
+		_u.SetProcessorArch(*v)
 	}
-	return cu
+	return _u
 }
 
 // ClearProcessorArch clears the value of the "processor_arch" field.
-func (cu *ComputerUpdate) ClearProcessorArch() *ComputerUpdate {
-	cu.mutation.ClearProcessorArch()
-	return cu
+func (_u *ComputerUpdate) ClearProcessorArch() *ComputerUpdate {
+	_u.mutation.ClearProcessorArch()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (cu *ComputerUpdate) SetOwnerID(id string) *ComputerUpdate {
-	cu.mutation.SetOwnerID(id)
-	return cu
+func (_u *ComputerUpdate) SetOwnerID(id string) *ComputerUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (cu *ComputerUpdate) SetOwner(a *Agent) *ComputerUpdate {
-	return cu.SetOwnerID(a.ID)
+func (_u *ComputerUpdate) SetOwner(v *Agent) *ComputerUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the ComputerMutation object of the builder.
-func (cu *ComputerUpdate) Mutation() *ComputerMutation {
-	return cu.mutation
+func (_u *ComputerUpdate) Mutation() *ComputerMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (cu *ComputerUpdate) ClearOwner() *ComputerUpdate {
-	cu.mutation.ClearOwner()
-	return cu
+func (_u *ComputerUpdate) ClearOwner() *ComputerUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (cu *ComputerUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, cu.sqlSave, cu.mutation, cu.hooks)
+func (_u *ComputerUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (cu *ComputerUpdate) SaveX(ctx context.Context) int {
-	affected, err := cu.Save(ctx)
+func (_u *ComputerUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -220,93 +220,93 @@ func (cu *ComputerUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (cu *ComputerUpdate) Exec(ctx context.Context) error {
-	_, err := cu.Save(ctx)
+func (_u *ComputerUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cu *ComputerUpdate) ExecX(ctx context.Context) {
-	if err := cu.Exec(ctx); err != nil {
+func (_u *ComputerUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cu *ComputerUpdate) check() error {
-	if cu.mutation.OwnerCleared() && len(cu.mutation.OwnerIDs()) > 0 {
+func (_u *ComputerUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Computer.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (cu *ComputerUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ComputerUpdate {
-	cu.modifiers = append(cu.modifiers, modifiers...)
-	return cu
+func (_u *ComputerUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ComputerUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (cu *ComputerUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := cu.check(); err != nil {
-		return n, err
+func (_u *ComputerUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(computer.Table, computer.Columns, sqlgraph.NewFieldSpec(computer.FieldID, field.TypeInt))
-	if ps := cu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := cu.mutation.Manufacturer(); ok {
+	if value, ok := _u.mutation.Manufacturer(); ok {
 		_spec.SetField(computer.FieldManufacturer, field.TypeString, value)
 	}
-	if cu.mutation.ManufacturerCleared() {
+	if _u.mutation.ManufacturerCleared() {
 		_spec.ClearField(computer.FieldManufacturer, field.TypeString)
 	}
-	if value, ok := cu.mutation.Model(); ok {
+	if value, ok := _u.mutation.Model(); ok {
 		_spec.SetField(computer.FieldModel, field.TypeString, value)
 	}
-	if cu.mutation.ModelCleared() {
+	if _u.mutation.ModelCleared() {
 		_spec.ClearField(computer.FieldModel, field.TypeString)
 	}
-	if value, ok := cu.mutation.Serial(); ok {
+	if value, ok := _u.mutation.Serial(); ok {
 		_spec.SetField(computer.FieldSerial, field.TypeString, value)
 	}
-	if cu.mutation.SerialCleared() {
+	if _u.mutation.SerialCleared() {
 		_spec.ClearField(computer.FieldSerial, field.TypeString)
 	}
-	if value, ok := cu.mutation.Memory(); ok {
+	if value, ok := _u.mutation.Memory(); ok {
 		_spec.SetField(computer.FieldMemory, field.TypeUint64, value)
 	}
-	if value, ok := cu.mutation.AddedMemory(); ok {
+	if value, ok := _u.mutation.AddedMemory(); ok {
 		_spec.AddField(computer.FieldMemory, field.TypeUint64, value)
 	}
-	if cu.mutation.MemoryCleared() {
+	if _u.mutation.MemoryCleared() {
 		_spec.ClearField(computer.FieldMemory, field.TypeUint64)
 	}
-	if value, ok := cu.mutation.Processor(); ok {
+	if value, ok := _u.mutation.Processor(); ok {
 		_spec.SetField(computer.FieldProcessor, field.TypeString, value)
 	}
-	if cu.mutation.ProcessorCleared() {
+	if _u.mutation.ProcessorCleared() {
 		_spec.ClearField(computer.FieldProcessor, field.TypeString)
 	}
-	if value, ok := cu.mutation.ProcessorCores(); ok {
+	if value, ok := _u.mutation.ProcessorCores(); ok {
 		_spec.SetField(computer.FieldProcessorCores, field.TypeInt64, value)
 	}
-	if value, ok := cu.mutation.AddedProcessorCores(); ok {
+	if value, ok := _u.mutation.AddedProcessorCores(); ok {
 		_spec.AddField(computer.FieldProcessorCores, field.TypeInt64, value)
 	}
-	if cu.mutation.ProcessorCoresCleared() {
+	if _u.mutation.ProcessorCoresCleared() {
 		_spec.ClearField(computer.FieldProcessorCores, field.TypeInt64)
 	}
-	if value, ok := cu.mutation.ProcessorArch(); ok {
+	if value, ok := _u.mutation.ProcessorArch(); ok {
 		_spec.SetField(computer.FieldProcessorArch, field.TypeString, value)
 	}
-	if cu.mutation.ProcessorArchCleared() {
+	if _u.mutation.ProcessorArchCleared() {
 		_spec.ClearField(computer.FieldProcessorArch, field.TypeString)
 	}
-	if cu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -319,7 +319,7 @@ func (cu *ComputerUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := cu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -335,8 +335,8 @@ func (cu *ComputerUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(cu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, cu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{computer.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -344,8 +344,8 @@ func (cu *ComputerUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	cu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // ComputerUpdateOne is the builder for updating a single Computer entity.
@@ -358,202 +358,202 @@ type ComputerUpdateOne struct {
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (cuo *ComputerUpdateOne) SetManufacturer(s string) *ComputerUpdateOne {
-	cuo.mutation.SetManufacturer(s)
-	return cuo
+func (_u *ComputerUpdateOne) SetManufacturer(v string) *ComputerUpdateOne {
+	_u.mutation.SetManufacturer(v)
+	return _u
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableManufacturer(s *string) *ComputerUpdateOne {
-	if s != nil {
-		cuo.SetManufacturer(*s)
+func (_u *ComputerUpdateOne) SetNillableManufacturer(v *string) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetManufacturer(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearManufacturer clears the value of the "manufacturer" field.
-func (cuo *ComputerUpdateOne) ClearManufacturer() *ComputerUpdateOne {
-	cuo.mutation.ClearManufacturer()
-	return cuo
+func (_u *ComputerUpdateOne) ClearManufacturer() *ComputerUpdateOne {
+	_u.mutation.ClearManufacturer()
+	return _u
 }
 
 // SetModel sets the "model" field.
-func (cuo *ComputerUpdateOne) SetModel(s string) *ComputerUpdateOne {
-	cuo.mutation.SetModel(s)
-	return cuo
+func (_u *ComputerUpdateOne) SetModel(v string) *ComputerUpdateOne {
+	_u.mutation.SetModel(v)
+	return _u
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableModel(s *string) *ComputerUpdateOne {
-	if s != nil {
-		cuo.SetModel(*s)
+func (_u *ComputerUpdateOne) SetNillableModel(v *string) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetModel(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearModel clears the value of the "model" field.
-func (cuo *ComputerUpdateOne) ClearModel() *ComputerUpdateOne {
-	cuo.mutation.ClearModel()
-	return cuo
+func (_u *ComputerUpdateOne) ClearModel() *ComputerUpdateOne {
+	_u.mutation.ClearModel()
+	return _u
 }
 
 // SetSerial sets the "serial" field.
-func (cuo *ComputerUpdateOne) SetSerial(s string) *ComputerUpdateOne {
-	cuo.mutation.SetSerial(s)
-	return cuo
+func (_u *ComputerUpdateOne) SetSerial(v string) *ComputerUpdateOne {
+	_u.mutation.SetSerial(v)
+	return _u
 }
 
 // SetNillableSerial sets the "serial" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableSerial(s *string) *ComputerUpdateOne {
-	if s != nil {
-		cuo.SetSerial(*s)
+func (_u *ComputerUpdateOne) SetNillableSerial(v *string) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetSerial(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearSerial clears the value of the "serial" field.
-func (cuo *ComputerUpdateOne) ClearSerial() *ComputerUpdateOne {
-	cuo.mutation.ClearSerial()
-	return cuo
+func (_u *ComputerUpdateOne) ClearSerial() *ComputerUpdateOne {
+	_u.mutation.ClearSerial()
+	return _u
 }
 
 // SetMemory sets the "memory" field.
-func (cuo *ComputerUpdateOne) SetMemory(u uint64) *ComputerUpdateOne {
-	cuo.mutation.ResetMemory()
-	cuo.mutation.SetMemory(u)
-	return cuo
+func (_u *ComputerUpdateOne) SetMemory(v uint64) *ComputerUpdateOne {
+	_u.mutation.ResetMemory()
+	_u.mutation.SetMemory(v)
+	return _u
 }
 
 // SetNillableMemory sets the "memory" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableMemory(u *uint64) *ComputerUpdateOne {
-	if u != nil {
-		cuo.SetMemory(*u)
+func (_u *ComputerUpdateOne) SetNillableMemory(v *uint64) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetMemory(*v)
 	}
-	return cuo
+	return _u
 }
 
-// AddMemory adds u to the "memory" field.
-func (cuo *ComputerUpdateOne) AddMemory(u int64) *ComputerUpdateOne {
-	cuo.mutation.AddMemory(u)
-	return cuo
+// AddMemory adds value to the "memory" field.
+func (_u *ComputerUpdateOne) AddMemory(v int64) *ComputerUpdateOne {
+	_u.mutation.AddMemory(v)
+	return _u
 }
 
 // ClearMemory clears the value of the "memory" field.
-func (cuo *ComputerUpdateOne) ClearMemory() *ComputerUpdateOne {
-	cuo.mutation.ClearMemory()
-	return cuo
+func (_u *ComputerUpdateOne) ClearMemory() *ComputerUpdateOne {
+	_u.mutation.ClearMemory()
+	return _u
 }
 
 // SetProcessor sets the "processor" field.
-func (cuo *ComputerUpdateOne) SetProcessor(s string) *ComputerUpdateOne {
-	cuo.mutation.SetProcessor(s)
-	return cuo
+func (_u *ComputerUpdateOne) SetProcessor(v string) *ComputerUpdateOne {
+	_u.mutation.SetProcessor(v)
+	return _u
 }
 
 // SetNillableProcessor sets the "processor" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableProcessor(s *string) *ComputerUpdateOne {
-	if s != nil {
-		cuo.SetProcessor(*s)
+func (_u *ComputerUpdateOne) SetNillableProcessor(v *string) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetProcessor(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearProcessor clears the value of the "processor" field.
-func (cuo *ComputerUpdateOne) ClearProcessor() *ComputerUpdateOne {
-	cuo.mutation.ClearProcessor()
-	return cuo
+func (_u *ComputerUpdateOne) ClearProcessor() *ComputerUpdateOne {
+	_u.mutation.ClearProcessor()
+	return _u
 }
 
 // SetProcessorCores sets the "processor_cores" field.
-func (cuo *ComputerUpdateOne) SetProcessorCores(i int64) *ComputerUpdateOne {
-	cuo.mutation.ResetProcessorCores()
-	cuo.mutation.SetProcessorCores(i)
-	return cuo
+func (_u *ComputerUpdateOne) SetProcessorCores(v int64) *ComputerUpdateOne {
+	_u.mutation.ResetProcessorCores()
+	_u.mutation.SetProcessorCores(v)
+	return _u
 }
 
 // SetNillableProcessorCores sets the "processor_cores" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableProcessorCores(i *int64) *ComputerUpdateOne {
-	if i != nil {
-		cuo.SetProcessorCores(*i)
+func (_u *ComputerUpdateOne) SetNillableProcessorCores(v *int64) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetProcessorCores(*v)
 	}
-	return cuo
+	return _u
 }
 
-// AddProcessorCores adds i to the "processor_cores" field.
-func (cuo *ComputerUpdateOne) AddProcessorCores(i int64) *ComputerUpdateOne {
-	cuo.mutation.AddProcessorCores(i)
-	return cuo
+// AddProcessorCores adds value to the "processor_cores" field.
+func (_u *ComputerUpdateOne) AddProcessorCores(v int64) *ComputerUpdateOne {
+	_u.mutation.AddProcessorCores(v)
+	return _u
 }
 
 // ClearProcessorCores clears the value of the "processor_cores" field.
-func (cuo *ComputerUpdateOne) ClearProcessorCores() *ComputerUpdateOne {
-	cuo.mutation.ClearProcessorCores()
-	return cuo
+func (_u *ComputerUpdateOne) ClearProcessorCores() *ComputerUpdateOne {
+	_u.mutation.ClearProcessorCores()
+	return _u
 }
 
 // SetProcessorArch sets the "processor_arch" field.
-func (cuo *ComputerUpdateOne) SetProcessorArch(s string) *ComputerUpdateOne {
-	cuo.mutation.SetProcessorArch(s)
-	return cuo
+func (_u *ComputerUpdateOne) SetProcessorArch(v string) *ComputerUpdateOne {
+	_u.mutation.SetProcessorArch(v)
+	return _u
 }
 
 // SetNillableProcessorArch sets the "processor_arch" field if the given value is not nil.
-func (cuo *ComputerUpdateOne) SetNillableProcessorArch(s *string) *ComputerUpdateOne {
-	if s != nil {
-		cuo.SetProcessorArch(*s)
+func (_u *ComputerUpdateOne) SetNillableProcessorArch(v *string) *ComputerUpdateOne {
+	if v != nil {
+		_u.SetProcessorArch(*v)
 	}
-	return cuo
+	return _u
 }
 
 // ClearProcessorArch clears the value of the "processor_arch" field.
-func (cuo *ComputerUpdateOne) ClearProcessorArch() *ComputerUpdateOne {
-	cuo.mutation.ClearProcessorArch()
-	return cuo
+func (_u *ComputerUpdateOne) ClearProcessorArch() *ComputerUpdateOne {
+	_u.mutation.ClearProcessorArch()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (cuo *ComputerUpdateOne) SetOwnerID(id string) *ComputerUpdateOne {
-	cuo.mutation.SetOwnerID(id)
-	return cuo
+func (_u *ComputerUpdateOne) SetOwnerID(id string) *ComputerUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (cuo *ComputerUpdateOne) SetOwner(a *Agent) *ComputerUpdateOne {
-	return cuo.SetOwnerID(a.ID)
+func (_u *ComputerUpdateOne) SetOwner(v *Agent) *ComputerUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the ComputerMutation object of the builder.
-func (cuo *ComputerUpdateOne) Mutation() *ComputerMutation {
-	return cuo.mutation
+func (_u *ComputerUpdateOne) Mutation() *ComputerMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (cuo *ComputerUpdateOne) ClearOwner() *ComputerUpdateOne {
-	cuo.mutation.ClearOwner()
-	return cuo
+func (_u *ComputerUpdateOne) ClearOwner() *ComputerUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the ComputerUpdate builder.
-func (cuo *ComputerUpdateOne) Where(ps ...predicate.Computer) *ComputerUpdateOne {
-	cuo.mutation.Where(ps...)
-	return cuo
+func (_u *ComputerUpdateOne) Where(ps ...predicate.Computer) *ComputerUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (cuo *ComputerUpdateOne) Select(field string, fields ...string) *ComputerUpdateOne {
-	cuo.fields = append([]string{field}, fields...)
-	return cuo
+func (_u *ComputerUpdateOne) Select(field string, fields ...string) *ComputerUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Computer entity.
-func (cuo *ComputerUpdateOne) Save(ctx context.Context) (*Computer, error) {
-	return withHooks(ctx, cuo.sqlSave, cuo.mutation, cuo.hooks)
+func (_u *ComputerUpdateOne) Save(ctx context.Context) (*Computer, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (cuo *ComputerUpdateOne) SaveX(ctx context.Context) *Computer {
-	node, err := cuo.Save(ctx)
+func (_u *ComputerUpdateOne) SaveX(ctx context.Context) *Computer {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -561,43 +561,43 @@ func (cuo *ComputerUpdateOne) SaveX(ctx context.Context) *Computer {
 }
 
 // Exec executes the query on the entity.
-func (cuo *ComputerUpdateOne) Exec(ctx context.Context) error {
-	_, err := cuo.Save(ctx)
+func (_u *ComputerUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (cuo *ComputerUpdateOne) ExecX(ctx context.Context) {
-	if err := cuo.Exec(ctx); err != nil {
+func (_u *ComputerUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (cuo *ComputerUpdateOne) check() error {
-	if cuo.mutation.OwnerCleared() && len(cuo.mutation.OwnerIDs()) > 0 {
+func (_u *ComputerUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Computer.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (cuo *ComputerUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ComputerUpdateOne {
-	cuo.modifiers = append(cuo.modifiers, modifiers...)
-	return cuo
+func (_u *ComputerUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ComputerUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (cuo *ComputerUpdateOne) sqlSave(ctx context.Context) (_node *Computer, err error) {
-	if err := cuo.check(); err != nil {
+func (_u *ComputerUpdateOne) sqlSave(ctx context.Context) (_node *Computer, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(computer.Table, computer.Columns, sqlgraph.NewFieldSpec(computer.FieldID, field.TypeInt))
-	id, ok := cuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Computer.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := cuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, computer.FieldID)
 		for _, f := range fields {
@@ -609,62 +609,62 @@ func (cuo *ComputerUpdateOne) sqlSave(ctx context.Context) (_node *Computer, err
 			}
 		}
 	}
-	if ps := cuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := cuo.mutation.Manufacturer(); ok {
+	if value, ok := _u.mutation.Manufacturer(); ok {
 		_spec.SetField(computer.FieldManufacturer, field.TypeString, value)
 	}
-	if cuo.mutation.ManufacturerCleared() {
+	if _u.mutation.ManufacturerCleared() {
 		_spec.ClearField(computer.FieldManufacturer, field.TypeString)
 	}
-	if value, ok := cuo.mutation.Model(); ok {
+	if value, ok := _u.mutation.Model(); ok {
 		_spec.SetField(computer.FieldModel, field.TypeString, value)
 	}
-	if cuo.mutation.ModelCleared() {
+	if _u.mutation.ModelCleared() {
 		_spec.ClearField(computer.FieldModel, field.TypeString)
 	}
-	if value, ok := cuo.mutation.Serial(); ok {
+	if value, ok := _u.mutation.Serial(); ok {
 		_spec.SetField(computer.FieldSerial, field.TypeString, value)
 	}
-	if cuo.mutation.SerialCleared() {
+	if _u.mutation.SerialCleared() {
 		_spec.ClearField(computer.FieldSerial, field.TypeString)
 	}
-	if value, ok := cuo.mutation.Memory(); ok {
+	if value, ok := _u.mutation.Memory(); ok {
 		_spec.SetField(computer.FieldMemory, field.TypeUint64, value)
 	}
-	if value, ok := cuo.mutation.AddedMemory(); ok {
+	if value, ok := _u.mutation.AddedMemory(); ok {
 		_spec.AddField(computer.FieldMemory, field.TypeUint64, value)
 	}
-	if cuo.mutation.MemoryCleared() {
+	if _u.mutation.MemoryCleared() {
 		_spec.ClearField(computer.FieldMemory, field.TypeUint64)
 	}
-	if value, ok := cuo.mutation.Processor(); ok {
+	if value, ok := _u.mutation.Processor(); ok {
 		_spec.SetField(computer.FieldProcessor, field.TypeString, value)
 	}
-	if cuo.mutation.ProcessorCleared() {
+	if _u.mutation.ProcessorCleared() {
 		_spec.ClearField(computer.FieldProcessor, field.TypeString)
 	}
-	if value, ok := cuo.mutation.ProcessorCores(); ok {
+	if value, ok := _u.mutation.ProcessorCores(); ok {
 		_spec.SetField(computer.FieldProcessorCores, field.TypeInt64, value)
 	}
-	if value, ok := cuo.mutation.AddedProcessorCores(); ok {
+	if value, ok := _u.mutation.AddedProcessorCores(); ok {
 		_spec.AddField(computer.FieldProcessorCores, field.TypeInt64, value)
 	}
-	if cuo.mutation.ProcessorCoresCleared() {
+	if _u.mutation.ProcessorCoresCleared() {
 		_spec.ClearField(computer.FieldProcessorCores, field.TypeInt64)
 	}
-	if value, ok := cuo.mutation.ProcessorArch(); ok {
+	if value, ok := _u.mutation.ProcessorArch(); ok {
 		_spec.SetField(computer.FieldProcessorArch, field.TypeString, value)
 	}
-	if cuo.mutation.ProcessorArchCleared() {
+	if _u.mutation.ProcessorArchCleared() {
 		_spec.ClearField(computer.FieldProcessorArch, field.TypeString)
 	}
-	if cuo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -677,7 +677,7 @@ func (cuo *ComputerUpdateOne) sqlSave(ctx context.Context) (_node *Computer, err
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := cuo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -693,11 +693,11 @@ func (cuo *ComputerUpdateOne) sqlSave(ctx context.Context) (_node *Computer, err
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(cuo.modifiers...)
-	_node = &Computer{config: cuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Computer{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, cuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{computer.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -705,6 +705,6 @@ func (cuo *ComputerUpdateOne) sqlSave(ctx context.Context) (_node *Computer, err
 		}
 		return nil, err
 	}
-	cuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

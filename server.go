@@ -70,7 +70,7 @@ func (*Server) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Server fields.
-func (s *Server) assignValues(columns []string, values []any) error {
+func (_m *Server) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -81,93 +81,93 @@ func (s *Server) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			s.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case server.FieldHostname:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field hostname", values[i])
 			} else if value.Valid {
-				s.Hostname = value.String
+				_m.Hostname = value.String
 			}
 		case server.FieldArch:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field arch", values[i])
 			} else if value.Valid {
-				s.Arch = value.String
+				_m.Arch = value.String
 			}
 		case server.FieldOs:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field os", values[i])
 			} else if value.Valid {
-				s.Os = value.String
+				_m.Os = value.String
 			}
 		case server.FieldVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				s.Version = value.String
+				_m.Version = value.String
 			}
 		case server.FieldChannel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field channel", values[i])
 			} else if value.Valid {
-				s.Channel = server.Channel(value.String)
+				_m.Channel = server.Channel(value.String)
 			}
 		case server.FieldUpdateStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_status", values[i])
 			} else if value.Valid {
-				s.UpdateStatus = server.UpdateStatus(value.String)
+				_m.UpdateStatus = server.UpdateStatus(value.String)
 			}
 		case server.FieldUpdateMessage:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field update_message", values[i])
 			} else if value.Valid {
-				s.UpdateMessage = value.String
+				_m.UpdateMessage = value.String
 			}
 		case server.FieldUpdateWhen:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field update_when", values[i])
 			} else if value.Valid {
-				s.UpdateWhen = value.Time
+				_m.UpdateWhen = value.Time
 			}
 		case server.FieldNatsComponent:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field nats_component", values[i])
 			} else if value.Valid {
-				s.NatsComponent = value.Bool
+				_m.NatsComponent = value.Bool
 			}
 		case server.FieldOcspComponent:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field ocsp_component", values[i])
 			} else if value.Valid {
-				s.OcspComponent = value.Bool
+				_m.OcspComponent = value.Bool
 			}
 		case server.FieldConsoleComponent:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field console_component", values[i])
 			} else if value.Valid {
-				s.ConsoleComponent = value.Bool
+				_m.ConsoleComponent = value.Bool
 			}
 		case server.FieldAgentWorkerComponent:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_worker_component", values[i])
 			} else if value.Valid {
-				s.AgentWorkerComponent = value.Bool
+				_m.AgentWorkerComponent = value.Bool
 			}
 		case server.FieldNotificationWorkerComponent:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field notification_worker_component", values[i])
 			} else if value.Valid {
-				s.NotificationWorkerComponent = value.Bool
+				_m.NotificationWorkerComponent = value.Bool
 			}
 		case server.FieldCertManagerWorkerComponent:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field cert_manager_worker_component", values[i])
 			} else if value.Valid {
-				s.CertManagerWorkerComponent = value.Bool
+				_m.CertManagerWorkerComponent = value.Bool
 			}
 		default:
-			s.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -175,74 +175,74 @@ func (s *Server) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Server.
 // This includes values selected through modifiers, order, etc.
-func (s *Server) Value(name string) (ent.Value, error) {
-	return s.selectValues.Get(name)
+func (_m *Server) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // Update returns a builder for updating this Server.
 // Note that you need to call Server.Unwrap() before calling this method if this Server
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (s *Server) Update() *ServerUpdateOne {
-	return NewServerClient(s.config).UpdateOne(s)
+func (_m *Server) Update() *ServerUpdateOne {
+	return NewServerClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Server entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (s *Server) Unwrap() *Server {
-	_tx, ok := s.config.driver.(*txDriver)
+func (_m *Server) Unwrap() *Server {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Server is not a transactional entity")
 	}
-	s.config.driver = _tx.drv
-	return s
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (s *Server) String() string {
+func (_m *Server) String() string {
 	var builder strings.Builder
 	builder.WriteString("Server(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", s.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("hostname=")
-	builder.WriteString(s.Hostname)
+	builder.WriteString(_m.Hostname)
 	builder.WriteString(", ")
 	builder.WriteString("arch=")
-	builder.WriteString(s.Arch)
+	builder.WriteString(_m.Arch)
 	builder.WriteString(", ")
 	builder.WriteString("os=")
-	builder.WriteString(s.Os)
+	builder.WriteString(_m.Os)
 	builder.WriteString(", ")
 	builder.WriteString("version=")
-	builder.WriteString(s.Version)
+	builder.WriteString(_m.Version)
 	builder.WriteString(", ")
 	builder.WriteString("channel=")
-	builder.WriteString(fmt.Sprintf("%v", s.Channel))
+	builder.WriteString(fmt.Sprintf("%v", _m.Channel))
 	builder.WriteString(", ")
 	builder.WriteString("update_status=")
-	builder.WriteString(fmt.Sprintf("%v", s.UpdateStatus))
+	builder.WriteString(fmt.Sprintf("%v", _m.UpdateStatus))
 	builder.WriteString(", ")
 	builder.WriteString("update_message=")
-	builder.WriteString(s.UpdateMessage)
+	builder.WriteString(_m.UpdateMessage)
 	builder.WriteString(", ")
 	builder.WriteString("update_when=")
-	builder.WriteString(s.UpdateWhen.Format(time.ANSIC))
+	builder.WriteString(_m.UpdateWhen.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("nats_component=")
-	builder.WriteString(fmt.Sprintf("%v", s.NatsComponent))
+	builder.WriteString(fmt.Sprintf("%v", _m.NatsComponent))
 	builder.WriteString(", ")
 	builder.WriteString("ocsp_component=")
-	builder.WriteString(fmt.Sprintf("%v", s.OcspComponent))
+	builder.WriteString(fmt.Sprintf("%v", _m.OcspComponent))
 	builder.WriteString(", ")
 	builder.WriteString("console_component=")
-	builder.WriteString(fmt.Sprintf("%v", s.ConsoleComponent))
+	builder.WriteString(fmt.Sprintf("%v", _m.ConsoleComponent))
 	builder.WriteString(", ")
 	builder.WriteString("agent_worker_component=")
-	builder.WriteString(fmt.Sprintf("%v", s.AgentWorkerComponent))
+	builder.WriteString(fmt.Sprintf("%v", _m.AgentWorkerComponent))
 	builder.WriteString(", ")
 	builder.WriteString("notification_worker_component=")
-	builder.WriteString(fmt.Sprintf("%v", s.NotificationWorkerComponent))
+	builder.WriteString(fmt.Sprintf("%v", _m.NotificationWorkerComponent))
 	builder.WriteString(", ")
 	builder.WriteString("cert_manager_worker_component=")
-	builder.WriteString(fmt.Sprintf("%v", s.CertManagerWorkerComponent))
+	builder.WriteString(fmt.Sprintf("%v", _m.CertManagerWorkerComponent))
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -23,264 +23,264 @@ type AuthenticationUpdate struct {
 }
 
 // Where appends a list predicates to the AuthenticationUpdate builder.
-func (au *AuthenticationUpdate) Where(ps ...predicate.Authentication) *AuthenticationUpdate {
-	au.mutation.Where(ps...)
-	return au
+func (_u *AuthenticationUpdate) Where(ps ...predicate.Authentication) *AuthenticationUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetUseCertificates sets the "use_certificates" field.
-func (au *AuthenticationUpdate) SetUseCertificates(b bool) *AuthenticationUpdate {
-	au.mutation.SetUseCertificates(b)
-	return au
+func (_u *AuthenticationUpdate) SetUseCertificates(v bool) *AuthenticationUpdate {
+	_u.mutation.SetUseCertificates(v)
+	return _u
 }
 
 // SetNillableUseCertificates sets the "use_certificates" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableUseCertificates(b *bool) *AuthenticationUpdate {
-	if b != nil {
-		au.SetUseCertificates(*b)
+func (_u *AuthenticationUpdate) SetNillableUseCertificates(v *bool) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetUseCertificates(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUseCertificates clears the value of the "use_certificates" field.
-func (au *AuthenticationUpdate) ClearUseCertificates() *AuthenticationUpdate {
-	au.mutation.ClearUseCertificates()
-	return au
+func (_u *AuthenticationUpdate) ClearUseCertificates() *AuthenticationUpdate {
+	_u.mutation.ClearUseCertificates()
+	return _u
 }
 
 // SetAllowRegister sets the "allow_register" field.
-func (au *AuthenticationUpdate) SetAllowRegister(b bool) *AuthenticationUpdate {
-	au.mutation.SetAllowRegister(b)
-	return au
+func (_u *AuthenticationUpdate) SetAllowRegister(v bool) *AuthenticationUpdate {
+	_u.mutation.SetAllowRegister(v)
+	return _u
 }
 
 // SetNillableAllowRegister sets the "allow_register" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableAllowRegister(b *bool) *AuthenticationUpdate {
-	if b != nil {
-		au.SetAllowRegister(*b)
+func (_u *AuthenticationUpdate) SetNillableAllowRegister(v *bool) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetAllowRegister(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearAllowRegister clears the value of the "allow_register" field.
-func (au *AuthenticationUpdate) ClearAllowRegister() *AuthenticationUpdate {
-	au.mutation.ClearAllowRegister()
-	return au
+func (_u *AuthenticationUpdate) ClearAllowRegister() *AuthenticationUpdate {
+	_u.mutation.ClearAllowRegister()
+	return _u
 }
 
 // SetUseOIDC sets the "use_OIDC" field.
-func (au *AuthenticationUpdate) SetUseOIDC(b bool) *AuthenticationUpdate {
-	au.mutation.SetUseOIDC(b)
-	return au
+func (_u *AuthenticationUpdate) SetUseOIDC(v bool) *AuthenticationUpdate {
+	_u.mutation.SetUseOIDC(v)
+	return _u
 }
 
 // SetNillableUseOIDC sets the "use_OIDC" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableUseOIDC(b *bool) *AuthenticationUpdate {
-	if b != nil {
-		au.SetUseOIDC(*b)
+func (_u *AuthenticationUpdate) SetNillableUseOIDC(v *bool) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetUseOIDC(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUseOIDC clears the value of the "use_OIDC" field.
-func (au *AuthenticationUpdate) ClearUseOIDC() *AuthenticationUpdate {
-	au.mutation.ClearUseOIDC()
-	return au
+func (_u *AuthenticationUpdate) ClearUseOIDC() *AuthenticationUpdate {
+	_u.mutation.ClearUseOIDC()
+	return _u
 }
 
 // SetOIDCProvider sets the "OIDC_provider" field.
-func (au *AuthenticationUpdate) SetOIDCProvider(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCProvider(s)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCProvider(v string) *AuthenticationUpdate {
+	_u.mutation.SetOIDCProvider(v)
+	return _u
 }
 
 // SetNillableOIDCProvider sets the "OIDC_provider" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCProvider(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCProvider(*s)
+func (_u *AuthenticationUpdate) SetNillableOIDCProvider(v *string) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCProvider(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCProvider clears the value of the "OIDC_provider" field.
-func (au *AuthenticationUpdate) ClearOIDCProvider() *AuthenticationUpdate {
-	au.mutation.ClearOIDCProvider()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCProvider() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCProvider()
+	return _u
 }
 
 // SetOIDCIssuerURL sets the "OIDC_issuer_url" field.
-func (au *AuthenticationUpdate) SetOIDCIssuerURL(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCIssuerURL(s)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCIssuerURL(v string) *AuthenticationUpdate {
+	_u.mutation.SetOIDCIssuerURL(v)
+	return _u
 }
 
 // SetNillableOIDCIssuerURL sets the "OIDC_issuer_url" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCIssuerURL(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCIssuerURL(*s)
+func (_u *AuthenticationUpdate) SetNillableOIDCIssuerURL(v *string) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCIssuerURL(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCIssuerURL clears the value of the "OIDC_issuer_url" field.
-func (au *AuthenticationUpdate) ClearOIDCIssuerURL() *AuthenticationUpdate {
-	au.mutation.ClearOIDCIssuerURL()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCIssuerURL() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCIssuerURL()
+	return _u
 }
 
 // SetOIDCClientID sets the "OIDC_client_id" field.
-func (au *AuthenticationUpdate) SetOIDCClientID(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCClientID(s)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCClientID(v string) *AuthenticationUpdate {
+	_u.mutation.SetOIDCClientID(v)
+	return _u
 }
 
 // SetNillableOIDCClientID sets the "OIDC_client_id" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCClientID(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCClientID(*s)
+func (_u *AuthenticationUpdate) SetNillableOIDCClientID(v *string) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCClientID(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCClientID clears the value of the "OIDC_client_id" field.
-func (au *AuthenticationUpdate) ClearOIDCClientID() *AuthenticationUpdate {
-	au.mutation.ClearOIDCClientID()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCClientID() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCClientID()
+	return _u
 }
 
 // SetOIDCRole sets the "OIDC_role" field.
-func (au *AuthenticationUpdate) SetOIDCRole(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCRole(s)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCRole(v string) *AuthenticationUpdate {
+	_u.mutation.SetOIDCRole(v)
+	return _u
 }
 
 // SetNillableOIDCRole sets the "OIDC_role" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCRole(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCRole(*s)
+func (_u *AuthenticationUpdate) SetNillableOIDCRole(v *string) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCRole(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCRole clears the value of the "OIDC_role" field.
-func (au *AuthenticationUpdate) ClearOIDCRole() *AuthenticationUpdate {
-	au.mutation.ClearOIDCRole()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCRole() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCRole()
+	return _u
 }
 
 // SetOIDCCookieEncriptionKey sets the "OIDC_cookie_encription_key" field.
-func (au *AuthenticationUpdate) SetOIDCCookieEncriptionKey(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCCookieEncriptionKey(s)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCCookieEncriptionKey(v string) *AuthenticationUpdate {
+	_u.mutation.SetOIDCCookieEncriptionKey(v)
+	return _u
 }
 
 // SetNillableOIDCCookieEncriptionKey sets the "OIDC_cookie_encription_key" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCCookieEncriptionKey(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCCookieEncriptionKey(*s)
+func (_u *AuthenticationUpdate) SetNillableOIDCCookieEncriptionKey(v *string) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCCookieEncriptionKey(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCCookieEncriptionKey clears the value of the "OIDC_cookie_encription_key" field.
-func (au *AuthenticationUpdate) ClearOIDCCookieEncriptionKey() *AuthenticationUpdate {
-	au.mutation.ClearOIDCCookieEncriptionKey()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCCookieEncriptionKey() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCCookieEncriptionKey()
+	return _u
 }
 
 // SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (au *AuthenticationUpdate) SetOIDCKeycloakPublicKey(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCKeycloakPublicKey(s)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCKeycloakPublicKey(v string) *AuthenticationUpdate {
+	_u.mutation.SetOIDCKeycloakPublicKey(v)
+	return _u
 }
 
 // SetNillableOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCKeycloakPublicKey(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCKeycloakPublicKey(*s)
+func (_u *AuthenticationUpdate) SetNillableOIDCKeycloakPublicKey(v *string) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCKeycloakPublicKey(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (au *AuthenticationUpdate) ClearOIDCKeycloakPublicKey() *AuthenticationUpdate {
-	au.mutation.ClearOIDCKeycloakPublicKey()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCKeycloakPublicKey() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCKeycloakPublicKey()
+	return _u
 }
 
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
-func (au *AuthenticationUpdate) SetOIDCAutoCreateAccount(b bool) *AuthenticationUpdate {
-	au.mutation.SetOIDCAutoCreateAccount(b)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCAutoCreateAccount(v bool) *AuthenticationUpdate {
+	_u.mutation.SetOIDCAutoCreateAccount(v)
+	return _u
 }
 
 // SetNillableOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCAutoCreateAccount(b *bool) *AuthenticationUpdate {
-	if b != nil {
-		au.SetOIDCAutoCreateAccount(*b)
+func (_u *AuthenticationUpdate) SetNillableOIDCAutoCreateAccount(v *bool) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCAutoCreateAccount(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCAutoCreateAccount clears the value of the "OIDC_auto_create_account" field.
-func (au *AuthenticationUpdate) ClearOIDCAutoCreateAccount() *AuthenticationUpdate {
-	au.mutation.ClearOIDCAutoCreateAccount()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCAutoCreateAccount() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCAutoCreateAccount()
+	return _u
 }
 
 // SetOIDCAutoApprove sets the "OIDC_auto_approve" field.
-func (au *AuthenticationUpdate) SetOIDCAutoApprove(b bool) *AuthenticationUpdate {
-	au.mutation.SetOIDCAutoApprove(b)
-	return au
+func (_u *AuthenticationUpdate) SetOIDCAutoApprove(v bool) *AuthenticationUpdate {
+	_u.mutation.SetOIDCAutoApprove(v)
+	return _u
 }
 
 // SetNillableOIDCAutoApprove sets the "OIDC_auto_approve" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCAutoApprove(b *bool) *AuthenticationUpdate {
-	if b != nil {
-		au.SetOIDCAutoApprove(*b)
+func (_u *AuthenticationUpdate) SetNillableOIDCAutoApprove(v *bool) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetOIDCAutoApprove(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearOIDCAutoApprove clears the value of the "OIDC_auto_approve" field.
-func (au *AuthenticationUpdate) ClearOIDCAutoApprove() *AuthenticationUpdate {
-	au.mutation.ClearOIDCAutoApprove()
-	return au
+func (_u *AuthenticationUpdate) ClearOIDCAutoApprove() *AuthenticationUpdate {
+	_u.mutation.ClearOIDCAutoApprove()
+	return _u
 }
 
 // SetUsePasswd sets the "use_passwd" field.
-func (au *AuthenticationUpdate) SetUsePasswd(b bool) *AuthenticationUpdate {
-	au.mutation.SetUsePasswd(b)
-	return au
+func (_u *AuthenticationUpdate) SetUsePasswd(v bool) *AuthenticationUpdate {
+	_u.mutation.SetUsePasswd(v)
+	return _u
 }
 
 // SetNillableUsePasswd sets the "use_passwd" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableUsePasswd(b *bool) *AuthenticationUpdate {
-	if b != nil {
-		au.SetUsePasswd(*b)
+func (_u *AuthenticationUpdate) SetNillableUsePasswd(v *bool) *AuthenticationUpdate {
+	if v != nil {
+		_u.SetUsePasswd(*v)
 	}
-	return au
+	return _u
 }
 
 // ClearUsePasswd clears the value of the "use_passwd" field.
-func (au *AuthenticationUpdate) ClearUsePasswd() *AuthenticationUpdate {
-	au.mutation.ClearUsePasswd()
-	return au
+func (_u *AuthenticationUpdate) ClearUsePasswd() *AuthenticationUpdate {
+	_u.mutation.ClearUsePasswd()
+	return _u
 }
 
 // Mutation returns the AuthenticationMutation object of the builder.
-func (au *AuthenticationUpdate) Mutation() *AuthenticationMutation {
-	return au.mutation
+func (_u *AuthenticationUpdate) Mutation() *AuthenticationMutation {
+	return _u.mutation
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (au *AuthenticationUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, au.sqlSave, au.mutation, au.hooks)
+func (_u *AuthenticationUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (au *AuthenticationUpdate) SaveX(ctx context.Context) int {
-	affected, err := au.Save(ctx)
+func (_u *AuthenticationUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -288,107 +288,107 @@ func (au *AuthenticationUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (au *AuthenticationUpdate) Exec(ctx context.Context) error {
-	_, err := au.Save(ctx)
+func (_u *AuthenticationUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (au *AuthenticationUpdate) ExecX(ctx context.Context) {
-	if err := au.Exec(ctx); err != nil {
+func (_u *AuthenticationUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (au *AuthenticationUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AuthenticationUpdate {
-	au.modifiers = append(au.modifiers, modifiers...)
-	return au
+func (_u *AuthenticationUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AuthenticationUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (au *AuthenticationUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *AuthenticationUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(authentication.Table, authentication.Columns, sqlgraph.NewFieldSpec(authentication.FieldID, field.TypeInt))
-	if ps := au.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := au.mutation.UseCertificates(); ok {
+	if value, ok := _u.mutation.UseCertificates(); ok {
 		_spec.SetField(authentication.FieldUseCertificates, field.TypeBool, value)
 	}
-	if au.mutation.UseCertificatesCleared() {
+	if _u.mutation.UseCertificatesCleared() {
 		_spec.ClearField(authentication.FieldUseCertificates, field.TypeBool)
 	}
-	if value, ok := au.mutation.AllowRegister(); ok {
+	if value, ok := _u.mutation.AllowRegister(); ok {
 		_spec.SetField(authentication.FieldAllowRegister, field.TypeBool, value)
 	}
-	if au.mutation.AllowRegisterCleared() {
+	if _u.mutation.AllowRegisterCleared() {
 		_spec.ClearField(authentication.FieldAllowRegister, field.TypeBool)
 	}
-	if value, ok := au.mutation.UseOIDC(); ok {
+	if value, ok := _u.mutation.UseOIDC(); ok {
 		_spec.SetField(authentication.FieldUseOIDC, field.TypeBool, value)
 	}
-	if au.mutation.UseOIDCCleared() {
+	if _u.mutation.UseOIDCCleared() {
 		_spec.ClearField(authentication.FieldUseOIDC, field.TypeBool)
 	}
-	if value, ok := au.mutation.OIDCProvider(); ok {
+	if value, ok := _u.mutation.OIDCProvider(); ok {
 		_spec.SetField(authentication.FieldOIDCProvider, field.TypeString, value)
 	}
-	if au.mutation.OIDCProviderCleared() {
+	if _u.mutation.OIDCProviderCleared() {
 		_spec.ClearField(authentication.FieldOIDCProvider, field.TypeString)
 	}
-	if value, ok := au.mutation.OIDCIssuerURL(); ok {
+	if value, ok := _u.mutation.OIDCIssuerURL(); ok {
 		_spec.SetField(authentication.FieldOIDCIssuerURL, field.TypeString, value)
 	}
-	if au.mutation.OIDCIssuerURLCleared() {
+	if _u.mutation.OIDCIssuerURLCleared() {
 		_spec.ClearField(authentication.FieldOIDCIssuerURL, field.TypeString)
 	}
-	if value, ok := au.mutation.OIDCClientID(); ok {
+	if value, ok := _u.mutation.OIDCClientID(); ok {
 		_spec.SetField(authentication.FieldOIDCClientID, field.TypeString, value)
 	}
-	if au.mutation.OIDCClientIDCleared() {
+	if _u.mutation.OIDCClientIDCleared() {
 		_spec.ClearField(authentication.FieldOIDCClientID, field.TypeString)
 	}
-	if value, ok := au.mutation.OIDCRole(); ok {
+	if value, ok := _u.mutation.OIDCRole(); ok {
 		_spec.SetField(authentication.FieldOIDCRole, field.TypeString, value)
 	}
-	if au.mutation.OIDCRoleCleared() {
+	if _u.mutation.OIDCRoleCleared() {
 		_spec.ClearField(authentication.FieldOIDCRole, field.TypeString)
 	}
-	if value, ok := au.mutation.OIDCCookieEncriptionKey(); ok {
+	if value, ok := _u.mutation.OIDCCookieEncriptionKey(); ok {
 		_spec.SetField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString, value)
 	}
-	if au.mutation.OIDCCookieEncriptionKeyCleared() {
+	if _u.mutation.OIDCCookieEncriptionKeyCleared() {
 		_spec.ClearField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString)
 	}
-	if value, ok := au.mutation.OIDCKeycloakPublicKey(); ok {
+	if value, ok := _u.mutation.OIDCKeycloakPublicKey(); ok {
 		_spec.SetField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString, value)
 	}
-	if au.mutation.OIDCKeycloakPublicKeyCleared() {
+	if _u.mutation.OIDCKeycloakPublicKeyCleared() {
 		_spec.ClearField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString)
 	}
-	if value, ok := au.mutation.OIDCAutoCreateAccount(); ok {
+	if value, ok := _u.mutation.OIDCAutoCreateAccount(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool, value)
 	}
-	if au.mutation.OIDCAutoCreateAccountCleared() {
+	if _u.mutation.OIDCAutoCreateAccountCleared() {
 		_spec.ClearField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool)
 	}
-	if value, ok := au.mutation.OIDCAutoApprove(); ok {
+	if value, ok := _u.mutation.OIDCAutoApprove(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoApprove, field.TypeBool, value)
 	}
-	if au.mutation.OIDCAutoApproveCleared() {
+	if _u.mutation.OIDCAutoApproveCleared() {
 		_spec.ClearField(authentication.FieldOIDCAutoApprove, field.TypeBool)
 	}
-	if value, ok := au.mutation.UsePasswd(); ok {
+	if value, ok := _u.mutation.UsePasswd(); ok {
 		_spec.SetField(authentication.FieldUsePasswd, field.TypeBool, value)
 	}
-	if au.mutation.UsePasswdCleared() {
+	if _u.mutation.UsePasswdCleared() {
 		_spec.ClearField(authentication.FieldUsePasswd, field.TypeBool)
 	}
-	_spec.AddModifiers(au.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{authentication.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -396,8 +396,8 @@ func (au *AuthenticationUpdate) sqlSave(ctx context.Context) (n int, err error) 
 		}
 		return 0, err
 	}
-	au.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // AuthenticationUpdateOne is the builder for updating a single Authentication entity.
@@ -410,271 +410,271 @@ type AuthenticationUpdateOne struct {
 }
 
 // SetUseCertificates sets the "use_certificates" field.
-func (auo *AuthenticationUpdateOne) SetUseCertificates(b bool) *AuthenticationUpdateOne {
-	auo.mutation.SetUseCertificates(b)
-	return auo
+func (_u *AuthenticationUpdateOne) SetUseCertificates(v bool) *AuthenticationUpdateOne {
+	_u.mutation.SetUseCertificates(v)
+	return _u
 }
 
 // SetNillableUseCertificates sets the "use_certificates" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableUseCertificates(b *bool) *AuthenticationUpdateOne {
-	if b != nil {
-		auo.SetUseCertificates(*b)
+func (_u *AuthenticationUpdateOne) SetNillableUseCertificates(v *bool) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetUseCertificates(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUseCertificates clears the value of the "use_certificates" field.
-func (auo *AuthenticationUpdateOne) ClearUseCertificates() *AuthenticationUpdateOne {
-	auo.mutation.ClearUseCertificates()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearUseCertificates() *AuthenticationUpdateOne {
+	_u.mutation.ClearUseCertificates()
+	return _u
 }
 
 // SetAllowRegister sets the "allow_register" field.
-func (auo *AuthenticationUpdateOne) SetAllowRegister(b bool) *AuthenticationUpdateOne {
-	auo.mutation.SetAllowRegister(b)
-	return auo
+func (_u *AuthenticationUpdateOne) SetAllowRegister(v bool) *AuthenticationUpdateOne {
+	_u.mutation.SetAllowRegister(v)
+	return _u
 }
 
 // SetNillableAllowRegister sets the "allow_register" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableAllowRegister(b *bool) *AuthenticationUpdateOne {
-	if b != nil {
-		auo.SetAllowRegister(*b)
+func (_u *AuthenticationUpdateOne) SetNillableAllowRegister(v *bool) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetAllowRegister(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearAllowRegister clears the value of the "allow_register" field.
-func (auo *AuthenticationUpdateOne) ClearAllowRegister() *AuthenticationUpdateOne {
-	auo.mutation.ClearAllowRegister()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearAllowRegister() *AuthenticationUpdateOne {
+	_u.mutation.ClearAllowRegister()
+	return _u
 }
 
 // SetUseOIDC sets the "use_OIDC" field.
-func (auo *AuthenticationUpdateOne) SetUseOIDC(b bool) *AuthenticationUpdateOne {
-	auo.mutation.SetUseOIDC(b)
-	return auo
+func (_u *AuthenticationUpdateOne) SetUseOIDC(v bool) *AuthenticationUpdateOne {
+	_u.mutation.SetUseOIDC(v)
+	return _u
 }
 
 // SetNillableUseOIDC sets the "use_OIDC" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableUseOIDC(b *bool) *AuthenticationUpdateOne {
-	if b != nil {
-		auo.SetUseOIDC(*b)
+func (_u *AuthenticationUpdateOne) SetNillableUseOIDC(v *bool) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetUseOIDC(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUseOIDC clears the value of the "use_OIDC" field.
-func (auo *AuthenticationUpdateOne) ClearUseOIDC() *AuthenticationUpdateOne {
-	auo.mutation.ClearUseOIDC()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearUseOIDC() *AuthenticationUpdateOne {
+	_u.mutation.ClearUseOIDC()
+	return _u
 }
 
 // SetOIDCProvider sets the "OIDC_provider" field.
-func (auo *AuthenticationUpdateOne) SetOIDCProvider(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCProvider(s)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCProvider(v string) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCProvider(v)
+	return _u
 }
 
 // SetNillableOIDCProvider sets the "OIDC_provider" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCProvider(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCProvider(*s)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCProvider(v *string) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCProvider(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCProvider clears the value of the "OIDC_provider" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCProvider() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCProvider()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCProvider() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCProvider()
+	return _u
 }
 
 // SetOIDCIssuerURL sets the "OIDC_issuer_url" field.
-func (auo *AuthenticationUpdateOne) SetOIDCIssuerURL(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCIssuerURL(s)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCIssuerURL(v string) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCIssuerURL(v)
+	return _u
 }
 
 // SetNillableOIDCIssuerURL sets the "OIDC_issuer_url" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCIssuerURL(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCIssuerURL(*s)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCIssuerURL(v *string) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCIssuerURL(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCIssuerURL clears the value of the "OIDC_issuer_url" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCIssuerURL() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCIssuerURL()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCIssuerURL() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCIssuerURL()
+	return _u
 }
 
 // SetOIDCClientID sets the "OIDC_client_id" field.
-func (auo *AuthenticationUpdateOne) SetOIDCClientID(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCClientID(s)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCClientID(v string) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCClientID(v)
+	return _u
 }
 
 // SetNillableOIDCClientID sets the "OIDC_client_id" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCClientID(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCClientID(*s)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCClientID(v *string) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCClientID(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCClientID clears the value of the "OIDC_client_id" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCClientID() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCClientID()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCClientID() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCClientID()
+	return _u
 }
 
 // SetOIDCRole sets the "OIDC_role" field.
-func (auo *AuthenticationUpdateOne) SetOIDCRole(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCRole(s)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCRole(v string) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCRole(v)
+	return _u
 }
 
 // SetNillableOIDCRole sets the "OIDC_role" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCRole(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCRole(*s)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCRole(v *string) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCRole(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCRole clears the value of the "OIDC_role" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCRole() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCRole()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCRole() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCRole()
+	return _u
 }
 
 // SetOIDCCookieEncriptionKey sets the "OIDC_cookie_encription_key" field.
-func (auo *AuthenticationUpdateOne) SetOIDCCookieEncriptionKey(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCCookieEncriptionKey(s)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCCookieEncriptionKey(v string) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCCookieEncriptionKey(v)
+	return _u
 }
 
 // SetNillableOIDCCookieEncriptionKey sets the "OIDC_cookie_encription_key" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCCookieEncriptionKey(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCCookieEncriptionKey(*s)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCCookieEncriptionKey(v *string) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCCookieEncriptionKey(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCCookieEncriptionKey clears the value of the "OIDC_cookie_encription_key" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCCookieEncriptionKey() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCCookieEncriptionKey()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCCookieEncriptionKey() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCCookieEncriptionKey()
+	return _u
 }
 
 // SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (auo *AuthenticationUpdateOne) SetOIDCKeycloakPublicKey(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCKeycloakPublicKey(s)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCKeycloakPublicKey(v string) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCKeycloakPublicKey(v)
+	return _u
 }
 
 // SetNillableOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCKeycloakPublicKey(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCKeycloakPublicKey(*s)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCKeycloakPublicKey(v *string) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCKeycloakPublicKey(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCKeycloakPublicKey() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCKeycloakPublicKey()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCKeycloakPublicKey() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCKeycloakPublicKey()
+	return _u
 }
 
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
-func (auo *AuthenticationUpdateOne) SetOIDCAutoCreateAccount(b bool) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCAutoCreateAccount(b)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCAutoCreateAccount(v bool) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCAutoCreateAccount(v)
+	return _u
 }
 
 // SetNillableOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCAutoCreateAccount(b *bool) *AuthenticationUpdateOne {
-	if b != nil {
-		auo.SetOIDCAutoCreateAccount(*b)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCAutoCreateAccount(v *bool) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCAutoCreateAccount(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCAutoCreateAccount clears the value of the "OIDC_auto_create_account" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCAutoCreateAccount() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCAutoCreateAccount()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCAutoCreateAccount() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCAutoCreateAccount()
+	return _u
 }
 
 // SetOIDCAutoApprove sets the "OIDC_auto_approve" field.
-func (auo *AuthenticationUpdateOne) SetOIDCAutoApprove(b bool) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCAutoApprove(b)
-	return auo
+func (_u *AuthenticationUpdateOne) SetOIDCAutoApprove(v bool) *AuthenticationUpdateOne {
+	_u.mutation.SetOIDCAutoApprove(v)
+	return _u
 }
 
 // SetNillableOIDCAutoApprove sets the "OIDC_auto_approve" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCAutoApprove(b *bool) *AuthenticationUpdateOne {
-	if b != nil {
-		auo.SetOIDCAutoApprove(*b)
+func (_u *AuthenticationUpdateOne) SetNillableOIDCAutoApprove(v *bool) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetOIDCAutoApprove(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearOIDCAutoApprove clears the value of the "OIDC_auto_approve" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCAutoApprove() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCAutoApprove()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearOIDCAutoApprove() *AuthenticationUpdateOne {
+	_u.mutation.ClearOIDCAutoApprove()
+	return _u
 }
 
 // SetUsePasswd sets the "use_passwd" field.
-func (auo *AuthenticationUpdateOne) SetUsePasswd(b bool) *AuthenticationUpdateOne {
-	auo.mutation.SetUsePasswd(b)
-	return auo
+func (_u *AuthenticationUpdateOne) SetUsePasswd(v bool) *AuthenticationUpdateOne {
+	_u.mutation.SetUsePasswd(v)
+	return _u
 }
 
 // SetNillableUsePasswd sets the "use_passwd" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableUsePasswd(b *bool) *AuthenticationUpdateOne {
-	if b != nil {
-		auo.SetUsePasswd(*b)
+func (_u *AuthenticationUpdateOne) SetNillableUsePasswd(v *bool) *AuthenticationUpdateOne {
+	if v != nil {
+		_u.SetUsePasswd(*v)
 	}
-	return auo
+	return _u
 }
 
 // ClearUsePasswd clears the value of the "use_passwd" field.
-func (auo *AuthenticationUpdateOne) ClearUsePasswd() *AuthenticationUpdateOne {
-	auo.mutation.ClearUsePasswd()
-	return auo
+func (_u *AuthenticationUpdateOne) ClearUsePasswd() *AuthenticationUpdateOne {
+	_u.mutation.ClearUsePasswd()
+	return _u
 }
 
 // Mutation returns the AuthenticationMutation object of the builder.
-func (auo *AuthenticationUpdateOne) Mutation() *AuthenticationMutation {
-	return auo.mutation
+func (_u *AuthenticationUpdateOne) Mutation() *AuthenticationMutation {
+	return _u.mutation
 }
 
 // Where appends a list predicates to the AuthenticationUpdate builder.
-func (auo *AuthenticationUpdateOne) Where(ps ...predicate.Authentication) *AuthenticationUpdateOne {
-	auo.mutation.Where(ps...)
-	return auo
+func (_u *AuthenticationUpdateOne) Where(ps ...predicate.Authentication) *AuthenticationUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (auo *AuthenticationUpdateOne) Select(field string, fields ...string) *AuthenticationUpdateOne {
-	auo.fields = append([]string{field}, fields...)
-	return auo
+func (_u *AuthenticationUpdateOne) Select(field string, fields ...string) *AuthenticationUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Authentication entity.
-func (auo *AuthenticationUpdateOne) Save(ctx context.Context) (*Authentication, error) {
-	return withHooks(ctx, auo.sqlSave, auo.mutation, auo.hooks)
+func (_u *AuthenticationUpdateOne) Save(ctx context.Context) (*Authentication, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (auo *AuthenticationUpdateOne) SaveX(ctx context.Context) *Authentication {
-	node, err := auo.Save(ctx)
+func (_u *AuthenticationUpdateOne) SaveX(ctx context.Context) *Authentication {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -682,32 +682,32 @@ func (auo *AuthenticationUpdateOne) SaveX(ctx context.Context) *Authentication {
 }
 
 // Exec executes the query on the entity.
-func (auo *AuthenticationUpdateOne) Exec(ctx context.Context) error {
-	_, err := auo.Save(ctx)
+func (_u *AuthenticationUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (auo *AuthenticationUpdateOne) ExecX(ctx context.Context) {
-	if err := auo.Exec(ctx); err != nil {
+func (_u *AuthenticationUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (auo *AuthenticationUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AuthenticationUpdateOne {
-	auo.modifiers = append(auo.modifiers, modifiers...)
-	return auo
+func (_u *AuthenticationUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *AuthenticationUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (auo *AuthenticationUpdateOne) sqlSave(ctx context.Context) (_node *Authentication, err error) {
+func (_u *AuthenticationUpdateOne) sqlSave(ctx context.Context) (_node *Authentication, err error) {
 	_spec := sqlgraph.NewUpdateSpec(authentication.Table, authentication.Columns, sqlgraph.NewFieldSpec(authentication.FieldID, field.TypeInt))
-	id, ok := auo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Authentication.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := auo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, authentication.FieldID)
 		for _, f := range fields {
@@ -719,90 +719,90 @@ func (auo *AuthenticationUpdateOne) sqlSave(ctx context.Context) (_node *Authent
 			}
 		}
 	}
-	if ps := auo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := auo.mutation.UseCertificates(); ok {
+	if value, ok := _u.mutation.UseCertificates(); ok {
 		_spec.SetField(authentication.FieldUseCertificates, field.TypeBool, value)
 	}
-	if auo.mutation.UseCertificatesCleared() {
+	if _u.mutation.UseCertificatesCleared() {
 		_spec.ClearField(authentication.FieldUseCertificates, field.TypeBool)
 	}
-	if value, ok := auo.mutation.AllowRegister(); ok {
+	if value, ok := _u.mutation.AllowRegister(); ok {
 		_spec.SetField(authentication.FieldAllowRegister, field.TypeBool, value)
 	}
-	if auo.mutation.AllowRegisterCleared() {
+	if _u.mutation.AllowRegisterCleared() {
 		_spec.ClearField(authentication.FieldAllowRegister, field.TypeBool)
 	}
-	if value, ok := auo.mutation.UseOIDC(); ok {
+	if value, ok := _u.mutation.UseOIDC(); ok {
 		_spec.SetField(authentication.FieldUseOIDC, field.TypeBool, value)
 	}
-	if auo.mutation.UseOIDCCleared() {
+	if _u.mutation.UseOIDCCleared() {
 		_spec.ClearField(authentication.FieldUseOIDC, field.TypeBool)
 	}
-	if value, ok := auo.mutation.OIDCProvider(); ok {
+	if value, ok := _u.mutation.OIDCProvider(); ok {
 		_spec.SetField(authentication.FieldOIDCProvider, field.TypeString, value)
 	}
-	if auo.mutation.OIDCProviderCleared() {
+	if _u.mutation.OIDCProviderCleared() {
 		_spec.ClearField(authentication.FieldOIDCProvider, field.TypeString)
 	}
-	if value, ok := auo.mutation.OIDCIssuerURL(); ok {
+	if value, ok := _u.mutation.OIDCIssuerURL(); ok {
 		_spec.SetField(authentication.FieldOIDCIssuerURL, field.TypeString, value)
 	}
-	if auo.mutation.OIDCIssuerURLCleared() {
+	if _u.mutation.OIDCIssuerURLCleared() {
 		_spec.ClearField(authentication.FieldOIDCIssuerURL, field.TypeString)
 	}
-	if value, ok := auo.mutation.OIDCClientID(); ok {
+	if value, ok := _u.mutation.OIDCClientID(); ok {
 		_spec.SetField(authentication.FieldOIDCClientID, field.TypeString, value)
 	}
-	if auo.mutation.OIDCClientIDCleared() {
+	if _u.mutation.OIDCClientIDCleared() {
 		_spec.ClearField(authentication.FieldOIDCClientID, field.TypeString)
 	}
-	if value, ok := auo.mutation.OIDCRole(); ok {
+	if value, ok := _u.mutation.OIDCRole(); ok {
 		_spec.SetField(authentication.FieldOIDCRole, field.TypeString, value)
 	}
-	if auo.mutation.OIDCRoleCleared() {
+	if _u.mutation.OIDCRoleCleared() {
 		_spec.ClearField(authentication.FieldOIDCRole, field.TypeString)
 	}
-	if value, ok := auo.mutation.OIDCCookieEncriptionKey(); ok {
+	if value, ok := _u.mutation.OIDCCookieEncriptionKey(); ok {
 		_spec.SetField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString, value)
 	}
-	if auo.mutation.OIDCCookieEncriptionKeyCleared() {
+	if _u.mutation.OIDCCookieEncriptionKeyCleared() {
 		_spec.ClearField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString)
 	}
-	if value, ok := auo.mutation.OIDCKeycloakPublicKey(); ok {
+	if value, ok := _u.mutation.OIDCKeycloakPublicKey(); ok {
 		_spec.SetField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString, value)
 	}
-	if auo.mutation.OIDCKeycloakPublicKeyCleared() {
+	if _u.mutation.OIDCKeycloakPublicKeyCleared() {
 		_spec.ClearField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString)
 	}
-	if value, ok := auo.mutation.OIDCAutoCreateAccount(); ok {
+	if value, ok := _u.mutation.OIDCAutoCreateAccount(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool, value)
 	}
-	if auo.mutation.OIDCAutoCreateAccountCleared() {
+	if _u.mutation.OIDCAutoCreateAccountCleared() {
 		_spec.ClearField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool)
 	}
-	if value, ok := auo.mutation.OIDCAutoApprove(); ok {
+	if value, ok := _u.mutation.OIDCAutoApprove(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoApprove, field.TypeBool, value)
 	}
-	if auo.mutation.OIDCAutoApproveCleared() {
+	if _u.mutation.OIDCAutoApproveCleared() {
 		_spec.ClearField(authentication.FieldOIDCAutoApprove, field.TypeBool)
 	}
-	if value, ok := auo.mutation.UsePasswd(); ok {
+	if value, ok := _u.mutation.UsePasswd(); ok {
 		_spec.SetField(authentication.FieldUsePasswd, field.TypeBool, value)
 	}
-	if auo.mutation.UsePasswdCleared() {
+	if _u.mutation.UsePasswdCleared() {
 		_spec.ClearField(authentication.FieldUsePasswd, field.TypeBool)
 	}
-	_spec.AddModifiers(auo.modifiers...)
-	_node = &Authentication{config: auo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Authentication{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, auo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{authentication.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -810,6 +810,6 @@ func (auo *AuthenticationUpdateOne) sqlSave(ctx context.Context) (_node *Authent
 		}
 		return nil, err
 	}
-	auo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

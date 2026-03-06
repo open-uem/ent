@@ -25,148 +25,148 @@ type TaskReportUpdate struct {
 }
 
 // Where appends a list predicates to the TaskReportUpdate builder.
-func (tru *TaskReportUpdate) Where(ps ...predicate.TaskReport) *TaskReportUpdate {
-	tru.mutation.Where(ps...)
-	return tru
+func (_u *TaskReportUpdate) Where(ps ...predicate.TaskReport) *TaskReportUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetStdOutput sets the "std_output" field.
-func (tru *TaskReportUpdate) SetStdOutput(s string) *TaskReportUpdate {
-	tru.mutation.SetStdOutput(s)
-	return tru
+func (_u *TaskReportUpdate) SetStdOutput(v string) *TaskReportUpdate {
+	_u.mutation.SetStdOutput(v)
+	return _u
 }
 
 // SetNillableStdOutput sets the "std_output" field if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableStdOutput(s *string) *TaskReportUpdate {
-	if s != nil {
-		tru.SetStdOutput(*s)
+func (_u *TaskReportUpdate) SetNillableStdOutput(v *string) *TaskReportUpdate {
+	if v != nil {
+		_u.SetStdOutput(*v)
 	}
-	return tru
+	return _u
 }
 
 // ClearStdOutput clears the value of the "std_output" field.
-func (tru *TaskReportUpdate) ClearStdOutput() *TaskReportUpdate {
-	tru.mutation.ClearStdOutput()
-	return tru
+func (_u *TaskReportUpdate) ClearStdOutput() *TaskReportUpdate {
+	_u.mutation.ClearStdOutput()
+	return _u
 }
 
 // SetStdError sets the "std_error" field.
-func (tru *TaskReportUpdate) SetStdError(s string) *TaskReportUpdate {
-	tru.mutation.SetStdError(s)
-	return tru
+func (_u *TaskReportUpdate) SetStdError(v string) *TaskReportUpdate {
+	_u.mutation.SetStdError(v)
+	return _u
 }
 
 // SetNillableStdError sets the "std_error" field if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableStdError(s *string) *TaskReportUpdate {
-	if s != nil {
-		tru.SetStdError(*s)
+func (_u *TaskReportUpdate) SetNillableStdError(v *string) *TaskReportUpdate {
+	if v != nil {
+		_u.SetStdError(*v)
 	}
-	return tru
+	return _u
 }
 
 // ClearStdError clears the value of the "std_error" field.
-func (tru *TaskReportUpdate) ClearStdError() *TaskReportUpdate {
-	tru.mutation.ClearStdError()
-	return tru
+func (_u *TaskReportUpdate) ClearStdError() *TaskReportUpdate {
+	_u.mutation.ClearStdError()
+	return _u
 }
 
 // SetFailed sets the "failed" field.
-func (tru *TaskReportUpdate) SetFailed(b bool) *TaskReportUpdate {
-	tru.mutation.SetFailed(b)
-	return tru
+func (_u *TaskReportUpdate) SetFailed(v bool) *TaskReportUpdate {
+	_u.mutation.SetFailed(v)
+	return _u
 }
 
 // SetNillableFailed sets the "failed" field if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableFailed(b *bool) *TaskReportUpdate {
-	if b != nil {
-		tru.SetFailed(*b)
+func (_u *TaskReportUpdate) SetNillableFailed(v *bool) *TaskReportUpdate {
+	if v != nil {
+		_u.SetFailed(*v)
 	}
-	return tru
+	return _u
 }
 
 // SetEnd sets the "end" field.
-func (tru *TaskReportUpdate) SetEnd(s string) *TaskReportUpdate {
-	tru.mutation.SetEnd(s)
-	return tru
+func (_u *TaskReportUpdate) SetEnd(v string) *TaskReportUpdate {
+	_u.mutation.SetEnd(v)
+	return _u
 }
 
 // SetNillableEnd sets the "end" field if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableEnd(s *string) *TaskReportUpdate {
-	if s != nil {
-		tru.SetEnd(*s)
+func (_u *TaskReportUpdate) SetNillableEnd(v *string) *TaskReportUpdate {
+	if v != nil {
+		_u.SetEnd(*v)
 	}
-	return tru
+	return _u
 }
 
 // ClearEnd clears the value of the "end" field.
-func (tru *TaskReportUpdate) ClearEnd() *TaskReportUpdate {
-	tru.mutation.ClearEnd()
-	return tru
+func (_u *TaskReportUpdate) ClearEnd() *TaskReportUpdate {
+	_u.mutation.ClearEnd()
+	return _u
 }
 
 // SetProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID.
-func (tru *TaskReportUpdate) SetProfileissueID(id int) *TaskReportUpdate {
-	tru.mutation.SetProfileissueID(id)
-	return tru
+func (_u *TaskReportUpdate) SetProfileissueID(id int) *TaskReportUpdate {
+	_u.mutation.SetProfileissueID(id)
+	return _u
 }
 
 // SetNillableProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableProfileissueID(id *int) *TaskReportUpdate {
+func (_u *TaskReportUpdate) SetNillableProfileissueID(id *int) *TaskReportUpdate {
 	if id != nil {
-		tru = tru.SetProfileissueID(*id)
+		_u = _u.SetProfileissueID(*id)
 	}
-	return tru
+	return _u
 }
 
 // SetProfileissue sets the "profileissue" edge to the ProfileIssue entity.
-func (tru *TaskReportUpdate) SetProfileissue(p *ProfileIssue) *TaskReportUpdate {
-	return tru.SetProfileissueID(p.ID)
+func (_u *TaskReportUpdate) SetProfileissue(v *ProfileIssue) *TaskReportUpdate {
+	return _u.SetProfileissueID(v.ID)
 }
 
 // SetTaskID sets the "task" edge to the Task entity by ID.
-func (tru *TaskReportUpdate) SetTaskID(id int) *TaskReportUpdate {
-	tru.mutation.SetTaskID(id)
-	return tru
+func (_u *TaskReportUpdate) SetTaskID(id int) *TaskReportUpdate {
+	_u.mutation.SetTaskID(id)
+	return _u
 }
 
 // SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
-func (tru *TaskReportUpdate) SetNillableTaskID(id *int) *TaskReportUpdate {
+func (_u *TaskReportUpdate) SetNillableTaskID(id *int) *TaskReportUpdate {
 	if id != nil {
-		tru = tru.SetTaskID(*id)
+		_u = _u.SetTaskID(*id)
 	}
-	return tru
+	return _u
 }
 
 // SetTask sets the "task" edge to the Task entity.
-func (tru *TaskReportUpdate) SetTask(t *Task) *TaskReportUpdate {
-	return tru.SetTaskID(t.ID)
+func (_u *TaskReportUpdate) SetTask(v *Task) *TaskReportUpdate {
+	return _u.SetTaskID(v.ID)
 }
 
 // Mutation returns the TaskReportMutation object of the builder.
-func (tru *TaskReportUpdate) Mutation() *TaskReportMutation {
-	return tru.mutation
+func (_u *TaskReportUpdate) Mutation() *TaskReportMutation {
+	return _u.mutation
 }
 
 // ClearProfileissue clears the "profileissue" edge to the ProfileIssue entity.
-func (tru *TaskReportUpdate) ClearProfileissue() *TaskReportUpdate {
-	tru.mutation.ClearProfileissue()
-	return tru
+func (_u *TaskReportUpdate) ClearProfileissue() *TaskReportUpdate {
+	_u.mutation.ClearProfileissue()
+	return _u
 }
 
 // ClearTask clears the "task" edge to the Task entity.
-func (tru *TaskReportUpdate) ClearTask() *TaskReportUpdate {
-	tru.mutation.ClearTask()
-	return tru
+func (_u *TaskReportUpdate) ClearTask() *TaskReportUpdate {
+	_u.mutation.ClearTask()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (tru *TaskReportUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, tru.sqlSave, tru.mutation, tru.hooks)
+func (_u *TaskReportUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (tru *TaskReportUpdate) SaveX(ctx context.Context) int {
-	affected, err := tru.Save(ctx)
+func (_u *TaskReportUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -174,55 +174,55 @@ func (tru *TaskReportUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (tru *TaskReportUpdate) Exec(ctx context.Context) error {
-	_, err := tru.Save(ctx)
+func (_u *TaskReportUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (tru *TaskReportUpdate) ExecX(ctx context.Context) {
-	if err := tru.Exec(ctx); err != nil {
+func (_u *TaskReportUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (tru *TaskReportUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskReportUpdate {
-	tru.modifiers = append(tru.modifiers, modifiers...)
-	return tru
+func (_u *TaskReportUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskReportUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *TaskReportUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(taskreport.Table, taskreport.Columns, sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt))
-	if ps := tru.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := tru.mutation.StdOutput(); ok {
+	if value, ok := _u.mutation.StdOutput(); ok {
 		_spec.SetField(taskreport.FieldStdOutput, field.TypeString, value)
 	}
-	if tru.mutation.StdOutputCleared() {
+	if _u.mutation.StdOutputCleared() {
 		_spec.ClearField(taskreport.FieldStdOutput, field.TypeString)
 	}
-	if value, ok := tru.mutation.StdError(); ok {
+	if value, ok := _u.mutation.StdError(); ok {
 		_spec.SetField(taskreport.FieldStdError, field.TypeString, value)
 	}
-	if tru.mutation.StdErrorCleared() {
+	if _u.mutation.StdErrorCleared() {
 		_spec.ClearField(taskreport.FieldStdError, field.TypeString)
 	}
-	if value, ok := tru.mutation.Failed(); ok {
+	if value, ok := _u.mutation.Failed(); ok {
 		_spec.SetField(taskreport.FieldFailed, field.TypeBool, value)
 	}
-	if value, ok := tru.mutation.End(); ok {
+	if value, ok := _u.mutation.End(); ok {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)
 	}
-	if tru.mutation.EndCleared() {
+	if _u.mutation.EndCleared() {
 		_spec.ClearField(taskreport.FieldEnd, field.TypeString)
 	}
-	if tru.mutation.ProfileissueCleared() {
+	if _u.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -235,7 +235,7 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tru.mutation.ProfileissueIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -251,7 +251,7 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if tru.mutation.TaskCleared() {
+	if _u.mutation.TaskCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -264,7 +264,7 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := tru.mutation.TaskIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TaskIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -280,8 +280,8 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(tru.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, tru.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{taskreport.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -289,8 +289,8 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	tru.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // TaskReportUpdateOne is the builder for updating a single TaskReport entity.
@@ -303,155 +303,155 @@ type TaskReportUpdateOne struct {
 }
 
 // SetStdOutput sets the "std_output" field.
-func (truo *TaskReportUpdateOne) SetStdOutput(s string) *TaskReportUpdateOne {
-	truo.mutation.SetStdOutput(s)
-	return truo
+func (_u *TaskReportUpdateOne) SetStdOutput(v string) *TaskReportUpdateOne {
+	_u.mutation.SetStdOutput(v)
+	return _u
 }
 
 // SetNillableStdOutput sets the "std_output" field if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableStdOutput(s *string) *TaskReportUpdateOne {
-	if s != nil {
-		truo.SetStdOutput(*s)
+func (_u *TaskReportUpdateOne) SetNillableStdOutput(v *string) *TaskReportUpdateOne {
+	if v != nil {
+		_u.SetStdOutput(*v)
 	}
-	return truo
+	return _u
 }
 
 // ClearStdOutput clears the value of the "std_output" field.
-func (truo *TaskReportUpdateOne) ClearStdOutput() *TaskReportUpdateOne {
-	truo.mutation.ClearStdOutput()
-	return truo
+func (_u *TaskReportUpdateOne) ClearStdOutput() *TaskReportUpdateOne {
+	_u.mutation.ClearStdOutput()
+	return _u
 }
 
 // SetStdError sets the "std_error" field.
-func (truo *TaskReportUpdateOne) SetStdError(s string) *TaskReportUpdateOne {
-	truo.mutation.SetStdError(s)
-	return truo
+func (_u *TaskReportUpdateOne) SetStdError(v string) *TaskReportUpdateOne {
+	_u.mutation.SetStdError(v)
+	return _u
 }
 
 // SetNillableStdError sets the "std_error" field if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableStdError(s *string) *TaskReportUpdateOne {
-	if s != nil {
-		truo.SetStdError(*s)
+func (_u *TaskReportUpdateOne) SetNillableStdError(v *string) *TaskReportUpdateOne {
+	if v != nil {
+		_u.SetStdError(*v)
 	}
-	return truo
+	return _u
 }
 
 // ClearStdError clears the value of the "std_error" field.
-func (truo *TaskReportUpdateOne) ClearStdError() *TaskReportUpdateOne {
-	truo.mutation.ClearStdError()
-	return truo
+func (_u *TaskReportUpdateOne) ClearStdError() *TaskReportUpdateOne {
+	_u.mutation.ClearStdError()
+	return _u
 }
 
 // SetFailed sets the "failed" field.
-func (truo *TaskReportUpdateOne) SetFailed(b bool) *TaskReportUpdateOne {
-	truo.mutation.SetFailed(b)
-	return truo
+func (_u *TaskReportUpdateOne) SetFailed(v bool) *TaskReportUpdateOne {
+	_u.mutation.SetFailed(v)
+	return _u
 }
 
 // SetNillableFailed sets the "failed" field if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableFailed(b *bool) *TaskReportUpdateOne {
-	if b != nil {
-		truo.SetFailed(*b)
+func (_u *TaskReportUpdateOne) SetNillableFailed(v *bool) *TaskReportUpdateOne {
+	if v != nil {
+		_u.SetFailed(*v)
 	}
-	return truo
+	return _u
 }
 
 // SetEnd sets the "end" field.
-func (truo *TaskReportUpdateOne) SetEnd(s string) *TaskReportUpdateOne {
-	truo.mutation.SetEnd(s)
-	return truo
+func (_u *TaskReportUpdateOne) SetEnd(v string) *TaskReportUpdateOne {
+	_u.mutation.SetEnd(v)
+	return _u
 }
 
 // SetNillableEnd sets the "end" field if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableEnd(s *string) *TaskReportUpdateOne {
-	if s != nil {
-		truo.SetEnd(*s)
+func (_u *TaskReportUpdateOne) SetNillableEnd(v *string) *TaskReportUpdateOne {
+	if v != nil {
+		_u.SetEnd(*v)
 	}
-	return truo
+	return _u
 }
 
 // ClearEnd clears the value of the "end" field.
-func (truo *TaskReportUpdateOne) ClearEnd() *TaskReportUpdateOne {
-	truo.mutation.ClearEnd()
-	return truo
+func (_u *TaskReportUpdateOne) ClearEnd() *TaskReportUpdateOne {
+	_u.mutation.ClearEnd()
+	return _u
 }
 
 // SetProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID.
-func (truo *TaskReportUpdateOne) SetProfileissueID(id int) *TaskReportUpdateOne {
-	truo.mutation.SetProfileissueID(id)
-	return truo
+func (_u *TaskReportUpdateOne) SetProfileissueID(id int) *TaskReportUpdateOne {
+	_u.mutation.SetProfileissueID(id)
+	return _u
 }
 
 // SetNillableProfileissueID sets the "profileissue" edge to the ProfileIssue entity by ID if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableProfileissueID(id *int) *TaskReportUpdateOne {
+func (_u *TaskReportUpdateOne) SetNillableProfileissueID(id *int) *TaskReportUpdateOne {
 	if id != nil {
-		truo = truo.SetProfileissueID(*id)
+		_u = _u.SetProfileissueID(*id)
 	}
-	return truo
+	return _u
 }
 
 // SetProfileissue sets the "profileissue" edge to the ProfileIssue entity.
-func (truo *TaskReportUpdateOne) SetProfileissue(p *ProfileIssue) *TaskReportUpdateOne {
-	return truo.SetProfileissueID(p.ID)
+func (_u *TaskReportUpdateOne) SetProfileissue(v *ProfileIssue) *TaskReportUpdateOne {
+	return _u.SetProfileissueID(v.ID)
 }
 
 // SetTaskID sets the "task" edge to the Task entity by ID.
-func (truo *TaskReportUpdateOne) SetTaskID(id int) *TaskReportUpdateOne {
-	truo.mutation.SetTaskID(id)
-	return truo
+func (_u *TaskReportUpdateOne) SetTaskID(id int) *TaskReportUpdateOne {
+	_u.mutation.SetTaskID(id)
+	return _u
 }
 
 // SetNillableTaskID sets the "task" edge to the Task entity by ID if the given value is not nil.
-func (truo *TaskReportUpdateOne) SetNillableTaskID(id *int) *TaskReportUpdateOne {
+func (_u *TaskReportUpdateOne) SetNillableTaskID(id *int) *TaskReportUpdateOne {
 	if id != nil {
-		truo = truo.SetTaskID(*id)
+		_u = _u.SetTaskID(*id)
 	}
-	return truo
+	return _u
 }
 
 // SetTask sets the "task" edge to the Task entity.
-func (truo *TaskReportUpdateOne) SetTask(t *Task) *TaskReportUpdateOne {
-	return truo.SetTaskID(t.ID)
+func (_u *TaskReportUpdateOne) SetTask(v *Task) *TaskReportUpdateOne {
+	return _u.SetTaskID(v.ID)
 }
 
 // Mutation returns the TaskReportMutation object of the builder.
-func (truo *TaskReportUpdateOne) Mutation() *TaskReportMutation {
-	return truo.mutation
+func (_u *TaskReportUpdateOne) Mutation() *TaskReportMutation {
+	return _u.mutation
 }
 
 // ClearProfileissue clears the "profileissue" edge to the ProfileIssue entity.
-func (truo *TaskReportUpdateOne) ClearProfileissue() *TaskReportUpdateOne {
-	truo.mutation.ClearProfileissue()
-	return truo
+func (_u *TaskReportUpdateOne) ClearProfileissue() *TaskReportUpdateOne {
+	_u.mutation.ClearProfileissue()
+	return _u
 }
 
 // ClearTask clears the "task" edge to the Task entity.
-func (truo *TaskReportUpdateOne) ClearTask() *TaskReportUpdateOne {
-	truo.mutation.ClearTask()
-	return truo
+func (_u *TaskReportUpdateOne) ClearTask() *TaskReportUpdateOne {
+	_u.mutation.ClearTask()
+	return _u
 }
 
 // Where appends a list predicates to the TaskReportUpdate builder.
-func (truo *TaskReportUpdateOne) Where(ps ...predicate.TaskReport) *TaskReportUpdateOne {
-	truo.mutation.Where(ps...)
-	return truo
+func (_u *TaskReportUpdateOne) Where(ps ...predicate.TaskReport) *TaskReportUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (truo *TaskReportUpdateOne) Select(field string, fields ...string) *TaskReportUpdateOne {
-	truo.fields = append([]string{field}, fields...)
-	return truo
+func (_u *TaskReportUpdateOne) Select(field string, fields ...string) *TaskReportUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated TaskReport entity.
-func (truo *TaskReportUpdateOne) Save(ctx context.Context) (*TaskReport, error) {
-	return withHooks(ctx, truo.sqlSave, truo.mutation, truo.hooks)
+func (_u *TaskReportUpdateOne) Save(ctx context.Context) (*TaskReport, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (truo *TaskReportUpdateOne) SaveX(ctx context.Context) *TaskReport {
-	node, err := truo.Save(ctx)
+func (_u *TaskReportUpdateOne) SaveX(ctx context.Context) *TaskReport {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -459,32 +459,32 @@ func (truo *TaskReportUpdateOne) SaveX(ctx context.Context) *TaskReport {
 }
 
 // Exec executes the query on the entity.
-func (truo *TaskReportUpdateOne) Exec(ctx context.Context) error {
-	_, err := truo.Save(ctx)
+func (_u *TaskReportUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (truo *TaskReportUpdateOne) ExecX(ctx context.Context) {
-	if err := truo.Exec(ctx); err != nil {
+func (_u *TaskReportUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (truo *TaskReportUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskReportUpdateOne {
-	truo.modifiers = append(truo.modifiers, modifiers...)
-	return truo
+func (_u *TaskReportUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *TaskReportUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport, err error) {
+func (_u *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport, err error) {
 	_spec := sqlgraph.NewUpdateSpec(taskreport.Table, taskreport.Columns, sqlgraph.NewFieldSpec(taskreport.FieldID, field.TypeInt))
-	id, ok := truo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "TaskReport.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := truo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, taskreport.FieldID)
 		for _, f := range fields {
@@ -496,35 +496,35 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 			}
 		}
 	}
-	if ps := truo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := truo.mutation.StdOutput(); ok {
+	if value, ok := _u.mutation.StdOutput(); ok {
 		_spec.SetField(taskreport.FieldStdOutput, field.TypeString, value)
 	}
-	if truo.mutation.StdOutputCleared() {
+	if _u.mutation.StdOutputCleared() {
 		_spec.ClearField(taskreport.FieldStdOutput, field.TypeString)
 	}
-	if value, ok := truo.mutation.StdError(); ok {
+	if value, ok := _u.mutation.StdError(); ok {
 		_spec.SetField(taskreport.FieldStdError, field.TypeString, value)
 	}
-	if truo.mutation.StdErrorCleared() {
+	if _u.mutation.StdErrorCleared() {
 		_spec.ClearField(taskreport.FieldStdError, field.TypeString)
 	}
-	if value, ok := truo.mutation.Failed(); ok {
+	if value, ok := _u.mutation.Failed(); ok {
 		_spec.SetField(taskreport.FieldFailed, field.TypeBool, value)
 	}
-	if value, ok := truo.mutation.End(); ok {
+	if value, ok := _u.mutation.End(); ok {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)
 	}
-	if truo.mutation.EndCleared() {
+	if _u.mutation.EndCleared() {
 		_spec.ClearField(taskreport.FieldEnd, field.TypeString)
 	}
-	if truo.mutation.ProfileissueCleared() {
+	if _u.mutation.ProfileissueCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -537,7 +537,7 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := truo.mutation.ProfileissueIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.ProfileissueIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -553,7 +553,7 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	if truo.mutation.TaskCleared() {
+	if _u.mutation.TaskCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -566,7 +566,7 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := truo.mutation.TaskIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TaskIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -582,11 +582,11 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(truo.modifiers...)
-	_node = &TaskReport{config: truo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &TaskReport{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, truo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{taskreport.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -594,6 +594,6 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 		}
 		return nil, err
 	}
-	truo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -20,56 +20,56 @@ type RecoveryCodeDelete struct {
 }
 
 // Where appends a list predicates to the RecoveryCodeDelete builder.
-func (rcd *RecoveryCodeDelete) Where(ps ...predicate.RecoveryCode) *RecoveryCodeDelete {
-	rcd.mutation.Where(ps...)
-	return rcd
+func (_d *RecoveryCodeDelete) Where(ps ...predicate.RecoveryCode) *RecoveryCodeDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (rcd *RecoveryCodeDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, rcd.sqlExec, rcd.mutation, rcd.hooks)
+func (_d *RecoveryCodeDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcd *RecoveryCodeDelete) ExecX(ctx context.Context) int {
-	n, err := rcd.Exec(ctx)
+func (_d *RecoveryCodeDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (rcd *RecoveryCodeDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *RecoveryCodeDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(recoverycode.Table, sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt))
-	if ps := rcd.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, rcd.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	rcd.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // RecoveryCodeDeleteOne is the builder for deleting a single RecoveryCode entity.
 type RecoveryCodeDeleteOne struct {
-	rcd *RecoveryCodeDelete
+	_d *RecoveryCodeDelete
 }
 
 // Where appends a list predicates to the RecoveryCodeDelete builder.
-func (rcdo *RecoveryCodeDeleteOne) Where(ps ...predicate.RecoveryCode) *RecoveryCodeDeleteOne {
-	rcdo.rcd.mutation.Where(ps...)
-	return rcdo
+func (_d *RecoveryCodeDeleteOne) Where(ps ...predicate.RecoveryCode) *RecoveryCodeDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (rcdo *RecoveryCodeDeleteOne) Exec(ctx context.Context) error {
-	n, err := rcdo.rcd.Exec(ctx)
+func (_d *RecoveryCodeDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (rcdo *RecoveryCodeDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcdo *RecoveryCodeDeleteOne) ExecX(ctx context.Context) {
-	if err := rcdo.Exec(ctx); err != nil {
+func (_d *RecoveryCodeDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

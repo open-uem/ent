@@ -24,53 +24,53 @@ type SystemUpdateCreate struct {
 }
 
 // SetSystemUpdateStatus sets the "system_update_status" field.
-func (suc *SystemUpdateCreate) SetSystemUpdateStatus(s string) *SystemUpdateCreate {
-	suc.mutation.SetSystemUpdateStatus(s)
-	return suc
+func (_c *SystemUpdateCreate) SetSystemUpdateStatus(v string) *SystemUpdateCreate {
+	_c.mutation.SetSystemUpdateStatus(v)
+	return _c
 }
 
 // SetLastInstall sets the "last_install" field.
-func (suc *SystemUpdateCreate) SetLastInstall(t time.Time) *SystemUpdateCreate {
-	suc.mutation.SetLastInstall(t)
-	return suc
+func (_c *SystemUpdateCreate) SetLastInstall(v time.Time) *SystemUpdateCreate {
+	_c.mutation.SetLastInstall(v)
+	return _c
 }
 
 // SetLastSearch sets the "last_search" field.
-func (suc *SystemUpdateCreate) SetLastSearch(t time.Time) *SystemUpdateCreate {
-	suc.mutation.SetLastSearch(t)
-	return suc
+func (_c *SystemUpdateCreate) SetLastSearch(v time.Time) *SystemUpdateCreate {
+	_c.mutation.SetLastSearch(v)
+	return _c
 }
 
 // SetPendingUpdates sets the "pending_updates" field.
-func (suc *SystemUpdateCreate) SetPendingUpdates(b bool) *SystemUpdateCreate {
-	suc.mutation.SetPendingUpdates(b)
-	return suc
+func (_c *SystemUpdateCreate) SetPendingUpdates(v bool) *SystemUpdateCreate {
+	_c.mutation.SetPendingUpdates(v)
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (suc *SystemUpdateCreate) SetOwnerID(id string) *SystemUpdateCreate {
-	suc.mutation.SetOwnerID(id)
-	return suc
+func (_c *SystemUpdateCreate) SetOwnerID(id string) *SystemUpdateCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (suc *SystemUpdateCreate) SetOwner(a *Agent) *SystemUpdateCreate {
-	return suc.SetOwnerID(a.ID)
+func (_c *SystemUpdateCreate) SetOwner(v *Agent) *SystemUpdateCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the SystemUpdateMutation object of the builder.
-func (suc *SystemUpdateCreate) Mutation() *SystemUpdateMutation {
-	return suc.mutation
+func (_c *SystemUpdateCreate) Mutation() *SystemUpdateMutation {
+	return _c.mutation
 }
 
 // Save creates the SystemUpdate in the database.
-func (suc *SystemUpdateCreate) Save(ctx context.Context) (*SystemUpdate, error) {
-	return withHooks(ctx, suc.sqlSave, suc.mutation, suc.hooks)
+func (_c *SystemUpdateCreate) Save(ctx context.Context) (*SystemUpdate, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (suc *SystemUpdateCreate) SaveX(ctx context.Context) *SystemUpdate {
-	v, err := suc.Save(ctx)
+func (_c *SystemUpdateCreate) SaveX(ctx context.Context) *SystemUpdate {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -78,44 +78,44 @@ func (suc *SystemUpdateCreate) SaveX(ctx context.Context) *SystemUpdate {
 }
 
 // Exec executes the query.
-func (suc *SystemUpdateCreate) Exec(ctx context.Context) error {
-	_, err := suc.Save(ctx)
+func (_c *SystemUpdateCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suc *SystemUpdateCreate) ExecX(ctx context.Context) {
-	if err := suc.Exec(ctx); err != nil {
+func (_c *SystemUpdateCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (suc *SystemUpdateCreate) check() error {
-	if _, ok := suc.mutation.SystemUpdateStatus(); !ok {
+func (_c *SystemUpdateCreate) check() error {
+	if _, ok := _c.mutation.SystemUpdateStatus(); !ok {
 		return &ValidationError{Name: "system_update_status", err: errors.New(`ent: missing required field "SystemUpdate.system_update_status"`)}
 	}
-	if _, ok := suc.mutation.LastInstall(); !ok {
+	if _, ok := _c.mutation.LastInstall(); !ok {
 		return &ValidationError{Name: "last_install", err: errors.New(`ent: missing required field "SystemUpdate.last_install"`)}
 	}
-	if _, ok := suc.mutation.LastSearch(); !ok {
+	if _, ok := _c.mutation.LastSearch(); !ok {
 		return &ValidationError{Name: "last_search", err: errors.New(`ent: missing required field "SystemUpdate.last_search"`)}
 	}
-	if _, ok := suc.mutation.PendingUpdates(); !ok {
+	if _, ok := _c.mutation.PendingUpdates(); !ok {
 		return &ValidationError{Name: "pending_updates", err: errors.New(`ent: missing required field "SystemUpdate.pending_updates"`)}
 	}
-	if len(suc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "SystemUpdate.owner"`)}
 	}
 	return nil
 }
 
-func (suc *SystemUpdateCreate) sqlSave(ctx context.Context) (*SystemUpdate, error) {
-	if err := suc.check(); err != nil {
+func (_c *SystemUpdateCreate) sqlSave(ctx context.Context) (*SystemUpdate, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := suc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, suc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -123,34 +123,34 @@ func (suc *SystemUpdateCreate) sqlSave(ctx context.Context) (*SystemUpdate, erro
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	suc.mutation.id = &_node.ID
-	suc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (suc *SystemUpdateCreate) createSpec() (*SystemUpdate, *sqlgraph.CreateSpec) {
+func (_c *SystemUpdateCreate) createSpec() (*SystemUpdate, *sqlgraph.CreateSpec) {
 	var (
-		_node = &SystemUpdate{config: suc.config}
+		_node = &SystemUpdate{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(systemupdate.Table, sqlgraph.NewFieldSpec(systemupdate.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = suc.conflict
-	if value, ok := suc.mutation.SystemUpdateStatus(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.SystemUpdateStatus(); ok {
 		_spec.SetField(systemupdate.FieldSystemUpdateStatus, field.TypeString, value)
 		_node.SystemUpdateStatus = value
 	}
-	if value, ok := suc.mutation.LastInstall(); ok {
+	if value, ok := _c.mutation.LastInstall(); ok {
 		_spec.SetField(systemupdate.FieldLastInstall, field.TypeTime, value)
 		_node.LastInstall = value
 	}
-	if value, ok := suc.mutation.LastSearch(); ok {
+	if value, ok := _c.mutation.LastSearch(); ok {
 		_spec.SetField(systemupdate.FieldLastSearch, field.TypeTime, value)
 		_node.LastSearch = value
 	}
-	if value, ok := suc.mutation.PendingUpdates(); ok {
+	if value, ok := _c.mutation.PendingUpdates(); ok {
 		_spec.SetField(systemupdate.FieldPendingUpdates, field.TypeBool, value)
 		_node.PendingUpdates = value
 	}
-	if nodes := suc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2O,
 			Inverse: true,
@@ -186,10 +186,10 @@ func (suc *SystemUpdateCreate) createSpec() (*SystemUpdate, *sqlgraph.CreateSpec
 //			SetSystemUpdateStatus(v+v).
 //		}).
 //		Exec(ctx)
-func (suc *SystemUpdateCreate) OnConflict(opts ...sql.ConflictOption) *SystemUpdateUpsertOne {
-	suc.conflict = opts
+func (_c *SystemUpdateCreate) OnConflict(opts ...sql.ConflictOption) *SystemUpdateUpsertOne {
+	_c.conflict = opts
 	return &SystemUpdateUpsertOne{
-		create: suc,
+		create: _c,
 	}
 }
 
@@ -199,10 +199,10 @@ func (suc *SystemUpdateCreate) OnConflict(opts ...sql.ConflictOption) *SystemUpd
 //	client.SystemUpdate.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (suc *SystemUpdateCreate) OnConflictColumns(columns ...string) *SystemUpdateUpsertOne {
-	suc.conflict = append(suc.conflict, sql.ConflictColumns(columns...))
+func (_c *SystemUpdateCreate) OnConflictColumns(columns ...string) *SystemUpdateUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &SystemUpdateUpsertOne{
-		create: suc,
+		create: _c,
 	}
 }
 
@@ -405,16 +405,16 @@ type SystemUpdateCreateBulk struct {
 }
 
 // Save creates the SystemUpdate entities in the database.
-func (sucb *SystemUpdateCreateBulk) Save(ctx context.Context) ([]*SystemUpdate, error) {
-	if sucb.err != nil {
-		return nil, sucb.err
+func (_c *SystemUpdateCreateBulk) Save(ctx context.Context) ([]*SystemUpdate, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(sucb.builders))
-	nodes := make([]*SystemUpdate, len(sucb.builders))
-	mutators := make([]Mutator, len(sucb.builders))
-	for i := range sucb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*SystemUpdate, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := sucb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*SystemUpdateMutation)
 				if !ok {
@@ -427,12 +427,12 @@ func (sucb *SystemUpdateCreateBulk) Save(ctx context.Context) ([]*SystemUpdate, 
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, sucb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = sucb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, sucb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -456,7 +456,7 @@ func (sucb *SystemUpdateCreateBulk) Save(ctx context.Context) ([]*SystemUpdate, 
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, sucb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -464,8 +464,8 @@ func (sucb *SystemUpdateCreateBulk) Save(ctx context.Context) ([]*SystemUpdate, 
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (sucb *SystemUpdateCreateBulk) SaveX(ctx context.Context) []*SystemUpdate {
-	v, err := sucb.Save(ctx)
+func (_c *SystemUpdateCreateBulk) SaveX(ctx context.Context) []*SystemUpdate {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -473,14 +473,14 @@ func (sucb *SystemUpdateCreateBulk) SaveX(ctx context.Context) []*SystemUpdate {
 }
 
 // Exec executes the query.
-func (sucb *SystemUpdateCreateBulk) Exec(ctx context.Context) error {
-	_, err := sucb.Save(ctx)
+func (_c *SystemUpdateCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (sucb *SystemUpdateCreateBulk) ExecX(ctx context.Context) {
-	if err := sucb.Exec(ctx); err != nil {
+func (_c *SystemUpdateCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -500,10 +500,10 @@ func (sucb *SystemUpdateCreateBulk) ExecX(ctx context.Context) {
 //			SetSystemUpdateStatus(v+v).
 //		}).
 //		Exec(ctx)
-func (sucb *SystemUpdateCreateBulk) OnConflict(opts ...sql.ConflictOption) *SystemUpdateUpsertBulk {
-	sucb.conflict = opts
+func (_c *SystemUpdateCreateBulk) OnConflict(opts ...sql.ConflictOption) *SystemUpdateUpsertBulk {
+	_c.conflict = opts
 	return &SystemUpdateUpsertBulk{
-		create: sucb,
+		create: _c,
 	}
 }
 
@@ -513,10 +513,10 @@ func (sucb *SystemUpdateCreateBulk) OnConflict(opts ...sql.ConflictOption) *Syst
 //	client.SystemUpdate.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (sucb *SystemUpdateCreateBulk) OnConflictColumns(columns ...string) *SystemUpdateUpsertBulk {
-	sucb.conflict = append(sucb.conflict, sql.ConflictColumns(columns...))
+func (_c *SystemUpdateCreateBulk) OnConflictColumns(columns ...string) *SystemUpdateUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &SystemUpdateUpsertBulk{
-		create: sucb,
+		create: _c,
 	}
 }
 

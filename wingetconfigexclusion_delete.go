@@ -20,56 +20,56 @@ type WingetConfigExclusionDelete struct {
 }
 
 // Where appends a list predicates to the WingetConfigExclusionDelete builder.
-func (wced *WingetConfigExclusionDelete) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionDelete {
-	wced.mutation.Where(ps...)
-	return wced
+func (_d *WingetConfigExclusionDelete) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionDelete {
+	_d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query and returns how many vertices were deleted.
-func (wced *WingetConfigExclusionDelete) Exec(ctx context.Context) (int, error) {
-	return withHooks(ctx, wced.sqlExec, wced.mutation, wced.hooks)
+func (_d *WingetConfigExclusionDelete) Exec(ctx context.Context) (int, error) {
+	return withHooks(ctx, _d.sqlExec, _d.mutation, _d.hooks)
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wced *WingetConfigExclusionDelete) ExecX(ctx context.Context) int {
-	n, err := wced.Exec(ctx)
+func (_d *WingetConfigExclusionDelete) ExecX(ctx context.Context) int {
+	n, err := _d.Exec(ctx)
 	if err != nil {
 		panic(err)
 	}
 	return n
 }
 
-func (wced *WingetConfigExclusionDelete) sqlExec(ctx context.Context) (int, error) {
+func (_d *WingetConfigExclusionDelete) sqlExec(ctx context.Context) (int, error) {
 	_spec := sqlgraph.NewDeleteSpec(wingetconfigexclusion.Table, sqlgraph.NewFieldSpec(wingetconfigexclusion.FieldID, field.TypeInt))
-	if ps := wced.mutation.predicates; len(ps) > 0 {
+	if ps := _d.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	affected, err := sqlgraph.DeleteNodes(ctx, wced.driver, _spec)
+	affected, err := sqlgraph.DeleteNodes(ctx, _d.driver, _spec)
 	if err != nil && sqlgraph.IsConstraintError(err) {
 		err = &ConstraintError{msg: err.Error(), wrap: err}
 	}
-	wced.mutation.done = true
+	_d.mutation.done = true
 	return affected, err
 }
 
 // WingetConfigExclusionDeleteOne is the builder for deleting a single WingetConfigExclusion entity.
 type WingetConfigExclusionDeleteOne struct {
-	wced *WingetConfigExclusionDelete
+	_d *WingetConfigExclusionDelete
 }
 
 // Where appends a list predicates to the WingetConfigExclusionDelete builder.
-func (wcedo *WingetConfigExclusionDeleteOne) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionDeleteOne {
-	wcedo.wced.mutation.Where(ps...)
-	return wcedo
+func (_d *WingetConfigExclusionDeleteOne) Where(ps ...predicate.WingetConfigExclusion) *WingetConfigExclusionDeleteOne {
+	_d._d.mutation.Where(ps...)
+	return _d
 }
 
 // Exec executes the deletion query.
-func (wcedo *WingetConfigExclusionDeleteOne) Exec(ctx context.Context) error {
-	n, err := wcedo.wced.Exec(ctx)
+func (_d *WingetConfigExclusionDeleteOne) Exec(ctx context.Context) error {
+	n, err := _d._d.Exec(ctx)
 	switch {
 	case err != nil:
 		return err
@@ -81,8 +81,8 @@ func (wcedo *WingetConfigExclusionDeleteOne) Exec(ctx context.Context) error {
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (wcedo *WingetConfigExclusionDeleteOne) ExecX(ctx context.Context) {
-	if err := wcedo.Exec(ctx); err != nil {
+func (_d *WingetConfigExclusionDeleteOne) ExecX(ctx context.Context) {
+	if err := _d.Exec(ctx); err != nil {
 		panic(err)
 	}
 }

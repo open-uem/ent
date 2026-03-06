@@ -24,100 +24,100 @@ type NetbirdSettingsUpdate struct {
 }
 
 // Where appends a list predicates to the NetbirdSettingsUpdate builder.
-func (nsu *NetbirdSettingsUpdate) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsUpdate {
-	nsu.mutation.Where(ps...)
-	return nsu
+func (_u *NetbirdSettingsUpdate) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetManagementURL sets the "management_url" field.
-func (nsu *NetbirdSettingsUpdate) SetManagementURL(s string) *NetbirdSettingsUpdate {
-	nsu.mutation.SetManagementURL(s)
-	return nsu
+func (_u *NetbirdSettingsUpdate) SetManagementURL(v string) *NetbirdSettingsUpdate {
+	_u.mutation.SetManagementURL(v)
+	return _u
 }
 
 // SetNillableManagementURL sets the "management_url" field if the given value is not nil.
-func (nsu *NetbirdSettingsUpdate) SetNillableManagementURL(s *string) *NetbirdSettingsUpdate {
-	if s != nil {
-		nsu.SetManagementURL(*s)
+func (_u *NetbirdSettingsUpdate) SetNillableManagementURL(v *string) *NetbirdSettingsUpdate {
+	if v != nil {
+		_u.SetManagementURL(*v)
 	}
-	return nsu
+	return _u
 }
 
 // ClearManagementURL clears the value of the "management_url" field.
-func (nsu *NetbirdSettingsUpdate) ClearManagementURL() *NetbirdSettingsUpdate {
-	nsu.mutation.ClearManagementURL()
-	return nsu
+func (_u *NetbirdSettingsUpdate) ClearManagementURL() *NetbirdSettingsUpdate {
+	_u.mutation.ClearManagementURL()
+	return _u
 }
 
 // SetAccessToken sets the "access_token" field.
-func (nsu *NetbirdSettingsUpdate) SetAccessToken(s string) *NetbirdSettingsUpdate {
-	nsu.mutation.SetAccessToken(s)
-	return nsu
+func (_u *NetbirdSettingsUpdate) SetAccessToken(v string) *NetbirdSettingsUpdate {
+	_u.mutation.SetAccessToken(v)
+	return _u
 }
 
 // SetNillableAccessToken sets the "access_token" field if the given value is not nil.
-func (nsu *NetbirdSettingsUpdate) SetNillableAccessToken(s *string) *NetbirdSettingsUpdate {
-	if s != nil {
-		nsu.SetAccessToken(*s)
+func (_u *NetbirdSettingsUpdate) SetNillableAccessToken(v *string) *NetbirdSettingsUpdate {
+	if v != nil {
+		_u.SetAccessToken(*v)
 	}
-	return nsu
+	return _u
 }
 
 // ClearAccessToken clears the value of the "access_token" field.
-func (nsu *NetbirdSettingsUpdate) ClearAccessToken() *NetbirdSettingsUpdate {
-	nsu.mutation.ClearAccessToken()
-	return nsu
+func (_u *NetbirdSettingsUpdate) ClearAccessToken() *NetbirdSettingsUpdate {
+	_u.mutation.ClearAccessToken()
+	return _u
 }
 
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
-func (nsu *NetbirdSettingsUpdate) AddTenantIDs(ids ...int) *NetbirdSettingsUpdate {
-	nsu.mutation.AddTenantIDs(ids...)
-	return nsu
+func (_u *NetbirdSettingsUpdate) AddTenantIDs(ids ...int) *NetbirdSettingsUpdate {
+	_u.mutation.AddTenantIDs(ids...)
+	return _u
 }
 
 // AddTenant adds the "tenant" edges to the Tenant entity.
-func (nsu *NetbirdSettingsUpdate) AddTenant(t ...*Tenant) *NetbirdSettingsUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *NetbirdSettingsUpdate) AddTenant(v ...*Tenant) *NetbirdSettingsUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return nsu.AddTenantIDs(ids...)
+	return _u.AddTenantIDs(ids...)
 }
 
 // Mutation returns the NetbirdSettingsMutation object of the builder.
-func (nsu *NetbirdSettingsUpdate) Mutation() *NetbirdSettingsMutation {
-	return nsu.mutation
+func (_u *NetbirdSettingsUpdate) Mutation() *NetbirdSettingsMutation {
+	return _u.mutation
 }
 
 // ClearTenant clears all "tenant" edges to the Tenant entity.
-func (nsu *NetbirdSettingsUpdate) ClearTenant() *NetbirdSettingsUpdate {
-	nsu.mutation.ClearTenant()
-	return nsu
+func (_u *NetbirdSettingsUpdate) ClearTenant() *NetbirdSettingsUpdate {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // RemoveTenantIDs removes the "tenant" edge to Tenant entities by IDs.
-func (nsu *NetbirdSettingsUpdate) RemoveTenantIDs(ids ...int) *NetbirdSettingsUpdate {
-	nsu.mutation.RemoveTenantIDs(ids...)
-	return nsu
+func (_u *NetbirdSettingsUpdate) RemoveTenantIDs(ids ...int) *NetbirdSettingsUpdate {
+	_u.mutation.RemoveTenantIDs(ids...)
+	return _u
 }
 
 // RemoveTenant removes "tenant" edges to Tenant entities.
-func (nsu *NetbirdSettingsUpdate) RemoveTenant(t ...*Tenant) *NetbirdSettingsUpdate {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *NetbirdSettingsUpdate) RemoveTenant(v ...*Tenant) *NetbirdSettingsUpdate {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return nsu.RemoveTenantIDs(ids...)
+	return _u.RemoveTenantIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (nsu *NetbirdSettingsUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, nsu.sqlSave, nsu.mutation, nsu.hooks)
+func (_u *NetbirdSettingsUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nsu *NetbirdSettingsUpdate) SaveX(ctx context.Context) int {
-	affected, err := nsu.Save(ctx)
+func (_u *NetbirdSettingsUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -125,46 +125,46 @@ func (nsu *NetbirdSettingsUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (nsu *NetbirdSettingsUpdate) Exec(ctx context.Context) error {
-	_, err := nsu.Save(ctx)
+func (_u *NetbirdSettingsUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nsu *NetbirdSettingsUpdate) ExecX(ctx context.Context) {
-	if err := nsu.Exec(ctx); err != nil {
+func (_u *NetbirdSettingsUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (nsu *NetbirdSettingsUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdSettingsUpdate {
-	nsu.modifiers = append(nsu.modifiers, modifiers...)
-	return nsu
+func (_u *NetbirdSettingsUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdSettingsUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (nsu *NetbirdSettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
+func (_u *NetbirdSettingsUpdate) sqlSave(ctx context.Context) (_node int, err error) {
 	_spec := sqlgraph.NewUpdateSpec(netbirdsettings.Table, netbirdsettings.Columns, sqlgraph.NewFieldSpec(netbirdsettings.FieldID, field.TypeInt))
-	if ps := nsu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := nsu.mutation.ManagementURL(); ok {
+	if value, ok := _u.mutation.ManagementURL(); ok {
 		_spec.SetField(netbirdsettings.FieldManagementURL, field.TypeString, value)
 	}
-	if nsu.mutation.ManagementURLCleared() {
+	if _u.mutation.ManagementURLCleared() {
 		_spec.ClearField(netbirdsettings.FieldManagementURL, field.TypeString)
 	}
-	if value, ok := nsu.mutation.AccessToken(); ok {
+	if value, ok := _u.mutation.AccessToken(); ok {
 		_spec.SetField(netbirdsettings.FieldAccessToken, field.TypeString, value)
 	}
-	if nsu.mutation.AccessTokenCleared() {
+	if _u.mutation.AccessTokenCleared() {
 		_spec.ClearField(netbirdsettings.FieldAccessToken, field.TypeString)
 	}
-	if nsu.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -177,7 +177,7 @@ func (nsu *NetbirdSettingsUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nsu.mutation.RemovedTenantIDs(); len(nodes) > 0 && !nsu.mutation.TenantCleared() {
+	if nodes := _u.mutation.RemovedTenantIDs(); len(nodes) > 0 && !_u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -193,7 +193,7 @@ func (nsu *NetbirdSettingsUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nsu.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -209,8 +209,8 @@ func (nsu *NetbirdSettingsUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(nsu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, nsu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{netbirdsettings.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -218,8 +218,8 @@ func (nsu *NetbirdSettingsUpdate) sqlSave(ctx context.Context) (n int, err error
 		}
 		return 0, err
 	}
-	nsu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // NetbirdSettingsUpdateOne is the builder for updating a single NetbirdSettings entity.
@@ -232,107 +232,107 @@ type NetbirdSettingsUpdateOne struct {
 }
 
 // SetManagementURL sets the "management_url" field.
-func (nsuo *NetbirdSettingsUpdateOne) SetManagementURL(s string) *NetbirdSettingsUpdateOne {
-	nsuo.mutation.SetManagementURL(s)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) SetManagementURL(v string) *NetbirdSettingsUpdateOne {
+	_u.mutation.SetManagementURL(v)
+	return _u
 }
 
 // SetNillableManagementURL sets the "management_url" field if the given value is not nil.
-func (nsuo *NetbirdSettingsUpdateOne) SetNillableManagementURL(s *string) *NetbirdSettingsUpdateOne {
-	if s != nil {
-		nsuo.SetManagementURL(*s)
+func (_u *NetbirdSettingsUpdateOne) SetNillableManagementURL(v *string) *NetbirdSettingsUpdateOne {
+	if v != nil {
+		_u.SetManagementURL(*v)
 	}
-	return nsuo
+	return _u
 }
 
 // ClearManagementURL clears the value of the "management_url" field.
-func (nsuo *NetbirdSettingsUpdateOne) ClearManagementURL() *NetbirdSettingsUpdateOne {
-	nsuo.mutation.ClearManagementURL()
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) ClearManagementURL() *NetbirdSettingsUpdateOne {
+	_u.mutation.ClearManagementURL()
+	return _u
 }
 
 // SetAccessToken sets the "access_token" field.
-func (nsuo *NetbirdSettingsUpdateOne) SetAccessToken(s string) *NetbirdSettingsUpdateOne {
-	nsuo.mutation.SetAccessToken(s)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) SetAccessToken(v string) *NetbirdSettingsUpdateOne {
+	_u.mutation.SetAccessToken(v)
+	return _u
 }
 
 // SetNillableAccessToken sets the "access_token" field if the given value is not nil.
-func (nsuo *NetbirdSettingsUpdateOne) SetNillableAccessToken(s *string) *NetbirdSettingsUpdateOne {
-	if s != nil {
-		nsuo.SetAccessToken(*s)
+func (_u *NetbirdSettingsUpdateOne) SetNillableAccessToken(v *string) *NetbirdSettingsUpdateOne {
+	if v != nil {
+		_u.SetAccessToken(*v)
 	}
-	return nsuo
+	return _u
 }
 
 // ClearAccessToken clears the value of the "access_token" field.
-func (nsuo *NetbirdSettingsUpdateOne) ClearAccessToken() *NetbirdSettingsUpdateOne {
-	nsuo.mutation.ClearAccessToken()
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) ClearAccessToken() *NetbirdSettingsUpdateOne {
+	_u.mutation.ClearAccessToken()
+	return _u
 }
 
 // AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
-func (nsuo *NetbirdSettingsUpdateOne) AddTenantIDs(ids ...int) *NetbirdSettingsUpdateOne {
-	nsuo.mutation.AddTenantIDs(ids...)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) AddTenantIDs(ids ...int) *NetbirdSettingsUpdateOne {
+	_u.mutation.AddTenantIDs(ids...)
+	return _u
 }
 
 // AddTenant adds the "tenant" edges to the Tenant entity.
-func (nsuo *NetbirdSettingsUpdateOne) AddTenant(t ...*Tenant) *NetbirdSettingsUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *NetbirdSettingsUpdateOne) AddTenant(v ...*Tenant) *NetbirdSettingsUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return nsuo.AddTenantIDs(ids...)
+	return _u.AddTenantIDs(ids...)
 }
 
 // Mutation returns the NetbirdSettingsMutation object of the builder.
-func (nsuo *NetbirdSettingsUpdateOne) Mutation() *NetbirdSettingsMutation {
-	return nsuo.mutation
+func (_u *NetbirdSettingsUpdateOne) Mutation() *NetbirdSettingsMutation {
+	return _u.mutation
 }
 
 // ClearTenant clears all "tenant" edges to the Tenant entity.
-func (nsuo *NetbirdSettingsUpdateOne) ClearTenant() *NetbirdSettingsUpdateOne {
-	nsuo.mutation.ClearTenant()
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) ClearTenant() *NetbirdSettingsUpdateOne {
+	_u.mutation.ClearTenant()
+	return _u
 }
 
 // RemoveTenantIDs removes the "tenant" edge to Tenant entities by IDs.
-func (nsuo *NetbirdSettingsUpdateOne) RemoveTenantIDs(ids ...int) *NetbirdSettingsUpdateOne {
-	nsuo.mutation.RemoveTenantIDs(ids...)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) RemoveTenantIDs(ids ...int) *NetbirdSettingsUpdateOne {
+	_u.mutation.RemoveTenantIDs(ids...)
+	return _u
 }
 
 // RemoveTenant removes "tenant" edges to Tenant entities.
-func (nsuo *NetbirdSettingsUpdateOne) RemoveTenant(t ...*Tenant) *NetbirdSettingsUpdateOne {
-	ids := make([]int, len(t))
-	for i := range t {
-		ids[i] = t[i].ID
+func (_u *NetbirdSettingsUpdateOne) RemoveTenant(v ...*Tenant) *NetbirdSettingsUpdateOne {
+	ids := make([]int, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return nsuo.RemoveTenantIDs(ids...)
+	return _u.RemoveTenantIDs(ids...)
 }
 
 // Where appends a list predicates to the NetbirdSettingsUpdate builder.
-func (nsuo *NetbirdSettingsUpdateOne) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsUpdateOne {
-	nsuo.mutation.Where(ps...)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) Where(ps ...predicate.NetbirdSettings) *NetbirdSettingsUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (nsuo *NetbirdSettingsUpdateOne) Select(field string, fields ...string) *NetbirdSettingsUpdateOne {
-	nsuo.fields = append([]string{field}, fields...)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) Select(field string, fields ...string) *NetbirdSettingsUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated NetbirdSettings entity.
-func (nsuo *NetbirdSettingsUpdateOne) Save(ctx context.Context) (*NetbirdSettings, error) {
-	return withHooks(ctx, nsuo.sqlSave, nsuo.mutation, nsuo.hooks)
+func (_u *NetbirdSettingsUpdateOne) Save(ctx context.Context) (*NetbirdSettings, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (nsuo *NetbirdSettingsUpdateOne) SaveX(ctx context.Context) *NetbirdSettings {
-	node, err := nsuo.Save(ctx)
+func (_u *NetbirdSettingsUpdateOne) SaveX(ctx context.Context) *NetbirdSettings {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -340,32 +340,32 @@ func (nsuo *NetbirdSettingsUpdateOne) SaveX(ctx context.Context) *NetbirdSetting
 }
 
 // Exec executes the query on the entity.
-func (nsuo *NetbirdSettingsUpdateOne) Exec(ctx context.Context) error {
-	_, err := nsuo.Save(ctx)
+func (_u *NetbirdSettingsUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (nsuo *NetbirdSettingsUpdateOne) ExecX(ctx context.Context) {
-	if err := nsuo.Exec(ctx); err != nil {
+func (_u *NetbirdSettingsUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (nsuo *NetbirdSettingsUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdSettingsUpdateOne {
-	nsuo.modifiers = append(nsuo.modifiers, modifiers...)
-	return nsuo
+func (_u *NetbirdSettingsUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *NetbirdSettingsUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (nsuo *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *NetbirdSettings, err error) {
+func (_u *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *NetbirdSettings, err error) {
 	_spec := sqlgraph.NewUpdateSpec(netbirdsettings.Table, netbirdsettings.Columns, sqlgraph.NewFieldSpec(netbirdsettings.FieldID, field.TypeInt))
-	id, ok := nsuo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "NetbirdSettings.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := nsuo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, netbirdsettings.FieldID)
 		for _, f := range fields {
@@ -377,26 +377,26 @@ func (nsuo *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Netbi
 			}
 		}
 	}
-	if ps := nsuo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := nsuo.mutation.ManagementURL(); ok {
+	if value, ok := _u.mutation.ManagementURL(); ok {
 		_spec.SetField(netbirdsettings.FieldManagementURL, field.TypeString, value)
 	}
-	if nsuo.mutation.ManagementURLCleared() {
+	if _u.mutation.ManagementURLCleared() {
 		_spec.ClearField(netbirdsettings.FieldManagementURL, field.TypeString)
 	}
-	if value, ok := nsuo.mutation.AccessToken(); ok {
+	if value, ok := _u.mutation.AccessToken(); ok {
 		_spec.SetField(netbirdsettings.FieldAccessToken, field.TypeString, value)
 	}
-	if nsuo.mutation.AccessTokenCleared() {
+	if _u.mutation.AccessTokenCleared() {
 		_spec.ClearField(netbirdsettings.FieldAccessToken, field.TypeString)
 	}
-	if nsuo.mutation.TenantCleared() {
+	if _u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -409,7 +409,7 @@ func (nsuo *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Netbi
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nsuo.mutation.RemovedTenantIDs(); len(nodes) > 0 && !nsuo.mutation.TenantCleared() {
+	if nodes := _u.mutation.RemovedTenantIDs(); len(nodes) > 0 && !_u.mutation.TenantCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -425,7 +425,7 @@ func (nsuo *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Netbi
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := nsuo.mutation.TenantIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.TenantIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: true,
@@ -441,11 +441,11 @@ func (nsuo *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Netbi
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(nsuo.modifiers...)
-	_node = &NetbirdSettings{config: nsuo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &NetbirdSettings{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, nsuo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{netbirdsettings.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -453,6 +453,6 @@ func (nsuo *NetbirdSettingsUpdateOne) sqlSave(ctx context.Context) (_node *Netbi
 		}
 		return nil, err
 	}
-	nsuo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

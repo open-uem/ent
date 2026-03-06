@@ -122,7 +122,7 @@ func (*Tag) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Tag fields.
-func (t *Tag) assignValues(columns []string, values []any) error {
+func (_m *Tag) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -133,48 +133,48 @@ func (t *Tag) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			t.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case tag.FieldTag:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field tag", values[i])
 			} else if value.Valid {
-				t.Tag = value.String
+				_m.Tag = value.String
 			}
 		case tag.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				t.Description = value.String
+				_m.Description = value.String
 			}
 		case tag.FieldColor:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field color", values[i])
 			} else if value.Valid {
-				t.Color = value.String
+				_m.Color = value.String
 			}
 		case tag.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field tag_children", value)
 			} else if value.Valid {
-				t.tag_children = new(int)
-				*t.tag_children = int(value.Int64)
+				_m.tag_children = new(int)
+				*_m.tag_children = int(value.Int64)
 			}
 		case tag.ForeignKeys[1]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field task_tags", value)
 			} else if value.Valid {
-				t.task_tags = new(int)
-				*t.task_tags = int(value.Int64)
+				_m.task_tags = new(int)
+				*_m.task_tags = int(value.Int64)
 			}
 		case tag.ForeignKeys[2]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field tenant_tags", value)
 			} else if value.Valid {
-				t.tenant_tags = new(int)
-				*t.tenant_tags = int(value.Int64)
+				_m.tenant_tags = new(int)
+				*_m.tenant_tags = int(value.Int64)
 			}
 		default:
-			t.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -182,66 +182,66 @@ func (t *Tag) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Tag.
 // This includes values selected through modifiers, order, etc.
-func (t *Tag) Value(name string) (ent.Value, error) {
-	return t.selectValues.Get(name)
+func (_m *Tag) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Tag entity.
-func (t *Tag) QueryOwner() *AgentQuery {
-	return NewTagClient(t.config).QueryOwner(t)
+func (_m *Tag) QueryOwner() *AgentQuery {
+	return NewTagClient(_m.config).QueryOwner(_m)
 }
 
 // QueryParent queries the "parent" edge of the Tag entity.
-func (t *Tag) QueryParent() *TagQuery {
-	return NewTagClient(t.config).QueryParent(t)
+func (_m *Tag) QueryParent() *TagQuery {
+	return NewTagClient(_m.config).QueryParent(_m)
 }
 
 // QueryChildren queries the "children" edge of the Tag entity.
-func (t *Tag) QueryChildren() *TagQuery {
-	return NewTagClient(t.config).QueryChildren(t)
+func (_m *Tag) QueryChildren() *TagQuery {
+	return NewTagClient(_m.config).QueryChildren(_m)
 }
 
 // QueryProfile queries the "profile" edge of the Tag entity.
-func (t *Tag) QueryProfile() *ProfileQuery {
-	return NewTagClient(t.config).QueryProfile(t)
+func (_m *Tag) QueryProfile() *ProfileQuery {
+	return NewTagClient(_m.config).QueryProfile(_m)
 }
 
 // QueryTenant queries the "tenant" edge of the Tag entity.
-func (t *Tag) QueryTenant() *TenantQuery {
-	return NewTagClient(t.config).QueryTenant(t)
+func (_m *Tag) QueryTenant() *TenantQuery {
+	return NewTagClient(_m.config).QueryTenant(_m)
 }
 
 // Update returns a builder for updating this Tag.
 // Note that you need to call Tag.Unwrap() before calling this method if this Tag
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (t *Tag) Update() *TagUpdateOne {
-	return NewTagClient(t.config).UpdateOne(t)
+func (_m *Tag) Update() *TagUpdateOne {
+	return NewTagClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Tag entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (t *Tag) Unwrap() *Tag {
-	_tx, ok := t.config.driver.(*txDriver)
+func (_m *Tag) Unwrap() *Tag {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Tag is not a transactional entity")
 	}
-	t.config.driver = _tx.drv
-	return t
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (t *Tag) String() string {
+func (_m *Tag) String() string {
 	var builder strings.Builder
 	builder.WriteString("Tag(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", t.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("tag=")
-	builder.WriteString(t.Tag)
+	builder.WriteString(_m.Tag)
 	builder.WriteString(", ")
 	builder.WriteString("description=")
-	builder.WriteString(t.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("color=")
-	builder.WriteString(t.Color)
+	builder.WriteString(_m.Color)
 	builder.WriteByte(')')
 	return builder.String()
 }

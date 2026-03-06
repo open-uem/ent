@@ -135,7 +135,7 @@ func (*Tenant) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Tenant fields.
-func (t *Tenant) assignValues(columns []string, values []any) error {
+func (_m *Tenant) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -146,40 +146,40 @@ func (t *Tenant) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			t.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case tenant.FieldDescription:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field description", values[i])
 			} else if value.Valid {
-				t.Description = value.String
+				_m.Description = value.String
 			}
 		case tenant.FieldIsDefault:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field is_default", values[i])
 			} else if value.Valid {
-				t.IsDefault = value.Bool
+				_m.IsDefault = value.Bool
 			}
 		case tenant.FieldCreated:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field created", values[i])
 			} else if value.Valid {
-				t.Created = value.Time
+				_m.Created = value.Time
 			}
 		case tenant.FieldModified:
 			if value, ok := values[i].(*sql.NullTime); !ok {
 				return fmt.Errorf("unexpected type %T for field modified", values[i])
 			} else if value.Valid {
-				t.Modified = value.Time
+				_m.Modified = value.Time
 			}
 		case tenant.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field tenant_netbird", value)
 			} else if value.Valid {
-				t.tenant_netbird = new(int)
-				*t.tenant_netbird = int(value.Int64)
+				_m.tenant_netbird = new(int)
+				*_m.tenant_netbird = int(value.Int64)
 			}
 		default:
-			t.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -187,74 +187,74 @@ func (t *Tenant) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Tenant.
 // This includes values selected through modifiers, order, etc.
-func (t *Tenant) Value(name string) (ent.Value, error) {
-	return t.selectValues.Get(name)
+func (_m *Tenant) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QuerySites queries the "sites" edge of the Tenant entity.
-func (t *Tenant) QuerySites() *SiteQuery {
-	return NewTenantClient(t.config).QuerySites(t)
+func (_m *Tenant) QuerySites() *SiteQuery {
+	return NewTenantClient(_m.config).QuerySites(_m)
 }
 
 // QuerySettings queries the "settings" edge of the Tenant entity.
-func (t *Tenant) QuerySettings() *SettingsQuery {
-	return NewTenantClient(t.config).QuerySettings(t)
+func (_m *Tenant) QuerySettings() *SettingsQuery {
+	return NewTenantClient(_m.config).QuerySettings(_m)
 }
 
 // QueryTags queries the "tags" edge of the Tenant entity.
-func (t *Tenant) QueryTags() *TagQuery {
-	return NewTenantClient(t.config).QueryTags(t)
+func (_m *Tenant) QueryTags() *TagQuery {
+	return NewTenantClient(_m.config).QueryTags(_m)
 }
 
 // QueryMetadata queries the "metadata" edge of the Tenant entity.
-func (t *Tenant) QueryMetadata() *OrgMetadataQuery {
-	return NewTenantClient(t.config).QueryMetadata(t)
+func (_m *Tenant) QueryMetadata() *OrgMetadataQuery {
+	return NewTenantClient(_m.config).QueryMetadata(_m)
 }
 
 // QueryRustdesk queries the "rustdesk" edge of the Tenant entity.
-func (t *Tenant) QueryRustdesk() *RustdeskQuery {
-	return NewTenantClient(t.config).QueryRustdesk(t)
+func (_m *Tenant) QueryRustdesk() *RustdeskQuery {
+	return NewTenantClient(_m.config).QueryRustdesk(_m)
 }
 
 // QueryNetbird queries the "netbird" edge of the Tenant entity.
-func (t *Tenant) QueryNetbird() *NetbirdSettingsQuery {
-	return NewTenantClient(t.config).QueryNetbird(t)
+func (_m *Tenant) QueryNetbird() *NetbirdSettingsQuery {
+	return NewTenantClient(_m.config).QueryNetbird(_m)
 }
 
 // Update returns a builder for updating this Tenant.
 // Note that you need to call Tenant.Unwrap() before calling this method if this Tenant
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (t *Tenant) Update() *TenantUpdateOne {
-	return NewTenantClient(t.config).UpdateOne(t)
+func (_m *Tenant) Update() *TenantUpdateOne {
+	return NewTenantClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Tenant entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (t *Tenant) Unwrap() *Tenant {
-	_tx, ok := t.config.driver.(*txDriver)
+func (_m *Tenant) Unwrap() *Tenant {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Tenant is not a transactional entity")
 	}
-	t.config.driver = _tx.drv
-	return t
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (t *Tenant) String() string {
+func (_m *Tenant) String() string {
 	var builder strings.Builder
 	builder.WriteString("Tenant(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", t.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("description=")
-	builder.WriteString(t.Description)
+	builder.WriteString(_m.Description)
 	builder.WriteString(", ")
 	builder.WriteString("is_default=")
-	builder.WriteString(fmt.Sprintf("%v", t.IsDefault))
+	builder.WriteString(fmt.Sprintf("%v", _m.IsDefault))
 	builder.WriteString(", ")
 	builder.WriteString("created=")
-	builder.WriteString(t.Created.Format(time.ANSIC))
+	builder.WriteString(_m.Created.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("modified=")
-	builder.WriteString(t.Modified.Format(time.ANSIC))
+	builder.WriteString(_m.Modified.Format(time.ANSIC))
 	builder.WriteByte(')')
 	return builder.String()
 }

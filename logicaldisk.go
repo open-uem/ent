@@ -78,7 +78,7 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the LogicalDisk fields.
-func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
+func (_m *LogicalDisk) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -89,58 +89,58 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			ld.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case logicaldisk.FieldLabel:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field label", values[i])
 			} else if value.Valid {
-				ld.Label = value.String
+				_m.Label = value.String
 			}
 		case logicaldisk.FieldFilesystem:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field filesystem", values[i])
 			} else if value.Valid {
-				ld.Filesystem = value.String
+				_m.Filesystem = value.String
 			}
 		case logicaldisk.FieldUsage:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field usage", values[i])
 			} else if value.Valid {
-				ld.Usage = int8(value.Int64)
+				_m.Usage = int8(value.Int64)
 			}
 		case logicaldisk.FieldSizeInUnits:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field size_in_units", values[i])
 			} else if value.Valid {
-				ld.SizeInUnits = value.String
+				_m.SizeInUnits = value.String
 			}
 		case logicaldisk.FieldRemainingSpaceInUnits:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field remaining_space_in_units", values[i])
 			} else if value.Valid {
-				ld.RemainingSpaceInUnits = value.String
+				_m.RemainingSpaceInUnits = value.String
 			}
 		case logicaldisk.FieldVolumeName:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field volume_name", values[i])
 			} else if value.Valid {
-				ld.VolumeName = value.String
+				_m.VolumeName = value.String
 			}
 		case logicaldisk.FieldBitlockerStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field bitlocker_status", values[i])
 			} else if value.Valid {
-				ld.BitlockerStatus = value.String
+				_m.BitlockerStatus = value.String
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_logicaldisks", values[i])
 			} else if value.Valid {
-				ld.agent_logicaldisks = new(string)
-				*ld.agent_logicaldisks = value.String
+				_m.agent_logicaldisks = new(string)
+				*_m.agent_logicaldisks = value.String
 			}
 		default:
-			ld.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -148,58 +148,58 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the LogicalDisk.
 // This includes values selected through modifiers, order, etc.
-func (ld *LogicalDisk) Value(name string) (ent.Value, error) {
-	return ld.selectValues.Get(name)
+func (_m *LogicalDisk) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the LogicalDisk entity.
-func (ld *LogicalDisk) QueryOwner() *AgentQuery {
-	return NewLogicalDiskClient(ld.config).QueryOwner(ld)
+func (_m *LogicalDisk) QueryOwner() *AgentQuery {
+	return NewLogicalDiskClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this LogicalDisk.
 // Note that you need to call LogicalDisk.Unwrap() before calling this method if this LogicalDisk
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (ld *LogicalDisk) Update() *LogicalDiskUpdateOne {
-	return NewLogicalDiskClient(ld.config).UpdateOne(ld)
+func (_m *LogicalDisk) Update() *LogicalDiskUpdateOne {
+	return NewLogicalDiskClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the LogicalDisk entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (ld *LogicalDisk) Unwrap() *LogicalDisk {
-	_tx, ok := ld.config.driver.(*txDriver)
+func (_m *LogicalDisk) Unwrap() *LogicalDisk {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: LogicalDisk is not a transactional entity")
 	}
-	ld.config.driver = _tx.drv
-	return ld
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (ld *LogicalDisk) String() string {
+func (_m *LogicalDisk) String() string {
 	var builder strings.Builder
 	builder.WriteString("LogicalDisk(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", ld.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("label=")
-	builder.WriteString(ld.Label)
+	builder.WriteString(_m.Label)
 	builder.WriteString(", ")
 	builder.WriteString("filesystem=")
-	builder.WriteString(ld.Filesystem)
+	builder.WriteString(_m.Filesystem)
 	builder.WriteString(", ")
 	builder.WriteString("usage=")
-	builder.WriteString(fmt.Sprintf("%v", ld.Usage))
+	builder.WriteString(fmt.Sprintf("%v", _m.Usage))
 	builder.WriteString(", ")
 	builder.WriteString("size_in_units=")
-	builder.WriteString(ld.SizeInUnits)
+	builder.WriteString(_m.SizeInUnits)
 	builder.WriteString(", ")
 	builder.WriteString("remaining_space_in_units=")
-	builder.WriteString(ld.RemainingSpaceInUnits)
+	builder.WriteString(_m.RemainingSpaceInUnits)
 	builder.WriteString(", ")
 	builder.WriteString("volume_name=")
-	builder.WriteString(ld.VolumeName)
+	builder.WriteString(_m.VolumeName)
 	builder.WriteString(", ")
 	builder.WriteString("bitlocker_status=")
-	builder.WriteString(ld.BitlockerStatus)
+	builder.WriteString(_m.BitlockerStatus)
 	builder.WriteByte(')')
 	return builder.String()
 }

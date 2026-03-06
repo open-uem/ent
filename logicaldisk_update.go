@@ -24,176 +24,176 @@ type LogicalDiskUpdate struct {
 }
 
 // Where appends a list predicates to the LogicalDiskUpdate builder.
-func (ldu *LogicalDiskUpdate) Where(ps ...predicate.LogicalDisk) *LogicalDiskUpdate {
-	ldu.mutation.Where(ps...)
-	return ldu
+func (_u *LogicalDiskUpdate) Where(ps ...predicate.LogicalDisk) *LogicalDiskUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetLabel sets the "label" field.
-func (ldu *LogicalDiskUpdate) SetLabel(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetLabel(s)
-	return ldu
+func (_u *LogicalDiskUpdate) SetLabel(v string) *LogicalDiskUpdate {
+	_u.mutation.SetLabel(v)
+	return _u
 }
 
 // SetNillableLabel sets the "label" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableLabel(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetLabel(*s)
+func (_u *LogicalDiskUpdate) SetNillableLabel(v *string) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetLabel(*v)
 	}
-	return ldu
+	return _u
 }
 
 // SetFilesystem sets the "filesystem" field.
-func (ldu *LogicalDiskUpdate) SetFilesystem(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetFilesystem(s)
-	return ldu
+func (_u *LogicalDiskUpdate) SetFilesystem(v string) *LogicalDiskUpdate {
+	_u.mutation.SetFilesystem(v)
+	return _u
 }
 
 // SetNillableFilesystem sets the "filesystem" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableFilesystem(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetFilesystem(*s)
+func (_u *LogicalDiskUpdate) SetNillableFilesystem(v *string) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetFilesystem(*v)
 	}
-	return ldu
+	return _u
 }
 
 // ClearFilesystem clears the value of the "filesystem" field.
-func (ldu *LogicalDiskUpdate) ClearFilesystem() *LogicalDiskUpdate {
-	ldu.mutation.ClearFilesystem()
-	return ldu
+func (_u *LogicalDiskUpdate) ClearFilesystem() *LogicalDiskUpdate {
+	_u.mutation.ClearFilesystem()
+	return _u
 }
 
 // SetUsage sets the "usage" field.
-func (ldu *LogicalDiskUpdate) SetUsage(i int8) *LogicalDiskUpdate {
-	ldu.mutation.ResetUsage()
-	ldu.mutation.SetUsage(i)
-	return ldu
+func (_u *LogicalDiskUpdate) SetUsage(v int8) *LogicalDiskUpdate {
+	_u.mutation.ResetUsage()
+	_u.mutation.SetUsage(v)
+	return _u
 }
 
 // SetNillableUsage sets the "usage" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableUsage(i *int8) *LogicalDiskUpdate {
-	if i != nil {
-		ldu.SetUsage(*i)
+func (_u *LogicalDiskUpdate) SetNillableUsage(v *int8) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetUsage(*v)
 	}
-	return ldu
+	return _u
 }
 
-// AddUsage adds i to the "usage" field.
-func (ldu *LogicalDiskUpdate) AddUsage(i int8) *LogicalDiskUpdate {
-	ldu.mutation.AddUsage(i)
-	return ldu
+// AddUsage adds value to the "usage" field.
+func (_u *LogicalDiskUpdate) AddUsage(v int8) *LogicalDiskUpdate {
+	_u.mutation.AddUsage(v)
+	return _u
 }
 
 // SetSizeInUnits sets the "size_in_units" field.
-func (ldu *LogicalDiskUpdate) SetSizeInUnits(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetSizeInUnits(s)
-	return ldu
+func (_u *LogicalDiskUpdate) SetSizeInUnits(v string) *LogicalDiskUpdate {
+	_u.mutation.SetSizeInUnits(v)
+	return _u
 }
 
 // SetNillableSizeInUnits sets the "size_in_units" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableSizeInUnits(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetSizeInUnits(*s)
+func (_u *LogicalDiskUpdate) SetNillableSizeInUnits(v *string) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetSizeInUnits(*v)
 	}
-	return ldu
+	return _u
 }
 
 // ClearSizeInUnits clears the value of the "size_in_units" field.
-func (ldu *LogicalDiskUpdate) ClearSizeInUnits() *LogicalDiskUpdate {
-	ldu.mutation.ClearSizeInUnits()
-	return ldu
+func (_u *LogicalDiskUpdate) ClearSizeInUnits() *LogicalDiskUpdate {
+	_u.mutation.ClearSizeInUnits()
+	return _u
 }
 
 // SetRemainingSpaceInUnits sets the "remaining_space_in_units" field.
-func (ldu *LogicalDiskUpdate) SetRemainingSpaceInUnits(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetRemainingSpaceInUnits(s)
-	return ldu
+func (_u *LogicalDiskUpdate) SetRemainingSpaceInUnits(v string) *LogicalDiskUpdate {
+	_u.mutation.SetRemainingSpaceInUnits(v)
+	return _u
 }
 
 // SetNillableRemainingSpaceInUnits sets the "remaining_space_in_units" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableRemainingSpaceInUnits(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetRemainingSpaceInUnits(*s)
+func (_u *LogicalDiskUpdate) SetNillableRemainingSpaceInUnits(v *string) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetRemainingSpaceInUnits(*v)
 	}
-	return ldu
+	return _u
 }
 
 // ClearRemainingSpaceInUnits clears the value of the "remaining_space_in_units" field.
-func (ldu *LogicalDiskUpdate) ClearRemainingSpaceInUnits() *LogicalDiskUpdate {
-	ldu.mutation.ClearRemainingSpaceInUnits()
-	return ldu
+func (_u *LogicalDiskUpdate) ClearRemainingSpaceInUnits() *LogicalDiskUpdate {
+	_u.mutation.ClearRemainingSpaceInUnits()
+	return _u
 }
 
 // SetVolumeName sets the "volume_name" field.
-func (ldu *LogicalDiskUpdate) SetVolumeName(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetVolumeName(s)
-	return ldu
+func (_u *LogicalDiskUpdate) SetVolumeName(v string) *LogicalDiskUpdate {
+	_u.mutation.SetVolumeName(v)
+	return _u
 }
 
 // SetNillableVolumeName sets the "volume_name" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableVolumeName(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetVolumeName(*s)
+func (_u *LogicalDiskUpdate) SetNillableVolumeName(v *string) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetVolumeName(*v)
 	}
-	return ldu
+	return _u
 }
 
 // ClearVolumeName clears the value of the "volume_name" field.
-func (ldu *LogicalDiskUpdate) ClearVolumeName() *LogicalDiskUpdate {
-	ldu.mutation.ClearVolumeName()
-	return ldu
+func (_u *LogicalDiskUpdate) ClearVolumeName() *LogicalDiskUpdate {
+	_u.mutation.ClearVolumeName()
+	return _u
 }
 
 // SetBitlockerStatus sets the "bitlocker_status" field.
-func (ldu *LogicalDiskUpdate) SetBitlockerStatus(s string) *LogicalDiskUpdate {
-	ldu.mutation.SetBitlockerStatus(s)
-	return ldu
+func (_u *LogicalDiskUpdate) SetBitlockerStatus(v string) *LogicalDiskUpdate {
+	_u.mutation.SetBitlockerStatus(v)
+	return _u
 }
 
 // SetNillableBitlockerStatus sets the "bitlocker_status" field if the given value is not nil.
-func (ldu *LogicalDiskUpdate) SetNillableBitlockerStatus(s *string) *LogicalDiskUpdate {
-	if s != nil {
-		ldu.SetBitlockerStatus(*s)
+func (_u *LogicalDiskUpdate) SetNillableBitlockerStatus(v *string) *LogicalDiskUpdate {
+	if v != nil {
+		_u.SetBitlockerStatus(*v)
 	}
-	return ldu
+	return _u
 }
 
 // ClearBitlockerStatus clears the value of the "bitlocker_status" field.
-func (ldu *LogicalDiskUpdate) ClearBitlockerStatus() *LogicalDiskUpdate {
-	ldu.mutation.ClearBitlockerStatus()
-	return ldu
+func (_u *LogicalDiskUpdate) ClearBitlockerStatus() *LogicalDiskUpdate {
+	_u.mutation.ClearBitlockerStatus()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
-	ldu.mutation.SetOwnerID(id)
-	return ldu
+func (_u *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (ldu *LogicalDiskUpdate) SetOwner(a *Agent) *LogicalDiskUpdate {
-	return ldu.SetOwnerID(a.ID)
+func (_u *LogicalDiskUpdate) SetOwner(v *Agent) *LogicalDiskUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the LogicalDiskMutation object of the builder.
-func (ldu *LogicalDiskUpdate) Mutation() *LogicalDiskMutation {
-	return ldu.mutation
+func (_u *LogicalDiskUpdate) Mutation() *LogicalDiskMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (ldu *LogicalDiskUpdate) ClearOwner() *LogicalDiskUpdate {
-	ldu.mutation.ClearOwner()
-	return ldu
+func (_u *LogicalDiskUpdate) ClearOwner() *LogicalDiskUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (ldu *LogicalDiskUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, ldu.sqlSave, ldu.mutation, ldu.hooks)
+func (_u *LogicalDiskUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ldu *LogicalDiskUpdate) SaveX(ctx context.Context) int {
-	affected, err := ldu.Save(ctx)
+func (_u *LogicalDiskUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -201,84 +201,84 @@ func (ldu *LogicalDiskUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (ldu *LogicalDiskUpdate) Exec(ctx context.Context) error {
-	_, err := ldu.Save(ctx)
+func (_u *LogicalDiskUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ldu *LogicalDiskUpdate) ExecX(ctx context.Context) {
-	if err := ldu.Exec(ctx); err != nil {
+func (_u *LogicalDiskUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (ldu *LogicalDiskUpdate) check() error {
-	if ldu.mutation.OwnerCleared() && len(ldu.mutation.OwnerIDs()) > 0 {
+func (_u *LogicalDiskUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "LogicalDisk.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (ldu *LogicalDiskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *LogicalDiskUpdate {
-	ldu.modifiers = append(ldu.modifiers, modifiers...)
-	return ldu
+func (_u *LogicalDiskUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *LogicalDiskUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := ldu.check(); err != nil {
-		return n, err
+func (_u *LogicalDiskUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(logicaldisk.Table, logicaldisk.Columns, sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt))
-	if ps := ldu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := ldu.mutation.Label(); ok {
+	if value, ok := _u.mutation.Label(); ok {
 		_spec.SetField(logicaldisk.FieldLabel, field.TypeString, value)
 	}
-	if value, ok := ldu.mutation.Filesystem(); ok {
+	if value, ok := _u.mutation.Filesystem(); ok {
 		_spec.SetField(logicaldisk.FieldFilesystem, field.TypeString, value)
 	}
-	if ldu.mutation.FilesystemCleared() {
+	if _u.mutation.FilesystemCleared() {
 		_spec.ClearField(logicaldisk.FieldFilesystem, field.TypeString)
 	}
-	if value, ok := ldu.mutation.Usage(); ok {
+	if value, ok := _u.mutation.Usage(); ok {
 		_spec.SetField(logicaldisk.FieldUsage, field.TypeInt8, value)
 	}
-	if value, ok := ldu.mutation.AddedUsage(); ok {
+	if value, ok := _u.mutation.AddedUsage(); ok {
 		_spec.AddField(logicaldisk.FieldUsage, field.TypeInt8, value)
 	}
-	if value, ok := ldu.mutation.SizeInUnits(); ok {
+	if value, ok := _u.mutation.SizeInUnits(); ok {
 		_spec.SetField(logicaldisk.FieldSizeInUnits, field.TypeString, value)
 	}
-	if ldu.mutation.SizeInUnitsCleared() {
+	if _u.mutation.SizeInUnitsCleared() {
 		_spec.ClearField(logicaldisk.FieldSizeInUnits, field.TypeString)
 	}
-	if value, ok := ldu.mutation.RemainingSpaceInUnits(); ok {
+	if value, ok := _u.mutation.RemainingSpaceInUnits(); ok {
 		_spec.SetField(logicaldisk.FieldRemainingSpaceInUnits, field.TypeString, value)
 	}
-	if ldu.mutation.RemainingSpaceInUnitsCleared() {
+	if _u.mutation.RemainingSpaceInUnitsCleared() {
 		_spec.ClearField(logicaldisk.FieldRemainingSpaceInUnits, field.TypeString)
 	}
-	if value, ok := ldu.mutation.VolumeName(); ok {
+	if value, ok := _u.mutation.VolumeName(); ok {
 		_spec.SetField(logicaldisk.FieldVolumeName, field.TypeString, value)
 	}
-	if ldu.mutation.VolumeNameCleared() {
+	if _u.mutation.VolumeNameCleared() {
 		_spec.ClearField(logicaldisk.FieldVolumeName, field.TypeString)
 	}
-	if value, ok := ldu.mutation.BitlockerStatus(); ok {
+	if value, ok := _u.mutation.BitlockerStatus(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerStatus, field.TypeString, value)
 	}
-	if ldu.mutation.BitlockerStatusCleared() {
+	if _u.mutation.BitlockerStatusCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
 	}
-	if ldu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -291,7 +291,7 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := ldu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -307,8 +307,8 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(ldu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, ldu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{logicaldisk.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -316,8 +316,8 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	ldu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // LogicalDiskUpdateOne is the builder for updating a single LogicalDisk entity.
@@ -330,183 +330,183 @@ type LogicalDiskUpdateOne struct {
 }
 
 // SetLabel sets the "label" field.
-func (lduo *LogicalDiskUpdateOne) SetLabel(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetLabel(s)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetLabel(v string) *LogicalDiskUpdateOne {
+	_u.mutation.SetLabel(v)
+	return _u
 }
 
 // SetNillableLabel sets the "label" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableLabel(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetLabel(*s)
+func (_u *LogicalDiskUpdateOne) SetNillableLabel(v *string) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetLabel(*v)
 	}
-	return lduo
+	return _u
 }
 
 // SetFilesystem sets the "filesystem" field.
-func (lduo *LogicalDiskUpdateOne) SetFilesystem(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetFilesystem(s)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetFilesystem(v string) *LogicalDiskUpdateOne {
+	_u.mutation.SetFilesystem(v)
+	return _u
 }
 
 // SetNillableFilesystem sets the "filesystem" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableFilesystem(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetFilesystem(*s)
+func (_u *LogicalDiskUpdateOne) SetNillableFilesystem(v *string) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetFilesystem(*v)
 	}
-	return lduo
+	return _u
 }
 
 // ClearFilesystem clears the value of the "filesystem" field.
-func (lduo *LogicalDiskUpdateOne) ClearFilesystem() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearFilesystem()
-	return lduo
+func (_u *LogicalDiskUpdateOne) ClearFilesystem() *LogicalDiskUpdateOne {
+	_u.mutation.ClearFilesystem()
+	return _u
 }
 
 // SetUsage sets the "usage" field.
-func (lduo *LogicalDiskUpdateOne) SetUsage(i int8) *LogicalDiskUpdateOne {
-	lduo.mutation.ResetUsage()
-	lduo.mutation.SetUsage(i)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetUsage(v int8) *LogicalDiskUpdateOne {
+	_u.mutation.ResetUsage()
+	_u.mutation.SetUsage(v)
+	return _u
 }
 
 // SetNillableUsage sets the "usage" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableUsage(i *int8) *LogicalDiskUpdateOne {
-	if i != nil {
-		lduo.SetUsage(*i)
+func (_u *LogicalDiskUpdateOne) SetNillableUsage(v *int8) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetUsage(*v)
 	}
-	return lduo
+	return _u
 }
 
-// AddUsage adds i to the "usage" field.
-func (lduo *LogicalDiskUpdateOne) AddUsage(i int8) *LogicalDiskUpdateOne {
-	lduo.mutation.AddUsage(i)
-	return lduo
+// AddUsage adds value to the "usage" field.
+func (_u *LogicalDiskUpdateOne) AddUsage(v int8) *LogicalDiskUpdateOne {
+	_u.mutation.AddUsage(v)
+	return _u
 }
 
 // SetSizeInUnits sets the "size_in_units" field.
-func (lduo *LogicalDiskUpdateOne) SetSizeInUnits(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetSizeInUnits(s)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetSizeInUnits(v string) *LogicalDiskUpdateOne {
+	_u.mutation.SetSizeInUnits(v)
+	return _u
 }
 
 // SetNillableSizeInUnits sets the "size_in_units" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableSizeInUnits(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetSizeInUnits(*s)
+func (_u *LogicalDiskUpdateOne) SetNillableSizeInUnits(v *string) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetSizeInUnits(*v)
 	}
-	return lduo
+	return _u
 }
 
 // ClearSizeInUnits clears the value of the "size_in_units" field.
-func (lduo *LogicalDiskUpdateOne) ClearSizeInUnits() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearSizeInUnits()
-	return lduo
+func (_u *LogicalDiskUpdateOne) ClearSizeInUnits() *LogicalDiskUpdateOne {
+	_u.mutation.ClearSizeInUnits()
+	return _u
 }
 
 // SetRemainingSpaceInUnits sets the "remaining_space_in_units" field.
-func (lduo *LogicalDiskUpdateOne) SetRemainingSpaceInUnits(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetRemainingSpaceInUnits(s)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetRemainingSpaceInUnits(v string) *LogicalDiskUpdateOne {
+	_u.mutation.SetRemainingSpaceInUnits(v)
+	return _u
 }
 
 // SetNillableRemainingSpaceInUnits sets the "remaining_space_in_units" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableRemainingSpaceInUnits(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetRemainingSpaceInUnits(*s)
+func (_u *LogicalDiskUpdateOne) SetNillableRemainingSpaceInUnits(v *string) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetRemainingSpaceInUnits(*v)
 	}
-	return lduo
+	return _u
 }
 
 // ClearRemainingSpaceInUnits clears the value of the "remaining_space_in_units" field.
-func (lduo *LogicalDiskUpdateOne) ClearRemainingSpaceInUnits() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearRemainingSpaceInUnits()
-	return lduo
+func (_u *LogicalDiskUpdateOne) ClearRemainingSpaceInUnits() *LogicalDiskUpdateOne {
+	_u.mutation.ClearRemainingSpaceInUnits()
+	return _u
 }
 
 // SetVolumeName sets the "volume_name" field.
-func (lduo *LogicalDiskUpdateOne) SetVolumeName(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetVolumeName(s)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetVolumeName(v string) *LogicalDiskUpdateOne {
+	_u.mutation.SetVolumeName(v)
+	return _u
 }
 
 // SetNillableVolumeName sets the "volume_name" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableVolumeName(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetVolumeName(*s)
+func (_u *LogicalDiskUpdateOne) SetNillableVolumeName(v *string) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetVolumeName(*v)
 	}
-	return lduo
+	return _u
 }
 
 // ClearVolumeName clears the value of the "volume_name" field.
-func (lduo *LogicalDiskUpdateOne) ClearVolumeName() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearVolumeName()
-	return lduo
+func (_u *LogicalDiskUpdateOne) ClearVolumeName() *LogicalDiskUpdateOne {
+	_u.mutation.ClearVolumeName()
+	return _u
 }
 
 // SetBitlockerStatus sets the "bitlocker_status" field.
-func (lduo *LogicalDiskUpdateOne) SetBitlockerStatus(s string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetBitlockerStatus(s)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetBitlockerStatus(v string) *LogicalDiskUpdateOne {
+	_u.mutation.SetBitlockerStatus(v)
+	return _u
 }
 
 // SetNillableBitlockerStatus sets the "bitlocker_status" field if the given value is not nil.
-func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerStatus(s *string) *LogicalDiskUpdateOne {
-	if s != nil {
-		lduo.SetBitlockerStatus(*s)
+func (_u *LogicalDiskUpdateOne) SetNillableBitlockerStatus(v *string) *LogicalDiskUpdateOne {
+	if v != nil {
+		_u.SetBitlockerStatus(*v)
 	}
-	return lduo
+	return _u
 }
 
 // ClearBitlockerStatus clears the value of the "bitlocker_status" field.
-func (lduo *LogicalDiskUpdateOne) ClearBitlockerStatus() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearBitlockerStatus()
-	return lduo
+func (_u *LogicalDiskUpdateOne) ClearBitlockerStatus() *LogicalDiskUpdateOne {
+	_u.mutation.ClearBitlockerStatus()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
-	lduo.mutation.SetOwnerID(id)
-	return lduo
+func (_u *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (lduo *LogicalDiskUpdateOne) SetOwner(a *Agent) *LogicalDiskUpdateOne {
-	return lduo.SetOwnerID(a.ID)
+func (_u *LogicalDiskUpdateOne) SetOwner(v *Agent) *LogicalDiskUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the LogicalDiskMutation object of the builder.
-func (lduo *LogicalDiskUpdateOne) Mutation() *LogicalDiskMutation {
-	return lduo.mutation
+func (_u *LogicalDiskUpdateOne) Mutation() *LogicalDiskMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (lduo *LogicalDiskUpdateOne) ClearOwner() *LogicalDiskUpdateOne {
-	lduo.mutation.ClearOwner()
-	return lduo
+func (_u *LogicalDiskUpdateOne) ClearOwner() *LogicalDiskUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the LogicalDiskUpdate builder.
-func (lduo *LogicalDiskUpdateOne) Where(ps ...predicate.LogicalDisk) *LogicalDiskUpdateOne {
-	lduo.mutation.Where(ps...)
-	return lduo
+func (_u *LogicalDiskUpdateOne) Where(ps ...predicate.LogicalDisk) *LogicalDiskUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (lduo *LogicalDiskUpdateOne) Select(field string, fields ...string) *LogicalDiskUpdateOne {
-	lduo.fields = append([]string{field}, fields...)
-	return lduo
+func (_u *LogicalDiskUpdateOne) Select(field string, fields ...string) *LogicalDiskUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated LogicalDisk entity.
-func (lduo *LogicalDiskUpdateOne) Save(ctx context.Context) (*LogicalDisk, error) {
-	return withHooks(ctx, lduo.sqlSave, lduo.mutation, lduo.hooks)
+func (_u *LogicalDiskUpdateOne) Save(ctx context.Context) (*LogicalDisk, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (lduo *LogicalDiskUpdateOne) SaveX(ctx context.Context) *LogicalDisk {
-	node, err := lduo.Save(ctx)
+func (_u *LogicalDiskUpdateOne) SaveX(ctx context.Context) *LogicalDisk {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -514,43 +514,43 @@ func (lduo *LogicalDiskUpdateOne) SaveX(ctx context.Context) *LogicalDisk {
 }
 
 // Exec executes the query on the entity.
-func (lduo *LogicalDiskUpdateOne) Exec(ctx context.Context) error {
-	_, err := lduo.Save(ctx)
+func (_u *LogicalDiskUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (lduo *LogicalDiskUpdateOne) ExecX(ctx context.Context) {
-	if err := lduo.Exec(ctx); err != nil {
+func (_u *LogicalDiskUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (lduo *LogicalDiskUpdateOne) check() error {
-	if lduo.mutation.OwnerCleared() && len(lduo.mutation.OwnerIDs()) > 0 {
+func (_u *LogicalDiskUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "LogicalDisk.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (lduo *LogicalDiskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *LogicalDiskUpdateOne {
-	lduo.modifiers = append(lduo.modifiers, modifiers...)
-	return lduo
+func (_u *LogicalDiskUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *LogicalDiskUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDisk, err error) {
-	if err := lduo.check(); err != nil {
+func (_u *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDisk, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(logicaldisk.Table, logicaldisk.Columns, sqlgraph.NewFieldSpec(logicaldisk.FieldID, field.TypeInt))
-	id, ok := lduo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "LogicalDisk.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := lduo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, logicaldisk.FieldID)
 		for _, f := range fields {
@@ -562,53 +562,53 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 			}
 		}
 	}
-	if ps := lduo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := lduo.mutation.Label(); ok {
+	if value, ok := _u.mutation.Label(); ok {
 		_spec.SetField(logicaldisk.FieldLabel, field.TypeString, value)
 	}
-	if value, ok := lduo.mutation.Filesystem(); ok {
+	if value, ok := _u.mutation.Filesystem(); ok {
 		_spec.SetField(logicaldisk.FieldFilesystem, field.TypeString, value)
 	}
-	if lduo.mutation.FilesystemCleared() {
+	if _u.mutation.FilesystemCleared() {
 		_spec.ClearField(logicaldisk.FieldFilesystem, field.TypeString)
 	}
-	if value, ok := lduo.mutation.Usage(); ok {
+	if value, ok := _u.mutation.Usage(); ok {
 		_spec.SetField(logicaldisk.FieldUsage, field.TypeInt8, value)
 	}
-	if value, ok := lduo.mutation.AddedUsage(); ok {
+	if value, ok := _u.mutation.AddedUsage(); ok {
 		_spec.AddField(logicaldisk.FieldUsage, field.TypeInt8, value)
 	}
-	if value, ok := lduo.mutation.SizeInUnits(); ok {
+	if value, ok := _u.mutation.SizeInUnits(); ok {
 		_spec.SetField(logicaldisk.FieldSizeInUnits, field.TypeString, value)
 	}
-	if lduo.mutation.SizeInUnitsCleared() {
+	if _u.mutation.SizeInUnitsCleared() {
 		_spec.ClearField(logicaldisk.FieldSizeInUnits, field.TypeString)
 	}
-	if value, ok := lduo.mutation.RemainingSpaceInUnits(); ok {
+	if value, ok := _u.mutation.RemainingSpaceInUnits(); ok {
 		_spec.SetField(logicaldisk.FieldRemainingSpaceInUnits, field.TypeString, value)
 	}
-	if lduo.mutation.RemainingSpaceInUnitsCleared() {
+	if _u.mutation.RemainingSpaceInUnitsCleared() {
 		_spec.ClearField(logicaldisk.FieldRemainingSpaceInUnits, field.TypeString)
 	}
-	if value, ok := lduo.mutation.VolumeName(); ok {
+	if value, ok := _u.mutation.VolumeName(); ok {
 		_spec.SetField(logicaldisk.FieldVolumeName, field.TypeString, value)
 	}
-	if lduo.mutation.VolumeNameCleared() {
+	if _u.mutation.VolumeNameCleared() {
 		_spec.ClearField(logicaldisk.FieldVolumeName, field.TypeString)
 	}
-	if value, ok := lduo.mutation.BitlockerStatus(); ok {
+	if value, ok := _u.mutation.BitlockerStatus(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerStatus, field.TypeString, value)
 	}
-	if lduo.mutation.BitlockerStatusCleared() {
+	if _u.mutation.BitlockerStatusCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
 	}
-	if lduo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -621,7 +621,7 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := lduo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -637,11 +637,11 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(lduo.modifiers...)
-	_node = &LogicalDisk{config: lduo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &LogicalDisk{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, lduo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{logicaldisk.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -649,6 +649,6 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 		}
 		return nil, err
 	}
-	lduo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

@@ -24,55 +24,55 @@ type UpdateCreate struct {
 }
 
 // SetTitle sets the "title" field.
-func (uc *UpdateCreate) SetTitle(s string) *UpdateCreate {
-	uc.mutation.SetTitle(s)
-	return uc
+func (_c *UpdateCreate) SetTitle(v string) *UpdateCreate {
+	_c.mutation.SetTitle(v)
+	return _c
 }
 
 // SetDate sets the "date" field.
-func (uc *UpdateCreate) SetDate(t time.Time) *UpdateCreate {
-	uc.mutation.SetDate(t)
-	return uc
+func (_c *UpdateCreate) SetDate(v time.Time) *UpdateCreate {
+	_c.mutation.SetDate(v)
+	return _c
 }
 
 // SetSupportURL sets the "support_url" field.
-func (uc *UpdateCreate) SetSupportURL(s string) *UpdateCreate {
-	uc.mutation.SetSupportURL(s)
-	return uc
+func (_c *UpdateCreate) SetSupportURL(v string) *UpdateCreate {
+	_c.mutation.SetSupportURL(v)
+	return _c
 }
 
 // SetNillableSupportURL sets the "support_url" field if the given value is not nil.
-func (uc *UpdateCreate) SetNillableSupportURL(s *string) *UpdateCreate {
-	if s != nil {
-		uc.SetSupportURL(*s)
+func (_c *UpdateCreate) SetNillableSupportURL(v *string) *UpdateCreate {
+	if v != nil {
+		_c.SetSupportURL(*v)
 	}
-	return uc
+	return _c
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (uc *UpdateCreate) SetOwnerID(id string) *UpdateCreate {
-	uc.mutation.SetOwnerID(id)
-	return uc
+func (_c *UpdateCreate) SetOwnerID(id string) *UpdateCreate {
+	_c.mutation.SetOwnerID(id)
+	return _c
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (uc *UpdateCreate) SetOwner(a *Agent) *UpdateCreate {
-	return uc.SetOwnerID(a.ID)
+func (_c *UpdateCreate) SetOwner(v *Agent) *UpdateCreate {
+	return _c.SetOwnerID(v.ID)
 }
 
 // Mutation returns the UpdateMutation object of the builder.
-func (uc *UpdateCreate) Mutation() *UpdateMutation {
-	return uc.mutation
+func (_c *UpdateCreate) Mutation() *UpdateMutation {
+	return _c.mutation
 }
 
 // Save creates the Update in the database.
-func (uc *UpdateCreate) Save(ctx context.Context) (*Update, error) {
-	return withHooks(ctx, uc.sqlSave, uc.mutation, uc.hooks)
+func (_c *UpdateCreate) Save(ctx context.Context) (*Update, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (uc *UpdateCreate) SaveX(ctx context.Context) *Update {
-	v, err := uc.Save(ctx)
+func (_c *UpdateCreate) SaveX(ctx context.Context) *Update {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -80,38 +80,38 @@ func (uc *UpdateCreate) SaveX(ctx context.Context) *Update {
 }
 
 // Exec executes the query.
-func (uc *UpdateCreate) Exec(ctx context.Context) error {
-	_, err := uc.Save(ctx)
+func (_c *UpdateCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (uc *UpdateCreate) ExecX(ctx context.Context) {
-	if err := uc.Exec(ctx); err != nil {
+func (_c *UpdateCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (uc *UpdateCreate) check() error {
-	if _, ok := uc.mutation.Title(); !ok {
+func (_c *UpdateCreate) check() error {
+	if _, ok := _c.mutation.Title(); !ok {
 		return &ValidationError{Name: "title", err: errors.New(`ent: missing required field "Update.title"`)}
 	}
-	if _, ok := uc.mutation.Date(); !ok {
+	if _, ok := _c.mutation.Date(); !ok {
 		return &ValidationError{Name: "date", err: errors.New(`ent: missing required field "Update.date"`)}
 	}
-	if len(uc.mutation.OwnerIDs()) == 0 {
+	if len(_c.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "Update.owner"`)}
 	}
 	return nil
 }
 
-func (uc *UpdateCreate) sqlSave(ctx context.Context) (*Update, error) {
-	if err := uc.check(); err != nil {
+func (_c *UpdateCreate) sqlSave(ctx context.Context) (*Update, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := uc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, uc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -119,30 +119,30 @@ func (uc *UpdateCreate) sqlSave(ctx context.Context) (*Update, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	uc.mutation.id = &_node.ID
-	uc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (uc *UpdateCreate) createSpec() (*Update, *sqlgraph.CreateSpec) {
+func (_c *UpdateCreate) createSpec() (*Update, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Update{config: uc.config}
+		_node = &Update{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(update.Table, sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = uc.conflict
-	if value, ok := uc.mutation.Title(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.Title(); ok {
 		_spec.SetField(update.FieldTitle, field.TypeString, value)
 		_node.Title = value
 	}
-	if value, ok := uc.mutation.Date(); ok {
+	if value, ok := _c.mutation.Date(); ok {
 		_spec.SetField(update.FieldDate, field.TypeTime, value)
 		_node.Date = value
 	}
-	if value, ok := uc.mutation.SupportURL(); ok {
+	if value, ok := _c.mutation.SupportURL(); ok {
 		_spec.SetField(update.FieldSupportURL, field.TypeString, value)
 		_node.SupportURL = value
 	}
-	if nodes := uc.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -178,10 +178,10 @@ func (uc *UpdateCreate) createSpec() (*Update, *sqlgraph.CreateSpec) {
 //			SetTitle(v+v).
 //		}).
 //		Exec(ctx)
-func (uc *UpdateCreate) OnConflict(opts ...sql.ConflictOption) *UpdateUpsertOne {
-	uc.conflict = opts
+func (_c *UpdateCreate) OnConflict(opts ...sql.ConflictOption) *UpdateUpsertOne {
+	_c.conflict = opts
 	return &UpdateUpsertOne{
-		create: uc,
+		create: _c,
 	}
 }
 
@@ -191,10 +191,10 @@ func (uc *UpdateCreate) OnConflict(opts ...sql.ConflictOption) *UpdateUpsertOne 
 //	client.Update.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (uc *UpdateCreate) OnConflictColumns(columns ...string) *UpdateUpsertOne {
-	uc.conflict = append(uc.conflict, sql.ConflictColumns(columns...))
+func (_c *UpdateCreate) OnConflictColumns(columns ...string) *UpdateUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &UpdateUpsertOne{
-		create: uc,
+		create: _c,
 	}
 }
 
@@ -384,16 +384,16 @@ type UpdateCreateBulk struct {
 }
 
 // Save creates the Update entities in the database.
-func (ucb *UpdateCreateBulk) Save(ctx context.Context) ([]*Update, error) {
-	if ucb.err != nil {
-		return nil, ucb.err
+func (_c *UpdateCreateBulk) Save(ctx context.Context) ([]*Update, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(ucb.builders))
-	nodes := make([]*Update, len(ucb.builders))
-	mutators := make([]Mutator, len(ucb.builders))
-	for i := range ucb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Update, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := ucb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*UpdateMutation)
 				if !ok {
@@ -406,12 +406,12 @@ func (ucb *UpdateCreateBulk) Save(ctx context.Context) ([]*Update, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, ucb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = ucb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, ucb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -435,7 +435,7 @@ func (ucb *UpdateCreateBulk) Save(ctx context.Context) ([]*Update, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, ucb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -443,8 +443,8 @@ func (ucb *UpdateCreateBulk) Save(ctx context.Context) ([]*Update, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (ucb *UpdateCreateBulk) SaveX(ctx context.Context) []*Update {
-	v, err := ucb.Save(ctx)
+func (_c *UpdateCreateBulk) SaveX(ctx context.Context) []*Update {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -452,14 +452,14 @@ func (ucb *UpdateCreateBulk) SaveX(ctx context.Context) []*Update {
 }
 
 // Exec executes the query.
-func (ucb *UpdateCreateBulk) Exec(ctx context.Context) error {
-	_, err := ucb.Save(ctx)
+func (_c *UpdateCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (ucb *UpdateCreateBulk) ExecX(ctx context.Context) {
-	if err := ucb.Exec(ctx); err != nil {
+func (_c *UpdateCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -479,10 +479,10 @@ func (ucb *UpdateCreateBulk) ExecX(ctx context.Context) {
 //			SetTitle(v+v).
 //		}).
 //		Exec(ctx)
-func (ucb *UpdateCreateBulk) OnConflict(opts ...sql.ConflictOption) *UpdateUpsertBulk {
-	ucb.conflict = opts
+func (_c *UpdateCreateBulk) OnConflict(opts ...sql.ConflictOption) *UpdateUpsertBulk {
+	_c.conflict = opts
 	return &UpdateUpsertBulk{
-		create: ucb,
+		create: _c,
 	}
 }
 
@@ -492,10 +492,10 @@ func (ucb *UpdateCreateBulk) OnConflict(opts ...sql.ConflictOption) *UpdateUpser
 //	client.Update.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (ucb *UpdateCreateBulk) OnConflictColumns(columns ...string) *UpdateUpsertBulk {
-	ucb.conflict = append(ucb.conflict, sql.ConflictColumns(columns...))
+func (_c *UpdateCreateBulk) OnConflictColumns(columns ...string) *UpdateUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &UpdateUpsertBulk{
-		create: ucb,
+		create: _c,
 	}
 }
 

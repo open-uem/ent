@@ -24,187 +24,187 @@ type ReleaseCreate struct {
 }
 
 // SetReleaseType sets the "release_type" field.
-func (rc *ReleaseCreate) SetReleaseType(rt release.ReleaseType) *ReleaseCreate {
-	rc.mutation.SetReleaseType(rt)
-	return rc
+func (_c *ReleaseCreate) SetReleaseType(v release.ReleaseType) *ReleaseCreate {
+	_c.mutation.SetReleaseType(v)
+	return _c
 }
 
 // SetNillableReleaseType sets the "release_type" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableReleaseType(rt *release.ReleaseType) *ReleaseCreate {
-	if rt != nil {
-		rc.SetReleaseType(*rt)
+func (_c *ReleaseCreate) SetNillableReleaseType(v *release.ReleaseType) *ReleaseCreate {
+	if v != nil {
+		_c.SetReleaseType(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetVersion sets the "version" field.
-func (rc *ReleaseCreate) SetVersion(s string) *ReleaseCreate {
-	rc.mutation.SetVersion(s)
-	return rc
+func (_c *ReleaseCreate) SetVersion(v string) *ReleaseCreate {
+	_c.mutation.SetVersion(v)
+	return _c
 }
 
 // SetNillableVersion sets the "version" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableVersion(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetVersion(*s)
+func (_c *ReleaseCreate) SetNillableVersion(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetVersion(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetChannel sets the "channel" field.
-func (rc *ReleaseCreate) SetChannel(s string) *ReleaseCreate {
-	rc.mutation.SetChannel(s)
-	return rc
+func (_c *ReleaseCreate) SetChannel(v string) *ReleaseCreate {
+	_c.mutation.SetChannel(v)
+	return _c
 }
 
 // SetNillableChannel sets the "channel" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableChannel(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetChannel(*s)
+func (_c *ReleaseCreate) SetNillableChannel(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetChannel(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetSummary sets the "summary" field.
-func (rc *ReleaseCreate) SetSummary(s string) *ReleaseCreate {
-	rc.mutation.SetSummary(s)
-	return rc
+func (_c *ReleaseCreate) SetSummary(v string) *ReleaseCreate {
+	_c.mutation.SetSummary(v)
+	return _c
 }
 
 // SetNillableSummary sets the "summary" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableSummary(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetSummary(*s)
+func (_c *ReleaseCreate) SetNillableSummary(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetSummary(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetReleaseNotes sets the "release_notes" field.
-func (rc *ReleaseCreate) SetReleaseNotes(s string) *ReleaseCreate {
-	rc.mutation.SetReleaseNotes(s)
-	return rc
+func (_c *ReleaseCreate) SetReleaseNotes(v string) *ReleaseCreate {
+	_c.mutation.SetReleaseNotes(v)
+	return _c
 }
 
 // SetNillableReleaseNotes sets the "release_notes" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableReleaseNotes(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetReleaseNotes(*s)
+func (_c *ReleaseCreate) SetNillableReleaseNotes(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetReleaseNotes(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetFileURL sets the "file_url" field.
-func (rc *ReleaseCreate) SetFileURL(s string) *ReleaseCreate {
-	rc.mutation.SetFileURL(s)
-	return rc
+func (_c *ReleaseCreate) SetFileURL(v string) *ReleaseCreate {
+	_c.mutation.SetFileURL(v)
+	return _c
 }
 
 // SetNillableFileURL sets the "file_url" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableFileURL(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetFileURL(*s)
+func (_c *ReleaseCreate) SetNillableFileURL(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetFileURL(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetChecksum sets the "checksum" field.
-func (rc *ReleaseCreate) SetChecksum(s string) *ReleaseCreate {
-	rc.mutation.SetChecksum(s)
-	return rc
+func (_c *ReleaseCreate) SetChecksum(v string) *ReleaseCreate {
+	_c.mutation.SetChecksum(v)
+	return _c
 }
 
 // SetNillableChecksum sets the "checksum" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableChecksum(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetChecksum(*s)
+func (_c *ReleaseCreate) SetNillableChecksum(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetChecksum(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetIsCritical sets the "is_critical" field.
-func (rc *ReleaseCreate) SetIsCritical(b bool) *ReleaseCreate {
-	rc.mutation.SetIsCritical(b)
-	return rc
+func (_c *ReleaseCreate) SetIsCritical(v bool) *ReleaseCreate {
+	_c.mutation.SetIsCritical(v)
+	return _c
 }
 
 // SetNillableIsCritical sets the "is_critical" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableIsCritical(b *bool) *ReleaseCreate {
-	if b != nil {
-		rc.SetIsCritical(*b)
+func (_c *ReleaseCreate) SetNillableIsCritical(v *bool) *ReleaseCreate {
+	if v != nil {
+		_c.SetIsCritical(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetReleaseDate sets the "release_date" field.
-func (rc *ReleaseCreate) SetReleaseDate(t time.Time) *ReleaseCreate {
-	rc.mutation.SetReleaseDate(t)
-	return rc
+func (_c *ReleaseCreate) SetReleaseDate(v time.Time) *ReleaseCreate {
+	_c.mutation.SetReleaseDate(v)
+	return _c
 }
 
 // SetNillableReleaseDate sets the "release_date" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableReleaseDate(t *time.Time) *ReleaseCreate {
-	if t != nil {
-		rc.SetReleaseDate(*t)
+func (_c *ReleaseCreate) SetNillableReleaseDate(v *time.Time) *ReleaseCreate {
+	if v != nil {
+		_c.SetReleaseDate(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetOs sets the "os" field.
-func (rc *ReleaseCreate) SetOs(s string) *ReleaseCreate {
-	rc.mutation.SetOs(s)
-	return rc
+func (_c *ReleaseCreate) SetOs(v string) *ReleaseCreate {
+	_c.mutation.SetOs(v)
+	return _c
 }
 
 // SetNillableOs sets the "os" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableOs(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetOs(*s)
+func (_c *ReleaseCreate) SetNillableOs(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetOs(*v)
 	}
-	return rc
+	return _c
 }
 
 // SetArch sets the "arch" field.
-func (rc *ReleaseCreate) SetArch(s string) *ReleaseCreate {
-	rc.mutation.SetArch(s)
-	return rc
+func (_c *ReleaseCreate) SetArch(v string) *ReleaseCreate {
+	_c.mutation.SetArch(v)
+	return _c
 }
 
 // SetNillableArch sets the "arch" field if the given value is not nil.
-func (rc *ReleaseCreate) SetNillableArch(s *string) *ReleaseCreate {
-	if s != nil {
-		rc.SetArch(*s)
+func (_c *ReleaseCreate) SetNillableArch(v *string) *ReleaseCreate {
+	if v != nil {
+		_c.SetArch(*v)
 	}
-	return rc
+	return _c
 }
 
 // AddAgentIDs adds the "agents" edge to the Agent entity by IDs.
-func (rc *ReleaseCreate) AddAgentIDs(ids ...string) *ReleaseCreate {
-	rc.mutation.AddAgentIDs(ids...)
-	return rc
+func (_c *ReleaseCreate) AddAgentIDs(ids ...string) *ReleaseCreate {
+	_c.mutation.AddAgentIDs(ids...)
+	return _c
 }
 
 // AddAgents adds the "agents" edges to the Agent entity.
-func (rc *ReleaseCreate) AddAgents(a ...*Agent) *ReleaseCreate {
-	ids := make([]string, len(a))
-	for i := range a {
-		ids[i] = a[i].ID
+func (_c *ReleaseCreate) AddAgents(v ...*Agent) *ReleaseCreate {
+	ids := make([]string, len(v))
+	for i := range v {
+		ids[i] = v[i].ID
 	}
-	return rc.AddAgentIDs(ids...)
+	return _c.AddAgentIDs(ids...)
 }
 
 // Mutation returns the ReleaseMutation object of the builder.
-func (rc *ReleaseCreate) Mutation() *ReleaseMutation {
-	return rc.mutation
+func (_c *ReleaseCreate) Mutation() *ReleaseMutation {
+	return _c.mutation
 }
 
 // Save creates the Release in the database.
-func (rc *ReleaseCreate) Save(ctx context.Context) (*Release, error) {
-	return withHooks(ctx, rc.sqlSave, rc.mutation, rc.hooks)
+func (_c *ReleaseCreate) Save(ctx context.Context) (*Release, error) {
+	return withHooks(ctx, _c.sqlSave, _c.mutation, _c.hooks)
 }
 
 // SaveX calls Save and panics if Save returns an error.
-func (rc *ReleaseCreate) SaveX(ctx context.Context) *Release {
-	v, err := rc.Save(ctx)
+func (_c *ReleaseCreate) SaveX(ctx context.Context) *Release {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -212,21 +212,21 @@ func (rc *ReleaseCreate) SaveX(ctx context.Context) *Release {
 }
 
 // Exec executes the query.
-func (rc *ReleaseCreate) Exec(ctx context.Context) error {
-	_, err := rc.Save(ctx)
+func (_c *ReleaseCreate) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rc *ReleaseCreate) ExecX(ctx context.Context) {
-	if err := rc.Exec(ctx); err != nil {
+func (_c *ReleaseCreate) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (rc *ReleaseCreate) check() error {
-	if v, ok := rc.mutation.ReleaseType(); ok {
+func (_c *ReleaseCreate) check() error {
+	if v, ok := _c.mutation.ReleaseType(); ok {
 		if err := release.ReleaseTypeValidator(v); err != nil {
 			return &ValidationError{Name: "release_type", err: fmt.Errorf(`ent: validator failed for field "Release.release_type": %w`, err)}
 		}
@@ -234,12 +234,12 @@ func (rc *ReleaseCreate) check() error {
 	return nil
 }
 
-func (rc *ReleaseCreate) sqlSave(ctx context.Context) (*Release, error) {
-	if err := rc.check(); err != nil {
+func (_c *ReleaseCreate) sqlSave(ctx context.Context) (*Release, error) {
+	if err := _c.check(); err != nil {
 		return nil, err
 	}
-	_node, _spec := rc.createSpec()
-	if err := sqlgraph.CreateNode(ctx, rc.driver, _spec); err != nil {
+	_node, _spec := _c.createSpec()
+	if err := sqlgraph.CreateNode(ctx, _c.driver, _spec); err != nil {
 		if sqlgraph.IsConstraintError(err) {
 			err = &ConstraintError{msg: err.Error(), wrap: err}
 		}
@@ -247,62 +247,62 @@ func (rc *ReleaseCreate) sqlSave(ctx context.Context) (*Release, error) {
 	}
 	id := _spec.ID.Value.(int64)
 	_node.ID = int(id)
-	rc.mutation.id = &_node.ID
-	rc.mutation.done = true
+	_c.mutation.id = &_node.ID
+	_c.mutation.done = true
 	return _node, nil
 }
 
-func (rc *ReleaseCreate) createSpec() (*Release, *sqlgraph.CreateSpec) {
+func (_c *ReleaseCreate) createSpec() (*Release, *sqlgraph.CreateSpec) {
 	var (
-		_node = &Release{config: rc.config}
+		_node = &Release{config: _c.config}
 		_spec = sqlgraph.NewCreateSpec(release.Table, sqlgraph.NewFieldSpec(release.FieldID, field.TypeInt))
 	)
-	_spec.OnConflict = rc.conflict
-	if value, ok := rc.mutation.ReleaseType(); ok {
+	_spec.OnConflict = _c.conflict
+	if value, ok := _c.mutation.ReleaseType(); ok {
 		_spec.SetField(release.FieldReleaseType, field.TypeEnum, value)
 		_node.ReleaseType = value
 	}
-	if value, ok := rc.mutation.Version(); ok {
+	if value, ok := _c.mutation.Version(); ok {
 		_spec.SetField(release.FieldVersion, field.TypeString, value)
 		_node.Version = value
 	}
-	if value, ok := rc.mutation.Channel(); ok {
+	if value, ok := _c.mutation.Channel(); ok {
 		_spec.SetField(release.FieldChannel, field.TypeString, value)
 		_node.Channel = value
 	}
-	if value, ok := rc.mutation.Summary(); ok {
+	if value, ok := _c.mutation.Summary(); ok {
 		_spec.SetField(release.FieldSummary, field.TypeString, value)
 		_node.Summary = value
 	}
-	if value, ok := rc.mutation.ReleaseNotes(); ok {
+	if value, ok := _c.mutation.ReleaseNotes(); ok {
 		_spec.SetField(release.FieldReleaseNotes, field.TypeString, value)
 		_node.ReleaseNotes = value
 	}
-	if value, ok := rc.mutation.FileURL(); ok {
+	if value, ok := _c.mutation.FileURL(); ok {
 		_spec.SetField(release.FieldFileURL, field.TypeString, value)
 		_node.FileURL = value
 	}
-	if value, ok := rc.mutation.Checksum(); ok {
+	if value, ok := _c.mutation.Checksum(); ok {
 		_spec.SetField(release.FieldChecksum, field.TypeString, value)
 		_node.Checksum = value
 	}
-	if value, ok := rc.mutation.IsCritical(); ok {
+	if value, ok := _c.mutation.IsCritical(); ok {
 		_spec.SetField(release.FieldIsCritical, field.TypeBool, value)
 		_node.IsCritical = value
 	}
-	if value, ok := rc.mutation.ReleaseDate(); ok {
+	if value, ok := _c.mutation.ReleaseDate(); ok {
 		_spec.SetField(release.FieldReleaseDate, field.TypeTime, value)
 		_node.ReleaseDate = value
 	}
-	if value, ok := rc.mutation.Os(); ok {
+	if value, ok := _c.mutation.Os(); ok {
 		_spec.SetField(release.FieldOs, field.TypeString, value)
 		_node.Os = value
 	}
-	if value, ok := rc.mutation.Arch(); ok {
+	if value, ok := _c.mutation.Arch(); ok {
 		_spec.SetField(release.FieldArch, field.TypeString, value)
 		_node.Arch = value
 	}
-	if nodes := rc.mutation.AgentsIDs(); len(nodes) > 0 {
+	if nodes := _c.mutation.AgentsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
 			Inverse: false,
@@ -337,10 +337,10 @@ func (rc *ReleaseCreate) createSpec() (*Release, *sqlgraph.CreateSpec) {
 //			SetReleaseType(v+v).
 //		}).
 //		Exec(ctx)
-func (rc *ReleaseCreate) OnConflict(opts ...sql.ConflictOption) *ReleaseUpsertOne {
-	rc.conflict = opts
+func (_c *ReleaseCreate) OnConflict(opts ...sql.ConflictOption) *ReleaseUpsertOne {
+	_c.conflict = opts
 	return &ReleaseUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -350,10 +350,10 @@ func (rc *ReleaseCreate) OnConflict(opts ...sql.ConflictOption) *ReleaseUpsertOn
 //	client.Release.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rc *ReleaseCreate) OnConflictColumns(columns ...string) *ReleaseUpsertOne {
-	rc.conflict = append(rc.conflict, sql.ConflictColumns(columns...))
+func (_c *ReleaseCreate) OnConflictColumns(columns ...string) *ReleaseUpsertOne {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ReleaseUpsertOne{
-		create: rc,
+		create: _c,
 	}
 }
 
@@ -881,16 +881,16 @@ type ReleaseCreateBulk struct {
 }
 
 // Save creates the Release entities in the database.
-func (rcb *ReleaseCreateBulk) Save(ctx context.Context) ([]*Release, error) {
-	if rcb.err != nil {
-		return nil, rcb.err
+func (_c *ReleaseCreateBulk) Save(ctx context.Context) ([]*Release, error) {
+	if _c.err != nil {
+		return nil, _c.err
 	}
-	specs := make([]*sqlgraph.CreateSpec, len(rcb.builders))
-	nodes := make([]*Release, len(rcb.builders))
-	mutators := make([]Mutator, len(rcb.builders))
-	for i := range rcb.builders {
+	specs := make([]*sqlgraph.CreateSpec, len(_c.builders))
+	nodes := make([]*Release, len(_c.builders))
+	mutators := make([]Mutator, len(_c.builders))
+	for i := range _c.builders {
 		func(i int, root context.Context) {
-			builder := rcb.builders[i]
+			builder := _c.builders[i]
 			var mut Mutator = MutateFunc(func(ctx context.Context, m Mutation) (Value, error) {
 				mutation, ok := m.(*ReleaseMutation)
 				if !ok {
@@ -903,12 +903,12 @@ func (rcb *ReleaseCreateBulk) Save(ctx context.Context) ([]*Release, error) {
 				var err error
 				nodes[i], specs[i] = builder.createSpec()
 				if i < len(mutators)-1 {
-					_, err = mutators[i+1].Mutate(root, rcb.builders[i+1].mutation)
+					_, err = mutators[i+1].Mutate(root, _c.builders[i+1].mutation)
 				} else {
 					spec := &sqlgraph.BatchCreateSpec{Nodes: specs}
-					spec.OnConflict = rcb.conflict
+					spec.OnConflict = _c.conflict
 					// Invoke the actual operation on the latest mutation in the chain.
-					if err = sqlgraph.BatchCreate(ctx, rcb.driver, spec); err != nil {
+					if err = sqlgraph.BatchCreate(ctx, _c.driver, spec); err != nil {
 						if sqlgraph.IsConstraintError(err) {
 							err = &ConstraintError{msg: err.Error(), wrap: err}
 						}
@@ -932,7 +932,7 @@ func (rcb *ReleaseCreateBulk) Save(ctx context.Context) ([]*Release, error) {
 		}(i, ctx)
 	}
 	if len(mutators) > 0 {
-		if _, err := mutators[0].Mutate(ctx, rcb.builders[0].mutation); err != nil {
+		if _, err := mutators[0].Mutate(ctx, _c.builders[0].mutation); err != nil {
 			return nil, err
 		}
 	}
@@ -940,8 +940,8 @@ func (rcb *ReleaseCreateBulk) Save(ctx context.Context) ([]*Release, error) {
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (rcb *ReleaseCreateBulk) SaveX(ctx context.Context) []*Release {
-	v, err := rcb.Save(ctx)
+func (_c *ReleaseCreateBulk) SaveX(ctx context.Context) []*Release {
+	v, err := _c.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -949,14 +949,14 @@ func (rcb *ReleaseCreateBulk) SaveX(ctx context.Context) []*Release {
 }
 
 // Exec executes the query.
-func (rcb *ReleaseCreateBulk) Exec(ctx context.Context) error {
-	_, err := rcb.Save(ctx)
+func (_c *ReleaseCreateBulk) Exec(ctx context.Context) error {
+	_, err := _c.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (rcb *ReleaseCreateBulk) ExecX(ctx context.Context) {
-	if err := rcb.Exec(ctx); err != nil {
+func (_c *ReleaseCreateBulk) ExecX(ctx context.Context) {
+	if err := _c.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
@@ -976,10 +976,10 @@ func (rcb *ReleaseCreateBulk) ExecX(ctx context.Context) {
 //			SetReleaseType(v+v).
 //		}).
 //		Exec(ctx)
-func (rcb *ReleaseCreateBulk) OnConflict(opts ...sql.ConflictOption) *ReleaseUpsertBulk {
-	rcb.conflict = opts
+func (_c *ReleaseCreateBulk) OnConflict(opts ...sql.ConflictOption) *ReleaseUpsertBulk {
+	_c.conflict = opts
 	return &ReleaseUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 
@@ -989,10 +989,10 @@ func (rcb *ReleaseCreateBulk) OnConflict(opts ...sql.ConflictOption) *ReleaseUps
 //	client.Release.Create().
 //		OnConflict(sql.ConflictColumns(columns...)).
 //		Exec(ctx)
-func (rcb *ReleaseCreateBulk) OnConflictColumns(columns ...string) *ReleaseUpsertBulk {
-	rcb.conflict = append(rcb.conflict, sql.ConflictColumns(columns...))
+func (_c *ReleaseCreateBulk) OnConflictColumns(columns ...string) *ReleaseUpsertBulk {
+	_c.conflict = append(_c.conflict, sql.ConflictColumns(columns...))
 	return &ReleaseUpsertBulk{
-		create: rcb,
+		create: _c,
 	}
 }
 

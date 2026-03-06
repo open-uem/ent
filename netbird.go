@@ -94,7 +94,7 @@ func (*Netbird) scanValues(columns []string) ([]any, error) {
 
 // assignValues assigns the values that were returned from sql.Rows (after scanning)
 // to the Netbird fields.
-func (n *Netbird) assignValues(columns []string, values []any) error {
+func (_m *Netbird) assignValues(columns []string, values []any) error {
 	if m, n := len(values), len(columns); m < n {
 		return fmt.Errorf("mismatch number of scan values: %d != %d", m, n)
 	}
@@ -105,100 +105,100 @@ func (n *Netbird) assignValues(columns []string, values []any) error {
 			if !ok {
 				return fmt.Errorf("unexpected type %T for field id", value)
 			}
-			n.ID = int(value.Int64)
+			_m.ID = int(value.Int64)
 		case netbird.FieldVersion:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field version", values[i])
 			} else if value.Valid {
-				n.Version = value.String
+				_m.Version = value.String
 			}
 		case netbird.FieldInstalled:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field installed", values[i])
 			} else if value.Valid {
-				n.Installed = value.Bool
+				_m.Installed = value.Bool
 			}
 		case netbird.FieldServiceStatus:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field service_status", values[i])
 			} else if value.Valid {
-				n.ServiceStatus = value.String
+				_m.ServiceStatus = value.String
 			}
 		case netbird.FieldIP:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field ip", values[i])
 			} else if value.Valid {
-				n.IP = value.String
+				_m.IP = value.String
 			}
 		case netbird.FieldProfile:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field profile", values[i])
 			} else if value.Valid {
-				n.Profile = value.String
+				_m.Profile = value.String
 			}
 		case netbird.FieldManagementURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field management_url", values[i])
 			} else if value.Valid {
-				n.ManagementURL = value.String
+				_m.ManagementURL = value.String
 			}
 		case netbird.FieldManagementConnected:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field management_connected", values[i])
 			} else if value.Valid {
-				n.ManagementConnected = value.Bool
+				_m.ManagementConnected = value.Bool
 			}
 		case netbird.FieldSignalURL:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field signal_url", values[i])
 			} else if value.Valid {
-				n.SignalURL = value.String
+				_m.SignalURL = value.String
 			}
 		case netbird.FieldSignalConnected:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field signal_connected", values[i])
 			} else if value.Valid {
-				n.SignalConnected = value.Bool
+				_m.SignalConnected = value.Bool
 			}
 		case netbird.FieldSSHEnabled:
 			if value, ok := values[i].(*sql.NullBool); !ok {
 				return fmt.Errorf("unexpected type %T for field ssh_enabled", values[i])
 			} else if value.Valid {
-				n.SSHEnabled = value.Bool
+				_m.SSHEnabled = value.Bool
 			}
 		case netbird.FieldPeersTotal:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field peers_total", values[i])
 			} else if value.Valid {
-				n.PeersTotal = int(value.Int64)
+				_m.PeersTotal = int(value.Int64)
 			}
 		case netbird.FieldPeersConnected:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for field peers_connected", values[i])
 			} else if value.Valid {
-				n.PeersConnected = int(value.Int64)
+				_m.PeersConnected = int(value.Int64)
 			}
 		case netbird.FieldProfilesAvailable:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field profiles_available", values[i])
 			} else if value.Valid {
-				n.ProfilesAvailable = value.String
+				_m.ProfilesAvailable = value.String
 			}
 		case netbird.FieldDNSServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field dns_server", values[i])
 			} else if value.Valid {
-				n.DNSServer = value.String
+				_m.DNSServer = value.String
 			}
 		case netbird.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field agent_netbird", values[i])
 			} else if value.Valid {
-				n.agent_netbird = new(string)
-				*n.agent_netbird = value.String
+				_m.agent_netbird = new(string)
+				*_m.agent_netbird = value.String
 			}
 		default:
-			n.selectValues.Set(columns[i], values[i])
+			_m.selectValues.Set(columns[i], values[i])
 		}
 	}
 	return nil
@@ -206,79 +206,79 @@ func (n *Netbird) assignValues(columns []string, values []any) error {
 
 // Value returns the ent.Value that was dynamically selected and assigned to the Netbird.
 // This includes values selected through modifiers, order, etc.
-func (n *Netbird) Value(name string) (ent.Value, error) {
-	return n.selectValues.Get(name)
+func (_m *Netbird) Value(name string) (ent.Value, error) {
+	return _m.selectValues.Get(name)
 }
 
 // QueryOwner queries the "owner" edge of the Netbird entity.
-func (n *Netbird) QueryOwner() *AgentQuery {
-	return NewNetbirdClient(n.config).QueryOwner(n)
+func (_m *Netbird) QueryOwner() *AgentQuery {
+	return NewNetbirdClient(_m.config).QueryOwner(_m)
 }
 
 // Update returns a builder for updating this Netbird.
 // Note that you need to call Netbird.Unwrap() before calling this method if this Netbird
 // was returned from a transaction, and the transaction was committed or rolled back.
-func (n *Netbird) Update() *NetbirdUpdateOne {
-	return NewNetbirdClient(n.config).UpdateOne(n)
+func (_m *Netbird) Update() *NetbirdUpdateOne {
+	return NewNetbirdClient(_m.config).UpdateOne(_m)
 }
 
 // Unwrap unwraps the Netbird entity that was returned from a transaction after it was closed,
 // so that all future queries will be executed through the driver which created the transaction.
-func (n *Netbird) Unwrap() *Netbird {
-	_tx, ok := n.config.driver.(*txDriver)
+func (_m *Netbird) Unwrap() *Netbird {
+	_tx, ok := _m.config.driver.(*txDriver)
 	if !ok {
 		panic("ent: Netbird is not a transactional entity")
 	}
-	n.config.driver = _tx.drv
-	return n
+	_m.config.driver = _tx.drv
+	return _m
 }
 
 // String implements the fmt.Stringer.
-func (n *Netbird) String() string {
+func (_m *Netbird) String() string {
 	var builder strings.Builder
 	builder.WriteString("Netbird(")
-	builder.WriteString(fmt.Sprintf("id=%v, ", n.ID))
+	builder.WriteString(fmt.Sprintf("id=%v, ", _m.ID))
 	builder.WriteString("version=")
-	builder.WriteString(n.Version)
+	builder.WriteString(_m.Version)
 	builder.WriteString(", ")
 	builder.WriteString("installed=")
-	builder.WriteString(fmt.Sprintf("%v", n.Installed))
+	builder.WriteString(fmt.Sprintf("%v", _m.Installed))
 	builder.WriteString(", ")
 	builder.WriteString("service_status=")
-	builder.WriteString(n.ServiceStatus)
+	builder.WriteString(_m.ServiceStatus)
 	builder.WriteString(", ")
 	builder.WriteString("ip=")
-	builder.WriteString(n.IP)
+	builder.WriteString(_m.IP)
 	builder.WriteString(", ")
 	builder.WriteString("profile=")
-	builder.WriteString(n.Profile)
+	builder.WriteString(_m.Profile)
 	builder.WriteString(", ")
 	builder.WriteString("management_url=")
-	builder.WriteString(n.ManagementURL)
+	builder.WriteString(_m.ManagementURL)
 	builder.WriteString(", ")
 	builder.WriteString("management_connected=")
-	builder.WriteString(fmt.Sprintf("%v", n.ManagementConnected))
+	builder.WriteString(fmt.Sprintf("%v", _m.ManagementConnected))
 	builder.WriteString(", ")
 	builder.WriteString("signal_url=")
-	builder.WriteString(n.SignalURL)
+	builder.WriteString(_m.SignalURL)
 	builder.WriteString(", ")
 	builder.WriteString("signal_connected=")
-	builder.WriteString(fmt.Sprintf("%v", n.SignalConnected))
+	builder.WriteString(fmt.Sprintf("%v", _m.SignalConnected))
 	builder.WriteString(", ")
 	builder.WriteString("ssh_enabled=")
-	builder.WriteString(fmt.Sprintf("%v", n.SSHEnabled))
+	builder.WriteString(fmt.Sprintf("%v", _m.SSHEnabled))
 	builder.WriteString(", ")
 	builder.WriteString("peers_total=")
-	builder.WriteString(fmt.Sprintf("%v", n.PeersTotal))
+	builder.WriteString(fmt.Sprintf("%v", _m.PeersTotal))
 	builder.WriteString(", ")
 	builder.WriteString("peers_connected=")
-	builder.WriteString(fmt.Sprintf("%v", n.PeersConnected))
+	builder.WriteString(fmt.Sprintf("%v", _m.PeersConnected))
 	builder.WriteString(", ")
 	builder.WriteString("profiles_available=")
-	builder.WriteString(n.ProfilesAvailable)
+	builder.WriteString(_m.ProfilesAvailable)
 	builder.WriteString(", ")
 	builder.WriteString("dns_server=")
-	builder.WriteString(n.DNSServer)
+	builder.WriteString(_m.DNSServer)
 	builder.WriteByte(')')
 	return builder.String()
 }

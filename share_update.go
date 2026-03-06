@@ -24,89 +24,89 @@ type ShareUpdate struct {
 }
 
 // Where appends a list predicates to the ShareUpdate builder.
-func (su *ShareUpdate) Where(ps ...predicate.Share) *ShareUpdate {
-	su.mutation.Where(ps...)
-	return su
+func (_u *ShareUpdate) Where(ps ...predicate.Share) *ShareUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetName sets the "name" field.
-func (su *ShareUpdate) SetName(s string) *ShareUpdate {
-	su.mutation.SetName(s)
-	return su
+func (_u *ShareUpdate) SetName(v string) *ShareUpdate {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (su *ShareUpdate) SetNillableName(s *string) *ShareUpdate {
-	if s != nil {
-		su.SetName(*s)
+func (_u *ShareUpdate) SetNillableName(v *string) *ShareUpdate {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return su
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (su *ShareUpdate) SetDescription(s string) *ShareUpdate {
-	su.mutation.SetDescription(s)
-	return su
+func (_u *ShareUpdate) SetDescription(v string) *ShareUpdate {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (su *ShareUpdate) SetNillableDescription(s *string) *ShareUpdate {
-	if s != nil {
-		su.SetDescription(*s)
+func (_u *ShareUpdate) SetNillableDescription(v *string) *ShareUpdate {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return su
+	return _u
 }
 
 // SetPath sets the "path" field.
-func (su *ShareUpdate) SetPath(s string) *ShareUpdate {
-	su.mutation.SetPath(s)
-	return su
+func (_u *ShareUpdate) SetPath(v string) *ShareUpdate {
+	_u.mutation.SetPath(v)
+	return _u
 }
 
 // SetNillablePath sets the "path" field if the given value is not nil.
-func (su *ShareUpdate) SetNillablePath(s *string) *ShareUpdate {
-	if s != nil {
-		su.SetPath(*s)
+func (_u *ShareUpdate) SetNillablePath(v *string) *ShareUpdate {
+	if v != nil {
+		_u.SetPath(*v)
 	}
-	return su
+	return _u
 }
 
 // ClearPath clears the value of the "path" field.
-func (su *ShareUpdate) ClearPath() *ShareUpdate {
-	su.mutation.ClearPath()
-	return su
+func (_u *ShareUpdate) ClearPath() *ShareUpdate {
+	_u.mutation.ClearPath()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (su *ShareUpdate) SetOwnerID(id string) *ShareUpdate {
-	su.mutation.SetOwnerID(id)
-	return su
+func (_u *ShareUpdate) SetOwnerID(id string) *ShareUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (su *ShareUpdate) SetOwner(a *Agent) *ShareUpdate {
-	return su.SetOwnerID(a.ID)
+func (_u *ShareUpdate) SetOwner(v *Agent) *ShareUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the ShareMutation object of the builder.
-func (su *ShareUpdate) Mutation() *ShareMutation {
-	return su.mutation
+func (_u *ShareUpdate) Mutation() *ShareMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (su *ShareUpdate) ClearOwner() *ShareUpdate {
-	su.mutation.ClearOwner()
-	return su
+func (_u *ShareUpdate) ClearOwner() *ShareUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (su *ShareUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, su.sqlSave, su.mutation, su.hooks)
+func (_u *ShareUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (su *ShareUpdate) SaveX(ctx context.Context) int {
-	affected, err := su.Save(ctx)
+func (_u *ShareUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -114,57 +114,57 @@ func (su *ShareUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (su *ShareUpdate) Exec(ctx context.Context) error {
-	_, err := su.Save(ctx)
+func (_u *ShareUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (su *ShareUpdate) ExecX(ctx context.Context) {
-	if err := su.Exec(ctx); err != nil {
+func (_u *ShareUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (su *ShareUpdate) check() error {
-	if su.mutation.OwnerCleared() && len(su.mutation.OwnerIDs()) > 0 {
+func (_u *ShareUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Share.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (su *ShareUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ShareUpdate {
-	su.modifiers = append(su.modifiers, modifiers...)
-	return su
+func (_u *ShareUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ShareUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (su *ShareUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := su.check(); err != nil {
-		return n, err
+func (_u *ShareUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(share.Table, share.Columns, sqlgraph.NewFieldSpec(share.FieldID, field.TypeInt))
-	if ps := su.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := su.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(share.FieldName, field.TypeString, value)
 	}
-	if value, ok := su.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(share.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := su.mutation.Path(); ok {
+	if value, ok := _u.mutation.Path(); ok {
 		_spec.SetField(share.FieldPath, field.TypeString, value)
 	}
-	if su.mutation.PathCleared() {
+	if _u.mutation.PathCleared() {
 		_spec.ClearField(share.FieldPath, field.TypeString)
 	}
-	if su.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -177,7 +177,7 @@ func (su *ShareUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := su.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -193,8 +193,8 @@ func (su *ShareUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(su.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, su.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{share.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -202,8 +202,8 @@ func (su *ShareUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	su.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // ShareUpdateOne is the builder for updating a single Share entity.
@@ -216,96 +216,96 @@ type ShareUpdateOne struct {
 }
 
 // SetName sets the "name" field.
-func (suo *ShareUpdateOne) SetName(s string) *ShareUpdateOne {
-	suo.mutation.SetName(s)
-	return suo
+func (_u *ShareUpdateOne) SetName(v string) *ShareUpdateOne {
+	_u.mutation.SetName(v)
+	return _u
 }
 
 // SetNillableName sets the "name" field if the given value is not nil.
-func (suo *ShareUpdateOne) SetNillableName(s *string) *ShareUpdateOne {
-	if s != nil {
-		suo.SetName(*s)
+func (_u *ShareUpdateOne) SetNillableName(v *string) *ShareUpdateOne {
+	if v != nil {
+		_u.SetName(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetDescription sets the "description" field.
-func (suo *ShareUpdateOne) SetDescription(s string) *ShareUpdateOne {
-	suo.mutation.SetDescription(s)
-	return suo
+func (_u *ShareUpdateOne) SetDescription(v string) *ShareUpdateOne {
+	_u.mutation.SetDescription(v)
+	return _u
 }
 
 // SetNillableDescription sets the "description" field if the given value is not nil.
-func (suo *ShareUpdateOne) SetNillableDescription(s *string) *ShareUpdateOne {
-	if s != nil {
-		suo.SetDescription(*s)
+func (_u *ShareUpdateOne) SetNillableDescription(v *string) *ShareUpdateOne {
+	if v != nil {
+		_u.SetDescription(*v)
 	}
-	return suo
+	return _u
 }
 
 // SetPath sets the "path" field.
-func (suo *ShareUpdateOne) SetPath(s string) *ShareUpdateOne {
-	suo.mutation.SetPath(s)
-	return suo
+func (_u *ShareUpdateOne) SetPath(v string) *ShareUpdateOne {
+	_u.mutation.SetPath(v)
+	return _u
 }
 
 // SetNillablePath sets the "path" field if the given value is not nil.
-func (suo *ShareUpdateOne) SetNillablePath(s *string) *ShareUpdateOne {
-	if s != nil {
-		suo.SetPath(*s)
+func (_u *ShareUpdateOne) SetNillablePath(v *string) *ShareUpdateOne {
+	if v != nil {
+		_u.SetPath(*v)
 	}
-	return suo
+	return _u
 }
 
 // ClearPath clears the value of the "path" field.
-func (suo *ShareUpdateOne) ClearPath() *ShareUpdateOne {
-	suo.mutation.ClearPath()
-	return suo
+func (_u *ShareUpdateOne) ClearPath() *ShareUpdateOne {
+	_u.mutation.ClearPath()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (suo *ShareUpdateOne) SetOwnerID(id string) *ShareUpdateOne {
-	suo.mutation.SetOwnerID(id)
-	return suo
+func (_u *ShareUpdateOne) SetOwnerID(id string) *ShareUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (suo *ShareUpdateOne) SetOwner(a *Agent) *ShareUpdateOne {
-	return suo.SetOwnerID(a.ID)
+func (_u *ShareUpdateOne) SetOwner(v *Agent) *ShareUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the ShareMutation object of the builder.
-func (suo *ShareUpdateOne) Mutation() *ShareMutation {
-	return suo.mutation
+func (_u *ShareUpdateOne) Mutation() *ShareMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (suo *ShareUpdateOne) ClearOwner() *ShareUpdateOne {
-	suo.mutation.ClearOwner()
-	return suo
+func (_u *ShareUpdateOne) ClearOwner() *ShareUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the ShareUpdate builder.
-func (suo *ShareUpdateOne) Where(ps ...predicate.Share) *ShareUpdateOne {
-	suo.mutation.Where(ps...)
-	return suo
+func (_u *ShareUpdateOne) Where(ps ...predicate.Share) *ShareUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (suo *ShareUpdateOne) Select(field string, fields ...string) *ShareUpdateOne {
-	suo.fields = append([]string{field}, fields...)
-	return suo
+func (_u *ShareUpdateOne) Select(field string, fields ...string) *ShareUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Share entity.
-func (suo *ShareUpdateOne) Save(ctx context.Context) (*Share, error) {
-	return withHooks(ctx, suo.sqlSave, suo.mutation, suo.hooks)
+func (_u *ShareUpdateOne) Save(ctx context.Context) (*Share, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (suo *ShareUpdateOne) SaveX(ctx context.Context) *Share {
-	node, err := suo.Save(ctx)
+func (_u *ShareUpdateOne) SaveX(ctx context.Context) *Share {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -313,43 +313,43 @@ func (suo *ShareUpdateOne) SaveX(ctx context.Context) *Share {
 }
 
 // Exec executes the query on the entity.
-func (suo *ShareUpdateOne) Exec(ctx context.Context) error {
-	_, err := suo.Save(ctx)
+func (_u *ShareUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (suo *ShareUpdateOne) ExecX(ctx context.Context) {
-	if err := suo.Exec(ctx); err != nil {
+func (_u *ShareUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (suo *ShareUpdateOne) check() error {
-	if suo.mutation.OwnerCleared() && len(suo.mutation.OwnerIDs()) > 0 {
+func (_u *ShareUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Share.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (suo *ShareUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ShareUpdateOne {
-	suo.modifiers = append(suo.modifiers, modifiers...)
-	return suo
+func (_u *ShareUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *ShareUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (suo *ShareUpdateOne) sqlSave(ctx context.Context) (_node *Share, err error) {
-	if err := suo.check(); err != nil {
+func (_u *ShareUpdateOne) sqlSave(ctx context.Context) (_node *Share, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(share.Table, share.Columns, sqlgraph.NewFieldSpec(share.FieldID, field.TypeInt))
-	id, ok := suo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Share.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := suo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, share.FieldID)
 		for _, f := range fields {
@@ -361,26 +361,26 @@ func (suo *ShareUpdateOne) sqlSave(ctx context.Context) (_node *Share, err error
 			}
 		}
 	}
-	if ps := suo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := suo.mutation.Name(); ok {
+	if value, ok := _u.mutation.Name(); ok {
 		_spec.SetField(share.FieldName, field.TypeString, value)
 	}
-	if value, ok := suo.mutation.Description(); ok {
+	if value, ok := _u.mutation.Description(); ok {
 		_spec.SetField(share.FieldDescription, field.TypeString, value)
 	}
-	if value, ok := suo.mutation.Path(); ok {
+	if value, ok := _u.mutation.Path(); ok {
 		_spec.SetField(share.FieldPath, field.TypeString, value)
 	}
-	if suo.mutation.PathCleared() {
+	if _u.mutation.PathCleared() {
 		_spec.ClearField(share.FieldPath, field.TypeString)
 	}
-	if suo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -393,7 +393,7 @@ func (suo *ShareUpdateOne) sqlSave(ctx context.Context) (_node *Share, err error
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := suo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -409,11 +409,11 @@ func (suo *ShareUpdateOne) sqlSave(ctx context.Context) (_node *Share, err error
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(suo.modifiers...)
-	_node = &Share{config: suo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Share{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, suo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{share.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -421,6 +421,6 @@ func (suo *ShareUpdateOne) sqlSave(ctx context.Context) (_node *Share, err error
 		}
 		return nil, err
 	}
-	suo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

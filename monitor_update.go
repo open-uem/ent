@@ -24,141 +24,141 @@ type MonitorUpdate struct {
 }
 
 // Where appends a list predicates to the MonitorUpdate builder.
-func (mu *MonitorUpdate) Where(ps ...predicate.Monitor) *MonitorUpdate {
-	mu.mutation.Where(ps...)
-	return mu
+func (_u *MonitorUpdate) Where(ps ...predicate.Monitor) *MonitorUpdate {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (mu *MonitorUpdate) SetManufacturer(s string) *MonitorUpdate {
-	mu.mutation.SetManufacturer(s)
-	return mu
+func (_u *MonitorUpdate) SetManufacturer(v string) *MonitorUpdate {
+	_u.mutation.SetManufacturer(v)
+	return _u
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (mu *MonitorUpdate) SetNillableManufacturer(s *string) *MonitorUpdate {
-	if s != nil {
-		mu.SetManufacturer(*s)
+func (_u *MonitorUpdate) SetNillableManufacturer(v *string) *MonitorUpdate {
+	if v != nil {
+		_u.SetManufacturer(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearManufacturer clears the value of the "manufacturer" field.
-func (mu *MonitorUpdate) ClearManufacturer() *MonitorUpdate {
-	mu.mutation.ClearManufacturer()
-	return mu
+func (_u *MonitorUpdate) ClearManufacturer() *MonitorUpdate {
+	_u.mutation.ClearManufacturer()
+	return _u
 }
 
 // SetModel sets the "model" field.
-func (mu *MonitorUpdate) SetModel(s string) *MonitorUpdate {
-	mu.mutation.SetModel(s)
-	return mu
+func (_u *MonitorUpdate) SetModel(v string) *MonitorUpdate {
+	_u.mutation.SetModel(v)
+	return _u
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (mu *MonitorUpdate) SetNillableModel(s *string) *MonitorUpdate {
-	if s != nil {
-		mu.SetModel(*s)
+func (_u *MonitorUpdate) SetNillableModel(v *string) *MonitorUpdate {
+	if v != nil {
+		_u.SetModel(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearModel clears the value of the "model" field.
-func (mu *MonitorUpdate) ClearModel() *MonitorUpdate {
-	mu.mutation.ClearModel()
-	return mu
+func (_u *MonitorUpdate) ClearModel() *MonitorUpdate {
+	_u.mutation.ClearModel()
+	return _u
 }
 
 // SetSerial sets the "serial" field.
-func (mu *MonitorUpdate) SetSerial(s string) *MonitorUpdate {
-	mu.mutation.SetSerial(s)
-	return mu
+func (_u *MonitorUpdate) SetSerial(v string) *MonitorUpdate {
+	_u.mutation.SetSerial(v)
+	return _u
 }
 
 // SetNillableSerial sets the "serial" field if the given value is not nil.
-func (mu *MonitorUpdate) SetNillableSerial(s *string) *MonitorUpdate {
-	if s != nil {
-		mu.SetSerial(*s)
+func (_u *MonitorUpdate) SetNillableSerial(v *string) *MonitorUpdate {
+	if v != nil {
+		_u.SetSerial(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearSerial clears the value of the "serial" field.
-func (mu *MonitorUpdate) ClearSerial() *MonitorUpdate {
-	mu.mutation.ClearSerial()
-	return mu
+func (_u *MonitorUpdate) ClearSerial() *MonitorUpdate {
+	_u.mutation.ClearSerial()
+	return _u
 }
 
 // SetWeekOfManufacture sets the "week_of_manufacture" field.
-func (mu *MonitorUpdate) SetWeekOfManufacture(s string) *MonitorUpdate {
-	mu.mutation.SetWeekOfManufacture(s)
-	return mu
+func (_u *MonitorUpdate) SetWeekOfManufacture(v string) *MonitorUpdate {
+	_u.mutation.SetWeekOfManufacture(v)
+	return _u
 }
 
 // SetNillableWeekOfManufacture sets the "week_of_manufacture" field if the given value is not nil.
-func (mu *MonitorUpdate) SetNillableWeekOfManufacture(s *string) *MonitorUpdate {
-	if s != nil {
-		mu.SetWeekOfManufacture(*s)
+func (_u *MonitorUpdate) SetNillableWeekOfManufacture(v *string) *MonitorUpdate {
+	if v != nil {
+		_u.SetWeekOfManufacture(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearWeekOfManufacture clears the value of the "week_of_manufacture" field.
-func (mu *MonitorUpdate) ClearWeekOfManufacture() *MonitorUpdate {
-	mu.mutation.ClearWeekOfManufacture()
-	return mu
+func (_u *MonitorUpdate) ClearWeekOfManufacture() *MonitorUpdate {
+	_u.mutation.ClearWeekOfManufacture()
+	return _u
 }
 
 // SetYearOfManufacture sets the "year_of_manufacture" field.
-func (mu *MonitorUpdate) SetYearOfManufacture(s string) *MonitorUpdate {
-	mu.mutation.SetYearOfManufacture(s)
-	return mu
+func (_u *MonitorUpdate) SetYearOfManufacture(v string) *MonitorUpdate {
+	_u.mutation.SetYearOfManufacture(v)
+	return _u
 }
 
 // SetNillableYearOfManufacture sets the "year_of_manufacture" field if the given value is not nil.
-func (mu *MonitorUpdate) SetNillableYearOfManufacture(s *string) *MonitorUpdate {
-	if s != nil {
-		mu.SetYearOfManufacture(*s)
+func (_u *MonitorUpdate) SetNillableYearOfManufacture(v *string) *MonitorUpdate {
+	if v != nil {
+		_u.SetYearOfManufacture(*v)
 	}
-	return mu
+	return _u
 }
 
 // ClearYearOfManufacture clears the value of the "year_of_manufacture" field.
-func (mu *MonitorUpdate) ClearYearOfManufacture() *MonitorUpdate {
-	mu.mutation.ClearYearOfManufacture()
-	return mu
+func (_u *MonitorUpdate) ClearYearOfManufacture() *MonitorUpdate {
+	_u.mutation.ClearYearOfManufacture()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (mu *MonitorUpdate) SetOwnerID(id string) *MonitorUpdate {
-	mu.mutation.SetOwnerID(id)
-	return mu
+func (_u *MonitorUpdate) SetOwnerID(id string) *MonitorUpdate {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (mu *MonitorUpdate) SetOwner(a *Agent) *MonitorUpdate {
-	return mu.SetOwnerID(a.ID)
+func (_u *MonitorUpdate) SetOwner(v *Agent) *MonitorUpdate {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the MonitorMutation object of the builder.
-func (mu *MonitorUpdate) Mutation() *MonitorMutation {
-	return mu.mutation
+func (_u *MonitorUpdate) Mutation() *MonitorMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (mu *MonitorUpdate) ClearOwner() *MonitorUpdate {
-	mu.mutation.ClearOwner()
-	return mu
+func (_u *MonitorUpdate) ClearOwner() *MonitorUpdate {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
-func (mu *MonitorUpdate) Save(ctx context.Context) (int, error) {
-	return withHooks(ctx, mu.sqlSave, mu.mutation, mu.hooks)
+func (_u *MonitorUpdate) Save(ctx context.Context) (int, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (mu *MonitorUpdate) SaveX(ctx context.Context) int {
-	affected, err := mu.Save(ctx)
+func (_u *MonitorUpdate) SaveX(ctx context.Context) int {
+	affected, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -166,75 +166,75 @@ func (mu *MonitorUpdate) SaveX(ctx context.Context) int {
 }
 
 // Exec executes the query.
-func (mu *MonitorUpdate) Exec(ctx context.Context) error {
-	_, err := mu.Save(ctx)
+func (_u *MonitorUpdate) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (mu *MonitorUpdate) ExecX(ctx context.Context) {
-	if err := mu.Exec(ctx); err != nil {
+func (_u *MonitorUpdate) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (mu *MonitorUpdate) check() error {
-	if mu.mutation.OwnerCleared() && len(mu.mutation.OwnerIDs()) > 0 {
+func (_u *MonitorUpdate) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Monitor.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (mu *MonitorUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MonitorUpdate {
-	mu.modifiers = append(mu.modifiers, modifiers...)
-	return mu
+func (_u *MonitorUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MonitorUpdate {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (mu *MonitorUpdate) sqlSave(ctx context.Context) (n int, err error) {
-	if err := mu.check(); err != nil {
-		return n, err
+func (_u *MonitorUpdate) sqlSave(ctx context.Context) (_node int, err error) {
+	if err := _u.check(); err != nil {
+		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(monitor.Table, monitor.Columns, sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt))
-	if ps := mu.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := mu.mutation.Manufacturer(); ok {
+	if value, ok := _u.mutation.Manufacturer(); ok {
 		_spec.SetField(monitor.FieldManufacturer, field.TypeString, value)
 	}
-	if mu.mutation.ManufacturerCleared() {
+	if _u.mutation.ManufacturerCleared() {
 		_spec.ClearField(monitor.FieldManufacturer, field.TypeString)
 	}
-	if value, ok := mu.mutation.Model(); ok {
+	if value, ok := _u.mutation.Model(); ok {
 		_spec.SetField(monitor.FieldModel, field.TypeString, value)
 	}
-	if mu.mutation.ModelCleared() {
+	if _u.mutation.ModelCleared() {
 		_spec.ClearField(monitor.FieldModel, field.TypeString)
 	}
-	if value, ok := mu.mutation.Serial(); ok {
+	if value, ok := _u.mutation.Serial(); ok {
 		_spec.SetField(monitor.FieldSerial, field.TypeString, value)
 	}
-	if mu.mutation.SerialCleared() {
+	if _u.mutation.SerialCleared() {
 		_spec.ClearField(monitor.FieldSerial, field.TypeString)
 	}
-	if value, ok := mu.mutation.WeekOfManufacture(); ok {
+	if value, ok := _u.mutation.WeekOfManufacture(); ok {
 		_spec.SetField(monitor.FieldWeekOfManufacture, field.TypeString, value)
 	}
-	if mu.mutation.WeekOfManufactureCleared() {
+	if _u.mutation.WeekOfManufactureCleared() {
 		_spec.ClearField(monitor.FieldWeekOfManufacture, field.TypeString)
 	}
-	if value, ok := mu.mutation.YearOfManufacture(); ok {
+	if value, ok := _u.mutation.YearOfManufacture(); ok {
 		_spec.SetField(monitor.FieldYearOfManufacture, field.TypeString, value)
 	}
-	if mu.mutation.YearOfManufactureCleared() {
+	if _u.mutation.YearOfManufactureCleared() {
 		_spec.ClearField(monitor.FieldYearOfManufacture, field.TypeString)
 	}
-	if mu.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -247,7 +247,7 @@ func (mu *MonitorUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := mu.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -263,8 +263,8 @@ func (mu *MonitorUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(mu.modifiers...)
-	if n, err = sqlgraph.UpdateNodes(ctx, mu.driver, _spec); err != nil {
+	_spec.AddModifiers(_u.modifiers...)
+	if _node, err = sqlgraph.UpdateNodes(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{monitor.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -272,8 +272,8 @@ func (mu *MonitorUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		return 0, err
 	}
-	mu.mutation.done = true
-	return n, nil
+	_u.mutation.done = true
+	return _node, nil
 }
 
 // MonitorUpdateOne is the builder for updating a single Monitor entity.
@@ -286,148 +286,148 @@ type MonitorUpdateOne struct {
 }
 
 // SetManufacturer sets the "manufacturer" field.
-func (muo *MonitorUpdateOne) SetManufacturer(s string) *MonitorUpdateOne {
-	muo.mutation.SetManufacturer(s)
-	return muo
+func (_u *MonitorUpdateOne) SetManufacturer(v string) *MonitorUpdateOne {
+	_u.mutation.SetManufacturer(v)
+	return _u
 }
 
 // SetNillableManufacturer sets the "manufacturer" field if the given value is not nil.
-func (muo *MonitorUpdateOne) SetNillableManufacturer(s *string) *MonitorUpdateOne {
-	if s != nil {
-		muo.SetManufacturer(*s)
+func (_u *MonitorUpdateOne) SetNillableManufacturer(v *string) *MonitorUpdateOne {
+	if v != nil {
+		_u.SetManufacturer(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearManufacturer clears the value of the "manufacturer" field.
-func (muo *MonitorUpdateOne) ClearManufacturer() *MonitorUpdateOne {
-	muo.mutation.ClearManufacturer()
-	return muo
+func (_u *MonitorUpdateOne) ClearManufacturer() *MonitorUpdateOne {
+	_u.mutation.ClearManufacturer()
+	return _u
 }
 
 // SetModel sets the "model" field.
-func (muo *MonitorUpdateOne) SetModel(s string) *MonitorUpdateOne {
-	muo.mutation.SetModel(s)
-	return muo
+func (_u *MonitorUpdateOne) SetModel(v string) *MonitorUpdateOne {
+	_u.mutation.SetModel(v)
+	return _u
 }
 
 // SetNillableModel sets the "model" field if the given value is not nil.
-func (muo *MonitorUpdateOne) SetNillableModel(s *string) *MonitorUpdateOne {
-	if s != nil {
-		muo.SetModel(*s)
+func (_u *MonitorUpdateOne) SetNillableModel(v *string) *MonitorUpdateOne {
+	if v != nil {
+		_u.SetModel(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearModel clears the value of the "model" field.
-func (muo *MonitorUpdateOne) ClearModel() *MonitorUpdateOne {
-	muo.mutation.ClearModel()
-	return muo
+func (_u *MonitorUpdateOne) ClearModel() *MonitorUpdateOne {
+	_u.mutation.ClearModel()
+	return _u
 }
 
 // SetSerial sets the "serial" field.
-func (muo *MonitorUpdateOne) SetSerial(s string) *MonitorUpdateOne {
-	muo.mutation.SetSerial(s)
-	return muo
+func (_u *MonitorUpdateOne) SetSerial(v string) *MonitorUpdateOne {
+	_u.mutation.SetSerial(v)
+	return _u
 }
 
 // SetNillableSerial sets the "serial" field if the given value is not nil.
-func (muo *MonitorUpdateOne) SetNillableSerial(s *string) *MonitorUpdateOne {
-	if s != nil {
-		muo.SetSerial(*s)
+func (_u *MonitorUpdateOne) SetNillableSerial(v *string) *MonitorUpdateOne {
+	if v != nil {
+		_u.SetSerial(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearSerial clears the value of the "serial" field.
-func (muo *MonitorUpdateOne) ClearSerial() *MonitorUpdateOne {
-	muo.mutation.ClearSerial()
-	return muo
+func (_u *MonitorUpdateOne) ClearSerial() *MonitorUpdateOne {
+	_u.mutation.ClearSerial()
+	return _u
 }
 
 // SetWeekOfManufacture sets the "week_of_manufacture" field.
-func (muo *MonitorUpdateOne) SetWeekOfManufacture(s string) *MonitorUpdateOne {
-	muo.mutation.SetWeekOfManufacture(s)
-	return muo
+func (_u *MonitorUpdateOne) SetWeekOfManufacture(v string) *MonitorUpdateOne {
+	_u.mutation.SetWeekOfManufacture(v)
+	return _u
 }
 
 // SetNillableWeekOfManufacture sets the "week_of_manufacture" field if the given value is not nil.
-func (muo *MonitorUpdateOne) SetNillableWeekOfManufacture(s *string) *MonitorUpdateOne {
-	if s != nil {
-		muo.SetWeekOfManufacture(*s)
+func (_u *MonitorUpdateOne) SetNillableWeekOfManufacture(v *string) *MonitorUpdateOne {
+	if v != nil {
+		_u.SetWeekOfManufacture(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearWeekOfManufacture clears the value of the "week_of_manufacture" field.
-func (muo *MonitorUpdateOne) ClearWeekOfManufacture() *MonitorUpdateOne {
-	muo.mutation.ClearWeekOfManufacture()
-	return muo
+func (_u *MonitorUpdateOne) ClearWeekOfManufacture() *MonitorUpdateOne {
+	_u.mutation.ClearWeekOfManufacture()
+	return _u
 }
 
 // SetYearOfManufacture sets the "year_of_manufacture" field.
-func (muo *MonitorUpdateOne) SetYearOfManufacture(s string) *MonitorUpdateOne {
-	muo.mutation.SetYearOfManufacture(s)
-	return muo
+func (_u *MonitorUpdateOne) SetYearOfManufacture(v string) *MonitorUpdateOne {
+	_u.mutation.SetYearOfManufacture(v)
+	return _u
 }
 
 // SetNillableYearOfManufacture sets the "year_of_manufacture" field if the given value is not nil.
-func (muo *MonitorUpdateOne) SetNillableYearOfManufacture(s *string) *MonitorUpdateOne {
-	if s != nil {
-		muo.SetYearOfManufacture(*s)
+func (_u *MonitorUpdateOne) SetNillableYearOfManufacture(v *string) *MonitorUpdateOne {
+	if v != nil {
+		_u.SetYearOfManufacture(*v)
 	}
-	return muo
+	return _u
 }
 
 // ClearYearOfManufacture clears the value of the "year_of_manufacture" field.
-func (muo *MonitorUpdateOne) ClearYearOfManufacture() *MonitorUpdateOne {
-	muo.mutation.ClearYearOfManufacture()
-	return muo
+func (_u *MonitorUpdateOne) ClearYearOfManufacture() *MonitorUpdateOne {
+	_u.mutation.ClearYearOfManufacture()
+	return _u
 }
 
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
-func (muo *MonitorUpdateOne) SetOwnerID(id string) *MonitorUpdateOne {
-	muo.mutation.SetOwnerID(id)
-	return muo
+func (_u *MonitorUpdateOne) SetOwnerID(id string) *MonitorUpdateOne {
+	_u.mutation.SetOwnerID(id)
+	return _u
 }
 
 // SetOwner sets the "owner" edge to the Agent entity.
-func (muo *MonitorUpdateOne) SetOwner(a *Agent) *MonitorUpdateOne {
-	return muo.SetOwnerID(a.ID)
+func (_u *MonitorUpdateOne) SetOwner(v *Agent) *MonitorUpdateOne {
+	return _u.SetOwnerID(v.ID)
 }
 
 // Mutation returns the MonitorMutation object of the builder.
-func (muo *MonitorUpdateOne) Mutation() *MonitorMutation {
-	return muo.mutation
+func (_u *MonitorUpdateOne) Mutation() *MonitorMutation {
+	return _u.mutation
 }
 
 // ClearOwner clears the "owner" edge to the Agent entity.
-func (muo *MonitorUpdateOne) ClearOwner() *MonitorUpdateOne {
-	muo.mutation.ClearOwner()
-	return muo
+func (_u *MonitorUpdateOne) ClearOwner() *MonitorUpdateOne {
+	_u.mutation.ClearOwner()
+	return _u
 }
 
 // Where appends a list predicates to the MonitorUpdate builder.
-func (muo *MonitorUpdateOne) Where(ps ...predicate.Monitor) *MonitorUpdateOne {
-	muo.mutation.Where(ps...)
-	return muo
+func (_u *MonitorUpdateOne) Where(ps ...predicate.Monitor) *MonitorUpdateOne {
+	_u.mutation.Where(ps...)
+	return _u
 }
 
 // Select allows selecting one or more fields (columns) of the returned entity.
 // The default is selecting all fields defined in the entity schema.
-func (muo *MonitorUpdateOne) Select(field string, fields ...string) *MonitorUpdateOne {
-	muo.fields = append([]string{field}, fields...)
-	return muo
+func (_u *MonitorUpdateOne) Select(field string, fields ...string) *MonitorUpdateOne {
+	_u.fields = append([]string{field}, fields...)
+	return _u
 }
 
 // Save executes the query and returns the updated Monitor entity.
-func (muo *MonitorUpdateOne) Save(ctx context.Context) (*Monitor, error) {
-	return withHooks(ctx, muo.sqlSave, muo.mutation, muo.hooks)
+func (_u *MonitorUpdateOne) Save(ctx context.Context) (*Monitor, error) {
+	return withHooks(ctx, _u.sqlSave, _u.mutation, _u.hooks)
 }
 
 // SaveX is like Save, but panics if an error occurs.
-func (muo *MonitorUpdateOne) SaveX(ctx context.Context) *Monitor {
-	node, err := muo.Save(ctx)
+func (_u *MonitorUpdateOne) SaveX(ctx context.Context) *Monitor {
+	node, err := _u.Save(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -435,43 +435,43 @@ func (muo *MonitorUpdateOne) SaveX(ctx context.Context) *Monitor {
 }
 
 // Exec executes the query on the entity.
-func (muo *MonitorUpdateOne) Exec(ctx context.Context) error {
-	_, err := muo.Save(ctx)
+func (_u *MonitorUpdateOne) Exec(ctx context.Context) error {
+	_, err := _u.Save(ctx)
 	return err
 }
 
 // ExecX is like Exec, but panics if an error occurs.
-func (muo *MonitorUpdateOne) ExecX(ctx context.Context) {
-	if err := muo.Exec(ctx); err != nil {
+func (_u *MonitorUpdateOne) ExecX(ctx context.Context) {
+	if err := _u.Exec(ctx); err != nil {
 		panic(err)
 	}
 }
 
 // check runs all checks and user-defined validators on the builder.
-func (muo *MonitorUpdateOne) check() error {
-	if muo.mutation.OwnerCleared() && len(muo.mutation.OwnerIDs()) > 0 {
+func (_u *MonitorUpdateOne) check() error {
+	if _u.mutation.OwnerCleared() && len(_u.mutation.OwnerIDs()) > 0 {
 		return errors.New(`ent: clearing a required unique edge "Monitor.owner"`)
 	}
 	return nil
 }
 
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
-func (muo *MonitorUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MonitorUpdateOne {
-	muo.modifiers = append(muo.modifiers, modifiers...)
-	return muo
+func (_u *MonitorUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *MonitorUpdateOne {
+	_u.modifiers = append(_u.modifiers, modifiers...)
+	return _u
 }
 
-func (muo *MonitorUpdateOne) sqlSave(ctx context.Context) (_node *Monitor, err error) {
-	if err := muo.check(); err != nil {
+func (_u *MonitorUpdateOne) sqlSave(ctx context.Context) (_node *Monitor, err error) {
+	if err := _u.check(); err != nil {
 		return _node, err
 	}
 	_spec := sqlgraph.NewUpdateSpec(monitor.Table, monitor.Columns, sqlgraph.NewFieldSpec(monitor.FieldID, field.TypeInt))
-	id, ok := muo.mutation.ID()
+	id, ok := _u.mutation.ID()
 	if !ok {
 		return nil, &ValidationError{Name: "id", err: errors.New(`ent: missing "Monitor.id" for update`)}
 	}
 	_spec.Node.ID.Value = id
-	if fields := muo.fields; len(fields) > 0 {
+	if fields := _u.fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, monitor.FieldID)
 		for _, f := range fields {
@@ -483,44 +483,44 @@ func (muo *MonitorUpdateOne) sqlSave(ctx context.Context) (_node *Monitor, err e
 			}
 		}
 	}
-	if ps := muo.mutation.predicates; len(ps) > 0 {
+	if ps := _u.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if value, ok := muo.mutation.Manufacturer(); ok {
+	if value, ok := _u.mutation.Manufacturer(); ok {
 		_spec.SetField(monitor.FieldManufacturer, field.TypeString, value)
 	}
-	if muo.mutation.ManufacturerCleared() {
+	if _u.mutation.ManufacturerCleared() {
 		_spec.ClearField(monitor.FieldManufacturer, field.TypeString)
 	}
-	if value, ok := muo.mutation.Model(); ok {
+	if value, ok := _u.mutation.Model(); ok {
 		_spec.SetField(monitor.FieldModel, field.TypeString, value)
 	}
-	if muo.mutation.ModelCleared() {
+	if _u.mutation.ModelCleared() {
 		_spec.ClearField(monitor.FieldModel, field.TypeString)
 	}
-	if value, ok := muo.mutation.Serial(); ok {
+	if value, ok := _u.mutation.Serial(); ok {
 		_spec.SetField(monitor.FieldSerial, field.TypeString, value)
 	}
-	if muo.mutation.SerialCleared() {
+	if _u.mutation.SerialCleared() {
 		_spec.ClearField(monitor.FieldSerial, field.TypeString)
 	}
-	if value, ok := muo.mutation.WeekOfManufacture(); ok {
+	if value, ok := _u.mutation.WeekOfManufacture(); ok {
 		_spec.SetField(monitor.FieldWeekOfManufacture, field.TypeString, value)
 	}
-	if muo.mutation.WeekOfManufactureCleared() {
+	if _u.mutation.WeekOfManufactureCleared() {
 		_spec.ClearField(monitor.FieldWeekOfManufacture, field.TypeString)
 	}
-	if value, ok := muo.mutation.YearOfManufacture(); ok {
+	if value, ok := _u.mutation.YearOfManufacture(); ok {
 		_spec.SetField(monitor.FieldYearOfManufacture, field.TypeString, value)
 	}
-	if muo.mutation.YearOfManufactureCleared() {
+	if _u.mutation.YearOfManufactureCleared() {
 		_spec.ClearField(monitor.FieldYearOfManufacture, field.TypeString)
 	}
-	if muo.mutation.OwnerCleared() {
+	if _u.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -533,7 +533,7 @@ func (muo *MonitorUpdateOne) sqlSave(ctx context.Context) (_node *Monitor, err e
 		}
 		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
 	}
-	if nodes := muo.mutation.OwnerIDs(); len(nodes) > 0 {
+	if nodes := _u.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.M2O,
 			Inverse: true,
@@ -549,11 +549,11 @@ func (muo *MonitorUpdateOne) sqlSave(ctx context.Context) (_node *Monitor, err e
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
-	_spec.AddModifiers(muo.modifiers...)
-	_node = &Monitor{config: muo.config}
+	_spec.AddModifiers(_u.modifiers...)
+	_node = &Monitor{config: _u.config}
 	_spec.Assign = _node.assignValues
 	_spec.ScanValues = _node.scanValues
-	if err = sqlgraph.UpdateNode(ctx, muo.driver, _spec); err != nil {
+	if err = sqlgraph.UpdateNode(ctx, _u.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
 			err = &NotFoundError{monitor.Label}
 		} else if sqlgraph.IsConstraintError(err) {
@@ -561,6 +561,6 @@ func (muo *MonitorUpdateOne) sqlSave(ctx context.Context) (_node *Monitor, err e
 		}
 		return nil, err
 	}
-	muo.mutation.done = true
+	_u.mutation.done = true
 	return _node, nil
 }

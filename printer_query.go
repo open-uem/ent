@@ -32,44 +32,44 @@ type PrinterQuery struct {
 }
 
 // Where adds a new predicate for the PrinterQuery builder.
-func (pq *PrinterQuery) Where(ps ...predicate.Printer) *PrinterQuery {
-	pq.predicates = append(pq.predicates, ps...)
-	return pq
+func (_q *PrinterQuery) Where(ps ...predicate.Printer) *PrinterQuery {
+	_q.predicates = append(_q.predicates, ps...)
+	return _q
 }
 
 // Limit the number of records to be returned by this query.
-func (pq *PrinterQuery) Limit(limit int) *PrinterQuery {
-	pq.ctx.Limit = &limit
-	return pq
+func (_q *PrinterQuery) Limit(limit int) *PrinterQuery {
+	_q.ctx.Limit = &limit
+	return _q
 }
 
 // Offset to start from.
-func (pq *PrinterQuery) Offset(offset int) *PrinterQuery {
-	pq.ctx.Offset = &offset
-	return pq
+func (_q *PrinterQuery) Offset(offset int) *PrinterQuery {
+	_q.ctx.Offset = &offset
+	return _q
 }
 
 // Unique configures the query builder to filter duplicate records on query.
 // By default, unique is set to true, and can be disabled using this method.
-func (pq *PrinterQuery) Unique(unique bool) *PrinterQuery {
-	pq.ctx.Unique = &unique
-	return pq
+func (_q *PrinterQuery) Unique(unique bool) *PrinterQuery {
+	_q.ctx.Unique = &unique
+	return _q
 }
 
 // Order specifies how the records should be ordered.
-func (pq *PrinterQuery) Order(o ...printer.OrderOption) *PrinterQuery {
-	pq.order = append(pq.order, o...)
-	return pq
+func (_q *PrinterQuery) Order(o ...printer.OrderOption) *PrinterQuery {
+	_q.order = append(_q.order, o...)
+	return _q
 }
 
 // QueryOwner chains the current query on the "owner" edge.
-func (pq *PrinterQuery) QueryOwner() *AgentQuery {
-	query := (&AgentClient{config: pq.config}).Query()
+func (_q *PrinterQuery) QueryOwner() *AgentQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
-		if err := pq.prepareQuery(ctx); err != nil {
+		if err := _q.prepareQuery(ctx); err != nil {
 			return nil, err
 		}
-		selector := pq.sqlQuery(ctx)
+		selector := _q.sqlQuery(ctx)
 		if err := selector.Err(); err != nil {
 			return nil, err
 		}
@@ -78,7 +78,7 @@ func (pq *PrinterQuery) QueryOwner() *AgentQuery {
 			sqlgraph.To(agent.Table, agent.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, true, printer.OwnerTable, printer.OwnerColumn),
 		)
-		fromU = sqlgraph.SetNeighbors(pq.driver.Dialect(), step)
+		fromU = sqlgraph.SetNeighbors(_q.driver.Dialect(), step)
 		return fromU, nil
 	}
 	return query
@@ -86,8 +86,8 @@ func (pq *PrinterQuery) QueryOwner() *AgentQuery {
 
 // First returns the first Printer entity from the query.
 // Returns a *NotFoundError when no Printer was found.
-func (pq *PrinterQuery) First(ctx context.Context) (*Printer, error) {
-	nodes, err := pq.Limit(1).All(setContextOp(ctx, pq.ctx, ent.OpQueryFirst))
+func (_q *PrinterQuery) First(ctx context.Context) (*Printer, error) {
+	nodes, err := _q.Limit(1).All(setContextOp(ctx, _q.ctx, ent.OpQueryFirst))
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +98,8 @@ func (pq *PrinterQuery) First(ctx context.Context) (*Printer, error) {
 }
 
 // FirstX is like First, but panics if an error occurs.
-func (pq *PrinterQuery) FirstX(ctx context.Context) *Printer {
-	node, err := pq.First(ctx)
+func (_q *PrinterQuery) FirstX(ctx context.Context) *Printer {
+	node, err := _q.First(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -108,9 +108,9 @@ func (pq *PrinterQuery) FirstX(ctx context.Context) *Printer {
 
 // FirstID returns the first Printer ID from the query.
 // Returns a *NotFoundError when no Printer ID was found.
-func (pq *PrinterQuery) FirstID(ctx context.Context) (id int, err error) {
+func (_q *PrinterQuery) FirstID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = pq.Limit(1).IDs(setContextOp(ctx, pq.ctx, ent.OpQueryFirstID)); err != nil {
+	if ids, err = _q.Limit(1).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryFirstID)); err != nil {
 		return
 	}
 	if len(ids) == 0 {
@@ -121,8 +121,8 @@ func (pq *PrinterQuery) FirstID(ctx context.Context) (id int, err error) {
 }
 
 // FirstIDX is like FirstID, but panics if an error occurs.
-func (pq *PrinterQuery) FirstIDX(ctx context.Context) int {
-	id, err := pq.FirstID(ctx)
+func (_q *PrinterQuery) FirstIDX(ctx context.Context) int {
+	id, err := _q.FirstID(ctx)
 	if err != nil && !IsNotFound(err) {
 		panic(err)
 	}
@@ -132,8 +132,8 @@ func (pq *PrinterQuery) FirstIDX(ctx context.Context) int {
 // Only returns a single Printer entity found by the query, ensuring it only returns one.
 // Returns a *NotSingularError when more than one Printer entity is found.
 // Returns a *NotFoundError when no Printer entities are found.
-func (pq *PrinterQuery) Only(ctx context.Context) (*Printer, error) {
-	nodes, err := pq.Limit(2).All(setContextOp(ctx, pq.ctx, ent.OpQueryOnly))
+func (_q *PrinterQuery) Only(ctx context.Context) (*Printer, error) {
+	nodes, err := _q.Limit(2).All(setContextOp(ctx, _q.ctx, ent.OpQueryOnly))
 	if err != nil {
 		return nil, err
 	}
@@ -148,8 +148,8 @@ func (pq *PrinterQuery) Only(ctx context.Context) (*Printer, error) {
 }
 
 // OnlyX is like Only, but panics if an error occurs.
-func (pq *PrinterQuery) OnlyX(ctx context.Context) *Printer {
-	node, err := pq.Only(ctx)
+func (_q *PrinterQuery) OnlyX(ctx context.Context) *Printer {
+	node, err := _q.Only(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -159,9 +159,9 @@ func (pq *PrinterQuery) OnlyX(ctx context.Context) *Printer {
 // OnlyID is like Only, but returns the only Printer ID in the query.
 // Returns a *NotSingularError when more than one Printer ID is found.
 // Returns a *NotFoundError when no entities are found.
-func (pq *PrinterQuery) OnlyID(ctx context.Context) (id int, err error) {
+func (_q *PrinterQuery) OnlyID(ctx context.Context) (id int, err error) {
 	var ids []int
-	if ids, err = pq.Limit(2).IDs(setContextOp(ctx, pq.ctx, ent.OpQueryOnlyID)); err != nil {
+	if ids, err = _q.Limit(2).IDs(setContextOp(ctx, _q.ctx, ent.OpQueryOnlyID)); err != nil {
 		return
 	}
 	switch len(ids) {
@@ -176,8 +176,8 @@ func (pq *PrinterQuery) OnlyID(ctx context.Context) (id int, err error) {
 }
 
 // OnlyIDX is like OnlyID, but panics if an error occurs.
-func (pq *PrinterQuery) OnlyIDX(ctx context.Context) int {
-	id, err := pq.OnlyID(ctx)
+func (_q *PrinterQuery) OnlyIDX(ctx context.Context) int {
+	id, err := _q.OnlyID(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -185,18 +185,18 @@ func (pq *PrinterQuery) OnlyIDX(ctx context.Context) int {
 }
 
 // All executes the query and returns a list of Printers.
-func (pq *PrinterQuery) All(ctx context.Context) ([]*Printer, error) {
-	ctx = setContextOp(ctx, pq.ctx, ent.OpQueryAll)
-	if err := pq.prepareQuery(ctx); err != nil {
+func (_q *PrinterQuery) All(ctx context.Context) ([]*Printer, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryAll)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return nil, err
 	}
 	qr := querierAll[[]*Printer, *PrinterQuery]()
-	return withInterceptors[[]*Printer](ctx, pq, qr, pq.inters)
+	return withInterceptors[[]*Printer](ctx, _q, qr, _q.inters)
 }
 
 // AllX is like All, but panics if an error occurs.
-func (pq *PrinterQuery) AllX(ctx context.Context) []*Printer {
-	nodes, err := pq.All(ctx)
+func (_q *PrinterQuery) AllX(ctx context.Context) []*Printer {
+	nodes, err := _q.All(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -204,20 +204,20 @@ func (pq *PrinterQuery) AllX(ctx context.Context) []*Printer {
 }
 
 // IDs executes the query and returns a list of Printer IDs.
-func (pq *PrinterQuery) IDs(ctx context.Context) (ids []int, err error) {
-	if pq.ctx.Unique == nil && pq.path != nil {
-		pq.Unique(true)
+func (_q *PrinterQuery) IDs(ctx context.Context) (ids []int, err error) {
+	if _q.ctx.Unique == nil && _q.path != nil {
+		_q.Unique(true)
 	}
-	ctx = setContextOp(ctx, pq.ctx, ent.OpQueryIDs)
-	if err = pq.Select(printer.FieldID).Scan(ctx, &ids); err != nil {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryIDs)
+	if err = _q.Select(printer.FieldID).Scan(ctx, &ids); err != nil {
 		return nil, err
 	}
 	return ids, nil
 }
 
 // IDsX is like IDs, but panics if an error occurs.
-func (pq *PrinterQuery) IDsX(ctx context.Context) []int {
-	ids, err := pq.IDs(ctx)
+func (_q *PrinterQuery) IDsX(ctx context.Context) []int {
+	ids, err := _q.IDs(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -225,17 +225,17 @@ func (pq *PrinterQuery) IDsX(ctx context.Context) []int {
 }
 
 // Count returns the count of the given query.
-func (pq *PrinterQuery) Count(ctx context.Context) (int, error) {
-	ctx = setContextOp(ctx, pq.ctx, ent.OpQueryCount)
-	if err := pq.prepareQuery(ctx); err != nil {
+func (_q *PrinterQuery) Count(ctx context.Context) (int, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryCount)
+	if err := _q.prepareQuery(ctx); err != nil {
 		return 0, err
 	}
-	return withInterceptors[int](ctx, pq, querierCount[*PrinterQuery](), pq.inters)
+	return withInterceptors[int](ctx, _q, querierCount[*PrinterQuery](), _q.inters)
 }
 
 // CountX is like Count, but panics if an error occurs.
-func (pq *PrinterQuery) CountX(ctx context.Context) int {
-	count, err := pq.Count(ctx)
+func (_q *PrinterQuery) CountX(ctx context.Context) int {
+	count, err := _q.Count(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -243,9 +243,9 @@ func (pq *PrinterQuery) CountX(ctx context.Context) int {
 }
 
 // Exist returns true if the query has elements in the graph.
-func (pq *PrinterQuery) Exist(ctx context.Context) (bool, error) {
-	ctx = setContextOp(ctx, pq.ctx, ent.OpQueryExist)
-	switch _, err := pq.FirstID(ctx); {
+func (_q *PrinterQuery) Exist(ctx context.Context) (bool, error) {
+	ctx = setContextOp(ctx, _q.ctx, ent.OpQueryExist)
+	switch _, err := _q.FirstID(ctx); {
 	case IsNotFound(err):
 		return false, nil
 	case err != nil:
@@ -256,8 +256,8 @@ func (pq *PrinterQuery) Exist(ctx context.Context) (bool, error) {
 }
 
 // ExistX is like Exist, but panics if an error occurs.
-func (pq *PrinterQuery) ExistX(ctx context.Context) bool {
-	exist, err := pq.Exist(ctx)
+func (_q *PrinterQuery) ExistX(ctx context.Context) bool {
+	exist, err := _q.Exist(ctx)
 	if err != nil {
 		panic(err)
 	}
@@ -266,33 +266,33 @@ func (pq *PrinterQuery) ExistX(ctx context.Context) bool {
 
 // Clone returns a duplicate of the PrinterQuery builder, including all associated steps. It can be
 // used to prepare common query builders and use them differently after the clone is made.
-func (pq *PrinterQuery) Clone() *PrinterQuery {
-	if pq == nil {
+func (_q *PrinterQuery) Clone() *PrinterQuery {
+	if _q == nil {
 		return nil
 	}
 	return &PrinterQuery{
-		config:     pq.config,
-		ctx:        pq.ctx.Clone(),
-		order:      append([]printer.OrderOption{}, pq.order...),
-		inters:     append([]Interceptor{}, pq.inters...),
-		predicates: append([]predicate.Printer{}, pq.predicates...),
-		withOwner:  pq.withOwner.Clone(),
+		config:     _q.config,
+		ctx:        _q.ctx.Clone(),
+		order:      append([]printer.OrderOption{}, _q.order...),
+		inters:     append([]Interceptor{}, _q.inters...),
+		predicates: append([]predicate.Printer{}, _q.predicates...),
+		withOwner:  _q.withOwner.Clone(),
 		// clone intermediate query.
-		sql:       pq.sql.Clone(),
-		path:      pq.path,
-		modifiers: append([]func(*sql.Selector){}, pq.modifiers...),
+		sql:       _q.sql.Clone(),
+		path:      _q.path,
+		modifiers: append([]func(*sql.Selector){}, _q.modifiers...),
 	}
 }
 
 // WithOwner tells the query-builder to eager-load the nodes that are connected to
 // the "owner" edge. The optional arguments are used to configure the query builder of the edge.
-func (pq *PrinterQuery) WithOwner(opts ...func(*AgentQuery)) *PrinterQuery {
-	query := (&AgentClient{config: pq.config}).Query()
+func (_q *PrinterQuery) WithOwner(opts ...func(*AgentQuery)) *PrinterQuery {
+	query := (&AgentClient{config: _q.config}).Query()
 	for _, opt := range opts {
 		opt(query)
 	}
-	pq.withOwner = query
-	return pq
+	_q.withOwner = query
+	return _q
 }
 
 // GroupBy is used to group vertices by one or more fields/columns.
@@ -309,10 +309,10 @@ func (pq *PrinterQuery) WithOwner(opts ...func(*AgentQuery)) *PrinterQuery {
 //		GroupBy(printer.FieldName).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
-func (pq *PrinterQuery) GroupBy(field string, fields ...string) *PrinterGroupBy {
-	pq.ctx.Fields = append([]string{field}, fields...)
-	grbuild := &PrinterGroupBy{build: pq}
-	grbuild.flds = &pq.ctx.Fields
+func (_q *PrinterQuery) GroupBy(field string, fields ...string) *PrinterGroupBy {
+	_q.ctx.Fields = append([]string{field}, fields...)
+	grbuild := &PrinterGroupBy{build: _q}
+	grbuild.flds = &_q.ctx.Fields
 	grbuild.label = printer.Label
 	grbuild.scan = grbuild.Scan
 	return grbuild
@@ -330,55 +330,55 @@ func (pq *PrinterQuery) GroupBy(field string, fields ...string) *PrinterGroupBy 
 //	client.Printer.Query().
 //		Select(printer.FieldName).
 //		Scan(ctx, &v)
-func (pq *PrinterQuery) Select(fields ...string) *PrinterSelect {
-	pq.ctx.Fields = append(pq.ctx.Fields, fields...)
-	sbuild := &PrinterSelect{PrinterQuery: pq}
+func (_q *PrinterQuery) Select(fields ...string) *PrinterSelect {
+	_q.ctx.Fields = append(_q.ctx.Fields, fields...)
+	sbuild := &PrinterSelect{PrinterQuery: _q}
 	sbuild.label = printer.Label
-	sbuild.flds, sbuild.scan = &pq.ctx.Fields, sbuild.Scan
+	sbuild.flds, sbuild.scan = &_q.ctx.Fields, sbuild.Scan
 	return sbuild
 }
 
 // Aggregate returns a PrinterSelect configured with the given aggregations.
-func (pq *PrinterQuery) Aggregate(fns ...AggregateFunc) *PrinterSelect {
-	return pq.Select().Aggregate(fns...)
+func (_q *PrinterQuery) Aggregate(fns ...AggregateFunc) *PrinterSelect {
+	return _q.Select().Aggregate(fns...)
 }
 
-func (pq *PrinterQuery) prepareQuery(ctx context.Context) error {
-	for _, inter := range pq.inters {
+func (_q *PrinterQuery) prepareQuery(ctx context.Context) error {
+	for _, inter := range _q.inters {
 		if inter == nil {
 			return fmt.Errorf("ent: uninitialized interceptor (forgotten import ent/runtime?)")
 		}
 		if trv, ok := inter.(Traverser); ok {
-			if err := trv.Traverse(ctx, pq); err != nil {
+			if err := trv.Traverse(ctx, _q); err != nil {
 				return err
 			}
 		}
 	}
-	for _, f := range pq.ctx.Fields {
+	for _, f := range _q.ctx.Fields {
 		if !printer.ValidColumn(f) {
 			return &ValidationError{Name: f, err: fmt.Errorf("ent: invalid field %q for query", f)}
 		}
 	}
-	if pq.path != nil {
-		prev, err := pq.path(ctx)
+	if _q.path != nil {
+		prev, err := _q.path(ctx)
 		if err != nil {
 			return err
 		}
-		pq.sql = prev
+		_q.sql = prev
 	}
 	return nil
 }
 
-func (pq *PrinterQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Printer, error) {
+func (_q *PrinterQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Printer, error) {
 	var (
 		nodes       = []*Printer{}
-		withFKs     = pq.withFKs
-		_spec       = pq.querySpec()
+		withFKs     = _q.withFKs
+		_spec       = _q.querySpec()
 		loadedTypes = [1]bool{
-			pq.withOwner != nil,
+			_q.withOwner != nil,
 		}
 	)
-	if pq.withOwner != nil {
+	if _q.withOwner != nil {
 		withFKs = true
 	}
 	if withFKs {
@@ -388,25 +388,25 @@ func (pq *PrinterQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Prin
 		return (*Printer).scanValues(nil, columns)
 	}
 	_spec.Assign = func(columns []string, values []any) error {
-		node := &Printer{config: pq.config}
+		node := &Printer{config: _q.config}
 		nodes = append(nodes, node)
 		node.Edges.loadedTypes = loadedTypes
 		return node.assignValues(columns, values)
 	}
-	if len(pq.modifiers) > 0 {
-		_spec.Modifiers = pq.modifiers
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
 	for i := range hooks {
 		hooks[i](ctx, _spec)
 	}
-	if err := sqlgraph.QueryNodes(ctx, pq.driver, _spec); err != nil {
+	if err := sqlgraph.QueryNodes(ctx, _q.driver, _spec); err != nil {
 		return nil, err
 	}
 	if len(nodes) == 0 {
 		return nodes, nil
 	}
-	if query := pq.withOwner; query != nil {
-		if err := pq.loadOwner(ctx, query, nodes, nil,
+	if query := _q.withOwner; query != nil {
+		if err := _q.loadOwner(ctx, query, nodes, nil,
 			func(n *Printer, e *Agent) { n.Edges.Owner = e }); err != nil {
 			return nil, err
 		}
@@ -414,7 +414,7 @@ func (pq *PrinterQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Prin
 	return nodes, nil
 }
 
-func (pq *PrinterQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*Printer, init func(*Printer), assign func(*Printer, *Agent)) error {
+func (_q *PrinterQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes []*Printer, init func(*Printer), assign func(*Printer, *Agent)) error {
 	ids := make([]string, 0, len(nodes))
 	nodeids := make(map[string][]*Printer)
 	for i := range nodes {
@@ -447,27 +447,27 @@ func (pq *PrinterQuery) loadOwner(ctx context.Context, query *AgentQuery, nodes 
 	return nil
 }
 
-func (pq *PrinterQuery) sqlCount(ctx context.Context) (int, error) {
-	_spec := pq.querySpec()
-	if len(pq.modifiers) > 0 {
-		_spec.Modifiers = pq.modifiers
+func (_q *PrinterQuery) sqlCount(ctx context.Context) (int, error) {
+	_spec := _q.querySpec()
+	if len(_q.modifiers) > 0 {
+		_spec.Modifiers = _q.modifiers
 	}
-	_spec.Node.Columns = pq.ctx.Fields
-	if len(pq.ctx.Fields) > 0 {
-		_spec.Unique = pq.ctx.Unique != nil && *pq.ctx.Unique
+	_spec.Node.Columns = _q.ctx.Fields
+	if len(_q.ctx.Fields) > 0 {
+		_spec.Unique = _q.ctx.Unique != nil && *_q.ctx.Unique
 	}
-	return sqlgraph.CountNodes(ctx, pq.driver, _spec)
+	return sqlgraph.CountNodes(ctx, _q.driver, _spec)
 }
 
-func (pq *PrinterQuery) querySpec() *sqlgraph.QuerySpec {
+func (_q *PrinterQuery) querySpec() *sqlgraph.QuerySpec {
 	_spec := sqlgraph.NewQuerySpec(printer.Table, printer.Columns, sqlgraph.NewFieldSpec(printer.FieldID, field.TypeInt))
-	_spec.From = pq.sql
-	if unique := pq.ctx.Unique; unique != nil {
+	_spec.From = _q.sql
+	if unique := _q.ctx.Unique; unique != nil {
 		_spec.Unique = *unique
-	} else if pq.path != nil {
+	} else if _q.path != nil {
 		_spec.Unique = true
 	}
-	if fields := pq.ctx.Fields; len(fields) > 0 {
+	if fields := _q.ctx.Fields; len(fields) > 0 {
 		_spec.Node.Columns = make([]string, 0, len(fields))
 		_spec.Node.Columns = append(_spec.Node.Columns, printer.FieldID)
 		for i := range fields {
@@ -476,20 +476,20 @@ func (pq *PrinterQuery) querySpec() *sqlgraph.QuerySpec {
 			}
 		}
 	}
-	if ps := pq.predicates; len(ps) > 0 {
+	if ps := _q.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
 			}
 		}
 	}
-	if limit := pq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		_spec.Limit = *limit
 	}
-	if offset := pq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		_spec.Offset = *offset
 	}
-	if ps := pq.order; len(ps) > 0 {
+	if ps := _q.order; len(ps) > 0 {
 		_spec.Order = func(selector *sql.Selector) {
 			for i := range ps {
 				ps[i](selector)
@@ -499,45 +499,45 @@ func (pq *PrinterQuery) querySpec() *sqlgraph.QuerySpec {
 	return _spec
 }
 
-func (pq *PrinterQuery) sqlQuery(ctx context.Context) *sql.Selector {
-	builder := sql.Dialect(pq.driver.Dialect())
+func (_q *PrinterQuery) sqlQuery(ctx context.Context) *sql.Selector {
+	builder := sql.Dialect(_q.driver.Dialect())
 	t1 := builder.Table(printer.Table)
-	columns := pq.ctx.Fields
+	columns := _q.ctx.Fields
 	if len(columns) == 0 {
 		columns = printer.Columns
 	}
 	selector := builder.Select(t1.Columns(columns...)...).From(t1)
-	if pq.sql != nil {
-		selector = pq.sql
+	if _q.sql != nil {
+		selector = _q.sql
 		selector.Select(selector.Columns(columns...)...)
 	}
-	if pq.ctx.Unique != nil && *pq.ctx.Unique {
+	if _q.ctx.Unique != nil && *_q.ctx.Unique {
 		selector.Distinct()
 	}
-	for _, m := range pq.modifiers {
+	for _, m := range _q.modifiers {
 		m(selector)
 	}
-	for _, p := range pq.predicates {
+	for _, p := range _q.predicates {
 		p(selector)
 	}
-	for _, p := range pq.order {
+	for _, p := range _q.order {
 		p(selector)
 	}
-	if offset := pq.ctx.Offset; offset != nil {
+	if offset := _q.ctx.Offset; offset != nil {
 		// limit is mandatory for offset clause. We start
 		// with default value, and override it below if needed.
 		selector.Offset(*offset).Limit(math.MaxInt32)
 	}
-	if limit := pq.ctx.Limit; limit != nil {
+	if limit := _q.ctx.Limit; limit != nil {
 		selector.Limit(*limit)
 	}
 	return selector
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (pq *PrinterQuery) Modify(modifiers ...func(s *sql.Selector)) *PrinterSelect {
-	pq.modifiers = append(pq.modifiers, modifiers...)
-	return pq.Select()
+func (_q *PrinterQuery) Modify(modifiers ...func(s *sql.Selector)) *PrinterSelect {
+	_q.modifiers = append(_q.modifiers, modifiers...)
+	return _q.Select()
 }
 
 // PrinterGroupBy is the group-by builder for Printer entities.
@@ -547,41 +547,41 @@ type PrinterGroupBy struct {
 }
 
 // Aggregate adds the given aggregation functions to the group-by query.
-func (pgb *PrinterGroupBy) Aggregate(fns ...AggregateFunc) *PrinterGroupBy {
-	pgb.fns = append(pgb.fns, fns...)
-	return pgb
+func (_g *PrinterGroupBy) Aggregate(fns ...AggregateFunc) *PrinterGroupBy {
+	_g.fns = append(_g.fns, fns...)
+	return _g
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (pgb *PrinterGroupBy) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, pgb.build.ctx, ent.OpQueryGroupBy)
-	if err := pgb.build.prepareQuery(ctx); err != nil {
+func (_g *PrinterGroupBy) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _g.build.ctx, ent.OpQueryGroupBy)
+	if err := _g.build.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*PrinterQuery, *PrinterGroupBy](ctx, pgb.build, pgb, pgb.build.inters, v)
+	return scanWithInterceptors[*PrinterQuery, *PrinterGroupBy](ctx, _g.build, _g, _g.build.inters, v)
 }
 
-func (pgb *PrinterGroupBy) sqlScan(ctx context.Context, root *PrinterQuery, v any) error {
+func (_g *PrinterGroupBy) sqlScan(ctx context.Context, root *PrinterQuery, v any) error {
 	selector := root.sqlQuery(ctx).Select()
-	aggregation := make([]string, 0, len(pgb.fns))
-	for _, fn := range pgb.fns {
+	aggregation := make([]string, 0, len(_g.fns))
+	for _, fn := range _g.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
 	if len(selector.SelectedColumns()) == 0 {
-		columns := make([]string, 0, len(*pgb.flds)+len(pgb.fns))
-		for _, f := range *pgb.flds {
+		columns := make([]string, 0, len(*_g.flds)+len(_g.fns))
+		for _, f := range *_g.flds {
 			columns = append(columns, selector.C(f))
 		}
 		columns = append(columns, aggregation...)
 		selector.Select(columns...)
 	}
-	selector.GroupBy(selector.Columns(*pgb.flds...)...)
+	selector.GroupBy(selector.Columns(*_g.flds...)...)
 	if err := selector.Err(); err != nil {
 		return err
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := pgb.build.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _g.build.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -595,27 +595,27 @@ type PrinterSelect struct {
 }
 
 // Aggregate adds the given aggregation functions to the selector query.
-func (ps *PrinterSelect) Aggregate(fns ...AggregateFunc) *PrinterSelect {
-	ps.fns = append(ps.fns, fns...)
-	return ps
+func (_s *PrinterSelect) Aggregate(fns ...AggregateFunc) *PrinterSelect {
+	_s.fns = append(_s.fns, fns...)
+	return _s
 }
 
 // Scan applies the selector query and scans the result into the given value.
-func (ps *PrinterSelect) Scan(ctx context.Context, v any) error {
-	ctx = setContextOp(ctx, ps.ctx, ent.OpQuerySelect)
-	if err := ps.prepareQuery(ctx); err != nil {
+func (_s *PrinterSelect) Scan(ctx context.Context, v any) error {
+	ctx = setContextOp(ctx, _s.ctx, ent.OpQuerySelect)
+	if err := _s.prepareQuery(ctx); err != nil {
 		return err
 	}
-	return scanWithInterceptors[*PrinterQuery, *PrinterSelect](ctx, ps.PrinterQuery, ps, ps.inters, v)
+	return scanWithInterceptors[*PrinterQuery, *PrinterSelect](ctx, _s.PrinterQuery, _s, _s.inters, v)
 }
 
-func (ps *PrinterSelect) sqlScan(ctx context.Context, root *PrinterQuery, v any) error {
+func (_s *PrinterSelect) sqlScan(ctx context.Context, root *PrinterQuery, v any) error {
 	selector := root.sqlQuery(ctx)
-	aggregation := make([]string, 0, len(ps.fns))
-	for _, fn := range ps.fns {
+	aggregation := make([]string, 0, len(_s.fns))
+	for _, fn := range _s.fns {
 		aggregation = append(aggregation, fn(selector))
 	}
-	switch n := len(*ps.selector.flds); {
+	switch n := len(*_s.selector.flds); {
 	case n == 0 && len(aggregation) > 0:
 		selector.Select(aggregation...)
 	case n != 0 && len(aggregation) > 0:
@@ -623,7 +623,7 @@ func (ps *PrinterSelect) sqlScan(ctx context.Context, root *PrinterQuery, v any)
 	}
 	rows := &sql.Rows{}
 	query, args := selector.Query()
-	if err := ps.driver.Query(ctx, query, args, rows); err != nil {
+	if err := _s.driver.Query(ctx, query, args, rows); err != nil {
 		return err
 	}
 	defer rows.Close()
@@ -631,7 +631,7 @@ func (ps *PrinterSelect) sqlScan(ctx context.Context, root *PrinterQuery, v any)
 }
 
 // Modify adds a query modifier for attaching custom logic to queries.
-func (ps *PrinterSelect) Modify(modifiers ...func(s *sql.Selector)) *PrinterSelect {
-	ps.modifiers = append(ps.modifiers, modifiers...)
-	return ps
+func (_s *PrinterSelect) Modify(modifiers ...func(s *sql.Selector)) *PrinterSelect {
+	_s.modifiers = append(_s.modifiers, modifiers...)
+	return _s
 }
