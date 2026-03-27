@@ -9,7 +9,6 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"github.com/open-uem/ent/profile"
-	"github.com/open-uem/ent/site"
 )
 
 // Profile is the model entity for the Profile schema.
@@ -27,9 +26,8 @@ type Profile struct {
 	Disabled bool `json:"disabled,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the ProfileQuery when eager-loading is set.
-	Edges         ProfileEdges `json:"edges"`
-	site_profiles *int
-	selectValues  sql.SelectValues
+	Edges        ProfileEdges `json:"edges"`
+	selectValues sql.SelectValues
 }
 
 // ProfileEdges holds the relations/edges for other nodes in the graph.
@@ -41,7 +39,7 @@ type ProfileEdges struct {
 	// Issues holds the value of the issues edge.
 	Issues []*ProfileIssue `json:"issues,omitempty"`
 	// Site holds the value of the site edge.
-	Site *Site `json:"site,omitempty"`
+	Site []*Site `json:"site,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
 	loadedTypes [4]bool
@@ -75,12 +73,10 @@ func (e ProfileEdges) IssuesOrErr() ([]*ProfileIssue, error) {
 }
 
 // SiteOrErr returns the Site value or an error if the edge
-// was not loaded in eager-loading, or loaded but was not found.
-func (e ProfileEdges) SiteOrErr() (*Site, error) {
-	if e.Site != nil {
+// was not loaded in eager-loading.
+func (e ProfileEdges) SiteOrErr() ([]*Site, error) {
+	if e.loadedTypes[3] {
 		return e.Site, nil
-	} else if e.loadedTypes[3] {
-		return nil, &NotFoundError{label: site.Label}
 	}
 	return nil, &NotLoadedError{edge: "site"}
 }
@@ -96,8 +92,6 @@ func (*Profile) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullInt64)
 		case profile.FieldName, profile.FieldType:
 			values[i] = new(sql.NullString)
-		case profile.ForeignKeys[0]: // site_profiles
-			values[i] = new(sql.NullInt64)
 		default:
 			values[i] = new(sql.UnknownType)
 		}
@@ -142,13 +136,6 @@ func (pr *Profile) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field disabled", values[i])
 			} else if value.Valid {
 				pr.Disabled = value.Bool
-			}
-		case profile.ForeignKeys[0]:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for edge-field site_profiles", value)
-			} else if value.Valid {
-				pr.site_profiles = new(int)
-				*pr.site_profiles = int(value.Int64)
 			}
 		default:
 			pr.selectValues.Set(columns[i], values[i])

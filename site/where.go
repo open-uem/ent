@@ -401,7 +401,7 @@ func HasProfiles() predicate.Site {
 	return predicate.Site(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, ProfilesTable, ProfilesColumn),
+			sqlgraph.Edge(sqlgraph.M2M, false, ProfilesTable, ProfilesPrimaryKey...),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})

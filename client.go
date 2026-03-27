@@ -3680,7 +3680,7 @@ func (c *ProfileClient) QuerySite(pr *Profile) *SiteQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(profile.Table, profile.FieldID, id),
 			sqlgraph.To(site.Table, site.FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, profile.SiteTable, profile.SiteColumn),
+			sqlgraph.Edge(sqlgraph.M2M, true, profile.SiteTable, profile.SitePrimaryKey...),
 		)
 		fromV = sqlgraph.Neighbors(pr.driver.Dialect(), step)
 		return fromV, nil
@@ -5218,7 +5218,7 @@ func (c *SiteClient) QueryProfiles(s *Site) *ProfileQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(site.Table, site.FieldID, id),
 			sqlgraph.To(profile.Table, profile.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, site.ProfilesTable, site.ProfilesColumn),
+			sqlgraph.Edge(sqlgraph.M2M, false, site.ProfilesTable, site.ProfilesPrimaryKey...),
 		)
 		fromV = sqlgraph.Neighbors(s.driver.Dialect(), step)
 		return fromV, nil
