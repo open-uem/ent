@@ -29,5 +29,6 @@ func (Profile) Edges() []ent.Edge {
 		edge.To("tasks", Task.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 		edge.To("issues", ProfileIssue.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 		edge.From("site", Site.Type).Ref("profiles"),
+		edge.From("tenant", Tenant.Type).Ref("profiles"),
 	}
 }

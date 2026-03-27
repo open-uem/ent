@@ -408,6 +408,29 @@ func HasNetbirdWith(preds ...predicate.NetbirdSettings) predicate.Tenant {
 	})
 }
 
+// HasProfiles applies the HasEdge predicate on the "profiles" edge.
+func HasProfiles() predicate.Tenant {
+	return predicate.Tenant(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, ProfilesTable, ProfilesPrimaryKey...),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasProfilesWith applies the HasEdge predicate on the "profiles" edge with a given conditions (other predicates).
+func HasProfilesWith(preds ...predicate.Profile) predicate.Tenant {
+	return predicate.Tenant(func(s *sql.Selector) {
+		step := newProfilesStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // And groups predicates with the AND operator between them.
 func And(predicates ...predicate.Tenant) predicate.Tenant {
 	return predicate.Tenant(sql.AndPredicates(predicates...))

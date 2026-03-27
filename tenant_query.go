@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/predicate"
+	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/rustdesk"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
@@ -35,6 +36,7 @@ type TenantQuery struct {
 	withMetadata *OrgMetadataQuery
 	withRustdesk *RustdeskQuery
 	withNetbird  *NetbirdSettingsQuery
+	withProfiles *ProfileQuery
 	withFKs      bool
 	modifiers    []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
@@ -198,6 +200,28 @@ func (tq *TenantQuery) QueryNetbird() *NetbirdSettingsQuery {
 			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
 			sqlgraph.To(netbirdsettings.Table, netbirdsettings.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, false, tenant.NetbirdTable, tenant.NetbirdColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryProfiles chains the current query on the "profiles" edge.
+func (tq *TenantQuery) QueryProfiles() *ProfileQuery {
+	query := (&ProfileClient{config: tq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := tq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := tq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
+			sqlgraph.To(profile.Table, profile.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, tenant.ProfilesTable, tenant.ProfilesPrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
 		return fromU, nil
@@ -403,6 +427,7 @@ func (tq *TenantQuery) Clone() *TenantQuery {
 		withMetadata: tq.withMetadata.Clone(),
 		withRustdesk: tq.withRustdesk.Clone(),
 		withNetbird:  tq.withNetbird.Clone(),
+		withProfiles: tq.withProfiles.Clone(),
 		// clone intermediate query.
 		sql:       tq.sql.Clone(),
 		path:      tq.path,
@@ -473,6 +498,17 @@ func (tq *TenantQuery) WithNetbird(opts ...func(*NetbirdSettingsQuery)) *TenantQ
 		opt(query)
 	}
 	tq.withNetbird = query
+	return tq
+}
+
+// WithProfiles tells the query-builder to eager-load the nodes that are connected to
+// the "profiles" edge. The optional arguments are used to configure the query builder of the edge.
+func (tq *TenantQuery) WithProfiles(opts ...func(*ProfileQuery)) *TenantQuery {
+	query := (&ProfileClient{config: tq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	tq.withProfiles = query
 	return tq
 }
 
@@ -555,13 +591,14 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 		nodes       = []*Tenant{}
 		withFKs     = tq.withFKs
 		_spec       = tq.querySpec()
-		loadedTypes = [6]bool{
+		loadedTypes = [7]bool{
 			tq.withSites != nil,
 			tq.withSettings != nil,
 			tq.withTags != nil,
 			tq.withMetadata != nil,
 			tq.withRustdesk != nil,
 			tq.withNetbird != nil,
+			tq.withProfiles != nil,
 		}
 	)
 	if tq.withNetbird != nil {
@@ -628,6 +665,13 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 	if query := tq.withNetbird; query != nil {
 		if err := tq.loadNetbird(ctx, query, nodes, nil,
 			func(n *Tenant, e *NetbirdSettings) { n.Edges.Netbird = e }); err != nil {
+			return nil, err
+		}
+	}
+	if query := tq.withProfiles; query != nil {
+		if err := tq.loadProfiles(ctx, query, nodes,
+			func(n *Tenant) { n.Edges.Profiles = []*Profile{} },
+			func(n *Tenant, e *Profile) { n.Edges.Profiles = append(n.Edges.Profiles, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -844,6 +888,67 @@ func (tq *TenantQuery) loadNetbird(ctx context.Context, query *NetbirdSettingsQu
 		}
 		for i := range nodes {
 			assign(nodes[i], n)
+		}
+	}
+	return nil
+}
+func (tq *TenantQuery) loadProfiles(ctx context.Context, query *ProfileQuery, nodes []*Tenant, init func(*Tenant), assign func(*Tenant, *Profile)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[int]*Tenant)
+	nids := make(map[int]map[*Tenant]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(tenant.ProfilesTable)
+		s.Join(joinT).On(s.C(profile.FieldID), joinT.C(tenant.ProfilesPrimaryKey[1]))
+		s.Where(sql.InValues(joinT.C(tenant.ProfilesPrimaryKey[0]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(tenant.ProfilesPrimaryKey[0]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullInt64)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := int(values[0].(*sql.NullInt64).Int64)
+				inValue := int(values[1].(*sql.NullInt64).Int64)
+				if nids[inValue] == nil {
+					nids[inValue] = map[*Tenant]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*Profile](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "profiles" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
 		}
 	}
 	return nil

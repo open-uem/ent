@@ -1227,6 +1227,31 @@ var (
 			},
 		},
 	}
+	// TenantProfilesColumns holds the columns for the "tenant_profiles" table.
+	TenantProfilesColumns = []*schema.Column{
+		{Name: "tenant_id", Type: field.TypeInt},
+		{Name: "profile_id", Type: field.TypeInt},
+	}
+	// TenantProfilesTable holds the schema information for the "tenant_profiles" table.
+	TenantProfilesTable = &schema.Table{
+		Name:       "tenant_profiles",
+		Columns:    TenantProfilesColumns,
+		PrimaryKey: []*schema.Column{TenantProfilesColumns[0], TenantProfilesColumns[1]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "tenant_profiles_tenant_id",
+				Columns:    []*schema.Column{TenantProfilesColumns[0]},
+				RefColumns: []*schema.Column{TenantsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "tenant_profiles_profile_id",
+				Columns:    []*schema.Column{TenantProfilesColumns[1]},
+				RefColumns: []*schema.Column{ProfilesColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
 		AgentsTable,
@@ -1272,6 +1297,7 @@ var (
 		SiteAgentsTable,
 		SiteProfilesTable,
 		TenantRustdeskTable,
+		TenantProfilesTable,
 	}
 )
 
@@ -1320,4 +1346,6 @@ func init() {
 	SiteProfilesTable.ForeignKeys[1].RefTable = ProfilesTable
 	TenantRustdeskTable.ForeignKeys[0].RefTable = TenantsTable
 	TenantRustdeskTable.ForeignKeys[1].RefTable = RustdesksTable
+	TenantProfilesTable.ForeignKeys[0].RefTable = TenantsTable
+	TenantProfilesTable.ForeignKeys[1].RefTable = ProfilesTable
 }

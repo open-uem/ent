@@ -16,6 +16,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/tenant"
 )
 
 // ProfileUpdate is the builder for updating Profile entities.
@@ -154,6 +155,21 @@ func (pu *ProfileUpdate) AddSite(s ...*Site) *ProfileUpdate {
 	return pu.AddSiteIDs(ids...)
 }
 
+// AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
+func (pu *ProfileUpdate) AddTenantIDs(ids ...int) *ProfileUpdate {
+	pu.mutation.AddTenantIDs(ids...)
+	return pu
+}
+
+// AddTenant adds the "tenant" edges to the Tenant entity.
+func (pu *ProfileUpdate) AddTenant(t ...*Tenant) *ProfileUpdate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return pu.AddTenantIDs(ids...)
+}
+
 // Mutation returns the ProfileMutation object of the builder.
 func (pu *ProfileUpdate) Mutation() *ProfileMutation {
 	return pu.mutation
@@ -241,6 +257,27 @@ func (pu *ProfileUpdate) RemoveSite(s ...*Site) *ProfileUpdate {
 		ids[i] = s[i].ID
 	}
 	return pu.RemoveSiteIDs(ids...)
+}
+
+// ClearTenant clears all "tenant" edges to the Tenant entity.
+func (pu *ProfileUpdate) ClearTenant() *ProfileUpdate {
+	pu.mutation.ClearTenant()
+	return pu
+}
+
+// RemoveTenantIDs removes the "tenant" edge to Tenant entities by IDs.
+func (pu *ProfileUpdate) RemoveTenantIDs(ids ...int) *ProfileUpdate {
+	pu.mutation.RemoveTenantIDs(ids...)
+	return pu
+}
+
+// RemoveTenant removes "tenant" edges to Tenant entities.
+func (pu *ProfileUpdate) RemoveTenant(t ...*Tenant) *ProfileUpdate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return pu.RemoveTenantIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -498,6 +535,51 @@ func (pu *ProfileUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if pu.mutation.TenantCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := pu.mutation.RemovedTenantIDs(); len(nodes) > 0 && !pu.mutation.TenantCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := pu.mutation.TenantIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(pu.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, pu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -642,6 +724,21 @@ func (puo *ProfileUpdateOne) AddSite(s ...*Site) *ProfileUpdateOne {
 	return puo.AddSiteIDs(ids...)
 }
 
+// AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
+func (puo *ProfileUpdateOne) AddTenantIDs(ids ...int) *ProfileUpdateOne {
+	puo.mutation.AddTenantIDs(ids...)
+	return puo
+}
+
+// AddTenant adds the "tenant" edges to the Tenant entity.
+func (puo *ProfileUpdateOne) AddTenant(t ...*Tenant) *ProfileUpdateOne {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return puo.AddTenantIDs(ids...)
+}
+
 // Mutation returns the ProfileMutation object of the builder.
 func (puo *ProfileUpdateOne) Mutation() *ProfileMutation {
 	return puo.mutation
@@ -729,6 +826,27 @@ func (puo *ProfileUpdateOne) RemoveSite(s ...*Site) *ProfileUpdateOne {
 		ids[i] = s[i].ID
 	}
 	return puo.RemoveSiteIDs(ids...)
+}
+
+// ClearTenant clears all "tenant" edges to the Tenant entity.
+func (puo *ProfileUpdateOne) ClearTenant() *ProfileUpdateOne {
+	puo.mutation.ClearTenant()
+	return puo
+}
+
+// RemoveTenantIDs removes the "tenant" edge to Tenant entities by IDs.
+func (puo *ProfileUpdateOne) RemoveTenantIDs(ids ...int) *ProfileUpdateOne {
+	puo.mutation.RemoveTenantIDs(ids...)
+	return puo
+}
+
+// RemoveTenant removes "tenant" edges to Tenant entities.
+func (puo *ProfileUpdateOne) RemoveTenant(t ...*Tenant) *ProfileUpdateOne {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return puo.RemoveTenantIDs(ids...)
 }
 
 // Where appends a list predicates to the ProfileUpdate builder.
@@ -1009,6 +1127,51 @@ func (puo *ProfileUpdateOne) sqlSave(ctx context.Context) (_node *Profile, err e
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if puo.mutation.TenantCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := puo.mutation.RemovedTenantIDs(); len(nodes) > 0 && !puo.mutation.TenantCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := puo.mutation.TenantIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

@@ -34,6 +34,8 @@ const (
 	EdgeRustdesk = "rustdesk"
 	// EdgeNetbird holds the string denoting the netbird edge name in mutations.
 	EdgeNetbird = "netbird"
+	// EdgeProfiles holds the string denoting the profiles edge name in mutations.
+	EdgeProfiles = "profiles"
 	// Table holds the table name of the tenant in the database.
 	Table = "tenants"
 	// SitesTable is the table that holds the sites relation/edge.
@@ -76,6 +78,11 @@ const (
 	NetbirdInverseTable = "netbird_settings"
 	// NetbirdColumn is the table column denoting the netbird relation/edge.
 	NetbirdColumn = "tenant_netbird"
+	// ProfilesTable is the table that holds the profiles relation/edge. The primary key declared below.
+	ProfilesTable = "tenant_profiles"
+	// ProfilesInverseTable is the table name for the Profile entity.
+	// It exists in this package in order to avoid circular dependency with the "profile" package.
+	ProfilesInverseTable = "profiles"
 )
 
 // Columns holds all SQL columns for tenant fields.
@@ -97,6 +104,9 @@ var (
 	// RustdeskPrimaryKey and RustdeskColumn2 are the table columns denoting the
 	// primary key for the rustdesk relation (M2M).
 	RustdeskPrimaryKey = []string{"tenant_id", "rustdesk_id"}
+	// ProfilesPrimaryKey and ProfilesColumn2 are the table columns denoting the
+	// primary key for the profiles relation (M2M).
+	ProfilesPrimaryKey = []string{"tenant_id", "profile_id"}
 )
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -220,6 +230,20 @@ func ByNetbirdField(field string, opts ...sql.OrderTermOption) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newNetbirdStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByProfilesCount orders the results by profiles count.
+func ByProfilesCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newProfilesStep(), opts...)
+	}
+}
+
+// ByProfiles orders the results by profiles terms.
+func ByProfiles(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newProfilesStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newSitesStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -260,5 +284,12 @@ func newNetbirdStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NetbirdInverseTable, FieldID),
 		sqlgraph.Edge(sqlgraph.M2O, false, NetbirdTable, NetbirdColumn),
+	)
+}
+func newProfilesStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ProfilesInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2M, false, ProfilesTable, ProfilesPrimaryKey...),
 	)
 }

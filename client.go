@@ -3688,6 +3688,22 @@ func (c *ProfileClient) QuerySite(pr *Profile) *SiteQuery {
 	return query
 }
 
+// QueryTenant queries the tenant edge of a Profile.
+func (c *ProfileClient) QueryTenant(pr *Profile) *TenantQuery {
+	query := (&TenantClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := pr.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(profile.Table, profile.FieldID, id),
+			sqlgraph.To(tenant.Table, tenant.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, profile.TenantTable, profile.TenantPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(pr.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *ProfileClient) Hooks() []Hook {
 	return c.hooks.Profile
@@ -6289,6 +6305,22 @@ func (c *TenantClient) QueryNetbird(t *Tenant) *NetbirdSettingsQuery {
 			sqlgraph.From(tenant.Table, tenant.FieldID, id),
 			sqlgraph.To(netbirdsettings.Table, netbirdsettings.FieldID),
 			sqlgraph.Edge(sqlgraph.M2O, false, tenant.NetbirdTable, tenant.NetbirdColumn),
+		)
+		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryProfiles queries the profiles edge of a Tenant.
+func (c *TenantClient) QueryProfiles(t *Tenant) *ProfileQuery {
+	query := (&ProfileClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := t.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, id),
+			sqlgraph.To(profile.Table, profile.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, tenant.ProfilesTable, tenant.ProfilesPrimaryKey...),
 		)
 		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
 		return fromV, nil

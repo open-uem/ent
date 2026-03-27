@@ -40,9 +40,11 @@ type ProfileEdges struct {
 	Issues []*ProfileIssue `json:"issues,omitempty"`
 	// Site holds the value of the site edge.
 	Site []*Site `json:"site,omitempty"`
+	// Tenant holds the value of the tenant edge.
+	Tenant []*Tenant `json:"tenant,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [4]bool
+	loadedTypes [5]bool
 }
 
 // TagsOrErr returns the Tags value or an error if the edge
@@ -79,6 +81,15 @@ func (e ProfileEdges) SiteOrErr() ([]*Site, error) {
 		return e.Site, nil
 	}
 	return nil, &NotLoadedError{edge: "site"}
+}
+
+// TenantOrErr returns the Tenant value or an error if the edge
+// was not loaded in eager-loading.
+func (e ProfileEdges) TenantOrErr() ([]*Tenant, error) {
+	if e.loadedTypes[4] {
+		return e.Tenant, nil
+	}
+	return nil, &NotLoadedError{edge: "tenant"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -168,6 +179,11 @@ func (pr *Profile) QueryIssues() *ProfileIssueQuery {
 // QuerySite queries the "site" edge of the Profile entity.
 func (pr *Profile) QuerySite() *SiteQuery {
 	return NewProfileClient(pr.config).QuerySite(pr)
+}
+
+// QueryTenant queries the "tenant" edge of the Profile entity.
+func (pr *Profile) QueryTenant() *TenantQuery {
+	return NewProfileClient(pr.config).QueryTenant(pr)
 }
 
 // Update returns a builder for updating this Profile.

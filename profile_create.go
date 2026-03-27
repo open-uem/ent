@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/tenant"
 )
 
 // ProfileCreate is the builder for creating a Profile entity.
@@ -131,6 +132,21 @@ func (pc *ProfileCreate) AddSite(s ...*Site) *ProfileCreate {
 		ids[i] = s[i].ID
 	}
 	return pc.AddSiteIDs(ids...)
+}
+
+// AddTenantIDs adds the "tenant" edge to the Tenant entity by IDs.
+func (pc *ProfileCreate) AddTenantIDs(ids ...int) *ProfileCreate {
+	pc.mutation.AddTenantIDs(ids...)
+	return pc
+}
+
+// AddTenant adds the "tenant" edges to the Tenant entity.
+func (pc *ProfileCreate) AddTenant(t ...*Tenant) *ProfileCreate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return pc.AddTenantIDs(ids...)
 }
 
 // Mutation returns the ProfileMutation object of the builder.
@@ -303,6 +319,22 @@ func (pc *ProfileCreate) createSpec() (*Profile, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := pc.mutation.TenantIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   profile.TenantTable,
+			Columns: profile.TenantPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

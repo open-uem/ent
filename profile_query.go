@@ -18,6 +18,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
+	"github.com/open-uem/ent/tenant"
 )
 
 // ProfileQuery is the builder for querying Profile entities.
@@ -31,6 +32,7 @@ type ProfileQuery struct {
 	withTasks  *TaskQuery
 	withIssues *ProfileIssueQuery
 	withSite   *SiteQuery
+	withTenant *TenantQuery
 	modifiers  []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
@@ -149,6 +151,28 @@ func (pq *ProfileQuery) QuerySite() *SiteQuery {
 			sqlgraph.From(profile.Table, profile.FieldID, selector),
 			sqlgraph.To(site.Table, site.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, true, profile.SiteTable, profile.SitePrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(pq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryTenant chains the current query on the "tenant" edge.
+func (pq *ProfileQuery) QueryTenant() *TenantQuery {
+	query := (&TenantClient{config: pq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := pq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := pq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(profile.Table, profile.FieldID, selector),
+			sqlgraph.To(tenant.Table, tenant.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, profile.TenantTable, profile.TenantPrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(pq.driver.Dialect(), step)
 		return fromU, nil
@@ -352,6 +376,7 @@ func (pq *ProfileQuery) Clone() *ProfileQuery {
 		withTasks:  pq.withTasks.Clone(),
 		withIssues: pq.withIssues.Clone(),
 		withSite:   pq.withSite.Clone(),
+		withTenant: pq.withTenant.Clone(),
 		// clone intermediate query.
 		sql:       pq.sql.Clone(),
 		path:      pq.path,
@@ -400,6 +425,17 @@ func (pq *ProfileQuery) WithSite(opts ...func(*SiteQuery)) *ProfileQuery {
 		opt(query)
 	}
 	pq.withSite = query
+	return pq
+}
+
+// WithTenant tells the query-builder to eager-load the nodes that are connected to
+// the "tenant" edge. The optional arguments are used to configure the query builder of the edge.
+func (pq *ProfileQuery) WithTenant(opts ...func(*TenantQuery)) *ProfileQuery {
+	query := (&TenantClient{config: pq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	pq.withTenant = query
 	return pq
 }
 
@@ -481,11 +517,12 @@ func (pq *ProfileQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Prof
 	var (
 		nodes       = []*Profile{}
 		_spec       = pq.querySpec()
-		loadedTypes = [4]bool{
+		loadedTypes = [5]bool{
 			pq.withTags != nil,
 			pq.withTasks != nil,
 			pq.withIssues != nil,
 			pq.withSite != nil,
+			pq.withTenant != nil,
 		}
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
@@ -534,6 +571,13 @@ func (pq *ProfileQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Prof
 		if err := pq.loadSite(ctx, query, nodes,
 			func(n *Profile) { n.Edges.Site = []*Site{} },
 			func(n *Profile, e *Site) { n.Edges.Site = append(n.Edges.Site, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := pq.withTenant; query != nil {
+		if err := pq.loadTenant(ctx, query, nodes,
+			func(n *Profile) { n.Edges.Tenant = []*Tenant{} },
+			func(n *Profile, e *Tenant) { n.Edges.Tenant = append(n.Edges.Tenant, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -717,6 +761,67 @@ func (pq *ProfileQuery) loadSite(ctx context.Context, query *SiteQuery, nodes []
 		nodes, ok := nids[n.ID]
 		if !ok {
 			return fmt.Errorf(`unexpected "site" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
+	}
+	return nil
+}
+func (pq *ProfileQuery) loadTenant(ctx context.Context, query *TenantQuery, nodes []*Profile, init func(*Profile), assign func(*Profile, *Tenant)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[int]*Profile)
+	nids := make(map[int]map[*Profile]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(profile.TenantTable)
+		s.Join(joinT).On(s.C(tenant.FieldID), joinT.C(profile.TenantPrimaryKey[0]))
+		s.Where(sql.InValues(joinT.C(profile.TenantPrimaryKey[1]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(profile.TenantPrimaryKey[1]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullInt64)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := int(values[0].(*sql.NullInt64).Int64)
+				inValue := int(values[1].(*sql.NullInt64).Int64)
+				if nids[inValue] == nil {
+					nids[inValue] = map[*Profile]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*Tenant](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "tenant" node returned %v`, n.ID)
 		}
 		for kn := range nodes {
 			assign(kn, n)
