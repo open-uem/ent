@@ -177,6 +177,9 @@ var (
 		{Name: "package_id", Type: field.TypeString},
 		{Name: "name", Type: field.TypeString},
 		{Name: "version", Type: field.TypeString, Nullable: true},
+		{Name: "branch", Type: field.TypeString, Nullable: true},
+		{Name: "brew_type", Type: field.TypeString, Nullable: true},
+		{Name: "verified", Type: field.TypeBool, Nullable: true},
 		{Name: "installed", Type: field.TypeTime, Nullable: true},
 		{Name: "updated", Type: field.TypeTime, Nullable: true},
 		{Name: "failed", Type: field.TypeBool, Nullable: true, Default: false},
@@ -192,7 +195,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "deployments_agents_deployments",
-				Columns:    []*schema.Column{DeploymentsColumns[9]},
+				Columns:    []*schema.Column{DeploymentsColumns[12]},
 				RefColumns: []*schema.Column{AgentsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
@@ -781,6 +784,24 @@ var (
 			},
 		},
 	}
+	// SoftwarePackagesColumns holds the columns for the "software_packages" table.
+	SoftwarePackagesColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeUUID},
+		{Name: "package_id", Type: field.TypeString},
+		{Name: "name", Type: field.TypeString},
+		{Name: "version", Type: field.TypeString, Nullable: true},
+		{Name: "branch", Type: field.TypeString, Nullable: true},
+		{Name: "arch", Type: field.TypeString, Nullable: true},
+		{Name: "brew_type", Type: field.TypeString, Nullable: true},
+		{Name: "verified", Type: field.TypeBool, Nullable: true},
+		{Name: "source", Type: field.TypeString},
+	}
+	// SoftwarePackagesTable holds the schema information for the "software_packages" table.
+	SoftwarePackagesTable = &schema.Table{
+		Name:       "software_packages",
+		Columns:    SoftwarePackagesColumns,
+		PrimaryKey: []*schema.Column{SoftwarePackagesColumns[0]},
+	}
 	// SystemUpdatesColumns holds the columns for the "system_updates" table.
 	SystemUpdatesColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -934,6 +955,9 @@ var (
 		{Name: "ignore_errors", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "disabled", Type: field.TypeBool, Default: false},
 		{Name: "order", Type: field.TypeInt, Nullable: true, Default: 0},
+		{Name: "package_branch", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "package_arch", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "package_brew_type", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "profile_tasks", Type: field.TypeInt, Nullable: true},
 	}
 	// TasksTable holds the schema information for the "tasks" table.
@@ -944,7 +968,7 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "tasks_profiles_tasks",
-				Columns:    []*schema.Column{TasksColumns[92]},
+				Columns:    []*schema.Column{TasksColumns[95]},
 				RefColumns: []*schema.Column{ProfilesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
@@ -1218,6 +1242,7 @@ var (
 		SettingsTable,
 		SharesTable,
 		SitesTable,
+		SoftwarePackagesTable,
 		SystemUpdatesTable,
 		TagsTable,
 		TasksTable,

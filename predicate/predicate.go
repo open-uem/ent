@@ -93,6 +93,9 @@ type Share func(*sql.Selector)
 // Site is the predicate function for site builders.
 type Site func(*sql.Selector)
 
+// SoftwarePackage is the predicate function for softwarepackage builders.
+type SoftwarePackage func(*sql.Selector)
+
 // SystemUpdate is the predicate function for systemupdate builders.
 type SystemUpdate func(*sql.Selector)
 
