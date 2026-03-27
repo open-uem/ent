@@ -5,6 +5,7 @@ package ent
 import (
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/authentication"
 	"github.com/open-uem/ent/deployment"
@@ -22,6 +23,7 @@ import (
 	"github.com/open-uem/ent/sessions"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
+	"github.com/open-uem/ent/softwarepackage"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
 	"github.com/open-uem/ent/taskreport"
@@ -189,21 +191,21 @@ func init() {
 	deploymentFields := schema.Deployment{}.Fields()
 	_ = deploymentFields
 	// deploymentDescInstalled is the schema descriptor for installed field.
-	deploymentDescInstalled := deploymentFields[3].Descriptor()
+	deploymentDescInstalled := deploymentFields[6].Descriptor()
 	// deployment.DefaultInstalled holds the default value on creation for the installed field.
 	deployment.DefaultInstalled = deploymentDescInstalled.Default.(func() time.Time)
 	// deploymentDescUpdated is the schema descriptor for updated field.
-	deploymentDescUpdated := deploymentFields[4].Descriptor()
+	deploymentDescUpdated := deploymentFields[7].Descriptor()
 	// deployment.DefaultUpdated holds the default value on creation for the updated field.
 	deployment.DefaultUpdated = deploymentDescUpdated.Default.(func() time.Time)
 	// deployment.UpdateDefaultUpdated holds the default value on update for the updated field.
 	deployment.UpdateDefaultUpdated = deploymentDescUpdated.UpdateDefault.(func() time.Time)
 	// deploymentDescFailed is the schema descriptor for failed field.
-	deploymentDescFailed := deploymentFields[5].Descriptor()
+	deploymentDescFailed := deploymentFields[8].Descriptor()
 	// deployment.DefaultFailed holds the default value on creation for the failed field.
 	deployment.DefaultFailed = deploymentDescFailed.Default.(bool)
 	// deploymentDescByProfile is the schema descriptor for by_profile field.
-	deploymentDescByProfile := deploymentFields[6].Descriptor()
+	deploymentDescByProfile := deploymentFields[9].Descriptor()
 	// deployment.DefaultByProfile holds the default value on creation for the by_profile field.
 	deployment.DefaultByProfile = deploymentDescByProfile.Default.(bool)
 	logicaldiskFields := schema.LogicalDisk{}.Fields()
@@ -490,6 +492,12 @@ func init() {
 	site.DefaultModified = siteDescModified.Default.(func() time.Time)
 	// site.UpdateDefaultModified holds the default value on update for the modified field.
 	site.UpdateDefaultModified = siteDescModified.UpdateDefault.(func() time.Time)
+	softwarepackageFields := schema.SoftwarePackage{}.Fields()
+	_ = softwarepackageFields
+	// softwarepackageDescID is the schema descriptor for id field.
+	softwarepackageDescID := softwarepackageFields[0].Descriptor()
+	// softwarepackage.DefaultID holds the default value on creation for the id field.
+	softwarepackage.DefaultID = softwarepackageDescID.Default.(func() uuid.UUID)
 	tagFields := schema.Tag{}.Fields()
 	_ = tagFields
 	// tagDescTag is the schema descriptor for tag field.
@@ -726,6 +734,18 @@ func init() {
 	taskDescOrder := taskFields[90].Descriptor()
 	// task.DefaultOrder holds the default value on creation for the order field.
 	task.DefaultOrder = taskDescOrder.Default.(int)
+	// taskDescPackageBranch is the schema descriptor for package_branch field.
+	taskDescPackageBranch := taskFields[91].Descriptor()
+	// task.DefaultPackageBranch holds the default value on creation for the package_branch field.
+	task.DefaultPackageBranch = taskDescPackageBranch.Default.(string)
+	// taskDescPackageArch is the schema descriptor for package_arch field.
+	taskDescPackageArch := taskFields[92].Descriptor()
+	// task.DefaultPackageArch holds the default value on creation for the package_arch field.
+	task.DefaultPackageArch = taskDescPackageArch.Default.(string)
+	// taskDescPackageBrewType is the schema descriptor for package_brew_type field.
+	taskDescPackageBrewType := taskFields[93].Descriptor()
+	// task.DefaultPackageBrewType holds the default value on creation for the package_brew_type field.
+	task.DefaultPackageBrewType = taskDescPackageBrewType.Default.(string)
 	taskreportFields := schema.TaskReport{}.Fields()
 	_ = taskreportFields
 	// taskreportDescStdOutput is the schema descriptor for std_output field.
