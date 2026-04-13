@@ -257,7 +257,7 @@ func HasSite() predicate.Profile {
 	return predicate.Profile(func(s *sql.Selector) {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(Table, FieldID),
-			sqlgraph.Edge(sqlgraph.M2O, true, SiteTable, SiteColumn),
+			sqlgraph.Edge(sqlgraph.M2M, true, SiteTable, SitePrimaryKey...),
 		)
 		sqlgraph.HasNeighbors(s, step)
 	})
@@ -267,6 +267,29 @@ func HasSite() predicate.Profile {
 func HasSiteWith(preds ...predicate.Site) predicate.Profile {
 	return predicate.Profile(func(s *sql.Selector) {
 		step := newSiteStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
+// HasTenant applies the HasEdge predicate on the "tenant" edge.
+func HasTenant() predicate.Profile {
+	return predicate.Profile(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, TenantTable, TenantPrimaryKey...),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasTenantWith applies the HasEdge predicate on the "tenant" edge with a given conditions (other predicates).
+func HasTenantWith(preds ...predicate.Tenant) predicate.Profile {
+	return predicate.Profile(func(s *sql.Selector) {
+		step := newTenantStep()
 		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
 			for _, p := range preds {
 				p(s)

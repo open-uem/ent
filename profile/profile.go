@@ -30,6 +30,8 @@ const (
 	EdgeIssues = "issues"
 	// EdgeSite holds the string denoting the site edge name in mutations.
 	EdgeSite = "site"
+	// EdgeTenant holds the string denoting the tenant edge name in mutations.
+	EdgeTenant = "tenant"
 	// Table holds the table name of the profile in the database.
 	Table = "profiles"
 	// TagsTable is the table that holds the tags relation/edge. The primary key declared below.
@@ -51,13 +53,16 @@ const (
 	IssuesInverseTable = "profile_issues"
 	// IssuesColumn is the table column denoting the issues relation/edge.
 	IssuesColumn = "profile_issues"
-	// SiteTable is the table that holds the site relation/edge.
-	SiteTable = "profiles"
+	// SiteTable is the table that holds the site relation/edge. The primary key declared below.
+	SiteTable = "site_profiles"
 	// SiteInverseTable is the table name for the Site entity.
 	// It exists in this package in order to avoid circular dependency with the "site" package.
 	SiteInverseTable = "sites"
-	// SiteColumn is the table column denoting the site relation/edge.
-	SiteColumn = "site_profiles"
+	// TenantTable is the table that holds the tenant relation/edge. The primary key declared below.
+	TenantTable = "tenant_profiles"
+	// TenantInverseTable is the table name for the Tenant entity.
+	// It exists in this package in order to avoid circular dependency with the "tenant" package.
+	TenantInverseTable = "tenants"
 )
 
 // Columns holds all SQL columns for profile fields.
@@ -69,27 +74,22 @@ var Columns = []string{
 	FieldDisabled,
 }
 
-// ForeignKeys holds the SQL foreign-keys that are owned by the "profiles"
-// table and are not defined as standalone fields in the schema.
-var ForeignKeys = []string{
-	"site_profiles",
-}
-
 var (
 	// TagsPrimaryKey and TagsColumn2 are the table columns denoting the
 	// primary key for the tags relation (M2M).
 	TagsPrimaryKey = []string{"profile_id", "tag_id"}
+	// SitePrimaryKey and SiteColumn2 are the table columns denoting the
+	// primary key for the site relation (M2M).
+	SitePrimaryKey = []string{"site_id", "profile_id"}
+	// TenantPrimaryKey and TenantColumn2 are the table columns denoting the
+	// primary key for the tenant relation (M2M).
+	TenantPrimaryKey = []string{"tenant_id", "profile_id"}
 )
 
 // ValidColumn reports if the column name is valid (part of the table columns).
 func ValidColumn(column string) bool {
 	for i := range Columns {
 		if column == Columns[i] {
-			return true
-		}
-	}
-	for i := range ForeignKeys {
-		if column == ForeignKeys[i] {
 			return true
 		}
 	}
@@ -200,10 +200,31 @@ func ByIssues(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 	}
 }
 
-// BySiteField orders the results by site field.
-func BySiteField(field string, opts ...sql.OrderTermOption) OrderOption {
+// BySiteCount orders the results by site count.
+func BySiteCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
-		sqlgraph.OrderByNeighborTerms(s, newSiteStep(), sql.OrderByField(field, opts...))
+		sqlgraph.OrderByNeighborsCount(s, newSiteStep(), opts...)
+	}
+}
+
+// BySite orders the results by site terms.
+func BySite(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newSiteStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
+
+// ByTenantCount orders the results by tenant count.
+func ByTenantCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newTenantStep(), opts...)
+	}
+}
+
+// ByTenant orders the results by tenant terms.
+func ByTenant(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newTenantStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
 func newTagsStep() *sqlgraph.Step {
@@ -231,6 +252,13 @@ func newSiteStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(SiteInverseTable, FieldID),
-		sqlgraph.Edge(sqlgraph.M2O, true, SiteTable, SiteColumn),
+		sqlgraph.Edge(sqlgraph.M2M, true, SiteTable, SitePrimaryKey...),
+	)
+}
+func newTenantStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(TenantInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.M2M, true, TenantTable, TenantPrimaryKey...),
 	)
 }

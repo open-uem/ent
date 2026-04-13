@@ -17579,8 +17579,12 @@ type ProfileMutation struct {
 	issues        map[int]struct{}
 	removedissues map[int]struct{}
 	clearedissues bool
-	site          *int
+	site          map[int]struct{}
+	removedsite   map[int]struct{}
 	clearedsite   bool
+	tenant        map[int]struct{}
+	removedtenant map[int]struct{}
+	clearedtenant bool
 	done          bool
 	oldValue      func(context.Context) (*Profile, error)
 	predicates    []predicate.Profile
@@ -18003,9 +18007,14 @@ func (m *ProfileMutation) ResetIssues() {
 	m.removedissues = nil
 }
 
-// SetSiteID sets the "site" edge to the Site entity by id.
-func (m *ProfileMutation) SetSiteID(id int) {
-	m.site = &id
+// AddSiteIDs adds the "site" edge to the Site entity by ids.
+func (m *ProfileMutation) AddSiteIDs(ids ...int) {
+	if m.site == nil {
+		m.site = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.site[ids[i]] = struct{}{}
+	}
 }
 
 // ClearSite clears the "site" edge to the Site entity.
@@ -18018,20 +18027,29 @@ func (m *ProfileMutation) SiteCleared() bool {
 	return m.clearedsite
 }
 
-// SiteID returns the "site" edge ID in the mutation.
-func (m *ProfileMutation) SiteID() (id int, exists bool) {
-	if m.site != nil {
-		return *m.site, true
+// RemoveSiteIDs removes the "site" edge to the Site entity by IDs.
+func (m *ProfileMutation) RemoveSiteIDs(ids ...int) {
+	if m.removedsite == nil {
+		m.removedsite = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.site, ids[i])
+		m.removedsite[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedSite returns the removed IDs of the "site" edge to the Site entity.
+func (m *ProfileMutation) RemovedSiteIDs() (ids []int) {
+	for id := range m.removedsite {
+		ids = append(ids, id)
 	}
 	return
 }
 
 // SiteIDs returns the "site" edge IDs in the mutation.
-// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
-// SiteID instead. It exists only for internal usage by the builders.
 func (m *ProfileMutation) SiteIDs() (ids []int) {
-	if id := m.site; id != nil {
-		ids = append(ids, *id)
+	for id := range m.site {
+		ids = append(ids, id)
 	}
 	return
 }
@@ -18040,6 +18058,61 @@ func (m *ProfileMutation) SiteIDs() (ids []int) {
 func (m *ProfileMutation) ResetSite() {
 	m.site = nil
 	m.clearedsite = false
+	m.removedsite = nil
+}
+
+// AddTenantIDs adds the "tenant" edge to the Tenant entity by ids.
+func (m *ProfileMutation) AddTenantIDs(ids ...int) {
+	if m.tenant == nil {
+		m.tenant = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.tenant[ids[i]] = struct{}{}
+	}
+}
+
+// ClearTenant clears the "tenant" edge to the Tenant entity.
+func (m *ProfileMutation) ClearTenant() {
+	m.clearedtenant = true
+}
+
+// TenantCleared reports if the "tenant" edge to the Tenant entity was cleared.
+func (m *ProfileMutation) TenantCleared() bool {
+	return m.clearedtenant
+}
+
+// RemoveTenantIDs removes the "tenant" edge to the Tenant entity by IDs.
+func (m *ProfileMutation) RemoveTenantIDs(ids ...int) {
+	if m.removedtenant == nil {
+		m.removedtenant = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.tenant, ids[i])
+		m.removedtenant[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedTenant returns the removed IDs of the "tenant" edge to the Tenant entity.
+func (m *ProfileMutation) RemovedTenantIDs() (ids []int) {
+	for id := range m.removedtenant {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// TenantIDs returns the "tenant" edge IDs in the mutation.
+func (m *ProfileMutation) TenantIDs() (ids []int) {
+	for id := range m.tenant {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetTenant resets all changes to the "tenant" edge.
+func (m *ProfileMutation) ResetTenant() {
+	m.tenant = nil
+	m.clearedtenant = false
+	m.removedtenant = nil
 }
 
 // Where appends a list predicates to the ProfileMutation builder.
@@ -18235,7 +18308,7 @@ func (m *ProfileMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *ProfileMutation) AddedEdges() []string {
-	edges := make([]string, 0, 4)
+	edges := make([]string, 0, 5)
 	if m.tags != nil {
 		edges = append(edges, profile.EdgeTags)
 	}
@@ -18247,6 +18320,9 @@ func (m *ProfileMutation) AddedEdges() []string {
 	}
 	if m.site != nil {
 		edges = append(edges, profile.EdgeSite)
+	}
+	if m.tenant != nil {
+		edges = append(edges, profile.EdgeTenant)
 	}
 	return edges
 }
@@ -18274,16 +18350,24 @@ func (m *ProfileMutation) AddedIDs(name string) []ent.Value {
 		}
 		return ids
 	case profile.EdgeSite:
-		if id := m.site; id != nil {
-			return []ent.Value{*id}
+		ids := make([]ent.Value, 0, len(m.site))
+		for id := range m.site {
+			ids = append(ids, id)
 		}
+		return ids
+	case profile.EdgeTenant:
+		ids := make([]ent.Value, 0, len(m.tenant))
+		for id := range m.tenant {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *ProfileMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 4)
+	edges := make([]string, 0, 5)
 	if m.removedtags != nil {
 		edges = append(edges, profile.EdgeTags)
 	}
@@ -18292,6 +18376,12 @@ func (m *ProfileMutation) RemovedEdges() []string {
 	}
 	if m.removedissues != nil {
 		edges = append(edges, profile.EdgeIssues)
+	}
+	if m.removedsite != nil {
+		edges = append(edges, profile.EdgeSite)
+	}
+	if m.removedtenant != nil {
+		edges = append(edges, profile.EdgeTenant)
 	}
 	return edges
 }
@@ -18318,13 +18408,25 @@ func (m *ProfileMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case profile.EdgeSite:
+		ids := make([]ent.Value, 0, len(m.removedsite))
+		for id := range m.removedsite {
+			ids = append(ids, id)
+		}
+		return ids
+	case profile.EdgeTenant:
+		ids := make([]ent.Value, 0, len(m.removedtenant))
+		for id := range m.removedtenant {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *ProfileMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 4)
+	edges := make([]string, 0, 5)
 	if m.clearedtags {
 		edges = append(edges, profile.EdgeTags)
 	}
@@ -18336,6 +18438,9 @@ func (m *ProfileMutation) ClearedEdges() []string {
 	}
 	if m.clearedsite {
 		edges = append(edges, profile.EdgeSite)
+	}
+	if m.clearedtenant {
+		edges = append(edges, profile.EdgeTenant)
 	}
 	return edges
 }
@@ -18352,6 +18457,8 @@ func (m *ProfileMutation) EdgeCleared(name string) bool {
 		return m.clearedissues
 	case profile.EdgeSite:
 		return m.clearedsite
+	case profile.EdgeTenant:
+		return m.clearedtenant
 	}
 	return false
 }
@@ -18360,9 +18467,6 @@ func (m *ProfileMutation) EdgeCleared(name string) bool {
 // if that edge is not defined in the schema.
 func (m *ProfileMutation) ClearEdge(name string) error {
 	switch name {
-	case profile.EdgeSite:
-		m.ClearSite()
-		return nil
 	}
 	return fmt.Errorf("unknown Profile unique edge %s", name)
 }
@@ -18382,6 +18486,9 @@ func (m *ProfileMutation) ResetEdge(name string) error {
 		return nil
 	case profile.EdgeSite:
 		m.ResetSite()
+		return nil
+	case profile.EdgeTenant:
+		m.ResetTenant()
 		return nil
 	}
 	return fmt.Errorf("unknown Profile edge %s", name)
@@ -39037,6 +39144,9 @@ type TenantMutation struct {
 	clearedrustdesk bool
 	netbird         *int
 	clearednetbird  bool
+	profiles        map[int]struct{}
+	removedprofiles map[int]struct{}
+	clearedprofiles bool
 	done            bool
 	oldValue        func(context.Context) (*Tenant, error)
 	predicates      []predicate.Tenant
@@ -39630,6 +39740,60 @@ func (m *TenantMutation) ResetNetbird() {
 	m.clearednetbird = false
 }
 
+// AddProfileIDs adds the "profiles" edge to the Profile entity by ids.
+func (m *TenantMutation) AddProfileIDs(ids ...int) {
+	if m.profiles == nil {
+		m.profiles = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.profiles[ids[i]] = struct{}{}
+	}
+}
+
+// ClearProfiles clears the "profiles" edge to the Profile entity.
+func (m *TenantMutation) ClearProfiles() {
+	m.clearedprofiles = true
+}
+
+// ProfilesCleared reports if the "profiles" edge to the Profile entity was cleared.
+func (m *TenantMutation) ProfilesCleared() bool {
+	return m.clearedprofiles
+}
+
+// RemoveProfileIDs removes the "profiles" edge to the Profile entity by IDs.
+func (m *TenantMutation) RemoveProfileIDs(ids ...int) {
+	if m.removedprofiles == nil {
+		m.removedprofiles = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.profiles, ids[i])
+		m.removedprofiles[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedProfiles returns the removed IDs of the "profiles" edge to the Profile entity.
+func (m *TenantMutation) RemovedProfilesIDs() (ids []int) {
+	for id := range m.removedprofiles {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ProfilesIDs returns the "profiles" edge IDs in the mutation.
+func (m *TenantMutation) ProfilesIDs() (ids []int) {
+	for id := range m.profiles {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetProfiles resets all changes to the "profiles" edge.
+func (m *TenantMutation) ResetProfiles() {
+	m.profiles = nil
+	m.clearedprofiles = false
+	m.removedprofiles = nil
+}
+
 // Where appends a list predicates to the TenantMutation builder.
 func (m *TenantMutation) Where(ps ...predicate.Tenant) {
 	m.predicates = append(m.predicates, ps...)
@@ -39841,7 +40005,7 @@ func (m *TenantMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *TenantMutation) AddedEdges() []string {
-	edges := make([]string, 0, 6)
+	edges := make([]string, 0, 7)
 	if m.sites != nil {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -39859,6 +40023,9 @@ func (m *TenantMutation) AddedEdges() []string {
 	}
 	if m.netbird != nil {
 		edges = append(edges, tenant.EdgeNetbird)
+	}
+	if m.profiles != nil {
+		edges = append(edges, tenant.EdgeProfiles)
 	}
 	return edges
 }
@@ -39899,13 +40066,19 @@ func (m *TenantMutation) AddedIDs(name string) []ent.Value {
 		if id := m.netbird; id != nil {
 			return []ent.Value{*id}
 		}
+	case tenant.EdgeProfiles:
+		ids := make([]ent.Value, 0, len(m.profiles))
+		for id := range m.profiles {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *TenantMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 6)
+	edges := make([]string, 0, 7)
 	if m.removedsites != nil {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -39917,6 +40090,9 @@ func (m *TenantMutation) RemovedEdges() []string {
 	}
 	if m.removedrustdesk != nil {
 		edges = append(edges, tenant.EdgeRustdesk)
+	}
+	if m.removedprofiles != nil {
+		edges = append(edges, tenant.EdgeProfiles)
 	}
 	return edges
 }
@@ -39949,13 +40125,19 @@ func (m *TenantMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case tenant.EdgeProfiles:
+		ids := make([]ent.Value, 0, len(m.removedprofiles))
+		for id := range m.removedprofiles {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *TenantMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 6)
+	edges := make([]string, 0, 7)
 	if m.clearedsites {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -39973,6 +40155,9 @@ func (m *TenantMutation) ClearedEdges() []string {
 	}
 	if m.clearednetbird {
 		edges = append(edges, tenant.EdgeNetbird)
+	}
+	if m.clearedprofiles {
+		edges = append(edges, tenant.EdgeProfiles)
 	}
 	return edges
 }
@@ -39993,6 +40178,8 @@ func (m *TenantMutation) EdgeCleared(name string) bool {
 		return m.clearedrustdesk
 	case tenant.EdgeNetbird:
 		return m.clearednetbird
+	case tenant.EdgeProfiles:
+		return m.clearedprofiles
 	}
 	return false
 }
@@ -40032,6 +40219,9 @@ func (m *TenantMutation) ResetEdge(name string) error {
 		return nil
 	case tenant.EdgeNetbird:
 		m.ResetNetbird()
+		return nil
+	case tenant.EdgeProfiles:
+		m.ResetProfiles()
 		return nil
 	}
 	return fmt.Errorf("unknown Tenant edge %s", name)

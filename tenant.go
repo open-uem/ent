@@ -48,9 +48,11 @@ type TenantEdges struct {
 	Rustdesk []*Rustdesk `json:"rustdesk,omitempty"`
 	// Netbird holds the value of the netbird edge.
 	Netbird *NetbirdSettings `json:"netbird,omitempty"`
+	// Profiles holds the value of the profiles edge.
+	Profiles []*Profile `json:"profiles,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [6]bool
+	loadedTypes [7]bool
 }
 
 // SitesOrErr returns the Sites value or an error if the edge
@@ -109,6 +111,15 @@ func (e TenantEdges) NetbirdOrErr() (*NetbirdSettings, error) {
 		return nil, &NotFoundError{label: netbirdsettings.Label}
 	}
 	return nil, &NotLoadedError{edge: "netbird"}
+}
+
+// ProfilesOrErr returns the Profiles value or an error if the edge
+// was not loaded in eager-loading.
+func (e TenantEdges) ProfilesOrErr() ([]*Profile, error) {
+	if e.loadedTypes[6] {
+		return e.Profiles, nil
+	}
+	return nil, &NotLoadedError{edge: "profiles"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -219,6 +230,11 @@ func (t *Tenant) QueryRustdesk() *RustdeskQuery {
 // QueryNetbird queries the "netbird" edge of the Tenant entity.
 func (t *Tenant) QueryNetbird() *NetbirdSettingsQuery {
 	return NewTenantClient(t.config).QueryNetbird(t)
+}
+
+// QueryProfiles queries the "profiles" edge of the Tenant entity.
+func (t *Tenant) QueryProfiles() *ProfileQuery {
+	return NewTenantClient(t.config).QueryProfiles(t)
 }
 
 // Update returns a builder for updating this Tenant.

@@ -46,13 +46,11 @@ const (
 	// AgentsInverseTable is the table name for the Agent entity.
 	// It exists in this package in order to avoid circular dependency with the "agent" package.
 	AgentsInverseTable = "agents"
-	// ProfilesTable is the table that holds the profiles relation/edge.
-	ProfilesTable = "profiles"
+	// ProfilesTable is the table that holds the profiles relation/edge. The primary key declared below.
+	ProfilesTable = "site_profiles"
 	// ProfilesInverseTable is the table name for the Profile entity.
 	// It exists in this package in order to avoid circular dependency with the "profile" package.
 	ProfilesInverseTable = "profiles"
-	// ProfilesColumn is the table column denoting the profiles relation/edge.
-	ProfilesColumn = "site_profiles"
 )
 
 // Columns holds all SQL columns for site fields.
@@ -75,6 +73,9 @@ var (
 	// AgentsPrimaryKey and AgentsColumn2 are the table columns denoting the
 	// primary key for the agents relation (M2M).
 	AgentsPrimaryKey = []string{"site_id", "agent_id"}
+	// ProfilesPrimaryKey and ProfilesColumn2 are the table columns denoting the
+	// primary key for the profiles relation (M2M).
+	ProfilesPrimaryKey = []string{"site_id", "profile_id"}
 )
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -186,6 +187,6 @@ func newProfilesStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(ProfilesInverseTable, FieldID),
-		sqlgraph.Edge(sqlgraph.O2M, false, ProfilesTable, ProfilesColumn),
+		sqlgraph.Edge(sqlgraph.M2M, false, ProfilesTable, ProfilesPrimaryKey...),
 	)
 }

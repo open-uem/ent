@@ -125,7 +125,7 @@ func (sq *SiteQuery) QueryProfiles() *ProfileQuery {
 		step := sqlgraph.NewStep(
 			sqlgraph.From(site.Table, site.FieldID, selector),
 			sqlgraph.To(profile.Table, profile.FieldID),
-			sqlgraph.Edge(sqlgraph.O2M, false, site.ProfilesTable, site.ProfilesColumn),
+			sqlgraph.Edge(sqlgraph.M2M, false, site.ProfilesTable, site.ProfilesPrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
 		return fromU, nil
@@ -597,33 +597,63 @@ func (sq *SiteQuery) loadAgents(ctx context.Context, query *AgentQuery, nodes []
 	return nil
 }
 func (sq *SiteQuery) loadProfiles(ctx context.Context, query *ProfileQuery, nodes []*Site, init func(*Site), assign func(*Site, *Profile)) error {
-	fks := make([]driver.Value, 0, len(nodes))
-	nodeids := make(map[int]*Site)
-	for i := range nodes {
-		fks = append(fks, nodes[i].ID)
-		nodeids[nodes[i].ID] = nodes[i]
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[int]*Site)
+	nids := make(map[int]map[*Site]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
 		if init != nil {
-			init(nodes[i])
+			init(node)
 		}
 	}
-	query.withFKs = true
-	query.Where(predicate.Profile(func(s *sql.Selector) {
-		s.Where(sql.InValues(s.C(site.ProfilesColumn), fks...))
-	}))
-	neighbors, err := query.All(ctx)
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(site.ProfilesTable)
+		s.Join(joinT).On(s.C(profile.FieldID), joinT.C(site.ProfilesPrimaryKey[1]))
+		s.Where(sql.InValues(joinT.C(site.ProfilesPrimaryKey[0]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(site.ProfilesPrimaryKey[0]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullInt64)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := int(values[0].(*sql.NullInt64).Int64)
+				inValue := int(values[1].(*sql.NullInt64).Int64)
+				if nids[inValue] == nil {
+					nids[inValue] = map[*Site]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*Profile](ctx, query, qr, query.inters)
 	if err != nil {
 		return err
 	}
 	for _, n := range neighbors {
-		fk := n.site_profiles
-		if fk == nil {
-			return fmt.Errorf(`foreign-key "site_profiles" is nil for node %v`, n.ID)
-		}
-		node, ok := nodeids[*fk]
+		nodes, ok := nids[n.ID]
 		if !ok {
-			return fmt.Errorf(`unexpected referenced foreign-key "site_profiles" returned %v for node %v`, *fk, n.ID)
+			return fmt.Errorf(`unexpected "profiles" node returned %v`, n.ID)
 		}
-		assign(node, n)
+		for kn := range nodes {
+			assign(kn, n)
+		}
 	}
 	return nil
 }

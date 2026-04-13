@@ -490,21 +490,12 @@ var (
 		{Name: "apply_to_all", Type: field.TypeBool, Default: false},
 		{Name: "type", Type: field.TypeEnum, Nullable: true, Enums: []string{"winget"}, Default: "winget"},
 		{Name: "disabled", Type: field.TypeBool, Default: false},
-		{Name: "site_profiles", Type: field.TypeInt, Nullable: true},
 	}
 	// ProfilesTable holds the schema information for the "profiles" table.
 	ProfilesTable = &schema.Table{
 		Name:       "profiles",
 		Columns:    ProfilesColumns,
 		PrimaryKey: []*schema.Column{ProfilesColumns[0]},
-		ForeignKeys: []*schema.ForeignKey{
-			{
-				Symbol:     "profiles_sites_profiles",
-				Columns:    []*schema.Column{ProfilesColumns[5]},
-				RefColumns: []*schema.Column{SitesColumns[0]},
-				OnDelete:   schema.Cascade,
-			},
-		},
 	}
 	// ProfileIssuesColumns holds the columns for the "profile_issues" table.
 	ProfileIssuesColumns = []*schema.Column{
@@ -1186,6 +1177,31 @@ var (
 			},
 		},
 	}
+	// SiteProfilesColumns holds the columns for the "site_profiles" table.
+	SiteProfilesColumns = []*schema.Column{
+		{Name: "site_id", Type: field.TypeInt},
+		{Name: "profile_id", Type: field.TypeInt},
+	}
+	// SiteProfilesTable holds the schema information for the "site_profiles" table.
+	SiteProfilesTable = &schema.Table{
+		Name:       "site_profiles",
+		Columns:    SiteProfilesColumns,
+		PrimaryKey: []*schema.Column{SiteProfilesColumns[0], SiteProfilesColumns[1]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "site_profiles_site_id",
+				Columns:    []*schema.Column{SiteProfilesColumns[0]},
+				RefColumns: []*schema.Column{SitesColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "site_profiles_profile_id",
+				Columns:    []*schema.Column{SiteProfilesColumns[1]},
+				RefColumns: []*schema.Column{ProfilesColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
 	// TenantRustdeskColumns holds the columns for the "tenant_rustdesk" table.
 	TenantRustdeskColumns = []*schema.Column{
 		{Name: "tenant_id", Type: field.TypeInt},
@@ -1207,6 +1223,31 @@ var (
 				Symbol:     "tenant_rustdesk_rustdesk_id",
 				Columns:    []*schema.Column{TenantRustdeskColumns[1]},
 				RefColumns: []*schema.Column{RustdesksColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
+	// TenantProfilesColumns holds the columns for the "tenant_profiles" table.
+	TenantProfilesColumns = []*schema.Column{
+		{Name: "tenant_id", Type: field.TypeInt},
+		{Name: "profile_id", Type: field.TypeInt},
+	}
+	// TenantProfilesTable holds the schema information for the "tenant_profiles" table.
+	TenantProfilesTable = &schema.Table{
+		Name:       "tenant_profiles",
+		Columns:    TenantProfilesColumns,
+		PrimaryKey: []*schema.Column{TenantProfilesColumns[0], TenantProfilesColumns[1]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "tenant_profiles_tenant_id",
+				Columns:    []*schema.Column{TenantProfilesColumns[0]},
+				RefColumns: []*schema.Column{TenantsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "tenant_profiles_profile_id",
+				Columns:    []*schema.Column{TenantProfilesColumns[1]},
+				RefColumns: []*schema.Column{ProfilesColumns[0]},
 				OnDelete:   schema.Cascade,
 			},
 		},
@@ -1254,7 +1295,9 @@ var (
 		AgentTagsTable,
 		ProfileTagsTable,
 		SiteAgentsTable,
+		SiteProfilesTable,
 		TenantRustdeskTable,
+		TenantProfilesTable,
 	}
 )
 
@@ -1275,7 +1318,6 @@ func init() {
 	OrgMetadataTable.ForeignKeys[0].RefTable = TenantsTable
 	PhysicalDisksTable.ForeignKeys[0].RefTable = AgentsTable
 	PrintersTable.ForeignKeys[0].RefTable = AgentsTable
-	ProfilesTable.ForeignKeys[0].RefTable = SitesTable
 	ProfileIssuesTable.ForeignKeys[0].RefTable = ProfilesTable
 	ProfileIssuesTable.ForeignKeys[1].RefTable = AgentsTable
 	RecoveryCodesTable.ForeignKeys[0].RefTable = UsersTable
@@ -1300,6 +1342,10 @@ func init() {
 	ProfileTagsTable.ForeignKeys[1].RefTable = TagsTable
 	SiteAgentsTable.ForeignKeys[0].RefTable = SitesTable
 	SiteAgentsTable.ForeignKeys[1].RefTable = AgentsTable
+	SiteProfilesTable.ForeignKeys[0].RefTable = SitesTable
+	SiteProfilesTable.ForeignKeys[1].RefTable = ProfilesTable
 	TenantRustdeskTable.ForeignKeys[0].RefTable = TenantsTable
 	TenantRustdeskTable.ForeignKeys[1].RefTable = RustdesksTable
+	TenantProfilesTable.ForeignKeys[0].RefTable = TenantsTable
+	TenantProfilesTable.ForeignKeys[1].RefTable = ProfilesTable
 }

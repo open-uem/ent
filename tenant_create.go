@@ -13,6 +13,7 @@ import (
 	"entgo.io/ent/schema/field"
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/orgmetadata"
+	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/rustdesk"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
@@ -180,6 +181,21 @@ func (tc *TenantCreate) SetNillableNetbirdID(id *int) *TenantCreate {
 // SetNetbird sets the "netbird" edge to the NetbirdSettings entity.
 func (tc *TenantCreate) SetNetbird(n *NetbirdSettings) *TenantCreate {
 	return tc.SetNetbirdID(n.ID)
+}
+
+// AddProfileIDs adds the "profiles" edge to the Profile entity by IDs.
+func (tc *TenantCreate) AddProfileIDs(ids ...int) *TenantCreate {
+	tc.mutation.AddProfileIDs(ids...)
+	return tc
+}
+
+// AddProfiles adds the "profiles" edges to the Profile entity.
+func (tc *TenantCreate) AddProfiles(p ...*Profile) *TenantCreate {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return tc.AddProfileIDs(ids...)
 }
 
 // Mutation returns the TenantMutation object of the builder.
@@ -367,6 +383,22 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 			edge.Target.Nodes = append(edge.Target.Nodes, k)
 		}
 		_node.tenant_netbird = &nodes[0]
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := tc.mutation.ProfilesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
 		_spec.Edges = append(_spec.Edges, edge)
 	}
 	return _node, _spec

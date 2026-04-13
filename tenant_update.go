@@ -14,6 +14,7 @@ import (
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/predicate"
+	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/rustdesk"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
@@ -205,6 +206,21 @@ func (tu *TenantUpdate) SetNetbird(n *NetbirdSettings) *TenantUpdate {
 	return tu.SetNetbirdID(n.ID)
 }
 
+// AddProfileIDs adds the "profiles" edge to the Profile entity by IDs.
+func (tu *TenantUpdate) AddProfileIDs(ids ...int) *TenantUpdate {
+	tu.mutation.AddProfileIDs(ids...)
+	return tu
+}
+
+// AddProfiles adds the "profiles" edges to the Profile entity.
+func (tu *TenantUpdate) AddProfiles(p ...*Profile) *TenantUpdate {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return tu.AddProfileIDs(ids...)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tu *TenantUpdate) Mutation() *TenantMutation {
 	return tu.mutation
@@ -304,6 +320,27 @@ func (tu *TenantUpdate) RemoveRustdesk(r ...*Rustdesk) *TenantUpdate {
 func (tu *TenantUpdate) ClearNetbird() *TenantUpdate {
 	tu.mutation.ClearNetbird()
 	return tu
+}
+
+// ClearProfiles clears all "profiles" edges to the Profile entity.
+func (tu *TenantUpdate) ClearProfiles() *TenantUpdate {
+	tu.mutation.ClearProfiles()
+	return tu
+}
+
+// RemoveProfileIDs removes the "profiles" edge to Profile entities by IDs.
+func (tu *TenantUpdate) RemoveProfileIDs(ids ...int) *TenantUpdate {
+	tu.mutation.RemoveProfileIDs(ids...)
+	return tu
+}
+
+// RemoveProfiles removes "profiles" edges to Profile entities.
+func (tu *TenantUpdate) RemoveProfiles(p ...*Profile) *TenantUpdate {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return tu.RemoveProfileIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -619,6 +656,51 @@ func (tu *TenantUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if tu.mutation.ProfilesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.RemovedProfilesIDs(); len(nodes) > 0 && !tu.mutation.ProfilesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.ProfilesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(tu.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -811,6 +893,21 @@ func (tuo *TenantUpdateOne) SetNetbird(n *NetbirdSettings) *TenantUpdateOne {
 	return tuo.SetNetbirdID(n.ID)
 }
 
+// AddProfileIDs adds the "profiles" edge to the Profile entity by IDs.
+func (tuo *TenantUpdateOne) AddProfileIDs(ids ...int) *TenantUpdateOne {
+	tuo.mutation.AddProfileIDs(ids...)
+	return tuo
+}
+
+// AddProfiles adds the "profiles" edges to the Profile entity.
+func (tuo *TenantUpdateOne) AddProfiles(p ...*Profile) *TenantUpdateOne {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return tuo.AddProfileIDs(ids...)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tuo *TenantUpdateOne) Mutation() *TenantMutation {
 	return tuo.mutation
@@ -910,6 +1007,27 @@ func (tuo *TenantUpdateOne) RemoveRustdesk(r ...*Rustdesk) *TenantUpdateOne {
 func (tuo *TenantUpdateOne) ClearNetbird() *TenantUpdateOne {
 	tuo.mutation.ClearNetbird()
 	return tuo
+}
+
+// ClearProfiles clears all "profiles" edges to the Profile entity.
+func (tuo *TenantUpdateOne) ClearProfiles() *TenantUpdateOne {
+	tuo.mutation.ClearProfiles()
+	return tuo
+}
+
+// RemoveProfileIDs removes the "profiles" edge to Profile entities by IDs.
+func (tuo *TenantUpdateOne) RemoveProfileIDs(ids ...int) *TenantUpdateOne {
+	tuo.mutation.RemoveProfileIDs(ids...)
+	return tuo
+}
+
+// RemoveProfiles removes "profiles" edges to Profile entities.
+func (tuo *TenantUpdateOne) RemoveProfiles(p ...*Profile) *TenantUpdateOne {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return tuo.RemoveProfileIDs(ids...)
 }
 
 // Where appends a list predicates to the TenantUpdate builder.
@@ -1248,6 +1366,51 @@ func (tuo *TenantUpdateOne) sqlSave(ctx context.Context) (_node *Tenant, err err
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbirdsettings.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if tuo.mutation.ProfilesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.RemovedProfilesIDs(); len(nodes) > 0 && !tuo.mutation.ProfilesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.ProfilesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   tenant.ProfilesTable,
+			Columns: tenant.ProfilesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
