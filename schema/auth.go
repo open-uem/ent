@@ -14,7 +14,7 @@ type Authentication struct {
 func (Authentication) Fields() []ent.Field {
 	return []ent.Field{
 		field.Bool("use_certificates").Optional().Default(true),
-		field.Bool("allow_register").Optional().Default(true),
+		field.Bool("allow_register").Optional().Default(false),
 		field.Bool("use_OIDC").Optional().Default(false),
 		field.String("OIDC_provider").Optional().Default(""),
 		field.String("OIDC_issuer_url").Optional().Default(""),
