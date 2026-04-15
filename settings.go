@@ -93,6 +93,8 @@ type Settings struct {
 	AutoAdmitAgents bool `json:"auto_admit_agents,omitempty"`
 	// DefaultItemsPerPage holds the value of the "default_items_per_page" field.
 	DefaultItemsPerPage int `json:"default_items_per_page,omitempty"`
+	// RegisterRateLimit holds the value of the "register_rate_limit" field.
+	RegisterRateLimit float64 `json:"register_rate_limit,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the SettingsQuery when eager-loading is set.
 	Edges           SettingsEdges `json:"edges"`
@@ -141,6 +143,8 @@ func (*Settings) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case settings.FieldSMTPTLS, settings.FieldSMTPStarttls, settings.FieldRequestVncPin, settings.FieldUseWinget, settings.FieldUseFlatpak, settings.FieldUseBrew, settings.FieldDisableSftp, settings.FieldDisableRemoteAssistance, settings.FieldDetectRemoteAgents, settings.FieldAutoAdmitAgents:
 			values[i] = new(sql.NullBool)
+		case settings.FieldRegisterRateLimit:
+			values[i] = new(sql.NullFloat64)
 		case settings.FieldID, settings.FieldSMTPPort, settings.FieldUserCertYearsValid, settings.FieldNatsRequestTimeoutSeconds, settings.FieldRefreshTimeInMinutes, settings.FieldSessionLifetimeInMinutes, settings.FieldAgentReportFrequenceInMinutes, settings.FieldProfilesApplicationFrequenceInMinutes, settings.FieldDefaultItemsPerPage:
 			values[i] = new(sql.NullInt64)
 		case settings.FieldLanguage, settings.FieldOrganization, settings.FieldPostalAddress, settings.FieldPostalCode, settings.FieldLocality, settings.FieldProvince, settings.FieldState, settings.FieldCountry, settings.FieldSMTPServer, settings.FieldSMTPUser, settings.FieldSMTPPassword, settings.FieldSMTPAuth, settings.FieldNatsServer, settings.FieldNatsPort, settings.FieldMessageFrom, settings.FieldMaxUploadSize, settings.FieldUpdateChannel:
@@ -394,6 +398,12 @@ func (s *Settings) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				s.DefaultItemsPerPage = int(value.Int64)
 			}
+		case settings.FieldRegisterRateLimit:
+			if value, ok := values[i].(*sql.NullFloat64); !ok {
+				return fmt.Errorf("unexpected type %T for field register_rate_limit", values[i])
+			} else if value.Valid {
+				s.RegisterRateLimit = value.Float64
+			}
 		case settings.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field settings_tag", value)
@@ -564,6 +574,9 @@ func (s *Settings) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("default_items_per_page=")
 	builder.WriteString(fmt.Sprintf("%v", s.DefaultItemsPerPage))
+	builder.WriteString(", ")
+	builder.WriteString("register_rate_limit=")
+	builder.WriteString(fmt.Sprintf("%v", s.RegisterRateLimit))
 	builder.WriteByte(')')
 	return builder.String()
 }

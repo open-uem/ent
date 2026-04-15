@@ -88,6 +88,8 @@ const (
 	FieldAutoAdmitAgents = "auto_admit_agents"
 	// FieldDefaultItemsPerPage holds the string denoting the default_items_per_page field in the database.
 	FieldDefaultItemsPerPage = "default_items_per_page"
+	// FieldRegisterRateLimit holds the string denoting the register_rate_limit field in the database.
+	FieldRegisterRateLimit = "register_rate_limit"
 	// EdgeTag holds the string denoting the tag edge name in mutations.
 	EdgeTag = "tag"
 	// EdgeTenant holds the string denoting the tenant edge name in mutations.
@@ -150,6 +152,7 @@ var Columns = []string{
 	FieldDetectRemoteAgents,
 	FieldAutoAdmitAgents,
 	FieldDefaultItemsPerPage,
+	FieldRegisterRateLimit,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "settings"
@@ -225,6 +228,8 @@ var (
 	DefaultAutoAdmitAgents bool
 	// DefaultDefaultItemsPerPage holds the default value on creation for the "default_items_per_page" field.
 	DefaultDefaultItemsPerPage int
+	// DefaultRegisterRateLimit holds the default value on creation for the "register_rate_limit" field.
+	DefaultRegisterRateLimit float64
 )
 
 // OrderOption defines the ordering options for the Settings queries.
@@ -418,6 +423,11 @@ func ByAutoAdmitAgents(opts ...sql.OrderTermOption) OrderOption {
 // ByDefaultItemsPerPage orders the results by the default_items_per_page field.
 func ByDefaultItemsPerPage(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldDefaultItemsPerPage, opts...).ToFunc()
+}
+
+// ByRegisterRateLimit orders the results by the register_rate_limit field.
+func ByRegisterRateLimit(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldRegisterRateLimit, opts...).ToFunc()
 }
 
 // ByTagField orders the results by tag field.

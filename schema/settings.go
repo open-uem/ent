@@ -53,6 +53,7 @@ func (Settings) Fields() []ent.Field {
 		field.Bool("detect_remote_agents").Optional().Default(false),
 		field.Bool("auto_admit_agents").Optional().Default(false),
 		field.Int("default_items_per_page").Optional().Default(5),
+		field.Float("register_rate_limit").Optional().Default(0.000833333),
 	}
 }
 

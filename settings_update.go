@@ -819,6 +819,33 @@ func (su *SettingsUpdate) ClearDefaultItemsPerPage() *SettingsUpdate {
 	return su
 }
 
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (su *SettingsUpdate) SetRegisterRateLimit(f float64) *SettingsUpdate {
+	su.mutation.ResetRegisterRateLimit()
+	su.mutation.SetRegisterRateLimit(f)
+	return su
+}
+
+// SetNillableRegisterRateLimit sets the "register_rate_limit" field if the given value is not nil.
+func (su *SettingsUpdate) SetNillableRegisterRateLimit(f *float64) *SettingsUpdate {
+	if f != nil {
+		su.SetRegisterRateLimit(*f)
+	}
+	return su
+}
+
+// AddRegisterRateLimit adds f to the "register_rate_limit" field.
+func (su *SettingsUpdate) AddRegisterRateLimit(f float64) *SettingsUpdate {
+	su.mutation.AddRegisterRateLimit(f)
+	return su
+}
+
+// ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
+func (su *SettingsUpdate) ClearRegisterRateLimit() *SettingsUpdate {
+	su.mutation.ClearRegisterRateLimit()
+	return su
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (su *SettingsUpdate) SetTagID(id int) *SettingsUpdate {
 	su.mutation.SetTagID(id)
@@ -1170,6 +1197,15 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if su.mutation.DefaultItemsPerPageCleared() {
 		_spec.ClearField(settings.FieldDefaultItemsPerPage, field.TypeInt)
+	}
+	if value, ok := su.mutation.RegisterRateLimit(); ok {
+		_spec.SetField(settings.FieldRegisterRateLimit, field.TypeFloat64, value)
+	}
+	if value, ok := su.mutation.AddedRegisterRateLimit(); ok {
+		_spec.AddField(settings.FieldRegisterRateLimit, field.TypeFloat64, value)
+	}
+	if su.mutation.RegisterRateLimitCleared() {
+		_spec.ClearField(settings.FieldRegisterRateLimit, field.TypeFloat64)
 	}
 	if su.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -2039,6 +2075,33 @@ func (suo *SettingsUpdateOne) ClearDefaultItemsPerPage() *SettingsUpdateOne {
 	return suo
 }
 
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (suo *SettingsUpdateOne) SetRegisterRateLimit(f float64) *SettingsUpdateOne {
+	suo.mutation.ResetRegisterRateLimit()
+	suo.mutation.SetRegisterRateLimit(f)
+	return suo
+}
+
+// SetNillableRegisterRateLimit sets the "register_rate_limit" field if the given value is not nil.
+func (suo *SettingsUpdateOne) SetNillableRegisterRateLimit(f *float64) *SettingsUpdateOne {
+	if f != nil {
+		suo.SetRegisterRateLimit(*f)
+	}
+	return suo
+}
+
+// AddRegisterRateLimit adds f to the "register_rate_limit" field.
+func (suo *SettingsUpdateOne) AddRegisterRateLimit(f float64) *SettingsUpdateOne {
+	suo.mutation.AddRegisterRateLimit(f)
+	return suo
+}
+
+// ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
+func (suo *SettingsUpdateOne) ClearRegisterRateLimit() *SettingsUpdateOne {
+	suo.mutation.ClearRegisterRateLimit()
+	return suo
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (suo *SettingsUpdateOne) SetTagID(id int) *SettingsUpdateOne {
 	suo.mutation.SetTagID(id)
@@ -2420,6 +2483,15 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 	}
 	if suo.mutation.DefaultItemsPerPageCleared() {
 		_spec.ClearField(settings.FieldDefaultItemsPerPage, field.TypeInt)
+	}
+	if value, ok := suo.mutation.RegisterRateLimit(); ok {
+		_spec.SetField(settings.FieldRegisterRateLimit, field.TypeFloat64, value)
+	}
+	if value, ok := suo.mutation.AddedRegisterRateLimit(); ok {
+		_spec.AddField(settings.FieldRegisterRateLimit, field.TypeFloat64, value)
+	}
+	if suo.mutation.RegisterRateLimitCleared() {
+		_spec.ClearField(settings.FieldRegisterRateLimit, field.TypeFloat64)
 	}
 	if suo.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{

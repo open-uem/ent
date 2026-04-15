@@ -542,6 +542,20 @@ func (sc *SettingsCreate) SetNillableDefaultItemsPerPage(i *int) *SettingsCreate
 	return sc
 }
 
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (sc *SettingsCreate) SetRegisterRateLimit(f float64) *SettingsCreate {
+	sc.mutation.SetRegisterRateLimit(f)
+	return sc
+}
+
+// SetNillableRegisterRateLimit sets the "register_rate_limit" field if the given value is not nil.
+func (sc *SettingsCreate) SetNillableRegisterRateLimit(f *float64) *SettingsCreate {
+	if f != nil {
+		sc.SetRegisterRateLimit(*f)
+	}
+	return sc
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (sc *SettingsCreate) SetTagID(id int) *SettingsCreate {
 	sc.mutation.SetTagID(id)
@@ -710,6 +724,10 @@ func (sc *SettingsCreate) defaults() {
 	if _, ok := sc.mutation.DefaultItemsPerPage(); !ok {
 		v := settings.DefaultDefaultItemsPerPage
 		sc.mutation.SetDefaultItemsPerPage(v)
+	}
+	if _, ok := sc.mutation.RegisterRateLimit(); !ok {
+		v := settings.DefaultRegisterRateLimit
+		sc.mutation.SetRegisterRateLimit(v)
 	}
 }
 
@@ -889,6 +907,10 @@ func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 	if value, ok := sc.mutation.DefaultItemsPerPage(); ok {
 		_spec.SetField(settings.FieldDefaultItemsPerPage, field.TypeInt, value)
 		_node.DefaultItemsPerPage = value
+	}
+	if value, ok := sc.mutation.RegisterRateLimit(); ok {
+		_spec.SetField(settings.FieldRegisterRateLimit, field.TypeFloat64, value)
+		_node.RegisterRateLimit = value
 	}
 	if nodes := sc.mutation.TagIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -1687,6 +1709,30 @@ func (u *SettingsUpsert) AddDefaultItemsPerPage(v int) *SettingsUpsert {
 // ClearDefaultItemsPerPage clears the value of the "default_items_per_page" field.
 func (u *SettingsUpsert) ClearDefaultItemsPerPage() *SettingsUpsert {
 	u.SetNull(settings.FieldDefaultItemsPerPage)
+	return u
+}
+
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (u *SettingsUpsert) SetRegisterRateLimit(v float64) *SettingsUpsert {
+	u.Set(settings.FieldRegisterRateLimit, v)
+	return u
+}
+
+// UpdateRegisterRateLimit sets the "register_rate_limit" field to the value that was provided on create.
+func (u *SettingsUpsert) UpdateRegisterRateLimit() *SettingsUpsert {
+	u.SetExcluded(settings.FieldRegisterRateLimit)
+	return u
+}
+
+// AddRegisterRateLimit adds v to the "register_rate_limit" field.
+func (u *SettingsUpsert) AddRegisterRateLimit(v float64) *SettingsUpsert {
+	u.Add(settings.FieldRegisterRateLimit, v)
+	return u
+}
+
+// ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
+func (u *SettingsUpsert) ClearRegisterRateLimit() *SettingsUpsert {
+	u.SetNull(settings.FieldRegisterRateLimit)
 	return u
 }
 
@@ -2560,6 +2606,34 @@ func (u *SettingsUpsertOne) UpdateDefaultItemsPerPage() *SettingsUpsertOne {
 func (u *SettingsUpsertOne) ClearDefaultItemsPerPage() *SettingsUpsertOne {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearDefaultItemsPerPage()
+	})
+}
+
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (u *SettingsUpsertOne) SetRegisterRateLimit(v float64) *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetRegisterRateLimit(v)
+	})
+}
+
+// AddRegisterRateLimit adds v to the "register_rate_limit" field.
+func (u *SettingsUpsertOne) AddRegisterRateLimit(v float64) *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.AddRegisterRateLimit(v)
+	})
+}
+
+// UpdateRegisterRateLimit sets the "register_rate_limit" field to the value that was provided on create.
+func (u *SettingsUpsertOne) UpdateRegisterRateLimit() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateRegisterRateLimit()
+	})
+}
+
+// ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
+func (u *SettingsUpsertOne) ClearRegisterRateLimit() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearRegisterRateLimit()
 	})
 }
 
@@ -3597,6 +3671,34 @@ func (u *SettingsUpsertBulk) UpdateDefaultItemsPerPage() *SettingsUpsertBulk {
 func (u *SettingsUpsertBulk) ClearDefaultItemsPerPage() *SettingsUpsertBulk {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearDefaultItemsPerPage()
+	})
+}
+
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (u *SettingsUpsertBulk) SetRegisterRateLimit(v float64) *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetRegisterRateLimit(v)
+	})
+}
+
+// AddRegisterRateLimit adds v to the "register_rate_limit" field.
+func (u *SettingsUpsertBulk) AddRegisterRateLimit(v float64) *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.AddRegisterRateLimit(v)
+	})
+}
+
+// UpdateRegisterRateLimit sets the "register_rate_limit" field to the value that was provided on create.
+func (u *SettingsUpsertBulk) UpdateRegisterRateLimit() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateRegisterRateLimit()
+	})
+}
+
+// ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
+func (u *SettingsUpsertBulk) ClearRegisterRateLimit() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearRegisterRateLimit()
 	})
 }
 
