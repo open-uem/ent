@@ -240,6 +240,11 @@ func DefaultItemsPerPage(v int) predicate.Settings {
 	return predicate.Settings(sql.FieldEQ(FieldDefaultItemsPerPage, v))
 }
 
+// RegisterRateLimit applies equality check predicate on the "register_rate_limit" field. It's identical to RegisterRateLimitEQ.
+func RegisterRateLimit(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldRegisterRateLimit, v))
+}
+
 // LanguageEQ applies the EQ predicate on the "language" field.
 func LanguageEQ(v string) predicate.Settings {
 	return predicate.Settings(sql.FieldEQ(FieldLanguage, v))
@@ -2213,6 +2218,56 @@ func DefaultItemsPerPageIsNil() predicate.Settings {
 // DefaultItemsPerPageNotNil applies the NotNil predicate on the "default_items_per_page" field.
 func DefaultItemsPerPageNotNil() predicate.Settings {
 	return predicate.Settings(sql.FieldNotNull(FieldDefaultItemsPerPage))
+}
+
+// RegisterRateLimitEQ applies the EQ predicate on the "register_rate_limit" field.
+func RegisterRateLimitEQ(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldRegisterRateLimit, v))
+}
+
+// RegisterRateLimitNEQ applies the NEQ predicate on the "register_rate_limit" field.
+func RegisterRateLimitNEQ(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldNEQ(FieldRegisterRateLimit, v))
+}
+
+// RegisterRateLimitIn applies the In predicate on the "register_rate_limit" field.
+func RegisterRateLimitIn(vs ...float64) predicate.Settings {
+	return predicate.Settings(sql.FieldIn(FieldRegisterRateLimit, vs...))
+}
+
+// RegisterRateLimitNotIn applies the NotIn predicate on the "register_rate_limit" field.
+func RegisterRateLimitNotIn(vs ...float64) predicate.Settings {
+	return predicate.Settings(sql.FieldNotIn(FieldRegisterRateLimit, vs...))
+}
+
+// RegisterRateLimitGT applies the GT predicate on the "register_rate_limit" field.
+func RegisterRateLimitGT(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldGT(FieldRegisterRateLimit, v))
+}
+
+// RegisterRateLimitGTE applies the GTE predicate on the "register_rate_limit" field.
+func RegisterRateLimitGTE(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldGTE(FieldRegisterRateLimit, v))
+}
+
+// RegisterRateLimitLT applies the LT predicate on the "register_rate_limit" field.
+func RegisterRateLimitLT(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldLT(FieldRegisterRateLimit, v))
+}
+
+// RegisterRateLimitLTE applies the LTE predicate on the "register_rate_limit" field.
+func RegisterRateLimitLTE(v float64) predicate.Settings {
+	return predicate.Settings(sql.FieldLTE(FieldRegisterRateLimit, v))
+}
+
+// RegisterRateLimitIsNil applies the IsNil predicate on the "register_rate_limit" field.
+func RegisterRateLimitIsNil() predicate.Settings {
+	return predicate.Settings(sql.FieldIsNull(FieldRegisterRateLimit))
+}
+
+// RegisterRateLimitNotNil applies the NotNil predicate on the "register_rate_limit" field.
+func RegisterRateLimitNotNil() predicate.Settings {
+	return predicate.Settings(sql.FieldNotNull(FieldRegisterRateLimit))
 }
 
 // HasTag applies the HasEdge predicate on the "tag" edge.

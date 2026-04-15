@@ -24103,6 +24103,8 @@ type SettingsMutation struct {
 	auto_admit_agents                            *bool
 	default_items_per_page                       *int
 	adddefault_items_per_page                    *int
+	register_rate_limit                          *float64
+	addregister_rate_limit                       *float64
 	clearedFields                                map[string]struct{}
 	tag                                          *int
 	clearedtag                                   bool
@@ -26192,6 +26194,76 @@ func (m *SettingsMutation) ResetDefaultItemsPerPage() {
 	delete(m.clearedFields, settings.FieldDefaultItemsPerPage)
 }
 
+// SetRegisterRateLimit sets the "register_rate_limit" field.
+func (m *SettingsMutation) SetRegisterRateLimit(f float64) {
+	m.register_rate_limit = &f
+	m.addregister_rate_limit = nil
+}
+
+// RegisterRateLimit returns the value of the "register_rate_limit" field in the mutation.
+func (m *SettingsMutation) RegisterRateLimit() (r float64, exists bool) {
+	v := m.register_rate_limit
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRegisterRateLimit returns the old "register_rate_limit" field's value of the Settings entity.
+// If the Settings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SettingsMutation) OldRegisterRateLimit(ctx context.Context) (v float64, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRegisterRateLimit is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRegisterRateLimit requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRegisterRateLimit: %w", err)
+	}
+	return oldValue.RegisterRateLimit, nil
+}
+
+// AddRegisterRateLimit adds f to the "register_rate_limit" field.
+func (m *SettingsMutation) AddRegisterRateLimit(f float64) {
+	if m.addregister_rate_limit != nil {
+		*m.addregister_rate_limit += f
+	} else {
+		m.addregister_rate_limit = &f
+	}
+}
+
+// AddedRegisterRateLimit returns the value that was added to the "register_rate_limit" field in this mutation.
+func (m *SettingsMutation) AddedRegisterRateLimit() (r float64, exists bool) {
+	v := m.addregister_rate_limit
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
+func (m *SettingsMutation) ClearRegisterRateLimit() {
+	m.register_rate_limit = nil
+	m.addregister_rate_limit = nil
+	m.clearedFields[settings.FieldRegisterRateLimit] = struct{}{}
+}
+
+// RegisterRateLimitCleared returns if the "register_rate_limit" field was cleared in this mutation.
+func (m *SettingsMutation) RegisterRateLimitCleared() bool {
+	_, ok := m.clearedFields[settings.FieldRegisterRateLimit]
+	return ok
+}
+
+// ResetRegisterRateLimit resets all changes to the "register_rate_limit" field.
+func (m *SettingsMutation) ResetRegisterRateLimit() {
+	m.register_rate_limit = nil
+	m.addregister_rate_limit = nil
+	delete(m.clearedFields, settings.FieldRegisterRateLimit)
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by id.
 func (m *SettingsMutation) SetTagID(id int) {
 	m.tag = &id
@@ -26304,7 +26376,7 @@ func (m *SettingsMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SettingsMutation) Fields() []string {
-	fields := make([]string, 0, 37)
+	fields := make([]string, 0, 38)
 	if m.language != nil {
 		fields = append(fields, settings.FieldLanguage)
 	}
@@ -26416,6 +26488,9 @@ func (m *SettingsMutation) Fields() []string {
 	if m.default_items_per_page != nil {
 		fields = append(fields, settings.FieldDefaultItemsPerPage)
 	}
+	if m.register_rate_limit != nil {
+		fields = append(fields, settings.FieldRegisterRateLimit)
+	}
 	return fields
 }
 
@@ -26498,6 +26573,8 @@ func (m *SettingsMutation) Field(name string) (ent.Value, bool) {
 		return m.AutoAdmitAgents()
 	case settings.FieldDefaultItemsPerPage:
 		return m.DefaultItemsPerPage()
+	case settings.FieldRegisterRateLimit:
+		return m.RegisterRateLimit()
 	}
 	return nil, false
 }
@@ -26581,6 +26658,8 @@ func (m *SettingsMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldAutoAdmitAgents(ctx)
 	case settings.FieldDefaultItemsPerPage:
 		return m.OldDefaultItemsPerPage(ctx)
+	case settings.FieldRegisterRateLimit:
+		return m.OldRegisterRateLimit(ctx)
 	}
 	return nil, fmt.Errorf("unknown Settings field %s", name)
 }
@@ -26849,6 +26928,13 @@ func (m *SettingsMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetDefaultItemsPerPage(v)
 		return nil
+	case settings.FieldRegisterRateLimit:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRegisterRateLimit(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Settings field %s", name)
 }
@@ -26881,6 +26967,9 @@ func (m *SettingsMutation) AddedFields() []string {
 	if m.adddefault_items_per_page != nil {
 		fields = append(fields, settings.FieldDefaultItemsPerPage)
 	}
+	if m.addregister_rate_limit != nil {
+		fields = append(fields, settings.FieldRegisterRateLimit)
+	}
 	return fields
 }
 
@@ -26905,6 +26994,8 @@ func (m *SettingsMutation) AddedField(name string) (ent.Value, bool) {
 		return m.AddedProfilesApplicationFrequenceInMinutes()
 	case settings.FieldDefaultItemsPerPage:
 		return m.AddedDefaultItemsPerPage()
+	case settings.FieldRegisterRateLimit:
+		return m.AddedRegisterRateLimit()
 	}
 	return nil, false
 }
@@ -26969,6 +27060,13 @@ func (m *SettingsMutation) AddField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.AddDefaultItemsPerPage(v)
+		return nil
+	case settings.FieldRegisterRateLimit:
+		v, ok := value.(float64)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddRegisterRateLimit(v)
 		return nil
 	}
 	return fmt.Errorf("unknown Settings numeric field %s", name)
@@ -27088,6 +27186,9 @@ func (m *SettingsMutation) ClearedFields() []string {
 	}
 	if m.FieldCleared(settings.FieldDefaultItemsPerPage) {
 		fields = append(fields, settings.FieldDefaultItemsPerPage)
+	}
+	if m.FieldCleared(settings.FieldRegisterRateLimit) {
+		fields = append(fields, settings.FieldRegisterRateLimit)
 	}
 	return fields
 }
@@ -27214,6 +27315,9 @@ func (m *SettingsMutation) ClearField(name string) error {
 	case settings.FieldDefaultItemsPerPage:
 		m.ClearDefaultItemsPerPage()
 		return nil
+	case settings.FieldRegisterRateLimit:
+		m.ClearRegisterRateLimit()
+		return nil
 	}
 	return fmt.Errorf("unknown Settings nullable field %s", name)
 }
@@ -27332,6 +27436,9 @@ func (m *SettingsMutation) ResetField(name string) error {
 		return nil
 	case settings.FieldDefaultItemsPerPage:
 		m.ResetDefaultItemsPerPage()
+		return nil
+	case settings.FieldRegisterRateLimit:
+		m.ResetRegisterRateLimit()
 		return nil
 	}
 	return fmt.Errorf("unknown Settings field %s", name)

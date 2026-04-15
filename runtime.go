@@ -480,6 +480,10 @@ func init() {
 	settingsDescDefaultItemsPerPage := settingsFields[36].Descriptor()
 	// settings.DefaultDefaultItemsPerPage holds the default value on creation for the default_items_per_page field.
 	settings.DefaultDefaultItemsPerPage = settingsDescDefaultItemsPerPage.Default.(int)
+	// settingsDescRegisterRateLimit is the schema descriptor for register_rate_limit field.
+	settingsDescRegisterRateLimit := settingsFields[37].Descriptor()
+	// settings.DefaultRegisterRateLimit holds the default value on creation for the register_rate_limit field.
+	settings.DefaultRegisterRateLimit = settingsDescRegisterRateLimit.Default.(float64)
 	siteFields := schema.Site{}.Fields()
 	_ = siteFields
 	// siteDescCreated is the schema descriptor for created field.
