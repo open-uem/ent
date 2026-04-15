@@ -113,7 +113,7 @@ var (
 	AuthenticationsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
 		{Name: "use_certificates", Type: field.TypeBool, Nullable: true, Default: true},
-		{Name: "allow_register", Type: field.TypeBool, Nullable: true, Default: true},
+		{Name: "allow_register", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "use_oidc", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "oidc_provider", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "oidc_issuer_url", Type: field.TypeString, Nullable: true, Default: ""},
