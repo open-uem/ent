@@ -32,8 +32,6 @@ type Authentication struct {
 	OIDCRole string `json:"OIDC_role,omitempty"`
 	// OIDCCookieEncriptionKey holds the value of the "OIDC_cookie_encription_key" field.
 	OIDCCookieEncriptionKey string `json:"OIDC_cookie_encription_key,omitempty"`
-	// OIDCKeycloakPublicKey holds the value of the "OIDC_keycloak_public_key" field.
-	OIDCKeycloakPublicKey string `json:"OIDC_keycloak_public_key,omitempty"`
 	// OIDCAutoCreateAccount holds the value of the "OIDC_auto_create_account" field.
 	OIDCAutoCreateAccount bool `json:"OIDC_auto_create_account,omitempty"`
 	// OIDCAutoApprove holds the value of the "OIDC_auto_approve" field.
@@ -52,7 +50,7 @@ func (*Authentication) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullBool)
 		case authentication.FieldID:
 			values[i] = new(sql.NullInt64)
-		case authentication.FieldOIDCProvider, authentication.FieldOIDCIssuerURL, authentication.FieldOIDCClientID, authentication.FieldOIDCRole, authentication.FieldOIDCCookieEncriptionKey, authentication.FieldOIDCKeycloakPublicKey:
+		case authentication.FieldOIDCProvider, authentication.FieldOIDCIssuerURL, authentication.FieldOIDCClientID, authentication.FieldOIDCRole, authentication.FieldOIDCCookieEncriptionKey:
 			values[i] = new(sql.NullString)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -122,12 +120,6 @@ func (a *Authentication) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field OIDC_cookie_encription_key", values[i])
 			} else if value.Valid {
 				a.OIDCCookieEncriptionKey = value.String
-			}
-		case authentication.FieldOIDCKeycloakPublicKey:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field OIDC_keycloak_public_key", values[i])
-			} else if value.Valid {
-				a.OIDCKeycloakPublicKey = value.String
 			}
 		case authentication.FieldOIDCAutoCreateAccount:
 			if value, ok := values[i].(*sql.NullBool); !ok {
@@ -206,9 +198,6 @@ func (a *Authentication) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_cookie_encription_key=")
 	builder.WriteString(a.OIDCCookieEncriptionKey)
-	builder.WriteString(", ")
-	builder.WriteString("OIDC_keycloak_public_key=")
-	builder.WriteString(a.OIDCKeycloakPublicKey)
 	builder.WriteString(", ")
 	builder.WriteString("OIDC_auto_create_account=")
 	builder.WriteString(fmt.Sprintf("%v", a.OIDCAutoCreateAccount))

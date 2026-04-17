@@ -172,20 +172,16 @@ func init() {
 	authenticationDescOIDCCookieEncriptionKey := authenticationFields[7].Descriptor()
 	// authentication.DefaultOIDCCookieEncriptionKey holds the default value on creation for the OIDC_cookie_encription_key field.
 	authentication.DefaultOIDCCookieEncriptionKey = authenticationDescOIDCCookieEncriptionKey.Default.(string)
-	// authenticationDescOIDCKeycloakPublicKey is the schema descriptor for OIDC_keycloak_public_key field.
-	authenticationDescOIDCKeycloakPublicKey := authenticationFields[8].Descriptor()
-	// authentication.DefaultOIDCKeycloakPublicKey holds the default value on creation for the OIDC_keycloak_public_key field.
-	authentication.DefaultOIDCKeycloakPublicKey = authenticationDescOIDCKeycloakPublicKey.Default.(string)
 	// authenticationDescOIDCAutoCreateAccount is the schema descriptor for OIDC_auto_create_account field.
-	authenticationDescOIDCAutoCreateAccount := authenticationFields[9].Descriptor()
+	authenticationDescOIDCAutoCreateAccount := authenticationFields[8].Descriptor()
 	// authentication.DefaultOIDCAutoCreateAccount holds the default value on creation for the OIDC_auto_create_account field.
 	authentication.DefaultOIDCAutoCreateAccount = authenticationDescOIDCAutoCreateAccount.Default.(bool)
 	// authenticationDescOIDCAutoApprove is the schema descriptor for OIDC_auto_approve field.
-	authenticationDescOIDCAutoApprove := authenticationFields[10].Descriptor()
+	authenticationDescOIDCAutoApprove := authenticationFields[9].Descriptor()
 	// authentication.DefaultOIDCAutoApprove holds the default value on creation for the OIDC_auto_approve field.
 	authentication.DefaultOIDCAutoApprove = authenticationDescOIDCAutoApprove.Default.(bool)
 	// authenticationDescUsePasswd is the schema descriptor for use_passwd field.
-	authenticationDescUsePasswd := authenticationFields[11].Descriptor()
+	authenticationDescUsePasswd := authenticationFields[10].Descriptor()
 	// authentication.DefaultUsePasswd holds the default value on creation for the use_passwd field.
 	authentication.DefaultUsePasswd = authenticationDescUsePasswd.Default.(bool)
 	deploymentFields := schema.Deployment{}.Fields()
@@ -812,48 +808,28 @@ func init() {
 	user.DefaultModified = userDescModified.Default.(func() time.Time)
 	// user.UpdateDefaultModified holds the default value on update for the modified field.
 	user.UpdateDefaultModified = userDescModified.UpdateDefault.(func() time.Time)
-	// userDescAccessToken is the schema descriptor for access_token field.
-	userDescAccessToken := userFields[14].Descriptor()
-	// user.DefaultAccessToken holds the default value on creation for the access_token field.
-	user.DefaultAccessToken = userDescAccessToken.Default.(string)
-	// userDescRefreshToken is the schema descriptor for refresh_token field.
-	userDescRefreshToken := userFields[15].Descriptor()
-	// user.DefaultRefreshToken holds the default value on creation for the refresh_token field.
-	user.DefaultRefreshToken = userDescRefreshToken.Default.(string)
-	// userDescIDToken is the schema descriptor for id_token field.
-	userDescIDToken := userFields[16].Descriptor()
-	// user.DefaultIDToken holds the default value on creation for the id_token field.
-	user.DefaultIDToken = userDescIDToken.Default.(string)
-	// userDescTokenType is the schema descriptor for token_type field.
-	userDescTokenType := userFields[17].Descriptor()
-	// user.DefaultTokenType holds the default value on creation for the token_type field.
-	user.DefaultTokenType = userDescTokenType.Default.(string)
-	// userDescTokenExpiry is the schema descriptor for token_expiry field.
-	userDescTokenExpiry := userFields[18].Descriptor()
-	// user.DefaultTokenExpiry holds the default value on creation for the token_expiry field.
-	user.DefaultTokenExpiry = userDescTokenExpiry.Default.(int)
 	// userDescHash is the schema descriptor for hash field.
-	userDescHash := userFields[19].Descriptor()
+	userDescHash := userFields[14].Descriptor()
 	// user.DefaultHash holds the default value on creation for the hash field.
 	user.DefaultHash = userDescHash.Default.(string)
 	// userDescTotpSecret is the schema descriptor for totp_secret field.
-	userDescTotpSecret := userFields[20].Descriptor()
+	userDescTotpSecret := userFields[15].Descriptor()
 	// user.DefaultTotpSecret holds the default value on creation for the totp_secret field.
 	user.DefaultTotpSecret = userDescTotpSecret.Default.(string)
 	// userDescTotpSecretConfirmed is the schema descriptor for totp_secret_confirmed field.
-	userDescTotpSecretConfirmed := userFields[21].Descriptor()
+	userDescTotpSecretConfirmed := userFields[16].Descriptor()
 	// user.DefaultTotpSecretConfirmed holds the default value on creation for the totp_secret_confirmed field.
 	user.DefaultTotpSecretConfirmed = userDescTotpSecretConfirmed.Default.(bool)
 	// userDescForgotPasswordCode is the schema descriptor for forgot_password_code field.
-	userDescForgotPasswordCode := userFields[22].Descriptor()
+	userDescForgotPasswordCode := userFields[17].Descriptor()
 	// user.DefaultForgotPasswordCode holds the default value on creation for the forgot_password_code field.
 	user.DefaultForgotPasswordCode = userDescForgotPasswordCode.Default.(string)
 	// userDescForgotPasswordCodeExpiresAt is the schema descriptor for forgot_password_code_expires_at field.
-	userDescForgotPasswordCodeExpiresAt := userFields[23].Descriptor()
+	userDescForgotPasswordCodeExpiresAt := userFields[18].Descriptor()
 	// user.DefaultForgotPasswordCodeExpiresAt holds the default value on creation for the forgot_password_code_expires_at field.
 	user.DefaultForgotPasswordCodeExpiresAt = userDescForgotPasswordCodeExpiresAt.Default.(func() time.Time)
 	// userDescNewUserToken is the schema descriptor for new_user_token field.
-	userDescNewUserToken := userFields[24].Descriptor()
+	userDescNewUserToken := userFields[19].Descriptor()
 	// user.DefaultNewUserToken holds the default value on creation for the new_user_token field.
 	user.DefaultNewUserToken = userDescNewUserToken.Default.(string)
 	// userDescID is the schema descriptor for id field.

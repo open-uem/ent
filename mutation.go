@@ -5198,7 +5198,6 @@ type AuthenticationMutation struct {
 	_OIDC_client_id             *string
 	_OIDC_role                  *string
 	_OIDC_cookie_encription_key *string
-	_OIDC_keycloak_public_key   *string
 	_OIDC_auto_create_account   *bool
 	_OIDC_auto_approve          *bool
 	use_passwd                  *bool
@@ -5698,55 +5697,6 @@ func (m *AuthenticationMutation) ResetOIDCCookieEncriptionKey() {
 	delete(m.clearedFields, authentication.FieldOIDCCookieEncriptionKey)
 }
 
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (m *AuthenticationMutation) SetOIDCKeycloakPublicKey(s string) {
-	m._OIDC_keycloak_public_key = &s
-}
-
-// OIDCKeycloakPublicKey returns the value of the "OIDC_keycloak_public_key" field in the mutation.
-func (m *AuthenticationMutation) OIDCKeycloakPublicKey() (r string, exists bool) {
-	v := m._OIDC_keycloak_public_key
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldOIDCKeycloakPublicKey returns the old "OIDC_keycloak_public_key" field's value of the Authentication entity.
-// If the Authentication object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *AuthenticationMutation) OldOIDCKeycloakPublicKey(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldOIDCKeycloakPublicKey is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldOIDCKeycloakPublicKey requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldOIDCKeycloakPublicKey: %w", err)
-	}
-	return oldValue.OIDCKeycloakPublicKey, nil
-}
-
-// ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (m *AuthenticationMutation) ClearOIDCKeycloakPublicKey() {
-	m._OIDC_keycloak_public_key = nil
-	m.clearedFields[authentication.FieldOIDCKeycloakPublicKey] = struct{}{}
-}
-
-// OIDCKeycloakPublicKeyCleared returns if the "OIDC_keycloak_public_key" field was cleared in this mutation.
-func (m *AuthenticationMutation) OIDCKeycloakPublicKeyCleared() bool {
-	_, ok := m.clearedFields[authentication.FieldOIDCKeycloakPublicKey]
-	return ok
-}
-
-// ResetOIDCKeycloakPublicKey resets all changes to the "OIDC_keycloak_public_key" field.
-func (m *AuthenticationMutation) ResetOIDCKeycloakPublicKey() {
-	m._OIDC_keycloak_public_key = nil
-	delete(m.clearedFields, authentication.FieldOIDCKeycloakPublicKey)
-}
-
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
 func (m *AuthenticationMutation) SetOIDCAutoCreateAccount(b bool) {
 	m._OIDC_auto_create_account = &b
@@ -5928,7 +5878,7 @@ func (m *AuthenticationMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *AuthenticationMutation) Fields() []string {
-	fields := make([]string, 0, 12)
+	fields := make([]string, 0, 11)
 	if m.use_certificates != nil {
 		fields = append(fields, authentication.FieldUseCertificates)
 	}
@@ -5952,9 +5902,6 @@ func (m *AuthenticationMutation) Fields() []string {
 	}
 	if m._OIDC_cookie_encription_key != nil {
 		fields = append(fields, authentication.FieldOIDCCookieEncriptionKey)
-	}
-	if m._OIDC_keycloak_public_key != nil {
-		fields = append(fields, authentication.FieldOIDCKeycloakPublicKey)
 	}
 	if m._OIDC_auto_create_account != nil {
 		fields = append(fields, authentication.FieldOIDCAutoCreateAccount)
@@ -5989,8 +5936,6 @@ func (m *AuthenticationMutation) Field(name string) (ent.Value, bool) {
 		return m.OIDCRole()
 	case authentication.FieldOIDCCookieEncriptionKey:
 		return m.OIDCCookieEncriptionKey()
-	case authentication.FieldOIDCKeycloakPublicKey:
-		return m.OIDCKeycloakPublicKey()
 	case authentication.FieldOIDCAutoCreateAccount:
 		return m.OIDCAutoCreateAccount()
 	case authentication.FieldOIDCAutoApprove:
@@ -6022,8 +5967,6 @@ func (m *AuthenticationMutation) OldField(ctx context.Context, name string) (ent
 		return m.OldOIDCRole(ctx)
 	case authentication.FieldOIDCCookieEncriptionKey:
 		return m.OldOIDCCookieEncriptionKey(ctx)
-	case authentication.FieldOIDCKeycloakPublicKey:
-		return m.OldOIDCKeycloakPublicKey(ctx)
 	case authentication.FieldOIDCAutoCreateAccount:
 		return m.OldOIDCAutoCreateAccount(ctx)
 	case authentication.FieldOIDCAutoApprove:
@@ -6094,13 +6037,6 @@ func (m *AuthenticationMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetOIDCCookieEncriptionKey(v)
-		return nil
-	case authentication.FieldOIDCKeycloakPublicKey:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetOIDCKeycloakPublicKey(v)
 		return nil
 	case authentication.FieldOIDCAutoCreateAccount:
 		v, ok := value.(bool)
@@ -6177,9 +6113,6 @@ func (m *AuthenticationMutation) ClearedFields() []string {
 	if m.FieldCleared(authentication.FieldOIDCCookieEncriptionKey) {
 		fields = append(fields, authentication.FieldOIDCCookieEncriptionKey)
 	}
-	if m.FieldCleared(authentication.FieldOIDCKeycloakPublicKey) {
-		fields = append(fields, authentication.FieldOIDCKeycloakPublicKey)
-	}
 	if m.FieldCleared(authentication.FieldOIDCAutoCreateAccount) {
 		fields = append(fields, authentication.FieldOIDCAutoCreateAccount)
 	}
@@ -6227,9 +6160,6 @@ func (m *AuthenticationMutation) ClearField(name string) error {
 	case authentication.FieldOIDCCookieEncriptionKey:
 		m.ClearOIDCCookieEncriptionKey()
 		return nil
-	case authentication.FieldOIDCKeycloakPublicKey:
-		m.ClearOIDCKeycloakPublicKey()
-		return nil
 	case authentication.FieldOIDCAutoCreateAccount:
 		m.ClearOIDCAutoCreateAccount()
 		return nil
@@ -6270,9 +6200,6 @@ func (m *AuthenticationMutation) ResetField(name string) error {
 		return nil
 	case authentication.FieldOIDCCookieEncriptionKey:
 		m.ResetOIDCCookieEncriptionKey()
-		return nil
-	case authentication.FieldOIDCKeycloakPublicKey:
-		m.ResetOIDCKeycloakPublicKey()
 		return nil
 	case authentication.FieldOIDCAutoCreateAccount:
 		m.ResetOIDCAutoCreateAccount()
@@ -40876,12 +40803,6 @@ type UserMutation struct {
 	use2fa                          *bool
 	created                         *time.Time
 	modified                        *time.Time
-	access_token                    *string
-	refresh_token                   *string
-	id_token                        *string
-	token_type                      *string
-	token_expiry                    *int
-	addtoken_expiry                 *int
 	hash                            *string
 	totp_secret                     *string
 	totp_secret_confirmed           *bool
@@ -41602,272 +41523,6 @@ func (m *UserMutation) ResetModified() {
 	delete(m.clearedFields, user.FieldModified)
 }
 
-// SetAccessToken sets the "access_token" field.
-func (m *UserMutation) SetAccessToken(s string) {
-	m.access_token = &s
-}
-
-// AccessToken returns the value of the "access_token" field in the mutation.
-func (m *UserMutation) AccessToken() (r string, exists bool) {
-	v := m.access_token
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldAccessToken returns the old "access_token" field's value of the User entity.
-// If the User object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *UserMutation) OldAccessToken(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldAccessToken is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldAccessToken requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldAccessToken: %w", err)
-	}
-	return oldValue.AccessToken, nil
-}
-
-// ClearAccessToken clears the value of the "access_token" field.
-func (m *UserMutation) ClearAccessToken() {
-	m.access_token = nil
-	m.clearedFields[user.FieldAccessToken] = struct{}{}
-}
-
-// AccessTokenCleared returns if the "access_token" field was cleared in this mutation.
-func (m *UserMutation) AccessTokenCleared() bool {
-	_, ok := m.clearedFields[user.FieldAccessToken]
-	return ok
-}
-
-// ResetAccessToken resets all changes to the "access_token" field.
-func (m *UserMutation) ResetAccessToken() {
-	m.access_token = nil
-	delete(m.clearedFields, user.FieldAccessToken)
-}
-
-// SetRefreshToken sets the "refresh_token" field.
-func (m *UserMutation) SetRefreshToken(s string) {
-	m.refresh_token = &s
-}
-
-// RefreshToken returns the value of the "refresh_token" field in the mutation.
-func (m *UserMutation) RefreshToken() (r string, exists bool) {
-	v := m.refresh_token
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldRefreshToken returns the old "refresh_token" field's value of the User entity.
-// If the User object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *UserMutation) OldRefreshToken(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldRefreshToken is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldRefreshToken requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldRefreshToken: %w", err)
-	}
-	return oldValue.RefreshToken, nil
-}
-
-// ClearRefreshToken clears the value of the "refresh_token" field.
-func (m *UserMutation) ClearRefreshToken() {
-	m.refresh_token = nil
-	m.clearedFields[user.FieldRefreshToken] = struct{}{}
-}
-
-// RefreshTokenCleared returns if the "refresh_token" field was cleared in this mutation.
-func (m *UserMutation) RefreshTokenCleared() bool {
-	_, ok := m.clearedFields[user.FieldRefreshToken]
-	return ok
-}
-
-// ResetRefreshToken resets all changes to the "refresh_token" field.
-func (m *UserMutation) ResetRefreshToken() {
-	m.refresh_token = nil
-	delete(m.clearedFields, user.FieldRefreshToken)
-}
-
-// SetIDToken sets the "id_token" field.
-func (m *UserMutation) SetIDToken(s string) {
-	m.id_token = &s
-}
-
-// IDToken returns the value of the "id_token" field in the mutation.
-func (m *UserMutation) IDToken() (r string, exists bool) {
-	v := m.id_token
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldIDToken returns the old "id_token" field's value of the User entity.
-// If the User object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *UserMutation) OldIDToken(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldIDToken is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldIDToken requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldIDToken: %w", err)
-	}
-	return oldValue.IDToken, nil
-}
-
-// ClearIDToken clears the value of the "id_token" field.
-func (m *UserMutation) ClearIDToken() {
-	m.id_token = nil
-	m.clearedFields[user.FieldIDToken] = struct{}{}
-}
-
-// IDTokenCleared returns if the "id_token" field was cleared in this mutation.
-func (m *UserMutation) IDTokenCleared() bool {
-	_, ok := m.clearedFields[user.FieldIDToken]
-	return ok
-}
-
-// ResetIDToken resets all changes to the "id_token" field.
-func (m *UserMutation) ResetIDToken() {
-	m.id_token = nil
-	delete(m.clearedFields, user.FieldIDToken)
-}
-
-// SetTokenType sets the "token_type" field.
-func (m *UserMutation) SetTokenType(s string) {
-	m.token_type = &s
-}
-
-// TokenType returns the value of the "token_type" field in the mutation.
-func (m *UserMutation) TokenType() (r string, exists bool) {
-	v := m.token_type
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldTokenType returns the old "token_type" field's value of the User entity.
-// If the User object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *UserMutation) OldTokenType(ctx context.Context) (v string, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldTokenType is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldTokenType requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldTokenType: %w", err)
-	}
-	return oldValue.TokenType, nil
-}
-
-// ClearTokenType clears the value of the "token_type" field.
-func (m *UserMutation) ClearTokenType() {
-	m.token_type = nil
-	m.clearedFields[user.FieldTokenType] = struct{}{}
-}
-
-// TokenTypeCleared returns if the "token_type" field was cleared in this mutation.
-func (m *UserMutation) TokenTypeCleared() bool {
-	_, ok := m.clearedFields[user.FieldTokenType]
-	return ok
-}
-
-// ResetTokenType resets all changes to the "token_type" field.
-func (m *UserMutation) ResetTokenType() {
-	m.token_type = nil
-	delete(m.clearedFields, user.FieldTokenType)
-}
-
-// SetTokenExpiry sets the "token_expiry" field.
-func (m *UserMutation) SetTokenExpiry(i int) {
-	m.token_expiry = &i
-	m.addtoken_expiry = nil
-}
-
-// TokenExpiry returns the value of the "token_expiry" field in the mutation.
-func (m *UserMutation) TokenExpiry() (r int, exists bool) {
-	v := m.token_expiry
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldTokenExpiry returns the old "token_expiry" field's value of the User entity.
-// If the User object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *UserMutation) OldTokenExpiry(ctx context.Context) (v int, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldTokenExpiry is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldTokenExpiry requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldTokenExpiry: %w", err)
-	}
-	return oldValue.TokenExpiry, nil
-}
-
-// AddTokenExpiry adds i to the "token_expiry" field.
-func (m *UserMutation) AddTokenExpiry(i int) {
-	if m.addtoken_expiry != nil {
-		*m.addtoken_expiry += i
-	} else {
-		m.addtoken_expiry = &i
-	}
-}
-
-// AddedTokenExpiry returns the value that was added to the "token_expiry" field in this mutation.
-func (m *UserMutation) AddedTokenExpiry() (r int, exists bool) {
-	v := m.addtoken_expiry
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// ClearTokenExpiry clears the value of the "token_expiry" field.
-func (m *UserMutation) ClearTokenExpiry() {
-	m.token_expiry = nil
-	m.addtoken_expiry = nil
-	m.clearedFields[user.FieldTokenExpiry] = struct{}{}
-}
-
-// TokenExpiryCleared returns if the "token_expiry" field was cleared in this mutation.
-func (m *UserMutation) TokenExpiryCleared() bool {
-	_, ok := m.clearedFields[user.FieldTokenExpiry]
-	return ok
-}
-
-// ResetTokenExpiry resets all changes to the "token_expiry" field.
-func (m *UserMutation) ResetTokenExpiry() {
-	m.token_expiry = nil
-	m.addtoken_expiry = nil
-	delete(m.clearedFields, user.FieldTokenExpiry)
-}
-
 // SetHash sets the "hash" field.
 func (m *UserMutation) SetHash(s string) {
 	m.hash = &s
@@ -42304,7 +41959,7 @@ func (m *UserMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *UserMutation) Fields() []string {
-	fields := make([]string, 0, 24)
+	fields := make([]string, 0, 19)
 	if m.name != nil {
 		fields = append(fields, user.FieldName)
 	}
@@ -42343,21 +41998,6 @@ func (m *UserMutation) Fields() []string {
 	}
 	if m.modified != nil {
 		fields = append(fields, user.FieldModified)
-	}
-	if m.access_token != nil {
-		fields = append(fields, user.FieldAccessToken)
-	}
-	if m.refresh_token != nil {
-		fields = append(fields, user.FieldRefreshToken)
-	}
-	if m.id_token != nil {
-		fields = append(fields, user.FieldIDToken)
-	}
-	if m.token_type != nil {
-		fields = append(fields, user.FieldTokenType)
-	}
-	if m.token_expiry != nil {
-		fields = append(fields, user.FieldTokenExpiry)
 	}
 	if m.hash != nil {
 		fields = append(fields, user.FieldHash)
@@ -42411,16 +42051,6 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.Created()
 	case user.FieldModified:
 		return m.Modified()
-	case user.FieldAccessToken:
-		return m.AccessToken()
-	case user.FieldRefreshToken:
-		return m.RefreshToken()
-	case user.FieldIDToken:
-		return m.IDToken()
-	case user.FieldTokenType:
-		return m.TokenType()
-	case user.FieldTokenExpiry:
-		return m.TokenExpiry()
 	case user.FieldHash:
 		return m.Hash()
 	case user.FieldTotpSecret:
@@ -42468,16 +42098,6 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldCreated(ctx)
 	case user.FieldModified:
 		return m.OldModified(ctx)
-	case user.FieldAccessToken:
-		return m.OldAccessToken(ctx)
-	case user.FieldRefreshToken:
-		return m.OldRefreshToken(ctx)
-	case user.FieldIDToken:
-		return m.OldIDToken(ctx)
-	case user.FieldTokenType:
-		return m.OldTokenType(ctx)
-	case user.FieldTokenExpiry:
-		return m.OldTokenExpiry(ctx)
 	case user.FieldHash:
 		return m.OldHash(ctx)
 	case user.FieldTotpSecret:
@@ -42590,41 +42210,6 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetModified(v)
 		return nil
-	case user.FieldAccessToken:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetAccessToken(v)
-		return nil
-	case user.FieldRefreshToken:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetRefreshToken(v)
-		return nil
-	case user.FieldIDToken:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetIDToken(v)
-		return nil
-	case user.FieldTokenType:
-		v, ok := value.(string)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetTokenType(v)
-		return nil
-	case user.FieldTokenExpiry:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetTokenExpiry(v)
-		return nil
 	case user.FieldHash:
 		v, ok := value.(string)
 		if !ok {
@@ -42674,21 +42259,13 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 // AddedFields returns all numeric fields that were incremented/decremented during
 // this mutation.
 func (m *UserMutation) AddedFields() []string {
-	var fields []string
-	if m.addtoken_expiry != nil {
-		fields = append(fields, user.FieldTokenExpiry)
-	}
-	return fields
+	return nil
 }
 
 // AddedField returns the numeric value that was incremented/decremented on a field
 // with the given name. The second boolean return value indicates that this field
 // was not set, or was not defined in the schema.
 func (m *UserMutation) AddedField(name string) (ent.Value, bool) {
-	switch name {
-	case user.FieldTokenExpiry:
-		return m.AddedTokenExpiry()
-	}
 	return nil, false
 }
 
@@ -42697,13 +42274,6 @@ func (m *UserMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *UserMutation) AddField(name string, value ent.Value) error {
 	switch name {
-	case user.FieldTokenExpiry:
-		v, ok := value.(int)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.AddTokenExpiry(v)
-		return nil
 	}
 	return fmt.Errorf("unknown User numeric field %s", name)
 }
@@ -42741,21 +42311,6 @@ func (m *UserMutation) ClearedFields() []string {
 	}
 	if m.FieldCleared(user.FieldModified) {
 		fields = append(fields, user.FieldModified)
-	}
-	if m.FieldCleared(user.FieldAccessToken) {
-		fields = append(fields, user.FieldAccessToken)
-	}
-	if m.FieldCleared(user.FieldRefreshToken) {
-		fields = append(fields, user.FieldRefreshToken)
-	}
-	if m.FieldCleared(user.FieldIDToken) {
-		fields = append(fields, user.FieldIDToken)
-	}
-	if m.FieldCleared(user.FieldTokenType) {
-		fields = append(fields, user.FieldTokenType)
-	}
-	if m.FieldCleared(user.FieldTokenExpiry) {
-		fields = append(fields, user.FieldTokenExpiry)
 	}
 	if m.FieldCleared(user.FieldHash) {
 		fields = append(fields, user.FieldHash)
@@ -42818,21 +42373,6 @@ func (m *UserMutation) ClearField(name string) error {
 		return nil
 	case user.FieldModified:
 		m.ClearModified()
-		return nil
-	case user.FieldAccessToken:
-		m.ClearAccessToken()
-		return nil
-	case user.FieldRefreshToken:
-		m.ClearRefreshToken()
-		return nil
-	case user.FieldIDToken:
-		m.ClearIDToken()
-		return nil
-	case user.FieldTokenType:
-		m.ClearTokenType()
-		return nil
-	case user.FieldTokenExpiry:
-		m.ClearTokenExpiry()
 		return nil
 	case user.FieldHash:
 		m.ClearHash()
@@ -42898,21 +42438,6 @@ func (m *UserMutation) ResetField(name string) error {
 		return nil
 	case user.FieldModified:
 		m.ResetModified()
-		return nil
-	case user.FieldAccessToken:
-		m.ResetAccessToken()
-		return nil
-	case user.FieldRefreshToken:
-		m.ResetRefreshToken()
-		return nil
-	case user.FieldIDToken:
-		m.ResetIDToken()
-		return nil
-	case user.FieldTokenType:
-		m.ResetTokenType()
-		return nil
-	case user.FieldTokenExpiry:
-		m.ResetTokenExpiry()
 		return nil
 	case user.FieldHash:
 		m.ResetHash()

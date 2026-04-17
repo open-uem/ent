@@ -188,26 +188,6 @@ func (au *AuthenticationUpdate) ClearOIDCCookieEncriptionKey() *AuthenticationUp
 	return au
 }
 
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (au *AuthenticationUpdate) SetOIDCKeycloakPublicKey(s string) *AuthenticationUpdate {
-	au.mutation.SetOIDCKeycloakPublicKey(s)
-	return au
-}
-
-// SetNillableOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field if the given value is not nil.
-func (au *AuthenticationUpdate) SetNillableOIDCKeycloakPublicKey(s *string) *AuthenticationUpdate {
-	if s != nil {
-		au.SetOIDCKeycloakPublicKey(*s)
-	}
-	return au
-}
-
-// ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (au *AuthenticationUpdate) ClearOIDCKeycloakPublicKey() *AuthenticationUpdate {
-	au.mutation.ClearOIDCKeycloakPublicKey()
-	return au
-}
-
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
 func (au *AuthenticationUpdate) SetOIDCAutoCreateAccount(b bool) *AuthenticationUpdate {
 	au.mutation.SetOIDCAutoCreateAccount(b)
@@ -362,12 +342,6 @@ func (au *AuthenticationUpdate) sqlSave(ctx context.Context) (n int, err error) 
 	}
 	if au.mutation.OIDCCookieEncriptionKeyCleared() {
 		_spec.ClearField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString)
-	}
-	if value, ok := au.mutation.OIDCKeycloakPublicKey(); ok {
-		_spec.SetField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString, value)
-	}
-	if au.mutation.OIDCKeycloakPublicKeyCleared() {
-		_spec.ClearField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString)
 	}
 	if value, ok := au.mutation.OIDCAutoCreateAccount(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool, value)
@@ -569,26 +543,6 @@ func (auo *AuthenticationUpdateOne) ClearOIDCCookieEncriptionKey() *Authenticati
 	return auo
 }
 
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (auo *AuthenticationUpdateOne) SetOIDCKeycloakPublicKey(s string) *AuthenticationUpdateOne {
-	auo.mutation.SetOIDCKeycloakPublicKey(s)
-	return auo
-}
-
-// SetNillableOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field if the given value is not nil.
-func (auo *AuthenticationUpdateOne) SetNillableOIDCKeycloakPublicKey(s *string) *AuthenticationUpdateOne {
-	if s != nil {
-		auo.SetOIDCKeycloakPublicKey(*s)
-	}
-	return auo
-}
-
-// ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (auo *AuthenticationUpdateOne) ClearOIDCKeycloakPublicKey() *AuthenticationUpdateOne {
-	auo.mutation.ClearOIDCKeycloakPublicKey()
-	return auo
-}
-
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
 func (auo *AuthenticationUpdateOne) SetOIDCAutoCreateAccount(b bool) *AuthenticationUpdateOne {
 	auo.mutation.SetOIDCAutoCreateAccount(b)
@@ -773,12 +727,6 @@ func (auo *AuthenticationUpdateOne) sqlSave(ctx context.Context) (_node *Authent
 	}
 	if auo.mutation.OIDCCookieEncriptionKeyCleared() {
 		_spec.ClearField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString)
-	}
-	if value, ok := auo.mutation.OIDCKeycloakPublicKey(); ok {
-		_spec.SetField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString, value)
-	}
-	if auo.mutation.OIDCKeycloakPublicKeyCleared() {
-		_spec.ClearField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString)
 	}
 	if value, ok := auo.mutation.OIDCAutoCreateAccount(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool, value)

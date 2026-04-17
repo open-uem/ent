@@ -40,16 +40,6 @@ const (
 	FieldCreated = "created"
 	// FieldModified holds the string denoting the modified field in the database.
 	FieldModified = "modified"
-	// FieldAccessToken holds the string denoting the access_token field in the database.
-	FieldAccessToken = "access_token"
-	// FieldRefreshToken holds the string denoting the refresh_token field in the database.
-	FieldRefreshToken = "refresh_token"
-	// FieldIDToken holds the string denoting the id_token field in the database.
-	FieldIDToken = "id_token"
-	// FieldTokenType holds the string denoting the token_type field in the database.
-	FieldTokenType = "token_type"
-	// FieldTokenExpiry holds the string denoting the token_expiry field in the database.
-	FieldTokenExpiry = "token_expiry"
 	// FieldHash holds the string denoting the hash field in the database.
 	FieldHash = "hash"
 	// FieldTotpSecret holds the string denoting the totp_secret field in the database.
@@ -104,11 +94,6 @@ var Columns = []string{
 	FieldUse2fa,
 	FieldCreated,
 	FieldModified,
-	FieldAccessToken,
-	FieldRefreshToken,
-	FieldIDToken,
-	FieldTokenType,
-	FieldTokenExpiry,
 	FieldHash,
 	FieldTotpSecret,
 	FieldTotpSecretConfirmed,
@@ -144,16 +129,6 @@ var (
 	DefaultModified func() time.Time
 	// UpdateDefaultModified holds the default value on update for the "modified" field.
 	UpdateDefaultModified func() time.Time
-	// DefaultAccessToken holds the default value on creation for the "access_token" field.
-	DefaultAccessToken string
-	// DefaultRefreshToken holds the default value on creation for the "refresh_token" field.
-	DefaultRefreshToken string
-	// DefaultIDToken holds the default value on creation for the "id_token" field.
-	DefaultIDToken string
-	// DefaultTokenType holds the default value on creation for the "token_type" field.
-	DefaultTokenType string
-	// DefaultTokenExpiry holds the default value on creation for the "token_expiry" field.
-	DefaultTokenExpiry int
 	// DefaultHash holds the default value on creation for the "hash" field.
 	DefaultHash string
 	// DefaultTotpSecret holds the default value on creation for the "totp_secret" field.
@@ -241,31 +216,6 @@ func ByCreated(opts ...sql.OrderTermOption) OrderOption {
 // ByModified orders the results by the modified field.
 func ByModified(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldModified, opts...).ToFunc()
-}
-
-// ByAccessToken orders the results by the access_token field.
-func ByAccessToken(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldAccessToken, opts...).ToFunc()
-}
-
-// ByRefreshToken orders the results by the refresh_token field.
-func ByRefreshToken(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldRefreshToken, opts...).ToFunc()
-}
-
-// ByIDToken orders the results by the id_token field.
-func ByIDToken(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldIDToken, opts...).ToFunc()
-}
-
-// ByTokenType orders the results by the token_type field.
-func ByTokenType(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldTokenType, opts...).ToFunc()
-}
-
-// ByTokenExpiry orders the results by the token_expiry field.
-func ByTokenExpiry(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldTokenExpiry, opts...).ToFunc()
 }
 
 // ByHash orders the results by the hash field.

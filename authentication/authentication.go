@@ -27,8 +27,6 @@ const (
 	FieldOIDCRole = "oidc_role"
 	// FieldOIDCCookieEncriptionKey holds the string denoting the oidc_cookie_encription_key field in the database.
 	FieldOIDCCookieEncriptionKey = "oidc_cookie_encription_key"
-	// FieldOIDCKeycloakPublicKey holds the string denoting the oidc_keycloak_public_key field in the database.
-	FieldOIDCKeycloakPublicKey = "oidc_keycloak_public_key"
 	// FieldOIDCAutoCreateAccount holds the string denoting the oidc_auto_create_account field in the database.
 	FieldOIDCAutoCreateAccount = "oidc_auto_create_account"
 	// FieldOIDCAutoApprove holds the string denoting the oidc_auto_approve field in the database.
@@ -50,7 +48,6 @@ var Columns = []string{
 	FieldOIDCClientID,
 	FieldOIDCRole,
 	FieldOIDCCookieEncriptionKey,
-	FieldOIDCKeycloakPublicKey,
 	FieldOIDCAutoCreateAccount,
 	FieldOIDCAutoApprove,
 	FieldUsePasswd,
@@ -83,8 +80,6 @@ var (
 	DefaultOIDCRole string
 	// DefaultOIDCCookieEncriptionKey holds the default value on creation for the "OIDC_cookie_encription_key" field.
 	DefaultOIDCCookieEncriptionKey string
-	// DefaultOIDCKeycloakPublicKey holds the default value on creation for the "OIDC_keycloak_public_key" field.
-	DefaultOIDCKeycloakPublicKey string
 	// DefaultOIDCAutoCreateAccount holds the default value on creation for the "OIDC_auto_create_account" field.
 	DefaultOIDCAutoCreateAccount bool
 	// DefaultOIDCAutoApprove holds the default value on creation for the "OIDC_auto_approve" field.
@@ -139,11 +134,6 @@ func ByOIDCRole(opts ...sql.OrderTermOption) OrderOption {
 // ByOIDCCookieEncriptionKey orders the results by the OIDC_cookie_encription_key field.
 func ByOIDCCookieEncriptionKey(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldOIDCCookieEncriptionKey, opts...).ToFunc()
-}
-
-// ByOIDCKeycloakPublicKey orders the results by the OIDC_keycloak_public_key field.
-func ByOIDCKeycloakPublicKey(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldOIDCKeycloakPublicKey, opts...).ToFunc()
 }
 
 // ByOIDCAutoCreateAccount orders the results by the OIDC_auto_create_account field.
