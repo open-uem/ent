@@ -480,6 +480,14 @@ func init() {
 	settingsDescRegisterRateLimit := settingsFields[37].Descriptor()
 	// settings.DefaultRegisterRateLimit holds the default value on creation for the register_rate_limit field.
 	settings.DefaultRegisterRateLimit = settingsDescRegisterRateLimit.Default.(float64)
+	// settingsDescTurnstileSiteKey is the schema descriptor for turnstile_site_key field.
+	settingsDescTurnstileSiteKey := settingsFields[38].Descriptor()
+	// settings.DefaultTurnstileSiteKey holds the default value on creation for the turnstile_site_key field.
+	settings.DefaultTurnstileSiteKey = settingsDescTurnstileSiteKey.Default.(string)
+	// settingsDescTurnstileSecretKey is the schema descriptor for turnstile_secret_key field.
+	settingsDescTurnstileSecretKey := settingsFields[39].Descriptor()
+	// settings.DefaultTurnstileSecretKey holds the default value on creation for the turnstile_secret_key field.
+	settings.DefaultTurnstileSecretKey = settingsDescTurnstileSecretKey.Default.(string)
 	siteFields := schema.Site{}.Fields()
 	_ = siteFields
 	// siteDescCreated is the schema descriptor for created field.

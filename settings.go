@@ -95,6 +95,10 @@ type Settings struct {
 	DefaultItemsPerPage int `json:"default_items_per_page,omitempty"`
 	// RegisterRateLimit holds the value of the "register_rate_limit" field.
 	RegisterRateLimit float64 `json:"register_rate_limit,omitempty"`
+	// TurnstileSiteKey holds the value of the "turnstile_site_key" field.
+	TurnstileSiteKey string `json:"turnstile_site_key,omitempty"`
+	// TurnstileSecretKey holds the value of the "turnstile_secret_key" field.
+	TurnstileSecretKey string `json:"turnstile_secret_key,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the SettingsQuery when eager-loading is set.
 	Edges           SettingsEdges `json:"edges"`
@@ -147,7 +151,7 @@ func (*Settings) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullFloat64)
 		case settings.FieldID, settings.FieldSMTPPort, settings.FieldUserCertYearsValid, settings.FieldNatsRequestTimeoutSeconds, settings.FieldRefreshTimeInMinutes, settings.FieldSessionLifetimeInMinutes, settings.FieldAgentReportFrequenceInMinutes, settings.FieldProfilesApplicationFrequenceInMinutes, settings.FieldDefaultItemsPerPage:
 			values[i] = new(sql.NullInt64)
-		case settings.FieldLanguage, settings.FieldOrganization, settings.FieldPostalAddress, settings.FieldPostalCode, settings.FieldLocality, settings.FieldProvince, settings.FieldState, settings.FieldCountry, settings.FieldSMTPServer, settings.FieldSMTPUser, settings.FieldSMTPPassword, settings.FieldSMTPAuth, settings.FieldNatsServer, settings.FieldNatsPort, settings.FieldMessageFrom, settings.FieldMaxUploadSize, settings.FieldUpdateChannel:
+		case settings.FieldLanguage, settings.FieldOrganization, settings.FieldPostalAddress, settings.FieldPostalCode, settings.FieldLocality, settings.FieldProvince, settings.FieldState, settings.FieldCountry, settings.FieldSMTPServer, settings.FieldSMTPUser, settings.FieldSMTPPassword, settings.FieldSMTPAuth, settings.FieldNatsServer, settings.FieldNatsPort, settings.FieldMessageFrom, settings.FieldMaxUploadSize, settings.FieldUpdateChannel, settings.FieldTurnstileSiteKey, settings.FieldTurnstileSecretKey:
 			values[i] = new(sql.NullString)
 		case settings.FieldCreated, settings.FieldModified:
 			values[i] = new(sql.NullTime)
@@ -404,6 +408,18 @@ func (s *Settings) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				s.RegisterRateLimit = value.Float64
 			}
+		case settings.FieldTurnstileSiteKey:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field turnstile_site_key", values[i])
+			} else if value.Valid {
+				s.TurnstileSiteKey = value.String
+			}
+		case settings.FieldTurnstileSecretKey:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field turnstile_secret_key", values[i])
+			} else if value.Valid {
+				s.TurnstileSecretKey = value.String
+			}
 		case settings.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field settings_tag", value)
@@ -577,6 +593,12 @@ func (s *Settings) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("register_rate_limit=")
 	builder.WriteString(fmt.Sprintf("%v", s.RegisterRateLimit))
+	builder.WriteString(", ")
+	builder.WriteString("turnstile_site_key=")
+	builder.WriteString(s.TurnstileSiteKey)
+	builder.WriteString(", ")
+	builder.WriteString("turnstile_secret_key=")
+	builder.WriteString(s.TurnstileSecretKey)
 	builder.WriteByte(')')
 	return builder.String()
 }

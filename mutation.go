@@ -24032,6 +24032,8 @@ type SettingsMutation struct {
 	adddefault_items_per_page                    *int
 	register_rate_limit                          *float64
 	addregister_rate_limit                       *float64
+	turnstile_site_key                           *string
+	turnstile_secret_key                         *string
 	clearedFields                                map[string]struct{}
 	tag                                          *int
 	clearedtag                                   bool
@@ -26191,6 +26193,104 @@ func (m *SettingsMutation) ResetRegisterRateLimit() {
 	delete(m.clearedFields, settings.FieldRegisterRateLimit)
 }
 
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (m *SettingsMutation) SetTurnstileSiteKey(s string) {
+	m.turnstile_site_key = &s
+}
+
+// TurnstileSiteKey returns the value of the "turnstile_site_key" field in the mutation.
+func (m *SettingsMutation) TurnstileSiteKey() (r string, exists bool) {
+	v := m.turnstile_site_key
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTurnstileSiteKey returns the old "turnstile_site_key" field's value of the Settings entity.
+// If the Settings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SettingsMutation) OldTurnstileSiteKey(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTurnstileSiteKey is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTurnstileSiteKey requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTurnstileSiteKey: %w", err)
+	}
+	return oldValue.TurnstileSiteKey, nil
+}
+
+// ClearTurnstileSiteKey clears the value of the "turnstile_site_key" field.
+func (m *SettingsMutation) ClearTurnstileSiteKey() {
+	m.turnstile_site_key = nil
+	m.clearedFields[settings.FieldTurnstileSiteKey] = struct{}{}
+}
+
+// TurnstileSiteKeyCleared returns if the "turnstile_site_key" field was cleared in this mutation.
+func (m *SettingsMutation) TurnstileSiteKeyCleared() bool {
+	_, ok := m.clearedFields[settings.FieldTurnstileSiteKey]
+	return ok
+}
+
+// ResetTurnstileSiteKey resets all changes to the "turnstile_site_key" field.
+func (m *SettingsMutation) ResetTurnstileSiteKey() {
+	m.turnstile_site_key = nil
+	delete(m.clearedFields, settings.FieldTurnstileSiteKey)
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (m *SettingsMutation) SetTurnstileSecretKey(s string) {
+	m.turnstile_secret_key = &s
+}
+
+// TurnstileSecretKey returns the value of the "turnstile_secret_key" field in the mutation.
+func (m *SettingsMutation) TurnstileSecretKey() (r string, exists bool) {
+	v := m.turnstile_secret_key
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTurnstileSecretKey returns the old "turnstile_secret_key" field's value of the Settings entity.
+// If the Settings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SettingsMutation) OldTurnstileSecretKey(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTurnstileSecretKey is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTurnstileSecretKey requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTurnstileSecretKey: %w", err)
+	}
+	return oldValue.TurnstileSecretKey, nil
+}
+
+// ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
+func (m *SettingsMutation) ClearTurnstileSecretKey() {
+	m.turnstile_secret_key = nil
+	m.clearedFields[settings.FieldTurnstileSecretKey] = struct{}{}
+}
+
+// TurnstileSecretKeyCleared returns if the "turnstile_secret_key" field was cleared in this mutation.
+func (m *SettingsMutation) TurnstileSecretKeyCleared() bool {
+	_, ok := m.clearedFields[settings.FieldTurnstileSecretKey]
+	return ok
+}
+
+// ResetTurnstileSecretKey resets all changes to the "turnstile_secret_key" field.
+func (m *SettingsMutation) ResetTurnstileSecretKey() {
+	m.turnstile_secret_key = nil
+	delete(m.clearedFields, settings.FieldTurnstileSecretKey)
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by id.
 func (m *SettingsMutation) SetTagID(id int) {
 	m.tag = &id
@@ -26303,7 +26403,7 @@ func (m *SettingsMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SettingsMutation) Fields() []string {
-	fields := make([]string, 0, 38)
+	fields := make([]string, 0, 40)
 	if m.language != nil {
 		fields = append(fields, settings.FieldLanguage)
 	}
@@ -26418,6 +26518,12 @@ func (m *SettingsMutation) Fields() []string {
 	if m.register_rate_limit != nil {
 		fields = append(fields, settings.FieldRegisterRateLimit)
 	}
+	if m.turnstile_site_key != nil {
+		fields = append(fields, settings.FieldTurnstileSiteKey)
+	}
+	if m.turnstile_secret_key != nil {
+		fields = append(fields, settings.FieldTurnstileSecretKey)
+	}
 	return fields
 }
 
@@ -26502,6 +26608,10 @@ func (m *SettingsMutation) Field(name string) (ent.Value, bool) {
 		return m.DefaultItemsPerPage()
 	case settings.FieldRegisterRateLimit:
 		return m.RegisterRateLimit()
+	case settings.FieldTurnstileSiteKey:
+		return m.TurnstileSiteKey()
+	case settings.FieldTurnstileSecretKey:
+		return m.TurnstileSecretKey()
 	}
 	return nil, false
 }
@@ -26587,6 +26697,10 @@ func (m *SettingsMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldDefaultItemsPerPage(ctx)
 	case settings.FieldRegisterRateLimit:
 		return m.OldRegisterRateLimit(ctx)
+	case settings.FieldTurnstileSiteKey:
+		return m.OldTurnstileSiteKey(ctx)
+	case settings.FieldTurnstileSecretKey:
+		return m.OldTurnstileSecretKey(ctx)
 	}
 	return nil, fmt.Errorf("unknown Settings field %s", name)
 }
@@ -26862,6 +26976,20 @@ func (m *SettingsMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetRegisterRateLimit(v)
 		return nil
+	case settings.FieldTurnstileSiteKey:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTurnstileSiteKey(v)
+		return nil
+	case settings.FieldTurnstileSecretKey:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTurnstileSecretKey(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Settings field %s", name)
 }
@@ -27117,6 +27245,12 @@ func (m *SettingsMutation) ClearedFields() []string {
 	if m.FieldCleared(settings.FieldRegisterRateLimit) {
 		fields = append(fields, settings.FieldRegisterRateLimit)
 	}
+	if m.FieldCleared(settings.FieldTurnstileSiteKey) {
+		fields = append(fields, settings.FieldTurnstileSiteKey)
+	}
+	if m.FieldCleared(settings.FieldTurnstileSecretKey) {
+		fields = append(fields, settings.FieldTurnstileSecretKey)
+	}
 	return fields
 }
 
@@ -27245,6 +27379,12 @@ func (m *SettingsMutation) ClearField(name string) error {
 	case settings.FieldRegisterRateLimit:
 		m.ClearRegisterRateLimit()
 		return nil
+	case settings.FieldTurnstileSiteKey:
+		m.ClearTurnstileSiteKey()
+		return nil
+	case settings.FieldTurnstileSecretKey:
+		m.ClearTurnstileSecretKey()
+		return nil
 	}
 	return fmt.Errorf("unknown Settings nullable field %s", name)
 }
@@ -27366,6 +27506,12 @@ func (m *SettingsMutation) ResetField(name string) error {
 		return nil
 	case settings.FieldRegisterRateLimit:
 		m.ResetRegisterRateLimit()
+		return nil
+	case settings.FieldTurnstileSiteKey:
+		m.ResetTurnstileSiteKey()
+		return nil
+	case settings.FieldTurnstileSecretKey:
+		m.ResetTurnstileSecretKey()
 		return nil
 	}
 	return fmt.Errorf("unknown Settings field %s", name)

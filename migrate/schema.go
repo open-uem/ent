@@ -706,6 +706,8 @@ var (
 		{Name: "auto_admit_agents", Type: field.TypeBool, Nullable: true, Default: false},
 		{Name: "default_items_per_page", Type: field.TypeInt, Nullable: true, Default: 5},
 		{Name: "register_rate_limit", Type: field.TypeFloat64, Nullable: true, Default: 0.000833333},
+		{Name: "turnstile_site_key", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "turnstile_secret_key", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "settings_tag", Type: field.TypeInt, Nullable: true},
 		{Name: "tenant_settings", Type: field.TypeInt, Unique: true, Nullable: true},
 	}
@@ -717,13 +719,13 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "settings_tags_tag",
-				Columns:    []*schema.Column{SettingsColumns[39]},
+				Columns:    []*schema.Column{SettingsColumns[41]},
 				RefColumns: []*schema.Column{TagsColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
 			{
 				Symbol:     "settings_tenants_settings",
-				Columns:    []*schema.Column{SettingsColumns[40]},
+				Columns:    []*schema.Column{SettingsColumns[42]},
 				RefColumns: []*schema.Column{TenantsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

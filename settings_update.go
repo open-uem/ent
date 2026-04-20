@@ -846,6 +846,46 @@ func (su *SettingsUpdate) ClearRegisterRateLimit() *SettingsUpdate {
 	return su
 }
 
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (su *SettingsUpdate) SetTurnstileSiteKey(s string) *SettingsUpdate {
+	su.mutation.SetTurnstileSiteKey(s)
+	return su
+}
+
+// SetNillableTurnstileSiteKey sets the "turnstile_site_key" field if the given value is not nil.
+func (su *SettingsUpdate) SetNillableTurnstileSiteKey(s *string) *SettingsUpdate {
+	if s != nil {
+		su.SetTurnstileSiteKey(*s)
+	}
+	return su
+}
+
+// ClearTurnstileSiteKey clears the value of the "turnstile_site_key" field.
+func (su *SettingsUpdate) ClearTurnstileSiteKey() *SettingsUpdate {
+	su.mutation.ClearTurnstileSiteKey()
+	return su
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (su *SettingsUpdate) SetTurnstileSecretKey(s string) *SettingsUpdate {
+	su.mutation.SetTurnstileSecretKey(s)
+	return su
+}
+
+// SetNillableTurnstileSecretKey sets the "turnstile_secret_key" field if the given value is not nil.
+func (su *SettingsUpdate) SetNillableTurnstileSecretKey(s *string) *SettingsUpdate {
+	if s != nil {
+		su.SetTurnstileSecretKey(*s)
+	}
+	return su
+}
+
+// ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
+func (su *SettingsUpdate) ClearTurnstileSecretKey() *SettingsUpdate {
+	su.mutation.ClearTurnstileSecretKey()
+	return su
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (su *SettingsUpdate) SetTagID(id int) *SettingsUpdate {
 	su.mutation.SetTagID(id)
@@ -1206,6 +1246,18 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if su.mutation.RegisterRateLimitCleared() {
 		_spec.ClearField(settings.FieldRegisterRateLimit, field.TypeFloat64)
+	}
+	if value, ok := su.mutation.TurnstileSiteKey(); ok {
+		_spec.SetField(settings.FieldTurnstileSiteKey, field.TypeString, value)
+	}
+	if su.mutation.TurnstileSiteKeyCleared() {
+		_spec.ClearField(settings.FieldTurnstileSiteKey, field.TypeString)
+	}
+	if value, ok := su.mutation.TurnstileSecretKey(); ok {
+		_spec.SetField(settings.FieldTurnstileSecretKey, field.TypeString, value)
+	}
+	if su.mutation.TurnstileSecretKeyCleared() {
+		_spec.ClearField(settings.FieldTurnstileSecretKey, field.TypeString)
 	}
 	if su.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -2102,6 +2154,46 @@ func (suo *SettingsUpdateOne) ClearRegisterRateLimit() *SettingsUpdateOne {
 	return suo
 }
 
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (suo *SettingsUpdateOne) SetTurnstileSiteKey(s string) *SettingsUpdateOne {
+	suo.mutation.SetTurnstileSiteKey(s)
+	return suo
+}
+
+// SetNillableTurnstileSiteKey sets the "turnstile_site_key" field if the given value is not nil.
+func (suo *SettingsUpdateOne) SetNillableTurnstileSiteKey(s *string) *SettingsUpdateOne {
+	if s != nil {
+		suo.SetTurnstileSiteKey(*s)
+	}
+	return suo
+}
+
+// ClearTurnstileSiteKey clears the value of the "turnstile_site_key" field.
+func (suo *SettingsUpdateOne) ClearTurnstileSiteKey() *SettingsUpdateOne {
+	suo.mutation.ClearTurnstileSiteKey()
+	return suo
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (suo *SettingsUpdateOne) SetTurnstileSecretKey(s string) *SettingsUpdateOne {
+	suo.mutation.SetTurnstileSecretKey(s)
+	return suo
+}
+
+// SetNillableTurnstileSecretKey sets the "turnstile_secret_key" field if the given value is not nil.
+func (suo *SettingsUpdateOne) SetNillableTurnstileSecretKey(s *string) *SettingsUpdateOne {
+	if s != nil {
+		suo.SetTurnstileSecretKey(*s)
+	}
+	return suo
+}
+
+// ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
+func (suo *SettingsUpdateOne) ClearTurnstileSecretKey() *SettingsUpdateOne {
+	suo.mutation.ClearTurnstileSecretKey()
+	return suo
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (suo *SettingsUpdateOne) SetTagID(id int) *SettingsUpdateOne {
 	suo.mutation.SetTagID(id)
@@ -2492,6 +2584,18 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 	}
 	if suo.mutation.RegisterRateLimitCleared() {
 		_spec.ClearField(settings.FieldRegisterRateLimit, field.TypeFloat64)
+	}
+	if value, ok := suo.mutation.TurnstileSiteKey(); ok {
+		_spec.SetField(settings.FieldTurnstileSiteKey, field.TypeString, value)
+	}
+	if suo.mutation.TurnstileSiteKeyCleared() {
+		_spec.ClearField(settings.FieldTurnstileSiteKey, field.TypeString)
+	}
+	if value, ok := suo.mutation.TurnstileSecretKey(); ok {
+		_spec.SetField(settings.FieldTurnstileSecretKey, field.TypeString, value)
+	}
+	if suo.mutation.TurnstileSecretKeyCleared() {
+		_spec.ClearField(settings.FieldTurnstileSecretKey, field.TypeString)
 	}
 	if suo.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
