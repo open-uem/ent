@@ -43,16 +43,6 @@ type User struct {
 	Created time.Time `json:"created,omitempty"`
 	// Modified holds the value of the "modified" field.
 	Modified time.Time `json:"modified,omitempty"`
-	// AccessToken holds the value of the "access_token" field.
-	AccessToken string `json:"access_token,omitempty"`
-	// RefreshToken holds the value of the "refresh_token" field.
-	RefreshToken string `json:"refresh_token,omitempty"`
-	// IDToken holds the value of the "id_token" field.
-	IDToken string `json:"id_token,omitempty"`
-	// TokenType holds the value of the "token_type" field.
-	TokenType string `json:"token_type,omitempty"`
-	// TokenExpiry holds the value of the "token_expiry" field.
-	TokenExpiry int `json:"token_expiry,omitempty"`
 	// Hash holds the value of the "hash" field.
 	Hash string `json:"hash,omitempty"`
 	// TotpSecret holds the value of the "totp_secret" field.
@@ -107,9 +97,7 @@ func (*User) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case user.FieldEmailVerified, user.FieldOpenid, user.FieldPasswd, user.FieldUse2fa, user.FieldTotpSecretConfirmed:
 			values[i] = new(sql.NullBool)
-		case user.FieldTokenExpiry:
-			values[i] = new(sql.NullInt64)
-		case user.FieldID, user.FieldName, user.FieldEmail, user.FieldPhone, user.FieldCountry, user.FieldRegister, user.FieldCertClearPassword, user.FieldAccessToken, user.FieldRefreshToken, user.FieldIDToken, user.FieldTokenType, user.FieldHash, user.FieldTotpSecret, user.FieldForgotPasswordCode, user.FieldNewUserToken:
+		case user.FieldID, user.FieldName, user.FieldEmail, user.FieldPhone, user.FieldCountry, user.FieldRegister, user.FieldCertClearPassword, user.FieldHash, user.FieldTotpSecret, user.FieldForgotPasswordCode, user.FieldNewUserToken:
 			values[i] = new(sql.NullString)
 		case user.FieldExpiry, user.FieldCreated, user.FieldModified, user.FieldForgotPasswordCodeExpiresAt:
 			values[i] = new(sql.NullTime)
@@ -211,36 +199,6 @@ func (u *User) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field modified", values[i])
 			} else if value.Valid {
 				u.Modified = value.Time
-			}
-		case user.FieldAccessToken:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field access_token", values[i])
-			} else if value.Valid {
-				u.AccessToken = value.String
-			}
-		case user.FieldRefreshToken:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field refresh_token", values[i])
-			} else if value.Valid {
-				u.RefreshToken = value.String
-			}
-		case user.FieldIDToken:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field id_token", values[i])
-			} else if value.Valid {
-				u.IDToken = value.String
-			}
-		case user.FieldTokenType:
-			if value, ok := values[i].(*sql.NullString); !ok {
-				return fmt.Errorf("unexpected type %T for field token_type", values[i])
-			} else if value.Valid {
-				u.TokenType = value.String
-			}
-		case user.FieldTokenExpiry:
-			if value, ok := values[i].(*sql.NullInt64); !ok {
-				return fmt.Errorf("unexpected type %T for field token_expiry", values[i])
-			} else if value.Valid {
-				u.TokenExpiry = int(value.Int64)
 			}
 		case user.FieldHash:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -362,21 +320,6 @@ func (u *User) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("modified=")
 	builder.WriteString(u.Modified.Format(time.ANSIC))
-	builder.WriteString(", ")
-	builder.WriteString("access_token=")
-	builder.WriteString(u.AccessToken)
-	builder.WriteString(", ")
-	builder.WriteString("refresh_token=")
-	builder.WriteString(u.RefreshToken)
-	builder.WriteString(", ")
-	builder.WriteString("id_token=")
-	builder.WriteString(u.IDToken)
-	builder.WriteString(", ")
-	builder.WriteString("token_type=")
-	builder.WriteString(u.TokenType)
-	builder.WriteString(", ")
-	builder.WriteString("token_expiry=")
-	builder.WriteString(fmt.Sprintf("%v", u.TokenExpiry))
 	builder.WriteString(", ")
 	builder.WriteString("hash=")
 	builder.WriteString(u.Hash)

@@ -133,20 +133,6 @@ func (ac *AuthenticationCreate) SetNillableOIDCCookieEncriptionKey(s *string) *A
 	return ac
 }
 
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (ac *AuthenticationCreate) SetOIDCKeycloakPublicKey(s string) *AuthenticationCreate {
-	ac.mutation.SetOIDCKeycloakPublicKey(s)
-	return ac
-}
-
-// SetNillableOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field if the given value is not nil.
-func (ac *AuthenticationCreate) SetNillableOIDCKeycloakPublicKey(s *string) *AuthenticationCreate {
-	if s != nil {
-		ac.SetOIDCKeycloakPublicKey(*s)
-	}
-	return ac
-}
-
 // SetOIDCAutoCreateAccount sets the "OIDC_auto_create_account" field.
 func (ac *AuthenticationCreate) SetOIDCAutoCreateAccount(b bool) *AuthenticationCreate {
 	ac.mutation.SetOIDCAutoCreateAccount(b)
@@ -256,10 +242,6 @@ func (ac *AuthenticationCreate) defaults() {
 		v := authentication.DefaultOIDCCookieEncriptionKey
 		ac.mutation.SetOIDCCookieEncriptionKey(v)
 	}
-	if _, ok := ac.mutation.OIDCKeycloakPublicKey(); !ok {
-		v := authentication.DefaultOIDCKeycloakPublicKey
-		ac.mutation.SetOIDCKeycloakPublicKey(v)
-	}
 	if _, ok := ac.mutation.OIDCAutoCreateAccount(); !ok {
 		v := authentication.DefaultOIDCAutoCreateAccount
 		ac.mutation.SetOIDCAutoCreateAccount(v)
@@ -334,10 +316,6 @@ func (ac *AuthenticationCreate) createSpec() (*Authentication, *sqlgraph.CreateS
 	if value, ok := ac.mutation.OIDCCookieEncriptionKey(); ok {
 		_spec.SetField(authentication.FieldOIDCCookieEncriptionKey, field.TypeString, value)
 		_node.OIDCCookieEncriptionKey = value
-	}
-	if value, ok := ac.mutation.OIDCKeycloakPublicKey(); ok {
-		_spec.SetField(authentication.FieldOIDCKeycloakPublicKey, field.TypeString, value)
-		_node.OIDCKeycloakPublicKey = value
 	}
 	if value, ok := ac.mutation.OIDCAutoCreateAccount(); ok {
 		_spec.SetField(authentication.FieldOIDCAutoCreateAccount, field.TypeBool, value)
@@ -544,24 +522,6 @@ func (u *AuthenticationUpsert) UpdateOIDCCookieEncriptionKey() *AuthenticationUp
 // ClearOIDCCookieEncriptionKey clears the value of the "OIDC_cookie_encription_key" field.
 func (u *AuthenticationUpsert) ClearOIDCCookieEncriptionKey() *AuthenticationUpsert {
 	u.SetNull(authentication.FieldOIDCCookieEncriptionKey)
-	return u
-}
-
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (u *AuthenticationUpsert) SetOIDCKeycloakPublicKey(v string) *AuthenticationUpsert {
-	u.Set(authentication.FieldOIDCKeycloakPublicKey, v)
-	return u
-}
-
-// UpdateOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field to the value that was provided on create.
-func (u *AuthenticationUpsert) UpdateOIDCKeycloakPublicKey() *AuthenticationUpsert {
-	u.SetExcluded(authentication.FieldOIDCKeycloakPublicKey)
-	return u
-}
-
-// ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (u *AuthenticationUpsert) ClearOIDCKeycloakPublicKey() *AuthenticationUpsert {
-	u.SetNull(authentication.FieldOIDCKeycloakPublicKey)
 	return u
 }
 
@@ -824,27 +784,6 @@ func (u *AuthenticationUpsertOne) UpdateOIDCCookieEncriptionKey() *Authenticatio
 func (u *AuthenticationUpsertOne) ClearOIDCCookieEncriptionKey() *AuthenticationUpsertOne {
 	return u.Update(func(s *AuthenticationUpsert) {
 		s.ClearOIDCCookieEncriptionKey()
-	})
-}
-
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (u *AuthenticationUpsertOne) SetOIDCKeycloakPublicKey(v string) *AuthenticationUpsertOne {
-	return u.Update(func(s *AuthenticationUpsert) {
-		s.SetOIDCKeycloakPublicKey(v)
-	})
-}
-
-// UpdateOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field to the value that was provided on create.
-func (u *AuthenticationUpsertOne) UpdateOIDCKeycloakPublicKey() *AuthenticationUpsertOne {
-	return u.Update(func(s *AuthenticationUpsert) {
-		s.UpdateOIDCKeycloakPublicKey()
-	})
-}
-
-// ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (u *AuthenticationUpsertOne) ClearOIDCKeycloakPublicKey() *AuthenticationUpsertOne {
-	return u.Update(func(s *AuthenticationUpsert) {
-		s.ClearOIDCKeycloakPublicKey()
 	})
 }
 
@@ -1280,27 +1219,6 @@ func (u *AuthenticationUpsertBulk) UpdateOIDCCookieEncriptionKey() *Authenticati
 func (u *AuthenticationUpsertBulk) ClearOIDCCookieEncriptionKey() *AuthenticationUpsertBulk {
 	return u.Update(func(s *AuthenticationUpsert) {
 		s.ClearOIDCCookieEncriptionKey()
-	})
-}
-
-// SetOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field.
-func (u *AuthenticationUpsertBulk) SetOIDCKeycloakPublicKey(v string) *AuthenticationUpsertBulk {
-	return u.Update(func(s *AuthenticationUpsert) {
-		s.SetOIDCKeycloakPublicKey(v)
-	})
-}
-
-// UpdateOIDCKeycloakPublicKey sets the "OIDC_keycloak_public_key" field to the value that was provided on create.
-func (u *AuthenticationUpsertBulk) UpdateOIDCKeycloakPublicKey() *AuthenticationUpsertBulk {
-	return u.Update(func(s *AuthenticationUpsert) {
-		s.UpdateOIDCKeycloakPublicKey()
-	})
-}
-
-// ClearOIDCKeycloakPublicKey clears the value of the "OIDC_keycloak_public_key" field.
-func (u *AuthenticationUpsertBulk) ClearOIDCKeycloakPublicKey() *AuthenticationUpsertBulk {
-	return u.Update(func(s *AuthenticationUpsert) {
-		s.ClearOIDCKeycloakPublicKey()
 	})
 }
 

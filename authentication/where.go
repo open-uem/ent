@@ -92,11 +92,6 @@ func OIDCCookieEncriptionKey(v string) predicate.Authentication {
 	return predicate.Authentication(sql.FieldEQ(FieldOIDCCookieEncriptionKey, v))
 }
 
-// OIDCKeycloakPublicKey applies equality check predicate on the "OIDC_keycloak_public_key" field. It's identical to OIDCKeycloakPublicKeyEQ.
-func OIDCKeycloakPublicKey(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldEQ(FieldOIDCKeycloakPublicKey, v))
-}
-
 // OIDCAutoCreateAccount applies equality check predicate on the "OIDC_auto_create_account" field. It's identical to OIDCAutoCreateAccountEQ.
 func OIDCAutoCreateAccount(v bool) predicate.Authentication {
 	return predicate.Authentication(sql.FieldEQ(FieldOIDCAutoCreateAccount, v))
@@ -545,81 +540,6 @@ func OIDCCookieEncriptionKeyEqualFold(v string) predicate.Authentication {
 // OIDCCookieEncriptionKeyContainsFold applies the ContainsFold predicate on the "OIDC_cookie_encription_key" field.
 func OIDCCookieEncriptionKeyContainsFold(v string) predicate.Authentication {
 	return predicate.Authentication(sql.FieldContainsFold(FieldOIDCCookieEncriptionKey, v))
-}
-
-// OIDCKeycloakPublicKeyEQ applies the EQ predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyEQ(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldEQ(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyNEQ applies the NEQ predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyNEQ(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldNEQ(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyIn applies the In predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyIn(vs ...string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldIn(FieldOIDCKeycloakPublicKey, vs...))
-}
-
-// OIDCKeycloakPublicKeyNotIn applies the NotIn predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyNotIn(vs ...string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldNotIn(FieldOIDCKeycloakPublicKey, vs...))
-}
-
-// OIDCKeycloakPublicKeyGT applies the GT predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyGT(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldGT(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyGTE applies the GTE predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyGTE(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldGTE(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyLT applies the LT predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyLT(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldLT(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyLTE applies the LTE predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyLTE(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldLTE(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyContains applies the Contains predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyContains(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldContains(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyHasPrefix applies the HasPrefix predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyHasPrefix(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldHasPrefix(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyHasSuffix applies the HasSuffix predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyHasSuffix(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldHasSuffix(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyIsNil applies the IsNil predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyIsNil() predicate.Authentication {
-	return predicate.Authentication(sql.FieldIsNull(FieldOIDCKeycloakPublicKey))
-}
-
-// OIDCKeycloakPublicKeyNotNil applies the NotNil predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyNotNil() predicate.Authentication {
-	return predicate.Authentication(sql.FieldNotNull(FieldOIDCKeycloakPublicKey))
-}
-
-// OIDCKeycloakPublicKeyEqualFold applies the EqualFold predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyEqualFold(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldEqualFold(FieldOIDCKeycloakPublicKey, v))
-}
-
-// OIDCKeycloakPublicKeyContainsFold applies the ContainsFold predicate on the "OIDC_keycloak_public_key" field.
-func OIDCKeycloakPublicKeyContainsFold(v string) predicate.Authentication {
-	return predicate.Authentication(sql.FieldContainsFold(FieldOIDCKeycloakPublicKey, v))
 }
 
 // OIDCAutoCreateAccountEQ applies the EQ predicate on the "OIDC_auto_create_account" field.
