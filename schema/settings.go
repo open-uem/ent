@@ -54,6 +54,8 @@ func (Settings) Fields() []ent.Field {
 		field.Bool("auto_admit_agents").Optional().Default(false),
 		field.Int("default_items_per_page").Optional().Default(5),
 		field.Float("register_rate_limit").Optional().Default(0.000833333),
+		field.String("turnstile_site_key").Optional().Default(""),
+		field.String("turnstile_secret_key").Optional().Default(""),
 	}
 }
 

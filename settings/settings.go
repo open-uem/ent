@@ -90,6 +90,10 @@ const (
 	FieldDefaultItemsPerPage = "default_items_per_page"
 	// FieldRegisterRateLimit holds the string denoting the register_rate_limit field in the database.
 	FieldRegisterRateLimit = "register_rate_limit"
+	// FieldTurnstileSiteKey holds the string denoting the turnstile_site_key field in the database.
+	FieldTurnstileSiteKey = "turnstile_site_key"
+	// FieldTurnstileSecretKey holds the string denoting the turnstile_secret_key field in the database.
+	FieldTurnstileSecretKey = "turnstile_secret_key"
 	// EdgeTag holds the string denoting the tag edge name in mutations.
 	EdgeTag = "tag"
 	// EdgeTenant holds the string denoting the tenant edge name in mutations.
@@ -153,6 +157,8 @@ var Columns = []string{
 	FieldAutoAdmitAgents,
 	FieldDefaultItemsPerPage,
 	FieldRegisterRateLimit,
+	FieldTurnstileSiteKey,
+	FieldTurnstileSecretKey,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "settings"
@@ -230,6 +236,10 @@ var (
 	DefaultDefaultItemsPerPage int
 	// DefaultRegisterRateLimit holds the default value on creation for the "register_rate_limit" field.
 	DefaultRegisterRateLimit float64
+	// DefaultTurnstileSiteKey holds the default value on creation for the "turnstile_site_key" field.
+	DefaultTurnstileSiteKey string
+	// DefaultTurnstileSecretKey holds the default value on creation for the "turnstile_secret_key" field.
+	DefaultTurnstileSecretKey string
 )
 
 // OrderOption defines the ordering options for the Settings queries.
@@ -428,6 +438,16 @@ func ByDefaultItemsPerPage(opts ...sql.OrderTermOption) OrderOption {
 // ByRegisterRateLimit orders the results by the register_rate_limit field.
 func ByRegisterRateLimit(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldRegisterRateLimit, opts...).ToFunc()
+}
+
+// ByTurnstileSiteKey orders the results by the turnstile_site_key field.
+func ByTurnstileSiteKey(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldTurnstileSiteKey, opts...).ToFunc()
+}
+
+// ByTurnstileSecretKey orders the results by the turnstile_secret_key field.
+func ByTurnstileSecretKey(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldTurnstileSecretKey, opts...).ToFunc()
 }
 
 // ByTagField orders the results by tag field.

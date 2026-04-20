@@ -556,6 +556,34 @@ func (sc *SettingsCreate) SetNillableRegisterRateLimit(f *float64) *SettingsCrea
 	return sc
 }
 
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (sc *SettingsCreate) SetTurnstileSiteKey(s string) *SettingsCreate {
+	sc.mutation.SetTurnstileSiteKey(s)
+	return sc
+}
+
+// SetNillableTurnstileSiteKey sets the "turnstile_site_key" field if the given value is not nil.
+func (sc *SettingsCreate) SetNillableTurnstileSiteKey(s *string) *SettingsCreate {
+	if s != nil {
+		sc.SetTurnstileSiteKey(*s)
+	}
+	return sc
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (sc *SettingsCreate) SetTurnstileSecretKey(s string) *SettingsCreate {
+	sc.mutation.SetTurnstileSecretKey(s)
+	return sc
+}
+
+// SetNillableTurnstileSecretKey sets the "turnstile_secret_key" field if the given value is not nil.
+func (sc *SettingsCreate) SetNillableTurnstileSecretKey(s *string) *SettingsCreate {
+	if s != nil {
+		sc.SetTurnstileSecretKey(*s)
+	}
+	return sc
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (sc *SettingsCreate) SetTagID(id int) *SettingsCreate {
 	sc.mutation.SetTagID(id)
@@ -728,6 +756,14 @@ func (sc *SettingsCreate) defaults() {
 	if _, ok := sc.mutation.RegisterRateLimit(); !ok {
 		v := settings.DefaultRegisterRateLimit
 		sc.mutation.SetRegisterRateLimit(v)
+	}
+	if _, ok := sc.mutation.TurnstileSiteKey(); !ok {
+		v := settings.DefaultTurnstileSiteKey
+		sc.mutation.SetTurnstileSiteKey(v)
+	}
+	if _, ok := sc.mutation.TurnstileSecretKey(); !ok {
+		v := settings.DefaultTurnstileSecretKey
+		sc.mutation.SetTurnstileSecretKey(v)
 	}
 }
 
@@ -911,6 +947,14 @@ func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 	if value, ok := sc.mutation.RegisterRateLimit(); ok {
 		_spec.SetField(settings.FieldRegisterRateLimit, field.TypeFloat64, value)
 		_node.RegisterRateLimit = value
+	}
+	if value, ok := sc.mutation.TurnstileSiteKey(); ok {
+		_spec.SetField(settings.FieldTurnstileSiteKey, field.TypeString, value)
+		_node.TurnstileSiteKey = value
+	}
+	if value, ok := sc.mutation.TurnstileSecretKey(); ok {
+		_spec.SetField(settings.FieldTurnstileSecretKey, field.TypeString, value)
+		_node.TurnstileSecretKey = value
 	}
 	if nodes := sc.mutation.TagIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -1733,6 +1777,42 @@ func (u *SettingsUpsert) AddRegisterRateLimit(v float64) *SettingsUpsert {
 // ClearRegisterRateLimit clears the value of the "register_rate_limit" field.
 func (u *SettingsUpsert) ClearRegisterRateLimit() *SettingsUpsert {
 	u.SetNull(settings.FieldRegisterRateLimit)
+	return u
+}
+
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (u *SettingsUpsert) SetTurnstileSiteKey(v string) *SettingsUpsert {
+	u.Set(settings.FieldTurnstileSiteKey, v)
+	return u
+}
+
+// UpdateTurnstileSiteKey sets the "turnstile_site_key" field to the value that was provided on create.
+func (u *SettingsUpsert) UpdateTurnstileSiteKey() *SettingsUpsert {
+	u.SetExcluded(settings.FieldTurnstileSiteKey)
+	return u
+}
+
+// ClearTurnstileSiteKey clears the value of the "turnstile_site_key" field.
+func (u *SettingsUpsert) ClearTurnstileSiteKey() *SettingsUpsert {
+	u.SetNull(settings.FieldTurnstileSiteKey)
+	return u
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (u *SettingsUpsert) SetTurnstileSecretKey(v string) *SettingsUpsert {
+	u.Set(settings.FieldTurnstileSecretKey, v)
+	return u
+}
+
+// UpdateTurnstileSecretKey sets the "turnstile_secret_key" field to the value that was provided on create.
+func (u *SettingsUpsert) UpdateTurnstileSecretKey() *SettingsUpsert {
+	u.SetExcluded(settings.FieldTurnstileSecretKey)
+	return u
+}
+
+// ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
+func (u *SettingsUpsert) ClearTurnstileSecretKey() *SettingsUpsert {
+	u.SetNull(settings.FieldTurnstileSecretKey)
 	return u
 }
 
@@ -2634,6 +2714,48 @@ func (u *SettingsUpsertOne) UpdateRegisterRateLimit() *SettingsUpsertOne {
 func (u *SettingsUpsertOne) ClearRegisterRateLimit() *SettingsUpsertOne {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearRegisterRateLimit()
+	})
+}
+
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (u *SettingsUpsertOne) SetTurnstileSiteKey(v string) *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetTurnstileSiteKey(v)
+	})
+}
+
+// UpdateTurnstileSiteKey sets the "turnstile_site_key" field to the value that was provided on create.
+func (u *SettingsUpsertOne) UpdateTurnstileSiteKey() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateTurnstileSiteKey()
+	})
+}
+
+// ClearTurnstileSiteKey clears the value of the "turnstile_site_key" field.
+func (u *SettingsUpsertOne) ClearTurnstileSiteKey() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearTurnstileSiteKey()
+	})
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (u *SettingsUpsertOne) SetTurnstileSecretKey(v string) *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetTurnstileSecretKey(v)
+	})
+}
+
+// UpdateTurnstileSecretKey sets the "turnstile_secret_key" field to the value that was provided on create.
+func (u *SettingsUpsertOne) UpdateTurnstileSecretKey() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateTurnstileSecretKey()
+	})
+}
+
+// ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
+func (u *SettingsUpsertOne) ClearTurnstileSecretKey() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearTurnstileSecretKey()
 	})
 }
 
@@ -3699,6 +3821,48 @@ func (u *SettingsUpsertBulk) UpdateRegisterRateLimit() *SettingsUpsertBulk {
 func (u *SettingsUpsertBulk) ClearRegisterRateLimit() *SettingsUpsertBulk {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearRegisterRateLimit()
+	})
+}
+
+// SetTurnstileSiteKey sets the "turnstile_site_key" field.
+func (u *SettingsUpsertBulk) SetTurnstileSiteKey(v string) *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetTurnstileSiteKey(v)
+	})
+}
+
+// UpdateTurnstileSiteKey sets the "turnstile_site_key" field to the value that was provided on create.
+func (u *SettingsUpsertBulk) UpdateTurnstileSiteKey() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateTurnstileSiteKey()
+	})
+}
+
+// ClearTurnstileSiteKey clears the value of the "turnstile_site_key" field.
+func (u *SettingsUpsertBulk) ClearTurnstileSiteKey() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearTurnstileSiteKey()
+	})
+}
+
+// SetTurnstileSecretKey sets the "turnstile_secret_key" field.
+func (u *SettingsUpsertBulk) SetTurnstileSecretKey(v string) *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetTurnstileSecretKey(v)
+	})
+}
+
+// UpdateTurnstileSecretKey sets the "turnstile_secret_key" field to the value that was provided on create.
+func (u *SettingsUpsertBulk) UpdateTurnstileSecretKey() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateTurnstileSecretKey()
+	})
+}
+
+// ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
+func (u *SettingsUpsertBulk) ClearTurnstileSecretKey() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearTurnstileSecretKey()
 	})
 }
 

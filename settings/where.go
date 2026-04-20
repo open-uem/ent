@@ -245,6 +245,16 @@ func RegisterRateLimit(v float64) predicate.Settings {
 	return predicate.Settings(sql.FieldEQ(FieldRegisterRateLimit, v))
 }
 
+// TurnstileSiteKey applies equality check predicate on the "turnstile_site_key" field. It's identical to TurnstileSiteKeyEQ.
+func TurnstileSiteKey(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSecretKey applies equality check predicate on the "turnstile_secret_key" field. It's identical to TurnstileSecretKeyEQ.
+func TurnstileSecretKey(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldTurnstileSecretKey, v))
+}
+
 // LanguageEQ applies the EQ predicate on the "language" field.
 func LanguageEQ(v string) predicate.Settings {
 	return predicate.Settings(sql.FieldEQ(FieldLanguage, v))
@@ -2268,6 +2278,156 @@ func RegisterRateLimitIsNil() predicate.Settings {
 // RegisterRateLimitNotNil applies the NotNil predicate on the "register_rate_limit" field.
 func RegisterRateLimitNotNil() predicate.Settings {
 	return predicate.Settings(sql.FieldNotNull(FieldRegisterRateLimit))
+}
+
+// TurnstileSiteKeyEQ applies the EQ predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyEQ(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyNEQ applies the NEQ predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyNEQ(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldNEQ(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyIn applies the In predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyIn(vs ...string) predicate.Settings {
+	return predicate.Settings(sql.FieldIn(FieldTurnstileSiteKey, vs...))
+}
+
+// TurnstileSiteKeyNotIn applies the NotIn predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyNotIn(vs ...string) predicate.Settings {
+	return predicate.Settings(sql.FieldNotIn(FieldTurnstileSiteKey, vs...))
+}
+
+// TurnstileSiteKeyGT applies the GT predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyGT(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldGT(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyGTE applies the GTE predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyGTE(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldGTE(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyLT applies the LT predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyLT(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldLT(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyLTE applies the LTE predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyLTE(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldLTE(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyContains applies the Contains predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyContains(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldContains(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyHasPrefix applies the HasPrefix predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyHasPrefix(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldHasPrefix(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyHasSuffix applies the HasSuffix predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyHasSuffix(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldHasSuffix(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyIsNil applies the IsNil predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyIsNil() predicate.Settings {
+	return predicate.Settings(sql.FieldIsNull(FieldTurnstileSiteKey))
+}
+
+// TurnstileSiteKeyNotNil applies the NotNil predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyNotNil() predicate.Settings {
+	return predicate.Settings(sql.FieldNotNull(FieldTurnstileSiteKey))
+}
+
+// TurnstileSiteKeyEqualFold applies the EqualFold predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyEqualFold(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldEqualFold(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSiteKeyContainsFold applies the ContainsFold predicate on the "turnstile_site_key" field.
+func TurnstileSiteKeyContainsFold(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldContainsFold(FieldTurnstileSiteKey, v))
+}
+
+// TurnstileSecretKeyEQ applies the EQ predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyEQ(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyNEQ applies the NEQ predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyNEQ(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldNEQ(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyIn applies the In predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyIn(vs ...string) predicate.Settings {
+	return predicate.Settings(sql.FieldIn(FieldTurnstileSecretKey, vs...))
+}
+
+// TurnstileSecretKeyNotIn applies the NotIn predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyNotIn(vs ...string) predicate.Settings {
+	return predicate.Settings(sql.FieldNotIn(FieldTurnstileSecretKey, vs...))
+}
+
+// TurnstileSecretKeyGT applies the GT predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyGT(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldGT(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyGTE applies the GTE predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyGTE(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldGTE(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyLT applies the LT predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyLT(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldLT(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyLTE applies the LTE predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyLTE(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldLTE(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyContains applies the Contains predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyContains(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldContains(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyHasPrefix applies the HasPrefix predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyHasPrefix(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldHasPrefix(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyHasSuffix applies the HasSuffix predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyHasSuffix(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldHasSuffix(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyIsNil applies the IsNil predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyIsNil() predicate.Settings {
+	return predicate.Settings(sql.FieldIsNull(FieldTurnstileSecretKey))
+}
+
+// TurnstileSecretKeyNotNil applies the NotNil predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyNotNil() predicate.Settings {
+	return predicate.Settings(sql.FieldNotNull(FieldTurnstileSecretKey))
+}
+
+// TurnstileSecretKeyEqualFold applies the EqualFold predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyEqualFold(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldEqualFold(FieldTurnstileSecretKey, v))
+}
+
+// TurnstileSecretKeyContainsFold applies the ContainsFold predicate on the "turnstile_secret_key" field.
+func TurnstileSecretKeyContainsFold(v string) predicate.Settings {
+	return predicate.Settings(sql.FieldContainsFold(FieldTurnstileSecretKey, v))
 }
 
 // HasTag applies the HasEdge predicate on the "tag" edge.
