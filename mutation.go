@@ -23999,8 +23999,6 @@ type SettingsMutation struct {
 	smtp_user                                    *string
 	smtp_password                                *string
 	smtp_auth                                    *string
-	smtp_tls                                     *bool
-	smtp_starttls                                *bool
 	nats_server                                  *string
 	nats_port                                    *string
 	message_from                                 *string
@@ -24799,104 +24797,6 @@ func (m *SettingsMutation) SMTPAuthCleared() bool {
 func (m *SettingsMutation) ResetSMTPAuth() {
 	m.smtp_auth = nil
 	delete(m.clearedFields, settings.FieldSMTPAuth)
-}
-
-// SetSMTPTLS sets the "smtp_tls" field.
-func (m *SettingsMutation) SetSMTPTLS(b bool) {
-	m.smtp_tls = &b
-}
-
-// SMTPTLS returns the value of the "smtp_tls" field in the mutation.
-func (m *SettingsMutation) SMTPTLS() (r bool, exists bool) {
-	v := m.smtp_tls
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldSMTPTLS returns the old "smtp_tls" field's value of the Settings entity.
-// If the Settings object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SettingsMutation) OldSMTPTLS(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldSMTPTLS is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldSMTPTLS requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldSMTPTLS: %w", err)
-	}
-	return oldValue.SMTPTLS, nil
-}
-
-// ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (m *SettingsMutation) ClearSMTPTLS() {
-	m.smtp_tls = nil
-	m.clearedFields[settings.FieldSMTPTLS] = struct{}{}
-}
-
-// SMTPTLSCleared returns if the "smtp_tls" field was cleared in this mutation.
-func (m *SettingsMutation) SMTPTLSCleared() bool {
-	_, ok := m.clearedFields[settings.FieldSMTPTLS]
-	return ok
-}
-
-// ResetSMTPTLS resets all changes to the "smtp_tls" field.
-func (m *SettingsMutation) ResetSMTPTLS() {
-	m.smtp_tls = nil
-	delete(m.clearedFields, settings.FieldSMTPTLS)
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (m *SettingsMutation) SetSMTPStarttls(b bool) {
-	m.smtp_starttls = &b
-}
-
-// SMTPStarttls returns the value of the "smtp_starttls" field in the mutation.
-func (m *SettingsMutation) SMTPStarttls() (r bool, exists bool) {
-	v := m.smtp_starttls
-	if v == nil {
-		return
-	}
-	return *v, true
-}
-
-// OldSMTPStarttls returns the old "smtp_starttls" field's value of the Settings entity.
-// If the Settings object wasn't provided to the builder, the object is fetched from the database.
-// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *SettingsMutation) OldSMTPStarttls(ctx context.Context) (v bool, err error) {
-	if !m.op.Is(OpUpdateOne) {
-		return v, errors.New("OldSMTPStarttls is only allowed on UpdateOne operations")
-	}
-	if m.id == nil || m.oldValue == nil {
-		return v, errors.New("OldSMTPStarttls requires an ID field in the mutation")
-	}
-	oldValue, err := m.oldValue(ctx)
-	if err != nil {
-		return v, fmt.Errorf("querying old value for OldSMTPStarttls: %w", err)
-	}
-	return oldValue.SMTPStarttls, nil
-}
-
-// ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (m *SettingsMutation) ClearSMTPStarttls() {
-	m.smtp_starttls = nil
-	m.clearedFields[settings.FieldSMTPStarttls] = struct{}{}
-}
-
-// SMTPStarttlsCleared returns if the "smtp_starttls" field was cleared in this mutation.
-func (m *SettingsMutation) SMTPStarttlsCleared() bool {
-	_, ok := m.clearedFields[settings.FieldSMTPStarttls]
-	return ok
-}
-
-// ResetSMTPStarttls resets all changes to the "smtp_starttls" field.
-func (m *SettingsMutation) ResetSMTPStarttls() {
-	m.smtp_starttls = nil
-	delete(m.clearedFields, settings.FieldSMTPStarttls)
 }
 
 // SetNatsServer sets the "nats_server" field.
@@ -26453,7 +26353,7 @@ func (m *SettingsMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SettingsMutation) Fields() []string {
-	fields := make([]string, 0, 41)
+	fields := make([]string, 0, 39)
 	if m.language != nil {
 		fields = append(fields, settings.FieldLanguage)
 	}
@@ -26492,12 +26392,6 @@ func (m *SettingsMutation) Fields() []string {
 	}
 	if m.smtp_auth != nil {
 		fields = append(fields, settings.FieldSMTPAuth)
-	}
-	if m.smtp_tls != nil {
-		fields = append(fields, settings.FieldSMTPTLS)
-	}
-	if m.smtp_starttls != nil {
-		fields = append(fields, settings.FieldSMTPStarttls)
 	}
 	if m.nats_server != nil {
 		fields = append(fields, settings.FieldNatsServer)
@@ -26611,10 +26505,6 @@ func (m *SettingsMutation) Field(name string) (ent.Value, bool) {
 		return m.SMTPPassword()
 	case settings.FieldSMTPAuth:
 		return m.SMTPAuth()
-	case settings.FieldSMTPTLS:
-		return m.SMTPTLS()
-	case settings.FieldSMTPStarttls:
-		return m.SMTPStarttls()
 	case settings.FieldNatsServer:
 		return m.NatsServer()
 	case settings.FieldNatsPort:
@@ -26702,10 +26592,6 @@ func (m *SettingsMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldSMTPPassword(ctx)
 	case settings.FieldSMTPAuth:
 		return m.OldSMTPAuth(ctx)
-	case settings.FieldSMTPTLS:
-		return m.OldSMTPTLS(ctx)
-	case settings.FieldSMTPStarttls:
-		return m.OldSMTPStarttls(ctx)
 	case settings.FieldNatsServer:
 		return m.OldNatsServer(ctx)
 	case settings.FieldNatsPort:
@@ -26857,20 +26743,6 @@ func (m *SettingsMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetSMTPAuth(v)
-		return nil
-	case settings.FieldSMTPTLS:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetSMTPTLS(v)
-		return nil
-	case settings.FieldSMTPStarttls:
-		v, ok := value.(bool)
-		if !ok {
-			return fmt.Errorf("unexpected type %T for field %s", value, name)
-		}
-		m.SetSMTPStarttls(v)
 		return nil
 	case settings.FieldNatsServer:
 		v, ok := value.(string)
@@ -27234,12 +27106,6 @@ func (m *SettingsMutation) ClearedFields() []string {
 	if m.FieldCleared(settings.FieldSMTPAuth) {
 		fields = append(fields, settings.FieldSMTPAuth)
 	}
-	if m.FieldCleared(settings.FieldSMTPTLS) {
-		fields = append(fields, settings.FieldSMTPTLS)
-	}
-	if m.FieldCleared(settings.FieldSMTPStarttls) {
-		fields = append(fields, settings.FieldSMTPStarttls)
-	}
 	if m.FieldCleared(settings.FieldNatsServer) {
 		fields = append(fields, settings.FieldNatsServer)
 	}
@@ -27371,12 +27237,6 @@ func (m *SettingsMutation) ClearField(name string) error {
 	case settings.FieldSMTPAuth:
 		m.ClearSMTPAuth()
 		return nil
-	case settings.FieldSMTPTLS:
-		m.ClearSMTPTLS()
-		return nil
-	case settings.FieldSMTPStarttls:
-		m.ClearSMTPStarttls()
-		return nil
 	case settings.FieldNatsServer:
 		m.ClearNatsServer()
 		return nil
@@ -27501,12 +27361,6 @@ func (m *SettingsMutation) ResetField(name string) error {
 		return nil
 	case settings.FieldSMTPAuth:
 		m.ResetSMTPAuth()
-		return nil
-	case settings.FieldSMTPTLS:
-		m.ResetSMTPTLS()
-		return nil
-	case settings.FieldSMTPStarttls:
-		m.ResetSMTPStarttls()
 		return nil
 	case settings.FieldNatsServer:
 		m.ResetNatsServer()

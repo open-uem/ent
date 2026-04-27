@@ -298,46 +298,6 @@ func (su *SettingsUpdate) ClearSMTPAuth() *SettingsUpdate {
 	return su
 }
 
-// SetSMTPTLS sets the "smtp_tls" field.
-func (su *SettingsUpdate) SetSMTPTLS(b bool) *SettingsUpdate {
-	su.mutation.SetSMTPTLS(b)
-	return su
-}
-
-// SetNillableSMTPTLS sets the "smtp_tls" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPTLS(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetSMTPTLS(*b)
-	}
-	return su
-}
-
-// ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (su *SettingsUpdate) ClearSMTPTLS() *SettingsUpdate {
-	su.mutation.ClearSMTPTLS()
-	return su
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (su *SettingsUpdate) SetSMTPStarttls(b bool) *SettingsUpdate {
-	su.mutation.SetSMTPStarttls(b)
-	return su
-}
-
-// SetNillableSMTPStarttls sets the "smtp_starttls" field if the given value is not nil.
-func (su *SettingsUpdate) SetNillableSMTPStarttls(b *bool) *SettingsUpdate {
-	if b != nil {
-		su.SetSMTPStarttls(*b)
-	}
-	return su
-}
-
-// ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (su *SettingsUpdate) ClearSMTPStarttls() *SettingsUpdate {
-	su.mutation.ClearSMTPStarttls()
-	return su
-}
-
 // SetNatsServer sets the "nats_server" field.
 func (su *SettingsUpdate) SetNatsServer(s string) *SettingsUpdate {
 	su.mutation.SetNatsServer(s)
@@ -1106,18 +1066,6 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if su.mutation.SMTPAuthCleared() {
 		_spec.ClearField(settings.FieldSMTPAuth, field.TypeString)
 	}
-	if value, ok := su.mutation.SMTPTLS(); ok {
-		_spec.SetField(settings.FieldSMTPTLS, field.TypeBool, value)
-	}
-	if su.mutation.SMTPTLSCleared() {
-		_spec.ClearField(settings.FieldSMTPTLS, field.TypeBool)
-	}
-	if value, ok := su.mutation.SMTPStarttls(); ok {
-		_spec.SetField(settings.FieldSMTPStarttls, field.TypeBool, value)
-	}
-	if su.mutation.SMTPStarttlsCleared() {
-		_spec.ClearField(settings.FieldSMTPStarttls, field.TypeBool)
-	}
 	if value, ok := su.mutation.NatsServer(); ok {
 		_spec.SetField(settings.FieldNatsServer, field.TypeString, value)
 	}
@@ -1642,46 +1590,6 @@ func (suo *SettingsUpdateOne) SetNillableSMTPAuth(s *string) *SettingsUpdateOne 
 // ClearSMTPAuth clears the value of the "smtp_auth" field.
 func (suo *SettingsUpdateOne) ClearSMTPAuth() *SettingsUpdateOne {
 	suo.mutation.ClearSMTPAuth()
-	return suo
-}
-
-// SetSMTPTLS sets the "smtp_tls" field.
-func (suo *SettingsUpdateOne) SetSMTPTLS(b bool) *SettingsUpdateOne {
-	suo.mutation.SetSMTPTLS(b)
-	return suo
-}
-
-// SetNillableSMTPTLS sets the "smtp_tls" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPTLS(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetSMTPTLS(*b)
-	}
-	return suo
-}
-
-// ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (suo *SettingsUpdateOne) ClearSMTPTLS() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPTLS()
-	return suo
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (suo *SettingsUpdateOne) SetSMTPStarttls(b bool) *SettingsUpdateOne {
-	suo.mutation.SetSMTPStarttls(b)
-	return suo
-}
-
-// SetNillableSMTPStarttls sets the "smtp_starttls" field if the given value is not nil.
-func (suo *SettingsUpdateOne) SetNillableSMTPStarttls(b *bool) *SettingsUpdateOne {
-	if b != nil {
-		suo.SetSMTPStarttls(*b)
-	}
-	return suo
-}
-
-// ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (suo *SettingsUpdateOne) ClearSMTPStarttls() *SettingsUpdateOne {
-	suo.mutation.ClearSMTPStarttls()
 	return suo
 }
 
@@ -2482,18 +2390,6 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 	}
 	if suo.mutation.SMTPAuthCleared() {
 		_spec.ClearField(settings.FieldSMTPAuth, field.TypeString)
-	}
-	if value, ok := suo.mutation.SMTPTLS(); ok {
-		_spec.SetField(settings.FieldSMTPTLS, field.TypeBool, value)
-	}
-	if suo.mutation.SMTPTLSCleared() {
-		_spec.ClearField(settings.FieldSMTPTLS, field.TypeBool)
-	}
-	if value, ok := suo.mutation.SMTPStarttls(); ok {
-		_spec.SetField(settings.FieldSMTPStarttls, field.TypeBool, value)
-	}
-	if suo.mutation.SMTPStarttlsCleared() {
-		_spec.ClearField(settings.FieldSMTPStarttls, field.TypeBool)
 	}
 	if value, ok := suo.mutation.NatsServer(); ok {
 		_spec.SetField(settings.FieldNatsServer, field.TypeString, value)

@@ -41,10 +41,6 @@ const (
 	FieldSMTPPassword = "smtp_password"
 	// FieldSMTPAuth holds the string denoting the smtp_auth field in the database.
 	FieldSMTPAuth = "smtp_auth"
-	// FieldSMTPTLS holds the string denoting the smtp_tls field in the database.
-	FieldSMTPTLS = "smtp_tls"
-	// FieldSMTPStarttls holds the string denoting the smtp_starttls field in the database.
-	FieldSMTPStarttls = "smtp_starttls"
 	// FieldNatsServer holds the string denoting the nats_server field in the database.
 	FieldNatsServer = "nats_server"
 	// FieldNatsPort holds the string denoting the nats_port field in the database.
@@ -135,8 +131,6 @@ var Columns = []string{
 	FieldSMTPUser,
 	FieldSMTPPassword,
 	FieldSMTPAuth,
-	FieldSMTPTLS,
-	FieldSMTPStarttls,
 	FieldNatsServer,
 	FieldNatsPort,
 	FieldMessageFrom,
@@ -194,10 +188,6 @@ var (
 	DefaultSMTPPort int
 	// DefaultSMTPAuth holds the default value on creation for the "smtp_auth" field.
 	DefaultSMTPAuth string
-	// DefaultSMTPTLS holds the default value on creation for the "smtp_tls" field.
-	DefaultSMTPTLS bool
-	// DefaultSMTPStarttls holds the default value on creation for the "smtp_starttls" field.
-	DefaultSMTPStarttls bool
 	// DefaultMaxUploadSize holds the default value on creation for the "max_upload_size" field.
 	DefaultMaxUploadSize string
 	// DefaultUserCertYearsValid holds the default value on creation for the "user_cert_years_valid" field.
@@ -344,16 +334,6 @@ func BySMTPPassword(opts ...sql.OrderTermOption) OrderOption {
 // BySMTPAuth orders the results by the smtp_auth field.
 func BySMTPAuth(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldSMTPAuth, opts...).ToFunc()
-}
-
-// BySMTPTLS orders the results by the smtp_tls field.
-func BySMTPTLS(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldSMTPTLS, opts...).ToFunc()
-}
-
-// BySMTPStarttls orders the results by the smtp_starttls field.
-func BySMTPStarttls(opts ...sql.OrderTermOption) OrderOption {
-	return sql.OrderByField(FieldSMTPStarttls, opts...).ToFunc()
 }
 
 // ByNatsServer orders the results by the nats_server field.

@@ -390,102 +390,94 @@ func init() {
 	settingsDescSMTPAuth := settingsFields[12].Descriptor()
 	// settings.DefaultSMTPAuth holds the default value on creation for the smtp_auth field.
 	settings.DefaultSMTPAuth = settingsDescSMTPAuth.Default.(string)
-	// settingsDescSMTPTLS is the schema descriptor for smtp_tls field.
-	settingsDescSMTPTLS := settingsFields[13].Descriptor()
-	// settings.DefaultSMTPTLS holds the default value on creation for the smtp_tls field.
-	settings.DefaultSMTPTLS = settingsDescSMTPTLS.Default.(bool)
-	// settingsDescSMTPStarttls is the schema descriptor for smtp_starttls field.
-	settingsDescSMTPStarttls := settingsFields[14].Descriptor()
-	// settings.DefaultSMTPStarttls holds the default value on creation for the smtp_starttls field.
-	settings.DefaultSMTPStarttls = settingsDescSMTPStarttls.Default.(bool)
 	// settingsDescMaxUploadSize is the schema descriptor for max_upload_size field.
-	settingsDescMaxUploadSize := settingsFields[18].Descriptor()
+	settingsDescMaxUploadSize := settingsFields[16].Descriptor()
 	// settings.DefaultMaxUploadSize holds the default value on creation for the max_upload_size field.
 	settings.DefaultMaxUploadSize = settingsDescMaxUploadSize.Default.(string)
 	// settingsDescUserCertYearsValid is the schema descriptor for user_cert_years_valid field.
-	settingsDescUserCertYearsValid := settingsFields[19].Descriptor()
+	settingsDescUserCertYearsValid := settingsFields[17].Descriptor()
 	// settings.DefaultUserCertYearsValid holds the default value on creation for the user_cert_years_valid field.
 	settings.DefaultUserCertYearsValid = settingsDescUserCertYearsValid.Default.(int)
 	// settingsDescNatsRequestTimeoutSeconds is the schema descriptor for nats_request_timeout_seconds field.
-	settingsDescNatsRequestTimeoutSeconds := settingsFields[20].Descriptor()
+	settingsDescNatsRequestTimeoutSeconds := settingsFields[18].Descriptor()
 	// settings.DefaultNatsRequestTimeoutSeconds holds the default value on creation for the nats_request_timeout_seconds field.
 	settings.DefaultNatsRequestTimeoutSeconds = settingsDescNatsRequestTimeoutSeconds.Default.(int)
 	// settingsDescRefreshTimeInMinutes is the schema descriptor for refresh_time_in_minutes field.
-	settingsDescRefreshTimeInMinutes := settingsFields[21].Descriptor()
+	settingsDescRefreshTimeInMinutes := settingsFields[19].Descriptor()
 	// settings.DefaultRefreshTimeInMinutes holds the default value on creation for the refresh_time_in_minutes field.
 	settings.DefaultRefreshTimeInMinutes = settingsDescRefreshTimeInMinutes.Default.(int)
 	// settingsDescSessionLifetimeInMinutes is the schema descriptor for session_lifetime_in_minutes field.
-	settingsDescSessionLifetimeInMinutes := settingsFields[22].Descriptor()
+	settingsDescSessionLifetimeInMinutes := settingsFields[20].Descriptor()
 	// settings.DefaultSessionLifetimeInMinutes holds the default value on creation for the session_lifetime_in_minutes field.
 	settings.DefaultSessionLifetimeInMinutes = settingsDescSessionLifetimeInMinutes.Default.(int)
 	// settingsDescUpdateChannel is the schema descriptor for update_channel field.
-	settingsDescUpdateChannel := settingsFields[23].Descriptor()
+	settingsDescUpdateChannel := settingsFields[21].Descriptor()
 	// settings.DefaultUpdateChannel holds the default value on creation for the update_channel field.
 	settings.DefaultUpdateChannel = settingsDescUpdateChannel.Default.(string)
 	// settingsDescCreated is the schema descriptor for created field.
-	settingsDescCreated := settingsFields[24].Descriptor()
+	settingsDescCreated := settingsFields[22].Descriptor()
 	// settings.DefaultCreated holds the default value on creation for the created field.
 	settings.DefaultCreated = settingsDescCreated.Default.(func() time.Time)
 	// settingsDescModified is the schema descriptor for modified field.
-	settingsDescModified := settingsFields[25].Descriptor()
+	settingsDescModified := settingsFields[23].Descriptor()
 	// settings.DefaultModified holds the default value on creation for the modified field.
 	settings.DefaultModified = settingsDescModified.Default.(func() time.Time)
 	// settings.UpdateDefaultModified holds the default value on update for the modified field.
 	settings.UpdateDefaultModified = settingsDescModified.UpdateDefault.(func() time.Time)
 	// settingsDescAgentReportFrequenceInMinutes is the schema descriptor for agent_report_frequence_in_minutes field.
-	settingsDescAgentReportFrequenceInMinutes := settingsFields[26].Descriptor()
+	settingsDescAgentReportFrequenceInMinutes := settingsFields[24].Descriptor()
 	// settings.DefaultAgentReportFrequenceInMinutes holds the default value on creation for the agent_report_frequence_in_minutes field.
 	settings.DefaultAgentReportFrequenceInMinutes = settingsDescAgentReportFrequenceInMinutes.Default.(int)
 	// settingsDescRequestVncPin is the schema descriptor for request_vnc_pin field.
-	settingsDescRequestVncPin := settingsFields[27].Descriptor()
+	settingsDescRequestVncPin := settingsFields[25].Descriptor()
 	// settings.DefaultRequestVncPin holds the default value on creation for the request_vnc_pin field.
 	settings.DefaultRequestVncPin = settingsDescRequestVncPin.Default.(bool)
 	// settingsDescProfilesApplicationFrequenceInMinutes is the schema descriptor for profiles_application_frequence_in_minutes field.
-	settingsDescProfilesApplicationFrequenceInMinutes := settingsFields[28].Descriptor()
+	settingsDescProfilesApplicationFrequenceInMinutes := settingsFields[26].Descriptor()
 	// settings.DefaultProfilesApplicationFrequenceInMinutes holds the default value on creation for the profiles_application_frequence_in_minutes field.
 	settings.DefaultProfilesApplicationFrequenceInMinutes = settingsDescProfilesApplicationFrequenceInMinutes.Default.(int)
 	// settingsDescUseWinget is the schema descriptor for use_winget field.
-	settingsDescUseWinget := settingsFields[29].Descriptor()
+	settingsDescUseWinget := settingsFields[27].Descriptor()
 	// settings.DefaultUseWinget holds the default value on creation for the use_winget field.
 	settings.DefaultUseWinget = settingsDescUseWinget.Default.(bool)
 	// settingsDescUseFlatpak is the schema descriptor for use_flatpak field.
-	settingsDescUseFlatpak := settingsFields[30].Descriptor()
+	settingsDescUseFlatpak := settingsFields[28].Descriptor()
 	// settings.DefaultUseFlatpak holds the default value on creation for the use_flatpak field.
 	settings.DefaultUseFlatpak = settingsDescUseFlatpak.Default.(bool)
 	// settingsDescUseBrew is the schema descriptor for use_brew field.
-	settingsDescUseBrew := settingsFields[31].Descriptor()
+	settingsDescUseBrew := settingsFields[29].Descriptor()
 	// settings.DefaultUseBrew holds the default value on creation for the use_brew field.
 	settings.DefaultUseBrew = settingsDescUseBrew.Default.(bool)
 	// settingsDescDisableSftp is the schema descriptor for disable_sftp field.
-	settingsDescDisableSftp := settingsFields[32].Descriptor()
+	settingsDescDisableSftp := settingsFields[30].Descriptor()
 	// settings.DefaultDisableSftp holds the default value on creation for the disable_sftp field.
 	settings.DefaultDisableSftp = settingsDescDisableSftp.Default.(bool)
 	// settingsDescDisableRemoteAssistance is the schema descriptor for disable_remote_assistance field.
-	settingsDescDisableRemoteAssistance := settingsFields[33].Descriptor()
+	settingsDescDisableRemoteAssistance := settingsFields[31].Descriptor()
 	// settings.DefaultDisableRemoteAssistance holds the default value on creation for the disable_remote_assistance field.
 	settings.DefaultDisableRemoteAssistance = settingsDescDisableRemoteAssistance.Default.(bool)
 	// settingsDescDetectRemoteAgents is the schema descriptor for detect_remote_agents field.
-	settingsDescDetectRemoteAgents := settingsFields[34].Descriptor()
+	settingsDescDetectRemoteAgents := settingsFields[32].Descriptor()
 	// settings.DefaultDetectRemoteAgents holds the default value on creation for the detect_remote_agents field.
 	settings.DefaultDetectRemoteAgents = settingsDescDetectRemoteAgents.Default.(bool)
 	// settingsDescAutoAdmitAgents is the schema descriptor for auto_admit_agents field.
-	settingsDescAutoAdmitAgents := settingsFields[35].Descriptor()
+	settingsDescAutoAdmitAgents := settingsFields[33].Descriptor()
 	// settings.DefaultAutoAdmitAgents holds the default value on creation for the auto_admit_agents field.
 	settings.DefaultAutoAdmitAgents = settingsDescAutoAdmitAgents.Default.(bool)
 	// settingsDescDefaultItemsPerPage is the schema descriptor for default_items_per_page field.
-	settingsDescDefaultItemsPerPage := settingsFields[36].Descriptor()
+	settingsDescDefaultItemsPerPage := settingsFields[34].Descriptor()
 	// settings.DefaultDefaultItemsPerPage holds the default value on creation for the default_items_per_page field.
 	settings.DefaultDefaultItemsPerPage = settingsDescDefaultItemsPerPage.Default.(int)
 	// settingsDescRegisterRateLimit is the schema descriptor for register_rate_limit field.
-	settingsDescRegisterRateLimit := settingsFields[37].Descriptor()
+	settingsDescRegisterRateLimit := settingsFields[35].Descriptor()
 	// settings.DefaultRegisterRateLimit holds the default value on creation for the register_rate_limit field.
 	settings.DefaultRegisterRateLimit = settingsDescRegisterRateLimit.Default.(float64)
 	// settingsDescTurnstileSiteKey is the schema descriptor for turnstile_site_key field.
-	settingsDescTurnstileSiteKey := settingsFields[38].Descriptor()
+	settingsDescTurnstileSiteKey := settingsFields[36].Descriptor()
 	// settings.DefaultTurnstileSiteKey holds the default value on creation for the turnstile_site_key field.
 	settings.DefaultTurnstileSiteKey = settingsDescTurnstileSiteKey.Default.(string)
 	// settingsDescTurnstileSecretKey is the schema descriptor for turnstile_secret_key field.
-	settingsDescTurnstileSecretKey := settingsFields[39].Descriptor()
+	settingsDescTurnstileSecretKey := settingsFields[37].Descriptor()
 	// settings.DefaultTurnstileSecretKey holds the default value on creation for the turnstile_secret_key field.
 	settings.DefaultTurnstileSecretKey = settingsDescTurnstileSecretKey.Default.(string)
 	siteFields := schema.Site{}.Fields()
