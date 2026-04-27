@@ -2430,6 +2430,36 @@ func TurnstileSecretKeyContainsFold(v string) predicate.Settings {
 	return predicate.Settings(sql.FieldContainsFold(FieldTurnstileSecretKey, v))
 }
 
+// SMTPEncryptionTypeEQ applies the EQ predicate on the "smtp_encryption_type" field.
+func SMTPEncryptionTypeEQ(v SMTPEncryptionType) predicate.Settings {
+	return predicate.Settings(sql.FieldEQ(FieldSMTPEncryptionType, v))
+}
+
+// SMTPEncryptionTypeNEQ applies the NEQ predicate on the "smtp_encryption_type" field.
+func SMTPEncryptionTypeNEQ(v SMTPEncryptionType) predicate.Settings {
+	return predicate.Settings(sql.FieldNEQ(FieldSMTPEncryptionType, v))
+}
+
+// SMTPEncryptionTypeIn applies the In predicate on the "smtp_encryption_type" field.
+func SMTPEncryptionTypeIn(vs ...SMTPEncryptionType) predicate.Settings {
+	return predicate.Settings(sql.FieldIn(FieldSMTPEncryptionType, vs...))
+}
+
+// SMTPEncryptionTypeNotIn applies the NotIn predicate on the "smtp_encryption_type" field.
+func SMTPEncryptionTypeNotIn(vs ...SMTPEncryptionType) predicate.Settings {
+	return predicate.Settings(sql.FieldNotIn(FieldSMTPEncryptionType, vs...))
+}
+
+// SMTPEncryptionTypeIsNil applies the IsNil predicate on the "smtp_encryption_type" field.
+func SMTPEncryptionTypeIsNil() predicate.Settings {
+	return predicate.Settings(sql.FieldIsNull(FieldSMTPEncryptionType))
+}
+
+// SMTPEncryptionTypeNotNil applies the NotNil predicate on the "smtp_encryption_type" field.
+func SMTPEncryptionTypeNotNil() predicate.Settings {
+	return predicate.Settings(sql.FieldNotNull(FieldSMTPEncryptionType))
+}
+
 // HasTag applies the HasEdge predicate on the "tag" edge.
 func HasTag() predicate.Settings {
 	return predicate.Settings(func(s *sql.Selector) {

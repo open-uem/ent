@@ -24034,6 +24034,7 @@ type SettingsMutation struct {
 	addregister_rate_limit                       *float64
 	turnstile_site_key                           *string
 	turnstile_secret_key                         *string
+	smtp_encryption_type                         *settings.SMTPEncryptionType
 	clearedFields                                map[string]struct{}
 	tag                                          *int
 	clearedtag                                   bool
@@ -26291,6 +26292,55 @@ func (m *SettingsMutation) ResetTurnstileSecretKey() {
 	delete(m.clearedFields, settings.FieldTurnstileSecretKey)
 }
 
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (m *SettingsMutation) SetSMTPEncryptionType(set settings.SMTPEncryptionType) {
+	m.smtp_encryption_type = &set
+}
+
+// SMTPEncryptionType returns the value of the "smtp_encryption_type" field in the mutation.
+func (m *SettingsMutation) SMTPEncryptionType() (r settings.SMTPEncryptionType, exists bool) {
+	v := m.smtp_encryption_type
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldSMTPEncryptionType returns the old "smtp_encryption_type" field's value of the Settings entity.
+// If the Settings object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *SettingsMutation) OldSMTPEncryptionType(ctx context.Context) (v settings.SMTPEncryptionType, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldSMTPEncryptionType is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldSMTPEncryptionType requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldSMTPEncryptionType: %w", err)
+	}
+	return oldValue.SMTPEncryptionType, nil
+}
+
+// ClearSMTPEncryptionType clears the value of the "smtp_encryption_type" field.
+func (m *SettingsMutation) ClearSMTPEncryptionType() {
+	m.smtp_encryption_type = nil
+	m.clearedFields[settings.FieldSMTPEncryptionType] = struct{}{}
+}
+
+// SMTPEncryptionTypeCleared returns if the "smtp_encryption_type" field was cleared in this mutation.
+func (m *SettingsMutation) SMTPEncryptionTypeCleared() bool {
+	_, ok := m.clearedFields[settings.FieldSMTPEncryptionType]
+	return ok
+}
+
+// ResetSMTPEncryptionType resets all changes to the "smtp_encryption_type" field.
+func (m *SettingsMutation) ResetSMTPEncryptionType() {
+	m.smtp_encryption_type = nil
+	delete(m.clearedFields, settings.FieldSMTPEncryptionType)
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by id.
 func (m *SettingsMutation) SetTagID(id int) {
 	m.tag = &id
@@ -26403,7 +26453,7 @@ func (m *SettingsMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *SettingsMutation) Fields() []string {
-	fields := make([]string, 0, 40)
+	fields := make([]string, 0, 41)
 	if m.language != nil {
 		fields = append(fields, settings.FieldLanguage)
 	}
@@ -26524,6 +26574,9 @@ func (m *SettingsMutation) Fields() []string {
 	if m.turnstile_secret_key != nil {
 		fields = append(fields, settings.FieldTurnstileSecretKey)
 	}
+	if m.smtp_encryption_type != nil {
+		fields = append(fields, settings.FieldSMTPEncryptionType)
+	}
 	return fields
 }
 
@@ -26612,6 +26665,8 @@ func (m *SettingsMutation) Field(name string) (ent.Value, bool) {
 		return m.TurnstileSiteKey()
 	case settings.FieldTurnstileSecretKey:
 		return m.TurnstileSecretKey()
+	case settings.FieldSMTPEncryptionType:
+		return m.SMTPEncryptionType()
 	}
 	return nil, false
 }
@@ -26701,6 +26756,8 @@ func (m *SettingsMutation) OldField(ctx context.Context, name string) (ent.Value
 		return m.OldTurnstileSiteKey(ctx)
 	case settings.FieldTurnstileSecretKey:
 		return m.OldTurnstileSecretKey(ctx)
+	case settings.FieldSMTPEncryptionType:
+		return m.OldSMTPEncryptionType(ctx)
 	}
 	return nil, fmt.Errorf("unknown Settings field %s", name)
 }
@@ -26990,6 +27047,13 @@ func (m *SettingsMutation) SetField(name string, value ent.Value) error {
 		}
 		m.SetTurnstileSecretKey(v)
 		return nil
+	case settings.FieldSMTPEncryptionType:
+		v, ok := value.(settings.SMTPEncryptionType)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetSMTPEncryptionType(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Settings field %s", name)
 }
@@ -27251,6 +27315,9 @@ func (m *SettingsMutation) ClearedFields() []string {
 	if m.FieldCleared(settings.FieldTurnstileSecretKey) {
 		fields = append(fields, settings.FieldTurnstileSecretKey)
 	}
+	if m.FieldCleared(settings.FieldSMTPEncryptionType) {
+		fields = append(fields, settings.FieldSMTPEncryptionType)
+	}
 	return fields
 }
 
@@ -27385,6 +27452,9 @@ func (m *SettingsMutation) ClearField(name string) error {
 	case settings.FieldTurnstileSecretKey:
 		m.ClearTurnstileSecretKey()
 		return nil
+	case settings.FieldSMTPEncryptionType:
+		m.ClearSMTPEncryptionType()
+		return nil
 	}
 	return fmt.Errorf("unknown Settings nullable field %s", name)
 }
@@ -27512,6 +27582,9 @@ func (m *SettingsMutation) ResetField(name string) error {
 		return nil
 	case settings.FieldTurnstileSecretKey:
 		m.ResetTurnstileSecretKey()
+		return nil
+	case settings.FieldSMTPEncryptionType:
+		m.ResetSMTPEncryptionType()
 		return nil
 	}
 	return fmt.Errorf("unknown Settings field %s", name)

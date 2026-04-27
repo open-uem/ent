@@ -56,6 +56,7 @@ func (Settings) Fields() []ent.Field {
 		field.Float("register_rate_limit").Optional().Default(0.000833333),
 		field.String("turnstile_site_key").Optional().Default(""),
 		field.String("turnstile_secret_key").Optional().Default(""),
+		field.Enum("smtp_encryption_type").Values("none", "smtps", "starttls").Optional().Default("none"),
 	}
 }
 

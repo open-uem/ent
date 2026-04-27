@@ -99,6 +99,8 @@ type Settings struct {
 	TurnstileSiteKey string `json:"turnstile_site_key,omitempty"`
 	// TurnstileSecretKey holds the value of the "turnstile_secret_key" field.
 	TurnstileSecretKey string `json:"turnstile_secret_key,omitempty"`
+	// SMTPEncryptionType holds the value of the "smtp_encryption_type" field.
+	SMTPEncryptionType settings.SMTPEncryptionType `json:"smtp_encryption_type,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the SettingsQuery when eager-loading is set.
 	Edges           SettingsEdges `json:"edges"`
@@ -151,7 +153,7 @@ func (*Settings) scanValues(columns []string) ([]any, error) {
 			values[i] = new(sql.NullFloat64)
 		case settings.FieldID, settings.FieldSMTPPort, settings.FieldUserCertYearsValid, settings.FieldNatsRequestTimeoutSeconds, settings.FieldRefreshTimeInMinutes, settings.FieldSessionLifetimeInMinutes, settings.FieldAgentReportFrequenceInMinutes, settings.FieldProfilesApplicationFrequenceInMinutes, settings.FieldDefaultItemsPerPage:
 			values[i] = new(sql.NullInt64)
-		case settings.FieldLanguage, settings.FieldOrganization, settings.FieldPostalAddress, settings.FieldPostalCode, settings.FieldLocality, settings.FieldProvince, settings.FieldState, settings.FieldCountry, settings.FieldSMTPServer, settings.FieldSMTPUser, settings.FieldSMTPPassword, settings.FieldSMTPAuth, settings.FieldNatsServer, settings.FieldNatsPort, settings.FieldMessageFrom, settings.FieldMaxUploadSize, settings.FieldUpdateChannel, settings.FieldTurnstileSiteKey, settings.FieldTurnstileSecretKey:
+		case settings.FieldLanguage, settings.FieldOrganization, settings.FieldPostalAddress, settings.FieldPostalCode, settings.FieldLocality, settings.FieldProvince, settings.FieldState, settings.FieldCountry, settings.FieldSMTPServer, settings.FieldSMTPUser, settings.FieldSMTPPassword, settings.FieldSMTPAuth, settings.FieldNatsServer, settings.FieldNatsPort, settings.FieldMessageFrom, settings.FieldMaxUploadSize, settings.FieldUpdateChannel, settings.FieldTurnstileSiteKey, settings.FieldTurnstileSecretKey, settings.FieldSMTPEncryptionType:
 			values[i] = new(sql.NullString)
 		case settings.FieldCreated, settings.FieldModified:
 			values[i] = new(sql.NullTime)
@@ -420,6 +422,12 @@ func (s *Settings) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				s.TurnstileSecretKey = value.String
 			}
+		case settings.FieldSMTPEncryptionType:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field smtp_encryption_type", values[i])
+			} else if value.Valid {
+				s.SMTPEncryptionType = settings.SMTPEncryptionType(value.String)
+			}
 		case settings.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullInt64); !ok {
 				return fmt.Errorf("unexpected type %T for edge-field settings_tag", value)
@@ -599,6 +607,9 @@ func (s *Settings) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("turnstile_secret_key=")
 	builder.WriteString(s.TurnstileSecretKey)
+	builder.WriteString(", ")
+	builder.WriteString("smtp_encryption_type=")
+	builder.WriteString(fmt.Sprintf("%v", s.SMTPEncryptionType))
 	builder.WriteByte(')')
 	return builder.String()
 }

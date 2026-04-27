@@ -3,6 +3,7 @@
 package settings
 
 import (
+	"fmt"
 	"time"
 
 	"entgo.io/ent/dialect/sql"
@@ -94,6 +95,8 @@ const (
 	FieldTurnstileSiteKey = "turnstile_site_key"
 	// FieldTurnstileSecretKey holds the string denoting the turnstile_secret_key field in the database.
 	FieldTurnstileSecretKey = "turnstile_secret_key"
+	// FieldSMTPEncryptionType holds the string denoting the smtp_encryption_type field in the database.
+	FieldSMTPEncryptionType = "smtp_encryption_type"
 	// EdgeTag holds the string denoting the tag edge name in mutations.
 	EdgeTag = "tag"
 	// EdgeTenant holds the string denoting the tenant edge name in mutations.
@@ -159,6 +162,7 @@ var Columns = []string{
 	FieldRegisterRateLimit,
 	FieldTurnstileSiteKey,
 	FieldTurnstileSecretKey,
+	FieldSMTPEncryptionType,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "settings"
@@ -241,6 +245,33 @@ var (
 	// DefaultTurnstileSecretKey holds the default value on creation for the "turnstile_secret_key" field.
 	DefaultTurnstileSecretKey string
 )
+
+// SMTPEncryptionType defines the type for the "smtp_encryption_type" enum field.
+type SMTPEncryptionType string
+
+// SMTPEncryptionTypeNone is the default value of the SMTPEncryptionType enum.
+const DefaultSMTPEncryptionType = SMTPEncryptionTypeNone
+
+// SMTPEncryptionType values.
+const (
+	SMTPEncryptionTypeNone     SMTPEncryptionType = "none"
+	SMTPEncryptionTypeSmtps    SMTPEncryptionType = "smtps"
+	SMTPEncryptionTypeStarttls SMTPEncryptionType = "starttls"
+)
+
+func (set SMTPEncryptionType) String() string {
+	return string(set)
+}
+
+// SMTPEncryptionTypeValidator is a validator for the "smtp_encryption_type" field enum values. It is called by the builders before save.
+func SMTPEncryptionTypeValidator(set SMTPEncryptionType) error {
+	switch set {
+	case SMTPEncryptionTypeNone, SMTPEncryptionTypeSmtps, SMTPEncryptionTypeStarttls:
+		return nil
+	default:
+		return fmt.Errorf("settings: invalid enum value for smtp_encryption_type field: %q", set)
+	}
+}
 
 // OrderOption defines the ordering options for the Settings queries.
 type OrderOption func(*sql.Selector)
@@ -448,6 +479,11 @@ func ByTurnstileSiteKey(opts ...sql.OrderTermOption) OrderOption {
 // ByTurnstileSecretKey orders the results by the turnstile_secret_key field.
 func ByTurnstileSecretKey(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldTurnstileSecretKey, opts...).ToFunc()
+}
+
+// BySMTPEncryptionType orders the results by the smtp_encryption_type field.
+func BySMTPEncryptionType(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldSMTPEncryptionType, opts...).ToFunc()
 }
 
 // ByTagField orders the results by tag field.
