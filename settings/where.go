@@ -120,16 +120,6 @@ func SMTPAuth(v string) predicate.Settings {
 	return predicate.Settings(sql.FieldEQ(FieldSMTPAuth, v))
 }
 
-// SMTPTLS applies equality check predicate on the "smtp_tls" field. It's identical to SMTPTLSEQ.
-func SMTPTLS(v bool) predicate.Settings {
-	return predicate.Settings(sql.FieldEQ(FieldSMTPTLS, v))
-}
-
-// SMTPStarttls applies equality check predicate on the "smtp_starttls" field. It's identical to SMTPStarttlsEQ.
-func SMTPStarttls(v bool) predicate.Settings {
-	return predicate.Settings(sql.FieldEQ(FieldSMTPStarttls, v))
-}
-
 // NatsServer applies equality check predicate on the "nats_server" field. It's identical to NatsServerEQ.
 func NatsServer(v string) predicate.Settings {
 	return predicate.Settings(sql.FieldEQ(FieldNatsServer, v))
@@ -1203,46 +1193,6 @@ func SMTPAuthEqualFold(v string) predicate.Settings {
 // SMTPAuthContainsFold applies the ContainsFold predicate on the "smtp_auth" field.
 func SMTPAuthContainsFold(v string) predicate.Settings {
 	return predicate.Settings(sql.FieldContainsFold(FieldSMTPAuth, v))
-}
-
-// SMTPTLSEQ applies the EQ predicate on the "smtp_tls" field.
-func SMTPTLSEQ(v bool) predicate.Settings {
-	return predicate.Settings(sql.FieldEQ(FieldSMTPTLS, v))
-}
-
-// SMTPTLSNEQ applies the NEQ predicate on the "smtp_tls" field.
-func SMTPTLSNEQ(v bool) predicate.Settings {
-	return predicate.Settings(sql.FieldNEQ(FieldSMTPTLS, v))
-}
-
-// SMTPTLSIsNil applies the IsNil predicate on the "smtp_tls" field.
-func SMTPTLSIsNil() predicate.Settings {
-	return predicate.Settings(sql.FieldIsNull(FieldSMTPTLS))
-}
-
-// SMTPTLSNotNil applies the NotNil predicate on the "smtp_tls" field.
-func SMTPTLSNotNil() predicate.Settings {
-	return predicate.Settings(sql.FieldNotNull(FieldSMTPTLS))
-}
-
-// SMTPStarttlsEQ applies the EQ predicate on the "smtp_starttls" field.
-func SMTPStarttlsEQ(v bool) predicate.Settings {
-	return predicate.Settings(sql.FieldEQ(FieldSMTPStarttls, v))
-}
-
-// SMTPStarttlsNEQ applies the NEQ predicate on the "smtp_starttls" field.
-func SMTPStarttlsNEQ(v bool) predicate.Settings {
-	return predicate.Settings(sql.FieldNEQ(FieldSMTPStarttls, v))
-}
-
-// SMTPStarttlsIsNil applies the IsNil predicate on the "smtp_starttls" field.
-func SMTPStarttlsIsNil() predicate.Settings {
-	return predicate.Settings(sql.FieldIsNull(FieldSMTPStarttls))
-}
-
-// SMTPStarttlsNotNil applies the NotNil predicate on the "smtp_starttls" field.
-func SMTPStarttlsNotNil() predicate.Settings {
-	return predicate.Settings(sql.FieldNotNull(FieldSMTPStarttls))
 }
 
 // NatsServerEQ applies the EQ predicate on the "nats_server" field.

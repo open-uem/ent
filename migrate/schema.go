@@ -681,8 +681,6 @@ var (
 		{Name: "smtp_user", Type: field.TypeString, Nullable: true},
 		{Name: "smtp_password", Type: field.TypeString, Nullable: true},
 		{Name: "smtp_auth", Type: field.TypeString, Nullable: true, Default: "LOGIN"},
-		{Name: "smtp_tls", Type: field.TypeBool, Nullable: true, Default: false},
-		{Name: "smtp_starttls", Type: field.TypeBool, Nullable: true, Default: true},
 		{Name: "nats_server", Type: field.TypeString, Nullable: true},
 		{Name: "nats_port", Type: field.TypeString, Nullable: true},
 		{Name: "message_from", Type: field.TypeString, Nullable: true},
@@ -720,13 +718,13 @@ var (
 		ForeignKeys: []*schema.ForeignKey{
 			{
 				Symbol:     "settings_tags_tag",
-				Columns:    []*schema.Column{SettingsColumns[42]},
+				Columns:    []*schema.Column{SettingsColumns[40]},
 				RefColumns: []*schema.Column{TagsColumns[0]},
 				OnDelete:   schema.SetNull,
 			},
 			{
 				Symbol:     "settings_tenants_settings",
-				Columns:    []*schema.Column{SettingsColumns[43]},
+				Columns:    []*schema.Column{SettingsColumns[41]},
 				RefColumns: []*schema.Column{TenantsColumns[0]},
 				OnDelete:   schema.Cascade,
 			},

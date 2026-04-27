@@ -206,34 +206,6 @@ func (sc *SettingsCreate) SetNillableSMTPAuth(s *string) *SettingsCreate {
 	return sc
 }
 
-// SetSMTPTLS sets the "smtp_tls" field.
-func (sc *SettingsCreate) SetSMTPTLS(b bool) *SettingsCreate {
-	sc.mutation.SetSMTPTLS(b)
-	return sc
-}
-
-// SetNillableSMTPTLS sets the "smtp_tls" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPTLS(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetSMTPTLS(*b)
-	}
-	return sc
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (sc *SettingsCreate) SetSMTPStarttls(b bool) *SettingsCreate {
-	sc.mutation.SetSMTPStarttls(b)
-	return sc
-}
-
-// SetNillableSMTPStarttls sets the "smtp_starttls" field if the given value is not nil.
-func (sc *SettingsCreate) SetNillableSMTPStarttls(b *bool) *SettingsCreate {
-	if b != nil {
-		sc.SetSMTPStarttls(*b)
-	}
-	return sc
-}
-
 // SetNatsServer sets the "nats_server" field.
 func (sc *SettingsCreate) SetNatsServer(s string) *SettingsCreate {
 	sc.mutation.SetNatsServer(s)
@@ -683,14 +655,6 @@ func (sc *SettingsCreate) defaults() {
 		v := settings.DefaultSMTPAuth
 		sc.mutation.SetSMTPAuth(v)
 	}
-	if _, ok := sc.mutation.SMTPTLS(); !ok {
-		v := settings.DefaultSMTPTLS
-		sc.mutation.SetSMTPTLS(v)
-	}
-	if _, ok := sc.mutation.SMTPStarttls(); !ok {
-		v := settings.DefaultSMTPStarttls
-		sc.mutation.SetSMTPStarttls(v)
-	}
 	if _, ok := sc.mutation.MaxUploadSize(); !ok {
 		v := settings.DefaultMaxUploadSize
 		sc.mutation.SetMaxUploadSize(v)
@@ -870,14 +834,6 @@ func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 	if value, ok := sc.mutation.SMTPAuth(); ok {
 		_spec.SetField(settings.FieldSMTPAuth, field.TypeString, value)
 		_node.SMTPAuth = value
-	}
-	if value, ok := sc.mutation.SMTPTLS(); ok {
-		_spec.SetField(settings.FieldSMTPTLS, field.TypeBool, value)
-		_node.SMTPTLS = value
-	}
-	if value, ok := sc.mutation.SMTPStarttls(); ok {
-		_spec.SetField(settings.FieldSMTPStarttls, field.TypeBool, value)
-		_node.SMTPStarttls = value
 	}
 	if value, ok := sc.mutation.NatsServer(); ok {
 		_spec.SetField(settings.FieldNatsServer, field.TypeString, value)
@@ -1306,42 +1262,6 @@ func (u *SettingsUpsert) UpdateSMTPAuth() *SettingsUpsert {
 // ClearSMTPAuth clears the value of the "smtp_auth" field.
 func (u *SettingsUpsert) ClearSMTPAuth() *SettingsUpsert {
 	u.SetNull(settings.FieldSMTPAuth)
-	return u
-}
-
-// SetSMTPTLS sets the "smtp_tls" field.
-func (u *SettingsUpsert) SetSMTPTLS(v bool) *SettingsUpsert {
-	u.Set(settings.FieldSMTPTLS, v)
-	return u
-}
-
-// UpdateSMTPTLS sets the "smtp_tls" field to the value that was provided on create.
-func (u *SettingsUpsert) UpdateSMTPTLS() *SettingsUpsert {
-	u.SetExcluded(settings.FieldSMTPTLS)
-	return u
-}
-
-// ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (u *SettingsUpsert) ClearSMTPTLS() *SettingsUpsert {
-	u.SetNull(settings.FieldSMTPTLS)
-	return u
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (u *SettingsUpsert) SetSMTPStarttls(v bool) *SettingsUpsert {
-	u.Set(settings.FieldSMTPStarttls, v)
-	return u
-}
-
-// UpdateSMTPStarttls sets the "smtp_starttls" field to the value that was provided on create.
-func (u *SettingsUpsert) UpdateSMTPStarttls() *SettingsUpsert {
-	u.SetExcluded(settings.FieldSMTPStarttls)
-	return u
-}
-
-// ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (u *SettingsUpsert) ClearSMTPStarttls() *SettingsUpsert {
-	u.SetNull(settings.FieldSMTPStarttls)
 	return u
 }
 
@@ -2178,48 +2098,6 @@ func (u *SettingsUpsertOne) UpdateSMTPAuth() *SettingsUpsertOne {
 func (u *SettingsUpsertOne) ClearSMTPAuth() *SettingsUpsertOne {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearSMTPAuth()
-	})
-}
-
-// SetSMTPTLS sets the "smtp_tls" field.
-func (u *SettingsUpsertOne) SetSMTPTLS(v bool) *SettingsUpsertOne {
-	return u.Update(func(s *SettingsUpsert) {
-		s.SetSMTPTLS(v)
-	})
-}
-
-// UpdateSMTPTLS sets the "smtp_tls" field to the value that was provided on create.
-func (u *SettingsUpsertOne) UpdateSMTPTLS() *SettingsUpsertOne {
-	return u.Update(func(s *SettingsUpsert) {
-		s.UpdateSMTPTLS()
-	})
-}
-
-// ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (u *SettingsUpsertOne) ClearSMTPTLS() *SettingsUpsertOne {
-	return u.Update(func(s *SettingsUpsert) {
-		s.ClearSMTPTLS()
-	})
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (u *SettingsUpsertOne) SetSMTPStarttls(v bool) *SettingsUpsertOne {
-	return u.Update(func(s *SettingsUpsert) {
-		s.SetSMTPStarttls(v)
-	})
-}
-
-// UpdateSMTPStarttls sets the "smtp_starttls" field to the value that was provided on create.
-func (u *SettingsUpsertOne) UpdateSMTPStarttls() *SettingsUpsertOne {
-	return u.Update(func(s *SettingsUpsert) {
-		s.UpdateSMTPStarttls()
-	})
-}
-
-// ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (u *SettingsUpsertOne) ClearSMTPStarttls() *SettingsUpsertOne {
-	return u.Update(func(s *SettingsUpsert) {
-		s.ClearSMTPStarttls()
 	})
 }
 
@@ -3306,48 +3184,6 @@ func (u *SettingsUpsertBulk) UpdateSMTPAuth() *SettingsUpsertBulk {
 func (u *SettingsUpsertBulk) ClearSMTPAuth() *SettingsUpsertBulk {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearSMTPAuth()
-	})
-}
-
-// SetSMTPTLS sets the "smtp_tls" field.
-func (u *SettingsUpsertBulk) SetSMTPTLS(v bool) *SettingsUpsertBulk {
-	return u.Update(func(s *SettingsUpsert) {
-		s.SetSMTPTLS(v)
-	})
-}
-
-// UpdateSMTPTLS sets the "smtp_tls" field to the value that was provided on create.
-func (u *SettingsUpsertBulk) UpdateSMTPTLS() *SettingsUpsertBulk {
-	return u.Update(func(s *SettingsUpsert) {
-		s.UpdateSMTPTLS()
-	})
-}
-
-// ClearSMTPTLS clears the value of the "smtp_tls" field.
-func (u *SettingsUpsertBulk) ClearSMTPTLS() *SettingsUpsertBulk {
-	return u.Update(func(s *SettingsUpsert) {
-		s.ClearSMTPTLS()
-	})
-}
-
-// SetSMTPStarttls sets the "smtp_starttls" field.
-func (u *SettingsUpsertBulk) SetSMTPStarttls(v bool) *SettingsUpsertBulk {
-	return u.Update(func(s *SettingsUpsert) {
-		s.SetSMTPStarttls(v)
-	})
-}
-
-// UpdateSMTPStarttls sets the "smtp_starttls" field to the value that was provided on create.
-func (u *SettingsUpsertBulk) UpdateSMTPStarttls() *SettingsUpsertBulk {
-	return u.Update(func(s *SettingsUpsert) {
-		s.UpdateSMTPStarttls()
-	})
-}
-
-// ClearSMTPStarttls clears the value of the "smtp_starttls" field.
-func (u *SettingsUpsertBulk) ClearSMTPStarttls() *SettingsUpsertBulk {
-	return u.Update(func(s *SettingsUpsert) {
-		s.ClearSMTPStarttls()
 	})
 }
 

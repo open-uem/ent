@@ -45,10 +45,6 @@ type Settings struct {
 	SMTPPassword string `json:"smtp_password,omitempty"`
 	// SMTPAuth holds the value of the "smtp_auth" field.
 	SMTPAuth string `json:"smtp_auth,omitempty"`
-	// SMTPTLS holds the value of the "smtp_tls" field.
-	SMTPTLS bool `json:"smtp_tls,omitempty"`
-	// SMTPStarttls holds the value of the "smtp_starttls" field.
-	SMTPStarttls bool `json:"smtp_starttls,omitempty"`
 	// NatsServer holds the value of the "nats_server" field.
 	NatsServer string `json:"nats_server,omitempty"`
 	// NatsPort holds the value of the "nats_port" field.
@@ -147,7 +143,7 @@ func (*Settings) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case settings.FieldSMTPTLS, settings.FieldSMTPStarttls, settings.FieldRequestVncPin, settings.FieldUseWinget, settings.FieldUseFlatpak, settings.FieldUseBrew, settings.FieldDisableSftp, settings.FieldDisableRemoteAssistance, settings.FieldDetectRemoteAgents, settings.FieldAutoAdmitAgents:
+		case settings.FieldRequestVncPin, settings.FieldUseWinget, settings.FieldUseFlatpak, settings.FieldUseBrew, settings.FieldDisableSftp, settings.FieldDisableRemoteAssistance, settings.FieldDetectRemoteAgents, settings.FieldAutoAdmitAgents:
 			values[i] = new(sql.NullBool)
 		case settings.FieldRegisterRateLimit:
 			values[i] = new(sql.NullFloat64)
@@ -259,18 +255,6 @@ func (s *Settings) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field smtp_auth", values[i])
 			} else if value.Valid {
 				s.SMTPAuth = value.String
-			}
-		case settings.FieldSMTPTLS:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field smtp_tls", values[i])
-			} else if value.Valid {
-				s.SMTPTLS = value.Bool
-			}
-		case settings.FieldSMTPStarttls:
-			if value, ok := values[i].(*sql.NullBool); !ok {
-				return fmt.Errorf("unexpected type %T for field smtp_starttls", values[i])
-			} else if value.Valid {
-				s.SMTPStarttls = value.Bool
 			}
 		case settings.FieldNatsServer:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -526,12 +510,6 @@ func (s *Settings) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("smtp_auth=")
 	builder.WriteString(s.SMTPAuth)
-	builder.WriteString(", ")
-	builder.WriteString("smtp_tls=")
-	builder.WriteString(fmt.Sprintf("%v", s.SMTPTLS))
-	builder.WriteString(", ")
-	builder.WriteString("smtp_starttls=")
-	builder.WriteString(fmt.Sprintf("%v", s.SMTPStarttls))
 	builder.WriteString(", ")
 	builder.WriteString("nats_server=")
 	builder.WriteString(s.NatsServer)

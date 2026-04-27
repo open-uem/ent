@@ -29,8 +29,6 @@ func (Settings) Fields() []ent.Field {
 		field.String("smtp_user").Optional(),
 		field.String("smtp_password").Optional(),
 		field.String("smtp_auth").Optional().Default("LOGIN"),
-		field.Bool("smtp_tls").Optional().Default(false),
-		field.Bool("smtp_starttls").Optional().Default(true),
 		field.String("nats_server").Optional(),
 		field.String("nats_port").Optional(),
 		field.String("message_from").Optional(),
