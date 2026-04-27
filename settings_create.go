@@ -584,6 +584,20 @@ func (sc *SettingsCreate) SetNillableTurnstileSecretKey(s *string) *SettingsCrea
 	return sc
 }
 
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (sc *SettingsCreate) SetSMTPEncryptionType(set settings.SMTPEncryptionType) *SettingsCreate {
+	sc.mutation.SetSMTPEncryptionType(set)
+	return sc
+}
+
+// SetNillableSMTPEncryptionType sets the "smtp_encryption_type" field if the given value is not nil.
+func (sc *SettingsCreate) SetNillableSMTPEncryptionType(set *settings.SMTPEncryptionType) *SettingsCreate {
+	if set != nil {
+		sc.SetSMTPEncryptionType(*set)
+	}
+	return sc
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (sc *SettingsCreate) SetTagID(id int) *SettingsCreate {
 	sc.mutation.SetTagID(id)
@@ -765,10 +779,19 @@ func (sc *SettingsCreate) defaults() {
 		v := settings.DefaultTurnstileSecretKey
 		sc.mutation.SetTurnstileSecretKey(v)
 	}
+	if _, ok := sc.mutation.SMTPEncryptionType(); !ok {
+		v := settings.DefaultSMTPEncryptionType
+		sc.mutation.SetSMTPEncryptionType(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
 func (sc *SettingsCreate) check() error {
+	if v, ok := sc.mutation.SMTPEncryptionType(); ok {
+		if err := settings.SMTPEncryptionTypeValidator(v); err != nil {
+			return &ValidationError{Name: "smtp_encryption_type", err: fmt.Errorf(`ent: validator failed for field "Settings.smtp_encryption_type": %w`, err)}
+		}
+	}
 	return nil
 }
 
@@ -955,6 +978,10 @@ func (sc *SettingsCreate) createSpec() (*Settings, *sqlgraph.CreateSpec) {
 	if value, ok := sc.mutation.TurnstileSecretKey(); ok {
 		_spec.SetField(settings.FieldTurnstileSecretKey, field.TypeString, value)
 		_node.TurnstileSecretKey = value
+	}
+	if value, ok := sc.mutation.SMTPEncryptionType(); ok {
+		_spec.SetField(settings.FieldSMTPEncryptionType, field.TypeEnum, value)
+		_node.SMTPEncryptionType = value
 	}
 	if nodes := sc.mutation.TagIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -1813,6 +1840,24 @@ func (u *SettingsUpsert) UpdateTurnstileSecretKey() *SettingsUpsert {
 // ClearTurnstileSecretKey clears the value of the "turnstile_secret_key" field.
 func (u *SettingsUpsert) ClearTurnstileSecretKey() *SettingsUpsert {
 	u.SetNull(settings.FieldTurnstileSecretKey)
+	return u
+}
+
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (u *SettingsUpsert) SetSMTPEncryptionType(v settings.SMTPEncryptionType) *SettingsUpsert {
+	u.Set(settings.FieldSMTPEncryptionType, v)
+	return u
+}
+
+// UpdateSMTPEncryptionType sets the "smtp_encryption_type" field to the value that was provided on create.
+func (u *SettingsUpsert) UpdateSMTPEncryptionType() *SettingsUpsert {
+	u.SetExcluded(settings.FieldSMTPEncryptionType)
+	return u
+}
+
+// ClearSMTPEncryptionType clears the value of the "smtp_encryption_type" field.
+func (u *SettingsUpsert) ClearSMTPEncryptionType() *SettingsUpsert {
+	u.SetNull(settings.FieldSMTPEncryptionType)
 	return u
 }
 
@@ -2756,6 +2801,27 @@ func (u *SettingsUpsertOne) UpdateTurnstileSecretKey() *SettingsUpsertOne {
 func (u *SettingsUpsertOne) ClearTurnstileSecretKey() *SettingsUpsertOne {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearTurnstileSecretKey()
+	})
+}
+
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (u *SettingsUpsertOne) SetSMTPEncryptionType(v settings.SMTPEncryptionType) *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetSMTPEncryptionType(v)
+	})
+}
+
+// UpdateSMTPEncryptionType sets the "smtp_encryption_type" field to the value that was provided on create.
+func (u *SettingsUpsertOne) UpdateSMTPEncryptionType() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateSMTPEncryptionType()
+	})
+}
+
+// ClearSMTPEncryptionType clears the value of the "smtp_encryption_type" field.
+func (u *SettingsUpsertOne) ClearSMTPEncryptionType() *SettingsUpsertOne {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearSMTPEncryptionType()
 	})
 }
 
@@ -3863,6 +3929,27 @@ func (u *SettingsUpsertBulk) UpdateTurnstileSecretKey() *SettingsUpsertBulk {
 func (u *SettingsUpsertBulk) ClearTurnstileSecretKey() *SettingsUpsertBulk {
 	return u.Update(func(s *SettingsUpsert) {
 		s.ClearTurnstileSecretKey()
+	})
+}
+
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (u *SettingsUpsertBulk) SetSMTPEncryptionType(v settings.SMTPEncryptionType) *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.SetSMTPEncryptionType(v)
+	})
+}
+
+// UpdateSMTPEncryptionType sets the "smtp_encryption_type" field to the value that was provided on create.
+func (u *SettingsUpsertBulk) UpdateSMTPEncryptionType() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.UpdateSMTPEncryptionType()
+	})
+}
+
+// ClearSMTPEncryptionType clears the value of the "smtp_encryption_type" field.
+func (u *SettingsUpsertBulk) ClearSMTPEncryptionType() *SettingsUpsertBulk {
+	return u.Update(func(s *SettingsUpsert) {
+		s.ClearSMTPEncryptionType()
 	})
 }
 

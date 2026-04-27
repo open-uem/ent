@@ -886,6 +886,26 @@ func (su *SettingsUpdate) ClearTurnstileSecretKey() *SettingsUpdate {
 	return su
 }
 
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (su *SettingsUpdate) SetSMTPEncryptionType(set settings.SMTPEncryptionType) *SettingsUpdate {
+	su.mutation.SetSMTPEncryptionType(set)
+	return su
+}
+
+// SetNillableSMTPEncryptionType sets the "smtp_encryption_type" field if the given value is not nil.
+func (su *SettingsUpdate) SetNillableSMTPEncryptionType(set *settings.SMTPEncryptionType) *SettingsUpdate {
+	if set != nil {
+		su.SetSMTPEncryptionType(*set)
+	}
+	return su
+}
+
+// ClearSMTPEncryptionType clears the value of the "smtp_encryption_type" field.
+func (su *SettingsUpdate) ClearSMTPEncryptionType() *SettingsUpdate {
+	su.mutation.ClearSMTPEncryptionType()
+	return su
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (su *SettingsUpdate) SetTagID(id int) *SettingsUpdate {
 	su.mutation.SetTagID(id)
@@ -977,6 +997,16 @@ func (su *SettingsUpdate) defaults() {
 	}
 }
 
+// check runs all checks and user-defined validators on the builder.
+func (su *SettingsUpdate) check() error {
+	if v, ok := su.mutation.SMTPEncryptionType(); ok {
+		if err := settings.SMTPEncryptionTypeValidator(v); err != nil {
+			return &ValidationError{Name: "smtp_encryption_type", err: fmt.Errorf(`ent: validator failed for field "Settings.smtp_encryption_type": %w`, err)}
+		}
+	}
+	return nil
+}
+
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
 func (su *SettingsUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SettingsUpdate {
 	su.modifiers = append(su.modifiers, modifiers...)
@@ -984,6 +1014,9 @@ func (su *SettingsUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *Setti
 }
 
 func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
+	if err := su.check(); err != nil {
+		return n, err
+	}
 	_spec := sqlgraph.NewUpdateSpec(settings.Table, settings.Columns, sqlgraph.NewFieldSpec(settings.FieldID, field.TypeInt))
 	if ps := su.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
@@ -1258,6 +1291,12 @@ func (su *SettingsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if su.mutation.TurnstileSecretKeyCleared() {
 		_spec.ClearField(settings.FieldTurnstileSecretKey, field.TypeString)
+	}
+	if value, ok := su.mutation.SMTPEncryptionType(); ok {
+		_spec.SetField(settings.FieldSMTPEncryptionType, field.TypeEnum, value)
+	}
+	if su.mutation.SMTPEncryptionTypeCleared() {
+		_spec.ClearField(settings.FieldSMTPEncryptionType, field.TypeEnum)
 	}
 	if su.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -2194,6 +2233,26 @@ func (suo *SettingsUpdateOne) ClearTurnstileSecretKey() *SettingsUpdateOne {
 	return suo
 }
 
+// SetSMTPEncryptionType sets the "smtp_encryption_type" field.
+func (suo *SettingsUpdateOne) SetSMTPEncryptionType(set settings.SMTPEncryptionType) *SettingsUpdateOne {
+	suo.mutation.SetSMTPEncryptionType(set)
+	return suo
+}
+
+// SetNillableSMTPEncryptionType sets the "smtp_encryption_type" field if the given value is not nil.
+func (suo *SettingsUpdateOne) SetNillableSMTPEncryptionType(set *settings.SMTPEncryptionType) *SettingsUpdateOne {
+	if set != nil {
+		suo.SetSMTPEncryptionType(*set)
+	}
+	return suo
+}
+
+// ClearSMTPEncryptionType clears the value of the "smtp_encryption_type" field.
+func (suo *SettingsUpdateOne) ClearSMTPEncryptionType() *SettingsUpdateOne {
+	suo.mutation.ClearSMTPEncryptionType()
+	return suo
+}
+
 // SetTagID sets the "tag" edge to the Tag entity by ID.
 func (suo *SettingsUpdateOne) SetTagID(id int) *SettingsUpdateOne {
 	suo.mutation.SetTagID(id)
@@ -2298,6 +2357,16 @@ func (suo *SettingsUpdateOne) defaults() {
 	}
 }
 
+// check runs all checks and user-defined validators on the builder.
+func (suo *SettingsUpdateOne) check() error {
+	if v, ok := suo.mutation.SMTPEncryptionType(); ok {
+		if err := settings.SMTPEncryptionTypeValidator(v); err != nil {
+			return &ValidationError{Name: "smtp_encryption_type", err: fmt.Errorf(`ent: validator failed for field "Settings.smtp_encryption_type": %w`, err)}
+		}
+	}
+	return nil
+}
+
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
 func (suo *SettingsUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *SettingsUpdateOne {
 	suo.modifiers = append(suo.modifiers, modifiers...)
@@ -2305,6 +2374,9 @@ func (suo *SettingsUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *S
 }
 
 func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err error) {
+	if err := suo.check(); err != nil {
+		return _node, err
+	}
 	_spec := sqlgraph.NewUpdateSpec(settings.Table, settings.Columns, sqlgraph.NewFieldSpec(settings.FieldID, field.TypeInt))
 	id, ok := suo.mutation.ID()
 	if !ok {
@@ -2596,6 +2668,12 @@ func (suo *SettingsUpdateOne) sqlSave(ctx context.Context) (_node *Settings, err
 	}
 	if suo.mutation.TurnstileSecretKeyCleared() {
 		_spec.ClearField(settings.FieldTurnstileSecretKey, field.TypeString)
+	}
+	if value, ok := suo.mutation.SMTPEncryptionType(); ok {
+		_spec.SetField(settings.FieldSMTPEncryptionType, field.TypeEnum, value)
+	}
+	if suo.mutation.SMTPEncryptionTypeCleared() {
+		_spec.ClearField(settings.FieldSMTPEncryptionType, field.TypeEnum)
 	}
 	if suo.mutation.TagCleared() {
 		edge := &sqlgraph.EdgeSpec{
