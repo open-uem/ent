@@ -134,9 +134,11 @@ type AgentEdges struct {
 	Physicaldisks []*PhysicalDisk `json:"physicaldisks,omitempty"`
 	// Netbird holds the value of the netbird edge.
 	Netbird *Netbird `json:"netbird,omitempty"`
+	// ConsoleUsers holds the value of the console_users edge.
+	ConsoleUsers []*User `json:"console_users,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [21]bool
+	loadedTypes [22]bool
 }
 
 // ComputerOrErr returns the Computer value or an error if the edge
@@ -338,6 +340,15 @@ func (e AgentEdges) NetbirdOrErr() (*Netbird, error) {
 		return nil, &NotFoundError{label: netbird.Label}
 	}
 	return nil, &NotLoadedError{edge: "netbird"}
+}
+
+// ConsoleUsersOrErr returns the ConsoleUsers value or an error if the edge
+// was not loaded in eager-loading.
+func (e AgentEdges) ConsoleUsersOrErr() ([]*User, error) {
+	if e.loadedTypes[21] {
+		return e.ConsoleUsers, nil
+	}
+	return nil, &NotLoadedError{edge: "console_users"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -677,6 +688,11 @@ func (a *Agent) QueryPhysicaldisks() *PhysicalDiskQuery {
 // QueryNetbird queries the "netbird" edge of the Agent entity.
 func (a *Agent) QueryNetbird() *NetbirdQuery {
 	return NewAgentClient(a.config).QueryNetbird(a)
+}
+
+// QueryConsoleUsers queries the "console_users" edge of the Agent entity.
+func (a *Agent) QueryConsoleUsers() *UserQuery {
+	return NewAgentClient(a.config).QueryConsoleUsers(a)
 }
 
 // Update returns a builder for updating this Agent.

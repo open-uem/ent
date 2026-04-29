@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tenant"
+	"github.com/open-uem/ent/user"
 )
 
 // SiteCreate is the builder for creating a Site entity.
@@ -142,6 +143,21 @@ func (sc *SiteCreate) AddProfiles(p ...*Profile) *SiteCreate {
 		ids[i] = p[i].ID
 	}
 	return sc.AddProfileIDs(ids...)
+}
+
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (sc *SiteCreate) AddConsoleUserIDs(ids ...string) *SiteCreate {
+	sc.mutation.AddConsoleUserIDs(ids...)
+	return sc
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (sc *SiteCreate) AddConsoleUsers(u ...*User) *SiteCreate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return sc.AddConsoleUserIDs(ids...)
 }
 
 // Mutation returns the SiteMutation object of the builder.
@@ -280,6 +296,22 @@ func (sc *SiteCreate) createSpec() (*Site, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := sc.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

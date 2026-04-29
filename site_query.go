@@ -17,20 +17,22 @@ import (
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tenant"
+	"github.com/open-uem/ent/user"
 )
 
 // SiteQuery is the builder for querying Site entities.
 type SiteQuery struct {
 	config
-	ctx          *QueryContext
-	order        []site.OrderOption
-	inters       []Interceptor
-	predicates   []predicate.Site
-	withTenant   *TenantQuery
-	withAgents   *AgentQuery
-	withProfiles *ProfileQuery
-	withFKs      bool
-	modifiers    []func(*sql.Selector)
+	ctx              *QueryContext
+	order            []site.OrderOption
+	inters           []Interceptor
+	predicates       []predicate.Site
+	withTenant       *TenantQuery
+	withAgents       *AgentQuery
+	withProfiles     *ProfileQuery
+	withConsoleUsers *UserQuery
+	withFKs          bool
+	modifiers        []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -126,6 +128,28 @@ func (sq *SiteQuery) QueryProfiles() *ProfileQuery {
 			sqlgraph.From(site.Table, site.FieldID, selector),
 			sqlgraph.To(profile.Table, profile.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, site.ProfilesTable, site.ProfilesPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryConsoleUsers chains the current query on the "console_users" edge.
+func (sq *SiteQuery) QueryConsoleUsers() *UserQuery {
+	query := (&UserClient{config: sq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := sq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := sq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(site.Table, site.FieldID, selector),
+			sqlgraph.To(user.Table, user.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, site.ConsoleUsersTable, site.ConsoleUsersPrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
 		return fromU, nil
@@ -320,14 +344,15 @@ func (sq *SiteQuery) Clone() *SiteQuery {
 		return nil
 	}
 	return &SiteQuery{
-		config:       sq.config,
-		ctx:          sq.ctx.Clone(),
-		order:        append([]site.OrderOption{}, sq.order...),
-		inters:       append([]Interceptor{}, sq.inters...),
-		predicates:   append([]predicate.Site{}, sq.predicates...),
-		withTenant:   sq.withTenant.Clone(),
-		withAgents:   sq.withAgents.Clone(),
-		withProfiles: sq.withProfiles.Clone(),
+		config:           sq.config,
+		ctx:              sq.ctx.Clone(),
+		order:            append([]site.OrderOption{}, sq.order...),
+		inters:           append([]Interceptor{}, sq.inters...),
+		predicates:       append([]predicate.Site{}, sq.predicates...),
+		withTenant:       sq.withTenant.Clone(),
+		withAgents:       sq.withAgents.Clone(),
+		withProfiles:     sq.withProfiles.Clone(),
+		withConsoleUsers: sq.withConsoleUsers.Clone(),
 		// clone intermediate query.
 		sql:       sq.sql.Clone(),
 		path:      sq.path,
@@ -365,6 +390,17 @@ func (sq *SiteQuery) WithProfiles(opts ...func(*ProfileQuery)) *SiteQuery {
 		opt(query)
 	}
 	sq.withProfiles = query
+	return sq
+}
+
+// WithConsoleUsers tells the query-builder to eager-load the nodes that are connected to
+// the "console_users" edge. The optional arguments are used to configure the query builder of the edge.
+func (sq *SiteQuery) WithConsoleUsers(opts ...func(*UserQuery)) *SiteQuery {
+	query := (&UserClient{config: sq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	sq.withConsoleUsers = query
 	return sq
 }
 
@@ -447,10 +483,11 @@ func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, e
 		nodes       = []*Site{}
 		withFKs     = sq.withFKs
 		_spec       = sq.querySpec()
-		loadedTypes = [3]bool{
+		loadedTypes = [4]bool{
 			sq.withTenant != nil,
 			sq.withAgents != nil,
 			sq.withProfiles != nil,
+			sq.withConsoleUsers != nil,
 		}
 	)
 	if sq.withTenant != nil {
@@ -497,6 +534,13 @@ func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, e
 		if err := sq.loadProfiles(ctx, query, nodes,
 			func(n *Site) { n.Edges.Profiles = []*Profile{} },
 			func(n *Site, e *Profile) { n.Edges.Profiles = append(n.Edges.Profiles, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := sq.withConsoleUsers; query != nil {
+		if err := sq.loadConsoleUsers(ctx, query, nodes,
+			func(n *Site) { n.Edges.ConsoleUsers = []*User{} },
+			func(n *Site, e *User) { n.Edges.ConsoleUsers = append(n.Edges.ConsoleUsers, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -650,6 +694,67 @@ func (sq *SiteQuery) loadProfiles(ctx context.Context, query *ProfileQuery, node
 		nodes, ok := nids[n.ID]
 		if !ok {
 			return fmt.Errorf(`unexpected "profiles" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
+	}
+	return nil
+}
+func (sq *SiteQuery) loadConsoleUsers(ctx context.Context, query *UserQuery, nodes []*Site, init func(*Site), assign func(*Site, *User)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[int]*Site)
+	nids := make(map[string]map[*Site]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(site.ConsoleUsersTable)
+		s.Join(joinT).On(s.C(user.FieldID), joinT.C(site.ConsoleUsersPrimaryKey[0]))
+		s.Where(sql.InValues(joinT.C(site.ConsoleUsersPrimaryKey[1]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(site.ConsoleUsersPrimaryKey[1]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullInt64)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := int(values[0].(*sql.NullInt64).Int64)
+				inValue := values[1].(*sql.NullString).String
+				if nids[inValue] == nil {
+					nids[inValue] = map[*Site]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*User](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "console_users" node returned %v`, n.ID)
 		}
 		for kn := range nodes {
 			assign(kn, n)

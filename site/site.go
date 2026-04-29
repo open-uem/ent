@@ -30,8 +30,12 @@ const (
 	EdgeAgents = "agents"
 	// EdgeProfiles holds the string denoting the profiles edge name in mutations.
 	EdgeProfiles = "profiles"
+	// EdgeConsoleUsers holds the string denoting the console_users edge name in mutations.
+	EdgeConsoleUsers = "console_users"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
 	AgentFieldID = "oid"
+	// UserFieldID holds the string denoting the ID field of the User.
+	UserFieldID = "uid"
 	// Table holds the table name of the site in the database.
 	Table = "sites"
 	// TenantTable is the table that holds the tenant relation/edge.
@@ -51,6 +55,11 @@ const (
 	// ProfilesInverseTable is the table name for the Profile entity.
 	// It exists in this package in order to avoid circular dependency with the "profile" package.
 	ProfilesInverseTable = "profiles"
+	// ConsoleUsersTable is the table that holds the console_users relation/edge. The primary key declared below.
+	ConsoleUsersTable = "user_allowed_sites"
+	// ConsoleUsersInverseTable is the table name for the User entity.
+	// It exists in this package in order to avoid circular dependency with the "user" package.
+	ConsoleUsersInverseTable = "users"
 )
 
 // Columns holds all SQL columns for site fields.
@@ -76,6 +85,9 @@ var (
 	// ProfilesPrimaryKey and ProfilesColumn2 are the table columns denoting the
 	// primary key for the profiles relation (M2M).
 	ProfilesPrimaryKey = []string{"site_id", "profile_id"}
+	// ConsoleUsersPrimaryKey and ConsoleUsersColumn2 are the table columns denoting the
+	// primary key for the console_users relation (M2M).
+	ConsoleUsersPrimaryKey = []string{"user_id", "site_id"}
 )
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -169,6 +181,20 @@ func ByProfiles(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newProfilesStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
+
+// ByConsoleUsersCount orders the results by console_users count.
+func ByConsoleUsersCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newConsoleUsersStep(), opts...)
+	}
+}
+
+// ByConsoleUsers orders the results by console_users terms.
+func ByConsoleUsers(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newConsoleUsersStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newTenantStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -188,5 +214,12 @@ func newProfilesStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(ProfilesInverseTable, FieldID),
 		sqlgraph.Edge(sqlgraph.M2M, false, ProfilesTable, ProfilesPrimaryKey...),
+	)
+}
+func newConsoleUsersStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ConsoleUsersInverseTable, UserFieldID),
+		sqlgraph.Edge(sqlgraph.M2M, true, ConsoleUsersTable, ConsoleUsersPrimaryKey...),
 	)
 }

@@ -50,9 +50,11 @@ type TenantEdges struct {
 	Netbird *NetbirdSettings `json:"netbird,omitempty"`
 	// Profiles holds the value of the profiles edge.
 	Profiles []*Profile `json:"profiles,omitempty"`
+	// ConsoleUsers holds the value of the console_users edge.
+	ConsoleUsers []*User `json:"console_users,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [7]bool
+	loadedTypes [8]bool
 }
 
 // SitesOrErr returns the Sites value or an error if the edge
@@ -120,6 +122,15 @@ func (e TenantEdges) ProfilesOrErr() ([]*Profile, error) {
 		return e.Profiles, nil
 	}
 	return nil, &NotLoadedError{edge: "profiles"}
+}
+
+// ConsoleUsersOrErr returns the ConsoleUsers value or an error if the edge
+// was not loaded in eager-loading.
+func (e TenantEdges) ConsoleUsersOrErr() ([]*User, error) {
+	if e.loadedTypes[7] {
+		return e.ConsoleUsers, nil
+	}
+	return nil, &NotLoadedError{edge: "console_users"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -235,6 +246,11 @@ func (t *Tenant) QueryNetbird() *NetbirdSettingsQuery {
 // QueryProfiles queries the "profiles" edge of the Tenant entity.
 func (t *Tenant) QueryProfiles() *ProfileQuery {
 	return NewTenantClient(t.config).QueryProfiles(t)
+}
+
+// QueryConsoleUsers queries the "console_users" edge of the Tenant entity.
+func (t *Tenant) QueryConsoleUsers() *UserQuery {
+	return NewTenantClient(t.config).QueryConsoleUsers(t)
 }
 
 // Update returns a builder for updating this Tenant.

@@ -16,6 +16,7 @@ import (
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tenant"
+	"github.com/open-uem/ent/user"
 )
 
 // SiteUpdate is the builder for updating Site entities.
@@ -173,6 +174,21 @@ func (su *SiteUpdate) AddProfiles(p ...*Profile) *SiteUpdate {
 	return su.AddProfileIDs(ids...)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (su *SiteUpdate) AddConsoleUserIDs(ids ...string) *SiteUpdate {
+	su.mutation.AddConsoleUserIDs(ids...)
+	return su
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (su *SiteUpdate) AddConsoleUsers(u ...*User) *SiteUpdate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return su.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the SiteMutation object of the builder.
 func (su *SiteUpdate) Mutation() *SiteMutation {
 	return su.mutation
@@ -224,6 +240,27 @@ func (su *SiteUpdate) RemoveProfiles(p ...*Profile) *SiteUpdate {
 		ids[i] = p[i].ID
 	}
 	return su.RemoveProfileIDs(ids...)
+}
+
+// ClearConsoleUsers clears all "console_users" edges to the User entity.
+func (su *SiteUpdate) ClearConsoleUsers() *SiteUpdate {
+	su.mutation.ClearConsoleUsers()
+	return su
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to User entities by IDs.
+func (su *SiteUpdate) RemoveConsoleUserIDs(ids ...string) *SiteUpdate {
+	su.mutation.RemoveConsoleUserIDs(ids...)
+	return su
+}
+
+// RemoveConsoleUsers removes "console_users" edges to User entities.
+func (su *SiteUpdate) RemoveConsoleUsers(u ...*User) *SiteUpdate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return su.RemoveConsoleUserIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -426,6 +463,51 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if su.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := su.mutation.RemovedConsoleUsersIDs(); len(nodes) > 0 && !su.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := su.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(su.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, su.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -589,6 +671,21 @@ func (suo *SiteUpdateOne) AddProfiles(p ...*Profile) *SiteUpdateOne {
 	return suo.AddProfileIDs(ids...)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (suo *SiteUpdateOne) AddConsoleUserIDs(ids ...string) *SiteUpdateOne {
+	suo.mutation.AddConsoleUserIDs(ids...)
+	return suo
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (suo *SiteUpdateOne) AddConsoleUsers(u ...*User) *SiteUpdateOne {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return suo.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the SiteMutation object of the builder.
 func (suo *SiteUpdateOne) Mutation() *SiteMutation {
 	return suo.mutation
@@ -640,6 +737,27 @@ func (suo *SiteUpdateOne) RemoveProfiles(p ...*Profile) *SiteUpdateOne {
 		ids[i] = p[i].ID
 	}
 	return suo.RemoveProfileIDs(ids...)
+}
+
+// ClearConsoleUsers clears all "console_users" edges to the User entity.
+func (suo *SiteUpdateOne) ClearConsoleUsers() *SiteUpdateOne {
+	suo.mutation.ClearConsoleUsers()
+	return suo
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to User entities by IDs.
+func (suo *SiteUpdateOne) RemoveConsoleUserIDs(ids ...string) *SiteUpdateOne {
+	suo.mutation.RemoveConsoleUserIDs(ids...)
+	return suo
+}
+
+// RemoveConsoleUsers removes "console_users" edges to User entities.
+func (suo *SiteUpdateOne) RemoveConsoleUsers(u ...*User) *SiteUpdateOne {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return suo.RemoveConsoleUserIDs(ids...)
 }
 
 // Where appends a list predicates to the SiteUpdate builder.
@@ -865,6 +983,51 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if suo.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := suo.mutation.RemovedConsoleUsersIDs(); len(nodes) > 0 && !suo.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := suo.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   site.ConsoleUsersTable,
+			Columns: site.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

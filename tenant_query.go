@@ -21,24 +21,26 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/tenant"
+	"github.com/open-uem/ent/user"
 )
 
 // TenantQuery is the builder for querying Tenant entities.
 type TenantQuery struct {
 	config
-	ctx          *QueryContext
-	order        []tenant.OrderOption
-	inters       []Interceptor
-	predicates   []predicate.Tenant
-	withSites    *SiteQuery
-	withSettings *SettingsQuery
-	withTags     *TagQuery
-	withMetadata *OrgMetadataQuery
-	withRustdesk *RustdeskQuery
-	withNetbird  *NetbirdSettingsQuery
-	withProfiles *ProfileQuery
-	withFKs      bool
-	modifiers    []func(*sql.Selector)
+	ctx              *QueryContext
+	order            []tenant.OrderOption
+	inters           []Interceptor
+	predicates       []predicate.Tenant
+	withSites        *SiteQuery
+	withSettings     *SettingsQuery
+	withTags         *TagQuery
+	withMetadata     *OrgMetadataQuery
+	withRustdesk     *RustdeskQuery
+	withNetbird      *NetbirdSettingsQuery
+	withProfiles     *ProfileQuery
+	withConsoleUsers *UserQuery
+	withFKs          bool
+	modifiers        []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -222,6 +224,28 @@ func (tq *TenantQuery) QueryProfiles() *ProfileQuery {
 			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
 			sqlgraph.To(profile.Table, profile.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, tenant.ProfilesTable, tenant.ProfilesPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryConsoleUsers chains the current query on the "console_users" edge.
+func (tq *TenantQuery) QueryConsoleUsers() *UserQuery {
+	query := (&UserClient{config: tq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := tq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := tq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
+			sqlgraph.To(user.Table, user.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, tenant.ConsoleUsersTable, tenant.ConsoleUsersPrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
 		return fromU, nil
@@ -416,18 +440,19 @@ func (tq *TenantQuery) Clone() *TenantQuery {
 		return nil
 	}
 	return &TenantQuery{
-		config:       tq.config,
-		ctx:          tq.ctx.Clone(),
-		order:        append([]tenant.OrderOption{}, tq.order...),
-		inters:       append([]Interceptor{}, tq.inters...),
-		predicates:   append([]predicate.Tenant{}, tq.predicates...),
-		withSites:    tq.withSites.Clone(),
-		withSettings: tq.withSettings.Clone(),
-		withTags:     tq.withTags.Clone(),
-		withMetadata: tq.withMetadata.Clone(),
-		withRustdesk: tq.withRustdesk.Clone(),
-		withNetbird:  tq.withNetbird.Clone(),
-		withProfiles: tq.withProfiles.Clone(),
+		config:           tq.config,
+		ctx:              tq.ctx.Clone(),
+		order:            append([]tenant.OrderOption{}, tq.order...),
+		inters:           append([]Interceptor{}, tq.inters...),
+		predicates:       append([]predicate.Tenant{}, tq.predicates...),
+		withSites:        tq.withSites.Clone(),
+		withSettings:     tq.withSettings.Clone(),
+		withTags:         tq.withTags.Clone(),
+		withMetadata:     tq.withMetadata.Clone(),
+		withRustdesk:     tq.withRustdesk.Clone(),
+		withNetbird:      tq.withNetbird.Clone(),
+		withProfiles:     tq.withProfiles.Clone(),
+		withConsoleUsers: tq.withConsoleUsers.Clone(),
 		// clone intermediate query.
 		sql:       tq.sql.Clone(),
 		path:      tq.path,
@@ -512,6 +537,17 @@ func (tq *TenantQuery) WithProfiles(opts ...func(*ProfileQuery)) *TenantQuery {
 	return tq
 }
 
+// WithConsoleUsers tells the query-builder to eager-load the nodes that are connected to
+// the "console_users" edge. The optional arguments are used to configure the query builder of the edge.
+func (tq *TenantQuery) WithConsoleUsers(opts ...func(*UserQuery)) *TenantQuery {
+	query := (&UserClient{config: tq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	tq.withConsoleUsers = query
+	return tq
+}
+
 // GroupBy is used to group vertices by one or more fields/columns.
 // It is often used with aggregate functions, like: count, max, mean, min, sum.
 //
@@ -591,7 +627,7 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 		nodes       = []*Tenant{}
 		withFKs     = tq.withFKs
 		_spec       = tq.querySpec()
-		loadedTypes = [7]bool{
+		loadedTypes = [8]bool{
 			tq.withSites != nil,
 			tq.withSettings != nil,
 			tq.withTags != nil,
@@ -599,6 +635,7 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 			tq.withRustdesk != nil,
 			tq.withNetbird != nil,
 			tq.withProfiles != nil,
+			tq.withConsoleUsers != nil,
 		}
 	)
 	if tq.withNetbird != nil {
@@ -672,6 +709,13 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 		if err := tq.loadProfiles(ctx, query, nodes,
 			func(n *Tenant) { n.Edges.Profiles = []*Profile{} },
 			func(n *Tenant, e *Profile) { n.Edges.Profiles = append(n.Edges.Profiles, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := tq.withConsoleUsers; query != nil {
+		if err := tq.loadConsoleUsers(ctx, query, nodes,
+			func(n *Tenant) { n.Edges.ConsoleUsers = []*User{} },
+			func(n *Tenant, e *User) { n.Edges.ConsoleUsers = append(n.Edges.ConsoleUsers, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -946,6 +990,67 @@ func (tq *TenantQuery) loadProfiles(ctx context.Context, query *ProfileQuery, no
 		nodes, ok := nids[n.ID]
 		if !ok {
 			return fmt.Errorf(`unexpected "profiles" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
+	}
+	return nil
+}
+func (tq *TenantQuery) loadConsoleUsers(ctx context.Context, query *UserQuery, nodes []*Tenant, init func(*Tenant), assign func(*Tenant, *User)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[int]*Tenant)
+	nids := make(map[string]map[*Tenant]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(tenant.ConsoleUsersTable)
+		s.Join(joinT).On(s.C(user.FieldID), joinT.C(tenant.ConsoleUsersPrimaryKey[0]))
+		s.Where(sql.InValues(joinT.C(tenant.ConsoleUsersPrimaryKey[1]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(tenant.ConsoleUsersPrimaryKey[1]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullInt64)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := int(values[0].(*sql.NullInt64).Int64)
+				inValue := values[1].(*sql.NullString).String
+				if nids[inValue] == nil {
+					nids[inValue] = map[*Tenant]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*User](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "console_users" node returned %v`, n.ID)
 		}
 		for kn := range nodes {
 			assign(kn, n)

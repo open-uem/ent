@@ -12,8 +12,11 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/sessions"
+	"github.com/open-uem/ent/site"
+	"github.com/open-uem/ent/tenant"
 	"github.com/open-uem/ent/user"
 )
 
@@ -283,6 +286,20 @@ func (uc *UserCreate) SetNillableNewUserToken(s *string) *UserCreate {
 	return uc
 }
 
+// SetConsoleRole sets the "console_role" field.
+func (uc *UserCreate) SetConsoleRole(ur user.ConsoleRole) *UserCreate {
+	uc.mutation.SetConsoleRole(ur)
+	return uc
+}
+
+// SetNillableConsoleRole sets the "console_role" field if the given value is not nil.
+func (uc *UserCreate) SetNillableConsoleRole(ur *user.ConsoleRole) *UserCreate {
+	if ur != nil {
+		uc.SetConsoleRole(*ur)
+	}
+	return uc
+}
+
 // SetID sets the "id" field.
 func (uc *UserCreate) SetID(s string) *UserCreate {
 	uc.mutation.SetID(s)
@@ -317,6 +334,51 @@ func (uc *UserCreate) AddRecoverycodes(r ...*RecoveryCode) *UserCreate {
 		ids[i] = r[i].ID
 	}
 	return uc.AddRecoverycodeIDs(ids...)
+}
+
+// AddAllowedTenantIDs adds the "allowed_tenants" edge to the Tenant entity by IDs.
+func (uc *UserCreate) AddAllowedTenantIDs(ids ...int) *UserCreate {
+	uc.mutation.AddAllowedTenantIDs(ids...)
+	return uc
+}
+
+// AddAllowedTenants adds the "allowed_tenants" edges to the Tenant entity.
+func (uc *UserCreate) AddAllowedTenants(t ...*Tenant) *UserCreate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return uc.AddAllowedTenantIDs(ids...)
+}
+
+// AddAllowedSiteIDs adds the "allowed_sites" edge to the Site entity by IDs.
+func (uc *UserCreate) AddAllowedSiteIDs(ids ...int) *UserCreate {
+	uc.mutation.AddAllowedSiteIDs(ids...)
+	return uc
+}
+
+// AddAllowedSites adds the "allowed_sites" edges to the Site entity.
+func (uc *UserCreate) AddAllowedSites(s ...*Site) *UserCreate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return uc.AddAllowedSiteIDs(ids...)
+}
+
+// AddAllowedAgentIDs adds the "allowed_agents" edge to the Agent entity by IDs.
+func (uc *UserCreate) AddAllowedAgentIDs(ids ...string) *UserCreate {
+	uc.mutation.AddAllowedAgentIDs(ids...)
+	return uc
+}
+
+// AddAllowedAgents adds the "allowed_agents" edges to the Agent entity.
+func (uc *UserCreate) AddAllowedAgents(a ...*Agent) *UserCreate {
+	ids := make([]string, len(a))
+	for i := range a {
+		ids[i] = a[i].ID
+	}
+	return uc.AddAllowedAgentIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -406,6 +468,10 @@ func (uc *UserCreate) defaults() {
 		v := user.DefaultNewUserToken
 		uc.mutation.SetNewUserToken(v)
 	}
+	if _, ok := uc.mutation.ConsoleRole(); !ok {
+		v := user.DefaultConsoleRole
+		uc.mutation.SetConsoleRole(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -418,6 +484,14 @@ func (uc *UserCreate) check() error {
 	}
 	if _, ok := uc.mutation.Register(); !ok {
 		return &ValidationError{Name: "register", err: errors.New(`ent: missing required field "User.register"`)}
+	}
+	if _, ok := uc.mutation.ConsoleRole(); !ok {
+		return &ValidationError{Name: "console_role", err: errors.New(`ent: missing required field "User.console_role"`)}
+	}
+	if v, ok := uc.mutation.ConsoleRole(); ok {
+		if err := user.ConsoleRoleValidator(v); err != nil {
+			return &ValidationError{Name: "console_role", err: fmt.Errorf(`ent: validator failed for field "User.console_role": %w`, err)}
+		}
 	}
 	if v, ok := uc.mutation.ID(); ok {
 		if err := user.IDValidator(v); err != nil {
@@ -536,6 +610,10 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 		_spec.SetField(user.FieldNewUserToken, field.TypeString, value)
 		_node.NewUserToken = value
 	}
+	if value, ok := uc.mutation.ConsoleRole(); ok {
+		_spec.SetField(user.FieldConsoleRole, field.TypeEnum, value)
+		_node.ConsoleRole = value
+	}
 	if nodes := uc.mutation.SessionsIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
@@ -561,6 +639,54 @@ func (uc *UserCreate) createSpec() (*User, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := uc.mutation.AllowedTenantsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := uc.mutation.AllowedSitesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := uc.mutation.AllowedAgentsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {
@@ -941,6 +1067,18 @@ func (u *UserUpsert) UpdateNewUserToken() *UserUpsert {
 // ClearNewUserToken clears the value of the "new_user_token" field.
 func (u *UserUpsert) ClearNewUserToken() *UserUpsert {
 	u.SetNull(user.FieldNewUserToken)
+	return u
+}
+
+// SetConsoleRole sets the "console_role" field.
+func (u *UserUpsert) SetConsoleRole(v user.ConsoleRole) *UserUpsert {
+	u.Set(user.FieldConsoleRole, v)
+	return u
+}
+
+// UpdateConsoleRole sets the "console_role" field to the value that was provided on create.
+func (u *UserUpsert) UpdateConsoleRole() *UserUpsert {
+	u.SetExcluded(user.FieldConsoleRole)
 	return u
 }
 
@@ -1367,6 +1505,20 @@ func (u *UserUpsertOne) UpdateNewUserToken() *UserUpsertOne {
 func (u *UserUpsertOne) ClearNewUserToken() *UserUpsertOne {
 	return u.Update(func(s *UserUpsert) {
 		s.ClearNewUserToken()
+	})
+}
+
+// SetConsoleRole sets the "console_role" field.
+func (u *UserUpsertOne) SetConsoleRole(v user.ConsoleRole) *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.SetConsoleRole(v)
+	})
+}
+
+// UpdateConsoleRole sets the "console_role" field to the value that was provided on create.
+func (u *UserUpsertOne) UpdateConsoleRole() *UserUpsertOne {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateConsoleRole()
 	})
 }
 
@@ -1960,6 +2112,20 @@ func (u *UserUpsertBulk) UpdateNewUserToken() *UserUpsertBulk {
 func (u *UserUpsertBulk) ClearNewUserToken() *UserUpsertBulk {
 	return u.Update(func(s *UserUpsert) {
 		s.ClearNewUserToken()
+	})
+}
+
+// SetConsoleRole sets the "console_role" field.
+func (u *UserUpsertBulk) SetConsoleRole(v user.ConsoleRole) *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.SetConsoleRole(v)
+	})
+}
+
+// UpdateConsoleRole sets the "console_role" field to the value that was provided on create.
+func (u *UserUpsertBulk) UpdateConsoleRole() *UserUpsertBulk {
+	return u.Update(func(s *UserUpsert) {
+		s.UpdateConsoleRole()
 	})
 }
 

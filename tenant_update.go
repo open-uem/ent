@@ -20,6 +20,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/tenant"
+	"github.com/open-uem/ent/user"
 )
 
 // TenantUpdate is the builder for updating Tenant entities.
@@ -221,6 +222,21 @@ func (tu *TenantUpdate) AddProfiles(p ...*Profile) *TenantUpdate {
 	return tu.AddProfileIDs(ids...)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (tu *TenantUpdate) AddConsoleUserIDs(ids ...string) *TenantUpdate {
+	tu.mutation.AddConsoleUserIDs(ids...)
+	return tu
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (tu *TenantUpdate) AddConsoleUsers(u ...*User) *TenantUpdate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return tu.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tu *TenantUpdate) Mutation() *TenantMutation {
 	return tu.mutation
@@ -341,6 +357,27 @@ func (tu *TenantUpdate) RemoveProfiles(p ...*Profile) *TenantUpdate {
 		ids[i] = p[i].ID
 	}
 	return tu.RemoveProfileIDs(ids...)
+}
+
+// ClearConsoleUsers clears all "console_users" edges to the User entity.
+func (tu *TenantUpdate) ClearConsoleUsers() *TenantUpdate {
+	tu.mutation.ClearConsoleUsers()
+	return tu
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to User entities by IDs.
+func (tu *TenantUpdate) RemoveConsoleUserIDs(ids ...string) *TenantUpdate {
+	tu.mutation.RemoveConsoleUserIDs(ids...)
+	return tu
+}
+
+// RemoveConsoleUsers removes "console_users" edges to User entities.
+func (tu *TenantUpdate) RemoveConsoleUsers(u ...*User) *TenantUpdate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return tu.RemoveConsoleUserIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -701,6 +738,51 @@ func (tu *TenantUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if tu.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.RemovedConsoleUsersIDs(); len(nodes) > 0 && !tu.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(tu.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -908,6 +990,21 @@ func (tuo *TenantUpdateOne) AddProfiles(p ...*Profile) *TenantUpdateOne {
 	return tuo.AddProfileIDs(ids...)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (tuo *TenantUpdateOne) AddConsoleUserIDs(ids ...string) *TenantUpdateOne {
+	tuo.mutation.AddConsoleUserIDs(ids...)
+	return tuo
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (tuo *TenantUpdateOne) AddConsoleUsers(u ...*User) *TenantUpdateOne {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return tuo.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tuo *TenantUpdateOne) Mutation() *TenantMutation {
 	return tuo.mutation
@@ -1028,6 +1125,27 @@ func (tuo *TenantUpdateOne) RemoveProfiles(p ...*Profile) *TenantUpdateOne {
 		ids[i] = p[i].ID
 	}
 	return tuo.RemoveProfileIDs(ids...)
+}
+
+// ClearConsoleUsers clears all "console_users" edges to the User entity.
+func (tuo *TenantUpdateOne) ClearConsoleUsers() *TenantUpdateOne {
+	tuo.mutation.ClearConsoleUsers()
+	return tuo
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to User entities by IDs.
+func (tuo *TenantUpdateOne) RemoveConsoleUserIDs(ids ...string) *TenantUpdateOne {
+	tuo.mutation.RemoveConsoleUserIDs(ids...)
+	return tuo
+}
+
+// RemoveConsoleUsers removes "console_users" edges to User entities.
+func (tuo *TenantUpdateOne) RemoveConsoleUsers(u ...*User) *TenantUpdateOne {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return tuo.RemoveConsoleUserIDs(ids...)
 }
 
 // Where appends a list predicates to the TenantUpdate builder.
@@ -1411,6 +1529,51 @@ func (tuo *TenantUpdateOne) sqlSave(ctx context.Context) (_node *Tenant, err err
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if tuo.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.RemovedConsoleUsersIDs(); len(nodes) > 0 && !tuo.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

@@ -1063,6 +1063,7 @@ var (
 		{Name: "forgot_password_code", Type: field.TypeString, Nullable: true, Default: ""},
 		{Name: "forgot_password_code_expires_at", Type: field.TypeTime, Nullable: true},
 		{Name: "new_user_token", Type: field.TypeString, Nullable: true, Default: ""},
+		{Name: "console_role", Type: field.TypeEnum, Enums: []string{"admin", "custom"}, Default: "admin"},
 	}
 	// UsersTable holds the schema information for the "users" table.
 	UsersTable = &schema.Table{
@@ -1248,6 +1249,81 @@ var (
 			},
 		},
 	}
+	// UserAllowedTenantsColumns holds the columns for the "user_allowed_tenants" table.
+	UserAllowedTenantsColumns = []*schema.Column{
+		{Name: "user_id", Type: field.TypeString},
+		{Name: "tenant_id", Type: field.TypeInt},
+	}
+	// UserAllowedTenantsTable holds the schema information for the "user_allowed_tenants" table.
+	UserAllowedTenantsTable = &schema.Table{
+		Name:       "user_allowed_tenants",
+		Columns:    UserAllowedTenantsColumns,
+		PrimaryKey: []*schema.Column{UserAllowedTenantsColumns[0], UserAllowedTenantsColumns[1]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "user_allowed_tenants_user_id",
+				Columns:    []*schema.Column{UserAllowedTenantsColumns[0]},
+				RefColumns: []*schema.Column{UsersColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "user_allowed_tenants_tenant_id",
+				Columns:    []*schema.Column{UserAllowedTenantsColumns[1]},
+				RefColumns: []*schema.Column{TenantsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
+	// UserAllowedSitesColumns holds the columns for the "user_allowed_sites" table.
+	UserAllowedSitesColumns = []*schema.Column{
+		{Name: "user_id", Type: field.TypeString},
+		{Name: "site_id", Type: field.TypeInt},
+	}
+	// UserAllowedSitesTable holds the schema information for the "user_allowed_sites" table.
+	UserAllowedSitesTable = &schema.Table{
+		Name:       "user_allowed_sites",
+		Columns:    UserAllowedSitesColumns,
+		PrimaryKey: []*schema.Column{UserAllowedSitesColumns[0], UserAllowedSitesColumns[1]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "user_allowed_sites_user_id",
+				Columns:    []*schema.Column{UserAllowedSitesColumns[0]},
+				RefColumns: []*schema.Column{UsersColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "user_allowed_sites_site_id",
+				Columns:    []*schema.Column{UserAllowedSitesColumns[1]},
+				RefColumns: []*schema.Column{SitesColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
+	// UserAllowedAgentsColumns holds the columns for the "user_allowed_agents" table.
+	UserAllowedAgentsColumns = []*schema.Column{
+		{Name: "user_id", Type: field.TypeString},
+		{Name: "agent_id", Type: field.TypeString},
+	}
+	// UserAllowedAgentsTable holds the schema information for the "user_allowed_agents" table.
+	UserAllowedAgentsTable = &schema.Table{
+		Name:       "user_allowed_agents",
+		Columns:    UserAllowedAgentsColumns,
+		PrimaryKey: []*schema.Column{UserAllowedAgentsColumns[0], UserAllowedAgentsColumns[1]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "user_allowed_agents_user_id",
+				Columns:    []*schema.Column{UserAllowedAgentsColumns[0]},
+				RefColumns: []*schema.Column{UsersColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+			{
+				Symbol:     "user_allowed_agents_agent_id",
+				Columns:    []*schema.Column{UserAllowedAgentsColumns[1]},
+				RefColumns: []*schema.Column{AgentsColumns[0]},
+				OnDelete:   schema.Cascade,
+			},
+		},
+	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
 		AgentsTable,
@@ -1294,6 +1370,9 @@ var (
 		SiteProfilesTable,
 		TenantRustdeskTable,
 		TenantProfilesTable,
+		UserAllowedTenantsTable,
+		UserAllowedSitesTable,
+		UserAllowedAgentsTable,
 	}
 )
 
@@ -1344,4 +1423,10 @@ func init() {
 	TenantRustdeskTable.ForeignKeys[1].RefTable = RustdesksTable
 	TenantProfilesTable.ForeignKeys[0].RefTable = TenantsTable
 	TenantProfilesTable.ForeignKeys[1].RefTable = ProfilesTable
+	UserAllowedTenantsTable.ForeignKeys[0].RefTable = UsersTable
+	UserAllowedTenantsTable.ForeignKeys[1].RefTable = TenantsTable
+	UserAllowedSitesTable.ForeignKeys[0].RefTable = UsersTable
+	UserAllowedSitesTable.ForeignKeys[1].RefTable = SitesTable
+	UserAllowedAgentsTable.ForeignKeys[0].RefTable = UsersTable
+	UserAllowedAgentsTable.ForeignKeys[1].RefTable = AgentsTable
 }

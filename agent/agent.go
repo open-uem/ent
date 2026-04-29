@@ -117,6 +117,8 @@ const (
 	EdgePhysicaldisks = "physicaldisks"
 	// EdgeNetbird holds the string denoting the netbird edge name in mutations.
 	EdgeNetbird = "netbird"
+	// EdgeConsoleUsers holds the string denoting the console_users edge name in mutations.
+	EdgeConsoleUsers = "console_users"
 	// ComputerFieldID holds the string denoting the ID field of the Computer.
 	ComputerFieldID = "id"
 	// OperatingSystemFieldID holds the string denoting the ID field of the OperatingSystem.
@@ -159,6 +161,8 @@ const (
 	PhysicalDiskFieldID = "id"
 	// NetbirdFieldID holds the string denoting the ID field of the Netbird.
 	NetbirdFieldID = "id"
+	// UserFieldID holds the string denoting the ID field of the User.
+	UserFieldID = "uid"
 	// Table holds the table name of the agent in the database.
 	Table = "agents"
 	// ComputerTable is the table that holds the computer relation/edge.
@@ -304,6 +308,11 @@ const (
 	NetbirdInverseTable = "netbirds"
 	// NetbirdColumn is the table column denoting the netbird relation/edge.
 	NetbirdColumn = "agent_netbird"
+	// ConsoleUsersTable is the table that holds the console_users relation/edge. The primary key declared below.
+	ConsoleUsersTable = "user_allowed_agents"
+	// ConsoleUsersInverseTable is the table name for the User entity.
+	// It exists in this package in order to avoid circular dependency with the "user" package.
+	ConsoleUsersInverseTable = "users"
 )
 
 // Columns holds all SQL columns for agent fields.
@@ -354,6 +363,9 @@ var (
 	// SitePrimaryKey and SiteColumn2 are the table columns denoting the
 	// primary key for the site relation (M2M).
 	SitePrimaryKey = []string{"site_id", "agent_id"}
+	// ConsoleUsersPrimaryKey and ConsoleUsersColumn2 are the table columns denoting the
+	// primary key for the console_users relation (M2M).
+	ConsoleUsersPrimaryKey = []string{"user_id", "agent_id"}
 )
 
 // ValidColumn reports if the column name is valid (part of the table columns).
@@ -892,6 +904,20 @@ func ByNetbirdField(field string, opts ...sql.OrderTermOption) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newNetbirdStep(), sql.OrderByField(field, opts...))
 	}
 }
+
+// ByConsoleUsersCount orders the results by console_users count.
+func ByConsoleUsersCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newConsoleUsersStep(), opts...)
+	}
+}
+
+// ByConsoleUsers orders the results by console_users terms.
+func ByConsoleUsers(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newConsoleUsersStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newComputerStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -1037,5 +1063,12 @@ func newNetbirdStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(NetbirdInverseTable, NetbirdFieldID),
 		sqlgraph.Edge(sqlgraph.O2O, false, NetbirdTable, NetbirdColumn),
+	)
+}
+func newConsoleUsersStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ConsoleUsersInverseTable, UserFieldID),
+		sqlgraph.Edge(sqlgraph.M2M, true, ConsoleUsersTable, ConsoleUsersPrimaryKey...),
 	)
 }
