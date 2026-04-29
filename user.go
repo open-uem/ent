@@ -55,6 +55,8 @@ type User struct {
 	ForgotPasswordCodeExpiresAt time.Time `json:"forgot_password_code_expires_at,omitempty"`
 	// NewUserToken holds the value of the "new_user_token" field.
 	NewUserToken string `json:"new_user_token,omitempty"`
+	// ConsoleRole holds the value of the "console_role" field.
+	ConsoleRole user.ConsoleRole `json:"console_role,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the UserQuery when eager-loading is set.
 	Edges        UserEdges `json:"edges"`
@@ -67,9 +69,15 @@ type UserEdges struct {
 	Sessions []*Sessions `json:"sessions,omitempty"`
 	// Recoverycodes holds the value of the recoverycodes edge.
 	Recoverycodes []*RecoveryCode `json:"recoverycodes,omitempty"`
+	// AllowedTenants holds the value of the allowed_tenants edge.
+	AllowedTenants []*Tenant `json:"allowed_tenants,omitempty"`
+	// AllowedSites holds the value of the allowed_sites edge.
+	AllowedSites []*Site `json:"allowed_sites,omitempty"`
+	// AllowedAgents holds the value of the allowed_agents edge.
+	AllowedAgents []*Agent `json:"allowed_agents,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [2]bool
+	loadedTypes [5]bool
 }
 
 // SessionsOrErr returns the Sessions value or an error if the edge
@@ -90,6 +98,33 @@ func (e UserEdges) RecoverycodesOrErr() ([]*RecoveryCode, error) {
 	return nil, &NotLoadedError{edge: "recoverycodes"}
 }
 
+// AllowedTenantsOrErr returns the AllowedTenants value or an error if the edge
+// was not loaded in eager-loading.
+func (e UserEdges) AllowedTenantsOrErr() ([]*Tenant, error) {
+	if e.loadedTypes[2] {
+		return e.AllowedTenants, nil
+	}
+	return nil, &NotLoadedError{edge: "allowed_tenants"}
+}
+
+// AllowedSitesOrErr returns the AllowedSites value or an error if the edge
+// was not loaded in eager-loading.
+func (e UserEdges) AllowedSitesOrErr() ([]*Site, error) {
+	if e.loadedTypes[3] {
+		return e.AllowedSites, nil
+	}
+	return nil, &NotLoadedError{edge: "allowed_sites"}
+}
+
+// AllowedAgentsOrErr returns the AllowedAgents value or an error if the edge
+// was not loaded in eager-loading.
+func (e UserEdges) AllowedAgentsOrErr() ([]*Agent, error) {
+	if e.loadedTypes[4] {
+		return e.AllowedAgents, nil
+	}
+	return nil, &NotLoadedError{edge: "allowed_agents"}
+}
+
 // scanValues returns the types for scanning values from sql.Rows.
 func (*User) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
@@ -97,7 +132,7 @@ func (*User) scanValues(columns []string) ([]any, error) {
 		switch columns[i] {
 		case user.FieldEmailVerified, user.FieldOpenid, user.FieldPasswd, user.FieldUse2fa, user.FieldTotpSecretConfirmed:
 			values[i] = new(sql.NullBool)
-		case user.FieldID, user.FieldName, user.FieldEmail, user.FieldPhone, user.FieldCountry, user.FieldRegister, user.FieldCertClearPassword, user.FieldHash, user.FieldTotpSecret, user.FieldForgotPasswordCode, user.FieldNewUserToken:
+		case user.FieldID, user.FieldName, user.FieldEmail, user.FieldPhone, user.FieldCountry, user.FieldRegister, user.FieldCertClearPassword, user.FieldHash, user.FieldTotpSecret, user.FieldForgotPasswordCode, user.FieldNewUserToken, user.FieldConsoleRole:
 			values[i] = new(sql.NullString)
 		case user.FieldExpiry, user.FieldCreated, user.FieldModified, user.FieldForgotPasswordCodeExpiresAt:
 			values[i] = new(sql.NullTime)
@@ -236,6 +271,12 @@ func (u *User) assignValues(columns []string, values []any) error {
 			} else if value.Valid {
 				u.NewUserToken = value.String
 			}
+		case user.FieldConsoleRole:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field console_role", values[i])
+			} else if value.Valid {
+				u.ConsoleRole = user.ConsoleRole(value.String)
+			}
 		default:
 			u.selectValues.Set(columns[i], values[i])
 		}
@@ -257,6 +298,21 @@ func (u *User) QuerySessions() *SessionsQuery {
 // QueryRecoverycodes queries the "recoverycodes" edge of the User entity.
 func (u *User) QueryRecoverycodes() *RecoveryCodeQuery {
 	return NewUserClient(u.config).QueryRecoverycodes(u)
+}
+
+// QueryAllowedTenants queries the "allowed_tenants" edge of the User entity.
+func (u *User) QueryAllowedTenants() *TenantQuery {
+	return NewUserClient(u.config).QueryAllowedTenants(u)
+}
+
+// QueryAllowedSites queries the "allowed_sites" edge of the User entity.
+func (u *User) QueryAllowedSites() *SiteQuery {
+	return NewUserClient(u.config).QueryAllowedSites(u)
+}
+
+// QueryAllowedAgents queries the "allowed_agents" edge of the User entity.
+func (u *User) QueryAllowedAgents() *AgentQuery {
+	return NewUserClient(u.config).QueryAllowedAgents(u)
 }
 
 // Update returns a builder for updating this User.
@@ -338,6 +394,9 @@ func (u *User) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("new_user_token=")
 	builder.WriteString(u.NewUserToken)
+	builder.WriteString(", ")
+	builder.WriteString("console_role=")
+	builder.WriteString(fmt.Sprintf("%v", u.ConsoleRole))
 	builder.WriteByte(')')
 	return builder.String()
 }

@@ -38,6 +38,7 @@ func (User) Fields() []ent.Field {
 		field.String("forgot_password_code").Optional().Default(""),
 		field.Time("forgot_password_code_expires_at").Optional().Default(time.Now),
 		field.String("new_user_token").Optional().Default(""),
+		field.Enum("console_role").Values("admin", "custom").Default("admin"),
 	}
 }
 
@@ -45,6 +46,9 @@ func (User) Edges() []ent.Edge {
 	return []ent.Edge{
 		edge.To("sessions", Sessions.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 		edge.To("recoverycodes", RecoveryCode.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
+		edge.To("allowed_tenants", Tenant.Type),
+		edge.To("allowed_sites", Site.Type),
+		edge.To("allowed_agents", Agent.Type),
 	}
 }
 

@@ -958,6 +958,22 @@ func (c *AgentClient) QueryNetbird(a *Agent) *NetbirdQuery {
 	return query
 }
 
+// QueryConsoleUsers queries the console_users edge of a Agent.
+func (c *AgentClient) QueryConsoleUsers(a *Agent) *UserQuery {
+	query := (&UserClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := a.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, id),
+			sqlgraph.To(user.Table, user.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, agent.ConsoleUsersTable, agent.ConsoleUsersPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *AgentClient) Hooks() []Hook {
 	return c.hooks.Agent
@@ -5242,6 +5258,22 @@ func (c *SiteClient) QueryProfiles(s *Site) *ProfileQuery {
 	return query
 }
 
+// QueryConsoleUsers queries the console_users edge of a Site.
+func (c *SiteClient) QueryConsoleUsers(s *Site) *UserQuery {
+	query := (&UserClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := s.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(site.Table, site.FieldID, id),
+			sqlgraph.To(user.Table, user.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, site.ConsoleUsersTable, site.ConsoleUsersPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(s.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *SiteClient) Hooks() []Hook {
 	return c.hooks.Site
@@ -6328,6 +6360,22 @@ func (c *TenantClient) QueryProfiles(t *Tenant) *ProfileQuery {
 	return query
 }
 
+// QueryConsoleUsers queries the console_users edge of a Tenant.
+func (c *TenantClient) QueryConsoleUsers(t *Tenant) *UserQuery {
+	query := (&UserClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := t.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, id),
+			sqlgraph.To(user.Table, user.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, tenant.ConsoleUsersTable, tenant.ConsoleUsersPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *TenantClient) Hooks() []Hook {
 	return c.hooks.Tenant
@@ -6635,6 +6683,54 @@ func (c *UserClient) QueryRecoverycodes(u *User) *RecoveryCodeQuery {
 			sqlgraph.From(user.Table, user.FieldID, id),
 			sqlgraph.To(recoverycode.Table, recoverycode.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, user.RecoverycodesTable, user.RecoverycodesColumn),
+		)
+		fromV = sqlgraph.Neighbors(u.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryAllowedTenants queries the allowed_tenants edge of a User.
+func (c *UserClient) QueryAllowedTenants(u *User) *TenantQuery {
+	query := (&TenantClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := u.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, id),
+			sqlgraph.To(tenant.Table, tenant.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.AllowedTenantsTable, user.AllowedTenantsPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(u.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryAllowedSites queries the allowed_sites edge of a User.
+func (c *UserClient) QueryAllowedSites(u *User) *SiteQuery {
+	query := (&SiteClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := u.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, id),
+			sqlgraph.To(site.Table, site.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.AllowedSitesTable, user.AllowedSitesPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(u.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryAllowedAgents queries the allowed_agents edge of a User.
+func (c *UserClient) QueryAllowedAgents(u *User) *AgentQuery {
+	query := (&AgentClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := u.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, id),
+			sqlgraph.To(agent.Table, agent.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.AllowedAgentsTable, user.AllowedAgentsPrimaryKey...),
 		)
 		fromV = sqlgraph.Neighbors(u.driver.Dialect(), step)
 		return fromV, nil
