@@ -112,6 +112,34 @@ func (ldc *LogicalDiskCreate) SetNillableBitlockerStatus(s *string) *LogicalDisk
 	return ldc
 }
 
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (ldc *LogicalDiskCreate) SetBitlockerRecoveryKey(s string) *LogicalDiskCreate {
+	ldc.mutation.SetBitlockerRecoveryKey(s)
+	return ldc
+}
+
+// SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableBitlockerRecoveryKey(s *string) *LogicalDiskCreate {
+	if s != nil {
+		ldc.SetBitlockerRecoveryKey(*s)
+	}
+	return ldc
+}
+
+// SetIsRemovable sets the "is_removable" field.
+func (ldc *LogicalDiskCreate) SetIsRemovable(b bool) *LogicalDiskCreate {
+	ldc.mutation.SetIsRemovable(b)
+	return ldc
+}
+
+// SetNillableIsRemovable sets the "is_removable" field if the given value is not nil.
+func (ldc *LogicalDiskCreate) SetNillableIsRemovable(b *bool) *LogicalDiskCreate {
+	if b != nil {
+		ldc.SetIsRemovable(*b)
+	}
+	return ldc
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldc *LogicalDiskCreate) SetOwnerID(id string) *LogicalDiskCreate {
 	ldc.mutation.SetOwnerID(id)
@@ -162,6 +190,10 @@ func (ldc *LogicalDiskCreate) defaults() {
 		v := logicaldisk.DefaultUsage
 		ldc.mutation.SetUsage(v)
 	}
+	if _, ok := ldc.mutation.IsRemovable(); !ok {
+		v := logicaldisk.DefaultIsRemovable
+		ldc.mutation.SetIsRemovable(v)
+	}
 }
 
 // check runs all checks and user-defined validators on the builder.
@@ -171,6 +203,9 @@ func (ldc *LogicalDiskCreate) check() error {
 	}
 	if _, ok := ldc.mutation.Usage(); !ok {
 		return &ValidationError{Name: "usage", err: errors.New(`ent: missing required field "LogicalDisk.usage"`)}
+	}
+	if _, ok := ldc.mutation.IsRemovable(); !ok {
+		return &ValidationError{Name: "is_removable", err: errors.New(`ent: missing required field "LogicalDisk.is_removable"`)}
 	}
 	if len(ldc.mutation.OwnerIDs()) == 0 {
 		return &ValidationError{Name: "owner", err: errors.New(`ent: missing required edge "LogicalDisk.owner"`)}
@@ -229,6 +264,14 @@ func (ldc *LogicalDiskCreate) createSpec() (*LogicalDisk, *sqlgraph.CreateSpec) 
 	if value, ok := ldc.mutation.BitlockerStatus(); ok {
 		_spec.SetField(logicaldisk.FieldBitlockerStatus, field.TypeString, value)
 		_node.BitlockerStatus = value
+	}
+	if value, ok := ldc.mutation.BitlockerRecoveryKey(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
+		_node.BitlockerRecoveryKey = value
+	}
+	if value, ok := ldc.mutation.IsRemovable(); ok {
+		_spec.SetField(logicaldisk.FieldIsRemovable, field.TypeBool, value)
+		_node.IsRemovable = value
 	}
 	if nodes := ldc.mutation.OwnerIDs(); len(nodes) > 0 {
 		edge := &sqlgraph.EdgeSpec{
@@ -419,6 +462,36 @@ func (u *LogicalDiskUpsert) ClearBitlockerStatus() *LogicalDiskUpsert {
 	return u
 }
 
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsert) SetBitlockerRecoveryKey(v string) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldBitlockerRecoveryKey, v)
+	return u
+}
+
+// UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateBitlockerRecoveryKey() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldBitlockerRecoveryKey)
+	return u
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsert) ClearBitlockerRecoveryKey() *LogicalDiskUpsert {
+	u.SetNull(logicaldisk.FieldBitlockerRecoveryKey)
+	return u
+}
+
+// SetIsRemovable sets the "is_removable" field.
+func (u *LogicalDiskUpsert) SetIsRemovable(v bool) *LogicalDiskUpsert {
+	u.Set(logicaldisk.FieldIsRemovable, v)
+	return u
+}
+
+// UpdateIsRemovable sets the "is_removable" field to the value that was provided on create.
+func (u *LogicalDiskUpsert) UpdateIsRemovable() *LogicalDiskUpsert {
+	u.SetExcluded(logicaldisk.FieldIsRemovable)
+	return u
+}
+
 // UpdateNewValues updates the mutable fields using the new values that were set on create.
 // Using this option is equivalent to using:
 //
@@ -596,6 +669,41 @@ func (u *LogicalDiskUpsertOne) UpdateBitlockerStatus() *LogicalDiskUpsertOne {
 func (u *LogicalDiskUpsertOne) ClearBitlockerStatus() *LogicalDiskUpsertOne {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerStatus()
+	})
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertOne) SetBitlockerRecoveryKey(v string) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerRecoveryKey(v)
+	})
+}
+
+// UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateBitlockerRecoveryKey() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerRecoveryKey()
+	})
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertOne) ClearBitlockerRecoveryKey() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerRecoveryKey()
+	})
+}
+
+// SetIsRemovable sets the "is_removable" field.
+func (u *LogicalDiskUpsertOne) SetIsRemovable(v bool) *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetIsRemovable(v)
+	})
+}
+
+// UpdateIsRemovable sets the "is_removable" field to the value that was provided on create.
+func (u *LogicalDiskUpsertOne) UpdateIsRemovable() *LogicalDiskUpsertOne {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateIsRemovable()
 	})
 }
 
@@ -940,6 +1048,41 @@ func (u *LogicalDiskUpsertBulk) UpdateBitlockerStatus() *LogicalDiskUpsertBulk {
 func (u *LogicalDiskUpsertBulk) ClearBitlockerStatus() *LogicalDiskUpsertBulk {
 	return u.Update(func(s *LogicalDiskUpsert) {
 		s.ClearBitlockerStatus()
+	})
+}
+
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertBulk) SetBitlockerRecoveryKey(v string) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetBitlockerRecoveryKey(v)
+	})
+}
+
+// UpdateBitlockerRecoveryKey sets the "bitlocker_recovery_key" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateBitlockerRecoveryKey() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateBitlockerRecoveryKey()
+	})
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (u *LogicalDiskUpsertBulk) ClearBitlockerRecoveryKey() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.ClearBitlockerRecoveryKey()
+	})
+}
+
+// SetIsRemovable sets the "is_removable" field.
+func (u *LogicalDiskUpsertBulk) SetIsRemovable(v bool) *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.SetIsRemovable(v)
+	})
+}
+
+// UpdateIsRemovable sets the "is_removable" field to the value that was provided on create.
+func (u *LogicalDiskUpsertBulk) UpdateIsRemovable() *LogicalDiskUpsertBulk {
+	return u.Update(func(s *LogicalDiskUpsert) {
+		s.UpdateIsRemovable()
 	})
 }
 

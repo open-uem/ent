@@ -210,6 +210,10 @@ func init() {
 	logicaldiskDescUsage := logicaldiskFields[2].Descriptor()
 	// logicaldisk.DefaultUsage holds the default value on creation for the usage field.
 	logicaldisk.DefaultUsage = logicaldiskDescUsage.Default.(int8)
+	// logicaldiskDescIsRemovable is the schema descriptor for is_removable field.
+	logicaldiskDescIsRemovable := logicaldiskFields[8].Descriptor()
+	// logicaldisk.DefaultIsRemovable holds the default value on creation for the is_removable field.
+	logicaldisk.DefaultIsRemovable = logicaldiskDescIsRemovable.Default.(bool)
 	netbirdFields := schema.Netbird{}.Fields()
 	_ = netbirdFields
 	// netbirdDescVersion is the schema descriptor for version field.
