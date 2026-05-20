@@ -164,6 +164,40 @@ func (ldu *LogicalDiskUpdate) ClearBitlockerStatus() *LogicalDiskUpdate {
 	return ldu
 }
 
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (ldu *LogicalDiskUpdate) SetBitlockerRecoveryKey(s string) *LogicalDiskUpdate {
+	ldu.mutation.SetBitlockerRecoveryKey(s)
+	return ldu
+}
+
+// SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableBitlockerRecoveryKey(s *string) *LogicalDiskUpdate {
+	if s != nil {
+		ldu.SetBitlockerRecoveryKey(*s)
+	}
+	return ldu
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (ldu *LogicalDiskUpdate) ClearBitlockerRecoveryKey() *LogicalDiskUpdate {
+	ldu.mutation.ClearBitlockerRecoveryKey()
+	return ldu
+}
+
+// SetIsRemovable sets the "is_removable" field.
+func (ldu *LogicalDiskUpdate) SetIsRemovable(b bool) *LogicalDiskUpdate {
+	ldu.mutation.SetIsRemovable(b)
+	return ldu
+}
+
+// SetNillableIsRemovable sets the "is_removable" field if the given value is not nil.
+func (ldu *LogicalDiskUpdate) SetNillableIsRemovable(b *bool) *LogicalDiskUpdate {
+	if b != nil {
+		ldu.SetIsRemovable(*b)
+	}
+	return ldu
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (ldu *LogicalDiskUpdate) SetOwnerID(id string) *LogicalDiskUpdate {
 	ldu.mutation.SetOwnerID(id)
@@ -277,6 +311,15 @@ func (ldu *LogicalDiskUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if ldu.mutation.BitlockerStatusCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
+	}
+	if value, ok := ldu.mutation.BitlockerRecoveryKey(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
+	}
+	if ldu.mutation.BitlockerRecoveryKeyCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString)
+	}
+	if value, ok := ldu.mutation.IsRemovable(); ok {
+		_spec.SetField(logicaldisk.FieldIsRemovable, field.TypeBool, value)
 	}
 	if ldu.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{
@@ -464,6 +507,40 @@ func (lduo *LogicalDiskUpdateOne) ClearBitlockerStatus() *LogicalDiskUpdateOne {
 	return lduo
 }
 
+// SetBitlockerRecoveryKey sets the "bitlocker_recovery_key" field.
+func (lduo *LogicalDiskUpdateOne) SetBitlockerRecoveryKey(s string) *LogicalDiskUpdateOne {
+	lduo.mutation.SetBitlockerRecoveryKey(s)
+	return lduo
+}
+
+// SetNillableBitlockerRecoveryKey sets the "bitlocker_recovery_key" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableBitlockerRecoveryKey(s *string) *LogicalDiskUpdateOne {
+	if s != nil {
+		lduo.SetBitlockerRecoveryKey(*s)
+	}
+	return lduo
+}
+
+// ClearBitlockerRecoveryKey clears the value of the "bitlocker_recovery_key" field.
+func (lduo *LogicalDiskUpdateOne) ClearBitlockerRecoveryKey() *LogicalDiskUpdateOne {
+	lduo.mutation.ClearBitlockerRecoveryKey()
+	return lduo
+}
+
+// SetIsRemovable sets the "is_removable" field.
+func (lduo *LogicalDiskUpdateOne) SetIsRemovable(b bool) *LogicalDiskUpdateOne {
+	lduo.mutation.SetIsRemovable(b)
+	return lduo
+}
+
+// SetNillableIsRemovable sets the "is_removable" field if the given value is not nil.
+func (lduo *LogicalDiskUpdateOne) SetNillableIsRemovable(b *bool) *LogicalDiskUpdateOne {
+	if b != nil {
+		lduo.SetIsRemovable(*b)
+	}
+	return lduo
+}
+
 // SetOwnerID sets the "owner" edge to the Agent entity by ID.
 func (lduo *LogicalDiskUpdateOne) SetOwnerID(id string) *LogicalDiskUpdateOne {
 	lduo.mutation.SetOwnerID(id)
@@ -607,6 +684,15 @@ func (lduo *LogicalDiskUpdateOne) sqlSave(ctx context.Context) (_node *LogicalDi
 	}
 	if lduo.mutation.BitlockerStatusCleared() {
 		_spec.ClearField(logicaldisk.FieldBitlockerStatus, field.TypeString)
+	}
+	if value, ok := lduo.mutation.BitlockerRecoveryKey(); ok {
+		_spec.SetField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString, value)
+	}
+	if lduo.mutation.BitlockerRecoveryKeyCleared() {
+		_spec.ClearField(logicaldisk.FieldBitlockerRecoveryKey, field.TypeString)
+	}
+	if value, ok := lduo.mutation.IsRemovable(); ok {
+		_spec.SetField(logicaldisk.FieldIsRemovable, field.TypeBool, value)
 	}
 	if lduo.mutation.OwnerCleared() {
 		edge := &sqlgraph.EdgeSpec{

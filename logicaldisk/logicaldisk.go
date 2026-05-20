@@ -26,6 +26,10 @@ const (
 	FieldVolumeName = "volume_name"
 	// FieldBitlockerStatus holds the string denoting the bitlocker_status field in the database.
 	FieldBitlockerStatus = "bitlocker_status"
+	// FieldBitlockerRecoveryKey holds the string denoting the bitlocker_recovery_key field in the database.
+	FieldBitlockerRecoveryKey = "bitlocker_recovery_key"
+	// FieldIsRemovable holds the string denoting the is_removable field in the database.
+	FieldIsRemovable = "is_removable"
 	// EdgeOwner holds the string denoting the owner edge name in mutations.
 	EdgeOwner = "owner"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
@@ -51,6 +55,8 @@ var Columns = []string{
 	FieldRemainingSpaceInUnits,
 	FieldVolumeName,
 	FieldBitlockerStatus,
+	FieldBitlockerRecoveryKey,
+	FieldIsRemovable,
 }
 
 // ForeignKeys holds the SQL foreign-keys that are owned by the "logical_disks"
@@ -77,6 +83,8 @@ func ValidColumn(column string) bool {
 var (
 	// DefaultUsage holds the default value on creation for the "usage" field.
 	DefaultUsage int8
+	// DefaultIsRemovable holds the default value on creation for the "is_removable" field.
+	DefaultIsRemovable bool
 )
 
 // OrderOption defines the ordering options for the LogicalDisk queries.
@@ -120,6 +128,16 @@ func ByVolumeName(opts ...sql.OrderTermOption) OrderOption {
 // ByBitlockerStatus orders the results by the bitlocker_status field.
 func ByBitlockerStatus(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldBitlockerStatus, opts...).ToFunc()
+}
+
+// ByBitlockerRecoveryKey orders the results by the bitlocker_recovery_key field.
+func ByBitlockerRecoveryKey(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldBitlockerRecoveryKey, opts...).ToFunc()
+}
+
+// ByIsRemovable orders the results by the is_removable field.
+func ByIsRemovable(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldIsRemovable, opts...).ToFunc()
 }
 
 // ByOwnerField orders the results by owner field.

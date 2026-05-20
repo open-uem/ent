@@ -21,6 +21,8 @@ func (LogicalDisk) Fields() []ent.Field {
 		field.String("remaining_space_in_units").Optional(),
 		field.String("volume_name").Optional(),
 		field.String("bitlocker_status").Optional(),
+		field.String("bitlocker_recovery_key").Optional(),
+		field.Bool("is_removable").Default(false),
 	}
 }
 

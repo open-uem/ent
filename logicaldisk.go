@@ -31,6 +31,10 @@ type LogicalDisk struct {
 	VolumeName string `json:"volume_name,omitempty"`
 	// BitlockerStatus holds the value of the "bitlocker_status" field.
 	BitlockerStatus string `json:"bitlocker_status,omitempty"`
+	// BitlockerRecoveryKey holds the value of the "bitlocker_recovery_key" field.
+	BitlockerRecoveryKey string `json:"bitlocker_recovery_key,omitempty"`
+	// IsRemovable holds the value of the "is_removable" field.
+	IsRemovable bool `json:"is_removable,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
 	// The values are being populated by the LogicalDiskQuery when eager-loading is set.
 	Edges              LogicalDiskEdges `json:"edges"`
@@ -63,9 +67,11 @@ func (*LogicalDisk) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
+		case logicaldisk.FieldIsRemovable:
+			values[i] = new(sql.NullBool)
 		case logicaldisk.FieldID, logicaldisk.FieldUsage:
 			values[i] = new(sql.NullInt64)
-		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus:
+		case logicaldisk.FieldLabel, logicaldisk.FieldFilesystem, logicaldisk.FieldSizeInUnits, logicaldisk.FieldRemainingSpaceInUnits, logicaldisk.FieldVolumeName, logicaldisk.FieldBitlockerStatus, logicaldisk.FieldBitlockerRecoveryKey:
 			values[i] = new(sql.NullString)
 		case logicaldisk.ForeignKeys[0]: // agent_logicaldisks
 			values[i] = new(sql.NullString)
@@ -131,6 +137,18 @@ func (ld *LogicalDisk) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field bitlocker_status", values[i])
 			} else if value.Valid {
 				ld.BitlockerStatus = value.String
+			}
+		case logicaldisk.FieldBitlockerRecoveryKey:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field bitlocker_recovery_key", values[i])
+			} else if value.Valid {
+				ld.BitlockerRecoveryKey = value.String
+			}
+		case logicaldisk.FieldIsRemovable:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field is_removable", values[i])
+			} else if value.Valid {
+				ld.IsRemovable = value.Bool
 			}
 		case logicaldisk.ForeignKeys[0]:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -200,6 +218,12 @@ func (ld *LogicalDisk) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("bitlocker_status=")
 	builder.WriteString(ld.BitlockerStatus)
+	builder.WriteString(", ")
+	builder.WriteString("bitlocker_recovery_key=")
+	builder.WriteString(ld.BitlockerRecoveryKey)
+	builder.WriteString(", ")
+	builder.WriteString("is_removable=")
+	builder.WriteString(fmt.Sprintf("%v", ld.IsRemovable))
 	builder.WriteByte(')')
 	return builder.String()
 }
