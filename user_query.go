@@ -12,22 +12,28 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/sessions"
+	"github.com/open-uem/ent/site"
+	"github.com/open-uem/ent/tenant"
 	"github.com/open-uem/ent/user"
 )
 
 // UserQuery is the builder for querying User entities.
 type UserQuery struct {
 	config
-	ctx               *QueryContext
-	order             []user.OrderOption
-	inters            []Interceptor
-	predicates        []predicate.User
-	withSessions      *SessionsQuery
-	withRecoverycodes *RecoveryCodeQuery
-	modifiers         []func(*sql.Selector)
+	ctx                *QueryContext
+	order              []user.OrderOption
+	inters             []Interceptor
+	predicates         []predicate.User
+	withSessions       *SessionsQuery
+	withRecoverycodes  *RecoveryCodeQuery
+	withAllowedTenants *TenantQuery
+	withAllowedSites   *SiteQuery
+	withAllowedAgents  *AgentQuery
+	modifiers          []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -101,6 +107,72 @@ func (uq *UserQuery) QueryRecoverycodes() *RecoveryCodeQuery {
 			sqlgraph.From(user.Table, user.FieldID, selector),
 			sqlgraph.To(recoverycode.Table, recoverycode.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, user.RecoverycodesTable, user.RecoverycodesColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryAllowedTenants chains the current query on the "allowed_tenants" edge.
+func (uq *UserQuery) QueryAllowedTenants() *TenantQuery {
+	query := (&TenantClient{config: uq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := uq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := uq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, selector),
+			sqlgraph.To(tenant.Table, tenant.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.AllowedTenantsTable, user.AllowedTenantsPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryAllowedSites chains the current query on the "allowed_sites" edge.
+func (uq *UserQuery) QueryAllowedSites() *SiteQuery {
+	query := (&SiteClient{config: uq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := uq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := uq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, selector),
+			sqlgraph.To(site.Table, site.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.AllowedSitesTable, user.AllowedSitesPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryAllowedAgents chains the current query on the "allowed_agents" edge.
+func (uq *UserQuery) QueryAllowedAgents() *AgentQuery {
+	query := (&AgentClient{config: uq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := uq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := uq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(user.Table, user.FieldID, selector),
+			sqlgraph.To(agent.Table, agent.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, user.AllowedAgentsTable, user.AllowedAgentsPrimaryKey...),
 		)
 		fromU = sqlgraph.SetNeighbors(uq.driver.Dialect(), step)
 		return fromU, nil
@@ -295,13 +367,16 @@ func (uq *UserQuery) Clone() *UserQuery {
 		return nil
 	}
 	return &UserQuery{
-		config:            uq.config,
-		ctx:               uq.ctx.Clone(),
-		order:             append([]user.OrderOption{}, uq.order...),
-		inters:            append([]Interceptor{}, uq.inters...),
-		predicates:        append([]predicate.User{}, uq.predicates...),
-		withSessions:      uq.withSessions.Clone(),
-		withRecoverycodes: uq.withRecoverycodes.Clone(),
+		config:             uq.config,
+		ctx:                uq.ctx.Clone(),
+		order:              append([]user.OrderOption{}, uq.order...),
+		inters:             append([]Interceptor{}, uq.inters...),
+		predicates:         append([]predicate.User{}, uq.predicates...),
+		withSessions:       uq.withSessions.Clone(),
+		withRecoverycodes:  uq.withRecoverycodes.Clone(),
+		withAllowedTenants: uq.withAllowedTenants.Clone(),
+		withAllowedSites:   uq.withAllowedSites.Clone(),
+		withAllowedAgents:  uq.withAllowedAgents.Clone(),
 		// clone intermediate query.
 		sql:       uq.sql.Clone(),
 		path:      uq.path,
@@ -328,6 +403,39 @@ func (uq *UserQuery) WithRecoverycodes(opts ...func(*RecoveryCodeQuery)) *UserQu
 		opt(query)
 	}
 	uq.withRecoverycodes = query
+	return uq
+}
+
+// WithAllowedTenants tells the query-builder to eager-load the nodes that are connected to
+// the "allowed_tenants" edge. The optional arguments are used to configure the query builder of the edge.
+func (uq *UserQuery) WithAllowedTenants(opts ...func(*TenantQuery)) *UserQuery {
+	query := (&TenantClient{config: uq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	uq.withAllowedTenants = query
+	return uq
+}
+
+// WithAllowedSites tells the query-builder to eager-load the nodes that are connected to
+// the "allowed_sites" edge. The optional arguments are used to configure the query builder of the edge.
+func (uq *UserQuery) WithAllowedSites(opts ...func(*SiteQuery)) *UserQuery {
+	query := (&SiteClient{config: uq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	uq.withAllowedSites = query
+	return uq
+}
+
+// WithAllowedAgents tells the query-builder to eager-load the nodes that are connected to
+// the "allowed_agents" edge. The optional arguments are used to configure the query builder of the edge.
+func (uq *UserQuery) WithAllowedAgents(opts ...func(*AgentQuery)) *UserQuery {
+	query := (&AgentClient{config: uq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	uq.withAllowedAgents = query
 	return uq
 }
 
@@ -409,9 +517,12 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 	var (
 		nodes       = []*User{}
 		_spec       = uq.querySpec()
-		loadedTypes = [2]bool{
+		loadedTypes = [5]bool{
 			uq.withSessions != nil,
 			uq.withRecoverycodes != nil,
+			uq.withAllowedTenants != nil,
+			uq.withAllowedSites != nil,
+			uq.withAllowedAgents != nil,
 		}
 	)
 	_spec.ScanValues = func(columns []string) ([]any, error) {
@@ -446,6 +557,27 @@ func (uq *UserQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*User, e
 		if err := uq.loadRecoverycodes(ctx, query, nodes,
 			func(n *User) { n.Edges.Recoverycodes = []*RecoveryCode{} },
 			func(n *User, e *RecoveryCode) { n.Edges.Recoverycodes = append(n.Edges.Recoverycodes, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := uq.withAllowedTenants; query != nil {
+		if err := uq.loadAllowedTenants(ctx, query, nodes,
+			func(n *User) { n.Edges.AllowedTenants = []*Tenant{} },
+			func(n *User, e *Tenant) { n.Edges.AllowedTenants = append(n.Edges.AllowedTenants, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := uq.withAllowedSites; query != nil {
+		if err := uq.loadAllowedSites(ctx, query, nodes,
+			func(n *User) { n.Edges.AllowedSites = []*Site{} },
+			func(n *User, e *Site) { n.Edges.AllowedSites = append(n.Edges.AllowedSites, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := uq.withAllowedAgents; query != nil {
+		if err := uq.loadAllowedAgents(ctx, query, nodes,
+			func(n *User) { n.Edges.AllowedAgents = []*Agent{} },
+			func(n *User, e *Agent) { n.Edges.AllowedAgents = append(n.Edges.AllowedAgents, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -511,6 +643,189 @@ func (uq *UserQuery) loadRecoverycodes(ctx context.Context, query *RecoveryCodeQ
 			return fmt.Errorf(`unexpected referenced foreign-key "user_recoverycodes" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
+	}
+	return nil
+}
+func (uq *UserQuery) loadAllowedTenants(ctx context.Context, query *TenantQuery, nodes []*User, init func(*User), assign func(*User, *Tenant)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[string]*User)
+	nids := make(map[int]map[*User]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(user.AllowedTenantsTable)
+		s.Join(joinT).On(s.C(tenant.FieldID), joinT.C(user.AllowedTenantsPrimaryKey[1]))
+		s.Where(sql.InValues(joinT.C(user.AllowedTenantsPrimaryKey[0]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(user.AllowedTenantsPrimaryKey[0]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullString)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := values[0].(*sql.NullString).String
+				inValue := int(values[1].(*sql.NullInt64).Int64)
+				if nids[inValue] == nil {
+					nids[inValue] = map[*User]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*Tenant](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "allowed_tenants" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
+	}
+	return nil
+}
+func (uq *UserQuery) loadAllowedSites(ctx context.Context, query *SiteQuery, nodes []*User, init func(*User), assign func(*User, *Site)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[string]*User)
+	nids := make(map[int]map[*User]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(user.AllowedSitesTable)
+		s.Join(joinT).On(s.C(site.FieldID), joinT.C(user.AllowedSitesPrimaryKey[1]))
+		s.Where(sql.InValues(joinT.C(user.AllowedSitesPrimaryKey[0]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(user.AllowedSitesPrimaryKey[0]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullString)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := values[0].(*sql.NullString).String
+				inValue := int(values[1].(*sql.NullInt64).Int64)
+				if nids[inValue] == nil {
+					nids[inValue] = map[*User]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*Site](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "allowed_sites" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
+	}
+	return nil
+}
+func (uq *UserQuery) loadAllowedAgents(ctx context.Context, query *AgentQuery, nodes []*User, init func(*User), assign func(*User, *Agent)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[string]*User)
+	nids := make(map[string]map[*User]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(user.AllowedAgentsTable)
+		s.Join(joinT).On(s.C(agent.FieldID), joinT.C(user.AllowedAgentsPrimaryKey[1]))
+		s.Where(sql.InValues(joinT.C(user.AllowedAgentsPrimaryKey[0]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(user.AllowedAgentsPrimaryKey[0]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullString)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := values[0].(*sql.NullString).String
+				inValue := values[1].(*sql.NullString).String
+				if nids[inValue] == nil {
+					nids[inValue] = map[*User]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*Agent](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "allowed_agents" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
 	}
 	return nil
 }

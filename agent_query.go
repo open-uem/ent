@@ -34,6 +34,7 @@ import (
 	"github.com/open-uem/ent/systemupdate"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/update"
+	"github.com/open-uem/ent/user"
 	"github.com/open-uem/ent/wingetconfigexclusion"
 )
 
@@ -65,6 +66,7 @@ type AgentQuery struct {
 	withSite                *SiteQuery
 	withPhysicaldisks       *PhysicalDiskQuery
 	withNetbird             *NetbirdQuery
+	withConsoleUsers        *UserQuery
 	withFKs                 bool
 	modifiers               []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
@@ -565,6 +567,28 @@ func (aq *AgentQuery) QueryNetbird() *NetbirdQuery {
 	return query
 }
 
+// QueryConsoleUsers chains the current query on the "console_users" edge.
+func (aq *AgentQuery) QueryConsoleUsers() *UserQuery {
+	query := (&UserClient{config: aq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := aq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := aq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, selector),
+			sqlgraph.To(user.Table, user.FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, true, agent.ConsoleUsersTable, agent.ConsoleUsersPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
 // First returns the first Agent entity from the query.
 // Returns a *NotFoundError when no Agent was found.
 func (aq *AgentQuery) First(ctx context.Context) (*Agent, error) {
@@ -778,6 +802,7 @@ func (aq *AgentQuery) Clone() *AgentQuery {
 		withSite:                aq.withSite.Clone(),
 		withPhysicaldisks:       aq.withPhysicaldisks.Clone(),
 		withNetbird:             aq.withNetbird.Clone(),
+		withConsoleUsers:        aq.withConsoleUsers.Clone(),
 		// clone intermediate query.
 		sql:       aq.sql.Clone(),
 		path:      aq.path,
@@ -1016,6 +1041,17 @@ func (aq *AgentQuery) WithNetbird(opts ...func(*NetbirdQuery)) *AgentQuery {
 	return aq
 }
 
+// WithConsoleUsers tells the query-builder to eager-load the nodes that are connected to
+// the "console_users" edge. The optional arguments are used to configure the query builder of the edge.
+func (aq *AgentQuery) WithConsoleUsers(opts ...func(*UserQuery)) *AgentQuery {
+	query := (&UserClient{config: aq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	aq.withConsoleUsers = query
+	return aq
+}
+
 // GroupBy is used to group vertices by one or more fields/columns.
 // It is often used with aggregate functions, like: count, max, mean, min, sum.
 //
@@ -1095,7 +1131,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		nodes       = []*Agent{}
 		withFKs     = aq.withFKs
 		_spec       = aq.querySpec()
-		loadedTypes = [21]bool{
+		loadedTypes = [22]bool{
 			aq.withComputer != nil,
 			aq.withOperatingsystem != nil,
 			aq.withSystemupdate != nil,
@@ -1117,6 +1153,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 			aq.withSite != nil,
 			aq.withPhysicaldisks != nil,
 			aq.withNetbird != nil,
+			aq.withConsoleUsers != nil,
 		}
 	)
 	if aq.withRelease != nil {
@@ -1286,6 +1323,13 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 	if query := aq.withNetbird; query != nil {
 		if err := aq.loadNetbird(ctx, query, nodes, nil,
 			func(n *Agent, e *Netbird) { n.Edges.Netbird = e }); err != nil {
+			return nil, err
+		}
+	}
+	if query := aq.withConsoleUsers; query != nil {
+		if err := aq.loadConsoleUsers(ctx, query, nodes,
+			func(n *Agent) { n.Edges.ConsoleUsers = []*User{} },
+			func(n *Agent, e *User) { n.Edges.ConsoleUsers = append(n.Edges.ConsoleUsers, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -1986,6 +2030,67 @@ func (aq *AgentQuery) loadNetbird(ctx context.Context, query *NetbirdQuery, node
 			return fmt.Errorf(`unexpected referenced foreign-key "agent_netbird" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
+	}
+	return nil
+}
+func (aq *AgentQuery) loadConsoleUsers(ctx context.Context, query *UserQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *User)) error {
+	edgeIDs := make([]driver.Value, len(nodes))
+	byID := make(map[string]*Agent)
+	nids := make(map[string]map[*Agent]struct{})
+	for i, node := range nodes {
+		edgeIDs[i] = node.ID
+		byID[node.ID] = node
+		if init != nil {
+			init(node)
+		}
+	}
+	query.Where(func(s *sql.Selector) {
+		joinT := sql.Table(agent.ConsoleUsersTable)
+		s.Join(joinT).On(s.C(user.FieldID), joinT.C(agent.ConsoleUsersPrimaryKey[0]))
+		s.Where(sql.InValues(joinT.C(agent.ConsoleUsersPrimaryKey[1]), edgeIDs...))
+		columns := s.SelectedColumns()
+		s.Select(joinT.C(agent.ConsoleUsersPrimaryKey[1]))
+		s.AppendSelect(columns...)
+		s.SetDistinct(false)
+	})
+	if err := query.prepareQuery(ctx); err != nil {
+		return err
+	}
+	qr := QuerierFunc(func(ctx context.Context, q Query) (Value, error) {
+		return query.sqlAll(ctx, func(_ context.Context, spec *sqlgraph.QuerySpec) {
+			assign := spec.Assign
+			values := spec.ScanValues
+			spec.ScanValues = func(columns []string) ([]any, error) {
+				values, err := values(columns[1:])
+				if err != nil {
+					return nil, err
+				}
+				return append([]any{new(sql.NullString)}, values...), nil
+			}
+			spec.Assign = func(columns []string, values []any) error {
+				outValue := values[0].(*sql.NullString).String
+				inValue := values[1].(*sql.NullString).String
+				if nids[inValue] == nil {
+					nids[inValue] = map[*Agent]struct{}{byID[outValue]: {}}
+					return assign(columns[1:], values[1:])
+				}
+				nids[inValue][byID[outValue]] = struct{}{}
+				return nil
+			}
+		})
+	})
+	neighbors, err := withInterceptors[[]*User](ctx, query, qr, query.inters)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		nodes, ok := nids[n.ID]
+		if !ok {
+			return fmt.Errorf(`unexpected "console_users" node returned %v`, n.ID)
+		}
+		for kn := range nodes {
+			assign(kn, n)
+		}
 	}
 	return nil
 }

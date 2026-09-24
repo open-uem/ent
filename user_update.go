@@ -11,9 +11,12 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
+	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/sessions"
+	"github.com/open-uem/ent/site"
+	"github.com/open-uem/ent/tenant"
 	"github.com/open-uem/ent/user"
 )
 
@@ -385,6 +388,20 @@ func (uu *UserUpdate) ClearNewUserToken() *UserUpdate {
 	return uu
 }
 
+// SetConsoleRole sets the "console_role" field.
+func (uu *UserUpdate) SetConsoleRole(ur user.ConsoleRole) *UserUpdate {
+	uu.mutation.SetConsoleRole(ur)
+	return uu
+}
+
+// SetNillableConsoleRole sets the "console_role" field if the given value is not nil.
+func (uu *UserUpdate) SetNillableConsoleRole(ur *user.ConsoleRole) *UserUpdate {
+	if ur != nil {
+		uu.SetConsoleRole(*ur)
+	}
+	return uu
+}
+
 // AddSessionIDs adds the "sessions" edge to the Sessions entity by IDs.
 func (uu *UserUpdate) AddSessionIDs(ids ...string) *UserUpdate {
 	uu.mutation.AddSessionIDs(ids...)
@@ -413,6 +430,51 @@ func (uu *UserUpdate) AddRecoverycodes(r ...*RecoveryCode) *UserUpdate {
 		ids[i] = r[i].ID
 	}
 	return uu.AddRecoverycodeIDs(ids...)
+}
+
+// AddAllowedTenantIDs adds the "allowed_tenants" edge to the Tenant entity by IDs.
+func (uu *UserUpdate) AddAllowedTenantIDs(ids ...int) *UserUpdate {
+	uu.mutation.AddAllowedTenantIDs(ids...)
+	return uu
+}
+
+// AddAllowedTenants adds the "allowed_tenants" edges to the Tenant entity.
+func (uu *UserUpdate) AddAllowedTenants(t ...*Tenant) *UserUpdate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return uu.AddAllowedTenantIDs(ids...)
+}
+
+// AddAllowedSiteIDs adds the "allowed_sites" edge to the Site entity by IDs.
+func (uu *UserUpdate) AddAllowedSiteIDs(ids ...int) *UserUpdate {
+	uu.mutation.AddAllowedSiteIDs(ids...)
+	return uu
+}
+
+// AddAllowedSites adds the "allowed_sites" edges to the Site entity.
+func (uu *UserUpdate) AddAllowedSites(s ...*Site) *UserUpdate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return uu.AddAllowedSiteIDs(ids...)
+}
+
+// AddAllowedAgentIDs adds the "allowed_agents" edge to the Agent entity by IDs.
+func (uu *UserUpdate) AddAllowedAgentIDs(ids ...string) *UserUpdate {
+	uu.mutation.AddAllowedAgentIDs(ids...)
+	return uu
+}
+
+// AddAllowedAgents adds the "allowed_agents" edges to the Agent entity.
+func (uu *UserUpdate) AddAllowedAgents(a ...*Agent) *UserUpdate {
+	ids := make([]string, len(a))
+	for i := range a {
+		ids[i] = a[i].ID
+	}
+	return uu.AddAllowedAgentIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -462,6 +524,69 @@ func (uu *UserUpdate) RemoveRecoverycodes(r ...*RecoveryCode) *UserUpdate {
 	return uu.RemoveRecoverycodeIDs(ids...)
 }
 
+// ClearAllowedTenants clears all "allowed_tenants" edges to the Tenant entity.
+func (uu *UserUpdate) ClearAllowedTenants() *UserUpdate {
+	uu.mutation.ClearAllowedTenants()
+	return uu
+}
+
+// RemoveAllowedTenantIDs removes the "allowed_tenants" edge to Tenant entities by IDs.
+func (uu *UserUpdate) RemoveAllowedTenantIDs(ids ...int) *UserUpdate {
+	uu.mutation.RemoveAllowedTenantIDs(ids...)
+	return uu
+}
+
+// RemoveAllowedTenants removes "allowed_tenants" edges to Tenant entities.
+func (uu *UserUpdate) RemoveAllowedTenants(t ...*Tenant) *UserUpdate {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return uu.RemoveAllowedTenantIDs(ids...)
+}
+
+// ClearAllowedSites clears all "allowed_sites" edges to the Site entity.
+func (uu *UserUpdate) ClearAllowedSites() *UserUpdate {
+	uu.mutation.ClearAllowedSites()
+	return uu
+}
+
+// RemoveAllowedSiteIDs removes the "allowed_sites" edge to Site entities by IDs.
+func (uu *UserUpdate) RemoveAllowedSiteIDs(ids ...int) *UserUpdate {
+	uu.mutation.RemoveAllowedSiteIDs(ids...)
+	return uu
+}
+
+// RemoveAllowedSites removes "allowed_sites" edges to Site entities.
+func (uu *UserUpdate) RemoveAllowedSites(s ...*Site) *UserUpdate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return uu.RemoveAllowedSiteIDs(ids...)
+}
+
+// ClearAllowedAgents clears all "allowed_agents" edges to the Agent entity.
+func (uu *UserUpdate) ClearAllowedAgents() *UserUpdate {
+	uu.mutation.ClearAllowedAgents()
+	return uu
+}
+
+// RemoveAllowedAgentIDs removes the "allowed_agents" edge to Agent entities by IDs.
+func (uu *UserUpdate) RemoveAllowedAgentIDs(ids ...string) *UserUpdate {
+	uu.mutation.RemoveAllowedAgentIDs(ids...)
+	return uu
+}
+
+// RemoveAllowedAgents removes "allowed_agents" edges to Agent entities.
+func (uu *UserUpdate) RemoveAllowedAgents(a ...*Agent) *UserUpdate {
+	ids := make([]string, len(a))
+	for i := range a {
+		ids[i] = a[i].ID
+	}
+	return uu.RemoveAllowedAgentIDs(ids...)
+}
+
 // Save executes the query and returns the number of nodes affected by the update operation.
 func (uu *UserUpdate) Save(ctx context.Context) (int, error) {
 	uu.defaults()
@@ -498,6 +623,16 @@ func (uu *UserUpdate) defaults() {
 	}
 }
 
+// check runs all checks and user-defined validators on the builder.
+func (uu *UserUpdate) check() error {
+	if v, ok := uu.mutation.ConsoleRole(); ok {
+		if err := user.ConsoleRoleValidator(v); err != nil {
+			return &ValidationError{Name: "console_role", err: fmt.Errorf(`ent: validator failed for field "User.console_role": %w`, err)}
+		}
+	}
+	return nil
+}
+
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
 func (uu *UserUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UserUpdate {
 	uu.modifiers = append(uu.modifiers, modifiers...)
@@ -505,6 +640,9 @@ func (uu *UserUpdate) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UserUpdat
 }
 
 func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
+	if err := uu.check(); err != nil {
+		return n, err
+	}
 	_spec := sqlgraph.NewUpdateSpec(user.Table, user.Columns, sqlgraph.NewFieldSpec(user.FieldID, field.TypeString))
 	if ps := uu.mutation.predicates; len(ps) > 0 {
 		_spec.Predicate = func(selector *sql.Selector) {
@@ -618,6 +756,9 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if uu.mutation.NewUserTokenCleared() {
 		_spec.ClearField(user.FieldNewUserToken, field.TypeString)
 	}
+	if value, ok := uu.mutation.ConsoleRole(); ok {
+		_spec.SetField(user.FieldConsoleRole, field.TypeEnum, value)
+	}
 	if uu.mutation.SessionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
@@ -701,6 +842,141 @@ func (uu *UserUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if uu.mutation.AllowedTenantsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uu.mutation.RemovedAllowedTenantsIDs(); len(nodes) > 0 && !uu.mutation.AllowedTenantsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uu.mutation.AllowedTenantsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if uu.mutation.AllowedSitesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uu.mutation.RemovedAllowedSitesIDs(); len(nodes) > 0 && !uu.mutation.AllowedSitesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uu.mutation.AllowedSitesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if uu.mutation.AllowedAgentsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uu.mutation.RemovedAllowedAgentsIDs(); len(nodes) > 0 && !uu.mutation.AllowedAgentsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uu.mutation.AllowedAgentsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {
@@ -1084,6 +1360,20 @@ func (uuo *UserUpdateOne) ClearNewUserToken() *UserUpdateOne {
 	return uuo
 }
 
+// SetConsoleRole sets the "console_role" field.
+func (uuo *UserUpdateOne) SetConsoleRole(ur user.ConsoleRole) *UserUpdateOne {
+	uuo.mutation.SetConsoleRole(ur)
+	return uuo
+}
+
+// SetNillableConsoleRole sets the "console_role" field if the given value is not nil.
+func (uuo *UserUpdateOne) SetNillableConsoleRole(ur *user.ConsoleRole) *UserUpdateOne {
+	if ur != nil {
+		uuo.SetConsoleRole(*ur)
+	}
+	return uuo
+}
+
 // AddSessionIDs adds the "sessions" edge to the Sessions entity by IDs.
 func (uuo *UserUpdateOne) AddSessionIDs(ids ...string) *UserUpdateOne {
 	uuo.mutation.AddSessionIDs(ids...)
@@ -1112,6 +1402,51 @@ func (uuo *UserUpdateOne) AddRecoverycodes(r ...*RecoveryCode) *UserUpdateOne {
 		ids[i] = r[i].ID
 	}
 	return uuo.AddRecoverycodeIDs(ids...)
+}
+
+// AddAllowedTenantIDs adds the "allowed_tenants" edge to the Tenant entity by IDs.
+func (uuo *UserUpdateOne) AddAllowedTenantIDs(ids ...int) *UserUpdateOne {
+	uuo.mutation.AddAllowedTenantIDs(ids...)
+	return uuo
+}
+
+// AddAllowedTenants adds the "allowed_tenants" edges to the Tenant entity.
+func (uuo *UserUpdateOne) AddAllowedTenants(t ...*Tenant) *UserUpdateOne {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return uuo.AddAllowedTenantIDs(ids...)
+}
+
+// AddAllowedSiteIDs adds the "allowed_sites" edge to the Site entity by IDs.
+func (uuo *UserUpdateOne) AddAllowedSiteIDs(ids ...int) *UserUpdateOne {
+	uuo.mutation.AddAllowedSiteIDs(ids...)
+	return uuo
+}
+
+// AddAllowedSites adds the "allowed_sites" edges to the Site entity.
+func (uuo *UserUpdateOne) AddAllowedSites(s ...*Site) *UserUpdateOne {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return uuo.AddAllowedSiteIDs(ids...)
+}
+
+// AddAllowedAgentIDs adds the "allowed_agents" edge to the Agent entity by IDs.
+func (uuo *UserUpdateOne) AddAllowedAgentIDs(ids ...string) *UserUpdateOne {
+	uuo.mutation.AddAllowedAgentIDs(ids...)
+	return uuo
+}
+
+// AddAllowedAgents adds the "allowed_agents" edges to the Agent entity.
+func (uuo *UserUpdateOne) AddAllowedAgents(a ...*Agent) *UserUpdateOne {
+	ids := make([]string, len(a))
+	for i := range a {
+		ids[i] = a[i].ID
+	}
+	return uuo.AddAllowedAgentIDs(ids...)
 }
 
 // Mutation returns the UserMutation object of the builder.
@@ -1159,6 +1494,69 @@ func (uuo *UserUpdateOne) RemoveRecoverycodes(r ...*RecoveryCode) *UserUpdateOne
 		ids[i] = r[i].ID
 	}
 	return uuo.RemoveRecoverycodeIDs(ids...)
+}
+
+// ClearAllowedTenants clears all "allowed_tenants" edges to the Tenant entity.
+func (uuo *UserUpdateOne) ClearAllowedTenants() *UserUpdateOne {
+	uuo.mutation.ClearAllowedTenants()
+	return uuo
+}
+
+// RemoveAllowedTenantIDs removes the "allowed_tenants" edge to Tenant entities by IDs.
+func (uuo *UserUpdateOne) RemoveAllowedTenantIDs(ids ...int) *UserUpdateOne {
+	uuo.mutation.RemoveAllowedTenantIDs(ids...)
+	return uuo
+}
+
+// RemoveAllowedTenants removes "allowed_tenants" edges to Tenant entities.
+func (uuo *UserUpdateOne) RemoveAllowedTenants(t ...*Tenant) *UserUpdateOne {
+	ids := make([]int, len(t))
+	for i := range t {
+		ids[i] = t[i].ID
+	}
+	return uuo.RemoveAllowedTenantIDs(ids...)
+}
+
+// ClearAllowedSites clears all "allowed_sites" edges to the Site entity.
+func (uuo *UserUpdateOne) ClearAllowedSites() *UserUpdateOne {
+	uuo.mutation.ClearAllowedSites()
+	return uuo
+}
+
+// RemoveAllowedSiteIDs removes the "allowed_sites" edge to Site entities by IDs.
+func (uuo *UserUpdateOne) RemoveAllowedSiteIDs(ids ...int) *UserUpdateOne {
+	uuo.mutation.RemoveAllowedSiteIDs(ids...)
+	return uuo
+}
+
+// RemoveAllowedSites removes "allowed_sites" edges to Site entities.
+func (uuo *UserUpdateOne) RemoveAllowedSites(s ...*Site) *UserUpdateOne {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return uuo.RemoveAllowedSiteIDs(ids...)
+}
+
+// ClearAllowedAgents clears all "allowed_agents" edges to the Agent entity.
+func (uuo *UserUpdateOne) ClearAllowedAgents() *UserUpdateOne {
+	uuo.mutation.ClearAllowedAgents()
+	return uuo
+}
+
+// RemoveAllowedAgentIDs removes the "allowed_agents" edge to Agent entities by IDs.
+func (uuo *UserUpdateOne) RemoveAllowedAgentIDs(ids ...string) *UserUpdateOne {
+	uuo.mutation.RemoveAllowedAgentIDs(ids...)
+	return uuo
+}
+
+// RemoveAllowedAgents removes "allowed_agents" edges to Agent entities.
+func (uuo *UserUpdateOne) RemoveAllowedAgents(a ...*Agent) *UserUpdateOne {
+	ids := make([]string, len(a))
+	for i := range a {
+		ids[i] = a[i].ID
+	}
+	return uuo.RemoveAllowedAgentIDs(ids...)
 }
 
 // Where appends a list predicates to the UserUpdate builder.
@@ -1210,6 +1608,16 @@ func (uuo *UserUpdateOne) defaults() {
 	}
 }
 
+// check runs all checks and user-defined validators on the builder.
+func (uuo *UserUpdateOne) check() error {
+	if v, ok := uuo.mutation.ConsoleRole(); ok {
+		if err := user.ConsoleRoleValidator(v); err != nil {
+			return &ValidationError{Name: "console_role", err: fmt.Errorf(`ent: validator failed for field "User.console_role": %w`, err)}
+		}
+	}
+	return nil
+}
+
 // Modify adds a statement modifier for attaching custom logic to the UPDATE statement.
 func (uuo *UserUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UserUpdateOne {
 	uuo.modifiers = append(uuo.modifiers, modifiers...)
@@ -1217,6 +1625,9 @@ func (uuo *UserUpdateOne) Modify(modifiers ...func(u *sql.UpdateBuilder)) *UserU
 }
 
 func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) {
+	if err := uuo.check(); err != nil {
+		return _node, err
+	}
 	_spec := sqlgraph.NewUpdateSpec(user.Table, user.Columns, sqlgraph.NewFieldSpec(user.FieldID, field.TypeString))
 	id, ok := uuo.mutation.ID()
 	if !ok {
@@ -1347,6 +1758,9 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 	if uuo.mutation.NewUserTokenCleared() {
 		_spec.ClearField(user.FieldNewUserToken, field.TypeString)
 	}
+	if value, ok := uuo.mutation.ConsoleRole(); ok {
+		_spec.SetField(user.FieldConsoleRole, field.TypeEnum, value)
+	}
 	if uuo.mutation.SessionsCleared() {
 		edge := &sqlgraph.EdgeSpec{
 			Rel:     sqlgraph.O2M,
@@ -1430,6 +1844,141 @@ func (uuo *UserUpdateOne) sqlSave(ctx context.Context) (_node *User, err error) 
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(recoverycode.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if uuo.mutation.AllowedTenantsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uuo.mutation.RemovedAllowedTenantsIDs(); len(nodes) > 0 && !uuo.mutation.AllowedTenantsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uuo.mutation.AllowedTenantsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedTenantsTable,
+			Columns: user.AllowedTenantsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(tenant.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if uuo.mutation.AllowedSitesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uuo.mutation.RemovedAllowedSitesIDs(); len(nodes) > 0 && !uuo.mutation.AllowedSitesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uuo.mutation.AllowedSitesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedSitesTable,
+			Columns: user.AllowedSitesPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(site.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if uuo.mutation.AllowedAgentsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uuo.mutation.RemovedAllowedAgentsIDs(); len(nodes) > 0 && !uuo.mutation.AllowedAgentsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := uuo.mutation.AllowedAgentsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: false,
+			Table:   user.AllowedAgentsTable,
+			Columns: user.AllowedAgentsPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(agent.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

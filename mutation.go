@@ -196,6 +196,9 @@ type AgentMutation struct {
 	clearedphysicaldisks       bool
 	netbird                    *int
 	clearednetbird             bool
+	console_users              map[string]struct{}
+	removedconsole_users       map[string]struct{}
+	clearedconsole_users       bool
 	done                       bool
 	oldValue                   func(context.Context) (*Agent, error)
 	predicates                 []predicate.Agent
@@ -2754,6 +2757,60 @@ func (m *AgentMutation) ResetNetbird() {
 	m.clearednetbird = false
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by ids.
+func (m *AgentMutation) AddConsoleUserIDs(ids ...string) {
+	if m.console_users == nil {
+		m.console_users = make(map[string]struct{})
+	}
+	for i := range ids {
+		m.console_users[ids[i]] = struct{}{}
+	}
+}
+
+// ClearConsoleUsers clears the "console_users" edge to the User entity.
+func (m *AgentMutation) ClearConsoleUsers() {
+	m.clearedconsole_users = true
+}
+
+// ConsoleUsersCleared reports if the "console_users" edge to the User entity was cleared.
+func (m *AgentMutation) ConsoleUsersCleared() bool {
+	return m.clearedconsole_users
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to the User entity by IDs.
+func (m *AgentMutation) RemoveConsoleUserIDs(ids ...string) {
+	if m.removedconsole_users == nil {
+		m.removedconsole_users = make(map[string]struct{})
+	}
+	for i := range ids {
+		delete(m.console_users, ids[i])
+		m.removedconsole_users[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedConsoleUsers returns the removed IDs of the "console_users" edge to the User entity.
+func (m *AgentMutation) RemovedConsoleUsersIDs() (ids []string) {
+	for id := range m.removedconsole_users {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ConsoleUsersIDs returns the "console_users" edge IDs in the mutation.
+func (m *AgentMutation) ConsoleUsersIDs() (ids []string) {
+	for id := range m.console_users {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetConsoleUsers resets all changes to the "console_users" edge.
+func (m *AgentMutation) ResetConsoleUsers() {
+	m.console_users = nil
+	m.clearedconsole_users = false
+	m.removedconsole_users = nil
+}
+
 // Where appends a list predicates to the AgentMutation builder.
 func (m *AgentMutation) Where(ps ...predicate.Agent) {
 	m.predicates = append(m.predicates, ps...)
@@ -3533,7 +3590,7 @@ func (m *AgentMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *AgentMutation) AddedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.computer != nil {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3596,6 +3653,9 @@ func (m *AgentMutation) AddedEdges() []string {
 	}
 	if m.netbird != nil {
 		edges = append(edges, agent.EdgeNetbird)
+	}
+	if m.console_users != nil {
+		edges = append(edges, agent.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -3718,13 +3778,19 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 		if id := m.netbird; id != nil {
 			return []ent.Value{*id}
 		}
+	case agent.EdgeConsoleUsers:
+		ids := make([]ent.Value, 0, len(m.console_users))
+		for id := range m.console_users {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *AgentMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.removedlogicaldisks != nil {
 		edges = append(edges, agent.EdgeLogicaldisks)
 	}
@@ -3769,6 +3835,9 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedphysicaldisks != nil {
 		edges = append(edges, agent.EdgePhysicaldisks)
+	}
+	if m.removedconsole_users != nil {
+		edges = append(edges, agent.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -3867,13 +3936,19 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgeConsoleUsers:
+		ids := make([]ent.Value, 0, len(m.removedconsole_users))
+		for id := range m.removedconsole_users {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *AgentMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.clearedcomputer {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3937,6 +4012,9 @@ func (m *AgentMutation) ClearedEdges() []string {
 	if m.clearednetbird {
 		edges = append(edges, agent.EdgeNetbird)
 	}
+	if m.clearedconsole_users {
+		edges = append(edges, agent.EdgeConsoleUsers)
+	}
 	return edges
 }
 
@@ -3986,6 +4064,8 @@ func (m *AgentMutation) EdgeCleared(name string) bool {
 		return m.clearedphysicaldisks
 	case agent.EdgeNetbird:
 		return m.clearednetbird
+	case agent.EdgeConsoleUsers:
+		return m.clearedconsole_users
 	}
 	return false
 }
@@ -4082,6 +4162,9 @@ func (m *AgentMutation) ResetEdge(name string) error {
 		return nil
 	case agent.EdgeNetbird:
 		m.ResetNetbird()
+		return nil
+	case agent.EdgeConsoleUsers:
+		m.ResetConsoleUsers()
 		return nil
 	}
 	return fmt.Errorf("unknown Agent edge %s", name)
@@ -28062,26 +28145,29 @@ func (m *ShareMutation) ResetEdge(name string) error {
 // SiteMutation represents an operation that mutates the Site nodes in the graph.
 type SiteMutation struct {
 	config
-	op              Op
-	typ             string
-	id              *int
-	description     *string
-	is_default      *bool
-	domain          *string
-	created         *time.Time
-	modified        *time.Time
-	clearedFields   map[string]struct{}
-	tenant          *int
-	clearedtenant   bool
-	agents          map[string]struct{}
-	removedagents   map[string]struct{}
-	clearedagents   bool
-	profiles        map[int]struct{}
-	removedprofiles map[int]struct{}
-	clearedprofiles bool
-	done            bool
-	oldValue        func(context.Context) (*Site, error)
-	predicates      []predicate.Site
+	op                   Op
+	typ                  string
+	id                   *int
+	description          *string
+	is_default           *bool
+	domain               *string
+	created              *time.Time
+	modified             *time.Time
+	clearedFields        map[string]struct{}
+	tenant               *int
+	clearedtenant        bool
+	agents               map[string]struct{}
+	removedagents        map[string]struct{}
+	clearedagents        bool
+	profiles             map[int]struct{}
+	removedprofiles      map[int]struct{}
+	clearedprofiles      bool
+	console_users        map[string]struct{}
+	removedconsole_users map[string]struct{}
+	clearedconsole_users bool
+	done                 bool
+	oldValue             func(context.Context) (*Site, error)
+	predicates           []predicate.Site
 }
 
 var _ ent.Mutation = (*SiteMutation)(nil)
@@ -28574,6 +28660,60 @@ func (m *SiteMutation) ResetProfiles() {
 	m.removedprofiles = nil
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by ids.
+func (m *SiteMutation) AddConsoleUserIDs(ids ...string) {
+	if m.console_users == nil {
+		m.console_users = make(map[string]struct{})
+	}
+	for i := range ids {
+		m.console_users[ids[i]] = struct{}{}
+	}
+}
+
+// ClearConsoleUsers clears the "console_users" edge to the User entity.
+func (m *SiteMutation) ClearConsoleUsers() {
+	m.clearedconsole_users = true
+}
+
+// ConsoleUsersCleared reports if the "console_users" edge to the User entity was cleared.
+func (m *SiteMutation) ConsoleUsersCleared() bool {
+	return m.clearedconsole_users
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to the User entity by IDs.
+func (m *SiteMutation) RemoveConsoleUserIDs(ids ...string) {
+	if m.removedconsole_users == nil {
+		m.removedconsole_users = make(map[string]struct{})
+	}
+	for i := range ids {
+		delete(m.console_users, ids[i])
+		m.removedconsole_users[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedConsoleUsers returns the removed IDs of the "console_users" edge to the User entity.
+func (m *SiteMutation) RemovedConsoleUsersIDs() (ids []string) {
+	for id := range m.removedconsole_users {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ConsoleUsersIDs returns the "console_users" edge IDs in the mutation.
+func (m *SiteMutation) ConsoleUsersIDs() (ids []string) {
+	for id := range m.console_users {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetConsoleUsers resets all changes to the "console_users" edge.
+func (m *SiteMutation) ResetConsoleUsers() {
+	m.console_users = nil
+	m.clearedconsole_users = false
+	m.removedconsole_users = nil
+}
+
 // Where appends a list predicates to the SiteMutation builder.
 func (m *SiteMutation) Where(ps ...predicate.Site) {
 	m.predicates = append(m.predicates, ps...)
@@ -28808,7 +28948,7 @@ func (m *SiteMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *SiteMutation) AddedEdges() []string {
-	edges := make([]string, 0, 3)
+	edges := make([]string, 0, 4)
 	if m.tenant != nil {
 		edges = append(edges, site.EdgeTenant)
 	}
@@ -28817,6 +28957,9 @@ func (m *SiteMutation) AddedEdges() []string {
 	}
 	if m.profiles != nil {
 		edges = append(edges, site.EdgeProfiles)
+	}
+	if m.console_users != nil {
+		edges = append(edges, site.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -28841,18 +28984,27 @@ func (m *SiteMutation) AddedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case site.EdgeConsoleUsers:
+		ids := make([]ent.Value, 0, len(m.console_users))
+		for id := range m.console_users {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *SiteMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 3)
+	edges := make([]string, 0, 4)
 	if m.removedagents != nil {
 		edges = append(edges, site.EdgeAgents)
 	}
 	if m.removedprofiles != nil {
 		edges = append(edges, site.EdgeProfiles)
+	}
+	if m.removedconsole_users != nil {
+		edges = append(edges, site.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -28873,13 +29025,19 @@ func (m *SiteMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case site.EdgeConsoleUsers:
+		ids := make([]ent.Value, 0, len(m.removedconsole_users))
+		for id := range m.removedconsole_users {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *SiteMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 3)
+	edges := make([]string, 0, 4)
 	if m.clearedtenant {
 		edges = append(edges, site.EdgeTenant)
 	}
@@ -28888,6 +29046,9 @@ func (m *SiteMutation) ClearedEdges() []string {
 	}
 	if m.clearedprofiles {
 		edges = append(edges, site.EdgeProfiles)
+	}
+	if m.clearedconsole_users {
+		edges = append(edges, site.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -28902,6 +29063,8 @@ func (m *SiteMutation) EdgeCleared(name string) bool {
 		return m.clearedagents
 	case site.EdgeProfiles:
 		return m.clearedprofiles
+	case site.EdgeConsoleUsers:
+		return m.clearedconsole_users
 	}
 	return false
 }
@@ -28929,6 +29092,9 @@ func (m *SiteMutation) ResetEdge(name string) error {
 		return nil
 	case site.EdgeProfiles:
 		m.ResetProfiles()
+		return nil
+	case site.EdgeConsoleUsers:
+		m.ResetConsoleUsers()
 		return nil
 	}
 	return fmt.Errorf("unknown Site edge %s", name)
@@ -39227,36 +39393,39 @@ func (m *TaskReportMutation) ResetEdge(name string) error {
 // TenantMutation represents an operation that mutates the Tenant nodes in the graph.
 type TenantMutation struct {
 	config
-	op              Op
-	typ             string
-	id              *int
-	description     *string
-	is_default      *bool
-	created         *time.Time
-	modified        *time.Time
-	clearedFields   map[string]struct{}
-	sites           map[int]struct{}
-	removedsites    map[int]struct{}
-	clearedsites    bool
-	settings        *int
-	clearedsettings bool
-	tags            map[int]struct{}
-	removedtags     map[int]struct{}
-	clearedtags     bool
-	metadata        map[int]struct{}
-	removedmetadata map[int]struct{}
-	clearedmetadata bool
-	rustdesk        map[int]struct{}
-	removedrustdesk map[int]struct{}
-	clearedrustdesk bool
-	netbird         *int
-	clearednetbird  bool
-	profiles        map[int]struct{}
-	removedprofiles map[int]struct{}
-	clearedprofiles bool
-	done            bool
-	oldValue        func(context.Context) (*Tenant, error)
-	predicates      []predicate.Tenant
+	op                   Op
+	typ                  string
+	id                   *int
+	description          *string
+	is_default           *bool
+	created              *time.Time
+	modified             *time.Time
+	clearedFields        map[string]struct{}
+	sites                map[int]struct{}
+	removedsites         map[int]struct{}
+	clearedsites         bool
+	settings             *int
+	clearedsettings      bool
+	tags                 map[int]struct{}
+	removedtags          map[int]struct{}
+	clearedtags          bool
+	metadata             map[int]struct{}
+	removedmetadata      map[int]struct{}
+	clearedmetadata      bool
+	rustdesk             map[int]struct{}
+	removedrustdesk      map[int]struct{}
+	clearedrustdesk      bool
+	netbird              *int
+	clearednetbird       bool
+	profiles             map[int]struct{}
+	removedprofiles      map[int]struct{}
+	clearedprofiles      bool
+	console_users        map[string]struct{}
+	removedconsole_users map[string]struct{}
+	clearedconsole_users bool
+	done                 bool
+	oldValue             func(context.Context) (*Tenant, error)
+	predicates           []predicate.Tenant
 }
 
 var _ ent.Mutation = (*TenantMutation)(nil)
@@ -39901,6 +40070,60 @@ func (m *TenantMutation) ResetProfiles() {
 	m.removedprofiles = nil
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by ids.
+func (m *TenantMutation) AddConsoleUserIDs(ids ...string) {
+	if m.console_users == nil {
+		m.console_users = make(map[string]struct{})
+	}
+	for i := range ids {
+		m.console_users[ids[i]] = struct{}{}
+	}
+}
+
+// ClearConsoleUsers clears the "console_users" edge to the User entity.
+func (m *TenantMutation) ClearConsoleUsers() {
+	m.clearedconsole_users = true
+}
+
+// ConsoleUsersCleared reports if the "console_users" edge to the User entity was cleared.
+func (m *TenantMutation) ConsoleUsersCleared() bool {
+	return m.clearedconsole_users
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to the User entity by IDs.
+func (m *TenantMutation) RemoveConsoleUserIDs(ids ...string) {
+	if m.removedconsole_users == nil {
+		m.removedconsole_users = make(map[string]struct{})
+	}
+	for i := range ids {
+		delete(m.console_users, ids[i])
+		m.removedconsole_users[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedConsoleUsers returns the removed IDs of the "console_users" edge to the User entity.
+func (m *TenantMutation) RemovedConsoleUsersIDs() (ids []string) {
+	for id := range m.removedconsole_users {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ConsoleUsersIDs returns the "console_users" edge IDs in the mutation.
+func (m *TenantMutation) ConsoleUsersIDs() (ids []string) {
+	for id := range m.console_users {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetConsoleUsers resets all changes to the "console_users" edge.
+func (m *TenantMutation) ResetConsoleUsers() {
+	m.console_users = nil
+	m.clearedconsole_users = false
+	m.removedconsole_users = nil
+}
+
 // Where appends a list predicates to the TenantMutation builder.
 func (m *TenantMutation) Where(ps ...predicate.Tenant) {
 	m.predicates = append(m.predicates, ps...)
@@ -40112,7 +40335,7 @@ func (m *TenantMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *TenantMutation) AddedEdges() []string {
-	edges := make([]string, 0, 7)
+	edges := make([]string, 0, 8)
 	if m.sites != nil {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -40133,6 +40356,9 @@ func (m *TenantMutation) AddedEdges() []string {
 	}
 	if m.profiles != nil {
 		edges = append(edges, tenant.EdgeProfiles)
+	}
+	if m.console_users != nil {
+		edges = append(edges, tenant.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -40179,13 +40405,19 @@ func (m *TenantMutation) AddedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case tenant.EdgeConsoleUsers:
+		ids := make([]ent.Value, 0, len(m.console_users))
+		for id := range m.console_users {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *TenantMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 7)
+	edges := make([]string, 0, 8)
 	if m.removedsites != nil {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -40200,6 +40432,9 @@ func (m *TenantMutation) RemovedEdges() []string {
 	}
 	if m.removedprofiles != nil {
 		edges = append(edges, tenant.EdgeProfiles)
+	}
+	if m.removedconsole_users != nil {
+		edges = append(edges, tenant.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -40238,13 +40473,19 @@ func (m *TenantMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case tenant.EdgeConsoleUsers:
+		ids := make([]ent.Value, 0, len(m.removedconsole_users))
+		for id := range m.removedconsole_users {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *TenantMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 7)
+	edges := make([]string, 0, 8)
 	if m.clearedsites {
 		edges = append(edges, tenant.EdgeSites)
 	}
@@ -40265,6 +40506,9 @@ func (m *TenantMutation) ClearedEdges() []string {
 	}
 	if m.clearedprofiles {
 		edges = append(edges, tenant.EdgeProfiles)
+	}
+	if m.clearedconsole_users {
+		edges = append(edges, tenant.EdgeConsoleUsers)
 	}
 	return edges
 }
@@ -40287,6 +40531,8 @@ func (m *TenantMutation) EdgeCleared(name string) bool {
 		return m.clearednetbird
 	case tenant.EdgeProfiles:
 		return m.clearedprofiles
+	case tenant.EdgeConsoleUsers:
+		return m.clearedconsole_users
 	}
 	return false
 }
@@ -40329,6 +40575,9 @@ func (m *TenantMutation) ResetEdge(name string) error {
 		return nil
 	case tenant.EdgeProfiles:
 		m.ResetProfiles()
+		return nil
+	case tenant.EdgeConsoleUsers:
+		m.ResetConsoleUsers()
 		return nil
 	}
 	return fmt.Errorf("unknown Tenant edge %s", name)
@@ -40882,6 +41131,7 @@ type UserMutation struct {
 	forgot_password_code            *string
 	forgot_password_code_expires_at *time.Time
 	new_user_token                  *string
+	console_role                    *user.ConsoleRole
 	clearedFields                   map[string]struct{}
 	sessions                        map[string]struct{}
 	removedsessions                 map[string]struct{}
@@ -40889,6 +41139,15 @@ type UserMutation struct {
 	recoverycodes                   map[int]struct{}
 	removedrecoverycodes            map[int]struct{}
 	clearedrecoverycodes            bool
+	allowed_tenants                 map[int]struct{}
+	removedallowed_tenants          map[int]struct{}
+	clearedallowed_tenants          bool
+	allowed_sites                   map[int]struct{}
+	removedallowed_sites            map[int]struct{}
+	clearedallowed_sites            bool
+	allowed_agents                  map[string]struct{}
+	removedallowed_agents           map[string]struct{}
+	clearedallowed_agents           bool
 	done                            bool
 	oldValue                        func(context.Context) (*User, error)
 	predicates                      []predicate.User
@@ -41890,6 +42149,42 @@ func (m *UserMutation) ResetNewUserToken() {
 	delete(m.clearedFields, user.FieldNewUserToken)
 }
 
+// SetConsoleRole sets the "console_role" field.
+func (m *UserMutation) SetConsoleRole(ur user.ConsoleRole) {
+	m.console_role = &ur
+}
+
+// ConsoleRole returns the value of the "console_role" field in the mutation.
+func (m *UserMutation) ConsoleRole() (r user.ConsoleRole, exists bool) {
+	v := m.console_role
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldConsoleRole returns the old "console_role" field's value of the User entity.
+// If the User object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *UserMutation) OldConsoleRole(ctx context.Context) (v user.ConsoleRole, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldConsoleRole is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldConsoleRole requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldConsoleRole: %w", err)
+	}
+	return oldValue.ConsoleRole, nil
+}
+
+// ResetConsoleRole resets all changes to the "console_role" field.
+func (m *UserMutation) ResetConsoleRole() {
+	m.console_role = nil
+}
+
 // AddSessionIDs adds the "sessions" edge to the Sessions entity by ids.
 func (m *UserMutation) AddSessionIDs(ids ...string) {
 	if m.sessions == nil {
@@ -41998,6 +42293,168 @@ func (m *UserMutation) ResetRecoverycodes() {
 	m.removedrecoverycodes = nil
 }
 
+// AddAllowedTenantIDs adds the "allowed_tenants" edge to the Tenant entity by ids.
+func (m *UserMutation) AddAllowedTenantIDs(ids ...int) {
+	if m.allowed_tenants == nil {
+		m.allowed_tenants = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.allowed_tenants[ids[i]] = struct{}{}
+	}
+}
+
+// ClearAllowedTenants clears the "allowed_tenants" edge to the Tenant entity.
+func (m *UserMutation) ClearAllowedTenants() {
+	m.clearedallowed_tenants = true
+}
+
+// AllowedTenantsCleared reports if the "allowed_tenants" edge to the Tenant entity was cleared.
+func (m *UserMutation) AllowedTenantsCleared() bool {
+	return m.clearedallowed_tenants
+}
+
+// RemoveAllowedTenantIDs removes the "allowed_tenants" edge to the Tenant entity by IDs.
+func (m *UserMutation) RemoveAllowedTenantIDs(ids ...int) {
+	if m.removedallowed_tenants == nil {
+		m.removedallowed_tenants = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.allowed_tenants, ids[i])
+		m.removedallowed_tenants[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedAllowedTenants returns the removed IDs of the "allowed_tenants" edge to the Tenant entity.
+func (m *UserMutation) RemovedAllowedTenantsIDs() (ids []int) {
+	for id := range m.removedallowed_tenants {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// AllowedTenantsIDs returns the "allowed_tenants" edge IDs in the mutation.
+func (m *UserMutation) AllowedTenantsIDs() (ids []int) {
+	for id := range m.allowed_tenants {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetAllowedTenants resets all changes to the "allowed_tenants" edge.
+func (m *UserMutation) ResetAllowedTenants() {
+	m.allowed_tenants = nil
+	m.clearedallowed_tenants = false
+	m.removedallowed_tenants = nil
+}
+
+// AddAllowedSiteIDs adds the "allowed_sites" edge to the Site entity by ids.
+func (m *UserMutation) AddAllowedSiteIDs(ids ...int) {
+	if m.allowed_sites == nil {
+		m.allowed_sites = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.allowed_sites[ids[i]] = struct{}{}
+	}
+}
+
+// ClearAllowedSites clears the "allowed_sites" edge to the Site entity.
+func (m *UserMutation) ClearAllowedSites() {
+	m.clearedallowed_sites = true
+}
+
+// AllowedSitesCleared reports if the "allowed_sites" edge to the Site entity was cleared.
+func (m *UserMutation) AllowedSitesCleared() bool {
+	return m.clearedallowed_sites
+}
+
+// RemoveAllowedSiteIDs removes the "allowed_sites" edge to the Site entity by IDs.
+func (m *UserMutation) RemoveAllowedSiteIDs(ids ...int) {
+	if m.removedallowed_sites == nil {
+		m.removedallowed_sites = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.allowed_sites, ids[i])
+		m.removedallowed_sites[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedAllowedSites returns the removed IDs of the "allowed_sites" edge to the Site entity.
+func (m *UserMutation) RemovedAllowedSitesIDs() (ids []int) {
+	for id := range m.removedallowed_sites {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// AllowedSitesIDs returns the "allowed_sites" edge IDs in the mutation.
+func (m *UserMutation) AllowedSitesIDs() (ids []int) {
+	for id := range m.allowed_sites {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetAllowedSites resets all changes to the "allowed_sites" edge.
+func (m *UserMutation) ResetAllowedSites() {
+	m.allowed_sites = nil
+	m.clearedallowed_sites = false
+	m.removedallowed_sites = nil
+}
+
+// AddAllowedAgentIDs adds the "allowed_agents" edge to the Agent entity by ids.
+func (m *UserMutation) AddAllowedAgentIDs(ids ...string) {
+	if m.allowed_agents == nil {
+		m.allowed_agents = make(map[string]struct{})
+	}
+	for i := range ids {
+		m.allowed_agents[ids[i]] = struct{}{}
+	}
+}
+
+// ClearAllowedAgents clears the "allowed_agents" edge to the Agent entity.
+func (m *UserMutation) ClearAllowedAgents() {
+	m.clearedallowed_agents = true
+}
+
+// AllowedAgentsCleared reports if the "allowed_agents" edge to the Agent entity was cleared.
+func (m *UserMutation) AllowedAgentsCleared() bool {
+	return m.clearedallowed_agents
+}
+
+// RemoveAllowedAgentIDs removes the "allowed_agents" edge to the Agent entity by IDs.
+func (m *UserMutation) RemoveAllowedAgentIDs(ids ...string) {
+	if m.removedallowed_agents == nil {
+		m.removedallowed_agents = make(map[string]struct{})
+	}
+	for i := range ids {
+		delete(m.allowed_agents, ids[i])
+		m.removedallowed_agents[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedAllowedAgents returns the removed IDs of the "allowed_agents" edge to the Agent entity.
+func (m *UserMutation) RemovedAllowedAgentsIDs() (ids []string) {
+	for id := range m.removedallowed_agents {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// AllowedAgentsIDs returns the "allowed_agents" edge IDs in the mutation.
+func (m *UserMutation) AllowedAgentsIDs() (ids []string) {
+	for id := range m.allowed_agents {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetAllowedAgents resets all changes to the "allowed_agents" edge.
+func (m *UserMutation) ResetAllowedAgents() {
+	m.allowed_agents = nil
+	m.clearedallowed_agents = false
+	m.removedallowed_agents = nil
+}
+
 // Where appends a list predicates to the UserMutation builder.
 func (m *UserMutation) Where(ps ...predicate.User) {
 	m.predicates = append(m.predicates, ps...)
@@ -42032,7 +42489,7 @@ func (m *UserMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *UserMutation) Fields() []string {
-	fields := make([]string, 0, 19)
+	fields := make([]string, 0, 20)
 	if m.name != nil {
 		fields = append(fields, user.FieldName)
 	}
@@ -42090,6 +42547,9 @@ func (m *UserMutation) Fields() []string {
 	if m.new_user_token != nil {
 		fields = append(fields, user.FieldNewUserToken)
 	}
+	if m.console_role != nil {
+		fields = append(fields, user.FieldConsoleRole)
+	}
 	return fields
 }
 
@@ -42136,6 +42596,8 @@ func (m *UserMutation) Field(name string) (ent.Value, bool) {
 		return m.ForgotPasswordCodeExpiresAt()
 	case user.FieldNewUserToken:
 		return m.NewUserToken()
+	case user.FieldConsoleRole:
+		return m.ConsoleRole()
 	}
 	return nil, false
 }
@@ -42183,6 +42645,8 @@ func (m *UserMutation) OldField(ctx context.Context, name string) (ent.Value, er
 		return m.OldForgotPasswordCodeExpiresAt(ctx)
 	case user.FieldNewUserToken:
 		return m.OldNewUserToken(ctx)
+	case user.FieldConsoleRole:
+		return m.OldConsoleRole(ctx)
 	}
 	return nil, fmt.Errorf("unknown User field %s", name)
 }
@@ -42324,6 +42788,13 @@ func (m *UserMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetNewUserToken(v)
+		return nil
+	case user.FieldConsoleRole:
+		v, ok := value.(user.ConsoleRole)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetConsoleRole(v)
 		return nil
 	}
 	return fmt.Errorf("unknown User field %s", name)
@@ -42530,18 +43001,30 @@ func (m *UserMutation) ResetField(name string) error {
 	case user.FieldNewUserToken:
 		m.ResetNewUserToken()
 		return nil
+	case user.FieldConsoleRole:
+		m.ResetConsoleRole()
+		return nil
 	}
 	return fmt.Errorf("unknown User field %s", name)
 }
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *UserMutation) AddedEdges() []string {
-	edges := make([]string, 0, 2)
+	edges := make([]string, 0, 5)
 	if m.sessions != nil {
 		edges = append(edges, user.EdgeSessions)
 	}
 	if m.recoverycodes != nil {
 		edges = append(edges, user.EdgeRecoverycodes)
+	}
+	if m.allowed_tenants != nil {
+		edges = append(edges, user.EdgeAllowedTenants)
+	}
+	if m.allowed_sites != nil {
+		edges = append(edges, user.EdgeAllowedSites)
+	}
+	if m.allowed_agents != nil {
+		edges = append(edges, user.EdgeAllowedAgents)
 	}
 	return edges
 }
@@ -42562,18 +43045,45 @@ func (m *UserMutation) AddedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case user.EdgeAllowedTenants:
+		ids := make([]ent.Value, 0, len(m.allowed_tenants))
+		for id := range m.allowed_tenants {
+			ids = append(ids, id)
+		}
+		return ids
+	case user.EdgeAllowedSites:
+		ids := make([]ent.Value, 0, len(m.allowed_sites))
+		for id := range m.allowed_sites {
+			ids = append(ids, id)
+		}
+		return ids
+	case user.EdgeAllowedAgents:
+		ids := make([]ent.Value, 0, len(m.allowed_agents))
+		for id := range m.allowed_agents {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *UserMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 2)
+	edges := make([]string, 0, 5)
 	if m.removedsessions != nil {
 		edges = append(edges, user.EdgeSessions)
 	}
 	if m.removedrecoverycodes != nil {
 		edges = append(edges, user.EdgeRecoverycodes)
+	}
+	if m.removedallowed_tenants != nil {
+		edges = append(edges, user.EdgeAllowedTenants)
+	}
+	if m.removedallowed_sites != nil {
+		edges = append(edges, user.EdgeAllowedSites)
+	}
+	if m.removedallowed_agents != nil {
+		edges = append(edges, user.EdgeAllowedAgents)
 	}
 	return edges
 }
@@ -42594,18 +43104,45 @@ func (m *UserMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case user.EdgeAllowedTenants:
+		ids := make([]ent.Value, 0, len(m.removedallowed_tenants))
+		for id := range m.removedallowed_tenants {
+			ids = append(ids, id)
+		}
+		return ids
+	case user.EdgeAllowedSites:
+		ids := make([]ent.Value, 0, len(m.removedallowed_sites))
+		for id := range m.removedallowed_sites {
+			ids = append(ids, id)
+		}
+		return ids
+	case user.EdgeAllowedAgents:
+		ids := make([]ent.Value, 0, len(m.removedallowed_agents))
+		for id := range m.removedallowed_agents {
+			ids = append(ids, id)
+		}
+		return ids
 	}
 	return nil
 }
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *UserMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 2)
+	edges := make([]string, 0, 5)
 	if m.clearedsessions {
 		edges = append(edges, user.EdgeSessions)
 	}
 	if m.clearedrecoverycodes {
 		edges = append(edges, user.EdgeRecoverycodes)
+	}
+	if m.clearedallowed_tenants {
+		edges = append(edges, user.EdgeAllowedTenants)
+	}
+	if m.clearedallowed_sites {
+		edges = append(edges, user.EdgeAllowedSites)
+	}
+	if m.clearedallowed_agents {
+		edges = append(edges, user.EdgeAllowedAgents)
 	}
 	return edges
 }
@@ -42618,6 +43155,12 @@ func (m *UserMutation) EdgeCleared(name string) bool {
 		return m.clearedsessions
 	case user.EdgeRecoverycodes:
 		return m.clearedrecoverycodes
+	case user.EdgeAllowedTenants:
+		return m.clearedallowed_tenants
+	case user.EdgeAllowedSites:
+		return m.clearedallowed_sites
+	case user.EdgeAllowedAgents:
+		return m.clearedallowed_agents
 	}
 	return false
 }
@@ -42639,6 +43182,15 @@ func (m *UserMutation) ResetEdge(name string) error {
 		return nil
 	case user.EdgeRecoverycodes:
 		m.ResetRecoverycodes()
+		return nil
+	case user.EdgeAllowedTenants:
+		m.ResetAllowedTenants()
+		return nil
+	case user.EdgeAllowedSites:
+		m.ResetAllowedSites()
+		return nil
+	case user.EdgeAllowedAgents:
+		m.ResetAllowedAgents()
 		return nil
 	}
 	return fmt.Errorf("unknown User edge %s", name)

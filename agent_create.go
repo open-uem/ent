@@ -33,6 +33,7 @@ import (
 	"github.com/open-uem/ent/systemupdate"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/update"
+	"github.com/open-uem/ent/user"
 	"github.com/open-uem/ent/wingetconfigexclusion"
 )
 
@@ -793,6 +794,21 @@ func (ac *AgentCreate) SetNetbird(n *Netbird) *AgentCreate {
 	return ac.SetNetbirdID(n.ID)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (ac *AgentCreate) AddConsoleUserIDs(ids ...string) *AgentCreate {
+	ac.mutation.AddConsoleUserIDs(ids...)
+	return ac
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (ac *AgentCreate) AddConsoleUsers(u ...*User) *AgentCreate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return ac.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the AgentMutation object of the builder.
 func (ac *AgentCreate) Mutation() *AgentMutation {
 	return ac.mutation
@@ -1454,6 +1470,22 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := ac.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

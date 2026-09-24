@@ -33,6 +33,7 @@ import (
 	"github.com/open-uem/ent/systemupdate"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/update"
+	"github.com/open-uem/ent/user"
 	"github.com/open-uem/ent/wingetconfigexclusion"
 )
 
@@ -959,6 +960,21 @@ func (au *AgentUpdate) SetNetbird(n *Netbird) *AgentUpdate {
 	return au.SetNetbirdID(n.ID)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (au *AgentUpdate) AddConsoleUserIDs(ids ...string) *AgentUpdate {
+	au.mutation.AddConsoleUserIDs(ids...)
+	return au
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (au *AgentUpdate) AddConsoleUsers(u ...*User) *AgentUpdate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return au.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the AgentMutation object of the builder.
 func (au *AgentUpdate) Mutation() *AgentMutation {
 	return au.mutation
@@ -1313,6 +1329,27 @@ func (au *AgentUpdate) RemovePhysicaldisks(p ...*PhysicalDisk) *AgentUpdate {
 func (au *AgentUpdate) ClearNetbird() *AgentUpdate {
 	au.mutation.ClearNetbird()
 	return au
+}
+
+// ClearConsoleUsers clears all "console_users" edges to the User entity.
+func (au *AgentUpdate) ClearConsoleUsers() *AgentUpdate {
+	au.mutation.ClearConsoleUsers()
+	return au
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to User entities by IDs.
+func (au *AgentUpdate) RemoveConsoleUserIDs(ids ...string) *AgentUpdate {
+	au.mutation.RemoveConsoleUserIDs(ids...)
+	return au
+}
+
+// RemoveConsoleUsers removes "console_users" edges to User entities.
+func (au *AgentUpdate) RemoveConsoleUsers(u ...*User) *AgentUpdate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return au.RemoveConsoleUserIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -2399,6 +2436,51 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if au.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := au.mutation.RemovedConsoleUsersIDs(); len(nodes) > 0 && !au.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := au.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(au.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, au.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -3330,6 +3412,21 @@ func (auo *AgentUpdateOne) SetNetbird(n *Netbird) *AgentUpdateOne {
 	return auo.SetNetbirdID(n.ID)
 }
 
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (auo *AgentUpdateOne) AddConsoleUserIDs(ids ...string) *AgentUpdateOne {
+	auo.mutation.AddConsoleUserIDs(ids...)
+	return auo
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (auo *AgentUpdateOne) AddConsoleUsers(u ...*User) *AgentUpdateOne {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return auo.AddConsoleUserIDs(ids...)
+}
+
 // Mutation returns the AgentMutation object of the builder.
 func (auo *AgentUpdateOne) Mutation() *AgentMutation {
 	return auo.mutation
@@ -3684,6 +3781,27 @@ func (auo *AgentUpdateOne) RemovePhysicaldisks(p ...*PhysicalDisk) *AgentUpdateO
 func (auo *AgentUpdateOne) ClearNetbird() *AgentUpdateOne {
 	auo.mutation.ClearNetbird()
 	return auo
+}
+
+// ClearConsoleUsers clears all "console_users" edges to the User entity.
+func (auo *AgentUpdateOne) ClearConsoleUsers() *AgentUpdateOne {
+	auo.mutation.ClearConsoleUsers()
+	return auo
+}
+
+// RemoveConsoleUserIDs removes the "console_users" edge to User entities by IDs.
+func (auo *AgentUpdateOne) RemoveConsoleUserIDs(ids ...string) *AgentUpdateOne {
+	auo.mutation.RemoveConsoleUserIDs(ids...)
+	return auo
+}
+
+// RemoveConsoleUsers removes "console_users" edges to User entities.
+func (auo *AgentUpdateOne) RemoveConsoleUsers(u ...*User) *AgentUpdateOne {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return auo.RemoveConsoleUserIDs(ids...)
 }
 
 // Where appends a list predicates to the AgentUpdate builder.
@@ -4793,6 +4911,51 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(netbird.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if auo.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := auo.mutation.RemovedConsoleUsersIDs(); len(nodes) > 0 && !auo.mutation.ConsoleUsersCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := auo.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   agent.ConsoleUsersTable,
+			Columns: agent.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

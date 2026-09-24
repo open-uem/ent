@@ -3,6 +3,7 @@
 package user
 
 import (
+	"fmt"
 	"time"
 
 	"entgo.io/ent/dialect/sql"
@@ -52,14 +53,28 @@ const (
 	FieldForgotPasswordCodeExpiresAt = "forgot_password_code_expires_at"
 	// FieldNewUserToken holds the string denoting the new_user_token field in the database.
 	FieldNewUserToken = "new_user_token"
+	// FieldConsoleRole holds the string denoting the console_role field in the database.
+	FieldConsoleRole = "console_role"
 	// EdgeSessions holds the string denoting the sessions edge name in mutations.
 	EdgeSessions = "sessions"
 	// EdgeRecoverycodes holds the string denoting the recoverycodes edge name in mutations.
 	EdgeRecoverycodes = "recoverycodes"
+	// EdgeAllowedTenants holds the string denoting the allowed_tenants edge name in mutations.
+	EdgeAllowedTenants = "allowed_tenants"
+	// EdgeAllowedSites holds the string denoting the allowed_sites edge name in mutations.
+	EdgeAllowedSites = "allowed_sites"
+	// EdgeAllowedAgents holds the string denoting the allowed_agents edge name in mutations.
+	EdgeAllowedAgents = "allowed_agents"
 	// SessionsFieldID holds the string denoting the ID field of the Sessions.
 	SessionsFieldID = "token"
 	// RecoveryCodeFieldID holds the string denoting the ID field of the RecoveryCode.
 	RecoveryCodeFieldID = "id"
+	// TenantFieldID holds the string denoting the ID field of the Tenant.
+	TenantFieldID = "id"
+	// SiteFieldID holds the string denoting the ID field of the Site.
+	SiteFieldID = "id"
+	// AgentFieldID holds the string denoting the ID field of the Agent.
+	AgentFieldID = "oid"
 	// Table holds the table name of the user in the database.
 	Table = "users"
 	// SessionsTable is the table that holds the sessions relation/edge.
@@ -76,6 +91,21 @@ const (
 	RecoverycodesInverseTable = "recovery_codes"
 	// RecoverycodesColumn is the table column denoting the recoverycodes relation/edge.
 	RecoverycodesColumn = "user_recoverycodes"
+	// AllowedTenantsTable is the table that holds the allowed_tenants relation/edge. The primary key declared below.
+	AllowedTenantsTable = "user_allowed_tenants"
+	// AllowedTenantsInverseTable is the table name for the Tenant entity.
+	// It exists in this package in order to avoid circular dependency with the "tenant" package.
+	AllowedTenantsInverseTable = "tenants"
+	// AllowedSitesTable is the table that holds the allowed_sites relation/edge. The primary key declared below.
+	AllowedSitesTable = "user_allowed_sites"
+	// AllowedSitesInverseTable is the table name for the Site entity.
+	// It exists in this package in order to avoid circular dependency with the "site" package.
+	AllowedSitesInverseTable = "sites"
+	// AllowedAgentsTable is the table that holds the allowed_agents relation/edge. The primary key declared below.
+	AllowedAgentsTable = "user_allowed_agents"
+	// AllowedAgentsInverseTable is the table name for the Agent entity.
+	// It exists in this package in order to avoid circular dependency with the "agent" package.
+	AllowedAgentsInverseTable = "agents"
 )
 
 // Columns holds all SQL columns for user fields.
@@ -100,7 +130,20 @@ var Columns = []string{
 	FieldForgotPasswordCode,
 	FieldForgotPasswordCodeExpiresAt,
 	FieldNewUserToken,
+	FieldConsoleRole,
 }
+
+var (
+	// AllowedTenantsPrimaryKey and AllowedTenantsColumn2 are the table columns denoting the
+	// primary key for the allowed_tenants relation (M2M).
+	AllowedTenantsPrimaryKey = []string{"user_id", "tenant_id"}
+	// AllowedSitesPrimaryKey and AllowedSitesColumn2 are the table columns denoting the
+	// primary key for the allowed_sites relation (M2M).
+	AllowedSitesPrimaryKey = []string{"user_id", "site_id"}
+	// AllowedAgentsPrimaryKey and AllowedAgentsColumn2 are the table columns denoting the
+	// primary key for the allowed_agents relation (M2M).
+	AllowedAgentsPrimaryKey = []string{"user_id", "agent_id"}
+)
 
 // ValidColumn reports if the column name is valid (part of the table columns).
 func ValidColumn(column string) bool {
@@ -144,6 +187,32 @@ var (
 	// IDValidator is a validator for the "id" field. It is called by the builders before save.
 	IDValidator func(string) error
 )
+
+// ConsoleRole defines the type for the "console_role" enum field.
+type ConsoleRole string
+
+// ConsoleRoleAdmin is the default value of the ConsoleRole enum.
+const DefaultConsoleRole = ConsoleRoleAdmin
+
+// ConsoleRole values.
+const (
+	ConsoleRoleAdmin  ConsoleRole = "admin"
+	ConsoleRoleCustom ConsoleRole = "custom"
+)
+
+func (cr ConsoleRole) String() string {
+	return string(cr)
+}
+
+// ConsoleRoleValidator is a validator for the "console_role" field enum values. It is called by the builders before save.
+func ConsoleRoleValidator(cr ConsoleRole) error {
+	switch cr {
+	case ConsoleRoleAdmin, ConsoleRoleCustom:
+		return nil
+	default:
+		return fmt.Errorf("user: invalid enum value for console_role field: %q", cr)
+	}
+}
 
 // OrderOption defines the ordering options for the User queries.
 type OrderOption func(*sql.Selector)
@@ -248,6 +317,11 @@ func ByNewUserToken(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldNewUserToken, opts...).ToFunc()
 }
 
+// ByConsoleRole orders the results by the console_role field.
+func ByConsoleRole(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldConsoleRole, opts...).ToFunc()
+}
+
 // BySessionsCount orders the results by sessions count.
 func BySessionsCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
@@ -275,6 +349,48 @@ func ByRecoverycodes(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newRecoverycodesStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
+
+// ByAllowedTenantsCount orders the results by allowed_tenants count.
+func ByAllowedTenantsCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newAllowedTenantsStep(), opts...)
+	}
+}
+
+// ByAllowedTenants orders the results by allowed_tenants terms.
+func ByAllowedTenants(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newAllowedTenantsStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
+
+// ByAllowedSitesCount orders the results by allowed_sites count.
+func ByAllowedSitesCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newAllowedSitesStep(), opts...)
+	}
+}
+
+// ByAllowedSites orders the results by allowed_sites terms.
+func ByAllowedSites(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newAllowedSitesStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
+
+// ByAllowedAgentsCount orders the results by allowed_agents count.
+func ByAllowedAgentsCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newAllowedAgentsStep(), opts...)
+	}
+}
+
+// ByAllowedAgents orders the results by allowed_agents terms.
+func ByAllowedAgents(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newAllowedAgentsStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newSessionsStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -287,5 +403,26 @@ func newRecoverycodesStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(RecoverycodesInverseTable, RecoveryCodeFieldID),
 		sqlgraph.Edge(sqlgraph.O2M, false, RecoverycodesTable, RecoverycodesColumn),
+	)
+}
+func newAllowedTenantsStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(AllowedTenantsInverseTable, TenantFieldID),
+		sqlgraph.Edge(sqlgraph.M2M, false, AllowedTenantsTable, AllowedTenantsPrimaryKey...),
+	)
+}
+func newAllowedSitesStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(AllowedSitesInverseTable, SiteFieldID),
+		sqlgraph.Edge(sqlgraph.M2M, false, AllowedSitesTable, AllowedSitesPrimaryKey...),
+	)
+}
+func newAllowedAgentsStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(AllowedAgentsInverseTable, AgentFieldID),
+		sqlgraph.Edge(sqlgraph.M2M, false, AllowedAgentsTable, AllowedAgentsPrimaryKey...),
 	)
 }

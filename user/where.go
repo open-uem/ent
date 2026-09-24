@@ -1180,6 +1180,26 @@ func NewUserTokenContainsFold(v string) predicate.User {
 	return predicate.User(sql.FieldContainsFold(FieldNewUserToken, v))
 }
 
+// ConsoleRoleEQ applies the EQ predicate on the "console_role" field.
+func ConsoleRoleEQ(v ConsoleRole) predicate.User {
+	return predicate.User(sql.FieldEQ(FieldConsoleRole, v))
+}
+
+// ConsoleRoleNEQ applies the NEQ predicate on the "console_role" field.
+func ConsoleRoleNEQ(v ConsoleRole) predicate.User {
+	return predicate.User(sql.FieldNEQ(FieldConsoleRole, v))
+}
+
+// ConsoleRoleIn applies the In predicate on the "console_role" field.
+func ConsoleRoleIn(vs ...ConsoleRole) predicate.User {
+	return predicate.User(sql.FieldIn(FieldConsoleRole, vs...))
+}
+
+// ConsoleRoleNotIn applies the NotIn predicate on the "console_role" field.
+func ConsoleRoleNotIn(vs ...ConsoleRole) predicate.User {
+	return predicate.User(sql.FieldNotIn(FieldConsoleRole, vs...))
+}
+
 // HasSessions applies the HasEdge predicate on the "sessions" edge.
 func HasSessions() predicate.User {
 	return predicate.User(func(s *sql.Selector) {
@@ -1218,6 +1238,75 @@ func HasRecoverycodes() predicate.User {
 func HasRecoverycodesWith(preds ...predicate.RecoveryCode) predicate.User {
 	return predicate.User(func(s *sql.Selector) {
 		step := newRecoverycodesStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
+// HasAllowedTenants applies the HasEdge predicate on the "allowed_tenants" edge.
+func HasAllowedTenants() predicate.User {
+	return predicate.User(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, AllowedTenantsTable, AllowedTenantsPrimaryKey...),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasAllowedTenantsWith applies the HasEdge predicate on the "allowed_tenants" edge with a given conditions (other predicates).
+func HasAllowedTenantsWith(preds ...predicate.Tenant) predicate.User {
+	return predicate.User(func(s *sql.Selector) {
+		step := newAllowedTenantsStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
+// HasAllowedSites applies the HasEdge predicate on the "allowed_sites" edge.
+func HasAllowedSites() predicate.User {
+	return predicate.User(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, AllowedSitesTable, AllowedSitesPrimaryKey...),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasAllowedSitesWith applies the HasEdge predicate on the "allowed_sites" edge with a given conditions (other predicates).
+func HasAllowedSitesWith(preds ...predicate.Site) predicate.User {
+	return predicate.User(func(s *sql.Selector) {
+		step := newAllowedSitesStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
+// HasAllowedAgents applies the HasEdge predicate on the "allowed_agents" edge.
+func HasAllowedAgents() predicate.User {
+	return predicate.User(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.M2M, false, AllowedAgentsTable, AllowedAgentsPrimaryKey...),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasAllowedAgentsWith applies the HasEdge predicate on the "allowed_agents" edge with a given conditions (other predicates).
+func HasAllowedAgentsWith(preds ...predicate.Agent) predicate.User {
+	return predicate.User(func(s *sql.Selector) {
+		step := newAllowedAgentsStep()
 		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
 			for _, p := range preds {
 				p(s)

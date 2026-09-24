@@ -19,6 +19,7 @@ import (
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/tenant"
+	"github.com/open-uem/ent/user"
 )
 
 // TenantCreate is the builder for creating a Tenant entity.
@@ -196,6 +197,21 @@ func (tc *TenantCreate) AddProfiles(p ...*Profile) *TenantCreate {
 		ids[i] = p[i].ID
 	}
 	return tc.AddProfileIDs(ids...)
+}
+
+// AddConsoleUserIDs adds the "console_users" edge to the User entity by IDs.
+func (tc *TenantCreate) AddConsoleUserIDs(ids ...string) *TenantCreate {
+	tc.mutation.AddConsoleUserIDs(ids...)
+	return tc
+}
+
+// AddConsoleUsers adds the "console_users" edges to the User entity.
+func (tc *TenantCreate) AddConsoleUsers(u ...*User) *TenantCreate {
+	ids := make([]string, len(u))
+	for i := range u {
+		ids[i] = u[i].ID
+	}
+	return tc.AddConsoleUserIDs(ids...)
 }
 
 // Mutation returns the TenantMutation object of the builder.
@@ -394,6 +410,22 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := tc.mutation.ConsoleUsersIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.M2M,
+			Inverse: true,
+			Table:   tenant.ConsoleUsersTable,
+			Columns: tenant.ConsoleUsersPrimaryKey,
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(user.FieldID, field.TypeString),
 			},
 		}
 		for _, k := range nodes {

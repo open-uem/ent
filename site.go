@@ -43,9 +43,11 @@ type SiteEdges struct {
 	Agents []*Agent `json:"agents,omitempty"`
 	// Profiles holds the value of the profiles edge.
 	Profiles []*Profile `json:"profiles,omitempty"`
+	// ConsoleUsers holds the value of the console_users edge.
+	ConsoleUsers []*User `json:"console_users,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [3]bool
+	loadedTypes [4]bool
 }
 
 // TenantOrErr returns the Tenant value or an error if the edge
@@ -75,6 +77,15 @@ func (e SiteEdges) ProfilesOrErr() ([]*Profile, error) {
 		return e.Profiles, nil
 	}
 	return nil, &NotLoadedError{edge: "profiles"}
+}
+
+// ConsoleUsersOrErr returns the ConsoleUsers value or an error if the edge
+// was not loaded in eager-loading.
+func (e SiteEdges) ConsoleUsersOrErr() ([]*User, error) {
+	if e.loadedTypes[3] {
+		return e.ConsoleUsers, nil
+	}
+	return nil, &NotLoadedError{edge: "console_users"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -176,6 +187,11 @@ func (s *Site) QueryAgents() *AgentQuery {
 // QueryProfiles queries the "profiles" edge of the Site entity.
 func (s *Site) QueryProfiles() *ProfileQuery {
 	return NewSiteClient(s.config).QueryProfiles(s)
+}
+
+// QueryConsoleUsers queries the "console_users" edge of the Site entity.
+func (s *Site) QueryConsoleUsers() *UserQuery {
+	return NewSiteClient(s.config).QueryConsoleUsers(s)
 }
 
 // Update returns a builder for updating this Site.
