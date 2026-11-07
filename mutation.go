@@ -38559,6 +38559,7 @@ type TaskReportMutation struct {
 	std_output          *string
 	std_error           *string
 	failed              *bool
+	archived            *bool
 	end                 *string
 	clearedFields       map[string]struct{}
 	profileissue        *int
@@ -38802,6 +38803,42 @@ func (m *TaskReportMutation) ResetFailed() {
 	m.failed = nil
 }
 
+// SetArchived sets the "archived" field.
+func (m *TaskReportMutation) SetArchived(b bool) {
+	m.archived = &b
+}
+
+// Archived returns the value of the "archived" field in the mutation.
+func (m *TaskReportMutation) Archived() (r bool, exists bool) {
+	v := m.archived
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldArchived returns the old "archived" field's value of the TaskReport entity.
+// If the TaskReport object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *TaskReportMutation) OldArchived(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldArchived is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldArchived requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldArchived: %w", err)
+	}
+	return oldValue.Archived, nil
+}
+
+// ResetArchived resets all changes to the "archived" field.
+func (m *TaskReportMutation) ResetArchived() {
+	m.archived = nil
+}
+
 // SetEnd sets the "end" field.
 func (m *TaskReportMutation) SetEnd(s string) {
 	m.end = &s
@@ -38963,7 +39000,7 @@ func (m *TaskReportMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *TaskReportMutation) Fields() []string {
-	fields := make([]string, 0, 4)
+	fields := make([]string, 0, 5)
 	if m.std_output != nil {
 		fields = append(fields, taskreport.FieldStdOutput)
 	}
@@ -38972,6 +39009,9 @@ func (m *TaskReportMutation) Fields() []string {
 	}
 	if m.failed != nil {
 		fields = append(fields, taskreport.FieldFailed)
+	}
+	if m.archived != nil {
+		fields = append(fields, taskreport.FieldArchived)
 	}
 	if m.end != nil {
 		fields = append(fields, taskreport.FieldEnd)
@@ -38990,6 +39030,8 @@ func (m *TaskReportMutation) Field(name string) (ent.Value, bool) {
 		return m.StdError()
 	case taskreport.FieldFailed:
 		return m.Failed()
+	case taskreport.FieldArchived:
+		return m.Archived()
 	case taskreport.FieldEnd:
 		return m.End()
 	}
@@ -39007,6 +39049,8 @@ func (m *TaskReportMutation) OldField(ctx context.Context, name string) (ent.Val
 		return m.OldStdError(ctx)
 	case taskreport.FieldFailed:
 		return m.OldFailed(ctx)
+	case taskreport.FieldArchived:
+		return m.OldArchived(ctx)
 	case taskreport.FieldEnd:
 		return m.OldEnd(ctx)
 	}
@@ -39038,6 +39082,13 @@ func (m *TaskReportMutation) SetField(name string, value ent.Value) error {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetFailed(v)
+		return nil
+	case taskreport.FieldArchived:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetArchived(v)
 		return nil
 	case taskreport.FieldEnd:
 		v, ok := value.(string)
@@ -39124,6 +39175,9 @@ func (m *TaskReportMutation) ResetField(name string) error {
 		return nil
 	case taskreport.FieldFailed:
 		m.ResetFailed()
+		return nil
+	case taskreport.FieldArchived:
+		m.ResetArchived()
 		return nil
 	case taskreport.FieldEnd:
 		m.ResetEnd()

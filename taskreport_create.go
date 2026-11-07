@@ -65,6 +65,20 @@ func (trc *TaskReportCreate) SetNillableFailed(b *bool) *TaskReportCreate {
 	return trc
 }
 
+// SetArchived sets the "archived" field.
+func (trc *TaskReportCreate) SetArchived(b bool) *TaskReportCreate {
+	trc.mutation.SetArchived(b)
+	return trc
+}
+
+// SetNillableArchived sets the "archived" field if the given value is not nil.
+func (trc *TaskReportCreate) SetNillableArchived(b *bool) *TaskReportCreate {
+	if b != nil {
+		trc.SetArchived(*b)
+	}
+	return trc
+}
+
 // SetEnd sets the "end" field.
 func (trc *TaskReportCreate) SetEnd(s string) *TaskReportCreate {
 	trc.mutation.SetEnd(s)
@@ -164,6 +178,10 @@ func (trc *TaskReportCreate) defaults() {
 		v := taskreport.DefaultFailed
 		trc.mutation.SetFailed(v)
 	}
+	if _, ok := trc.mutation.Archived(); !ok {
+		v := taskreport.DefaultArchived
+		trc.mutation.SetArchived(v)
+	}
 	if _, ok := trc.mutation.End(); !ok {
 		v := taskreport.DefaultEnd
 		trc.mutation.SetEnd(v)
@@ -174,6 +192,9 @@ func (trc *TaskReportCreate) defaults() {
 func (trc *TaskReportCreate) check() error {
 	if _, ok := trc.mutation.Failed(); !ok {
 		return &ValidationError{Name: "failed", err: errors.New(`ent: missing required field "TaskReport.failed"`)}
+	}
+	if _, ok := trc.mutation.Archived(); !ok {
+		return &ValidationError{Name: "archived", err: errors.New(`ent: missing required field "TaskReport.archived"`)}
 	}
 	return nil
 }
@@ -213,6 +234,10 @@ func (trc *TaskReportCreate) createSpec() (*TaskReport, *sqlgraph.CreateSpec) {
 	if value, ok := trc.mutation.Failed(); ok {
 		_spec.SetField(taskreport.FieldFailed, field.TypeBool, value)
 		_node.Failed = value
+	}
+	if value, ok := trc.mutation.Archived(); ok {
+		_spec.SetField(taskreport.FieldArchived, field.TypeBool, value)
+		_node.Archived = value
 	}
 	if value, ok := trc.mutation.End(); ok {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)
@@ -352,6 +377,18 @@ func (u *TaskReportUpsert) UpdateFailed() *TaskReportUpsert {
 	return u
 }
 
+// SetArchived sets the "archived" field.
+func (u *TaskReportUpsert) SetArchived(v bool) *TaskReportUpsert {
+	u.Set(taskreport.FieldArchived, v)
+	return u
+}
+
+// UpdateArchived sets the "archived" field to the value that was provided on create.
+func (u *TaskReportUpsert) UpdateArchived() *TaskReportUpsert {
+	u.SetExcluded(taskreport.FieldArchived)
+	return u
+}
+
 // SetEnd sets the "end" field.
 func (u *TaskReportUpsert) SetEnd(v string) *TaskReportUpsert {
 	u.Set(taskreport.FieldEnd, v)
@@ -463,6 +500,20 @@ func (u *TaskReportUpsertOne) SetFailed(v bool) *TaskReportUpsertOne {
 func (u *TaskReportUpsertOne) UpdateFailed() *TaskReportUpsertOne {
 	return u.Update(func(s *TaskReportUpsert) {
 		s.UpdateFailed()
+	})
+}
+
+// SetArchived sets the "archived" field.
+func (u *TaskReportUpsertOne) SetArchived(v bool) *TaskReportUpsertOne {
+	return u.Update(func(s *TaskReportUpsert) {
+		s.SetArchived(v)
+	})
+}
+
+// UpdateArchived sets the "archived" field to the value that was provided on create.
+func (u *TaskReportUpsertOne) UpdateArchived() *TaskReportUpsertOne {
+	return u.Update(func(s *TaskReportUpsert) {
+		s.UpdateArchived()
 	})
 }
 
@@ -744,6 +795,20 @@ func (u *TaskReportUpsertBulk) SetFailed(v bool) *TaskReportUpsertBulk {
 func (u *TaskReportUpsertBulk) UpdateFailed() *TaskReportUpsertBulk {
 	return u.Update(func(s *TaskReportUpsert) {
 		s.UpdateFailed()
+	})
+}
+
+// SetArchived sets the "archived" field.
+func (u *TaskReportUpsertBulk) SetArchived(v bool) *TaskReportUpsertBulk {
+	return u.Update(func(s *TaskReportUpsert) {
+		s.SetArchived(v)
+	})
+}
+
+// UpdateArchived sets the "archived" field to the value that was provided on create.
+func (u *TaskReportUpsertBulk) UpdateArchived() *TaskReportUpsertBulk {
+	return u.Update(func(s *TaskReportUpsert) {
+		s.UpdateArchived()
 	})
 }
 

@@ -18,6 +18,8 @@ const (
 	FieldStdError = "std_error"
 	// FieldFailed holds the string denoting the failed field in the database.
 	FieldFailed = "failed"
+	// FieldArchived holds the string denoting the archived field in the database.
+	FieldArchived = "archived"
 	// FieldEnd holds the string denoting the end field in the database.
 	FieldEnd = "end"
 	// EdgeProfileissue holds the string denoting the profileissue edge name in mutations.
@@ -48,6 +50,7 @@ var Columns = []string{
 	FieldStdOutput,
 	FieldStdError,
 	FieldFailed,
+	FieldArchived,
 	FieldEnd,
 }
 
@@ -80,6 +83,8 @@ var (
 	DefaultStdError string
 	// DefaultFailed holds the default value on creation for the "failed" field.
 	DefaultFailed bool
+	// DefaultArchived holds the default value on creation for the "archived" field.
+	DefaultArchived bool
 	// DefaultEnd holds the default value on creation for the "end" field.
 	DefaultEnd string
 )
@@ -105,6 +110,11 @@ func ByStdError(opts ...sql.OrderTermOption) OrderOption {
 // ByFailed orders the results by the failed field.
 func ByFailed(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldFailed, opts...).ToFunc()
+}
+
+// ByArchived orders the results by the archived field.
+func ByArchived(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldArchived, opts...).ToFunc()
 }
 
 // ByEnd orders the results by the end field.

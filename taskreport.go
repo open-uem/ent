@@ -24,6 +24,8 @@ type TaskReport struct {
 	StdError string `json:"std_error,omitempty"`
 	// Failed holds the value of the "failed" field.
 	Failed bool `json:"failed,omitempty"`
+	// Archived holds the value of the "archived" field.
+	Archived bool `json:"archived,omitempty"`
 	// End holds the value of the "end" field.
 	End string `json:"end,omitempty"`
 	// Edges holds the relations/edges for other nodes in the graph.
@@ -72,7 +74,7 @@ func (*TaskReport) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case taskreport.FieldFailed:
+		case taskreport.FieldFailed, taskreport.FieldArchived:
 			values[i] = new(sql.NullBool)
 		case taskreport.FieldID:
 			values[i] = new(sql.NullInt64)
@@ -120,6 +122,12 @@ func (tr *TaskReport) assignValues(columns []string, values []any) error {
 				return fmt.Errorf("unexpected type %T for field failed", values[i])
 			} else if value.Valid {
 				tr.Failed = value.Bool
+			}
+		case taskreport.FieldArchived:
+			if value, ok := values[i].(*sql.NullBool); !ok {
+				return fmt.Errorf("unexpected type %T for field archived", values[i])
+			} else if value.Valid {
+				tr.Archived = value.Bool
 			}
 		case taskreport.FieldEnd:
 			if value, ok := values[i].(*sql.NullString); !ok {
@@ -195,6 +203,9 @@ func (tr *TaskReport) String() string {
 	builder.WriteString(", ")
 	builder.WriteString("failed=")
 	builder.WriteString(fmt.Sprintf("%v", tr.Failed))
+	builder.WriteString(", ")
+	builder.WriteString("archived=")
+	builder.WriteString(fmt.Sprintf("%v", tr.Archived))
 	builder.WriteString(", ")
 	builder.WriteString("end=")
 	builder.WriteString(tr.End)

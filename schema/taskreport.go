@@ -17,6 +17,7 @@ func (TaskReport) Fields() []ent.Field {
 		field.String("std_output").Optional().Default(""),
 		field.String("std_error").Optional().Default(""),
 		field.Bool("failed").Default(false),
+		field.Bool("archived").Default(false),
 		field.String("end").Optional().Default(""),
 	}
 }

@@ -84,6 +84,20 @@ func (tru *TaskReportUpdate) SetNillableFailed(b *bool) *TaskReportUpdate {
 	return tru
 }
 
+// SetArchived sets the "archived" field.
+func (tru *TaskReportUpdate) SetArchived(b bool) *TaskReportUpdate {
+	tru.mutation.SetArchived(b)
+	return tru
+}
+
+// SetNillableArchived sets the "archived" field if the given value is not nil.
+func (tru *TaskReportUpdate) SetNillableArchived(b *bool) *TaskReportUpdate {
+	if b != nil {
+		tru.SetArchived(*b)
+	}
+	return tru
+}
+
 // SetEnd sets the "end" field.
 func (tru *TaskReportUpdate) SetEnd(s string) *TaskReportUpdate {
 	tru.mutation.SetEnd(s)
@@ -215,6 +229,9 @@ func (tru *TaskReportUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if value, ok := tru.mutation.Failed(); ok {
 		_spec.SetField(taskreport.FieldFailed, field.TypeBool, value)
+	}
+	if value, ok := tru.mutation.Archived(); ok {
+		_spec.SetField(taskreport.FieldArchived, field.TypeBool, value)
 	}
 	if value, ok := tru.mutation.End(); ok {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)
@@ -352,6 +369,20 @@ func (truo *TaskReportUpdateOne) SetFailed(b bool) *TaskReportUpdateOne {
 func (truo *TaskReportUpdateOne) SetNillableFailed(b *bool) *TaskReportUpdateOne {
 	if b != nil {
 		truo.SetFailed(*b)
+	}
+	return truo
+}
+
+// SetArchived sets the "archived" field.
+func (truo *TaskReportUpdateOne) SetArchived(b bool) *TaskReportUpdateOne {
+	truo.mutation.SetArchived(b)
+	return truo
+}
+
+// SetNillableArchived sets the "archived" field if the given value is not nil.
+func (truo *TaskReportUpdateOne) SetNillableArchived(b *bool) *TaskReportUpdateOne {
+	if b != nil {
+		truo.SetArchived(*b)
 	}
 	return truo
 }
@@ -517,6 +548,9 @@ func (truo *TaskReportUpdateOne) sqlSave(ctx context.Context) (_node *TaskReport
 	}
 	if value, ok := truo.mutation.Failed(); ok {
 		_spec.SetField(taskreport.FieldFailed, field.TypeBool, value)
+	}
+	if value, ok := truo.mutation.Archived(); ok {
+		_spec.SetField(taskreport.FieldArchived, field.TypeBool, value)
 	}
 	if value, ok := truo.mutation.End(); ok {
 		_spec.SetField(taskreport.FieldEnd, field.TypeString, value)

@@ -760,8 +760,12 @@ func init() {
 	taskreportDescFailed := taskreportFields[2].Descriptor()
 	// taskreport.DefaultFailed holds the default value on creation for the failed field.
 	taskreport.DefaultFailed = taskreportDescFailed.Default.(bool)
+	// taskreportDescArchived is the schema descriptor for archived field.
+	taskreportDescArchived := taskreportFields[3].Descriptor()
+	// taskreport.DefaultArchived holds the default value on creation for the archived field.
+	taskreport.DefaultArchived = taskreportDescArchived.Default.(bool)
 	// taskreportDescEnd is the schema descriptor for end field.
-	taskreportDescEnd := taskreportFields[3].Descriptor()
+	taskreportDescEnd := taskreportFields[4].Descriptor()
 	// taskreport.DefaultEnd holds the default value on creation for the end field.
 	taskreport.DefaultEnd = taskreportDescEnd.Default.(string)
 	tenantFields := schema.Tenant{}.Fields()

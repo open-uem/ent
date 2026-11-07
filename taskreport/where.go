@@ -68,6 +68,11 @@ func Failed(v bool) predicate.TaskReport {
 	return predicate.TaskReport(sql.FieldEQ(FieldFailed, v))
 }
 
+// Archived applies equality check predicate on the "archived" field. It's identical to ArchivedEQ.
+func Archived(v bool) predicate.TaskReport {
+	return predicate.TaskReport(sql.FieldEQ(FieldArchived, v))
+}
+
 // End applies equality check predicate on the "end" field. It's identical to EndEQ.
 func End(v string) predicate.TaskReport {
 	return predicate.TaskReport(sql.FieldEQ(FieldEnd, v))
@@ -231,6 +236,16 @@ func FailedEQ(v bool) predicate.TaskReport {
 // FailedNEQ applies the NEQ predicate on the "failed" field.
 func FailedNEQ(v bool) predicate.TaskReport {
 	return predicate.TaskReport(sql.FieldNEQ(FieldFailed, v))
+}
+
+// ArchivedEQ applies the EQ predicate on the "archived" field.
+func ArchivedEQ(v bool) predicate.TaskReport {
+	return predicate.TaskReport(sql.FieldEQ(FieldArchived, v))
+}
+
+// ArchivedNEQ applies the NEQ predicate on the "archived" field.
+func ArchivedNEQ(v bool) predicate.TaskReport {
+	return predicate.TaskReport(sql.FieldNEQ(FieldArchived, v))
 }
 
 // EndEQ applies the EQ predicate on the "end" field.
