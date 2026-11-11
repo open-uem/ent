@@ -28,6 +28,7 @@ import (
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
 	"github.com/open-uem/ent/orgmetadata"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/physicaldisk"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/printer"
@@ -78,6 +79,7 @@ const (
 	TypeNetworkAdapter        = "NetworkAdapter"
 	TypeOperatingSystem       = "OperatingSystem"
 	TypeOrgMetadata           = "OrgMetadata"
+	TypePendingUpdate         = "PendingUpdate"
 	TypePhysicalDisk          = "PhysicalDisk"
 	TypePrinter               = "Printer"
 	TypeProfile               = "Profile"
@@ -171,6 +173,9 @@ type AgentMutation struct {
 	updates                    map[int]struct{}
 	removedupdates             map[int]struct{}
 	clearedupdates             bool
+	pending_updates            map[int]struct{}
+	removedpending_updates     map[int]struct{}
+	clearedpending_updates     bool
 	tags                       map[int]struct{}
 	removedtags                map[int]struct{}
 	clearedtags                bool
@@ -2298,6 +2303,60 @@ func (m *AgentMutation) ResetUpdates() {
 	m.removedupdates = nil
 }
 
+// AddPendingUpdateIDs adds the "pending_updates" edge to the PendingUpdate entity by ids.
+func (m *AgentMutation) AddPendingUpdateIDs(ids ...int) {
+	if m.pending_updates == nil {
+		m.pending_updates = make(map[int]struct{})
+	}
+	for i := range ids {
+		m.pending_updates[ids[i]] = struct{}{}
+	}
+}
+
+// ClearPendingUpdates clears the "pending_updates" edge to the PendingUpdate entity.
+func (m *AgentMutation) ClearPendingUpdates() {
+	m.clearedpending_updates = true
+}
+
+// PendingUpdatesCleared reports if the "pending_updates" edge to the PendingUpdate entity was cleared.
+func (m *AgentMutation) PendingUpdatesCleared() bool {
+	return m.clearedpending_updates
+}
+
+// RemovePendingUpdateIDs removes the "pending_updates" edge to the PendingUpdate entity by IDs.
+func (m *AgentMutation) RemovePendingUpdateIDs(ids ...int) {
+	if m.removedpending_updates == nil {
+		m.removedpending_updates = make(map[int]struct{})
+	}
+	for i := range ids {
+		delete(m.pending_updates, ids[i])
+		m.removedpending_updates[ids[i]] = struct{}{}
+	}
+}
+
+// RemovedPendingUpdates returns the removed IDs of the "pending_updates" edge to the PendingUpdate entity.
+func (m *AgentMutation) RemovedPendingUpdatesIDs() (ids []int) {
+	for id := range m.removedpending_updates {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// PendingUpdatesIDs returns the "pending_updates" edge IDs in the mutation.
+func (m *AgentMutation) PendingUpdatesIDs() (ids []int) {
+	for id := range m.pending_updates {
+		ids = append(ids, id)
+	}
+	return
+}
+
+// ResetPendingUpdates resets all changes to the "pending_updates" edge.
+func (m *AgentMutation) ResetPendingUpdates() {
+	m.pending_updates = nil
+	m.clearedpending_updates = false
+	m.removedpending_updates = nil
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by ids.
 func (m *AgentMutation) AddTagIDs(ids ...int) {
 	if m.tags == nil {
@@ -3533,7 +3592,7 @@ func (m *AgentMutation) ResetField(name string) error {
 
 // AddedEdges returns all edge names that were set/added in this mutation.
 func (m *AgentMutation) AddedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.computer != nil {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3569,6 +3628,9 @@ func (m *AgentMutation) AddedEdges() []string {
 	}
 	if m.updates != nil {
 		edges = append(edges, agent.EdgeUpdates)
+	}
+	if m.pending_updates != nil {
+		edges = append(edges, agent.EdgePendingUpdates)
 	}
 	if m.tags != nil {
 		edges = append(edges, agent.EdgeTags)
@@ -3668,6 +3730,12 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgePendingUpdates:
+		ids := make([]ent.Value, 0, len(m.pending_updates))
+		for id := range m.pending_updates {
+			ids = append(ids, id)
+		}
+		return ids
 	case agent.EdgeTags:
 		ids := make([]ent.Value, 0, len(m.tags))
 		for id := range m.tags {
@@ -3724,7 +3792,7 @@ func (m *AgentMutation) AddedIDs(name string) []ent.Value {
 
 // RemovedEdges returns all edge names that were removed in this mutation.
 func (m *AgentMutation) RemovedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.removedlogicaldisks != nil {
 		edges = append(edges, agent.EdgeLogicaldisks)
 	}
@@ -3748,6 +3816,9 @@ func (m *AgentMutation) RemovedEdges() []string {
 	}
 	if m.removedupdates != nil {
 		edges = append(edges, agent.EdgeUpdates)
+	}
+	if m.removedpending_updates != nil {
+		edges = append(edges, agent.EdgePendingUpdates)
 	}
 	if m.removedtags != nil {
 		edges = append(edges, agent.EdgeTags)
@@ -3825,6 +3896,12 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 			ids = append(ids, id)
 		}
 		return ids
+	case agent.EdgePendingUpdates:
+		ids := make([]ent.Value, 0, len(m.removedpending_updates))
+		for id := range m.removedpending_updates {
+			ids = append(ids, id)
+		}
+		return ids
 	case agent.EdgeTags:
 		ids := make([]ent.Value, 0, len(m.removedtags))
 		for id := range m.removedtags {
@@ -3873,7 +3950,7 @@ func (m *AgentMutation) RemovedIDs(name string) []ent.Value {
 
 // ClearedEdges returns all edge names that were cleared in this mutation.
 func (m *AgentMutation) ClearedEdges() []string {
-	edges := make([]string, 0, 21)
+	edges := make([]string, 0, 22)
 	if m.clearedcomputer {
 		edges = append(edges, agent.EdgeComputer)
 	}
@@ -3909,6 +3986,9 @@ func (m *AgentMutation) ClearedEdges() []string {
 	}
 	if m.clearedupdates {
 		edges = append(edges, agent.EdgeUpdates)
+	}
+	if m.clearedpending_updates {
+		edges = append(edges, agent.EdgePendingUpdates)
 	}
 	if m.clearedtags {
 		edges = append(edges, agent.EdgeTags)
@@ -3968,6 +4048,8 @@ func (m *AgentMutation) EdgeCleared(name string) bool {
 		return m.cleareddeployments
 	case agent.EdgeUpdates:
 		return m.clearedupdates
+	case agent.EdgePendingUpdates:
+		return m.clearedpending_updates
 	case agent.EdgeTags:
 		return m.clearedtags
 	case agent.EdgeMetadata:
@@ -4055,6 +4137,9 @@ func (m *AgentMutation) ResetEdge(name string) error {
 		return nil
 	case agent.EdgeUpdates:
 		m.ResetUpdates()
+		return nil
+	case agent.EdgePendingUpdates:
+		m.ResetPendingUpdates()
 		return nil
 	case agent.EdgeTags:
 		m.ResetTags()
@@ -16181,6 +16266,548 @@ func (m *OrgMetadataMutation) ResetEdge(name string) error {
 		return nil
 	}
 	return fmt.Errorf("unknown OrgMetadata edge %s", name)
+}
+
+// PendingUpdateMutation represents an operation that mutates the PendingUpdate nodes in the graph.
+type PendingUpdateMutation struct {
+	config
+	op             Op
+	typ            string
+	id             *int
+	title          *string
+	kb_article_ids *string
+	is_downloaded  *bool
+	clearedFields  map[string]struct{}
+	owner          *string
+	clearedowner   bool
+	done           bool
+	oldValue       func(context.Context) (*PendingUpdate, error)
+	predicates     []predicate.PendingUpdate
+}
+
+var _ ent.Mutation = (*PendingUpdateMutation)(nil)
+
+// pendingupdateOption allows management of the mutation configuration using functional options.
+type pendingupdateOption func(*PendingUpdateMutation)
+
+// newPendingUpdateMutation creates new mutation for the PendingUpdate entity.
+func newPendingUpdateMutation(c config, op Op, opts ...pendingupdateOption) *PendingUpdateMutation {
+	m := &PendingUpdateMutation{
+		config:        c,
+		op:            op,
+		typ:           TypePendingUpdate,
+		clearedFields: make(map[string]struct{}),
+	}
+	for _, opt := range opts {
+		opt(m)
+	}
+	return m
+}
+
+// withPendingUpdateID sets the ID field of the mutation.
+func withPendingUpdateID(id int) pendingupdateOption {
+	return func(m *PendingUpdateMutation) {
+		var (
+			err   error
+			once  sync.Once
+			value *PendingUpdate
+		)
+		m.oldValue = func(ctx context.Context) (*PendingUpdate, error) {
+			once.Do(func() {
+				if m.done {
+					err = errors.New("querying old values post mutation is not allowed")
+				} else {
+					value, err = m.Client().PendingUpdate.Get(ctx, id)
+				}
+			})
+			return value, err
+		}
+		m.id = &id
+	}
+}
+
+// withPendingUpdate sets the old PendingUpdate of the mutation.
+func withPendingUpdate(node *PendingUpdate) pendingupdateOption {
+	return func(m *PendingUpdateMutation) {
+		m.oldValue = func(context.Context) (*PendingUpdate, error) {
+			return node, nil
+		}
+		m.id = &node.ID
+	}
+}
+
+// Client returns a new `ent.Client` from the mutation. If the mutation was
+// executed in a transaction (ent.Tx), a transactional client is returned.
+func (m PendingUpdateMutation) Client() *Client {
+	client := &Client{config: m.config}
+	client.init()
+	return client
+}
+
+// Tx returns an `ent.Tx` for mutations that were executed in transactions;
+// it returns an error otherwise.
+func (m PendingUpdateMutation) Tx() (*Tx, error) {
+	if _, ok := m.driver.(*txDriver); !ok {
+		return nil, errors.New("ent: mutation is not running in a transaction")
+	}
+	tx := &Tx{config: m.config}
+	tx.init()
+	return tx, nil
+}
+
+// ID returns the ID value in the mutation. Note that the ID is only available
+// if it was provided to the builder or after it was returned from the database.
+func (m *PendingUpdateMutation) ID() (id int, exists bool) {
+	if m.id == nil {
+		return
+	}
+	return *m.id, true
+}
+
+// IDs queries the database and returns the entity ids that match the mutation's predicate.
+// That means, if the mutation is applied within a transaction with an isolation level such
+// as sql.LevelSerializable, the returned ids match the ids of the rows that will be updated
+// or updated by the mutation.
+func (m *PendingUpdateMutation) IDs(ctx context.Context) ([]int, error) {
+	switch {
+	case m.op.Is(OpUpdateOne | OpDeleteOne):
+		id, exists := m.ID()
+		if exists {
+			return []int{id}, nil
+		}
+		fallthrough
+	case m.op.Is(OpUpdate | OpDelete):
+		return m.Client().PendingUpdate.Query().Where(m.predicates...).IDs(ctx)
+	default:
+		return nil, fmt.Errorf("IDs is not allowed on %s operations", m.op)
+	}
+}
+
+// SetTitle sets the "title" field.
+func (m *PendingUpdateMutation) SetTitle(s string) {
+	m.title = &s
+}
+
+// Title returns the value of the "title" field in the mutation.
+func (m *PendingUpdateMutation) Title() (r string, exists bool) {
+	v := m.title
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldTitle returns the old "title" field's value of the PendingUpdate entity.
+// If the PendingUpdate object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *PendingUpdateMutation) OldTitle(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldTitle is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldTitle requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldTitle: %w", err)
+	}
+	return oldValue.Title, nil
+}
+
+// ResetTitle resets all changes to the "title" field.
+func (m *PendingUpdateMutation) ResetTitle() {
+	m.title = nil
+}
+
+// SetKBArticleIds sets the "kb_article_ids" field.
+func (m *PendingUpdateMutation) SetKBArticleIds(s string) {
+	m.kb_article_ids = &s
+}
+
+// KBArticleIds returns the value of the "kb_article_ids" field in the mutation.
+func (m *PendingUpdateMutation) KBArticleIds() (r string, exists bool) {
+	v := m.kb_article_ids
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldKBArticleIds returns the old "kb_article_ids" field's value of the PendingUpdate entity.
+// If the PendingUpdate object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *PendingUpdateMutation) OldKBArticleIds(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldKBArticleIds is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldKBArticleIds requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldKBArticleIds: %w", err)
+	}
+	return oldValue.KBArticleIds, nil
+}
+
+// ClearKBArticleIds clears the value of the "kb_article_ids" field.
+func (m *PendingUpdateMutation) ClearKBArticleIds() {
+	m.kb_article_ids = nil
+	m.clearedFields[pendingupdate.FieldKBArticleIds] = struct{}{}
+}
+
+// KBArticleIdsCleared returns if the "kb_article_ids" field was cleared in this mutation.
+func (m *PendingUpdateMutation) KBArticleIdsCleared() bool {
+	_, ok := m.clearedFields[pendingupdate.FieldKBArticleIds]
+	return ok
+}
+
+// ResetKBArticleIds resets all changes to the "kb_article_ids" field.
+func (m *PendingUpdateMutation) ResetKBArticleIds() {
+	m.kb_article_ids = nil
+	delete(m.clearedFields, pendingupdate.FieldKBArticleIds)
+}
+
+// SetIsDownloaded sets the "is_downloaded" field.
+func (m *PendingUpdateMutation) SetIsDownloaded(b bool) {
+	m.is_downloaded = &b
+}
+
+// IsDownloaded returns the value of the "is_downloaded" field in the mutation.
+func (m *PendingUpdateMutation) IsDownloaded() (r bool, exists bool) {
+	v := m.is_downloaded
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldIsDownloaded returns the old "is_downloaded" field's value of the PendingUpdate entity.
+// If the PendingUpdate object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *PendingUpdateMutation) OldIsDownloaded(ctx context.Context) (v bool, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldIsDownloaded is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldIsDownloaded requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldIsDownloaded: %w", err)
+	}
+	return oldValue.IsDownloaded, nil
+}
+
+// ClearIsDownloaded clears the value of the "is_downloaded" field.
+func (m *PendingUpdateMutation) ClearIsDownloaded() {
+	m.is_downloaded = nil
+	m.clearedFields[pendingupdate.FieldIsDownloaded] = struct{}{}
+}
+
+// IsDownloadedCleared returns if the "is_downloaded" field was cleared in this mutation.
+func (m *PendingUpdateMutation) IsDownloadedCleared() bool {
+	_, ok := m.clearedFields[pendingupdate.FieldIsDownloaded]
+	return ok
+}
+
+// ResetIsDownloaded resets all changes to the "is_downloaded" field.
+func (m *PendingUpdateMutation) ResetIsDownloaded() {
+	m.is_downloaded = nil
+	delete(m.clearedFields, pendingupdate.FieldIsDownloaded)
+}
+
+// SetOwnerID sets the "owner" edge to the Agent entity by id.
+func (m *PendingUpdateMutation) SetOwnerID(id string) {
+	m.owner = &id
+}
+
+// ClearOwner clears the "owner" edge to the Agent entity.
+func (m *PendingUpdateMutation) ClearOwner() {
+	m.clearedowner = true
+}
+
+// OwnerCleared reports if the "owner" edge to the Agent entity was cleared.
+func (m *PendingUpdateMutation) OwnerCleared() bool {
+	return m.clearedowner
+}
+
+// OwnerID returns the "owner" edge ID in the mutation.
+func (m *PendingUpdateMutation) OwnerID() (id string, exists bool) {
+	if m.owner != nil {
+		return *m.owner, true
+	}
+	return
+}
+
+// OwnerIDs returns the "owner" edge IDs in the mutation.
+// Note that IDs always returns len(IDs) <= 1 for unique edges, and you should use
+// OwnerID instead. It exists only for internal usage by the builders.
+func (m *PendingUpdateMutation) OwnerIDs() (ids []string) {
+	if id := m.owner; id != nil {
+		ids = append(ids, *id)
+	}
+	return
+}
+
+// ResetOwner resets all changes to the "owner" edge.
+func (m *PendingUpdateMutation) ResetOwner() {
+	m.owner = nil
+	m.clearedowner = false
+}
+
+// Where appends a list predicates to the PendingUpdateMutation builder.
+func (m *PendingUpdateMutation) Where(ps ...predicate.PendingUpdate) {
+	m.predicates = append(m.predicates, ps...)
+}
+
+// WhereP appends storage-level predicates to the PendingUpdateMutation builder. Using this method,
+// users can use type-assertion to append predicates that do not depend on any generated package.
+func (m *PendingUpdateMutation) WhereP(ps ...func(*sql.Selector)) {
+	p := make([]predicate.PendingUpdate, len(ps))
+	for i := range ps {
+		p[i] = ps[i]
+	}
+	m.Where(p...)
+}
+
+// Op returns the operation name.
+func (m *PendingUpdateMutation) Op() Op {
+	return m.op
+}
+
+// SetOp allows setting the mutation operation.
+func (m *PendingUpdateMutation) SetOp(op Op) {
+	m.op = op
+}
+
+// Type returns the node type of this mutation (PendingUpdate).
+func (m *PendingUpdateMutation) Type() string {
+	return m.typ
+}
+
+// Fields returns all fields that were changed during this mutation. Note that in
+// order to get all numeric fields that were incremented/decremented, call
+// AddedFields().
+func (m *PendingUpdateMutation) Fields() []string {
+	fields := make([]string, 0, 3)
+	if m.title != nil {
+		fields = append(fields, pendingupdate.FieldTitle)
+	}
+	if m.kb_article_ids != nil {
+		fields = append(fields, pendingupdate.FieldKBArticleIds)
+	}
+	if m.is_downloaded != nil {
+		fields = append(fields, pendingupdate.FieldIsDownloaded)
+	}
+	return fields
+}
+
+// Field returns the value of a field with the given name. The second boolean
+// return value indicates that this field was not set, or was not defined in the
+// schema.
+func (m *PendingUpdateMutation) Field(name string) (ent.Value, bool) {
+	switch name {
+	case pendingupdate.FieldTitle:
+		return m.Title()
+	case pendingupdate.FieldKBArticleIds:
+		return m.KBArticleIds()
+	case pendingupdate.FieldIsDownloaded:
+		return m.IsDownloaded()
+	}
+	return nil, false
+}
+
+// OldField returns the old value of the field from the database. An error is
+// returned if the mutation operation is not UpdateOne, or the query to the
+// database failed.
+func (m *PendingUpdateMutation) OldField(ctx context.Context, name string) (ent.Value, error) {
+	switch name {
+	case pendingupdate.FieldTitle:
+		return m.OldTitle(ctx)
+	case pendingupdate.FieldKBArticleIds:
+		return m.OldKBArticleIds(ctx)
+	case pendingupdate.FieldIsDownloaded:
+		return m.OldIsDownloaded(ctx)
+	}
+	return nil, fmt.Errorf("unknown PendingUpdate field %s", name)
+}
+
+// SetField sets the value of a field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *PendingUpdateMutation) SetField(name string, value ent.Value) error {
+	switch name {
+	case pendingupdate.FieldTitle:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetTitle(v)
+		return nil
+	case pendingupdate.FieldKBArticleIds:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetKBArticleIds(v)
+		return nil
+	case pendingupdate.FieldIsDownloaded:
+		v, ok := value.(bool)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetIsDownloaded(v)
+		return nil
+	}
+	return fmt.Errorf("unknown PendingUpdate field %s", name)
+}
+
+// AddedFields returns all numeric fields that were incremented/decremented during
+// this mutation.
+func (m *PendingUpdateMutation) AddedFields() []string {
+	return nil
+}
+
+// AddedField returns the numeric value that was incremented/decremented on a field
+// with the given name. The second boolean return value indicates that this field
+// was not set, or was not defined in the schema.
+func (m *PendingUpdateMutation) AddedField(name string) (ent.Value, bool) {
+	return nil, false
+}
+
+// AddField adds the value to the field with the given name. It returns an error if
+// the field is not defined in the schema, or if the type mismatched the field
+// type.
+func (m *PendingUpdateMutation) AddField(name string, value ent.Value) error {
+	switch name {
+	}
+	return fmt.Errorf("unknown PendingUpdate numeric field %s", name)
+}
+
+// ClearedFields returns all nullable fields that were cleared during this
+// mutation.
+func (m *PendingUpdateMutation) ClearedFields() []string {
+	var fields []string
+	if m.FieldCleared(pendingupdate.FieldKBArticleIds) {
+		fields = append(fields, pendingupdate.FieldKBArticleIds)
+	}
+	if m.FieldCleared(pendingupdate.FieldIsDownloaded) {
+		fields = append(fields, pendingupdate.FieldIsDownloaded)
+	}
+	return fields
+}
+
+// FieldCleared returns a boolean indicating if a field with the given name was
+// cleared in this mutation.
+func (m *PendingUpdateMutation) FieldCleared(name string) bool {
+	_, ok := m.clearedFields[name]
+	return ok
+}
+
+// ClearField clears the value of the field with the given name. It returns an
+// error if the field is not defined in the schema.
+func (m *PendingUpdateMutation) ClearField(name string) error {
+	switch name {
+	case pendingupdate.FieldKBArticleIds:
+		m.ClearKBArticleIds()
+		return nil
+	case pendingupdate.FieldIsDownloaded:
+		m.ClearIsDownloaded()
+		return nil
+	}
+	return fmt.Errorf("unknown PendingUpdate nullable field %s", name)
+}
+
+// ResetField resets all changes in the mutation for the field with the given name.
+// It returns an error if the field is not defined in the schema.
+func (m *PendingUpdateMutation) ResetField(name string) error {
+	switch name {
+	case pendingupdate.FieldTitle:
+		m.ResetTitle()
+		return nil
+	case pendingupdate.FieldKBArticleIds:
+		m.ResetKBArticleIds()
+		return nil
+	case pendingupdate.FieldIsDownloaded:
+		m.ResetIsDownloaded()
+		return nil
+	}
+	return fmt.Errorf("unknown PendingUpdate field %s", name)
+}
+
+// AddedEdges returns all edge names that were set/added in this mutation.
+func (m *PendingUpdateMutation) AddedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.owner != nil {
+		edges = append(edges, pendingupdate.EdgeOwner)
+	}
+	return edges
+}
+
+// AddedIDs returns all IDs (to other nodes) that were added for the given edge
+// name in this mutation.
+func (m *PendingUpdateMutation) AddedIDs(name string) []ent.Value {
+	switch name {
+	case pendingupdate.EdgeOwner:
+		if id := m.owner; id != nil {
+			return []ent.Value{*id}
+		}
+	}
+	return nil
+}
+
+// RemovedEdges returns all edge names that were removed in this mutation.
+func (m *PendingUpdateMutation) RemovedEdges() []string {
+	edges := make([]string, 0, 1)
+	return edges
+}
+
+// RemovedIDs returns all IDs (to other nodes) that were removed for the edge with
+// the given name in this mutation.
+func (m *PendingUpdateMutation) RemovedIDs(name string) []ent.Value {
+	return nil
+}
+
+// ClearedEdges returns all edge names that were cleared in this mutation.
+func (m *PendingUpdateMutation) ClearedEdges() []string {
+	edges := make([]string, 0, 1)
+	if m.clearedowner {
+		edges = append(edges, pendingupdate.EdgeOwner)
+	}
+	return edges
+}
+
+// EdgeCleared returns a boolean which indicates if the edge with the given name
+// was cleared in this mutation.
+func (m *PendingUpdateMutation) EdgeCleared(name string) bool {
+	switch name {
+	case pendingupdate.EdgeOwner:
+		return m.clearedowner
+	}
+	return false
+}
+
+// ClearEdge clears the value of the edge with the given name. It returns an error
+// if that edge is not defined in the schema.
+func (m *PendingUpdateMutation) ClearEdge(name string) error {
+	switch name {
+	case pendingupdate.EdgeOwner:
+		m.ClearOwner()
+		return nil
+	}
+	return fmt.Errorf("unknown PendingUpdate unique edge %s", name)
+}
+
+// ResetEdge resets all changes to the edge with the given name in this mutation.
+// It returns an error if the edge is not defined in the schema.
+func (m *PendingUpdateMutation) ResetEdge(name string) error {
+	switch name {
+	case pendingupdate.EdgeOwner:
+		m.ResetOwner()
+		return nil
+	}
+	return fmt.Errorf("unknown PendingUpdate edge %s", name)
 }
 
 // PhysicalDiskMutation represents an operation that mutates the PhysicalDisk nodes in the graph.

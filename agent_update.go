@@ -23,6 +23,7 @@ import (
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/physicaldisk"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/printer"
@@ -816,6 +817,21 @@ func (au *AgentUpdate) AddUpdates(u ...*Update) *AgentUpdate {
 	return au.AddUpdateIDs(ids...)
 }
 
+// AddPendingUpdateIDs adds the "pending_updates" edge to the PendingUpdate entity by IDs.
+func (au *AgentUpdate) AddPendingUpdateIDs(ids ...int) *AgentUpdate {
+	au.mutation.AddPendingUpdateIDs(ids...)
+	return au
+}
+
+// AddPendingUpdates adds the "pending_updates" edges to the PendingUpdate entity.
+func (au *AgentUpdate) AddPendingUpdates(p ...*PendingUpdate) *AgentUpdate {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return au.AddPendingUpdateIDs(ids...)
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (au *AgentUpdate) AddTagIDs(ids ...int) *AgentUpdate {
 	au.mutation.AddTagIDs(ids...)
@@ -1154,6 +1170,27 @@ func (au *AgentUpdate) RemoveUpdates(u ...*Update) *AgentUpdate {
 		ids[i] = u[i].ID
 	}
 	return au.RemoveUpdateIDs(ids...)
+}
+
+// ClearPendingUpdates clears all "pending_updates" edges to the PendingUpdate entity.
+func (au *AgentUpdate) ClearPendingUpdates() *AgentUpdate {
+	au.mutation.ClearPendingUpdates()
+	return au
+}
+
+// RemovePendingUpdateIDs removes the "pending_updates" edge to PendingUpdate entities by IDs.
+func (au *AgentUpdate) RemovePendingUpdateIDs(ids ...int) *AgentUpdate {
+	au.mutation.RemovePendingUpdateIDs(ids...)
+	return au
+}
+
+// RemovePendingUpdates removes "pending_updates" edges to PendingUpdate entities.
+func (au *AgentUpdate) RemovePendingUpdates(p ...*PendingUpdate) *AgentUpdate {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return au.RemovePendingUpdateIDs(ids...)
 }
 
 // ClearTags clears all "tags" edges to the Tag entity.
@@ -2019,6 +2056,51 @@ func (au *AgentUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if au.mutation.PendingUpdatesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := au.mutation.RemovedPendingUpdatesIDs(); len(nodes) > 0 && !au.mutation.PendingUpdatesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := au.mutation.PendingUpdatesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
@@ -3187,6 +3269,21 @@ func (auo *AgentUpdateOne) AddUpdates(u ...*Update) *AgentUpdateOne {
 	return auo.AddUpdateIDs(ids...)
 }
 
+// AddPendingUpdateIDs adds the "pending_updates" edge to the PendingUpdate entity by IDs.
+func (auo *AgentUpdateOne) AddPendingUpdateIDs(ids ...int) *AgentUpdateOne {
+	auo.mutation.AddPendingUpdateIDs(ids...)
+	return auo
+}
+
+// AddPendingUpdates adds the "pending_updates" edges to the PendingUpdate entity.
+func (auo *AgentUpdateOne) AddPendingUpdates(p ...*PendingUpdate) *AgentUpdateOne {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return auo.AddPendingUpdateIDs(ids...)
+}
+
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
 func (auo *AgentUpdateOne) AddTagIDs(ids ...int) *AgentUpdateOne {
 	auo.mutation.AddTagIDs(ids...)
@@ -3525,6 +3622,27 @@ func (auo *AgentUpdateOne) RemoveUpdates(u ...*Update) *AgentUpdateOne {
 		ids[i] = u[i].ID
 	}
 	return auo.RemoveUpdateIDs(ids...)
+}
+
+// ClearPendingUpdates clears all "pending_updates" edges to the PendingUpdate entity.
+func (auo *AgentUpdateOne) ClearPendingUpdates() *AgentUpdateOne {
+	auo.mutation.ClearPendingUpdates()
+	return auo
+}
+
+// RemovePendingUpdateIDs removes the "pending_updates" edge to PendingUpdate entities by IDs.
+func (auo *AgentUpdateOne) RemovePendingUpdateIDs(ids ...int) *AgentUpdateOne {
+	auo.mutation.RemovePendingUpdateIDs(ids...)
+	return auo
+}
+
+// RemovePendingUpdates removes "pending_updates" edges to PendingUpdate entities.
+func (auo *AgentUpdateOne) RemovePendingUpdates(p ...*PendingUpdate) *AgentUpdateOne {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return auo.RemovePendingUpdateIDs(ids...)
 }
 
 // ClearTags clears all "tags" edges to the Tag entity.
@@ -4420,6 +4538,51 @@ func (auo *AgentUpdateOne) sqlSave(ctx context.Context) (_node *Agent, err error
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if auo.mutation.PendingUpdatesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := auo.mutation.RemovedPendingUpdatesIDs(); len(nodes) > 0 && !auo.mutation.PendingUpdatesCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := auo.mutation.PendingUpdatesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

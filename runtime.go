@@ -14,6 +14,7 @@ import (
 	"github.com/open-uem/ent/netbirdsettings"
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/orgmetadata"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/profileissue"
 	"github.com/open-uem/ent/recoverycode"
@@ -290,6 +291,12 @@ func init() {
 	orgmetadataDescName := orgmetadataFields[0].Descriptor()
 	// orgmetadata.NameValidator is a validator for the "name" field. It is called by the builders before save.
 	orgmetadata.NameValidator = orgmetadataDescName.Validators[0].(func(string) error)
+	pendingupdateFields := schema.PendingUpdate{}.Fields()
+	_ = pendingupdateFields
+	// pendingupdateDescIsDownloaded is the schema descriptor for is_downloaded field.
+	pendingupdateDescIsDownloaded := pendingupdateFields[2].Descriptor()
+	// pendingupdate.DefaultIsDownloaded holds the default value on creation for the is_downloaded field.
+	pendingupdate.DefaultIsDownloaded = pendingupdateDescIsDownloaded.Default.(bool)
 	profileFields := schema.Profile{}.Fields()
 	_ = profileFields
 	// profileDescName is the schema descriptor for name field.

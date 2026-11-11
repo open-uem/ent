@@ -116,6 +116,8 @@ type AgentEdges struct {
 	Deployments []*Deployment `json:"deployments,omitempty"`
 	// Updates holds the value of the updates edge.
 	Updates []*Update `json:"updates,omitempty"`
+	// PendingUpdates holds the value of the pending_updates edge.
+	PendingUpdates []*PendingUpdate `json:"pending_updates,omitempty"`
 	// Tags holds the value of the tags edge.
 	Tags []*Tag `json:"tags,omitempty"`
 	// Metadata holds the value of the metadata edge.
@@ -136,7 +138,7 @@ type AgentEdges struct {
 	Netbird *Netbird `json:"netbird,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [21]bool
+	loadedTypes [22]bool
 }
 
 // ComputerOrErr returns the Computer value or an error if the edge
@@ -255,10 +257,19 @@ func (e AgentEdges) UpdatesOrErr() ([]*Update, error) {
 	return nil, &NotLoadedError{edge: "updates"}
 }
 
+// PendingUpdatesOrErr returns the PendingUpdates value or an error if the edge
+// was not loaded in eager-loading.
+func (e AgentEdges) PendingUpdatesOrErr() ([]*PendingUpdate, error) {
+	if e.loadedTypes[12] {
+		return e.PendingUpdates, nil
+	}
+	return nil, &NotLoadedError{edge: "pending_updates"}
+}
+
 // TagsOrErr returns the Tags value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) TagsOrErr() ([]*Tag, error) {
-	if e.loadedTypes[12] {
+	if e.loadedTypes[13] {
 		return e.Tags, nil
 	}
 	return nil, &NotLoadedError{edge: "tags"}
@@ -267,7 +278,7 @@ func (e AgentEdges) TagsOrErr() ([]*Tag, error) {
 // MetadataOrErr returns the Metadata value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) MetadataOrErr() ([]*Metadata, error) {
-	if e.loadedTypes[13] {
+	if e.loadedTypes[14] {
 		return e.Metadata, nil
 	}
 	return nil, &NotLoadedError{edge: "metadata"}
@@ -276,7 +287,7 @@ func (e AgentEdges) MetadataOrErr() ([]*Metadata, error) {
 // WingetcfgexclusionsOrErr returns the Wingetcfgexclusions value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) WingetcfgexclusionsOrErr() ([]*WingetConfigExclusion, error) {
-	if e.loadedTypes[14] {
+	if e.loadedTypes[15] {
 		return e.Wingetcfgexclusions, nil
 	}
 	return nil, &NotLoadedError{edge: "wingetcfgexclusions"}
@@ -285,7 +296,7 @@ func (e AgentEdges) WingetcfgexclusionsOrErr() ([]*WingetConfigExclusion, error)
 // MemoryslotsOrErr returns the Memoryslots value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) MemoryslotsOrErr() ([]*MemorySlot, error) {
-	if e.loadedTypes[15] {
+	if e.loadedTypes[16] {
 		return e.Memoryslots, nil
 	}
 	return nil, &NotLoadedError{edge: "memoryslots"}
@@ -296,7 +307,7 @@ func (e AgentEdges) MemoryslotsOrErr() ([]*MemorySlot, error) {
 func (e AgentEdges) ReleaseOrErr() (*Release, error) {
 	if e.Release != nil {
 		return e.Release, nil
-	} else if e.loadedTypes[16] {
+	} else if e.loadedTypes[17] {
 		return nil, &NotFoundError{label: release.Label}
 	}
 	return nil, &NotLoadedError{edge: "release"}
@@ -305,7 +316,7 @@ func (e AgentEdges) ReleaseOrErr() (*Release, error) {
 // ProfileissueOrErr returns the Profileissue value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) ProfileissueOrErr() ([]*ProfileIssue, error) {
-	if e.loadedTypes[17] {
+	if e.loadedTypes[18] {
 		return e.Profileissue, nil
 	}
 	return nil, &NotLoadedError{edge: "profileissue"}
@@ -314,7 +325,7 @@ func (e AgentEdges) ProfileissueOrErr() ([]*ProfileIssue, error) {
 // SiteOrErr returns the Site value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) SiteOrErr() ([]*Site, error) {
-	if e.loadedTypes[18] {
+	if e.loadedTypes[19] {
 		return e.Site, nil
 	}
 	return nil, &NotLoadedError{edge: "site"}
@@ -323,7 +334,7 @@ func (e AgentEdges) SiteOrErr() ([]*Site, error) {
 // PhysicaldisksOrErr returns the Physicaldisks value or an error if the edge
 // was not loaded in eager-loading.
 func (e AgentEdges) PhysicaldisksOrErr() ([]*PhysicalDisk, error) {
-	if e.loadedTypes[19] {
+	if e.loadedTypes[20] {
 		return e.Physicaldisks, nil
 	}
 	return nil, &NotLoadedError{edge: "physicaldisks"}
@@ -334,7 +345,7 @@ func (e AgentEdges) PhysicaldisksOrErr() ([]*PhysicalDisk, error) {
 func (e AgentEdges) NetbirdOrErr() (*Netbird, error) {
 	if e.Netbird != nil {
 		return e.Netbird, nil
-	} else if e.loadedTypes[20] {
+	} else if e.loadedTypes[21] {
 		return nil, &NotFoundError{label: netbird.Label}
 	}
 	return nil, &NotLoadedError{edge: "netbird"}
@@ -632,6 +643,11 @@ func (a *Agent) QueryDeployments() *DeploymentQuery {
 // QueryUpdates queries the "updates" edge of the Agent entity.
 func (a *Agent) QueryUpdates() *UpdateQuery {
 	return NewAgentClient(a.config).QueryUpdates(a)
+}
+
+// QueryPendingUpdates queries the "pending_updates" edge of the Agent entity.
+func (a *Agent) QueryPendingUpdates() *PendingUpdateQuery {
+	return NewAgentClient(a.config).QueryPendingUpdates(a)
 }
 
 // QueryTags queries the "tags" edge of the Agent entity.

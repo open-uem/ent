@@ -24,6 +24,7 @@ import (
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/physicaldisk"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/printer"
@@ -56,6 +57,7 @@ type AgentQuery struct {
 	withNetworkadapters     *NetworkAdapterQuery
 	withDeployments         *DeploymentQuery
 	withUpdates             *UpdateQuery
+	withPendingUpdates      *PendingUpdateQuery
 	withTags                *TagQuery
 	withMetadata            *MetadataQuery
 	withWingetcfgexclusions *WingetConfigExclusionQuery
@@ -360,6 +362,28 @@ func (aq *AgentQuery) QueryUpdates() *UpdateQuery {
 			sqlgraph.From(agent.Table, agent.FieldID, selector),
 			sqlgraph.To(update.Table, update.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.UpdatesTable, agent.UpdatesColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryPendingUpdates chains the current query on the "pending_updates" edge.
+func (aq *AgentQuery) QueryPendingUpdates() *PendingUpdateQuery {
+	query := (&PendingUpdateClient{config: aq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := aq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := aq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, selector),
+			sqlgraph.To(pendingupdate.Table, pendingupdate.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, agent.PendingUpdatesTable, agent.PendingUpdatesColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(aq.driver.Dialect(), step)
 		return fromU, nil
@@ -769,6 +793,7 @@ func (aq *AgentQuery) Clone() *AgentQuery {
 		withNetworkadapters:     aq.withNetworkadapters.Clone(),
 		withDeployments:         aq.withDeployments.Clone(),
 		withUpdates:             aq.withUpdates.Clone(),
+		withPendingUpdates:      aq.withPendingUpdates.Clone(),
 		withTags:                aq.withTags.Clone(),
 		withMetadata:            aq.withMetadata.Clone(),
 		withWingetcfgexclusions: aq.withWingetcfgexclusions.Clone(),
@@ -914,6 +939,17 @@ func (aq *AgentQuery) WithUpdates(opts ...func(*UpdateQuery)) *AgentQuery {
 		opt(query)
 	}
 	aq.withUpdates = query
+	return aq
+}
+
+// WithPendingUpdates tells the query-builder to eager-load the nodes that are connected to
+// the "pending_updates" edge. The optional arguments are used to configure the query builder of the edge.
+func (aq *AgentQuery) WithPendingUpdates(opts ...func(*PendingUpdateQuery)) *AgentQuery {
+	query := (&PendingUpdateClient{config: aq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	aq.withPendingUpdates = query
 	return aq
 }
 
@@ -1095,7 +1131,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		nodes       = []*Agent{}
 		withFKs     = aq.withFKs
 		_spec       = aq.querySpec()
-		loadedTypes = [21]bool{
+		loadedTypes = [22]bool{
 			aq.withComputer != nil,
 			aq.withOperatingsystem != nil,
 			aq.withSystemupdate != nil,
@@ -1108,6 +1144,7 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 			aq.withNetworkadapters != nil,
 			aq.withDeployments != nil,
 			aq.withUpdates != nil,
+			aq.withPendingUpdates != nil,
 			aq.withTags != nil,
 			aq.withMetadata != nil,
 			aq.withWingetcfgexclusions != nil,
@@ -1223,6 +1260,13 @@ func (aq *AgentQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Agent,
 		if err := aq.loadUpdates(ctx, query, nodes,
 			func(n *Agent) { n.Edges.Updates = []*Update{} },
 			func(n *Agent, e *Update) { n.Edges.Updates = append(n.Edges.Updates, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := aq.withPendingUpdates; query != nil {
+		if err := aq.loadPendingUpdates(ctx, query, nodes,
+			func(n *Agent) { n.Edges.PendingUpdates = []*PendingUpdate{} },
+			func(n *Agent, e *PendingUpdate) { n.Edges.PendingUpdates = append(n.Edges.PendingUpdates, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -1647,6 +1691,37 @@ func (aq *AgentQuery) loadUpdates(ctx context.Context, query *UpdateQuery, nodes
 		node, ok := nodeids[*fk]
 		if !ok {
 			return fmt.Errorf(`unexpected referenced foreign-key "agent_updates" returned %v for node %v`, *fk, n.ID)
+		}
+		assign(node, n)
+	}
+	return nil
+}
+func (aq *AgentQuery) loadPendingUpdates(ctx context.Context, query *PendingUpdateQuery, nodes []*Agent, init func(*Agent), assign func(*Agent, *PendingUpdate)) error {
+	fks := make([]driver.Value, 0, len(nodes))
+	nodeids := make(map[string]*Agent)
+	for i := range nodes {
+		fks = append(fks, nodes[i].ID)
+		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
+	}
+	query.withFKs = true
+	query.Where(predicate.PendingUpdate(func(s *sql.Selector) {
+		s.Where(sql.InValues(s.C(agent.PendingUpdatesColumn), fks...))
+	}))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		fk := n.agent_pending_updates
+		if fk == nil {
+			return fmt.Errorf(`foreign-key "agent_pending_updates" is nil for node %v`, n.ID)
+		}
+		node, ok := nodeids[*fk]
+		if !ok {
+			return fmt.Errorf(`unexpected referenced foreign-key "agent_pending_updates" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
 	}

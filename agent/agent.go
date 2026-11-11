@@ -99,6 +99,8 @@ const (
 	EdgeDeployments = "deployments"
 	// EdgeUpdates holds the string denoting the updates edge name in mutations.
 	EdgeUpdates = "updates"
+	// EdgePendingUpdates holds the string denoting the pending_updates edge name in mutations.
+	EdgePendingUpdates = "pending_updates"
 	// EdgeTags holds the string denoting the tags edge name in mutations.
 	EdgeTags = "tags"
 	// EdgeMetadata holds the string denoting the metadata edge name in mutations.
@@ -141,6 +143,8 @@ const (
 	DeploymentFieldID = "id"
 	// UpdateFieldID holds the string denoting the ID field of the Update.
 	UpdateFieldID = "id"
+	// PendingUpdateFieldID holds the string denoting the ID field of the PendingUpdate.
+	PendingUpdateFieldID = "id"
 	// TagFieldID holds the string denoting the ID field of the Tag.
 	TagFieldID = "id"
 	// MetadataFieldID holds the string denoting the ID field of the Metadata.
@@ -245,6 +249,13 @@ const (
 	UpdatesInverseTable = "updates"
 	// UpdatesColumn is the table column denoting the updates relation/edge.
 	UpdatesColumn = "agent_updates"
+	// PendingUpdatesTable is the table that holds the pending_updates relation/edge.
+	PendingUpdatesTable = "pending_updates"
+	// PendingUpdatesInverseTable is the table name for the PendingUpdate entity.
+	// It exists in this package in order to avoid circular dependency with the "pendingupdate" package.
+	PendingUpdatesInverseTable = "pending_updates"
+	// PendingUpdatesColumn is the table column denoting the pending_updates relation/edge.
+	PendingUpdatesColumn = "agent_pending_updates"
 	// TagsTable is the table that holds the tags relation/edge. The primary key declared below.
 	TagsTable = "agent_tags"
 	// TagsInverseTable is the table name for the Tag entity.
@@ -781,6 +792,20 @@ func ByUpdates(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 	}
 }
 
+// ByPendingUpdatesCount orders the results by pending_updates count.
+func ByPendingUpdatesCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newPendingUpdatesStep(), opts...)
+	}
+}
+
+// ByPendingUpdates orders the results by pending_updates terms.
+func ByPendingUpdates(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newPendingUpdatesStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
+
 // ByTagsCount orders the results by tags count.
 func ByTagsCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
@@ -974,6 +999,13 @@ func newUpdatesStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(UpdatesInverseTable, UpdateFieldID),
 		sqlgraph.Edge(sqlgraph.O2M, false, UpdatesTable, UpdatesColumn),
+	)
+}
+func newPendingUpdatesStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(PendingUpdatesInverseTable, PendingUpdateFieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, PendingUpdatesTable, PendingUpdatesColumn),
 	)
 }
 func newTagsStep() *sqlgraph.Step {

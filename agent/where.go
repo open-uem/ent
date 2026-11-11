@@ -1996,6 +1996,29 @@ func HasUpdatesWith(preds ...predicate.Update) predicate.Agent {
 	})
 }
 
+// HasPendingUpdates applies the HasEdge predicate on the "pending_updates" edge.
+func HasPendingUpdates() predicate.Agent {
+	return predicate.Agent(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, PendingUpdatesTable, PendingUpdatesColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasPendingUpdatesWith applies the HasEdge predicate on the "pending_updates" edge with a given conditions (other predicates).
+func HasPendingUpdatesWith(preds ...predicate.PendingUpdate) predicate.Agent {
+	return predicate.Agent(func(s *sql.Selector) {
+		step := newPendingUpdatesStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // HasTags applies the HasEdge predicate on the "tags" edge.
 func HasTags() predicate.Agent {
 	return predicate.Agent(func(s *sql.Selector) {

@@ -32,6 +32,7 @@ import (
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
 	"github.com/open-uem/ent/orgmetadata"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/physicaldisk"
 	"github.com/open-uem/ent/printer"
 	"github.com/open-uem/ent/profile"
@@ -93,6 +94,8 @@ type Client struct {
 	OperatingSystem *OperatingSystemClient
 	// OrgMetadata is the client for interacting with the OrgMetadata builders.
 	OrgMetadata *OrgMetadataClient
+	// PendingUpdate is the client for interacting with the PendingUpdate builders.
+	PendingUpdate *PendingUpdateClient
 	// PhysicalDisk is the client for interacting with the PhysicalDisk builders.
 	PhysicalDisk *PhysicalDiskClient
 	// Printer is the client for interacting with the Printer builders.
@@ -164,6 +167,7 @@ func (c *Client) init() {
 	c.NetworkAdapter = NewNetworkAdapterClient(c.config)
 	c.OperatingSystem = NewOperatingSystemClient(c.config)
 	c.OrgMetadata = NewOrgMetadataClient(c.config)
+	c.PendingUpdate = NewPendingUpdateClient(c.config)
 	c.PhysicalDisk = NewPhysicalDiskClient(c.config)
 	c.Printer = NewPrinterClient(c.config)
 	c.Profile = NewProfileClient(c.config)
@@ -294,6 +298,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		NetworkAdapter:        NewNetworkAdapterClient(cfg),
 		OperatingSystem:       NewOperatingSystemClient(cfg),
 		OrgMetadata:           NewOrgMetadataClient(cfg),
+		PendingUpdate:         NewPendingUpdateClient(cfg),
 		PhysicalDisk:          NewPhysicalDiskClient(cfg),
 		Printer:               NewPrinterClient(cfg),
 		Profile:               NewProfileClient(cfg),
@@ -351,6 +356,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		NetworkAdapter:        NewNetworkAdapterClient(cfg),
 		OperatingSystem:       NewOperatingSystemClient(cfg),
 		OrgMetadata:           NewOrgMetadataClient(cfg),
+		PendingUpdate:         NewPendingUpdateClient(cfg),
 		PhysicalDisk:          NewPhysicalDiskClient(cfg),
 		Printer:               NewPrinterClient(cfg),
 		Profile:               NewProfileClient(cfg),
@@ -405,10 +411,10 @@ func (c *Client) Use(hooks ...Hook) {
 		c.Agent, c.Antivirus, c.App, c.Authentication, c.Certificate, c.Computer,
 		c.Deployment, c.LogicalDisk, c.MemorySlot, c.Metadata, c.Monitor, c.Netbird,
 		c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem, c.OrgMetadata,
-		c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue, c.RecoveryCode,
-		c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions, c.Settings, c.Share,
-		c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task, c.TaskReport,
-		c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
+		c.PendingUpdate, c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue,
+		c.RecoveryCode, c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions,
+		c.Settings, c.Share, c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task,
+		c.TaskReport, c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
 	} {
 		n.Use(hooks...)
 	}
@@ -421,10 +427,10 @@ func (c *Client) Intercept(interceptors ...Interceptor) {
 		c.Agent, c.Antivirus, c.App, c.Authentication, c.Certificate, c.Computer,
 		c.Deployment, c.LogicalDisk, c.MemorySlot, c.Metadata, c.Monitor, c.Netbird,
 		c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem, c.OrgMetadata,
-		c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue, c.RecoveryCode,
-		c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions, c.Settings, c.Share,
-		c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task, c.TaskReport,
-		c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
+		c.PendingUpdate, c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue,
+		c.RecoveryCode, c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions,
+		c.Settings, c.Share, c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task,
+		c.TaskReport, c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -465,6 +471,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.OperatingSystem.mutate(ctx, m)
 	case *OrgMetadataMutation:
 		return c.OrgMetadata.mutate(ctx, m)
+	case *PendingUpdateMutation:
+		return c.PendingUpdate.mutate(ctx, m)
 	case *PhysicalDiskMutation:
 		return c.PhysicalDisk.mutate(ctx, m)
 	case *PrinterMutation:
@@ -807,6 +815,22 @@ func (c *AgentClient) QueryUpdates(a *Agent) *UpdateQuery {
 			sqlgraph.From(agent.Table, agent.FieldID, id),
 			sqlgraph.To(update.Table, update.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, agent.UpdatesTable, agent.UpdatesColumn),
+		)
+		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryPendingUpdates queries the pending_updates edge of a Agent.
+func (c *AgentClient) QueryPendingUpdates(a *Agent) *PendingUpdateQuery {
+	query := (&PendingUpdateClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := a.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(agent.Table, agent.FieldID, id),
+			sqlgraph.To(pendingupdate.Table, pendingupdate.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, agent.PendingUpdatesTable, agent.PendingUpdatesColumn),
 		)
 		fromV = sqlgraph.Neighbors(a.driver.Dialect(), step)
 		return fromV, nil
@@ -3215,6 +3239,155 @@ func (c *OrgMetadataClient) mutate(ctx context.Context, m *OrgMetadataMutation) 
 		return (&OrgMetadataDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
 	default:
 		return nil, fmt.Errorf("ent: unknown OrgMetadata mutation op: %q", m.Op())
+	}
+}
+
+// PendingUpdateClient is a client for the PendingUpdate schema.
+type PendingUpdateClient struct {
+	config
+}
+
+// NewPendingUpdateClient returns a client for the PendingUpdate from the given config.
+func NewPendingUpdateClient(c config) *PendingUpdateClient {
+	return &PendingUpdateClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `pendingupdate.Hooks(f(g(h())))`.
+func (c *PendingUpdateClient) Use(hooks ...Hook) {
+	c.hooks.PendingUpdate = append(c.hooks.PendingUpdate, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `pendingupdate.Intercept(f(g(h())))`.
+func (c *PendingUpdateClient) Intercept(interceptors ...Interceptor) {
+	c.inters.PendingUpdate = append(c.inters.PendingUpdate, interceptors...)
+}
+
+// Create returns a builder for creating a PendingUpdate entity.
+func (c *PendingUpdateClient) Create() *PendingUpdateCreate {
+	mutation := newPendingUpdateMutation(c.config, OpCreate)
+	return &PendingUpdateCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of PendingUpdate entities.
+func (c *PendingUpdateClient) CreateBulk(builders ...*PendingUpdateCreate) *PendingUpdateCreateBulk {
+	return &PendingUpdateCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *PendingUpdateClient) MapCreateBulk(slice any, setFunc func(*PendingUpdateCreate, int)) *PendingUpdateCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &PendingUpdateCreateBulk{err: fmt.Errorf("calling to PendingUpdateClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*PendingUpdateCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &PendingUpdateCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for PendingUpdate.
+func (c *PendingUpdateClient) Update() *PendingUpdateUpdate {
+	mutation := newPendingUpdateMutation(c.config, OpUpdate)
+	return &PendingUpdateUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *PendingUpdateClient) UpdateOne(pu *PendingUpdate) *PendingUpdateUpdateOne {
+	mutation := newPendingUpdateMutation(c.config, OpUpdateOne, withPendingUpdate(pu))
+	return &PendingUpdateUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *PendingUpdateClient) UpdateOneID(id int) *PendingUpdateUpdateOne {
+	mutation := newPendingUpdateMutation(c.config, OpUpdateOne, withPendingUpdateID(id))
+	return &PendingUpdateUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for PendingUpdate.
+func (c *PendingUpdateClient) Delete() *PendingUpdateDelete {
+	mutation := newPendingUpdateMutation(c.config, OpDelete)
+	return &PendingUpdateDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *PendingUpdateClient) DeleteOne(pu *PendingUpdate) *PendingUpdateDeleteOne {
+	return c.DeleteOneID(pu.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *PendingUpdateClient) DeleteOneID(id int) *PendingUpdateDeleteOne {
+	builder := c.Delete().Where(pendingupdate.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &PendingUpdateDeleteOne{builder}
+}
+
+// Query returns a query builder for PendingUpdate.
+func (c *PendingUpdateClient) Query() *PendingUpdateQuery {
+	return &PendingUpdateQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypePendingUpdate},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a PendingUpdate entity by its id.
+func (c *PendingUpdateClient) Get(ctx context.Context, id int) (*PendingUpdate, error) {
+	return c.Query().Where(pendingupdate.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *PendingUpdateClient) GetX(ctx context.Context, id int) *PendingUpdate {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// QueryOwner queries the owner edge of a PendingUpdate.
+func (c *PendingUpdateClient) QueryOwner(pu *PendingUpdate) *AgentQuery {
+	query := (&AgentClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := pu.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(pendingupdate.Table, pendingupdate.FieldID, id),
+			sqlgraph.To(agent.Table, agent.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, pendingupdate.OwnerTable, pendingupdate.OwnerColumn),
+		)
+		fromV = sqlgraph.Neighbors(pu.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// Hooks returns the client hooks.
+func (c *PendingUpdateClient) Hooks() []Hook {
+	return c.hooks.PendingUpdate
+}
+
+// Interceptors returns the client interceptors.
+func (c *PendingUpdateClient) Interceptors() []Interceptor {
+	return c.inters.PendingUpdate
+}
+
+func (c *PendingUpdateClient) mutate(ctx context.Context, m *PendingUpdateMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&PendingUpdateCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&PendingUpdateUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&PendingUpdateUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&PendingUpdateDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown PendingUpdate mutation op: %q", m.Op())
 	}
 }
 
@@ -6821,17 +6994,17 @@ type (
 	hooks struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
 		LogicalDisk, MemorySlot, Metadata, Monitor, Netbird, NetbirdSettings,
-		NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk, Printer, Profile,
-		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, Server, Sessions,
-		Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag, Task, TaskReport,
-		Tenant, Update, User, WingetConfigExclusion []ent.Hook
+		NetworkAdapter, OperatingSystem, OrgMetadata, PendingUpdate, PhysicalDisk,
+		Printer, Profile, ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk,
+		Server, Sessions, Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag,
+		Task, TaskReport, Tenant, Update, User, WingetConfigExclusion []ent.Hook
 	}
 	inters struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
 		LogicalDisk, MemorySlot, Metadata, Monitor, Netbird, NetbirdSettings,
-		NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk, Printer, Profile,
-		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, Server, Sessions,
-		Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag, Task, TaskReport,
-		Tenant, Update, User, WingetConfigExclusion []ent.Interceptor
+		NetworkAdapter, OperatingSystem, OrgMetadata, PendingUpdate, PhysicalDisk,
+		Printer, Profile, ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk,
+		Server, Sessions, Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag,
+		Task, TaskReport, Tenant, Update, User, WingetConfigExclusion []ent.Interceptor
 	}
 )

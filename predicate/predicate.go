@@ -54,6 +54,9 @@ type OperatingSystem func(*sql.Selector)
 // OrgMetadata is the predicate function for orgmetadata builders.
 type OrgMetadata func(*sql.Selector)
 
+// PendingUpdate is the predicate function for pendingupdate builders.
+type PendingUpdate func(*sql.Selector)
+
 // PhysicalDisk is the predicate function for physicaldisk builders.
 type PhysicalDisk func(*sql.Selector)
 

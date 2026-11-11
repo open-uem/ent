@@ -28,6 +28,7 @@ import (
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
 	"github.com/open-uem/ent/orgmetadata"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/physicaldisk"
 	"github.com/open-uem/ent/printer"
 	"github.com/open-uem/ent/profile"
@@ -126,6 +127,7 @@ func checkColumn(table, column string) error {
 			networkadapter.Table:        networkadapter.ValidColumn,
 			operatingsystem.Table:       operatingsystem.ValidColumn,
 			orgmetadata.Table:           orgmetadata.ValidColumn,
+			pendingupdate.Table:         pendingupdate.ValidColumn,
 			physicaldisk.Table:          physicaldisk.ValidColumn,
 			printer.Table:               printer.ValidColumn,
 			profile.Table:               profile.ValidColumn,

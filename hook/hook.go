@@ -201,6 +201,18 @@ func (f OrgMetadataFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value,
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.OrgMetadataMutation", m)
 }
 
+// The PendingUpdateFunc type is an adapter to allow the use of ordinary
+// function as PendingUpdate mutator.
+type PendingUpdateFunc func(context.Context, *ent.PendingUpdateMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f PendingUpdateFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.PendingUpdateMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.PendingUpdateMutation", m)
+}
+
 // The PhysicalDiskFunc type is an adapter to allow the use of ordinary
 // function as PhysicalDisk mutator.
 type PhysicalDiskFunc func(context.Context, *ent.PhysicalDiskMutation) (ent.Value, error)

@@ -24,6 +24,7 @@ import (
 	"github.com/open-uem/ent/netbird"
 	"github.com/open-uem/ent/networkadapter"
 	"github.com/open-uem/ent/operatingsystem"
+	"github.com/open-uem/ent/pendingupdate"
 	"github.com/open-uem/ent/physicaldisk"
 	"github.com/open-uem/ent/printer"
 	"github.com/open-uem/ent/profileissue"
@@ -648,6 +649,21 @@ func (ac *AgentCreate) AddUpdates(u ...*Update) *AgentCreate {
 		ids[i] = u[i].ID
 	}
 	return ac.AddUpdateIDs(ids...)
+}
+
+// AddPendingUpdateIDs adds the "pending_updates" edge to the PendingUpdate entity by IDs.
+func (ac *AgentCreate) AddPendingUpdateIDs(ids ...int) *AgentCreate {
+	ac.mutation.AddPendingUpdateIDs(ids...)
+	return ac
+}
+
+// AddPendingUpdates adds the "pending_updates" edges to the PendingUpdate entity.
+func (ac *AgentCreate) AddPendingUpdates(p ...*PendingUpdate) *AgentCreate {
+	ids := make([]int, len(p))
+	for i := range p {
+		ids[i] = p[i].ID
+	}
+	return ac.AddPendingUpdateIDs(ids...)
 }
 
 // AddTagIDs adds the "tags" edge to the Tag entity by IDs.
@@ -1309,6 +1325,22 @@ func (ac *AgentCreate) createSpec() (*Agent, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(update.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := ac.mutation.PendingUpdatesIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   agent.PendingUpdatesTable,
+			Columns: []string{agent.PendingUpdatesColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(pendingupdate.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {
