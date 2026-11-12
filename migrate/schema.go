@@ -820,7 +820,7 @@ var (
 	// TagsColumns holds the columns for the "tags" table.
 	TagsColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "tag", Type: field.TypeString, Unique: true},
+		{Name: "tag", Type: field.TypeString},
 		{Name: "description", Type: field.TypeString, Nullable: true},
 		{Name: "color", Type: field.TypeString},
 		{Name: "tag_children", Type: field.TypeInt, Nullable: true},
@@ -850,6 +850,13 @@ var (
 				Columns:    []*schema.Column{TagsColumns[6]},
 				RefColumns: []*schema.Column{TenantsColumns[0]},
 				OnDelete:   schema.Cascade,
+			},
+		},
+		Indexes: []*schema.Index{
+			{
+				Name:    "tag_tag_tenant_tags",
+				Unique:  true,
+				Columns: []*schema.Column{TagsColumns[1], TagsColumns[6]},
 			},
 		},
 	}
