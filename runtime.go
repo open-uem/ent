@@ -19,6 +19,7 @@ import (
 	"github.com/open-uem/ent/recoverycode"
 	"github.com/open-uem/ent/revocation"
 	"github.com/open-uem/ent/rustdesk"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/schema"
 	"github.com/open-uem/ent/sessions"
 	"github.com/open-uem/ent/settings"
@@ -366,6 +367,32 @@ func init() {
 	rustdeskDescTemporaryPasswordLength := rustdeskFields[8].Descriptor()
 	// rustdesk.DefaultTemporaryPasswordLength holds the default value on creation for the temporary_password_length field.
 	rustdesk.DefaultTemporaryPasswordLength = rustdeskDescTemporaryPasswordLength.Default.(int)
+	scheduledeventFields := schema.ScheduledEvent{}.Fields()
+	_ = scheduledeventFields
+	// scheduledeventDescDescription is the schema descriptor for description field.
+	scheduledeventDescDescription := scheduledeventFields[0].Descriptor()
+	// scheduledevent.DescriptionValidator is a validator for the "description" field. It is called by the builders before save.
+	scheduledevent.DescriptionValidator = scheduledeventDescDescription.Validators[0].(func(string) error)
+	// scheduledeventDescType is the schema descriptor for type field.
+	scheduledeventDescType := scheduledeventFields[1].Descriptor()
+	// scheduledevent.TypeValidator is a validator for the "type" field. It is called by the builders before save.
+	scheduledevent.TypeValidator = scheduledeventDescType.Validators[0].(func(string) error)
+	// scheduledeventDescEnabled is the schema descriptor for enabled field.
+	scheduledeventDescEnabled := scheduledeventFields[4].Descriptor()
+	// scheduledevent.DefaultEnabled holds the default value on creation for the enabled field.
+	scheduledevent.DefaultEnabled = scheduledeventDescEnabled.Default.(bool)
+	// scheduledeventDescLastRunFailed is the schema descriptor for last_run_failed field.
+	scheduledeventDescLastRunFailed := scheduledeventFields[6].Descriptor()
+	// scheduledevent.DefaultLastRunFailed holds the default value on creation for the last_run_failed field.
+	scheduledevent.DefaultLastRunFailed = scheduledeventDescLastRunFailed.Default.(bool)
+	// scheduledeventDescPackageVerified is the schema descriptor for package_verified field.
+	scheduledeventDescPackageVerified := scheduledeventFields[12].Descriptor()
+	// scheduledevent.DefaultPackageVerified holds the default value on creation for the package_verified field.
+	scheduledevent.DefaultPackageVerified = scheduledeventDescPackageVerified.Default.(bool)
+	// scheduledeventDescCreatedAt is the schema descriptor for created_at field.
+	scheduledeventDescCreatedAt := scheduledeventFields[13].Descriptor()
+	// scheduledevent.DefaultCreatedAt holds the default value on creation for the created_at field.
+	scheduledevent.DefaultCreatedAt = scheduledeventDescCreatedAt.Default.(time.Time)
 	sessionsFields := schema.Sessions{}.Fields()
 	_ = sessionsFields
 	// sessionsDescData is the schema descriptor for data field.

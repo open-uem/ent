@@ -50,9 +50,11 @@ type TenantEdges struct {
 	Netbird *NetbirdSettings `json:"netbird,omitempty"`
 	// Profiles holds the value of the profiles edge.
 	Profiles []*Profile `json:"profiles,omitempty"`
+	// ScheduledEvents holds the value of the scheduled_events edge.
+	ScheduledEvents []*ScheduledEvent `json:"scheduled_events,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [7]bool
+	loadedTypes [8]bool
 }
 
 // SitesOrErr returns the Sites value or an error if the edge
@@ -120,6 +122,15 @@ func (e TenantEdges) ProfilesOrErr() ([]*Profile, error) {
 		return e.Profiles, nil
 	}
 	return nil, &NotLoadedError{edge: "profiles"}
+}
+
+// ScheduledEventsOrErr returns the ScheduledEvents value or an error if the edge
+// was not loaded in eager-loading.
+func (e TenantEdges) ScheduledEventsOrErr() ([]*ScheduledEvent, error) {
+	if e.loadedTypes[7] {
+		return e.ScheduledEvents, nil
+	}
+	return nil, &NotLoadedError{edge: "scheduled_events"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -235,6 +246,11 @@ func (t *Tenant) QueryNetbird() *NetbirdSettingsQuery {
 // QueryProfiles queries the "profiles" edge of the Tenant entity.
 func (t *Tenant) QueryProfiles() *ProfileQuery {
 	return NewTenantClient(t.config).QueryProfiles(t)
+}
+
+// QueryScheduledEvents queries the "scheduled_events" edge of the Tenant entity.
+func (t *Tenant) QueryScheduledEvents() *ScheduledEventQuery {
+	return NewTenantClient(t.config).QueryScheduledEvents(t)
 }
 
 // Update returns a builder for updating this Tenant.

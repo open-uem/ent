@@ -13,6 +13,7 @@ import (
 	"entgo.io/ent/schema/field"
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/profile"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tenant"
 )
@@ -142,6 +143,21 @@ func (sc *SiteCreate) AddProfiles(p ...*Profile) *SiteCreate {
 		ids[i] = p[i].ID
 	}
 	return sc.AddProfileIDs(ids...)
+}
+
+// AddScheduledEventIDs adds the "scheduled_events" edge to the ScheduledEvent entity by IDs.
+func (sc *SiteCreate) AddScheduledEventIDs(ids ...int) *SiteCreate {
+	sc.mutation.AddScheduledEventIDs(ids...)
+	return sc
+}
+
+// AddScheduledEvents adds the "scheduled_events" edges to the ScheduledEvent entity.
+func (sc *SiteCreate) AddScheduledEvents(s ...*ScheduledEvent) *SiteCreate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return sc.AddScheduledEventIDs(ids...)
 }
 
 // Mutation returns the SiteMutation object of the builder.
@@ -280,6 +296,22 @@ func (sc *SiteCreate) createSpec() (*Site, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := sc.mutation.ScheduledEventsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

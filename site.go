@@ -43,9 +43,11 @@ type SiteEdges struct {
 	Agents []*Agent `json:"agents,omitempty"`
 	// Profiles holds the value of the profiles edge.
 	Profiles []*Profile `json:"profiles,omitempty"`
+	// ScheduledEvents holds the value of the scheduled_events edge.
+	ScheduledEvents []*ScheduledEvent `json:"scheduled_events,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [3]bool
+	loadedTypes [4]bool
 }
 
 // TenantOrErr returns the Tenant value or an error if the edge
@@ -75,6 +77,15 @@ func (e SiteEdges) ProfilesOrErr() ([]*Profile, error) {
 		return e.Profiles, nil
 	}
 	return nil, &NotLoadedError{edge: "profiles"}
+}
+
+// ScheduledEventsOrErr returns the ScheduledEvents value or an error if the edge
+// was not loaded in eager-loading.
+func (e SiteEdges) ScheduledEventsOrErr() ([]*ScheduledEvent, error) {
+	if e.loadedTypes[3] {
+		return e.ScheduledEvents, nil
+	}
+	return nil, &NotLoadedError{edge: "scheduled_events"}
 }
 
 // scanValues returns the types for scanning values from sql.Rows.
@@ -176,6 +187,11 @@ func (s *Site) QueryAgents() *AgentQuery {
 // QueryProfiles queries the "profiles" edge of the Site entity.
 func (s *Site) QueryProfiles() *ProfileQuery {
 	return NewSiteClient(s.config).QueryProfiles(s)
+}
+
+// QueryScheduledEvents queries the "scheduled_events" edge of the Site entity.
+func (s *Site) QueryScheduledEvents() *ScheduledEventQuery {
+	return NewSiteClient(s.config).QueryScheduledEvents(s)
 }
 
 // Update returns a builder for updating this Site.

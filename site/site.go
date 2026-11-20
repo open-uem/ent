@@ -30,6 +30,8 @@ const (
 	EdgeAgents = "agents"
 	// EdgeProfiles holds the string denoting the profiles edge name in mutations.
 	EdgeProfiles = "profiles"
+	// EdgeScheduledEvents holds the string denoting the scheduled_events edge name in mutations.
+	EdgeScheduledEvents = "scheduled_events"
 	// AgentFieldID holds the string denoting the ID field of the Agent.
 	AgentFieldID = "oid"
 	// Table holds the table name of the site in the database.
@@ -51,6 +53,13 @@ const (
 	// ProfilesInverseTable is the table name for the Profile entity.
 	// It exists in this package in order to avoid circular dependency with the "profile" package.
 	ProfilesInverseTable = "profiles"
+	// ScheduledEventsTable is the table that holds the scheduled_events relation/edge.
+	ScheduledEventsTable = "scheduled_events"
+	// ScheduledEventsInverseTable is the table name for the ScheduledEvent entity.
+	// It exists in this package in order to avoid circular dependency with the "scheduledevent" package.
+	ScheduledEventsInverseTable = "scheduled_events"
+	// ScheduledEventsColumn is the table column denoting the scheduled_events relation/edge.
+	ScheduledEventsColumn = "site_scheduled_events"
 )
 
 // Columns holds all SQL columns for site fields.
@@ -169,6 +178,20 @@ func ByProfiles(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 		sqlgraph.OrderByNeighborTerms(s, newProfilesStep(), append([]sql.OrderTerm{term}, terms...)...)
 	}
 }
+
+// ByScheduledEventsCount orders the results by scheduled_events count.
+func ByScheduledEventsCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newScheduledEventsStep(), opts...)
+	}
+}
+
+// ByScheduledEvents orders the results by scheduled_events terms.
+func ByScheduledEvents(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newScheduledEventsStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
 func newTenantStep() *sqlgraph.Step {
 	return sqlgraph.NewStep(
 		sqlgraph.From(Table, FieldID),
@@ -188,5 +211,12 @@ func newProfilesStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(ProfilesInverseTable, FieldID),
 		sqlgraph.Edge(sqlgraph.M2M, false, ProfilesTable, ProfilesPrimaryKey...),
+	)
+}
+func newScheduledEventsStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ScheduledEventsInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, ScheduledEventsTable, ScheduledEventsColumn),
 	)
 }

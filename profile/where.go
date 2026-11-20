@@ -252,6 +252,29 @@ func HasIssuesWith(preds ...predicate.ProfileIssue) predicate.Profile {
 	})
 }
 
+// HasScheduledEvents applies the HasEdge predicate on the "scheduled_events" edge.
+func HasScheduledEvents() predicate.Profile {
+	return predicate.Profile(func(s *sql.Selector) {
+		step := sqlgraph.NewStep(
+			sqlgraph.From(Table, FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, ScheduledEventsTable, ScheduledEventsColumn),
+		)
+		sqlgraph.HasNeighbors(s, step)
+	})
+}
+
+// HasScheduledEventsWith applies the HasEdge predicate on the "scheduled_events" edge with a given conditions (other predicates).
+func HasScheduledEventsWith(preds ...predicate.ScheduledEvent) predicate.Profile {
+	return predicate.Profile(func(s *sql.Selector) {
+		step := newScheduledEventsStep()
+		sqlgraph.HasNeighborsWith(s, step, func(s *sql.Selector) {
+			for _, p := range preds {
+				p(s)
+			}
+		})
+	})
+}
+
 // HasSite applies the HasEdge predicate on the "site" edge.
 func HasSite() predicate.Profile {
 	return predicate.Profile(func(s *sql.Selector) {

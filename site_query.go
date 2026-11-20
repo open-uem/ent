@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profile"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tenant"
 )
@@ -22,15 +23,16 @@ import (
 // SiteQuery is the builder for querying Site entities.
 type SiteQuery struct {
 	config
-	ctx          *QueryContext
-	order        []site.OrderOption
-	inters       []Interceptor
-	predicates   []predicate.Site
-	withTenant   *TenantQuery
-	withAgents   *AgentQuery
-	withProfiles *ProfileQuery
-	withFKs      bool
-	modifiers    []func(*sql.Selector)
+	ctx                 *QueryContext
+	order               []site.OrderOption
+	inters              []Interceptor
+	predicates          []predicate.Site
+	withTenant          *TenantQuery
+	withAgents          *AgentQuery
+	withProfiles        *ProfileQuery
+	withScheduledEvents *ScheduledEventQuery
+	withFKs             bool
+	modifiers           []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -126,6 +128,28 @@ func (sq *SiteQuery) QueryProfiles() *ProfileQuery {
 			sqlgraph.From(site.Table, site.FieldID, selector),
 			sqlgraph.To(profile.Table, profile.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, site.ProfilesTable, site.ProfilesPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryScheduledEvents chains the current query on the "scheduled_events" edge.
+func (sq *SiteQuery) QueryScheduledEvents() *ScheduledEventQuery {
+	query := (&ScheduledEventClient{config: sq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := sq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := sq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(site.Table, site.FieldID, selector),
+			sqlgraph.To(scheduledevent.Table, scheduledevent.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, site.ScheduledEventsTable, site.ScheduledEventsColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(sq.driver.Dialect(), step)
 		return fromU, nil
@@ -320,14 +344,15 @@ func (sq *SiteQuery) Clone() *SiteQuery {
 		return nil
 	}
 	return &SiteQuery{
-		config:       sq.config,
-		ctx:          sq.ctx.Clone(),
-		order:        append([]site.OrderOption{}, sq.order...),
-		inters:       append([]Interceptor{}, sq.inters...),
-		predicates:   append([]predicate.Site{}, sq.predicates...),
-		withTenant:   sq.withTenant.Clone(),
-		withAgents:   sq.withAgents.Clone(),
-		withProfiles: sq.withProfiles.Clone(),
+		config:              sq.config,
+		ctx:                 sq.ctx.Clone(),
+		order:               append([]site.OrderOption{}, sq.order...),
+		inters:              append([]Interceptor{}, sq.inters...),
+		predicates:          append([]predicate.Site{}, sq.predicates...),
+		withTenant:          sq.withTenant.Clone(),
+		withAgents:          sq.withAgents.Clone(),
+		withProfiles:        sq.withProfiles.Clone(),
+		withScheduledEvents: sq.withScheduledEvents.Clone(),
 		// clone intermediate query.
 		sql:       sq.sql.Clone(),
 		path:      sq.path,
@@ -365,6 +390,17 @@ func (sq *SiteQuery) WithProfiles(opts ...func(*ProfileQuery)) *SiteQuery {
 		opt(query)
 	}
 	sq.withProfiles = query
+	return sq
+}
+
+// WithScheduledEvents tells the query-builder to eager-load the nodes that are connected to
+// the "scheduled_events" edge. The optional arguments are used to configure the query builder of the edge.
+func (sq *SiteQuery) WithScheduledEvents(opts ...func(*ScheduledEventQuery)) *SiteQuery {
+	query := (&ScheduledEventClient{config: sq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	sq.withScheduledEvents = query
 	return sq
 }
 
@@ -447,10 +483,11 @@ func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, e
 		nodes       = []*Site{}
 		withFKs     = sq.withFKs
 		_spec       = sq.querySpec()
-		loadedTypes = [3]bool{
+		loadedTypes = [4]bool{
 			sq.withTenant != nil,
 			sq.withAgents != nil,
 			sq.withProfiles != nil,
+			sq.withScheduledEvents != nil,
 		}
 	)
 	if sq.withTenant != nil {
@@ -497,6 +534,13 @@ func (sq *SiteQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Site, e
 		if err := sq.loadProfiles(ctx, query, nodes,
 			func(n *Site) { n.Edges.Profiles = []*Profile{} },
 			func(n *Site, e *Profile) { n.Edges.Profiles = append(n.Edges.Profiles, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := sq.withScheduledEvents; query != nil {
+		if err := sq.loadScheduledEvents(ctx, query, nodes,
+			func(n *Site) { n.Edges.ScheduledEvents = []*ScheduledEvent{} },
+			func(n *Site, e *ScheduledEvent) { n.Edges.ScheduledEvents = append(n.Edges.ScheduledEvents, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -654,6 +698,37 @@ func (sq *SiteQuery) loadProfiles(ctx context.Context, query *ProfileQuery, node
 		for kn := range nodes {
 			assign(kn, n)
 		}
+	}
+	return nil
+}
+func (sq *SiteQuery) loadScheduledEvents(ctx context.Context, query *ScheduledEventQuery, nodes []*Site, init func(*Site), assign func(*Site, *ScheduledEvent)) error {
+	fks := make([]driver.Value, 0, len(nodes))
+	nodeids := make(map[int]*Site)
+	for i := range nodes {
+		fks = append(fks, nodes[i].ID)
+		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
+	}
+	query.withFKs = true
+	query.Where(predicate.ScheduledEvent(func(s *sql.Selector) {
+		s.Where(sql.InValues(s.C(site.ScheduledEventsColumn), fks...))
+	}))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		fk := n.site_scheduled_events
+		if fk == nil {
+			return fmt.Errorf(`foreign-key "site_scheduled_events" is nil for node %v`, n.ID)
+		}
+		node, ok := nodeids[*fk]
+		if !ok {
+			return fmt.Errorf(`unexpected referenced foreign-key "site_scheduled_events" returned %v for node %v`, *fk, n.ID)
+		}
+		assign(node, n)
 	}
 	return nil
 }

@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/orgmetadata"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/rustdesk"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
@@ -196,6 +197,21 @@ func (tc *TenantCreate) AddProfiles(p ...*Profile) *TenantCreate {
 		ids[i] = p[i].ID
 	}
 	return tc.AddProfileIDs(ids...)
+}
+
+// AddScheduledEventIDs adds the "scheduled_events" edge to the ScheduledEvent entity by IDs.
+func (tc *TenantCreate) AddScheduledEventIDs(ids ...int) *TenantCreate {
+	tc.mutation.AddScheduledEventIDs(ids...)
+	return tc
+}
+
+// AddScheduledEvents adds the "scheduled_events" edges to the ScheduledEvent entity.
+func (tc *TenantCreate) AddScheduledEvents(s ...*ScheduledEvent) *TenantCreate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return tc.AddScheduledEventIDs(ids...)
 }
 
 // Mutation returns the TenantMutation object of the builder.
@@ -394,6 +410,22 @@ func (tc *TenantCreate) createSpec() (*Tenant, *sqlgraph.CreateSpec) {
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges = append(_spec.Edges, edge)
+	}
+	if nodes := tc.mutation.ScheduledEventsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

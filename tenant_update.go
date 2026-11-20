@@ -16,6 +16,7 @@ import (
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/rustdesk"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
@@ -221,6 +222,21 @@ func (tu *TenantUpdate) AddProfiles(p ...*Profile) *TenantUpdate {
 	return tu.AddProfileIDs(ids...)
 }
 
+// AddScheduledEventIDs adds the "scheduled_events" edge to the ScheduledEvent entity by IDs.
+func (tu *TenantUpdate) AddScheduledEventIDs(ids ...int) *TenantUpdate {
+	tu.mutation.AddScheduledEventIDs(ids...)
+	return tu
+}
+
+// AddScheduledEvents adds the "scheduled_events" edges to the ScheduledEvent entity.
+func (tu *TenantUpdate) AddScheduledEvents(s ...*ScheduledEvent) *TenantUpdate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return tu.AddScheduledEventIDs(ids...)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tu *TenantUpdate) Mutation() *TenantMutation {
 	return tu.mutation
@@ -341,6 +357,27 @@ func (tu *TenantUpdate) RemoveProfiles(p ...*Profile) *TenantUpdate {
 		ids[i] = p[i].ID
 	}
 	return tu.RemoveProfileIDs(ids...)
+}
+
+// ClearScheduledEvents clears all "scheduled_events" edges to the ScheduledEvent entity.
+func (tu *TenantUpdate) ClearScheduledEvents() *TenantUpdate {
+	tu.mutation.ClearScheduledEvents()
+	return tu
+}
+
+// RemoveScheduledEventIDs removes the "scheduled_events" edge to ScheduledEvent entities by IDs.
+func (tu *TenantUpdate) RemoveScheduledEventIDs(ids ...int) *TenantUpdate {
+	tu.mutation.RemoveScheduledEventIDs(ids...)
+	return tu
+}
+
+// RemoveScheduledEvents removes "scheduled_events" edges to ScheduledEvent entities.
+func (tu *TenantUpdate) RemoveScheduledEvents(s ...*ScheduledEvent) *TenantUpdate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return tu.RemoveScheduledEventIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -701,6 +738,51 @@ func (tu *TenantUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if tu.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.RemovedScheduledEventsIDs(); len(nodes) > 0 && !tu.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tu.mutation.ScheduledEventsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(tu.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, tu.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -908,6 +990,21 @@ func (tuo *TenantUpdateOne) AddProfiles(p ...*Profile) *TenantUpdateOne {
 	return tuo.AddProfileIDs(ids...)
 }
 
+// AddScheduledEventIDs adds the "scheduled_events" edge to the ScheduledEvent entity by IDs.
+func (tuo *TenantUpdateOne) AddScheduledEventIDs(ids ...int) *TenantUpdateOne {
+	tuo.mutation.AddScheduledEventIDs(ids...)
+	return tuo
+}
+
+// AddScheduledEvents adds the "scheduled_events" edges to the ScheduledEvent entity.
+func (tuo *TenantUpdateOne) AddScheduledEvents(s ...*ScheduledEvent) *TenantUpdateOne {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return tuo.AddScheduledEventIDs(ids...)
+}
+
 // Mutation returns the TenantMutation object of the builder.
 func (tuo *TenantUpdateOne) Mutation() *TenantMutation {
 	return tuo.mutation
@@ -1028,6 +1125,27 @@ func (tuo *TenantUpdateOne) RemoveProfiles(p ...*Profile) *TenantUpdateOne {
 		ids[i] = p[i].ID
 	}
 	return tuo.RemoveProfileIDs(ids...)
+}
+
+// ClearScheduledEvents clears all "scheduled_events" edges to the ScheduledEvent entity.
+func (tuo *TenantUpdateOne) ClearScheduledEvents() *TenantUpdateOne {
+	tuo.mutation.ClearScheduledEvents()
+	return tuo
+}
+
+// RemoveScheduledEventIDs removes the "scheduled_events" edge to ScheduledEvent entities by IDs.
+func (tuo *TenantUpdateOne) RemoveScheduledEventIDs(ids ...int) *TenantUpdateOne {
+	tuo.mutation.RemoveScheduledEventIDs(ids...)
+	return tuo
+}
+
+// RemoveScheduledEvents removes "scheduled_events" edges to ScheduledEvent entities.
+func (tuo *TenantUpdateOne) RemoveScheduledEvents(s ...*ScheduledEvent) *TenantUpdateOne {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return tuo.RemoveScheduledEventIDs(ids...)
 }
 
 // Where appends a list predicates to the TenantUpdate builder.
@@ -1411,6 +1529,51 @@ func (tuo *TenantUpdateOne) sqlSave(ctx context.Context) (_node *Tenant, err err
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if tuo.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.RemovedScheduledEventsIDs(); len(nodes) > 0 && !tuo.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := tuo.mutation.ScheduledEventsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   tenant.ScheduledEventsTable,
+			Columns: []string{tenant.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

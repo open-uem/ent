@@ -15,6 +15,7 @@ import (
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/profileissue"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
 	"github.com/open-uem/ent/task"
@@ -24,16 +25,17 @@ import (
 // ProfileQuery is the builder for querying Profile entities.
 type ProfileQuery struct {
 	config
-	ctx        *QueryContext
-	order      []profile.OrderOption
-	inters     []Interceptor
-	predicates []predicate.Profile
-	withTags   *TagQuery
-	withTasks  *TaskQuery
-	withIssues *ProfileIssueQuery
-	withSite   *SiteQuery
-	withTenant *TenantQuery
-	modifiers  []func(*sql.Selector)
+	ctx                 *QueryContext
+	order               []profile.OrderOption
+	inters              []Interceptor
+	predicates          []predicate.Profile
+	withTags            *TagQuery
+	withTasks           *TaskQuery
+	withIssues          *ProfileIssueQuery
+	withScheduledEvents *ScheduledEventQuery
+	withSite            *SiteQuery
+	withTenant          *TenantQuery
+	modifiers           []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -129,6 +131,28 @@ func (pq *ProfileQuery) QueryIssues() *ProfileIssueQuery {
 			sqlgraph.From(profile.Table, profile.FieldID, selector),
 			sqlgraph.To(profileissue.Table, profileissue.FieldID),
 			sqlgraph.Edge(sqlgraph.O2M, false, profile.IssuesTable, profile.IssuesColumn),
+		)
+		fromU = sqlgraph.SetNeighbors(pq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryScheduledEvents chains the current query on the "scheduled_events" edge.
+func (pq *ProfileQuery) QueryScheduledEvents() *ScheduledEventQuery {
+	query := (&ScheduledEventClient{config: pq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := pq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := pq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(profile.Table, profile.FieldID, selector),
+			sqlgraph.To(scheduledevent.Table, scheduledevent.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, profile.ScheduledEventsTable, profile.ScheduledEventsColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(pq.driver.Dialect(), step)
 		return fromU, nil
@@ -367,16 +391,17 @@ func (pq *ProfileQuery) Clone() *ProfileQuery {
 		return nil
 	}
 	return &ProfileQuery{
-		config:     pq.config,
-		ctx:        pq.ctx.Clone(),
-		order:      append([]profile.OrderOption{}, pq.order...),
-		inters:     append([]Interceptor{}, pq.inters...),
-		predicates: append([]predicate.Profile{}, pq.predicates...),
-		withTags:   pq.withTags.Clone(),
-		withTasks:  pq.withTasks.Clone(),
-		withIssues: pq.withIssues.Clone(),
-		withSite:   pq.withSite.Clone(),
-		withTenant: pq.withTenant.Clone(),
+		config:              pq.config,
+		ctx:                 pq.ctx.Clone(),
+		order:               append([]profile.OrderOption{}, pq.order...),
+		inters:              append([]Interceptor{}, pq.inters...),
+		predicates:          append([]predicate.Profile{}, pq.predicates...),
+		withTags:            pq.withTags.Clone(),
+		withTasks:           pq.withTasks.Clone(),
+		withIssues:          pq.withIssues.Clone(),
+		withScheduledEvents: pq.withScheduledEvents.Clone(),
+		withSite:            pq.withSite.Clone(),
+		withTenant:          pq.withTenant.Clone(),
 		// clone intermediate query.
 		sql:       pq.sql.Clone(),
 		path:      pq.path,
@@ -414,6 +439,17 @@ func (pq *ProfileQuery) WithIssues(opts ...func(*ProfileIssueQuery)) *ProfileQue
 		opt(query)
 	}
 	pq.withIssues = query
+	return pq
+}
+
+// WithScheduledEvents tells the query-builder to eager-load the nodes that are connected to
+// the "scheduled_events" edge. The optional arguments are used to configure the query builder of the edge.
+func (pq *ProfileQuery) WithScheduledEvents(opts ...func(*ScheduledEventQuery)) *ProfileQuery {
+	query := (&ScheduledEventClient{config: pq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	pq.withScheduledEvents = query
 	return pq
 }
 
@@ -517,10 +553,11 @@ func (pq *ProfileQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Prof
 	var (
 		nodes       = []*Profile{}
 		_spec       = pq.querySpec()
-		loadedTypes = [5]bool{
+		loadedTypes = [6]bool{
 			pq.withTags != nil,
 			pq.withTasks != nil,
 			pq.withIssues != nil,
+			pq.withScheduledEvents != nil,
 			pq.withSite != nil,
 			pq.withTenant != nil,
 		}
@@ -564,6 +601,13 @@ func (pq *ProfileQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Prof
 		if err := pq.loadIssues(ctx, query, nodes,
 			func(n *Profile) { n.Edges.Issues = []*ProfileIssue{} },
 			func(n *Profile, e *ProfileIssue) { n.Edges.Issues = append(n.Edges.Issues, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := pq.withScheduledEvents; query != nil {
+		if err := pq.loadScheduledEvents(ctx, query, nodes,
+			func(n *Profile) { n.Edges.ScheduledEvents = []*ScheduledEvent{} },
+			func(n *Profile, e *ScheduledEvent) { n.Edges.ScheduledEvents = append(n.Edges.ScheduledEvents, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -702,6 +746,37 @@ func (pq *ProfileQuery) loadIssues(ctx context.Context, query *ProfileIssueQuery
 		node, ok := nodeids[*fk]
 		if !ok {
 			return fmt.Errorf(`unexpected referenced foreign-key "profile_issues" returned %v for node %v`, *fk, n.ID)
+		}
+		assign(node, n)
+	}
+	return nil
+}
+func (pq *ProfileQuery) loadScheduledEvents(ctx context.Context, query *ScheduledEventQuery, nodes []*Profile, init func(*Profile), assign func(*Profile, *ScheduledEvent)) error {
+	fks := make([]driver.Value, 0, len(nodes))
+	nodeids := make(map[int]*Profile)
+	for i := range nodes {
+		fks = append(fks, nodes[i].ID)
+		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
+	}
+	query.withFKs = true
+	query.Where(predicate.ScheduledEvent(func(s *sql.Selector) {
+		s.Where(sql.InValues(s.C(profile.ScheduledEventsColumn), fks...))
+	}))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		fk := n.profile_scheduled_events
+		if fk == nil {
+			return fmt.Errorf(`foreign-key "profile_scheduled_events" is nil for node %v`, n.ID)
+		}
+		node, ok := nodeids[*fk]
+		if !ok {
+			return fmt.Errorf(`unexpected referenced foreign-key "profile_scheduled_events" returned %v for node %v`, *fk, n.ID)
 		}
 		assign(node, n)
 	}

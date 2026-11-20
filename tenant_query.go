@@ -17,6 +17,7 @@ import (
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profile"
 	"github.com/open-uem/ent/rustdesk"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/settings"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tag"
@@ -26,19 +27,20 @@ import (
 // TenantQuery is the builder for querying Tenant entities.
 type TenantQuery struct {
 	config
-	ctx          *QueryContext
-	order        []tenant.OrderOption
-	inters       []Interceptor
-	predicates   []predicate.Tenant
-	withSites    *SiteQuery
-	withSettings *SettingsQuery
-	withTags     *TagQuery
-	withMetadata *OrgMetadataQuery
-	withRustdesk *RustdeskQuery
-	withNetbird  *NetbirdSettingsQuery
-	withProfiles *ProfileQuery
-	withFKs      bool
-	modifiers    []func(*sql.Selector)
+	ctx                 *QueryContext
+	order               []tenant.OrderOption
+	inters              []Interceptor
+	predicates          []predicate.Tenant
+	withSites           *SiteQuery
+	withSettings        *SettingsQuery
+	withTags            *TagQuery
+	withMetadata        *OrgMetadataQuery
+	withRustdesk        *RustdeskQuery
+	withNetbird         *NetbirdSettingsQuery
+	withProfiles        *ProfileQuery
+	withScheduledEvents *ScheduledEventQuery
+	withFKs             bool
+	modifiers           []func(*sql.Selector)
 	// intermediate query (i.e. traversal path).
 	sql  *sql.Selector
 	path func(context.Context) (*sql.Selector, error)
@@ -222,6 +224,28 @@ func (tq *TenantQuery) QueryProfiles() *ProfileQuery {
 			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
 			sqlgraph.To(profile.Table, profile.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, tenant.ProfilesTable, tenant.ProfilesPrimaryKey...),
+		)
+		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
+		return fromU, nil
+	}
+	return query
+}
+
+// QueryScheduledEvents chains the current query on the "scheduled_events" edge.
+func (tq *TenantQuery) QueryScheduledEvents() *ScheduledEventQuery {
+	query := (&ScheduledEventClient{config: tq.config}).Query()
+	query.path = func(ctx context.Context) (fromU *sql.Selector, err error) {
+		if err := tq.prepareQuery(ctx); err != nil {
+			return nil, err
+		}
+		selector := tq.sqlQuery(ctx)
+		if err := selector.Err(); err != nil {
+			return nil, err
+		}
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, selector),
+			sqlgraph.To(scheduledevent.Table, scheduledevent.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, tenant.ScheduledEventsTable, tenant.ScheduledEventsColumn),
 		)
 		fromU = sqlgraph.SetNeighbors(tq.driver.Dialect(), step)
 		return fromU, nil
@@ -416,18 +440,19 @@ func (tq *TenantQuery) Clone() *TenantQuery {
 		return nil
 	}
 	return &TenantQuery{
-		config:       tq.config,
-		ctx:          tq.ctx.Clone(),
-		order:        append([]tenant.OrderOption{}, tq.order...),
-		inters:       append([]Interceptor{}, tq.inters...),
-		predicates:   append([]predicate.Tenant{}, tq.predicates...),
-		withSites:    tq.withSites.Clone(),
-		withSettings: tq.withSettings.Clone(),
-		withTags:     tq.withTags.Clone(),
-		withMetadata: tq.withMetadata.Clone(),
-		withRustdesk: tq.withRustdesk.Clone(),
-		withNetbird:  tq.withNetbird.Clone(),
-		withProfiles: tq.withProfiles.Clone(),
+		config:              tq.config,
+		ctx:                 tq.ctx.Clone(),
+		order:               append([]tenant.OrderOption{}, tq.order...),
+		inters:              append([]Interceptor{}, tq.inters...),
+		predicates:          append([]predicate.Tenant{}, tq.predicates...),
+		withSites:           tq.withSites.Clone(),
+		withSettings:        tq.withSettings.Clone(),
+		withTags:            tq.withTags.Clone(),
+		withMetadata:        tq.withMetadata.Clone(),
+		withRustdesk:        tq.withRustdesk.Clone(),
+		withNetbird:         tq.withNetbird.Clone(),
+		withProfiles:        tq.withProfiles.Clone(),
+		withScheduledEvents: tq.withScheduledEvents.Clone(),
 		// clone intermediate query.
 		sql:       tq.sql.Clone(),
 		path:      tq.path,
@@ -512,6 +537,17 @@ func (tq *TenantQuery) WithProfiles(opts ...func(*ProfileQuery)) *TenantQuery {
 	return tq
 }
 
+// WithScheduledEvents tells the query-builder to eager-load the nodes that are connected to
+// the "scheduled_events" edge. The optional arguments are used to configure the query builder of the edge.
+func (tq *TenantQuery) WithScheduledEvents(opts ...func(*ScheduledEventQuery)) *TenantQuery {
+	query := (&ScheduledEventClient{config: tq.config}).Query()
+	for _, opt := range opts {
+		opt(query)
+	}
+	tq.withScheduledEvents = query
+	return tq
+}
+
 // GroupBy is used to group vertices by one or more fields/columns.
 // It is often used with aggregate functions, like: count, max, mean, min, sum.
 //
@@ -591,7 +627,7 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 		nodes       = []*Tenant{}
 		withFKs     = tq.withFKs
 		_spec       = tq.querySpec()
-		loadedTypes = [7]bool{
+		loadedTypes = [8]bool{
 			tq.withSites != nil,
 			tq.withSettings != nil,
 			tq.withTags != nil,
@@ -599,6 +635,7 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 			tq.withRustdesk != nil,
 			tq.withNetbird != nil,
 			tq.withProfiles != nil,
+			tq.withScheduledEvents != nil,
 		}
 	)
 	if tq.withNetbird != nil {
@@ -672,6 +709,13 @@ func (tq *TenantQuery) sqlAll(ctx context.Context, hooks ...queryHook) ([]*Tenan
 		if err := tq.loadProfiles(ctx, query, nodes,
 			func(n *Tenant) { n.Edges.Profiles = []*Profile{} },
 			func(n *Tenant, e *Profile) { n.Edges.Profiles = append(n.Edges.Profiles, e) }); err != nil {
+			return nil, err
+		}
+	}
+	if query := tq.withScheduledEvents; query != nil {
+		if err := tq.loadScheduledEvents(ctx, query, nodes,
+			func(n *Tenant) { n.Edges.ScheduledEvents = []*ScheduledEvent{} },
+			func(n *Tenant, e *ScheduledEvent) { n.Edges.ScheduledEvents = append(n.Edges.ScheduledEvents, e) }); err != nil {
 			return nil, err
 		}
 	}
@@ -950,6 +994,37 @@ func (tq *TenantQuery) loadProfiles(ctx context.Context, query *ProfileQuery, no
 		for kn := range nodes {
 			assign(kn, n)
 		}
+	}
+	return nil
+}
+func (tq *TenantQuery) loadScheduledEvents(ctx context.Context, query *ScheduledEventQuery, nodes []*Tenant, init func(*Tenant), assign func(*Tenant, *ScheduledEvent)) error {
+	fks := make([]driver.Value, 0, len(nodes))
+	nodeids := make(map[int]*Tenant)
+	for i := range nodes {
+		fks = append(fks, nodes[i].ID)
+		nodeids[nodes[i].ID] = nodes[i]
+		if init != nil {
+			init(nodes[i])
+		}
+	}
+	query.withFKs = true
+	query.Where(predicate.ScheduledEvent(func(s *sql.Selector) {
+		s.Where(sql.InValues(s.C(tenant.ScheduledEventsColumn), fks...))
+	}))
+	neighbors, err := query.All(ctx)
+	if err != nil {
+		return err
+	}
+	for _, n := range neighbors {
+		fk := n.tenant_scheduled_events
+		if fk == nil {
+			return fmt.Errorf(`foreign-key "tenant_scheduled_events" is nil for node %v`, n.ID)
+		}
+		node, ok := nodeids[*fk]
+		if !ok {
+			return fmt.Errorf(`unexpected referenced foreign-key "tenant_scheduled_events" returned %v for node %v`, *fk, n.ID)
+		}
+		assign(node, n)
 	}
 	return nil
 }

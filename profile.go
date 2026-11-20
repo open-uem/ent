@@ -38,13 +38,15 @@ type ProfileEdges struct {
 	Tasks []*Task `json:"tasks,omitempty"`
 	// Issues holds the value of the issues edge.
 	Issues []*ProfileIssue `json:"issues,omitempty"`
+	// ScheduledEvents holds the value of the scheduled_events edge.
+	ScheduledEvents []*ScheduledEvent `json:"scheduled_events,omitempty"`
 	// Site holds the value of the site edge.
 	Site []*Site `json:"site,omitempty"`
 	// Tenant holds the value of the tenant edge.
 	Tenant []*Tenant `json:"tenant,omitempty"`
 	// loadedTypes holds the information for reporting if a
 	// type was loaded (or requested) in eager-loading or not.
-	loadedTypes [5]bool
+	loadedTypes [6]bool
 }
 
 // TagsOrErr returns the Tags value or an error if the edge
@@ -74,10 +76,19 @@ func (e ProfileEdges) IssuesOrErr() ([]*ProfileIssue, error) {
 	return nil, &NotLoadedError{edge: "issues"}
 }
 
+// ScheduledEventsOrErr returns the ScheduledEvents value or an error if the edge
+// was not loaded in eager-loading.
+func (e ProfileEdges) ScheduledEventsOrErr() ([]*ScheduledEvent, error) {
+	if e.loadedTypes[3] {
+		return e.ScheduledEvents, nil
+	}
+	return nil, &NotLoadedError{edge: "scheduled_events"}
+}
+
 // SiteOrErr returns the Site value or an error if the edge
 // was not loaded in eager-loading.
 func (e ProfileEdges) SiteOrErr() ([]*Site, error) {
-	if e.loadedTypes[3] {
+	if e.loadedTypes[4] {
 		return e.Site, nil
 	}
 	return nil, &NotLoadedError{edge: "site"}
@@ -86,7 +97,7 @@ func (e ProfileEdges) SiteOrErr() ([]*Site, error) {
 // TenantOrErr returns the Tenant value or an error if the edge
 // was not loaded in eager-loading.
 func (e ProfileEdges) TenantOrErr() ([]*Tenant, error) {
-	if e.loadedTypes[4] {
+	if e.loadedTypes[5] {
 		return e.Tenant, nil
 	}
 	return nil, &NotLoadedError{edge: "tenant"}
@@ -174,6 +185,11 @@ func (pr *Profile) QueryTasks() *TaskQuery {
 // QueryIssues queries the "issues" edge of the Profile entity.
 func (pr *Profile) QueryIssues() *ProfileIssueQuery {
 	return NewProfileClient(pr.config).QueryIssues(pr)
+}
+
+// QueryScheduledEvents queries the "scheduled_events" edge of the Profile entity.
+func (pr *Profile) QueryScheduledEvents() *ScheduledEventQuery {
+	return NewProfileClient(pr.config).QueryScheduledEvents(pr)
 }
 
 // QuerySite queries the "site" edge of the Profile entity.

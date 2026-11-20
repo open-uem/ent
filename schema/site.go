@@ -31,5 +31,6 @@ func (Site) Edges() []ent.Edge {
 		edge.From("tenant", Tenant.Type).Ref("sites").Unique(),
 		edge.To("agents", Agent.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 		edge.To("profiles", Profile.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
+		edge.To("scheduled_events", ScheduledEvent.Type).Annotations(entsql.Annotation{OnDelete: entsql.Cascade}),
 	}
 }

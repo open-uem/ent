@@ -28,6 +28,8 @@ const (
 	EdgeTasks = "tasks"
 	// EdgeIssues holds the string denoting the issues edge name in mutations.
 	EdgeIssues = "issues"
+	// EdgeScheduledEvents holds the string denoting the scheduled_events edge name in mutations.
+	EdgeScheduledEvents = "scheduled_events"
 	// EdgeSite holds the string denoting the site edge name in mutations.
 	EdgeSite = "site"
 	// EdgeTenant holds the string denoting the tenant edge name in mutations.
@@ -53,6 +55,13 @@ const (
 	IssuesInverseTable = "profile_issues"
 	// IssuesColumn is the table column denoting the issues relation/edge.
 	IssuesColumn = "profile_issues"
+	// ScheduledEventsTable is the table that holds the scheduled_events relation/edge.
+	ScheduledEventsTable = "scheduled_events"
+	// ScheduledEventsInverseTable is the table name for the ScheduledEvent entity.
+	// It exists in this package in order to avoid circular dependency with the "scheduledevent" package.
+	ScheduledEventsInverseTable = "scheduled_events"
+	// ScheduledEventsColumn is the table column denoting the scheduled_events relation/edge.
+	ScheduledEventsColumn = "profile_scheduled_events"
 	// SiteTable is the table that holds the site relation/edge. The primary key declared below.
 	SiteTable = "site_profiles"
 	// SiteInverseTable is the table name for the Site entity.
@@ -200,6 +209,20 @@ func ByIssues(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
 	}
 }
 
+// ByScheduledEventsCount orders the results by scheduled_events count.
+func ByScheduledEventsCount(opts ...sql.OrderTermOption) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborsCount(s, newScheduledEventsStep(), opts...)
+	}
+}
+
+// ByScheduledEvents orders the results by scheduled_events terms.
+func ByScheduledEvents(term sql.OrderTerm, terms ...sql.OrderTerm) OrderOption {
+	return func(s *sql.Selector) {
+		sqlgraph.OrderByNeighborTerms(s, newScheduledEventsStep(), append([]sql.OrderTerm{term}, terms...)...)
+	}
+}
+
 // BySiteCount orders the results by site count.
 func BySiteCount(opts ...sql.OrderTermOption) OrderOption {
 	return func(s *sql.Selector) {
@@ -246,6 +269,13 @@ func newIssuesStep() *sqlgraph.Step {
 		sqlgraph.From(Table, FieldID),
 		sqlgraph.To(IssuesInverseTable, FieldID),
 		sqlgraph.Edge(sqlgraph.O2M, false, IssuesTable, IssuesColumn),
+	)
+}
+func newScheduledEventsStep() *sqlgraph.Step {
+	return sqlgraph.NewStep(
+		sqlgraph.From(Table, FieldID),
+		sqlgraph.To(ScheduledEventsInverseTable, FieldID),
+		sqlgraph.Edge(sqlgraph.O2M, false, ScheduledEventsTable, ScheduledEventsColumn),
 	)
 }
 func newSiteStep() *sqlgraph.Step {

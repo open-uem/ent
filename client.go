@@ -40,6 +40,7 @@ import (
 	"github.com/open-uem/ent/release"
 	"github.com/open-uem/ent/revocation"
 	"github.com/open-uem/ent/rustdesk"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/server"
 	"github.com/open-uem/ent/sessions"
 	"github.com/open-uem/ent/settings"
@@ -109,6 +110,8 @@ type Client struct {
 	Revocation *RevocationClient
 	// Rustdesk is the client for interacting with the Rustdesk builders.
 	Rustdesk *RustdeskClient
+	// ScheduledEvent is the client for interacting with the ScheduledEvent builders.
+	ScheduledEvent *ScheduledEventClient
 	// Server is the client for interacting with the Server builders.
 	Server *ServerClient
 	// Sessions is the client for interacting with the Sessions builders.
@@ -172,6 +175,7 @@ func (c *Client) init() {
 	c.Release = NewReleaseClient(c.config)
 	c.Revocation = NewRevocationClient(c.config)
 	c.Rustdesk = NewRustdeskClient(c.config)
+	c.ScheduledEvent = NewScheduledEventClient(c.config)
 	c.Server = NewServerClient(c.config)
 	c.Sessions = NewSessionsClient(c.config)
 	c.Settings = NewSettingsClient(c.config)
@@ -302,6 +306,7 @@ func (c *Client) Tx(ctx context.Context) (*Tx, error) {
 		Release:               NewReleaseClient(cfg),
 		Revocation:            NewRevocationClient(cfg),
 		Rustdesk:              NewRustdeskClient(cfg),
+		ScheduledEvent:        NewScheduledEventClient(cfg),
 		Server:                NewServerClient(cfg),
 		Sessions:              NewSessionsClient(cfg),
 		Settings:              NewSettingsClient(cfg),
@@ -359,6 +364,7 @@ func (c *Client) BeginTx(ctx context.Context, opts *sql.TxOptions) (*Tx, error) 
 		Release:               NewReleaseClient(cfg),
 		Revocation:            NewRevocationClient(cfg),
 		Rustdesk:              NewRustdeskClient(cfg),
+		ScheduledEvent:        NewScheduledEventClient(cfg),
 		Server:                NewServerClient(cfg),
 		Sessions:              NewSessionsClient(cfg),
 		Settings:              NewSettingsClient(cfg),
@@ -406,9 +412,9 @@ func (c *Client) Use(hooks ...Hook) {
 		c.Deployment, c.LogicalDisk, c.MemorySlot, c.Metadata, c.Monitor, c.Netbird,
 		c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem, c.OrgMetadata,
 		c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue, c.RecoveryCode,
-		c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions, c.Settings, c.Share,
-		c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task, c.TaskReport,
-		c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
+		c.Release, c.Revocation, c.Rustdesk, c.ScheduledEvent, c.Server, c.Sessions,
+		c.Settings, c.Share, c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task,
+		c.TaskReport, c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
 	} {
 		n.Use(hooks...)
 	}
@@ -422,9 +428,9 @@ func (c *Client) Intercept(interceptors ...Interceptor) {
 		c.Deployment, c.LogicalDisk, c.MemorySlot, c.Metadata, c.Monitor, c.Netbird,
 		c.NetbirdSettings, c.NetworkAdapter, c.OperatingSystem, c.OrgMetadata,
 		c.PhysicalDisk, c.Printer, c.Profile, c.ProfileIssue, c.RecoveryCode,
-		c.Release, c.Revocation, c.Rustdesk, c.Server, c.Sessions, c.Settings, c.Share,
-		c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task, c.TaskReport,
-		c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
+		c.Release, c.Revocation, c.Rustdesk, c.ScheduledEvent, c.Server, c.Sessions,
+		c.Settings, c.Share, c.Site, c.SoftwarePackage, c.SystemUpdate, c.Tag, c.Task,
+		c.TaskReport, c.Tenant, c.Update, c.User, c.WingetConfigExclusion,
 	} {
 		n.Intercept(interceptors...)
 	}
@@ -481,6 +487,8 @@ func (c *Client) Mutate(ctx context.Context, m Mutation) (Value, error) {
 		return c.Revocation.mutate(ctx, m)
 	case *RustdeskMutation:
 		return c.Rustdesk.mutate(ctx, m)
+	case *ScheduledEventMutation:
+		return c.ScheduledEvent.mutate(ctx, m)
 	case *ServerMutation:
 		return c.Server.mutate(ctx, m)
 	case *SessionsMutation:
@@ -3672,6 +3680,22 @@ func (c *ProfileClient) QueryIssues(pr *Profile) *ProfileIssueQuery {
 	return query
 }
 
+// QueryScheduledEvents queries the scheduled_events edge of a Profile.
+func (c *ProfileClient) QueryScheduledEvents(pr *Profile) *ScheduledEventQuery {
+	query := (&ScheduledEventClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := pr.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(profile.Table, profile.FieldID, id),
+			sqlgraph.To(scheduledevent.Table, scheduledevent.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, profile.ScheduledEventsTable, profile.ScheduledEventsColumn),
+		)
+		fromV = sqlgraph.Neighbors(pr.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // QuerySite queries the site edge of a Profile.
 func (c *ProfileClient) QuerySite(pr *Profile) *SiteQuery {
 	query := (&SiteClient{config: c.config}).Query()
@@ -4490,6 +4514,187 @@ func (c *RustdeskClient) mutate(ctx context.Context, m *RustdeskMutation) (Value
 	}
 }
 
+// ScheduledEventClient is a client for the ScheduledEvent schema.
+type ScheduledEventClient struct {
+	config
+}
+
+// NewScheduledEventClient returns a client for the ScheduledEvent from the given config.
+func NewScheduledEventClient(c config) *ScheduledEventClient {
+	return &ScheduledEventClient{config: c}
+}
+
+// Use adds a list of mutation hooks to the hooks stack.
+// A call to `Use(f, g, h)` equals to `scheduledevent.Hooks(f(g(h())))`.
+func (c *ScheduledEventClient) Use(hooks ...Hook) {
+	c.hooks.ScheduledEvent = append(c.hooks.ScheduledEvent, hooks...)
+}
+
+// Intercept adds a list of query interceptors to the interceptors stack.
+// A call to `Intercept(f, g, h)` equals to `scheduledevent.Intercept(f(g(h())))`.
+func (c *ScheduledEventClient) Intercept(interceptors ...Interceptor) {
+	c.inters.ScheduledEvent = append(c.inters.ScheduledEvent, interceptors...)
+}
+
+// Create returns a builder for creating a ScheduledEvent entity.
+func (c *ScheduledEventClient) Create() *ScheduledEventCreate {
+	mutation := newScheduledEventMutation(c.config, OpCreate)
+	return &ScheduledEventCreate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// CreateBulk returns a builder for creating a bulk of ScheduledEvent entities.
+func (c *ScheduledEventClient) CreateBulk(builders ...*ScheduledEventCreate) *ScheduledEventCreateBulk {
+	return &ScheduledEventCreateBulk{config: c.config, builders: builders}
+}
+
+// MapCreateBulk creates a bulk creation builder from the given slice. For each item in the slice, the function creates
+// a builder and applies setFunc on it.
+func (c *ScheduledEventClient) MapCreateBulk(slice any, setFunc func(*ScheduledEventCreate, int)) *ScheduledEventCreateBulk {
+	rv := reflect.ValueOf(slice)
+	if rv.Kind() != reflect.Slice {
+		return &ScheduledEventCreateBulk{err: fmt.Errorf("calling to ScheduledEventClient.MapCreateBulk with wrong type %T, need slice", slice)}
+	}
+	builders := make([]*ScheduledEventCreate, rv.Len())
+	for i := 0; i < rv.Len(); i++ {
+		builders[i] = c.Create()
+		setFunc(builders[i], i)
+	}
+	return &ScheduledEventCreateBulk{config: c.config, builders: builders}
+}
+
+// Update returns an update builder for ScheduledEvent.
+func (c *ScheduledEventClient) Update() *ScheduledEventUpdate {
+	mutation := newScheduledEventMutation(c.config, OpUpdate)
+	return &ScheduledEventUpdate{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOne returns an update builder for the given entity.
+func (c *ScheduledEventClient) UpdateOne(se *ScheduledEvent) *ScheduledEventUpdateOne {
+	mutation := newScheduledEventMutation(c.config, OpUpdateOne, withScheduledEvent(se))
+	return &ScheduledEventUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// UpdateOneID returns an update builder for the given id.
+func (c *ScheduledEventClient) UpdateOneID(id int) *ScheduledEventUpdateOne {
+	mutation := newScheduledEventMutation(c.config, OpUpdateOne, withScheduledEventID(id))
+	return &ScheduledEventUpdateOne{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// Delete returns a delete builder for ScheduledEvent.
+func (c *ScheduledEventClient) Delete() *ScheduledEventDelete {
+	mutation := newScheduledEventMutation(c.config, OpDelete)
+	return &ScheduledEventDelete{config: c.config, hooks: c.Hooks(), mutation: mutation}
+}
+
+// DeleteOne returns a builder for deleting the given entity.
+func (c *ScheduledEventClient) DeleteOne(se *ScheduledEvent) *ScheduledEventDeleteOne {
+	return c.DeleteOneID(se.ID)
+}
+
+// DeleteOneID returns a builder for deleting the given entity by its id.
+func (c *ScheduledEventClient) DeleteOneID(id int) *ScheduledEventDeleteOne {
+	builder := c.Delete().Where(scheduledevent.ID(id))
+	builder.mutation.id = &id
+	builder.mutation.op = OpDeleteOne
+	return &ScheduledEventDeleteOne{builder}
+}
+
+// Query returns a query builder for ScheduledEvent.
+func (c *ScheduledEventClient) Query() *ScheduledEventQuery {
+	return &ScheduledEventQuery{
+		config: c.config,
+		ctx:    &QueryContext{Type: TypeScheduledEvent},
+		inters: c.Interceptors(),
+	}
+}
+
+// Get returns a ScheduledEvent entity by its id.
+func (c *ScheduledEventClient) Get(ctx context.Context, id int) (*ScheduledEvent, error) {
+	return c.Query().Where(scheduledevent.ID(id)).Only(ctx)
+}
+
+// GetX is like Get, but panics if an error occurs.
+func (c *ScheduledEventClient) GetX(ctx context.Context, id int) *ScheduledEvent {
+	obj, err := c.Get(ctx, id)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+// QueryTenant queries the tenant edge of a ScheduledEvent.
+func (c *ScheduledEventClient) QueryTenant(se *ScheduledEvent) *TenantQuery {
+	query := (&TenantClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := se.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(scheduledevent.Table, scheduledevent.FieldID, id),
+			sqlgraph.To(tenant.Table, tenant.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, scheduledevent.TenantTable, scheduledevent.TenantColumn),
+		)
+		fromV = sqlgraph.Neighbors(se.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QuerySite queries the site edge of a ScheduledEvent.
+func (c *ScheduledEventClient) QuerySite(se *ScheduledEvent) *SiteQuery {
+	query := (&SiteClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := se.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(scheduledevent.Table, scheduledevent.FieldID, id),
+			sqlgraph.To(site.Table, site.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, scheduledevent.SiteTable, scheduledevent.SiteColumn),
+		)
+		fromV = sqlgraph.Neighbors(se.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryProfile queries the profile edge of a ScheduledEvent.
+func (c *ScheduledEventClient) QueryProfile(se *ScheduledEvent) *ProfileQuery {
+	query := (&ProfileClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := se.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(scheduledevent.Table, scheduledevent.FieldID, id),
+			sqlgraph.To(profile.Table, profile.FieldID),
+			sqlgraph.Edge(sqlgraph.M2O, true, scheduledevent.ProfileTable, scheduledevent.ProfileColumn),
+		)
+		fromV = sqlgraph.Neighbors(se.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// Hooks returns the client hooks.
+func (c *ScheduledEventClient) Hooks() []Hook {
+	return c.hooks.ScheduledEvent
+}
+
+// Interceptors returns the client interceptors.
+func (c *ScheduledEventClient) Interceptors() []Interceptor {
+	return c.inters.ScheduledEvent
+}
+
+func (c *ScheduledEventClient) mutate(ctx context.Context, m *ScheduledEventMutation) (Value, error) {
+	switch m.Op() {
+	case OpCreate:
+		return (&ScheduledEventCreate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdate:
+		return (&ScheduledEventUpdate{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpUpdateOne:
+		return (&ScheduledEventUpdateOne{config: c.config, hooks: c.Hooks(), mutation: m}).Save(ctx)
+	case OpDelete, OpDeleteOne:
+		return (&ScheduledEventDelete{config: c.config, hooks: c.Hooks(), mutation: m}).Exec(ctx)
+	default:
+		return nil, fmt.Errorf("ent: unknown ScheduledEvent mutation op: %q", m.Op())
+	}
+}
+
 // ServerClient is a client for the Server schema.
 type ServerClient struct {
 	config
@@ -5235,6 +5440,22 @@ func (c *SiteClient) QueryProfiles(s *Site) *ProfileQuery {
 			sqlgraph.From(site.Table, site.FieldID, id),
 			sqlgraph.To(profile.Table, profile.FieldID),
 			sqlgraph.Edge(sqlgraph.M2M, false, site.ProfilesTable, site.ProfilesPrimaryKey...),
+		)
+		fromV = sqlgraph.Neighbors(s.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
+// QueryScheduledEvents queries the scheduled_events edge of a Site.
+func (c *SiteClient) QueryScheduledEvents(s *Site) *ScheduledEventQuery {
+	query := (&ScheduledEventClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := s.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(site.Table, site.FieldID, id),
+			sqlgraph.To(scheduledevent.Table, scheduledevent.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, site.ScheduledEventsTable, site.ScheduledEventsColumn),
 		)
 		fromV = sqlgraph.Neighbors(s.driver.Dialect(), step)
 		return fromV, nil
@@ -6328,6 +6549,22 @@ func (c *TenantClient) QueryProfiles(t *Tenant) *ProfileQuery {
 	return query
 }
 
+// QueryScheduledEvents queries the scheduled_events edge of a Tenant.
+func (c *TenantClient) QueryScheduledEvents(t *Tenant) *ScheduledEventQuery {
+	query := (&ScheduledEventClient{config: c.config}).Query()
+	query.path = func(context.Context) (fromV *sql.Selector, _ error) {
+		id := t.ID
+		step := sqlgraph.NewStep(
+			sqlgraph.From(tenant.Table, tenant.FieldID, id),
+			sqlgraph.To(scheduledevent.Table, scheduledevent.FieldID),
+			sqlgraph.Edge(sqlgraph.O2M, false, tenant.ScheduledEventsTable, tenant.ScheduledEventsColumn),
+		)
+		fromV = sqlgraph.Neighbors(t.driver.Dialect(), step)
+		return fromV, nil
+	}
+	return query
+}
+
 // Hooks returns the client hooks.
 func (c *TenantClient) Hooks() []Hook {
 	return c.hooks.Tenant
@@ -6822,16 +7059,16 @@ type (
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
 		LogicalDisk, MemorySlot, Metadata, Monitor, Netbird, NetbirdSettings,
 		NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk, Printer, Profile,
-		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, Server, Sessions,
-		Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag, Task, TaskReport,
-		Tenant, Update, User, WingetConfigExclusion []ent.Hook
+		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, ScheduledEvent,
+		Server, Sessions, Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag,
+		Task, TaskReport, Tenant, Update, User, WingetConfigExclusion []ent.Hook
 	}
 	inters struct {
 		Agent, Antivirus, App, Authentication, Certificate, Computer, Deployment,
 		LogicalDisk, MemorySlot, Metadata, Monitor, Netbird, NetbirdSettings,
 		NetworkAdapter, OperatingSystem, OrgMetadata, PhysicalDisk, Printer, Profile,
-		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, Server, Sessions,
-		Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag, Task, TaskReport,
-		Tenant, Update, User, WingetConfigExclusion []ent.Interceptor
+		ProfileIssue, RecoveryCode, Release, Revocation, Rustdesk, ScheduledEvent,
+		Server, Sessions, Settings, Share, Site, SoftwarePackage, SystemUpdate, Tag,
+		Task, TaskReport, Tenant, Update, User, WingetConfigExclusion []ent.Interceptor
 	}
 )

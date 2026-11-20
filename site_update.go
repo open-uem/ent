@@ -14,6 +14,7 @@ import (
 	"github.com/open-uem/ent/agent"
 	"github.com/open-uem/ent/predicate"
 	"github.com/open-uem/ent/profile"
+	"github.com/open-uem/ent/scheduledevent"
 	"github.com/open-uem/ent/site"
 	"github.com/open-uem/ent/tenant"
 )
@@ -173,6 +174,21 @@ func (su *SiteUpdate) AddProfiles(p ...*Profile) *SiteUpdate {
 	return su.AddProfileIDs(ids...)
 }
 
+// AddScheduledEventIDs adds the "scheduled_events" edge to the ScheduledEvent entity by IDs.
+func (su *SiteUpdate) AddScheduledEventIDs(ids ...int) *SiteUpdate {
+	su.mutation.AddScheduledEventIDs(ids...)
+	return su
+}
+
+// AddScheduledEvents adds the "scheduled_events" edges to the ScheduledEvent entity.
+func (su *SiteUpdate) AddScheduledEvents(s ...*ScheduledEvent) *SiteUpdate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return su.AddScheduledEventIDs(ids...)
+}
+
 // Mutation returns the SiteMutation object of the builder.
 func (su *SiteUpdate) Mutation() *SiteMutation {
 	return su.mutation
@@ -224,6 +240,27 @@ func (su *SiteUpdate) RemoveProfiles(p ...*Profile) *SiteUpdate {
 		ids[i] = p[i].ID
 	}
 	return su.RemoveProfileIDs(ids...)
+}
+
+// ClearScheduledEvents clears all "scheduled_events" edges to the ScheduledEvent entity.
+func (su *SiteUpdate) ClearScheduledEvents() *SiteUpdate {
+	su.mutation.ClearScheduledEvents()
+	return su
+}
+
+// RemoveScheduledEventIDs removes the "scheduled_events" edge to ScheduledEvent entities by IDs.
+func (su *SiteUpdate) RemoveScheduledEventIDs(ids ...int) *SiteUpdate {
+	su.mutation.RemoveScheduledEventIDs(ids...)
+	return su
+}
+
+// RemoveScheduledEvents removes "scheduled_events" edges to ScheduledEvent entities.
+func (su *SiteUpdate) RemoveScheduledEvents(s ...*ScheduledEvent) *SiteUpdate {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return su.RemoveScheduledEventIDs(ids...)
 }
 
 // Save executes the query and returns the number of nodes affected by the update operation.
@@ -426,6 +463,51 @@ func (su *SiteUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		}
 		_spec.Edges.Add = append(_spec.Edges.Add, edge)
 	}
+	if su.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := su.mutation.RemovedScheduledEventsIDs(); len(nodes) > 0 && !su.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := su.mutation.ScheduledEventsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
 	_spec.AddModifiers(su.modifiers...)
 	if n, err = sqlgraph.UpdateNodes(ctx, su.driver, _spec); err != nil {
 		if _, ok := err.(*sqlgraph.NotFoundError); ok {
@@ -589,6 +671,21 @@ func (suo *SiteUpdateOne) AddProfiles(p ...*Profile) *SiteUpdateOne {
 	return suo.AddProfileIDs(ids...)
 }
 
+// AddScheduledEventIDs adds the "scheduled_events" edge to the ScheduledEvent entity by IDs.
+func (suo *SiteUpdateOne) AddScheduledEventIDs(ids ...int) *SiteUpdateOne {
+	suo.mutation.AddScheduledEventIDs(ids...)
+	return suo
+}
+
+// AddScheduledEvents adds the "scheduled_events" edges to the ScheduledEvent entity.
+func (suo *SiteUpdateOne) AddScheduledEvents(s ...*ScheduledEvent) *SiteUpdateOne {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return suo.AddScheduledEventIDs(ids...)
+}
+
 // Mutation returns the SiteMutation object of the builder.
 func (suo *SiteUpdateOne) Mutation() *SiteMutation {
 	return suo.mutation
@@ -640,6 +737,27 @@ func (suo *SiteUpdateOne) RemoveProfiles(p ...*Profile) *SiteUpdateOne {
 		ids[i] = p[i].ID
 	}
 	return suo.RemoveProfileIDs(ids...)
+}
+
+// ClearScheduledEvents clears all "scheduled_events" edges to the ScheduledEvent entity.
+func (suo *SiteUpdateOne) ClearScheduledEvents() *SiteUpdateOne {
+	suo.mutation.ClearScheduledEvents()
+	return suo
+}
+
+// RemoveScheduledEventIDs removes the "scheduled_events" edge to ScheduledEvent entities by IDs.
+func (suo *SiteUpdateOne) RemoveScheduledEventIDs(ids ...int) *SiteUpdateOne {
+	suo.mutation.RemoveScheduledEventIDs(ids...)
+	return suo
+}
+
+// RemoveScheduledEvents removes "scheduled_events" edges to ScheduledEvent entities.
+func (suo *SiteUpdateOne) RemoveScheduledEvents(s ...*ScheduledEvent) *SiteUpdateOne {
+	ids := make([]int, len(s))
+	for i := range s {
+		ids[i] = s[i].ID
+	}
+	return suo.RemoveScheduledEventIDs(ids...)
 }
 
 // Where appends a list predicates to the SiteUpdate builder.
@@ -865,6 +983,51 @@ func (suo *SiteUpdateOne) sqlSave(ctx context.Context) (_node *Site, err error) 
 			Bidi:    false,
 			Target: &sqlgraph.EdgeTarget{
 				IDSpec: sqlgraph.NewFieldSpec(profile.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Add = append(_spec.Edges.Add, edge)
+	}
+	if suo.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := suo.mutation.RemovedScheduledEventsIDs(); len(nodes) > 0 && !suo.mutation.ScheduledEventsCleared() {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
+			},
+		}
+		for _, k := range nodes {
+			edge.Target.Nodes = append(edge.Target.Nodes, k)
+		}
+		_spec.Edges.Clear = append(_spec.Edges.Clear, edge)
+	}
+	if nodes := suo.mutation.ScheduledEventsIDs(); len(nodes) > 0 {
+		edge := &sqlgraph.EdgeSpec{
+			Rel:     sqlgraph.O2M,
+			Inverse: false,
+			Table:   site.ScheduledEventsTable,
+			Columns: []string{site.ScheduledEventsColumn},
+			Bidi:    false,
+			Target: &sqlgraph.EdgeTarget{
+				IDSpec: sqlgraph.NewFieldSpec(scheduledevent.FieldID, field.TypeInt),
 			},
 		}
 		for _, k := range nodes {

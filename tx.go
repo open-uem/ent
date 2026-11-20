@@ -60,6 +60,8 @@ type Tx struct {
 	Revocation *RevocationClient
 	// Rustdesk is the client for interacting with the Rustdesk builders.
 	Rustdesk *RustdeskClient
+	// ScheduledEvent is the client for interacting with the ScheduledEvent builders.
+	ScheduledEvent *ScheduledEventClient
 	// Server is the client for interacting with the Server builders.
 	Server *ServerClient
 	// Sessions is the client for interacting with the Sessions builders.
@@ -243,6 +245,7 @@ func (tx *Tx) init() {
 	tx.Release = NewReleaseClient(tx.config)
 	tx.Revocation = NewRevocationClient(tx.config)
 	tx.Rustdesk = NewRustdeskClient(tx.config)
+	tx.ScheduledEvent = NewScheduledEventClient(tx.config)
 	tx.Server = NewServerClient(tx.config)
 	tx.Sessions = NewSessionsClient(tx.config)
 	tx.Settings = NewSettingsClient(tx.config)

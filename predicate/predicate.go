@@ -78,6 +78,9 @@ type Revocation func(*sql.Selector)
 // Rustdesk is the predicate function for rustdesk builders.
 type Rustdesk func(*sql.Selector)
 
+// ScheduledEvent is the predicate function for scheduledevent builders.
+type ScheduledEvent func(*sql.Selector)
+
 // Server is the predicate function for server builders.
 type Server func(*sql.Selector)
 

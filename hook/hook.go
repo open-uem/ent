@@ -297,6 +297,18 @@ func (f RustdeskFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, er
 	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.RustdeskMutation", m)
 }
 
+// The ScheduledEventFunc type is an adapter to allow the use of ordinary
+// function as ScheduledEvent mutator.
+type ScheduledEventFunc func(context.Context, *ent.ScheduledEventMutation) (ent.Value, error)
+
+// Mutate calls f(ctx, m).
+func (f ScheduledEventFunc) Mutate(ctx context.Context, m ent.Mutation) (ent.Value, error) {
+	if mv, ok := m.(*ent.ScheduledEventMutation); ok {
+		return f(ctx, mv)
+	}
+	return nil, fmt.Errorf("unexpected mutation type %T. expect *ent.ScheduledEventMutation", m)
+}
+
 // The ServerFunc type is an adapter to allow the use of ordinary
 // function as Server mutator.
 type ServerFunc func(context.Context, *ent.ServerMutation) (ent.Value, error)
